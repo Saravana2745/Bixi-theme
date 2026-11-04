@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" width="100%" height="100%">
+  <defs>
+    <linearGradient id="tankAther" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C8F169"/>
+      <stop offset="60%" stop-color="#F7F8F4"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <filter id="atherGlow"><feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#C8F169" flood-opacity="0.3"/></filter>
+  </defs>
+  <g filter="url(#atherGlow)">
+    <ellipse cx="250" cy="285" rx="180" ry="13" fill="#000000" opacity="0.6"/>
+    <circle cx="130" cy="230" r="48" fill="#102A2A" stroke="#C8F169" stroke-width="5"/>
+    <circle cx="130" cy="230" r="30" fill="none" stroke="#C8F169" stroke-width="2"/>
+    <circle cx="370" cy="230" r="48" fill="#102A2A" stroke="#C8F169" stroke-width="5"/>
+    <circle cx="370" cy="230" r="30" fill="none" stroke="#C8F169" stroke-width="2"/>
+    <rect x="190" y="215" width="115" height="24" rx="6" fill="#102A2A" stroke="#C8F169" stroke-width="1.5"/>
+    <text x="215" y="232" font-family="Space Grotesk, sans-serif" font-weight="900" font-size="10" fill="#C8F169" letter-spacing="2">WARP EV</text>
+    <path d="M 120 205 C 130 160, 195 155, 230 170 L 225 215 L 135 225 Z" fill="url(#tankAther)"/>
+    <path d="M 130 155 C 165 148, 220 150, 240 165 L 230 175 L 135 168 Z" fill="#0B0F19" stroke="#C8F169" stroke-width="2"/>
+    <path d="M 280 220 L 320 145 C 330 130, 360 135, 365 170 L 340 220 Z" fill="url(#tankAther)"/>
+    <line x1="335" y1="145" x2="355" y2="155" stroke="#C8F169" stroke-width="4" stroke-linecap="round"/>
+    <rect x="325" y="98" width="22" height="15" rx="3" fill="#0F172A" stroke="#C8F169" stroke-width="1.5"/>
+  </g>
+</svg>

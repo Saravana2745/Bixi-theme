@@ -1,0 +1,6 @@
+# BIXI Ride - Robots Configuration for Maximum Googlebot Indexing
+User-agent: *
+Allow: /
+
+# Direct Googlebot and Bingbot to the valid sitemap
+Sitemap: https://bixiride.com/sitemap.xml

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bike Rental in Madurai – Compare 40+ Rental Bikes | BIXI Ride Fleet</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore top madurai rental bikes from ₹399/day. Rent Royal Enfield Hunter, Himalayan 450, MT-15, Activa 6G, Ather EV. Best bike rental near me with zero deposit!">
+  <meta name="keywords" content="bike rental in madurai, madurai bike rental, rental bikes in madurai, bike rental madurai, madurai rental bikes, best bike rental near me, rent hunter 350 madurai, himalayan rental madurai">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://bixiride.com/bikes.html">
+  <meta name="geo.region" content="IN-TN">
+  <meta name="geo.placename" content="Madurai">
+  <meta name="geo.position" content="9.9252;78.1198">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bixiride.com/bikes.html">
+  <meta property="og:title" content="Madurai Rental Bikes Fleet – Rent Two-Wheelers in Madurai from ₹399">
+  <meta property="og:description" content="Choose from 40+ verified bikes in Madurai. Zero deposit, free helmets, and 24/7 breakdown assistance.">
+  <meta property="og:image" content="https://bixiride.com/assets/images/logo.svg">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Favicon & Fonts -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Structured Data: ItemList & Product/Offer Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "BIXI Ride Madurai Bike Rental Fleet",
+    "description": "Comprehensive catalogue of verified rental bikes in Madurai",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "position": 1,
+        "name": "Royal Enfield Hunter 350",
+        "description": "349cc retro roadster ideal for city and highway rides in Madurai.",
+        "image": "https://bixiride.com/assets/images/bikes/hunter-350.svg",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "899",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://bixiride.com/bikes.html"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 2,
+        "name": "Yamaha MT-15 Version 2.0",
+        "description": "155cc liquid-cooled hyper naked street motorcycle for high performance.",
+        "image": "https://bixiride.com/assets/images/bikes/mt-15.svg",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "799",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://bixiride.com/bikes.html"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 3,
+        "name": "Royal Enfield Himalayan 450",
+        "description": "452cc adventure tourer engineered for Kodaikanal and Western Ghats mountain trails.",
+        "image": "https://bixiride.com/assets/images/bikes/himalayan-450.svg",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "1499",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://bixiride.com/bikes.html"
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 4,
+        "name": "Honda Activa 6G",
+        "description": "110cc automatic scooter for smooth temple tours and local Madurai commuting.",
+        "image": "https://bixiride.com/assets/images/bikes/activa-6g.svg",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "499",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://bixiride.com/bikes.html"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <canvas id="speed-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header scrolled">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="nav-brand" aria-label="BIXI Ride Madurai Home">
+          <img src="assets/images/logo.svg" alt="BIXI Ride Logo" class="nav-logo" width="160" height="60">
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="bikes.html" class="nav-link active">Bike Rentals</a></li>
+          <li><a href="blog.html" class="nav-link">Blog &amp; Guides</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="tel:+919876543210" class="btn-hotline">+91 98765 43210</a>
+          <a href="bikes.html" class="btn-primary">Rent a Bike</a>
+          <button class="nav-toggle" aria-label="Toggle Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-top">
+      <img src="assets/images/logo.svg" alt="BIXI Ride" width="140" style="margin-bottom: 2rem;">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link">Home <span>→</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">About Us <span>→</span></a></li>
+        <li><a href="bikes.html" class="mobile-nav-link active">Bike Rentals <span>→</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog &amp; Guides <span>→</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact Us <span>→</span></a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-footer">
+      <a href="bikes.html" class="btn-primary" style="width: 100%; margin-bottom: 0.8rem;">Explore Fleet</a>
+      <a href="https://wa.me/919876543210" class="btn-secondary btn-whatsapp" style="width: 100%;">WhatsApp Booking</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main style="padding-top: 6rem;">
+    <!-- Page Header & Suitable H1 -->
+    <section class="section" style="padding-bottom: 2rem;">
+      <div class="container">
+        <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a> &nbsp;/&nbsp; <span>Bike Rental Fleet</span>
+        </nav>
+        
+        <div class="section-head" style="margin-bottom: 2.5rem;">
+          <span class="badge">Verified 2026 Inventory</span>
+          <!-- Suitable H1 Tag with target keywords -->
+          <h1><span class="text-lime">Madurai Rental Bikes</span> Fleet – Rent the <span class="text-orange">Best Bike Rental Near Me</span> in Madurai</h1>
+          <p>
+            Choose from 40+ premium <strong>rental bikes in madurai</strong>. All bikes include complimentary sanitized helmets, zero security deposit, doorstep delivery at Madurai Railway Junction, and complete 24/7 roadside assistance. Discover why BIXI Ride is the trusted choice for <strong>bike rental in madurai</strong>.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="fleet-filters">
+          <button class="filter-btn active" data-filter="all">All Bikes (40+)</button>
+          <button class="filter-btn" data-filter="cruiser">Royal Enfield Classic / Hunter</button>
+          <button class="filter-btn" data-filter="adventure">Adventure (Himalayan)</button>
+          <button class="filter-btn" data-filter="sport">Sports &amp; Naked (MT-15 / Duke)</button>
+          <button class="filter-btn" data-filter="scooter">Scooters (Activa 6G)</button>
+          <button class="filter-btn" data-filter="ev">Electric EV (Ather)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FULL BIKE CATALOGUE GRID -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="fleet-grid">
+          
+          <!-- Bike 1: Royal Enfield Hunter 350 -->
+          <article class="bike-card" data-category="cruiser">
+            <div class="bike-card-header">
+              <span class="bike-category-badge">Modern Classic</span>
+              <span class="bike-deposit-pill">Zero Deposit</span>
+              <div class="bike-card-image">
+                <img src="assets/images/bikes/hunter-350.svg" alt="Royal Enfield Hunter 350 bike rental in madurai" width="340" height="200" loading="lazy">
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <div>
+                <h3 class="bike-title">Royal Enfield Hunter 350</h3>
+                <p class="bike-tagline">Compact, retro street roadster with responsive torque and dual-channel ABS.</p>
+                <div class="bike-telemetry-grid">
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Engine</span>
+                    <span class="telemetry-val">349 cc</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Mileage</span>
+                    <span class="telemetry-val">36 km/l</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Permit</span>
+                    <span class="telemetry-val">All India</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-box">
+                  <span class="price-sub">Daily 24h Rate</span>
+                  <span class="price-main">₹899 <small>/ day</small></span>
+                </div>
+                <div class="bike-btn-group">
+                  <button class="btn-primary btn-book-now" data-bike="Royal Enfield Hunter 350" data-rate="899">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bike 2: Yamaha MT-15 Version 2.0 -->
+          <article class="bike-card" data-category="sport">
+            <div class="bike-card-header">
+              <span class="bike-category-badge">Hyper Naked</span>
+              <span class="bike-deposit-pill">Zero Deposit</span>
+              <div class="bike-card-image">
+                <img src="assets/images/bikes/mt-15.svg" alt="Yamaha MT-15 madurai bike rental" width="340" height="200" loading="lazy">
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <div>
+                <h3 class="bike-title">Yamaha MT-15 Version 2.0</h3>
+                <p class="bike-tagline">High-revving liquid-cooled 155cc engine with upside-down gold front forks.</p>
+                <div class="bike-telemetry-grid">
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Engine</span>
+                    <span class="telemetry-val">155 cc</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Power</span>
+                    <span class="telemetry-val">18.4 PS</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Mileage</span>
+                    <span class="telemetry-val">48 km/l</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-box">
+                  <span class="price-sub">Daily 24h Rate</span>
+                  <span class="price-main">₹799 <small>/ day</small></span>
+                </div>
+                <div class="bike-btn-group">
+                  <button class="btn-primary btn-book-now" data-bike="Yamaha MT-15 V2" data-rate="799">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bike 3: Royal Enfield Himalayan 450 -->
+          <article class="bike-card" data-category="adventure">
+            <div class="bike-card-header">
+              <span class="bike-category-badge">Adventure Tourer</span>
+              <span class="bike-deposit-pill">Zero Deposit</span>
+              <div class="bike-card-image">
+                <img src="assets/images/bikes/himalayan-450.svg" alt="Royal Enfield Himalayan 450 rental bikes in madurai" width="340" height="200" loading="lazy">
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <div>
+                <h3 class="bike-title">RE Himalayan 450</h3>
+                <p class="bike-tagline">The ultimate machine for Kodaikanal hairpins, Munnar hills, and rugged terrains.</p>
+                <div class="bike-telemetry-grid">
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Engine</span>
+                    <span class="telemetry-val">452 cc</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Power</span>
+                    <span class="telemetry-val">40 PS</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Fuel Tank</span>
+                    <span class="telemetry-val">17 Liters</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-box">
+                  <span class="price-sub">Daily 24h Rate</span>
+                  <span class="price-main">₹1,499 <small>/ day</small></span>
+                </div>
+                <div class="bike-btn-group">
+                  <button class="btn-primary btn-book-now" data-bike="RE Himalayan 450" data-rate="1499">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bike 4: Honda Activa 6G -->
+          <article class="bike-card" data-category="scooter">
+            <div class="bike-card-header">
+              <span class="bike-category-badge">Automatic Scooter</span>
+              <span class="bike-deposit-pill">Zero Deposit</span>
+              <div class="bike-card-image">
+                <img src="assets/images/bikes/activa-6g.svg" alt="Honda Activa 6G bike rental madurai" width="340" height="200" loading="lazy">
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <div>
+                <h3 class="bike-title">Honda Activa 6G</h3>
+                <p class="bike-tagline">Effortless gearless commuting for Meenakshi Temple tours, shopping, and city visits.</p>
+                <div class="bike-telemetry-grid">
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Engine</span>
+                    <span class="telemetry-val">109.5 cc</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Mileage</span>
+                    <span class="telemetry-val">55 km/l</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Gear</span>
+                    <span class="telemetry-val">Automatic</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-box">
+                  <span class="price-sub">Daily 24h Rate</span>
+                  <span class="price-main">₹499 <small>/ day</small></span>
+                </div>
+                <div class="bike-btn-group">
+                  <button class="btn-primary btn-book-now" data-bike="Honda Activa 6G" data-rate="499">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bike 5: KTM Duke 250 -->
+          <article class="bike-card" data-category="sport">
+            <div class="bike-card-header">
+              <span class="bike-category-badge">Naked Sport</span>
+              <span class="bike-deposit-pill">Zero Deposit</span>
+              <div class="bike-card-image">
+                <img src="assets/images/bikes/duke-250.svg" alt="KTM Duke 250 madurai rental bikes" width="340" height="200" loading="lazy">
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <div>
+                <h3 class="bike-title">KTM Duke 250</h3>
+                <p class="bike-tagline">Razor-sharp cornering, slipper clutch, and blistering acceleration on open highways.</p>
+                <div class="bike-telemetry-grid">
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Engine</span>
+                    <span class="telemetry-val">248.8 cc</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Power</span>
+                    <span class="telemetry-val">31 PS</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Brakes</span>
+                    <span class="telemetry-val">Supermoto ABS</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-box">
+                  <span class="price-sub">Daily 24h Rate</span>
+                  <span class="price-main">₹1,199 <small>/ day</small></span>
+                </div>
+                <div class="bike-btn-group">
+                  <button class="btn-primary btn-book-now" data-bike="KTM Duke 250" data-rate="1199">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bike 6: Ather 450X Gen 3 -->
+          <article class="bike-card" data-category="ev">
+            <div class="bike-card-header">
+              <span class="bike-category-badge">Smart EV Scooter</span>
+              <span class="bike-deposit-pill">Zero Deposit</span>
+              <div class="bike-card-image">
+                <img src="assets/images/bikes/ather-450x.svg" alt="Ather 450X smart EV scooter bike rental in madurai" width="340" height="200" loading="lazy">
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <div>
+                <h3 class="bike-title">Ather 450X Gen 3</h3>
+                <p class="bike-tagline">High-torque smart electric scooter with Warp Mode and Google Maps touchscreen dashboard.</p>
+                <div class="bike-telemetry-grid">
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Range</span>
+                    <span class="telemetry-val">105 km</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">0-40 km/h</span>
+                    <span class="telemetry-val">3.3 sec</span>
+                  </div>
+                  <div class="telemetry-item">
+                    <span class="telemetry-label">Charging</span>
+                    <span class="telemetry-val">Fast Grid</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-box">
+                  <span class="price-sub">Daily 24h Rate</span>
+                  <span class="price-main">₹599 <small>/ day</small></span>
+                </div>
+                <div class="bike-btn-group">
+                  <button class="btn-primary btn-book-now" data-bike="Ather 450X EV" data-rate="599">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RENTAL TERMS & REQUIREMENTS IN MADURAI -->
+    <section class="section" style="background: rgba(10, 27, 27, 0.4);">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge">Transparent Policies</span>
+          <h2>Rental Terms for Bike Rental Madurai</h2>
+          <p>Simple, friendly conditions to keep your ride safe and hassle-free.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Documents Required</h3>
+            <p>1. Valid original Driving License (Motorcycle with gear or without gear).<br>2. Valid Government ID (Aadhaar, Passport, or Voter ID).<br>No physical paperwork needed; instant digital verification.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Fuel &amp; Kilometer Policy</h3>
+            <p>Bikes are handed over with sufficient fuel to reach the nearest petrol bunk. Return at the same level. Generous 250 km/day limit with minimal ₹3/km thereafter.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Complimentary Inclusions</h3>
+            <p>1 ISI-certified sanitized helmet, premium vibration-damped mobile phone mount, 24/7 roadside assistance across Tamil Nadu, and comprehensive vehicle insurance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOOKING MODAL DIALOG -->
+  <div class="modal-overlay" id="bookingModal" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close-btn" aria-label="Close Booking Dialog">&times;</button>
+      <div style="margin-bottom: 1.5rem;">
+        <span class="badge" style="margin-bottom: 0.5rem;">Instant Reservation</span>
+        <h3 id="modalBikeName" style="font-size: 1.6rem; color: var(--color-white);">Royal Enfield Hunter 350</h3>
+        <span id="modalBikePrice" style="color: var(--color-lime); font-family: var(--font-tech); font-size: 1.3rem; font-weight: 800;">₹899 / day</span>
+      </div>
+
+      <form id="rentalBookingForm">
+        <input type="hidden" id="modalBikeInput" value="Royal Enfield Hunter 350">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="userNameInput">Full Name</label>
+          <input type="text" class="form-control" id="userNameInput" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="userPhoneInput">WhatsApp Phone Number</label>
+          <input type="tel" class="form-control" id="userPhoneInput" placeholder="+91 98765 43210" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="userLocationSelect">Madurai Pickup Hub</label>
+          <select class="form-control" id="userLocationSelect">
+            <option value="Madurai Railway Junction">Madurai Railway Junction (West Veli St)</option>
+            <option value="Mattuthavani Bus Stand">Mattuthavani Bus Stand</option>
+            <option value="Periyar Bus Stand">Periyar / Meenakshi Temple</option>
+            <option value="Madurai Airport">Madurai Airport Delivery</option>
+            <option value="Hotel Delivery">Doorstep Hotel Delivery</option>
+          </select>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="userDateInput">Pickup Date</label>
+            <input type="date" class="form-control" id="userDateInput" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rentalDaysInput">Rental Days</label>
+            <input type="number" class="form-control" id="rentalDaysInput" value="1" min="1" max="60" required>
+          </div>
+        </div>
+        <div style="background: rgba(10, 27, 27, 0.7); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
+          <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.9rem; color: #E2E8F0;">
+            <input type="checkbox" id="extraHelmetCheckbox" style="accent-color: var(--color-lime); width: 16px; height: 16px;">
+            Add Pillion Rider Helmet (+₹50/day)
+          </label>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+            <span style="font-size: 0.9rem; color: var(--color-muted);">Estimated Total:</span>
+            <span id="modalTotalEstimate" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-lime);">₹899</span>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; height: 50px; font-size: 1.05rem;">
+          Confirm Booking via WhatsApp ⚡
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand">
+          <img src="assets/images/logo.svg" alt="BIXI Ride" width="160" height="58">
+          <p>
+            Experience premier <strong>madurai bike rental</strong> with zero deposit and instant confirmation. The smart traveler's choice in Madurai.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-title">Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="bikes.html" class="footer-link">Rental Fleet</a></li>
+            <li><a href="blog.html" class="footer-link">Travel Guides</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Top Bikes</h4>
+          <ul class="footer-links">
+            <li><a href="bikes.html" class="footer-link">Royal Enfield Hunter 350</a></li>
+            <li><a href="bikes.html" class="footer-link">RE Himalayan 450</a></li>
+            <li><a href="bikes.html" class="footer-link">Yamaha MT-15</a></li>
+            <li><a href="bikes.html" class="footer-link">Honda Activa 6G</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Support</h4>
+          <p style="font-size: 0.9rem; color: var(--color-muted);">
+            📞 Hotline: +91 98765 43210<br>
+            💬 WhatsApp 24/7 Dispatch<br>
+            📍 West Veli Street, opp. Madurai Junction
+          </p>
+        </div>
+      </div>
+
+      <!-- SEO Keywords Bar -->
+      <div class="footer-seo-bar">
+        <div class="footer-seo-title">Verified Madurai Two-Wheeler Keywords Directory</div>
+        <div class="footer-keywords-cloud">
+          <a href="index.html" class="keyword-tag">bike rental in madurai</a>
+          <a href="about.html" class="keyword-tag">madurai bike rental</a>
+          <a href="bikes.html" class="keyword-tag">rental bikes in madurai</a>
+          <a href="contact.html" class="keyword-tag">bike rental madurai</a>
+          <a href="bikes.html" class="keyword-tag">madurai rental bikes</a>
+          <a href="contact.html" class="keyword-tag">best bike rental near me</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 BIXI Ride (Bixi Theme). All rights reserved. Zero indexing issues guarantee.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
