@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=3.5">
+  <link rel="stylesheet" href="assets/css/style.css?v=3.8">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -405,56 +405,108 @@
     .map-telemetry-text strong {
       color: #E88124 !important;
     }
-    .map-controls-overlay {
+    
+    /* CUSTOM ORANGE & BLACK SCROLLBAR & CONTROLS */
+    .map-reset-btn {
       position: absolute !important;
-      bottom: 1rem !important;
-      left: 1rem !important;
+      top: 1rem !important;
       right: 1rem !important;
-      display: flex !important;
-      justify-content: flex-start !important;
+      background: rgba(18, 20, 26, 0.94) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      border: 1px solid rgba(232, 129, 36, 0.5) !important;
+      color: #FFFFFF !important;
+      padding: 0.55rem 1.15rem !important;
+      border-radius: 50px !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      font-family: inherit !important;
+      cursor: pointer !important;
+      display: none;
       align-items: center !important;
-      z-index: 10 !important;
-      pointer-events: none !important;
+      gap: 0.5rem !important;
+      z-index: 25 !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 16px rgba(232, 129, 36, 0.3) !important;
+      transition: all 0.2s ease !important;
+    }
+    .map-reset-btn span {
+      color: #E88124 !important;
+      font-weight: 900 !important;
+      font-size: 1rem !important;
+    }
+    .map-reset-btn:hover {
+      background: #E88124 !important;
+      color: #FFFFFF !important;
+      border-color: #E88124 !important;
+      box-shadow: 0 0 20px rgba(232, 129, 36, 0.7) !important;
+    }
+    .map-reset-btn:hover span {
+      color: #FFFFFF !important;
+    }
+    .map-pills-container {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+      width: 100% !important;
+      pointer-events: auto !important;
+    }
+    .map-scroll-arrow {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      border-radius: 50% !important;
+      background: rgba(18, 20, 26, 0.95) !important;
+      border: 1px solid rgba(232, 129, 36, 0.4) !important;
+      color: #E88124 !important;
+      font-size: 0.8rem !important;
+      font-weight: 900 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7) !important;
+      flex-shrink: 0 !important;
+      user-select: none !important;
+    }
+    .map-scroll-arrow:hover {
+      background: #E88124 !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 0 14px rgba(232, 129, 36, 0.6) !important;
     }
     .map-pills-row {
       display: flex !important;
       gap: 0.5rem !important;
       overflow-x: auto !important;
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
       pointer-events: auto !important;
-      padding: 6px 12px !important;
+      padding: 6px 8px 10px !important;
       background: rgba(13, 15, 20, 0.94) !important;
       backdrop-filter: blur(14px) !important;
       -webkit-backdrop-filter: blur(14px) !important;
       border-radius: 50px !important;
       border: 1px solid rgba(232, 129, 36, 0.35) !important;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.75) !important;
-      max-width: 100% !important;
+      flex: 1 !important;
+      scroll-behavior: smooth !important;
+      scrollbar-width: thin !important;
+      scrollbar-color: #E88124 #0D0D0F !important;
     }
     .map-pills-row::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
+      height: 6px !important;
+      display: block !important;
     }
-    .map-pill-btn {
-      background: rgba(22, 24, 30, 0.85) !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
-      color: #CBD5E1 !important;
-      padding: 0.4rem 0.95rem !important;
+    .map-pills-row::-webkit-scrollbar-track {
+      background: #0D0D0F !important;
       border-radius: 50px !important;
-      font-size: 0.78rem !important;
-      font-weight: 700 !important;
-      cursor: pointer !important;
-      white-space: nowrap !important;
-      transition: all 0.2s ease !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
-    .map-pill-btn:hover,
-    .map-pill-btn.active {
+    .map-pills-row::-webkit-scrollbar-thumb {
       background: #E88124 !important;
-      color: #FFFFFF !important;
-      border-color: #E88124 !important;
-      box-shadow: 0 0 14px rgba(232, 129, 36, 0.5) !important;
+      border-radius: 50px !important;
+      box-shadow: 0 0 8px rgba(232, 129, 36, 0.6) !important;
+    }
+    .map-pills-row::-webkit-scrollbar-thumb:hover {
+      background: #FFA756 !important;
     }
     .map-side-card {
       background: rgba(18, 20, 26, 0.94) !important;
@@ -916,7 +968,7 @@
         </div>
 
         <div class="madurai-map-card-wrapper">
-          <!-- 3D Viewport with Live Telemetry & Quick Landmarks -->
+                              <!-- 3D Viewport with Live Telemetry, Reset Zoom Out, and Scrollable Landmark Dock -->
           <div class="map-viewport-container" id="madurai-3d-map-wrapper">
             <canvas id="madurai-3d-map-canvas"></canvas>
 
@@ -928,15 +980,24 @@
               </div>
             </div>
 
-            <!-- Bottom Interactive Checkpoint Switchers -->
+            <!-- Floating Reset Zoom Out / Full Overview Button -->
+            <button type="button" class="map-reset-btn" id="btnMapResetView" onclick="resetMaduraiMapOverview()" aria-label="Zoom Out to Full Overview">
+              <span>&#10005;</span> Zoom Out / Overview
+            </button>
+
+            <!-- Bottom Interactive Checkpoint Switchers with Orange/Black Scrollbar & Arrows -->
             <div class="map-controls-overlay">
-              <div class="map-pills-row">
-                <button type="button" class="map-pill-btn active" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">🛕 Meenakshi Kovil</button>
-                <button type="button" class="map-pill-btn" data-id="vaigai-bridge" onclick="focusMaduraiCheckpoint('vaigai-bridge')">🌉 Vaigai &amp; AV Bridge</button>
-                <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">🥩 Power Kadai &amp; Mess</button>
-                <button type="button" class="map-pill-btn" data-id="gandhi-museum" onclick="focusMaduraiCheckpoint('gandhi-museum')">🏛️ Gandhi Museum</button>
-                <button type="button" class="map-pill-btn" data-id="alagar-waterfalls" onclick="focusMaduraiCheckpoint('alagar-waterfalls')">🌊 Alagar Waterfalls</button>
-                <button type="button" class="map-pill-btn" data-id="kilakarai-highway" onclick="focusMaduraiCheckpoint('kilakarai-highway')">🛣️ Kilakarai Highway</button>
+              <div class="map-pills-container">
+                <button type="button" class="map-scroll-arrow" onclick="scrollPills(-1)" title="Scroll Left" aria-label="Scroll Left">&#9664;</button>
+                <div class="map-pills-row">
+                  <button type="button" class="map-pill-btn active" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">&#127989; Meenakshi Kovil</button>
+                  <button type="button" class="map-pill-btn" data-id="vaigai-bridge" onclick="focusMaduraiCheckpoint('vaigai-bridge')">&#127753; Vaigai &amp; AV Bridge</button>
+                  <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">&#129385; Power Kadai &amp; Mess</button>
+                  <button type="button" class="map-pill-btn" data-id="gandhi-museum" onclick="focusMaduraiCheckpoint('gandhi-museum')">&#127963; Gandhi Museum</button>
+                  <button type="button" class="map-pill-btn" data-id="alagar-waterfalls" onclick="focusMaduraiCheckpoint('alagar-waterfalls')">&#127754; Alagar Waterfalls</button>
+                  <button type="button" class="map-pill-btn" data-id="kilakarai-highway" onclick="focusMaduraiCheckpoint('kilakarai-highway')">&#128739; Kilakarai Highway</button>
+                </div>
+                <button type="button" class="map-scroll-arrow" onclick="scrollPills(1)" title="Scroll Right" aria-label="Scroll Right">&#9654;</button>
               </div>
             </div>
           </div>
@@ -966,13 +1027,13 @@
             </div>
 
             <div>
-              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                <a href="bikes.html" class="btn-primary" style="flex: 1; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center;">
+              <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                <a href="bikes.html" class="btn-primary" style="flex: 1.4; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center;">
                   Book Swift (₹2,200) →
                 </a>
-                <a href="#booking-engine" class="btn-secondary" style="flex: 1; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center;">
-                  Quick Book ⚡
-                </a>
+                <button type="button" class="btn-secondary" onclick="resetMaduraiMapOverview()" style="flex: 1; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center; cursor: pointer;">
+                  ✕ Overview
+                </button>
               </div>
               <div style="margin-top: 0.75rem; font-size: 0.76rem; color: #64748B; text-align: center;">
                 Procedural 3D WebGL • Real 3D Landmarks • 0% CPU off-screen
@@ -1621,6 +1682,14 @@
   <!-- Three.js Library & Custom Application Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="assets/js/three-scene.js"></script>
+    <script>
+    window.scrollPills = function(dir) {
+      const row = document.querySelector('.map-pills-row');
+      if (row) {
+        row.scrollBy({ left: dir * 200, behavior: 'smooth' });
+      }
+    };
+  </script>
   <script src="assets/js/madurai-3d-map.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
