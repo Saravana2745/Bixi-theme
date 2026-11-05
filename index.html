@@ -983,7 +983,36 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   }
 }
 
-  </style>
+  
+/* Elevation & Visibility Guarantee for Open Dropdown & Calendar */
+.booking-widget-card,
+.booking-form-grid,
+.form-group,
+.custom-select-box,
+.custom-datepicker-box {
+  overflow: visible !important;
+}
+
+.custom-select-box.open,
+.custom-datepicker-box.open {
+  z-index: 2500 !important;
+}
+
+.custom-select-box.open .custom-options-panel {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: auto !important;
+}
+
+.custom-datepicker-box.open .custom-datepicker-panel {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+</style>
 
 </head>
 <body>
@@ -2237,6 +2266,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     };
   </script>
   <script src="assets/js/madurai-3d-map.js?v=6.0"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=6.5"></script>
 </body>
 </html>

@@ -69,6 +69,32 @@
     const modelOptionsPanel = document.getElementById('modelOptionsPanel');
     const selectedModelText = document.getElementById('selectedModelText');
     const vehicleLabelText = document.getElementById('vehicleLabelText');
+    const hubBox = document.getElementById('hubSelectBox');
+    const durationBox = document.getElementById('durationSelectBox');
+    const datePickerBox = document.getElementById('bixiDatePickerBox');
+    const dateTrigger = document.getElementById('bixiDateTrigger');
+    const selectedDateText = document.getElementById('selectedDateText');
+    const startDateInput = document.getElementById('startDate');
+    const prevMonthBtn = document.getElementById('bixiPrevMonth');
+    const nextMonthBtn = document.getElementById('bixiNextMonth');
+    const monthTitle = document.getElementById('bixiMonthTitle');
+    const daysGrid = document.getElementById('bixiDaysGrid');
+    const hourSelect = document.getElementById('bixiTimeHour');
+    const minuteSelect = document.getElementById('bixiTimeMinute');
+    const btnAM = document.getElementById('bixiBtnAM');
+    const btnPM = document.getElementById('bixiBtnPM');
+    const btnToday = document.getElementById('bixiBtnToday');
+    const btnConfirm = document.getElementById('bixiBtnConfirm');
+
+    // Bulletproof close function - queries directly to avoid TDZ
+    function closeAllDropdowns() {
+      document.querySelectorAll('.custom-select-box').forEach((box) => {
+        box.classList.remove('open');
+      });
+      document.querySelectorAll('.custom-datepicker-box').forEach((box) => {
+        box.classList.remove('open');
+      });
+    }
 
     const BIKE_MODELS = [
       { name: 'Royal Enfield Hunter 350', price: 899, sub: 'Retro Roadster • 350cc • Free Helmets' },
@@ -108,15 +134,15 @@
         `;
         opt.addEventListener('click', (e) => {
           e.stopPropagation();
-          selectModel(item);
+          selectModel(item, true);
         });
         modelOptionsPanel.appendChild(opt);
       });
 
-      selectModel(list[0]);
+      selectModel(list[0], false);
     }
 
-    function selectModel(item) {
+    function selectModel(item, closeDropdown = true) {
       if (selectedModelText) selectedModelText.textContent = item.name;
       if (hiddenModel) hiddenModel.value = item.name;
       currentSelectedPrice = item.price;
@@ -131,7 +157,9 @@
           }
         });
       }
-      closeAllDropdowns();
+      if (closeDropdown) {
+        closeAllDropdowns();
+      }
     }
 
     function updateFareEstimate() {
@@ -158,36 +186,9 @@
         if (vehicleLabelText) vehicleLabelText.textContent = 'Select Self-Drive Car';
         renderModelOptions('car');
       });
-
-      renderModelOptions('bike');
     }
 
-    // 2c. Custom Luxury Dropdown & Interactive Calendar Controller
-    const datePickerBox = document.getElementById('bixiDatePickerBox');
-    const dateTrigger = document.getElementById('bixiDateTrigger');
-    const selectedDateText = document.getElementById('selectedDateText');
-    const startDateInput = document.getElementById('startDate');
-    const prevMonthBtn = document.getElementById('bixiPrevMonth');
-    const nextMonthBtn = document.getElementById('bixiNextMonth');
-    const monthTitle = document.getElementById('bixiMonthTitle');
-    const daysGrid = document.getElementById('bixiDaysGrid');
-    const hourSelect = document.getElementById('bixiTimeHour');
-    const minuteSelect = document.getElementById('bixiTimeMinute');
-    const btnAM = document.getElementById('bixiBtnAM');
-    const btnPM = document.getElementById('bixiBtnPM');
-    const btnToday = document.getElementById('bixiBtnToday');
-    const btnConfirm = document.getElementById('bixiBtnConfirm');
-
-    function closeAllDropdowns() {
-      document.querySelectorAll('.custom-select-box').forEach((box) => {
-        box.classList.remove('open');
-      });
-      if (datePickerBox) {
-        datePickerBox.classList.remove('open');
-      }
-    }
-
-    // Generic Custom Select Box Toggle
+    // 2c. Custom Select Box Toggle & Handlers
     document.querySelectorAll('.custom-select-box').forEach((box) => {
       const trigger = box.querySelector('.custom-select-trigger');
       if (!trigger) return;
@@ -214,6 +215,11 @@
       });
     });
 
+    // Prevent clicks inside options panel from closing before click registers
+    document.querySelectorAll('.custom-options-panel').forEach((panel) => {
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    });
+
     // Close when clicking outside or pressing Escape
     document.addEventListener('click', closeAllDropdowns);
     document.addEventListener('keydown', (e) => {
@@ -221,15 +227,13 @@
     });
 
     // Hub select options click
-    const hubBox = document.getElementById('hubSelectBox');
     if (hubBox) {
       hubBox.querySelectorAll('.custom-option-item').forEach((item) => {
         item.addEventListener('click', (e) => {
           e.stopPropagation();
           const val = item.dataset.value;
           const header = item.querySelector('.custom-option-header')?.textContent?.trim() || val;
-          const selectedText = document.getElementById('selectedHubText');
-          if (selectedText) selectedText.textContent = header;
+          if (selectedHubText) selectedHubText.textContent = header;
           if (hiddenHub) hiddenHub.value = val;
           hubBox.querySelectorAll('.custom-option-item').forEach((i) => i.classList.remove('selected'));
           item.classList.add('selected');
@@ -239,15 +243,13 @@
     }
 
     // Duration select options click
-    const durationBox = document.getElementById('durationSelectBox');
     if (durationBox) {
       durationBox.querySelectorAll('.custom-option-item').forEach((item) => {
         item.addEventListener('click', (e) => {
           e.stopPropagation();
           const days = parseInt(item.dataset.value, 10) || 1;
           const header = item.querySelector('.custom-option-header')?.textContent?.trim() || `${days} Day (24 Hours)`;
-          const selectedText = document.getElementById('selectedDurationText');
-          if (selectedText) selectedText.textContent = header;
+          if (selectedDurationText) selectedDurationText.textContent = header;
           if (hiddenDuration) hiddenDuration.value = days;
           currentDays = days;
           updateFareEstimate();
@@ -449,7 +451,12 @@
       syncDateTimeValue(false);
     }
 
-        // 3. Bike Fleet Filtering System
+    // Finally initialize default bike model fleet options
+    if (tabBikes && tabCars) {
+      renderModelOptions('bike');
+    }
+
+    // 3. Bike Fleet Filtering System
     const filterButtons = document.querySelectorAll('.filter-btn');
     const bikeCards = document.querySelectorAll('.bike-card');
 
@@ -686,8 +693,8 @@
         el.classList.add('bixi-revealed');
       };
 
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
+      if (typeof window !== 'undefined' && typeof window.IntersectionObserver !== 'undefined') {
+        const observer = new window.IntersectionObserver((entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               revealElement(entry.target);
