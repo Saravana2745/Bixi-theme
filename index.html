@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=3.2">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -80,6 +80,386 @@
     ]
   }
   </script>
+
+  <!-- Scoped Critical Styles for Luxury Booking Engine & 3D Simulation -->
+  <style id="luxury-booking-and-3d-styles">
+    /* LUXURY COMPACT BOOKING CONSOLE */
+    #booking-engine {
+      padding: 1.5rem 0 2.5rem;
+      position: relative;
+      z-index: 50;
+    }
+    .booking-widget-card {
+      background: rgba(18, 20, 26, 0.96) !important;
+      backdrop-filter: blur(25px) !important;
+      -webkit-backdrop-filter: blur(25px) !important;
+      border: 1px solid rgba(232, 129, 36, 0.35) !important;
+      border-radius: 16px !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(232, 129, 36, 0.15) !important;
+      padding: 1.25rem 1.6rem !important;
+      box-sizing: border-box !important;
+    }
+    .booking-tabs-wrapper {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      margin-bottom: 1.1rem !important;
+      padding-bottom: 0.85rem !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      flex-wrap: wrap !important;
+      gap: 0.75rem !important;
+    }
+    .booking-vehicle-tabs {
+      display: inline-flex !important;
+      background: rgba(10, 11, 14, 0.95) !important;
+      padding: 4px !important;
+      border-radius: 50px !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      gap: 4px !important;
+    }
+    .booking-tab-btn {
+      background: transparent !important;
+      border: none !important;
+      color: #94A3B8 !important;
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-size: 0.86rem !important;
+      font-weight: 700 !important;
+      padding: 0.45rem 1.2rem !important;
+      border-radius: 50px !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+      outline: none !important;
+    }
+    .booking-tab-btn.active {
+      background: #E88124 !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 2px 12px rgba(232, 129, 36, 0.45) !important;
+    }
+    .booking-tab-btn:hover:not(.active) {
+      color: #FFFFFF !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+    }
+    .booking-fare-pill {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      font-size: 0.84rem !important;
+      color: #CBD5E1 !important;
+      background: rgba(232, 129, 36, 0.1) !important;
+      border: 1px solid rgba(232, 129, 36, 0.25) !important;
+      padding: 0.4rem 0.95rem !important;
+      border-radius: 50px !important;
+    }
+    .booking-fare-pill strong {
+      color: #E88124 !important;
+    }
+    .booking-form-grid {
+      display: grid !important;
+      grid-template-columns: 1.25fr 1.35fr 1fr 1fr auto !important;
+      gap: 0.85rem !important;
+      align-items: flex-end !important;
+    }
+    @media (max-width: 1024px) {
+      .booking-form-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .booking-form-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    .form-group {
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.35rem !important;
+      margin: 0 !important;
+    }
+    .form-label {
+      font-size: 0.74rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em !important;
+      text-transform: uppercase !important;
+      color: #E88124 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.35rem !important;
+      margin-bottom: 0.1rem !important;
+    }
+    .custom-select-box {
+      position: relative !important;
+      width: 100% !important;
+    }
+    .custom-select-trigger {
+      width: 100% !important;
+      height: 44px !important;
+      background: rgba(13, 14, 18, 0.95) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 8px !important;
+      padding: 0 0.85rem !important;
+      color: #FFFFFF !important;
+      font-size: 0.88rem !important;
+      font-weight: 500 !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 0.5rem !important;
+      transition: all 0.2s ease !important;
+      user-select: none !important;
+      box-sizing: border-box !important;
+    }
+    .custom-select-trigger:hover,
+    .custom-select-box.open .custom-select-trigger {
+      border-color: #E88124 !important;
+      box-shadow: 0 0 14px rgba(232, 129, 36, 0.3) !important;
+      background: rgba(22, 24, 30, 0.98) !important;
+    }
+    .custom-select-trigger span {
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+    .arrow-icon {
+      width: 12px !important;
+      height: 12px !important;
+      min-width: 12px !important;
+      max-width: 12px !important;
+      max-height: 12px !important;
+      fill: #E88124 !important;
+      flex-shrink: 0 !important;
+      transition: transform 0.2s ease !important;
+    }
+    .custom-select-box.open .arrow-icon {
+      transform: rotate(180deg) !important;
+    }
+    .custom-options-panel {
+      display: none !important;
+      position: absolute !important;
+      top: calc(100% + 5px) !important;
+      left: 0 !important;
+      right: 0 !important;
+      background: #14161d !important;
+      border: 1px solid rgba(232, 129, 36, 0.35) !important;
+      border-radius: 10px !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(232, 129, 36, 0.15) !important;
+      z-index: 1000 !important;
+      max-height: 250px !important;
+      overflow-y: auto !important;
+      box-sizing: border-box !important;
+    }
+    .custom-select-box.open .custom-options-panel {
+      display: block !important;
+    }
+    .custom-option-item {
+      padding: 0.65rem 0.85rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.15rem !important;
+      cursor: pointer !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+      transition: background 0.15s ease !important;
+    }
+    .custom-option-item:last-child {
+      border-bottom: none !important;
+    }
+    .custom-option-item:hover,
+    .custom-option-item.selected {
+      background: rgba(232, 129, 36, 0.18) !important;
+    }
+    .custom-option-header {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      font-size: 0.86rem !important;
+      font-weight: 700 !important;
+      color: #FFFFFF !important;
+    }
+    .custom-option-price {
+      color: #E88124 !important;
+      font-weight: 700 !important;
+      font-size: 0.88rem !important;
+    }
+    .custom-option-sub {
+      font-size: 0.74rem !important;
+      color: #94A3B8 !important;
+    }
+    .form-control {
+      width: 100% !important;
+      height: 44px !important;
+      background: rgba(13, 14, 18, 0.95) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 8px !important;
+      padding: 0 0.85rem !important;
+      color: #FFFFFF !important;
+      font-size: 0.86rem !important;
+      box-sizing: border-box !important;
+      color-scheme: dark !important;
+    }
+    .form-control:focus {
+      border-color: #E88124 !important;
+      outline: none !important;
+      box-shadow: 0 0 12px rgba(232, 129, 36, 0.25) !important;
+    }
+    #btnSubmitBooking {
+      height: 44px !important;
+      background: linear-gradient(135deg, #E88124 0%, #D0421B 100%) !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      border-radius: 8px !important;
+      padding: 0 1.5rem !important;
+      font-family: 'Space Grotesk', sans-serif !important;
+      font-size: 0.92rem !important;
+      font-weight: 700 !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.5rem !important;
+      white-space: nowrap !important;
+      box-shadow: 0 4px 14px rgba(232, 129, 36, 0.4) !important;
+      transition: all 0.2s ease !important;
+    }
+    #btnSubmitBooking:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(232, 129, 36, 0.6) !important;
+    }
+
+    /* 3D MAP & REAL-WORLD NATURE SIMULATOR */
+    .madurai-map-section {
+      position: relative !important;
+      background: radial-gradient(circle at 50% 20%, #161822 0%, #0d0d0f 70%, #070708 100%) !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      padding: 4rem 0 !important;
+    }
+    .madurai-map-card-wrapper {
+      display: grid !important;
+      grid-template-columns: 1.4fr 0.85fr !important;
+      gap: 1.75rem !important;
+      align-items: stretch !important;
+    }
+    @media (max-width: 960px) {
+      .madurai-map-card-wrapper {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    .map-viewport-container {
+      position: relative !important;
+      height: 520px !important;
+      border-radius: 16px !important;
+      background: radial-gradient(circle at 50% 50%, #161922 0%, #080a0f 100%) !important;
+      border: 1px solid rgba(232, 129, 36, 0.35) !important;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(232, 129, 36, 0.12) !important;
+      overflow: hidden !important;
+    }
+    #madurai-3d-map-canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+      cursor: grab !important;
+    }
+    #madurai-3d-map-canvas:active {
+      cursor: grabbing !important;
+    }
+    .map-live-telemetry {
+      position: absolute !important;
+      top: 1rem !important;
+      left: 1rem !important;
+      background: rgba(13, 15, 20, 0.88) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(232, 129, 36, 0.4) !important;
+      border-radius: 8px !important;
+      padding: 0.55rem 1rem !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.65rem !important;
+      font-size: 0.84rem !important;
+      color: #FFFFFF !important;
+      z-index: 10 !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    }
+    .telemetry-pulse-dot {
+      width: 10px !important;
+      height: 10px !important;
+      min-width: 10px !important;
+      border-radius: 50% !important;
+      background: #E88124 !important;
+      box-shadow: 0 0 10px #E88124 !important;
+      animation: pulseDot 1.4s infinite !important;
+    }
+    @keyframes pulseDot {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+    .map-telemetry-text {
+      letter-spacing: 0.04em !important;
+      font-size: 0.86rem !important;
+    }
+    .map-telemetry-text strong {
+      color: #E88124 !important;
+    }
+    .map-controls-overlay {
+      position: absolute !important;
+      bottom: 1rem !important;
+      left: 1rem !important;
+      right: 1rem !important;
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      z-index: 10 !important;
+      pointer-events: none !important;
+    }
+    .map-pills-row {
+      display: flex !important;
+      gap: 0.5rem !important;
+      overflow-x: auto !important;
+      pointer-events: auto !important;
+      padding: 4px !important;
+      background: rgba(13, 15, 20, 0.8) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border-radius: 50px !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      max-width: 100% !important;
+    }
+    .map-pill-btn {
+      background: rgba(22, 24, 30, 0.85) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      color: #CBD5E1 !important;
+      padding: 0.4rem 0.95rem !important;
+      border-radius: 50px !important;
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      transition: all 0.2s ease !important;
+    }
+    .map-pill-btn:hover,
+    .map-pill-btn.active {
+      background: #E88124 !important;
+      color: #FFFFFF !important;
+      border-color: #E88124 !important;
+      box-shadow: 0 0 14px rgba(232, 129, 36, 0.5) !important;
+    }
+    .map-side-card {
+      background: rgba(18, 20, 26, 0.94) !important;
+      border: 1px solid rgba(232, 129, 36, 0.3) !important;
+      border-radius: 16px !important;
+      padding: 2rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -220,12 +600,13 @@
     </section>
 
         <!-- LIVE BOOKING & RATE ESTIMATOR ENGINE (CARS & BIKES) -->
-    <section class="section" id="booking-engine" style="padding-top: 1rem;">
+        <!-- COMPACT LUXURY VEHICLE BOOKING ENGINE (BIKES & CARS) -->
+    <section class="section" id="booking-engine">
       <div class="container">
         <div class="booking-widget-card">
-          <!-- Vehicle Mode Tabs: Rental Bikes vs Self-Drive Cars -->
+          <!-- Mode Switcher: Rental Bikes vs Self-Drive Cars -->
           <div class="booking-tabs-wrapper">
-            <div class="booking-vehicle-tabs" role="tablist" aria-label="Select Fleet Type">
+            <div class="booking-vehicle-tabs" role="tablist" aria-label="Select Fleet Mode">
               <button type="button" class="booking-tab-btn active" id="tabSelectBikes" role="tab" aria-selected="true">
                 🏍️ Rental Bikes (from ₹399)
               </button>
@@ -247,13 +628,13 @@
             <!-- 1. Madurai Pickup Hub Dropdown -->
             <div class="form-group">
               <label class="form-label" id="labelPickupHub">
-                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
                 Madurai Pickup Hub
               </label>
               <div class="custom-select-box" id="hubSelectBox">
                 <div class="custom-select-trigger" id="hubSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
                   <span id="selectedHubText">Madurai Railway Junction (West Veli St)</span>
-                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="hubOptionsPanel" role="listbox">
                   <div class="custom-option-item selected" data-value="Madurai Railway Junction (West Veli St)">
@@ -283,13 +664,13 @@
             <!-- 2. Vehicle Model Custom Dropdown -->
             <div class="form-group">
               <label class="form-label" id="labelVehicleModel">
-                <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
                 <span id="vehicleLabelText">Select Bike Model</span>
               </label>
               <div class="custom-select-box" id="modelSelectBox">
                 <div class="custom-select-trigger" id="modelSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
                   <span id="selectedModelText">Royal Enfield Hunter 350</span>
-                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
                   <!-- Dynamically populated by main.js based on Bike or Car tab -->
@@ -300,7 +681,7 @@
             <!-- 3. Pickup Date & Time -->
             <div class="form-group">
               <label class="form-label" for="startDate">
-                <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
                 Pickup Date &amp; Time
               </label>
               <input type="datetime-local" class="form-control" id="startDate" name="start" required>
@@ -309,13 +690,13 @@
             <!-- 4. Rental Duration Custom Dropdown -->
             <div class="form-group">
               <label class="form-label" id="labelDuration">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                 Rental Duration
               </label>
               <div class="custom-select-box" id="durationSelectBox">
                 <div class="custom-select-trigger" id="durationSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
                   <span id="selectedDurationText">1 Day (24 Hours)</span>
-                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="durationOptionsPanel" role="listbox">
                   <div class="custom-option-item selected" data-value="1">
@@ -347,7 +728,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn-primary" id="btnSubmitBooking" style="height: 48px;">
+            <button type="submit" class="btn-primary" id="btnSubmitBooking">
               <span id="submitBtnText">Search Vehicles</span> <span>→</span>
             </button>
           </form>
@@ -515,18 +896,19 @@
     </section>
 
     <!-- 3D INTERACTIVE MADURAI ROUTE & DESTINATION SIMULATOR (WITH 3D CAR IN LOOP) -->
+        <!-- 3D INTERACTIVE MADURAI ROUTE, LANDMARKS & NATURE SIMULATOR -->
     <section class="section madurai-map-section" id="madurai-3d-map-section">
       <div class="container">
         <div class="section-head">
-          <span class="badge">Next-Gen Real-Time 3D Simulation</span>
+          <span class="badge">Next-Gen Real-Time 3D Nature &amp; Landmark Simulation</span>
           <h2>3D Madurai Route &amp; Destination Tour</h2>
           <p>
-            Experience our procedural 3D map of Madurai with a live <strong>3D Swift cruising in an endless loop</strong> across famous pilgrimage spots, coastal highways, and food landmarks. Built with Three.js hardware acceleration and zero impact on site loading speed.
+            Cruise through Madurai’s natural landscapes with our <strong>3D Swift touring in an endless loop</strong>. Explore real 3D models of <strong>Meenakshi Temple, mountain waterfalls, Gandhi Museum, legendary food mess, and coastal highways</strong>. Powered by Three.js with zero impact on site loading speed.
           </p>
         </div>
 
         <div class="madurai-map-card-wrapper">
-          <!-- 3D Viewport with Live Telemetry & Quick Pins -->
+          <!-- 3D Viewport with Live Telemetry & Quick Landmarks -->
           <div class="map-viewport-container" id="madurai-3d-map-wrapper">
             <canvas id="madurai-3d-map-canvas"></canvas>
 
@@ -541,13 +923,12 @@
             <!-- Bottom Interactive Checkpoint Switchers -->
             <div class="map-controls-overlay">
               <div class="map-pills-row">
-                <button type="button" class="map-pill-btn active" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">Meenakshi Kovil</button>
-                <button type="button" class="map-pill-btn" data-id="bun-parotta" onclick="focusMaduraiCheckpoint('bun-parotta')">Bun Parotta</button>
-                <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">Power Kadai</button>
-                <button type="button" class="map-pill-btn" data-id="gandhi-museum" onclick="focusMaduraiCheckpoint('gandhi-museum')">Gandhi Museum</button>
-                <button type="button" class="map-pill-btn" data-id="alagar-koil" onclick="focusMaduraiCheckpoint('alagar-koil')">Alagar Kovil</button>
-                <button type="button" class="map-pill-btn" data-id="alanganallur" onclick="focusMaduraiCheckpoint('alanganallur')">Alanganallur Lucky Mess</button>
-                <button type="button" class="map-pill-btn" data-id="kilakarai" onclick="focusMaduraiCheckpoint('kilakarai')">Kilakarai Coast</button>
+                <button type="button" class="map-pill-btn active" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">🛕 Meenakshi Kovil</button>
+                <button type="button" class="map-pill-btn" data-id="bun-parotta" onclick="focusMaduraiCheckpoint('bun-parotta')">🍛 Bun Parotta</button>
+                <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">🥩 Power Kadai &amp; Mess</button>
+                <button type="button" class="map-pill-btn" data-id="gandhi-museum" onclick="focusMaduraiCheckpoint('gandhi-museum')">🏛️ Gandhi Museum</button>
+                <button type="button" class="map-pill-btn" data-id="alagar-waterfalls" onclick="focusMaduraiCheckpoint('alagar-waterfalls')">🌊 Alagar Waterfalls</button>
+                <button type="button" class="map-pill-btn" data-id="kilakarai" onclick="focusMaduraiCheckpoint('kilakarai')">🏖️ Kilakarai Coast</button>
               </div>
             </div>
           </div>
@@ -556,37 +937,37 @@
           <aside class="map-side-card">
             <div>
               <div class="place-card-top">
-                <span class="place-category-badge" id="mapActiveCategory">Heritage Wonder</span>
+                <span class="place-category-badge" id="mapActiveCategory">Temple Wonder</span>
                 <span class="place-distance" id="mapActiveDistance">1.2 km from Junction</span>
               </div>
-              <h3 class="place-title" id="mapActiveTitle" style="font-size: 1.5rem; margin-top: 0.5rem;">Meenakshi Amman Kovil</h3>
-              <p class="place-desc" id="mapActiveDesc" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
-                World-renowned architectural wonder with 14 gopurams. Park at Periyar Multi-level and explore.
+              <h3 class="place-title" id="mapActiveTitle" style="font-size: 1.5rem; margin-top: 0.5rem; color: #FFFFFF;">Meenakshi Amman Kovil</h3>
+              <p class="place-desc" id="mapActiveDesc" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; color: #94A3B8;">
+                Madurai’s eternal jewel with 14 towering sculpted Dravidian gopurams, Thousand Pillar Hall, and sacred Golden Lotus tank.
               </p>
               
               <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.88rem;">
-                  <span style="color: var(--color-muted);">Estimated Driving Time:</span>
-                  <strong id="mapActiveTime" style="color: var(--color-white);">5 mins</strong>
+                  <span style="color: #94A3B8;">Estimated Driving Time:</span>
+                  <strong id="mapActiveTime" style="color: #FFFFFF;">5 mins</strong>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                  <span style="color: var(--color-muted);">Recommended Vehicle:</span>
-                  <strong id="mapActiveVehicle" style="color: var(--color-orange);">Scooter / Maruti Swift</strong>
+                  <span style="color: #94A3B8;">Recommended Vehicle:</span>
+                  <strong id="mapActiveVehicle" style="color: #E88124;">Activa 6G / Maruti Swift</strong>
                 </div>
               </div>
             </div>
 
             <div>
               <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                <a href="bikes.html" class="btn-primary" style="flex: 1; text-align: center; justify-content: center;">
+                <a href="bikes.html" class="btn-primary" style="flex: 1; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center;">
                   Book Swift (₹2,200) →
                 </a>
-                <a href="#booking-engine" class="btn-secondary" style="flex: 1; text-align: center; justify-content: center;">
+                <a href="#booking-engine" class="btn-secondary" style="flex: 1; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center;">
                   Quick Book ⚡
                 </a>
               </div>
-              <div style="margin-top: 0.75rem; font-size: 0.76rem; color: var(--color-muted); text-align: center;">
-                Procedural 3D WebGL • 60 FPS • 0% CPU off-screen
+              <div style="margin-top: 0.75rem; font-size: 0.76rem; color: #64748B; text-align: center;">
+                Procedural 3D WebGL • Real 3D Landmarks • 0% CPU off-screen
               </div>
             </div>
           </aside>
