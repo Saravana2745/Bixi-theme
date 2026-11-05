@@ -22,7 +22,7 @@
     }
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x0d1c2e, 0.04);
+    scene.fog = new THREE.FogExp2(0x0d0d0f, 0.04);
 
     const camera = new THREE.PerspectiveCamera(
       42,
@@ -47,7 +47,7 @@
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0x00c2a8, 2.2);
+    const keyLight = new THREE.DirectionalLight(0xe88124, 2.2);
     keyLight.position.set(5, 7, 4);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
@@ -77,14 +77,14 @@
 
     // --- Materials Palette ---
     const liveryMaterial = new THREE.MeshStandardMaterial({
-      color: 0x00c2a8, // Default Aqua Teal
+      color: 0xe88124, // Default Aqua Teal
       metalness: 0.85,
       roughness: 0.22,
       envMapIntensity: 1.5
     });
 
     const carbonMaterial = new THREE.MeshStandardMaterial({
-      color: 0x142b45,
+      color: 0x16161a,
       metalness: 0.6,
       roughness: 0.35
     });
@@ -96,13 +96,13 @@
     });
 
     const tireMaterial = new THREE.MeshStandardMaterial({
-      color: 0x0d1c2e,
+      color: 0x070708,
       metalness: 0.1,
       roughness: 0.85
     });
 
     const neonGlowMaterial = new THREE.MeshBasicMaterial({
-      color: 0x00c2a8
+      color: 0xe88124
     });
 
     const headlampGlass = new THREE.MeshPhysicalMaterial({
@@ -323,7 +323,7 @@
         const colorHex = swatch.dataset.color;
         if (colorHex) {
           liveryMaterial.color.set(colorHex);
-          if (colorHex === '#142B45' || colorHex === '#202020') {
+          if (colorHex === '#16161A' || colorHex === '#142B45' || colorHex === '#202020') {
             liveryMaterial.metalness = 0.95;
             liveryMaterial.roughness = 0.2;
           } else {

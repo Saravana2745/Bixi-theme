@@ -1,9 +1,12 @@
 /* ==========================================================================
    BIXI RIDE - MASTER STYLESHEET
-   Brand Colors:
-   - Deep Navy Slate: #142B45
-   - Aqua Teal: #00C2A8
-   - Cool Off-White: #F4F7FA
+   Authentic Brand Identity (Exact Match to Master Logo Design):
+   - Pitch Carbon Black: #0D0D0F
+   - Rich Obsidian Surface: #16161A
+   - Card Background: #1C1C22
+   - BIXI Racing Orange: #E88124 (Logo Exact: 0.91, 0.51, 0.14)
+   - Racing Orange Bright: #FF851B
+   - Polished Chrome / Titanium Silver: #E2E8F0
    - Pure White: #FFFFFF
    Fonts:
    - Space Grotesk (Headings)
@@ -15,43 +18,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap');
 
 :root {
-  /* Core Color Palette: #142B45 | #00C2A8 | #F4F7FA | #FFFFFF */
-  --color-bg: #142B45;
-  --color-bg-dark: #0D1C2E;
-  --color-bg-card: #183352;
-  --color-bg-card-glass: rgba(24, 51, 82, 0.85);
-  --color-bg-surface: #1E3F66;
+  /* Core Color Palette: #0D0D0F | #E88124 | #E2E8F0 | #FFFFFF */
+  --color-bg: #0D0D0F;
+  --color-bg-dark: #070708;
+  --color-bg-card: #16161A;
+  --color-bg-card-glass: rgba(22, 22, 26, 0.88);
+  --color-bg-surface: #202026;
   
-  --color-teal: #00C2A8;
-  --color-teal-hover: #00DFC2;
-  --color-teal-glow: rgba(0, 194, 168, 0.4);
-  --color-teal-soft: rgba(0, 194, 168, 0.12);
+  /* BIXI Signature Racing Orange (Exact Logo Match) */
+  --color-orange: #E88124;
+  --color-orange-hover: #FF933B;
+  --color-orange-glow: rgba(232, 129, 36, 0.42);
+  --color-orange-soft: rgba(232, 129, 36, 0.12);
 
   /* Primary Brand Aliases */
-  --color-accent: var(--color-teal);
-  --color-accent-hover: var(--color-teal-hover);
-  --color-accent-glow: var(--color-teal-glow);
-  --color-accent-soft: var(--color-teal-soft);
+  --color-accent: var(--color-orange);
+  --color-accent-hover: var(--color-orange-hover);
+  --color-accent-glow: var(--color-orange-glow);
+  --color-accent-soft: var(--color-orange-soft);
 
-  --color-yellow: var(--color-teal);
-  --color-yellow-hover: var(--color-teal-hover);
-  --color-yellow-glow: var(--color-teal-glow);
-  --color-yellow-soft: var(--color-teal-soft);
-  --color-lime: var(--color-teal);
-  --color-lime-hover: var(--color-teal-hover);
-  --color-lime-glow: var(--color-teal-glow);
-  --color-lime-soft: var(--color-teal-soft);
+  --color-teal: var(--color-orange);
+  --color-teal-hover: var(--color-orange-hover);
+  --color-teal-glow: var(--color-orange-glow);
+  --color-teal-soft: var(--color-orange-soft);
+  --color-yellow: var(--color-orange);
+  --color-yellow-hover: var(--color-orange-hover);
+  --color-yellow-glow: var(--color-orange-glow);
+  --color-yellow-soft: var(--color-orange-soft);
+  --color-lime: var(--color-orange);
+  --color-lime-hover: var(--color-orange-hover);
+  --color-lime-glow: var(--color-orange-glow);
+  --color-lime-soft: var(--color-orange-soft);
   --color-forest: var(--color-bg);
   --color-forest-surface: var(--color-bg-card);
   
-  --color-gray-light: #F4F7FA;
+  --color-gray-light: #F1F5F9;
+  --color-silver: #CBD5E1;
   --color-white: #FFFFFF;
-  --color-muted: #9EB3C8;
-  --color-muted-dark: #6B8299;
+  --color-muted: #94A3B8;
+  --color-muted-dark: #64748B;
   
-  --color-border: rgba(0, 194, 168, 0.2);
-  --color-border-subtle: rgba(244, 247, 250, 0.12);
-  --color-border-hover: rgba(0, 194, 168, 0.5);
+  --color-border: rgba(232, 129, 36, 0.22);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(232, 129, 36, 0.55);
 
   /* Typography */
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -67,12 +76,13 @@
   --radius-full: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 4px 14px rgba(7, 16, 27, 0.4);
-  --shadow-md: 0 10px 30px rgba(7, 16, 27, 0.55);
-  --shadow-lg: 0 20px 50px rgba(7, 16, 27, 0.7);
-  --shadow-teal: 0 0 28px rgba(0, 194, 168, 0.35);
-  --shadow-yellow: var(--shadow-teal);
-  --shadow-lime: var(--shadow-teal);
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.65);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.8);
+  --shadow-orange: 0 0 28px rgba(232, 129, 36, 0.38);
+  --shadow-teal: var(--shadow-orange);
+  --shadow-yellow: var(--shadow-orange);
+  --shadow-lime: var(--shadow-orange);
 
   /* Transitions */
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
@@ -101,7 +111,7 @@ html {
 body {
   min-height: 100vh;
   line-height: 1.6;
-  background: radial-gradient(circle at 50% 0%, #1A3654 0%, var(--color-bg) 60%, var(--color-bg-dark) 100%);
+  background: radial-gradient(circle at 50% 0%, #1A1A22 0%, var(--color-bg) 60%, var(--color-bg-dark) 100%);
   background-attachment: fixed;
   overflow-x: hidden;
   position: relative;
@@ -205,7 +215,7 @@ ul, ol {
   color: var(--color-muted);
 }
 
-.text-teal, .text-yellow, .text-lime {
+.text-orange, .text-brand, .text-teal, .text-yellow, .text-lime {
   color: var(--color-teal) !important;
 }
 
@@ -223,11 +233,11 @@ ul, ol {
   right: 0;
   height: var(--header-height);
   z-index: 1000;
-  background: rgba(20, 43, 69, 0.94);
+  background: rgba(13, 13, 15, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 4px 20px rgba(7, 16, 27, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   /* NO variable padding shifts on scroll */
@@ -332,7 +342,7 @@ ul, ol {
   fill: currentColor;
 }
 
-/* Primary CTA Button (Teal) */
+/* Primary CTA Button (BIXI Racing Orange) */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -340,15 +350,15 @@ ul, ol {
   gap: 0.5rem;
   padding: 0.72rem 1.6rem;
   border-radius: var(--radius-full);
-  background: var(--color-teal);
-  color: #0D1C2E;
+  background: var(--color-orange);
+  color: #FFFFFF;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.01em;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(0, 194, 168, 0.35);
+  box-shadow: 0 4px 18px rgba(232, 129, 36, 0.38);
   transition: all var(--transition-fast);
   white-space: nowrap;
 }
@@ -356,7 +366,7 @@ ul, ol {
 .btn-primary:hover {
   transform: translateY(-2px);
   background: var(--color-teal-hover);
-  box-shadow: 0 8px 26px rgba(0, 194, 168, 0.5);
+  box-shadow: 0 8px 26px rgba(232, 129, 36, 0.55);
 }
 
 .btn-primary:active {
@@ -606,9 +616,9 @@ ul, ol {
   width: 100%;
   height: 520px;
   border-radius: var(--radius-lg);
-  background: radial-gradient(circle at 50% 50%, #1A3654 0%, #0D1C2E 100%);
+  background: radial-gradient(circle at 50% 50%, #1A1A22 0%, #0D0D0F 100%);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-lg), inset 0 0 40px rgba(0, 194, 168, 0.08);
+  box-shadow: var(--shadow-lg), inset 0 0 40px rgba(232, 129, 36, 0.08);
   overflow: hidden;
   backdrop-filter: blur(14px);
 }
@@ -718,10 +728,10 @@ ul, ol {
   transform: scale(1.15);
 }
 
-.swatch-teal, .swatch-yellow { background-color: #00C2A8; }
-.swatch-navy, .swatch-charcoal { background-color: #142B45; border-color: rgba(255, 255, 255, 0.4); }
+.swatch-orange, .swatch-teal, .swatch-yellow { background-color: #E88124; }
+.swatch-carbon, .swatch-navy, .swatch-charcoal { background-color: #16161A; border-color: rgba(255, 255, 255, 0.3); }
 .swatch-white { background-color: #FFFFFF; }
-.swatch-cyan, .swatch-amber { background-color: #00E5FF; }
+.swatch-chrome, .swatch-cyan, .swatch-amber { background-color: #CBD5E1; }
 
 .camera-controls-box {
   pointer-events: auto;
@@ -821,7 +831,7 @@ ul, ol {
 
 .form-control:focus {
   border-color: var(--color-teal);
-  box-shadow: 0 0 12px rgba(0, 194, 168, 0.35);
+  box-shadow: 0 0 12px rgba(232, 129, 36, 0.38);
   background: rgba(20, 43, 69, 0.95);
 }
 
@@ -888,7 +898,7 @@ ul, ol {
 .feature-card:hover .feature-icon-box {
   background: var(--color-yellow);
   color: var(--color-bg-dark);
-  box-shadow: 0 0 20px rgba(0, 194, 168, 0.4);
+  box-shadow: 0 0 20px rgba(232, 129, 36, 0.42);
 }
 
 .feature-icon-box svg {
@@ -973,7 +983,7 @@ ul, ol {
 .bike-card-header {
   position: relative;
   padding: 1.8rem 1.5rem 1rem;
-  background: radial-gradient(circle at 50% 60%, rgba(0, 194, 168, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 60%, rgba(232, 129, 36, 0.08) 0%, transparent 70%);
 }
 
 .bike-category-badge {
@@ -996,8 +1006,8 @@ ul, ol {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  background: rgba(0, 194, 168, 0.15);
-  border: 1px solid rgba(0, 194, 168, 0.35);
+  background: rgba(232, 129, 36, 0.15);
+  border: 1px solid rgba(232, 129, 36, 0.38);
   color: var(--color-teal);
   font-family: var(--font-tech);
   font-weight: 700;
@@ -1215,7 +1225,7 @@ ul, ol {
   font-family: var(--font-tech);
   font-size: 3rem;
   font-weight: 800;
-  color: rgba(0, 194, 168, 0.15);
+  color: rgba(232, 129, 36, 0.15);
   line-height: 1;
 }
 
