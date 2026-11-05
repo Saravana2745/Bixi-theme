@@ -162,13 +162,32 @@
       renderModelOptions('bike');
     }
 
-    // Generic Custom Dropdown Click Handlers
+    // 2c. Custom Luxury Dropdown & Interactive Calendar Controller
+    const datePickerBox = document.getElementById('bixiDatePickerBox');
+    const dateTrigger = document.getElementById('bixiDateTrigger');
+    const selectedDateText = document.getElementById('selectedDateText');
+    const startDateInput = document.getElementById('startDate');
+    const prevMonthBtn = document.getElementById('bixiPrevMonth');
+    const nextMonthBtn = document.getElementById('bixiNextMonth');
+    const monthTitle = document.getElementById('bixiMonthTitle');
+    const daysGrid = document.getElementById('bixiDaysGrid');
+    const hourSelect = document.getElementById('bixiTimeHour');
+    const minuteSelect = document.getElementById('bixiTimeMinute');
+    const btnAM = document.getElementById('bixiBtnAM');
+    const btnPM = document.getElementById('bixiBtnPM');
+    const btnToday = document.getElementById('bixiBtnToday');
+    const btnConfirm = document.getElementById('bixiBtnConfirm');
+
     function closeAllDropdowns() {
       document.querySelectorAll('.custom-select-box').forEach((box) => {
         box.classList.remove('open');
       });
+      if (datePickerBox) {
+        datePickerBox.classList.remove('open');
+      }
     }
 
+    // Generic Custom Select Box Toggle
     document.querySelectorAll('.custom-select-box').forEach((box) => {
       const trigger = box.querySelector('.custom-select-trigger');
       if (!trigger) return;
@@ -181,9 +200,25 @@
           box.classList.add('open');
         }
       });
+
+      // Keyboard navigation
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const isOpen = box.classList.contains('open');
+          closeAllDropdowns();
+          if (!isOpen) box.classList.add('open');
+        } else if (e.key === 'Escape') {
+          box.classList.remove('open');
+        }
+      });
     });
 
+    // Close when clicking outside or pressing Escape
     document.addEventListener('click', closeAllDropdowns);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAllDropdowns();
+    });
 
     // Hub select options click
     const hubBox = document.getElementById('hubSelectBox');
@@ -192,7 +227,7 @@
         item.addEventListener('click', (e) => {
           e.stopPropagation();
           const val = item.dataset.value;
-          const header = item.querySelector('.custom-option-header')?.textContent || val;
+          const header = item.querySelector('.custom-option-header')?.textContent?.trim() || val;
           const selectedText = document.getElementById('selectedHubText');
           if (selectedText) selectedText.textContent = header;
           if (hiddenHub) hiddenHub.value = val;
@@ -209,8 +244,8 @@
       durationBox.querySelectorAll('.custom-option-item').forEach((item) => {
         item.addEventListener('click', (e) => {
           e.stopPropagation();
-          const days = parseInt(item.dataset.days, 10) || 1;
-          const header = item.querySelector('.custom-option-header')?.textContent || `${days} Days`;
+          const days = parseInt(item.dataset.value, 10) || 1;
+          const header = item.querySelector('.custom-option-header')?.textContent?.trim() || `${days} Day (24 Hours)`;
           const selectedText = document.getElementById('selectedDurationText');
           if (selectedText) selectedText.textContent = header;
           if (hiddenDuration) hiddenDuration.value = days;
@@ -223,7 +258,198 @@
       });
     }
 
-    // 3. Bike Fleet Filtering System
+    // 2d. Interactive BIXI Custom Calendar & DateTime Picker
+    if (datePickerBox && dateTrigger && daysGrid) {
+      const MONTH_NAMES = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+      const MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      const now = new Date();
+      let viewYear = now.getFullYear();
+      let viewMonth = now.getMonth();
+      let selYear = now.getFullYear();
+      let selMonth = now.getMonth();
+      let selDay = now.getDate();
+      let selHour = hourSelect ? hourSelect.value : '10';
+      let selMinute = minuteSelect ? minuteSelect.value : '00';
+      let selAmPm = 'AM';
+
+      function renderCalendar(year, month) {
+        if (monthTitle) {
+          monthTitle.textContent = `${MONTH_NAMES[month]} ${year}`;
+        }
+        daysGrid.innerHTML = '';
+
+        const firstWeekday = new Date(year, month, 1).getDay();
+        const totalDays = new Date(year, month + 1, 0).getDate();
+        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+        // Empty padding cells before first weekday
+        for (let i = 0; i < firstWeekday; i++) {
+          const emptyCell = document.createElement('div');
+          emptyCell.className = 'bixi-cal-day empty';
+          daysGrid.appendChild(emptyCell);
+        }
+
+        // Days of month
+        for (let d = 1; d <= totalDays; d++) {
+          const dayDate = new Date(year, month, d).getTime();
+          const isPast = dayDate < todayStart;
+          const isToday = (year === now.getFullYear() && month === now.getMonth() && d === now.getDate());
+          const isSelected = (year === selYear && month === selMonth && d === selDay);
+
+          const dayBtn = document.createElement('button');
+          dayBtn.type = 'button';
+          dayBtn.className = `bixi-cal-day${isSelected ? ' selected' : ''}${isToday ? ' today' : ''}${isPast ? ' disabled' : ''}`;
+          dayBtn.textContent = d;
+          dayBtn.setAttribute('aria-label', `${d} ${MONTH_NAMES[month]} ${year}`);
+
+          if (isPast) {
+            dayBtn.disabled = true;
+          } else {
+            dayBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              selYear = year;
+              selMonth = month;
+              selDay = d;
+              daysGrid.querySelectorAll('.bixi-cal-day').forEach((el) => el.classList.remove('selected'));
+              dayBtn.classList.add('selected');
+              syncDateTimeValue(false);
+            });
+          }
+
+          daysGrid.appendChild(dayBtn);
+        }
+      }
+
+      function syncDateTimeValue(closeOnSync = false) {
+        const monthShort = MONTH_SHORT[selMonth] || 'Nov';
+        const dayFormatted = String(selDay).padStart(2, '0');
+        const displayText = `${monthShort} ${dayFormatted}, ${selYear} • ${selHour}:${selMinute} ${selAmPm}`;
+
+        if (selectedDateText) {
+          selectedDateText.textContent = displayText;
+        }
+
+        let h24 = parseInt(selHour, 10) || 10;
+        if (selAmPm === 'PM' && h24 < 12) h24 += 12;
+        if (selAmPm === 'AM' && h24 === 12) h24 = 0;
+
+        const isoValue = `${selYear}-${String(selMonth + 1).padStart(2, '0')}-${dayFormatted}T${String(h24).padStart(2, '0')}:${selMinute}`;
+        if (startDateInput) {
+          startDateInput.value = isoValue;
+        }
+
+        if (closeOnSync && datePickerBox) {
+          datePickerBox.classList.remove('open');
+        }
+      }
+
+      // Prev & Next Month buttons
+      if (prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          viewMonth--;
+          if (viewMonth < 0) {
+            viewMonth = 11;
+            viewYear--;
+          }
+          renderCalendar(viewYear, viewMonth);
+        });
+      }
+
+      if (nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          viewMonth++;
+          if (viewMonth > 11) {
+            viewMonth = 0;
+            viewYear++;
+          }
+          renderCalendar(viewYear, viewMonth);
+        });
+      }
+
+      // Time inputs
+      if (hourSelect) {
+        hourSelect.addEventListener('change', () => {
+          selHour = hourSelect.value;
+          syncDateTimeValue(false);
+        });
+      }
+
+      if (minuteSelect) {
+        minuteSelect.addEventListener('change', () => {
+          selMinute = minuteSelect.value;
+          syncDateTimeValue(false);
+        });
+      }
+
+      if (btnAM && btnPM) {
+        btnAM.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selAmPm = 'AM';
+          btnAM.classList.add('active');
+          btnPM.classList.remove('active');
+          syncDateTimeValue(false);
+        });
+
+        btnPM.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selAmPm = 'PM';
+          btnPM.classList.add('active');
+          btnAM.classList.remove('active');
+          syncDateTimeValue(false);
+        });
+      }
+
+      // Today button
+      if (btnToday) {
+        btnToday.addEventListener('click', (e) => {
+          e.stopPropagation();
+          viewYear = now.getFullYear();
+          viewMonth = now.getMonth();
+          selYear = viewYear;
+          selMonth = viewMonth;
+          selDay = now.getDate();
+          renderCalendar(viewYear, viewMonth);
+          syncDateTimeValue(false);
+        });
+      }
+
+      // Confirm button
+      if (btnConfirm) {
+        btnConfirm.addEventListener('click', (e) => {
+          e.stopPropagation();
+          syncDateTimeValue(true);
+          showToast(`Pickup scheduled for ${selectedDateText.textContent}`);
+        });
+      }
+
+      // Toggle Datepicker popup
+      dateTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = datePickerBox.classList.contains('open');
+        closeAllDropdowns();
+        if (!isOpen) {
+          datePickerBox.classList.add('open');
+        }
+      });
+
+      // Prevent clicks inside panel from closing it
+      const datePanel = document.getElementById('bixiDatePickerPanel');
+      if (datePanel) {
+        datePanel.addEventListener('click', (e) => e.stopPropagation());
+      }
+
+      // Initial Calendar Render
+      renderCalendar(viewYear, viewMonth);
+      syncDateTimeValue(false);
+    }
+
+        // 3. Bike Fleet Filtering System
     const filterButtons = document.querySelectorAll('.filter-btn');
     const bikeCards = document.querySelectorAll('.bike-card');
 
@@ -387,6 +613,125 @@
       }, 4000);
     }
 
+    // 8. Universal Buttery-Smooth Scroll Reveal Engine Across Every Page
+    function initScrollReveal() {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.bixi-reveal').forEach((el) => el.classList.add('bixi-revealed'));
+        return;
+      }
+
+      const revealSelectors = [
+        '.section-head',
+        '.section-badge',
+        '.section-title',
+        '.section-desc',
+        '.hero-content',
+        '.hero-preview-col',
+        '.booking-widget-card',
+        '.madurai-map-card-wrapper',
+        '.feature-card',
+        '.features-grid > *',
+        '.step-card',
+        '.steps-grid > *',
+        '.bike-card',
+        '.fleet-grid > *',
+        '.place-card',
+        '.places-grid > *',
+        '.blog-card',
+        '.blog-grid > *',
+        '.faq-item',
+        '.faq-list > *',
+        '.testimonial-card',
+        '.testimonial-grid > *',
+        '.contact-card',
+        '.contact-grid > *',
+        '.contact-form-wrapper',
+        '.stat-item',
+        '.stats-grid > *',
+        '.cta-box',
+        '.about-grid > *',
+        '.value-card',
+        '.team-card',
+        '.timeline-item',
+        '.page-header',
+        '.filter-bar'
+      ];
+
+      const elements = document.querySelectorAll(revealSelectors.join(', '));
+      if (!elements.length) return;
+
+      // Group sibling items in containers to apply staggered cascading delays
+      const parents = new Map();
+      elements.forEach((el) => {
+        if (el.classList.contains('bixi-reveal')) return;
+        el.classList.add('bixi-reveal');
+
+        const p = el.parentElement;
+        if (p) {
+          if (!parents.has(p)) parents.set(p, []);
+          parents.get(p).push(el);
+        }
+      });
+
+      parents.forEach((children) => {
+        if (children.length > 1) {
+          children.forEach((child, idx) => {
+            const delay = (idx % 4) + 1;
+            child.classList.add(`delay-${delay}`);
+          });
+        }
+      });
+
+      const revealElement = (el) => {
+        el.classList.add('bixi-revealed');
+      };
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              revealElement(entry.target);
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: '0px 0px -40px 0px',
+          threshold: 0.08
+        });
+
+        elements.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          // Instantly reveal elements already visible or above fold
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            revealElement(el);
+          } else {
+            observer.observe(el);
+          }
+        });
+      } else {
+        elements.forEach(revealElement);
+      }
+    }
+
+    // Initialize Scroll Reveal Engine
+    initScrollReveal();
+
+    // 9. Quick Booking Modal Date Defaults
+    const modalDateInput = document.getElementById('userDateInput');
+    if (modalDateInput) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayStr = `${yyyy}-${mm}-${dd}`;
+      modalDateInput.min = todayStr;
+      if (!modalDateInput.value) {
+        modalDateInput.value = todayStr;
+      }
+    }
+
     window.showBixiToast = showToast;
   });
 })();
+

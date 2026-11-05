@@ -562,6 +562,427 @@
       justify-content: space-between !important;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
     }
+  
+/* ==========================================================================
+   CUSTOM LUXURY BIXI DATE & TIME PICKER & SCROLL ANIMATIONS
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 1. Custom Datepicker Styles */
+.custom-datepicker-box {
+  position: relative !important;
+  width: 100% !important;
+}
+
+.custom-datepicker-trigger {
+  width: 100% !important;
+  height: 44px !important;
+  background: rgba(13, 14, 18, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 0 0.85rem !important;
+  color: #FFFFFF !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+  transition: all 0.2s ease !important;
+  user-select: none !important;
+  box-sizing: border-box !important;
+}
+
+.custom-datepicker-trigger:hover,
+.custom-datepicker-box.open .custom-datepicker-trigger {
+  border-color: #E88124 !important;
+  box-shadow: 0 0 14px rgba(232, 129, 36, 0.3) !important;
+  background: rgba(22, 24, 30, 0.98) !important;
+}
+
+.custom-datepicker-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 540px;
+  background: #11131a;
+  border: 1px solid rgba(232, 129, 36, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.92), 0 0 30px rgba(232, 129, 36, 0.16);
+  z-index: 1100;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  animation: bixiCalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bixiCalFadeIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.custom-datepicker-box.open .custom-datepicker-panel {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .custom-datepicker-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 92vw;
+    max-width: 380px;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+}
+
+.bixi-cal-inner {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .bixi-cal-inner {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.bixi-cal-month-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bixi-cal-month-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+}
+
+.bixi-cal-nav-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #CBD5E1;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.15s ease;
+}
+
+.bixi-cal-nav-btn:hover {
+  background: #E88124;
+  color: #FFFFFF;
+  border-color: #E88124;
+}
+
+.bixi-cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94A3B8;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.bixi-cal-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.bixi-cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #E2E8F0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.bixi-cal-day:hover:not(.disabled) {
+  background: rgba(232, 129, 36, 0.25);
+  color: #FFFFFF;
+}
+
+.bixi-cal-day.selected {
+  background: #E88124 !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 12px rgba(232, 129, 36, 0.6) !important;
+}
+
+.bixi-cal-day.today {
+  border: 1px solid #E88124;
+}
+
+.bixi-cal-day.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.bixi-cal-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding-left: 1.15rem;
+}
+
+@media (max-width: 640px) {
+  .bixi-cal-right {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-left: 0;
+    padding-top: 0.75rem;
+  }
+}
+
+.bixi-time-heading {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #E88124;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.bixi-time-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.bixi-time-unit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.bixi-time-lbl {
+  font-size: 0.68rem;
+  color: #94A3B8;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.bixi-time-select {
+  background: #0B0D13;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  padding: 0.35rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.bixi-time-select:focus {
+  border-color: #E88124;
+}
+
+.bixi-time-colon {
+  font-size: 1.2rem;
+  color: #E88124;
+  font-weight: 700;
+  padding-top: 0.9rem;
+}
+
+.bixi-ampm-switch {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 0.8rem;
+}
+
+.bixi-ampm-btn {
+  background: #0B0D13;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94A3B8;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bixi-ampm-btn.active {
+  background: #E88124;
+  color: #FFFFFF;
+  border-color: #E88124;
+}
+
+.bixi-cal-footer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.bixi-btn-today {
+  flex: 1;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #CBD5E1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bixi-btn-today:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.bixi-btn-confirm {
+  flex: 1.4;
+  height: 36px;
+  background: linear-gradient(135deg, #E88124 0%, #D0421B 100%);
+  border: none;
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(232, 129, 36, 0.35);
+  transition: all 0.15s ease;
+}
+
+.bixi-btn-confirm:hover {
+  box-shadow: 0 0 16px rgba(232, 129, 36, 0.6);
+  transform: translateY(-1px);
+}
+
+/* 2. Custom Dropdown Selection Polish */
+.custom-options-panel {
+  display: block !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-6px) scale(0.98) !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s !important;
+}
+
+.custom-select-box.open .custom-options-panel {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: auto !important;
+}
+
+.custom-options-panel::-webkit-scrollbar {
+  width: 6px !important;
+}
+.custom-options-panel::-webkit-scrollbar-track {
+  background: #0B0D13 !important;
+  border-radius: 6px !important;
+}
+.custom-options-panel::-webkit-scrollbar-thumb {
+  background: #E88124 !important;
+  border-radius: 6px !important;
+}
+
+.custom-option-item {
+  border-left: 3px solid transparent !important;
+  transition: all 0.15s ease !important;
+}
+
+.custom-option-item:hover,
+.custom-option-item.selected {
+  border-left-color: #E88124 !important;
+  background: rgba(232, 129, 36, 0.16) !important;
+}
+
+/* Native dark mode overrides */
+select.form-control,
+input[type="date"].form-control,
+input[type="datetime-local"].form-control {
+  color-scheme: dark !important;
+  background-color: #14161f !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(232, 129, 36, 0.35) !important;
+}
+
+select.form-control option {
+  background-color: #14161f !important;
+  color: #ffffff !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(56%) sepia(85%) saturate(1550%) hue-rotate(345deg) brightness(98%) contrast(92%) !important;
+  cursor: pointer !important;
+}
+
+/* 3. Smooth Scroll Reveal Animations Across Every Page */
+.bixi-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.bixi-reveal.reveal-left {
+  transform: translateX(-35px);
+}
+
+.bixi-reveal.reveal-right {
+  transform: translateX(35px);
+}
+
+.bixi-reveal.reveal-zoom {
+  transform: scale(0.93) translateY(18px);
+}
+
+.bixi-reveal.bixi-revealed {
+  opacity: 1 !important;
+  transform: translate(0) scale(1) !important;
+}
+
+.bixi-reveal.delay-1 { transition-delay: 0.08s; }
+.bixi-reveal.delay-2 { transition-delay: 0.16s; }
+.bixi-reveal.delay-3 { transition-delay: 0.24s; }
+.bixi-reveal.delay-4 { transition-delay: 0.32s; }
+.bixi-reveal.delay-5 { transition-delay: 0.40s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bixi-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
   </style>
 
 </head>
@@ -782,13 +1203,86 @@
               </div>
             </div>
 
-            <!-- 3. Pickup Date & Time -->
-            <div class="form-group">
-              <label class="form-label" for="startDate">
+            <!-- 3. Custom Pickup Date & Time Selector -->
+            <div class="form-group custom-datepicker-group">
+              <label class="form-label" id="labelPickupDateTime">
                 <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
                 Pickup Date &amp; Time
               </label>
-              <input type="datetime-local" class="form-control" id="startDate" name="start" required>
+              <div class="custom-datepicker-box" id="bixiDatePickerBox">
+                <div class="custom-datepicker-trigger" id="bixiDateTrigger" role="button" aria-haspopup="dialog" aria-expanded="false" tabindex="0">
+                  <span id="selectedDateText">Nov 05, 2026 • 10:00 AM</span>
+                  <svg class="calendar-icon" width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                </div>
+                <input type="hidden" id="startDate" name="start" value="2026-11-05T10:00">
+
+                <!-- Custom Popup Calendar & Time Picker Panel -->
+                <div class="custom-datepicker-panel" id="bixiDatePickerPanel" role="dialog" aria-modal="true" aria-label="Choose Pickup Date and Time">
+                  <div class="bixi-cal-inner">
+                    <!-- Left: Month & Days Grid -->
+                    <div class="bixi-cal-left">
+                      <div class="bixi-cal-month-nav">
+                        <button type="button" class="bixi-cal-nav-btn" id="bixiPrevMonth" aria-label="Previous Month">&#9664;</button>
+                        <span class="bixi-cal-month-title" id="bixiMonthTitle">November 2026</span>
+                        <button type="button" class="bixi-cal-nav-btn" id="bixiNextMonth" aria-label="Next Month">&#9654;</button>
+                      </div>
+                      <div class="bixi-cal-weekdays">
+                        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                      </div>
+                      <div class="bixi-cal-days-grid" id="bixiDaysGrid"></div>
+                    </div>
+
+                    <!-- Right: Time Selector & Confirm -->
+                    <div class="bixi-cal-right">
+                      <div class="bixi-time-heading">Pickup Time</div>
+                      <div class="bixi-time-controls">
+                        <div class="bixi-time-unit">
+                          <label class="bixi-time-lbl" for="bixiTimeHour">Hour</label>
+                          <select id="bixiTimeHour" class="bixi-time-select">
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10" selected>10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                          </select>
+                        </div>
+                        <span class="bixi-time-colon">:</span>
+                        <div class="bixi-time-unit">
+                          <label class="bixi-time-lbl" for="bixiTimeMinute">Min</label>
+                          <select id="bixiTimeMinute" class="bixi-time-select">
+                            <option value="00" selected>00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                          </select>
+                        </div>
+                        <div class="bixi-ampm-switch">
+                          <button type="button" class="bixi-ampm-btn active" id="bixiBtnAM">AM</button>
+                          <button type="button" class="bixi-ampm-btn" id="bixiBtnPM">PM</button>
+                        </div>
+                      </div>
+
+                      <div class="bixi-cal-footer">
+                        <button type="button" class="bixi-btn-today" id="bixiBtnToday">Today</button>
+                        <button type="button" class="bixi-btn-confirm" id="bixiBtnConfirm">Confirm ⚡</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- 4. Rental Duration Custom Dropdown -->
