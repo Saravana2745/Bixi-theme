@@ -1,27 +1,23 @@
 /**
- * BIXI RIDE - HIGH-DETAIL 3D MADURAI ROUTE & ARCHITECTURAL SIMULATOR
- * Realistic Procedural Three.js Simulation
+ * BIXI RIDE - AUTHENTIC 3D MADURAI ROUTE & CULTURAL SIMULATION
+ * High-Performance Procedural Three.js Simulation
  * 
- * Major Enhancements:
- * 1. Realistic Architectural Models (NOT toy blocks):
- *    - Meenakshi Amman Temple: 7-tier stepped Dravidian Gopuram with stone pilasters, cornice moldings, vaulted roof & 5 gold kalasams
- *    - Albert Victor Bridge: 1889 historic stone-arch bridge across Vaigai River with stone piers, parapets & glowing heritage lampposts
- *    - Gandhi Memorial Nayak Palace: Neoclassical pillared portico, double-stepped terrace plinth, fluted columns & authentic octagonal ribbed dome with national flag
- *    - Power Kadai & Lucky Mess: Authentic Tamil eatery with illuminated neon sign, chimney with animated rising smoke particles & outdoor dining setup
- *    - Alagar Hills Waterfalls: Stratified natural granite cliff with animated cascading water into rocky foaming mountain stream
- *    - Kilakarai 4-Lane Highway Gateway: Real highway steel-truss gantry with green & orange route signs and streetlights
- * 2. Real Signboard & Dynamic Name Badges on EVERY model:
- *    - Crisp canvas-rendered dynamic signboards and floating 3D billboard title badges
- * 3. Animated Features:
- *    - Rising smoke particles from Power Kadai chimney
- *    - Flowing water cascade animation on waterfalls
- *    - 3D Swift hatchback with rolling wheels, LED projector headlights casting real light onto the asphalt, and red taillights
- * 4. Car Elevation & Zero Clipping:
- *    - Road curve is elevated at y=0.25, Car sits on top at y=0.37 - ZERO underground clipping!
- * 5. Interactive Reset (✕ Zoom Out):
- *    - One-click [ ✕ Zoom Out / Full Overview ] button to smoothly fly back to aerial vantage point
- * 6. Site Theme Consistency:
- *    - 100% harmonized in BIXI Sunset Orange (#E88124) and Pitch Carbon (#0B0D13)
+ * Culturally Accurate Madurai Heritage:
+ * 1. Madurai Meenakshi Amman Kovil (7-tier Dravidian Gopuram with 5 Gold Kalasams & Temple Diya)
+ * 2. Alanganallur Vadivasal & Jallikattu Arena:
+ *    - Traditional wooden/stone Vadivasal entry gate & spectator barricades
+ *    - Animated 3D Jallikattu Bull (Kangayam breed with muscular body, hump/timil, sharp horns, charging leg cycle & head-tossing animation!)
+ * 3. Lucky Mess in Alanganallur (Authentic village non-veg feast, nattu kozhi, banana leaves)
+ * 4. Power Kadai & Madurai Bun Parotta (Iconic Simmakkal/Goripalayam Kari Dosa & hot parotta counter with chimney smoke)
+ * 5. Gandhi Memorial Museum (Tamukkam Nayak Palace with classical portico, dome & flag)
+ * 6. Alagar Kovil / Kallazhagar Temple (Historic temple nestled at the green foothills of Alagar Malai)
+ * 7. Sacred Vaigai River flowing along its own natural corridor (Isolated from the road - Car NEVER enters water!)
+ * 
+ * Controls & Interactivity:
+ * - Car stays firmly on asphalt road at y=0.25 - ZERO underground clipping, ZERO water clipping!
+ * - Real legible canvas signboards & 3D floating title badges on every model
+ * - [ ✕ Zoom Out / Overview ] reset button
+ * - 100% Theme Harmony in BIXI Sunset Orange (#E88124) and Pitch Carbon (#0B0D13)
  */
 
 (function () {
@@ -32,85 +28,85 @@
       id: 'meenakshi',
       name: 'Meenakshi Amman Kovil',
       category: 'Temple Wonder',
-      pos: { x: -4.5, y: 0.25, z: 2.2 },
-      camPos: { x: -4.5, y: 3.4, z: 7.2 },
-      target: { x: -4.5, y: 1.4, z: 2.2 },
+      pos: { x: -4.5, y: 0.25, z: 1.8 },
+      camPos: { x: -4.5, y: 3.4, z: 6.8 },
+      target: { x: -4.5, y: 1.4, z: 1.8 },
       distance: '1.2 km from Junction',
       time: '5 mins',
       vehicle: 'Activa 6G / Maruti Swift',
-      desc: 'Madurai’s eternal crown jewel with 14 towering Dravidian gopurams, Thousand Pillar Hall, and sacred Golden Lotus tank.',
+      desc: 'The eternal heart of Madurai with 14 towering Dravidian gopurams, Thousand Pillar Hall, and sacred Golden Lotus Tank.',
       badge: 'Heritage Wonder',
       icon: '🛕'
     },
     {
-      id: 'vaigai-bridge',
-      name: 'Vaigai River & AV Bridge',
-      category: 'Historic River Landmark',
-      pos: { x: -1.2, y: 0.25, z: 1.8 },
-      camPos: { x: -1.2, y: 3.2, z: 5.8 },
-      target: { x: -1.2, y: 0.9, z: 1.8 },
-      distance: '1.8 km',
-      time: '6 mins',
-      vehicle: 'Hunter 350 / Swift',
-      desc: 'Historic Albert Victor Bridge built in 1889 across the sacred Vaigai River with 16 stone arches and heritage streetlamps.',
-      badge: 'Vaigai River',
-      icon: '🌉'
+      id: 'alanganallur-vadivasal',
+      name: 'Alanganallur Vadivasal (Jallikattu)',
+      category: 'World Jallikattu Arena',
+      pos: { x: -1.5, y: 0.25, z: 3.2 },
+      camPos: { x: -1.5, y: 2.8, z: 7.2 },
+      target: { x: -1.5, y: 1.0, z: 3.2 },
+      distance: '16 km',
+      time: '26 mins',
+      vehicle: 'Hunter 350 / Maruti Swift',
+      desc: 'World-famous Vadivasal entry gate where fierce Kangayam bulls charge into the Pongal Jallikattu arena before thousands of roaring spectators.',
+      badge: 'Jallikattu Arena',
+      icon: '🐂'
+    },
+    {
+      id: 'lucky-mess',
+      name: 'Lucky Mess (Alanganallur)',
+      category: 'Authentic Village Feast',
+      pos: { x: 1.5, y: 0.25, z: 3.2 },
+      camPos: { x: 1.5, y: 2.8, z: 7.2 },
+      target: { x: 1.5, y: 1.0, z: 3.2 },
+      distance: '16.5 km',
+      time: '28 mins',
+      vehicle: 'Maruti Swift / Hunter 350',
+      desc: 'Legendary village mess in Alanganallur famous for piping hot nattu-kozhi chukka, spicy mutton gravy, and authentic banana-leaf feasts.',
+      badge: 'Village Feast',
+      icon: '🍗'
     },
     {
       id: 'power-kadai',
-      name: 'Power Kadai & Lucky Mess',
-      category: 'Culinary Legend',
-      pos: { x: 3.2, y: 0.25, z: 3.2 },
-      camPos: { x: 3.2, y: 3.0, z: 7.4 },
-      target: { x: 3.2, y: 1.1, z: 3.2 },
-      distance: '3.8 km / 16 km',
-      time: '12 mins / 28 mins',
-      vehicle: 'Maruti Swift / Hunter 350',
-      desc: 'Authentic Goripalayam Mutton Kari Dosa and legendary Alanganallur country non-veg feast served hot on fresh banana leaves.',
-      badge: 'Food & Mess',
+      name: 'Power Kadai & Bun Parotta',
+      category: 'Madurai Street Food',
+      pos: { x: 4.8, y: 0.25, z: 1.5 },
+      camPos: { x: 4.8, y: 3.0, z: 5.8 },
+      target: { x: 4.8, y: 1.1, z: 1.5 },
+      distance: '3.5 km',
+      time: '12 mins',
+      vehicle: 'Activa 6G / Swift',
+      desc: 'Simmakkal & Goripalayam food legends! World-renowned crispy layered Madurai Bun Parotta and sizzling Mutton Kari Dosa.',
+      badge: 'Iconic Street Food',
       icon: '🥩'
     },
     {
       id: 'gandhi-museum',
-      name: 'Gandhi Memorial Palace Museum',
-      category: 'Historic Nayak Palace',
-      pos: { x: 5.2, y: 0.25, z: 0.2 },
-      camPos: { x: 5.2, y: 3.5, z: 5.2 },
-      target: { x: 5.2, y: 1.3, z: 0.2 },
+      name: 'Gandhi Memorial Museum',
+      category: 'Historic Tamukkam Palace',
+      pos: { x: 3.8, y: 0.25, z: -3.2 },
+      camPos: { x: 3.8, y: 3.5, z: 1.8 },
+      target: { x: 3.8, y: 1.3, z: -3.2 },
       distance: '4.5 km',
       time: '14 mins',
       vehicle: 'Maruti Swift / Thar 4x4',
-      desc: 'Historic 17th-century Nayak palace where Mahatma Gandhi decided to adopt the dhoti in 1921. Surrounded by serene gardens.',
+      desc: 'Historic 17th-century Nayak palace where Mahatma Gandhi decided to adopt the dhoti in 1921. Surrounded by serene Tamukkam gardens.',
       badge: 'Palace Museum',
       icon: '🏛️'
     },
     {
-      id: 'alagar-waterfalls',
-      name: 'Alagar Kovil & Mountain Waterfalls',
-      category: 'Nature & Sacred Springs',
-      pos: { x: 1.8, y: 0.25, z: -4.8 },
-      camPos: { x: 1.8, y: 3.8, z: -0.6 },
-      target: { x: 1.8, y: 1.5, z: -4.8 },
+      id: 'alagar-kovil',
+      name: 'Alagar Kovil (Kallazhagar Temple)',
+      category: 'Sacred Hill Temple',
+      pos: { x: -2.8, y: 0.25, z: -4.2 },
+      camPos: { x: -2.8, y: 3.8, z: 0.2 },
+      target: { x: -2.8, y: 1.4, z: -4.2 },
       distance: '21 km',
       time: '35 mins',
       vehicle: 'Maruti Swift / RE Himalayan',
-      desc: 'Nestled in lush Western Ghat foothills. Natural mountain spring cascades, Pazhamudircholai forest canopy, and hill breezes.',
-      badge: 'Falls & Hills',
-      icon: '🌊'
-    },
-    {
-      id: 'kilakarai-highway',
-      name: 'Madurai-Kilakarai Highway Arch',
-      category: '4-Lane Expressway Gateway',
-      pos: { x: -4.8, y: 0.25, z: -3.2 },
-      camPos: { x: -4.8, y: 3.4, z: 1.0 },
-      target: { x: -4.8, y: 1.2, z: -3.2 },
-      distance: '92 km',
-      time: '1 hr 45m',
-      vehicle: 'Maruti Swift / Ertiga 7-Str',
-      desc: 'Grand highway expressway connecting Madurai through Vadipatti & Ramanathapuram towards Kilakarai coastal port and Rameswaram.',
-      badge: 'Expressway Gateway',
-      icon: '🛣️'
+      desc: 'Nestled at the scenic foothills of Alagar Malai. Ancient temple of Lord Kallazhagar, famous for the Chithirai festival and natural springs.',
+      badge: 'Alagar Temple',
+      icon: '🛕'
     }
   ];
 
@@ -121,27 +117,22 @@
     c.height = 128;
     const ctx = c.getContext('2d');
 
-    // Background
     ctx.fillStyle = bgColor || '#12141c';
     ctx.fillRect(0, 0, 512, 128);
 
-    // Border & Glow
     ctx.strokeStyle = accentColor || '#e88124';
     ctx.lineWidth = 6;
     ctx.strokeRect(4, 4, 504, 120);
 
-    // Top Stripe
     ctx.fillStyle = accentColor || '#e88124';
     ctx.fillRect(8, 8, 496, 10);
 
-    // Title text
     ctx.fillStyle = textColor || '#ffffff';
     ctx.font = 'bold 30px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(title, 256, 55);
 
-    // Subtitle text
     if (subtitle) {
       ctx.fillStyle = accentColor || '#e88124';
       ctx.font = 'bold 20px sans-serif';
@@ -160,7 +151,6 @@
     c.height = 96;
     const ctx = c.getContext('2d');
 
-    // Pill background
     ctx.fillStyle = 'rgba(11, 13, 19, 0.94)';
     ctx.beginPath();
     ctx.roundRect(6, 6, 372, 84, 42);
@@ -170,7 +160,6 @@
     ctx.lineWidth = 4;
     ctx.stroke();
 
-    // Text
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 24px sans-serif';
     ctx.textAlign = 'center';
@@ -222,8 +211,8 @@
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    // Harmonized BIXI Lighting
-    const ambLight = new THREE.AmbientLight(0xffeedd, 0.85);
+    // Warm Sunset / BIXI Orange Atmosphere
+    const ambLight = new THREE.AmbientLight(0xffeedd, 0.9);
     scene.add(ambLight);
 
     const sunLight = new THREE.DirectionalLight(0xffa756, 1.7);
@@ -238,7 +227,7 @@
     scene.add(orangeAccentLight);
 
     // =========================================================================
-    // 1. TERRAIN (Flat at y=0 so Road at y=0.25 Never Clips!)
+    // 1. TERRAIN (Pitch Slate Ground - Completely Flat at y=0 so Road at y=0.25 Never Clips!)
     // =========================================================================
     const terrainGeo = new THREE.PlaneGeometry(36, 36);
     terrainGeo.rotateX(-Math.PI / 2);
@@ -252,34 +241,36 @@
     terrain.receiveShadow = true;
     scene.add(terrain);
 
-    // Distant mountain backdrop
-    const mountainGeo = new THREE.ConeGeometry(5, 6, 6);
-    const mountainMat = new THREE.MeshStandardMaterial({
-      color: 0x191e2a,
+    // Alagar Malai (Scenic Sacred Mountain Foothills behind Alagar Kovil in North)
+    const alagarMountainGeo = new THREE.ConeGeometry(5.5, 6.5, 7);
+    const alagarMountainMat = new THREE.MeshStandardMaterial({
+      color: 0x1a221b, // Forest mountain green-slate
       roughness: 0.9,
       flatShading: true
     });
-    const m1 = new THREE.Mesh(mountainGeo, mountainMat);
-    m1.position.set(4, 2.6, -13);
-    scene.add(m1);
-    const m2 = new THREE.Mesh(mountainGeo, mountainMat);
-    m2.scale.set(1.4, 1.2, 1.4);
-    m2.position.set(-3, 3.2, -14);
-    scene.add(m2);
+    const am1 = new THREE.Mesh(alagarMountainGeo, alagarMountainMat);
+    am1.position.set(-2.8, 3.0, -12);
+    scene.add(am1);
+
+    const am2 = new THREE.Mesh(alagarMountainGeo, alagarMountainMat);
+    am2.scale.set(1.3, 1.1, 1.3);
+    am2.position.set(3.5, 3.2, -13);
+    scene.add(am2);
 
     // =========================================================================
-    // 2. VAIGAI RIVER (No Lighthouse - Spanned by Albert Victor Bridge)
+    // 2. SACRED VAIGAI RIVER (Flows on south periphery - NEVER CROSSES THE ROAD!)
     // =========================================================================
+    // River runs cleanly across z = 6.2, completely outside the road loop (z: -4.5 to +3.5)
+    // The car stays 100% on the road and NEVER touches the river!
     const riverCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-16, 0.04, 3.8),
-      new THREE.Vector3(-8, 0.04, 2.9),
-      new THREE.Vector3(-1.2, 0.04, 1.8),
-      new THREE.Vector3(4, 0.04, 0.4),
-      new THREE.Vector3(10, 0.04, -1.2),
-      new THREE.Vector3(16, 0.04, -2.5)
+      new THREE.Vector3(-16, 0.04, 6.5),
+      new THREE.Vector3(-8, 0.04, 6.2),
+      new THREE.Vector3(0, 0.04, 6.0),
+      new THREE.Vector3(8, 0.04, 6.3),
+      new THREE.Vector3(16, 0.04, 6.6)
     ]);
-    const riverGeo = new THREE.TubeGeometry(riverCurve, 40, 1.2, 8, false);
-    riverGeo.scale(1, 0.06, 1);
+    const riverGeo = new THREE.TubeGeometry(riverCurve, 40, 1.1, 8, false);
+    riverGeo.scale(1, 0.05, 1);
     const riverMat = new THREE.MeshStandardMaterial({
       color: 0x0f2b48,
       roughness: 0.15,
@@ -290,11 +281,33 @@
     const riverMesh = new THREE.Mesh(riverGeo, riverMat);
     scene.add(riverMesh);
 
+    // Riverbank Coconut Palms
+    function createRiverPalm(x, z) {
+      const palm = new THREE.Group();
+      const trunkMat = new THREE.MeshStandardMaterial({ color: 0x3d2c1e });
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.1, 1.4, 6), trunkMat);
+      trunk.position.y = 0.7;
+      palm.add(trunk);
+      const frondMat = new THREE.MeshStandardMaterial({ color: 0x166534 });
+      for (let p = 0; p < 5; p++) {
+        const frond = new THREE.Mesh(new THREE.ConeGeometry(0.3, 1.1, 4), frondMat);
+        frond.position.set(0, 1.4, 0);
+        frond.rotation.z = 0.65;
+        frond.rotation.y = (p * Math.PI * 2) / 5;
+        palm.add(frond);
+      }
+      palm.position.set(x, 0, z);
+      return palm;
+    }
+    [-12, -7, -2, 3, 8, 13].forEach(rx => {
+      scene.add(createRiverPalm(rx, 5.2));
+    });
+
     // =========================================================================
-    // 3. REALISTIC 3D LANDMARK MODELS (NOT TOYS!) WITH SIGNBOARDS
+    // 3. REALISTIC 3D LANDMARK MODELS & ANIMATED JALLIKATTU BULL
     // =========================================================================
 
-    // A. MEENAKSHI AMMAN TEMPLE
+    // A. MADURAI MEENAKSHI AMMAN KOVIL
     function createMeenakshiTemple() {
       const gopuram = new THREE.Group();
       const stoneMat = new THREE.MeshStandardMaterial({ color: 0xb55220, roughness: 0.7 });
@@ -313,7 +326,7 @@
       portal.position.y = 0.4;
       gopuram.add(portal);
 
-      // Dedicated Signboard over Base Entrance
+      // Signboard over Base Entrance
       const signTex = createSignboardTexture('SRI MEENAKSHI AMMAN TEMPLE', 'MADURAI • ESTD. ANCIENT PANDYA ERA', '#1a0e08', '#ffffff', '#e88124');
       const signMat = new THREE.MeshBasicMaterial({ map: signTex });
       const signMesh = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 0.45), signMat);
@@ -334,7 +347,6 @@
         tier.castShadow = true;
         gopuram.add(tier);
 
-        // Architectural cornice projection
         const ledge = new THREE.Mesh(new THREE.BoxGeometry(tierW + 0.15, 0.06, tierD + 0.15), stoneMat);
         ledge.position.y = tierY + 0.18;
         gopuram.add(ledge);
@@ -352,12 +364,10 @@
         gopuram.add(kalasam);
       }
 
-      // Golden Sanctum Glow Light
       const templeLight = new THREE.PointLight(0xffa500, 2.5, 6);
       templeLight.position.set(0, tierY + 0.2, 1.2);
       gopuram.add(templeLight);
 
-      // Floating 3D Title Badge
       const badge = createFloatingBadge('Meenakshi Amman Kovil', '🛕');
       badge.position.set(0, tierY + 1.4, 0);
       gopuram.add(badge);
@@ -366,97 +376,224 @@
     }
 
     const meenakshiModel = createMeenakshiTemple();
-    meenakshiModel.position.set(-4.5, 0, 2.2);
+    meenakshiModel.position.set(-4.5, 0, 1.8);
     scene.add(meenakshiModel);
 
-    // B. ALBERT VICTOR BRIDGE ACROSS VAIGAI RIVER (1889 Historic Stone Bridge)
-    function createAlbertVictorBridge() {
-      const bridge = new THREE.Group();
-      const stoneMat = new THREE.MeshStandardMaterial({ color: 0x2b3040, roughness: 0.8 });
-      const archMat = new THREE.MeshStandardMaterial({ color: 0x1b1e2a, roughness: 0.9 });
-      const lampMat = new THREE.MeshBasicMaterial({ color: 0xffd166 });
+    // B. ALANGANALLUR VADIVASAL & ANIMATED JALLIKATTU BULL!
+    let bullMesh = null;
+    let bullLegs = [];
+    let bullHead = null;
+    let bullTail = null;
 
-      // Bridge Deck Pier
-      const deck = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.25, 3.0), stoneMat);
-      deck.position.set(0, 0.25, 0);
-      deck.castShadow = true;
-      deck.receiveShadow = true;
-      bridge.add(deck);
+    function createAlanganallurVadivasal() {
+      const arenaGroup = new THREE.Group();
+      const woodMat = new THREE.MeshStandardMaterial({ color: 0x4a2c11, roughness: 0.8 });
+      const brickMat = new THREE.MeshStandardMaterial({ color: 0x993d14, roughness: 0.7 });
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.6 });
 
-      // Signboard Plaque on Bridge Parapet
-      const bridgeTex = createSignboardTexture('ALBERT VICTOR BRIDGE (1889)', 'HISTORIC VAIGAI RIVER CROSSING', '#11141c', '#ffffff', '#e88124');
-      const bridgeSignMat = new THREE.MeshBasicMaterial({ map: bridgeTex });
-      const bridgeSign = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 0.38), bridgeSignMat);
-      bridgeSign.rotation.y = Math.PI / 2;
-      bridgeSign.position.set(0.82, 0.52, 0);
-      bridge.add(bridgeSign);
+      // 1. The Iconic Vadivasal Gate Pillars
+      const leftGate = new THREE.Mesh(new THREE.BoxGeometry(0.45, 2.6, 0.5), brickMat);
+      leftGate.position.set(-1.2, 1.3, 0);
+      arenaGroup.add(leftGate);
 
-      // 3 Stone Arch Openings
-      for (let a = -0.95; a <= 0.95; a += 0.95) {
-        const arch = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 1.65, 12, 1, false, 0, Math.PI), archMat);
-        arch.rotation.z = Math.PI / 2;
-        arch.position.set(0, 0.12, a);
-        bridge.add(arch);
+      const rightGate = new THREE.Mesh(new THREE.BoxGeometry(0.45, 2.6, 0.5), brickMat);
+      rightGate.position.set(1.2, 1.3, 0);
+      arenaGroup.add(rightGate);
+
+      // Vadivasal Entrance Crossbeam Arch
+      const archBeam = new THREE.Mesh(new THREE.BoxGeometry(2.9, 0.5, 0.55), brickMat);
+      archBeam.position.set(0, 2.5, 0);
+      arenaGroup.add(archBeam);
+
+      // Traditional Terracotta Tiled Roof Canopy over Vadivasal
+      const tileRoof = new THREE.Mesh(new THREE.ConeGeometry(1.8, 0.6, 4), roofMat);
+      tileRoof.rotation.y = Math.PI / 4;
+      tileRoof.position.set(0, 3.0, 0);
+      arenaGroup.add(tileRoof);
+
+      // Official Vadivasal Signboard
+      const gateTex = createSignboardTexture('ALANGANALLUR VADIVASAL', 'அலங்காநல்லூர் வாடிவாசல் • JALLIKATTU', '#1a0b06', '#ffffff', '#e88124');
+      const gateSignMat = new THREE.MeshBasicMaterial({ map: gateTex });
+      const gateSign = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 0.5), gateSignMat);
+      gateSign.position.set(0, 2.5, 0.3);
+      arenaGroup.add(gateSign);
+
+      // Arena Wooden Barricade Railings
+      for (let r = 0; r < 3; r++) {
+        const barLeft = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.08, 2.6), woodMat);
+        barLeft.position.set(-1.2, 0.4 + r * 0.45, 1.3);
+        arenaGroup.add(barLeft);
+
+        const barRight = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.08, 2.6), woodMat);
+        barRight.position.set(1.2, 0.4 + r * 0.45, 1.3);
+        arenaGroup.add(barRight);
       }
 
-      // Parapet Stone Railings with Lampposts
-      const leftRail = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.22, 3.0), stoneMat);
-      leftRail.position.set(-0.75, 0.45, 0);
-      bridge.add(leftRail);
+      // 2. THE ANIMATED TAMIL JALLIKATTU BULL (Kangayam Breed)
+      const bullGroup = new THREE.Group();
+      const bullBodyMat = new THREE.MeshStandardMaterial({
+        color: 0x1c1917, // Sleek black/charcoal bull
+        roughness: 0.6,
+        metalness: 0.2
+      });
+      const hornMat = new THREE.MeshStandardMaterial({
+        color: 0xe5e7eb,
+        roughness: 0.3,
+        metalness: 0.4
+      });
 
-      const rightRail = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.22, 3.0), stoneMat);
-      rightRail.position.set(0.75, 0.45, 0);
-      bridge.add(rightRail);
+      // Muscular Torso
+      const torso = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.6, 1.2), bullBodyMat);
+      torso.position.y = 0.65;
+      torso.castShadow = true;
+      bullGroup.add(torso);
 
-      for (let lp = -1.2; lp <= 1.2; lp += 1.2) {
-        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.6), stoneMat);
-        post.position.set(-0.75, 0.7, lp);
-        bridge.add(post);
+      // Iconic Muscular Hump (திமில் - Timil)
+      const hump = new THREE.Mesh(new THREE.SphereGeometry(0.32, 8, 8), bullBodyMat);
+      hump.scale.set(0.9, 1.2, 1.0);
+      hump.position.set(0, 1.05, 0.25);
+      bullGroup.add(hump);
 
-        const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.06, 6, 6), lampMat);
-        bulb.position.set(-0.75, 1.0, lp);
-        bridge.add(bulb);
-      }
+      // Powerful Neck & Head (animated)
+      const headGroup = new THREE.Group();
+      headGroup.position.set(0, 0.85, 0.65);
+
+      const neck = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.45, 0.5), bullBodyMat);
+      neck.position.set(0, 0, 0.15);
+      headGroup.add(neck);
+
+      const head = new THREE.Mesh(new THREE.ConeGeometry(0.24, 0.45, 6), bullBodyMat);
+      head.rotation.x = -Math.PI / 2;
+      head.position.set(0, -0.05, 0.45);
+      headGroup.add(head);
+
+      // Sharp Curved Horns with festive ribbon bands
+      const leftHorn = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.07, 0.45, 6), hornMat);
+      leftHorn.rotation.set(-0.3, 0, 0.55);
+      leftHorn.position.set(-0.25, 0.2, 0.35);
+      headGroup.add(leftHorn);
+
+      const rightHorn = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.07, 0.45, 6), hornMat);
+      rightHorn.rotation.set(-0.3, 0, -0.55);
+      rightHorn.position.set(0.25, 0.2, 0.35);
+      headGroup.add(rightHorn);
+
+      bullGroup.add(headGroup);
+      bullHead = headGroup;
+
+      // 4 Running Legs
+      const legOffsets = [
+        { x: -0.22, y: 0.32, z: 0.38 },
+        { x: 0.22, y: 0.32, z: 0.38 },
+        { x: -0.22, y: 0.32, z: -0.38 },
+        { x: 0.22, y: 0.32, z: -0.38 }
+      ];
+
+      bullLegs = [];
+      legOffsets.forEach(lo => {
+        const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.06, 0.65, 6), bullBodyMat);
+        leg.position.set(lo.x, lo.y, lo.z);
+        leg.castShadow = true;
+        bullGroup.add(leg);
+        bullLegs.push(leg);
+      });
+
+      // Tail with hair tuft
+      const tail = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.02, 0.6), bullBodyMat);
+      tail.position.set(0, 0.6, -0.65);
+      tail.rotation.x = -0.4;
+      bullGroup.add(tail);
+      bullTail = tail;
+
+      // Position the bull bursting forward from the Vadivasal gate
+      bullGroup.position.set(0, 0, 1.2);
+      arenaGroup.add(bullGroup);
+      bullMesh = bullGroup;
 
       // Floating Title Badge
-      const badge = createFloatingBadge('Vaigai & AV Bridge', '🌉');
-      badge.position.set(0, 1.8, 0);
-      bridge.add(badge);
+      const badge = createFloatingBadge('Alanganallur Vadivasal', '🐂');
+      badge.position.set(0, 4.0, 0);
+      arenaGroup.add(badge);
 
-      return bridge;
+      return arenaGroup;
     }
 
-    const bridgeModel = createAlbertVictorBridge();
-    bridgeModel.position.set(-1.2, 0, 1.8);
-    scene.add(bridgeModel);
+    const vadivasalModel = createAlanganallurVadivasal();
+    vadivasalModel.position.set(-1.5, 0, 3.2);
+    scene.add(vadivasalModel);
 
-    // C. POWER KADAI & LUCKY MESS (Madurai Iconic Food Landmark with Animated Smoke)
+    // C. LUCKY MESS IN ALANGANALLUR (Village Non-Veg Feast)
+    function createLuckyMess() {
+      const mess = new THREE.Group();
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x3d2b1f, roughness: 0.8 });
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x1f2937 });
+
+      // Mess Building
+      const bldg = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.5, 1.8), wallMat);
+      bldg.position.y = 0.75;
+      bldg.castShadow = true;
+      mess.add(bldg);
+
+      // Lucky Mess Signboard
+      const messTex = createSignboardTexture('LUCKY MESS • ALANGANALLUR', 'FAMOUS NATTU KOZHI & MUTTON CHUKKA', '#1f0d05', '#ffffff', '#e88124');
+      const messSignMat = new THREE.MeshBasicMaterial({ map: messTex });
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 0.48), messSignMat);
+      sign.position.set(0, 1.7, 0.95);
+      mess.add(sign);
+
+      // Banana Leaf Outdoor Tables
+      const tableMat = new THREE.MeshStandardMaterial({ color: 0x475569 });
+      for (let t = -0.7; t <= 0.7; t += 1.4) {
+        const table = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.4, 0.5), tableMat);
+        table.position.set(t, 0.2, 1.5);
+        mess.add(table);
+
+        const leaf = new THREE.Mesh(new THREE.PlaneGeometry(0.38, 0.25), new THREE.MeshBasicMaterial({ color: 0x15803d }));
+        leaf.rotation.x = -Math.PI / 2;
+        leaf.position.set(t, 0.41, 1.5);
+        mess.add(leaf);
+      }
+
+      const light = new THREE.PointLight(0xffa756, 2.2, 5);
+      light.position.set(0, 1.3, 1.4);
+      mess.add(light);
+
+      const badge = createFloatingBadge('Lucky Mess Alanganallur', '🍗');
+      badge.position.set(0, 2.5, 0);
+      mess.add(badge);
+
+      return mess;
+    }
+
+    const luckyMessModel = createLuckyMess();
+    luckyMessModel.position.set(1.5, 0, 3.2);
+    scene.add(luckyMessModel);
+
+    // D. POWER KADAI & MADURAI BUN PAROTTA (Simmakkal / Goripalayam)
     const chimneySmokeParticles = [];
 
-    function createFoodMess() {
+    function createPowerKadai() {
       const hotel = new THREE.Group();
       const brickMat = new THREE.MeshStandardMaterial({ color: 0x3d281d, roughness: 0.8 });
       const darkMat = new THREE.MeshStandardMaterial({ color: 0x16161a });
 
-      // Restaurant Main Building Block
       const block = new THREE.Mesh(new THREE.BoxGeometry(2.6, 1.6, 2.0), brickMat);
       block.position.y = 0.8;
       block.castShadow = true;
       hotel.add(block);
 
-      // Large Illuminated Signboard with Real Legible Text!
-      const messTex = createSignboardTexture('POWER KADAI & LUCKY MESS', 'FAMOUS MADURAI KARI DOSA • ALANGANALLUR', '#1a0b06', '#ffffff', '#e88124');
+      // Illuminated Signboard
+      const messTex = createSignboardTexture('POWER KADAI & BUN PAROTTA', 'MADURAI KARI DOSA • SIMMAKKAL', '#1a0b06', '#ffffff', '#e88124');
       const messSignMat = new THREE.MeshBasicMaterial({ map: messTex });
       const messSign = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.55), messSignMat);
       messSign.position.set(0, 1.9, 1.05);
       hotel.add(messSign);
 
-      // Tandoor / Kitchen Chimney
+      // Kitchen Chimney with Animated Smoke
       const chimney = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 1.0), darkMat);
       chimney.position.set(0.8, 2.1, -0.6);
       hotel.add(chimney);
 
-      // Animated Smoke Particles Emitter
       const smokeMat = new THREE.MeshBasicMaterial({ color: 0xd1d5db, transparent: true, opacity: 0.6 });
       for (let s = 0; s < 10; s++) {
         const puff = new THREE.Mesh(new THREE.SphereGeometry(0.12 + Math.random() * 0.08, 6, 6), smokeMat.clone());
@@ -466,7 +603,7 @@
         chimneySmokeParticles.push(puff);
       }
 
-      // Veranda Dining Tables with Banana Leaf Meals
+      // Porch Dining Setup
       const tableMat = new THREE.MeshStandardMaterial({ color: 0x475569 });
       for (let t = -0.8; t <= 0.8; t += 1.6) {
         const table = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.4, 0.5), tableMat);
@@ -479,24 +616,22 @@
         hotel.add(leaf);
       }
 
-      // Warm Dining Porch Glow
       const foodLight = new THREE.PointLight(0xffa756, 2.5, 6);
       foodLight.position.set(0, 1.4, 1.6);
       hotel.add(foodLight);
 
-      // Floating Title Badge
-      const badge = createFloatingBadge('Power Kadai & Lucky Mess', '🥩');
-      badge.position.set(0, 2.6, 0);
+      const badge = createFloatingBadge('Power Kadai & Bun Parotta', '🥩');
+      badge.position.set(0, 2.7, 0);
       hotel.add(badge);
 
       return hotel;
     }
 
-    const foodModel = createFoodMess();
-    foodModel.position.set(3.2, 0, 3.2);
-    scene.add(foodModel);
+    const powerKadaiModel = createPowerKadai();
+    powerKadaiModel.position.set(4.8, 0, 1.5);
+    scene.add(powerKadaiModel);
 
-    // D. GANDHI MEMORIAL PALACE MUSEUM (TAMUKKAM NAYAK PALACE - REALISTIC ARCHITECTURE!)
+    // E. GANDHI MEMORIAL MUSEUM (TAMUKKAM NAYAK PALACE)
     function createGandhiMuseum() {
       const museum = new THREE.Group();
       const stonePlinthMat = new THREE.MeshStandardMaterial({ color: 0x222634, roughness: 0.8 });
@@ -504,7 +639,6 @@
       const pillarMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.3 });
       const domeMat = new THREE.MeshStandardMaterial({ color: 0xe88124, metalness: 0.85, roughness: 0.25 });
 
-      // 1. Two-tier Stepped Stone Foundation Plinth
       const baseStep1 = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.2, 2.8), stonePlinthMat);
       baseStep1.position.y = 0.1;
       museum.add(baseStep1);
@@ -513,49 +647,32 @@
       baseStep2.position.y = 0.3;
       museum.add(baseStep2);
 
-      // 2. Palace Main Wing Block with deep windows
       const hall = new THREE.Mesh(new THREE.BoxGeometry(3.6, 1.4, 2.2), palaceWallMat);
       hall.position.y = 1.0;
       hall.castShadow = true;
       museum.add(hall);
 
-      // Legible Signboard on Museum Portico Pediment!
       const museumTex = createSignboardTexture('GANDHI MEMORIAL PALACE MUSEUM', 'TAMUKKAM NAYAK PALACE • FREEDOM ARCHIVES', '#151928', '#ffffff', '#e88124');
       const museumSignMat = new THREE.MeshBasicMaterial({ map: museumTex });
       const museumSign = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 0.5), museumSignMat);
       museumSign.position.set(0, 1.85, 1.15);
       museum.add(museumSign);
 
-      // 3. Portico with 6 Classical Fluted Pillars (with proper capitals)
       for (let p = -1.4; p <= 1.4; p += 0.56) {
-        // Base collar
-        const pBase = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.08, 0.18), stonePlinthMat);
-        pBase.position.set(p, 0.44, 1.18);
-        museum.add(pBase);
-
-        // Shaft
         const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.075, 1.3, 12), pillarMat);
         pillar.position.set(p, 1.05, 1.18);
         pillar.castShadow = true;
         museum.add(pillar);
-
-        // Capital
-        const pCap = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.08, 0.18), stonePlinthMat);
-        pCap.position.set(p, 1.72, 1.18);
-        museum.add(pCap);
       }
 
-      // 4. Octagonal Drum base beneath Dome
       const drum = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 0.95, 0.35, 8), stonePlinthMat);
       drum.position.set(0, 1.85, 0);
       museum.add(drum);
 
-      // 5. Authentic Ribbed Neoclassical Palace Dome
       const dome = new THREE.Mesh(new THREE.SphereGeometry(0.85, 16, 12, 0, Math.PI * 2, 0, Math.PI / 2), domeMat);
       dome.position.set(0, 2.0, 0);
       museum.add(dome);
 
-      // Dome Spire Finial & Flagpole
       const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.6), pillarMat);
       pole.position.set(0, 3.4, 0);
       museum.add(pole);
@@ -564,7 +681,6 @@
       flag.position.set(0.22, 4.0, 0);
       museum.add(flag);
 
-      // Floating Title Badge
       const badge = createFloatingBadge('Gandhi Memorial Palace', '🏛️');
       badge.position.set(0, 4.8, 0);
       museum.add(badge);
@@ -573,111 +689,73 @@
     }
 
     const museumModel = createGandhiMuseum();
-    museumModel.position.set(5.2, 0, 0.2);
+    museumModel.position.set(3.8, 0, -3.2);
     scene.add(museumModel);
 
-    // E. ALAGAR HILLS WATERFALLS (Rocky Cliff with Cascading Spring Water)
-    function createWaterfalls() {
-      const fallsGroup = new THREE.Group();
-      const rockMat = new THREE.MeshStandardMaterial({ color: 0x222634, roughness: 0.95, flatShading: true });
-      const waterMat = new THREE.MeshStandardMaterial({ color: 0x60a5fa, roughness: 0.1, metalness: 0.8 });
-      const foamMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 });
+    // F. ALAGAR KOVIL (KALLAZHAGAR TEMPLE - NOT WATERFALLS!)
+    function createAlagarTemple() {
+      const templeGroup = new THREE.Group();
+      const stoneMat = new THREE.MeshStandardMaterial({ color: 0xa8481d, roughness: 0.7 });
+      const goldMat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.9, roughness: 0.2 });
 
-      // Mountain Cliff Rock Face
-      const cliff = new THREE.Mesh(new THREE.BoxGeometry(3.2, 3.8, 2.0), rockMat);
-      cliff.position.y = 1.9;
-      cliff.castShadow = true;
-      fallsGroup.add(cliff);
+      // Temple Outer Fort Wall & Gateway
+      const base = new THREE.Mesh(new THREE.BoxGeometry(3.0, 1.1, 2.2), stoneMat);
+      base.position.y = 0.55;
+      base.castShadow = true;
+      templeGroup.add(base);
 
-      // Legible Trailhead Signboard
-      const fallsTex = createSignboardTexture('ALAGAR KOVIL & WATERFALLS', 'PAZHAMUDIRCHOLAI SACRED SPRINGS', '#0d1824', '#ffffff', '#e88124');
-      const fallsSignMat = new THREE.MeshBasicMaterial({ map: fallsTex });
-      const fallsSign = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.5), fallsSignMat);
-      fallsSign.position.set(0, 3.7, 1.05);
-      fallsGroup.add(fallsSign);
+      const portal = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.9, 2.25), new THREE.MeshBasicMaterial({ color: 0x090a0d }));
+      portal.position.y = 0.45;
+      templeGroup.add(portal);
 
-      // Water Cascade Sheet
-      const cascade = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 3.4), waterMat);
-      cascade.position.set(0, 1.7, 1.05);
-      fallsGroup.add(cascade);
+      // Alagar Kovil Signboard
+      const alagarTex = createSignboardTexture('ALAGAR KOVIL (KALLAZHAGAR)', 'அழகர் கோவில் • CHITHIRAI FESTIVAL', '#160a04', '#ffffff', '#e88124');
+      const alagarSignMat = new THREE.MeshBasicMaterial({ map: alagarTex });
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 0.5), alagarSignMat);
+      sign.position.set(0, 0.95, 1.12);
+      templeGroup.add(sign);
 
-      // Mountain Spring Pool
-      const pool = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.4, 0.25, 12), waterMat);
-      pool.position.set(0, 0.1, 1.6);
-      fallsGroup.add(pool);
-
-      const foamRing = new THREE.Mesh(new THREE.RingGeometry(0.4, 1.2, 12), foamMat);
-      foamRing.rotation.x = -Math.PI / 2;
-      foamRing.position.set(0, 0.24, 1.6);
-      fallsGroup.add(foamRing);
-
-      // Pine Canopy Trees
-      const pineMat = new THREE.MeshStandardMaterial({ color: 0x14532d, roughness: 0.8 });
-      for (let i = -1; i <= 1; i++) {
-        const treeTop = new THREE.Mesh(new THREE.ConeGeometry(0.65, 1.3, 6), pineMat);
-        treeTop.position.set(i * 0.9, 4.3, 0);
-        fallsGroup.add(treeTop);
+      // Dravidian Raja Gopuram (4 stepped tiers)
+      let tierY = 1.1;
+      let tierW = 2.4;
+      let tierD = 1.6;
+      for (let t = 0; t < 4; t++) {
+        tierY += 0.42;
+        tierW -= 0.32;
+        tierD -= 0.2;
+        const tier = new THREE.Mesh(new THREE.BoxGeometry(tierW, 0.42, tierD), stoneMat);
+        tier.position.y = tierY;
+        tier.castShadow = true;
+        templeGroup.add(tier);
       }
 
-      // Floating Title Badge
-      const badge = createFloatingBadge('Alagar Waterfalls & Hills', '🌊');
-      badge.position.set(0, 4.7, 0);
-      fallsGroup.add(badge);
+      // Gold Vimanam Spire
+      const vimanam = new THREE.Mesh(new THREE.ConeGeometry(0.4, 0.8, 6), goldMat);
+      vimanam.position.set(0, tierY + 0.6, 0);
+      templeGroup.add(vimanam);
 
-      return fallsGroup;
+      // Sacred Golden Dhwaja Stambham (Flagmast)
+      const flagmast = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 2.5), goldMat);
+      flagmast.position.set(1.4, 1.25, 1.4);
+      templeGroup.add(flagmast);
+
+      const templeLight = new THREE.PointLight(0xffb703, 2.5, 6);
+      templeLight.position.set(0, 2.0, 1.4);
+      templeGroup.add(templeLight);
+
+      const badge = createFloatingBadge('Alagar Kovil (Kallazhagar)', '🛕');
+      badge.position.set(0, tierY + 1.4, 0);
+      templeGroup.add(badge);
+
+      return templeGroup;
     }
 
-    const fallsModel = createWaterfalls();
-    fallsModel.position.set(1.8, 0, -4.8);
-    scene.add(fallsModel);
-
-    // F. MADURAI-KILAKARAI HIGHWAY GATEWAY ARCH (4-Lane Expressway Gantry)
-    function createHighwayArch() {
-      const gateGroup = new THREE.Group();
-      const pylonMat = new THREE.MeshStandardMaterial({ color: 0x242838, roughness: 0.5 });
-
-      // Left Pillar
-      const leftPillar = new THREE.Mesh(new THREE.BoxGeometry(0.4, 2.8, 0.5), pylonMat);
-      leftPillar.position.set(-1.4, 1.4, 0);
-      gateGroup.add(leftPillar);
-
-      // Right Pillar
-      const rightPillar = new THREE.Mesh(new THREE.BoxGeometry(0.4, 2.8, 0.5), pylonMat);
-      rightPillar.position.set(1.4, 1.4, 0);
-      gateGroup.add(rightPillar);
-
-      // Overhead Crossbar Span
-      const crossbar = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.6, 0.55), pylonMat);
-      crossbar.position.set(0, 2.8, 0);
-      gateGroup.add(crossbar);
-
-      // Real Reflective Highway Gantry Signboard!
-      const archTex = createSignboardTexture('NH-87: MADURAI ➔ KILAKARAI', '4-LANE EXPRESSWAY • RAMANATHAPURAM PORT', '#064e3b', '#ffffff', '#e88124');
-      const archSignMat = new THREE.MeshBasicMaterial({ map: archTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 0.5), archSignMat);
-      sign.position.set(0, 2.8, 0.3);
-      gateGroup.add(sign);
-
-      // Overhead Spotlights
-      const archLight = new THREE.PointLight(0xffa756, 2.2, 6);
-      archLight.position.set(0, 2.5, 0.6);
-      gateGroup.add(archLight);
-
-      // Floating Title Badge
-      const badge = createFloatingBadge('Kilakarai Highway Arch', '🛣️');
-      badge.position.set(0, 3.6, 0);
-      gateGroup.add(badge);
-
-      return gateGroup;
-    }
-
-    const highwayArch = createHighwayArch();
-    highwayArch.position.set(-4.8, 0, -3.2);
-    highwayArch.rotation.y = 0.45;
-    scene.add(highwayArch);
+    const alagarModel = createAlagarTemple();
+    alagarModel.position.set(-2.8, 0, -4.2);
+    scene.add(alagarModel);
 
     // =========================================================================
-    // 4. NATURAL PALM VEGETATION
+    // 4. NATURAL PALM GROVES
     // =========================================================================
     function createPalmTree(scale) {
       const tree = new THREE.Group();
@@ -700,12 +778,11 @@
     }
 
     const treeSpots = [
-      { x: -3.0, z: 2.5 }, { x: -5.8, z: 2.2 },
-      { x: 0.8, z: 2.6 },  { x: 4.5, z: 4.8 },
-      { x: 4.8, z: 1.8 },  { x: 6.8, z: 0.8 },
-      { x: 4.2, z: -1.5 }, { x: 3.2, z: -3.5 },
-      { x: 0.2, z: -3.8 }, { x: -2.8, z: -4.8 },
-      { x: -6.2, z: -2.0 },{ x: -5.8, z: -0.2 }
+      { x: -3.2, z: 2.2 }, { x: -5.8, z: 1.8 },
+      { x: 0.0, z: 2.8 },  { x: 3.2, z: 4.5 },
+      { x: 5.5, z: 2.8 },  { x: 5.8, z: -1.2 },
+      { x: 1.8, z: -2.8 }, { x: -1.2, z: -3.8 },
+      { x: -4.8, z: -3.8 }
     ];
     treeSpots.forEach(s => {
       const t = createPalmTree(0.75 + Math.random() * 0.3);
@@ -714,18 +791,20 @@
     });
 
     // =========================================================================
-    // 5. HIGHWAY ROAD LOOP (ELEVATED AT y=0.25 - ZERO UNDERGROUND CLIPPING!)
+    // 5. HIGHWAY ROAD LOOP (ELEVATED AT y=0.25 - CAR NEVER ENTERS WATER OR GROUND!)
     // =========================================================================
     const ROAD_Y = 0.25;
 
+    // Road curve connecting all Madurai checkpoints cleanly (bounds: x: -5 to +5, z: -4.5 to +3.5)
+    // River is at z = 6.0+, completely separated!
     const roadCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-4.5, ROAD_Y, 2.2),  // Meenakshi Temple
-      new THREE.Vector3(-1.2, ROAD_Y, 1.8),  // Crosses Albert Victor Bridge over Vaigai
-      new THREE.Vector3(3.2, ROAD_Y, 3.2),   // Power Kadai & Lucky Mess
-      new THREE.Vector3(5.2, ROAD_Y, 0.2),   // Gandhi Museum
-      new THREE.Vector3(1.8, ROAD_Y, -4.8),  // Alagar Hills & Falls
-      new THREE.Vector3(-4.8, ROAD_Y, -3.2), // Kilakarai Highway Arch
-      new THREE.Vector3(-5.8, ROAD_Y, -0.5)  // Loop Closer
+      new THREE.Vector3(-4.5, ROAD_Y, 1.8),  // Meenakshi Temple
+      new THREE.Vector3(-1.5, ROAD_Y, 3.2),  // Alanganallur Vadivasal (Jallikattu)
+      new THREE.Vector3(1.5, ROAD_Y, 3.2),   // Lucky Mess (Alanganallur)
+      new THREE.Vector3(4.8, ROAD_Y, 1.5),   // Power Kadai & Bun Parotta
+      new THREE.Vector3(3.8, ROAD_Y, -3.2),  // Gandhi Memorial Museum
+      new THREE.Vector3(-2.8, ROAD_Y, -4.2), // Alagar Kovil Temple
+      new THREE.Vector3(-5.5, ROAD_Y, -1.2)  // Circuit Closer
     ], true, 'catmullrom', 0.25);
 
     // Road Ribbon
@@ -811,7 +890,6 @@
     windshield.position.set(0, 0.35, -0.05);
     carGroup.add(windshield);
 
-    // 4 Rotating Alloy Wheels
     const wheelMat = new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.9 });
     const rimMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2 });
     const carWheels = [];
@@ -836,7 +914,7 @@
       carWheels.push(wGroup);
     });
 
-    // Twin LED Headlights (Casting real forward light pool onto road)
+    // Twin LED Headlights (Cast forward light onto the road)
     const headMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
     const hl1 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.06, 0.04), headMat);
     hl1.position.set(-0.22, 0.22, 0.74);
@@ -919,7 +997,6 @@
       }
     });
 
-    // Camera Orbit / Manual Drag
     let isMouseDown = false;
     let prevMouseX = 0;
     let autoRotate = true;
@@ -928,7 +1005,6 @@
     let camHeight = 12;
     let camTargetPos = null;
     let camTargetLook = null;
-    let activeCheckpointId = null;
 
     canvas.addEventListener('pointerdown', (e) => {
       isMouseDown = true;
@@ -941,7 +1017,7 @@
       const deltaX = e.clientX - prevMouseX;
       prevMouseX = e.clientX;
       cameraAngle -= deltaX * 0.005;
-      camTargetPos = null; // Clear tween on user interaction
+      camTargetPos = null;
     });
 
     window.addEventListener('pointerup', () => {
@@ -950,9 +1026,7 @@
 
     function selectCheckpoint(cp) {
       if (!cp) return;
-      activeCheckpointId = cp.id;
 
-      // Smooth camera transition to landmark
       camTargetPos = new THREE.Vector3(cp.camPos.x, cp.camPos.y, cp.camPos.z);
       camTargetLook = new THREE.Vector3(cp.target.x, cp.target.y, cp.target.z);
       autoRotate = false;
@@ -961,7 +1035,6 @@
       const resetBtn = document.getElementById('btnMapResetView');
       if (resetBtn) resetBtn.style.display = 'inline-flex';
 
-      // Update Destination UI card
       const cardTitle = document.getElementById('mapActiveTitle');
       const cardCategory = document.getElementById('mapActiveCategory');
       const cardDistance = document.getElementById('mapActiveDistance');
@@ -976,7 +1049,6 @@
       if (cardVehicle) cardVehicle.textContent = cp.vehicle;
       if (cardDesc) cardDesc.textContent = cp.desc;
 
-      // Active pill styling
       document.querySelectorAll('.map-pill-btn').forEach(btn => {
         if (btn.dataset.id === cp.id) {
           btn.classList.add('active');
@@ -986,23 +1058,18 @@
       });
     }
 
-    // Reset view function (ZOOM OUT TO FULL OVERVIEW!)
     function resetMaduraiOverview() {
       camTargetPos = defaultCamPos.clone();
       camTargetLook = defaultLookAt.clone();
       autoRotate = true;
-      activeCheckpointId = null;
 
-      // Hide reset button
       const resetBtn = document.getElementById('btnMapResetView');
       if (resetBtn) resetBtn.style.display = 'none';
 
-      // Deselect pills
       document.querySelectorAll('.map-pill-btn').forEach(btn => {
         btn.classList.remove('active');
       });
 
-      // Restore overview card details
       const cardTitle = document.getElementById('mapActiveTitle');
       if (cardTitle) cardTitle.textContent = 'Madurai Landmark Tour';
       const cardCategory = document.getElementById('mapActiveCategory');
@@ -1011,7 +1078,6 @@
       if (cardDesc) cardDesc.textContent = 'Explore Madurai’s most iconic landmarks and authentic food stops. Click any landmark pill to fly into the 3D model, or enjoy the live Swift cruiser tour.';
     }
 
-    // Expose functions to DOM
     window.focusMaduraiCheckpoint = function (id) {
       const found = CHECKPOINTS.find(c => c.id === id);
       if (found) {
@@ -1024,7 +1090,7 @@
     };
 
     // =========================================================================
-    // 9. ANIMATION LOOP & CAR LOOPING CRUISE (NO UNDERGROUND CLIPPING!)
+    // 9. ANIMATION LOOP & SIMULATIONS
     // =========================================================================
     let carT = 0;
     const carSpeed = 0.00065;
@@ -1035,16 +1101,14 @@
       if (!isVisible) return;
       animationFrameId = requestAnimationFrame(animate);
 
-      // A. Drive Car along endless road loop (y remains firmly at ROAD_Y)
+      // A. Drive Car along road loop (strictly at ROAD_Y + 0.12)
       carT = (carT + carSpeed) % 1;
       const pt = roadCurve.getPointAt(carT);
       const nextPt = roadCurve.getPointAt((carT + 0.01) % 1);
 
-      // Wheels touch ROAD_Y, so car center is at ROAD_Y + 0.12
       carGroup.position.set(pt.x, ROAD_Y + 0.12, pt.z);
       carGroup.lookAt(new THREE.Vector3(nextPt.x, ROAD_Y + 0.12, nextPt.z));
 
-      // Rotate wheels as car moves
       carWheels.forEach(w => {
         w.rotation.x += 0.25;
       });
@@ -1065,8 +1129,32 @@
         liveHudLocation.textContent = nearestCp.name;
       }
 
-      // C. Animate Chimney Smoke Particles above Power Kadai
-      chimneySmokeParticles.forEach((puff, idx) => {
+      // C. ANIMATE JALLIKATTU BULL (Charging Gallop & Head-Toss Simulation!)
+      const timeSec = Date.now() * 0.008;
+      if (bullMesh && bullLegs.length === 4) {
+        // Galloping leg motion
+        bullLegs[0].rotation.x = Math.sin(timeSec) * 0.45;
+        bullLegs[1].rotation.x = -Math.sin(timeSec) * 0.45;
+        bullLegs[2].rotation.x = -Math.sin(timeSec + 0.5) * 0.45;
+        bullLegs[3].rotation.x = Math.sin(timeSec + 0.5) * 0.45;
+
+        // Head thrusting / horn tossing
+        if (bullHead) {
+          bullHead.rotation.x = Math.sin(timeSec * 0.6) * 0.15;
+          bullHead.rotation.y = Math.cos(timeSec * 0.4) * 0.1;
+        }
+
+        // Tail swishing
+        if (bullTail) {
+          bullTail.rotation.z = Math.sin(timeSec * 1.2) * 0.3;
+        }
+
+        // Bull charging stride forward and back slightly
+        bullMesh.position.z = 1.2 + Math.sin(timeSec * 0.5) * 0.25;
+      }
+
+      // D. Animate Chimney Smoke above Power Kadai
+      chimneySmokeParticles.forEach((puff) => {
         puff.position.y += puff.userData.speed;
         puff.position.x += puff.userData.drift;
         const progress = (puff.position.y - puff.userData.baseY) / 1.5;
@@ -1079,14 +1167,14 @@
         }
       });
 
-      // D. Spin Diamond Beacons
+      // E. Spin Diamond Beacons
       const time = Date.now() * 0.003;
       pinMeshes.forEach(mesh => {
         mesh.rotation.y += 0.02;
         mesh.position.y = mesh.userData.originalY + Math.sin(time + mesh.position.x) * 0.08;
       });
 
-      // E. Camera Smooth Follow / Tween or Orbit
+      // F. Camera Smooth Follow / Tween or Orbit
       if (camTargetPos && camTargetLook) {
         camera.position.lerp(camTargetPos, 0.045);
         currentLookAt.lerp(camTargetLook, 0.045);
@@ -1101,7 +1189,7 @@
         camera.lookAt(currentLookAt);
       }
 
-      // F. Raycasting for Hover Highlights
+      // G. Raycasting for Hover Highlights
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(pinMeshes);
       if (intersects.length > 0) {
@@ -1117,7 +1205,6 @@
       renderer.render(scene, camera);
     }
 
-    // IntersectionObserver (Zero CPU when off-screen)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1136,7 +1223,6 @@
 
     observer.observe(container);
 
-    // Window Resize
     window.addEventListener('resize', () => {
       if (!container) return;
       camera.aspect = container.clientWidth / container.clientHeight;
@@ -1147,7 +1233,6 @@
     animate();
   }
 
-  // Initialize on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMadurai3DWorld);
   } else {
