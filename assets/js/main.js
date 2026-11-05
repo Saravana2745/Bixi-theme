@@ -742,3 +742,401 @@
   });
 })();
 
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BIXI RIDE — LUXURY STUDIO & CONCIERGE INTERACTIONS v8.0
+   Showroom Stage | Expedition Explorer | Editorial Quotes | FAQ | Filters
+   ═══════════════════════════════════════════════════════════════════════ */
+
+// ── 1. The BIXI Studio Vehicle Database ───────────────────────────────
+var BIXI_SHOWROOM_DATA = {
+  swift: {
+    name: 'Maruti Suzuki Swift (2026)',
+    tagline: 'Madurai\'s favorite 5-seater self-drive hatchback for city & hills.',
+    rate: 2200,
+    rateStr: '₹2,200',
+    img: 'assets/images/bikes/car-swift.svg',
+    haloColor: 'rgba(232, 129, 36, 0.4)',
+    engine: '1.2L DualJet Petrol • 90 PS',
+    mileage: '22 km/l • 5 Seater Hatchback',
+    safety: 'Dual Airbags • RTO Yellow Plate',
+    bookRate: '2200'
+  },
+  himalayan: {
+    name: 'Royal Enfield Himalayan 450',
+    tagline: 'Western Ghats champion with 40 PS power for Kodaikanal hairpins.',
+    rate: 1499,
+    rateStr: '₹1,499',
+    img: 'assets/images/bikes/himalayan-450.svg',
+    haloColor: 'rgba(39, 174, 96, 0.4)',
+    engine: '452cc Liquid Sherpa • 40 PS',
+    mileage: '30 km/l • 17L Long Range Tank',
+    safety: 'Dual ABS • All-Terrain Spoke Wheels',
+    bookRate: '1499'
+  },
+  hunter: {
+    name: 'Royal Enfield Hunter 350',
+    tagline: 'Compact retro roadster engineered for nimble city & temple hops.',
+    rate: 899,
+    rateStr: '₹899',
+    img: 'assets/images/bikes/hunter-350.svg',
+    haloColor: 'rgba(232, 129, 36, 0.4)',
+    engine: '349cc J-Series • 20.2 BHP',
+    mileage: '36 km/l • Low 790mm Seat Height',
+    safety: 'Dual Disc ABS • RTO Permitted',
+    bookRate: '899'
+  },
+  thar: {
+    name: 'Mahindra Thar 4×4 Hardtop',
+    tagline: 'Iconic 4x4 beast for off-road trails and rugged mountain passes.',
+    rate: 3800,
+    rateStr: '₹3,800',
+    img: 'assets/images/bikes/car-thar.svg',
+    haloColor: 'rgba(192, 57, 43, 0.4)',
+    engine: '2.0L mStallion Turbo • 150 BHP',
+    mileage: '4×4 Shift-on-Fly • 226mm Ground Clearance',
+    safety: 'ESP & Roll Cage • 4-Star Safety',
+    bookRate: '3800'
+  },
+  mt15: {
+    name: 'Yamaha MT-15 Version 2.0',
+    tagline: 'Liquid-cooled hyper naked streetfighter with inverted gold forks.',
+    rate: 799,
+    rateStr: '₹799',
+    img: 'assets/images/bikes/mt-15.svg',
+    haloColor: 'rgba(21, 101, 192, 0.4)',
+    engine: '155cc VVA Liquid Cooled • 18.4 PS',
+    mileage: '48 km/l • Assist & Slipper Clutch',
+    safety: 'Dual Disc • USD Telescopic Forks',
+    bookRate: '799'
+  },
+  activa: {
+    name: 'Honda Activa 6G',
+    tagline: 'Smooth, effortless automatic commuting for Meenakshi temple tours.',
+    rate: 499,
+    rateStr: '₹499',
+    img: 'assets/images/bikes/activa-6g.svg',
+    haloColor: 'rgba(232, 129, 36, 0.35)',
+    engine: '109.5cc PGM-FI eSP • Silent Start',
+    mileage: '55 km/l • Underseat Helmet Storage',
+    safety: 'Combi-Brake System (CBS) • Tubeless',
+    bookRate: '499'
+  },
+  ather: {
+    name: 'Ather 450X Gen 3 EV',
+    tagline: 'High-torque smart electric scooter with touchscreen navigation.',
+    rate: 599,
+    rateStr: '₹599',
+    img: 'assets/images/bikes/ather-450x.svg',
+    haloColor: 'rgba(0, 229, 255, 0.4)',
+    engine: '6.2 kW Motor • 26 Nm Instant Torque',
+    mileage: '105 km TrueRange • 3.3s 0-40 km/h',
+    safety: 'Google Maps Touchscreen • Fast Grid',
+    bookRate: '599'
+  }
+};
+
+var currentShowroomVehicle = 'swift';
+
+function switchShowroomVehicle(id) {
+  var data = BIXI_SHOWROOM_DATA[id];
+  if (!data) return;
+  currentShowroomVehicle = id;
+
+  // Update tabs
+  var tabs = document.querySelectorAll('.lux-selector-tab');
+  tabs.forEach(function (tab) {
+    if (tab.dataset.vehicle === id) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+
+  // Crossfade image
+  var img = document.getElementById('stageVehicleImg');
+  if (img) {
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.92) translateY(10px)';
+    setTimeout(function () {
+      img.src = data.img;
+      img.alt = data.name + ' in Madurai';
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1) translateY(0)';
+    }, 200);
+  }
+
+  // Update halo color
+  var halo = document.getElementById('stageFloorHalo');
+  if (halo) {
+    halo.style.background = 'radial-gradient(ellipse at center, ' + data.haloColor + ' 0%, transparent 75%)';
+  }
+
+  // Update text & HUD
+  var nameEl = document.getElementById('stageVehicleName');
+  var tagEl = document.getElementById('stageVehicleTagline');
+  var engEl = document.getElementById('hudEngine');
+  var milEl = document.getElementById('hudMileage');
+  var safeEl = document.getElementById('hudSafety');
+  var rateEl = document.getElementById('hudRate');
+  var btnEl = document.getElementById('stageBookBtn');
+
+  if (nameEl) nameEl.textContent = data.name;
+  if (tagEl) tagEl.textContent = data.tagline;
+  if (engEl) engEl.textContent = data.engine;
+  if (milEl) milEl.textContent = data.mileage;
+  if (safeEl) safeEl.textContent = data.safety;
+  if (rateEl) rateEl.innerHTML = data.rateStr + ' <small>/ day (Zero Deposit)</small>';
+  if (btnEl) btnEl.textContent = 'Reserve ' + data.name.split(' ')[0] + ' (' + data.rateStr + ') →';
+}
+
+function bookStageVehicle() {
+  var data = BIXI_SHOWROOM_DATA[currentShowroomVehicle];
+  if (!data) return;
+  var modal = document.getElementById('bookingModal');
+  if (!modal) {
+    window.location.href = 'bikes.html';
+    return;
+  }
+  var nameEl = document.getElementById('modalBikeName');
+  var priceEl = document.getElementById('modalBikePrice');
+  var inputEl = document.getElementById('modalBikeInput');
+  var totalEl = document.getElementById('modalTotalEstimate');
+
+  if (nameEl) nameEl.textContent = data.name;
+  if (priceEl) priceEl.textContent = data.rateStr + ' / day';
+  if (inputEl) inputEl.value = data.name;
+  if (totalEl) totalEl.textContent = data.rateStr;
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// ── 2. The Panoramic Expedition Route Console ─────────────────────────
+var BIXI_EXPEDITIONS = {
+  kodaikanal: {
+    title: 'Madurai to Kodaikanal — The Ghat Expedition',
+    desc: 'Tackle 22 thrilling hairpin bends through lush eucalyptus groves, misty cascades, and panoramic valley views. Tested and tuned motorcycles with dual-channel ABS and robust tires guarantee sheer confidence.',
+    distance: '120 km (One-way)',
+    time: '3.5 Hours',
+    elevation: '101m ➔ 2,133m (Ghat Road)',
+    vehicle: 'RE Himalayan 450 / Maruti Swift',
+    waypoints: [
+      'Madurai Junction (101m)',
+      'Batlagundu Toll (280m)',
+      'Silver Cascade (1,800m)',
+      'Kodaikanal Lake (2,133m)'
+    ]
+  },
+  rameswaram: {
+    title: 'Madurai to Rameswaram — The Ocean Highway',
+    desc: 'Cruise the pristine NH49 coastal tarmac across the world-renowned Pamban Sea Bridge right up to the mystic ghost town of Dhanushkodi with ocean winds on both sides.',
+    distance: '170 km (One-way)',
+    time: '3.8 Hours',
+    elevation: '101m ➔ 2m (Coastal Sea Level)',
+    vehicle: 'Maruti Swift / RE Hunter 350',
+    waypoints: [
+      'Madurai Junction (101m)',
+      'Paramakudi (42m)',
+      'Pamban Sea Bridge (5m)',
+      'Dhanushkodi Point (2m)'
+    ]
+  },
+  thekkady: {
+    title: 'Madurai to Thekkady — Cardamom Mist Pass',
+    desc: 'Ascend into Kerala\'s lush Periyar Tiger Reserve via Theni and Kumily. Winding mountain passes through tea estates, cardamom valleys, and refreshing rain showers.',
+    distance: '155 km (One-way)',
+    time: '4.0 Hours',
+    elevation: '101m ➔ 900m (Western Ghats)',
+    vehicle: 'RE Himalayan 450 / Thar 4×4',
+    waypoints: [
+      'Madurai Junction (101m)',
+      'Theni Junction (300m)',
+      'Kumily Checkpost (850m)',
+      'Thekkady Periyar (900m)'
+    ]
+  }
+};
+
+function switchExpeditionRoute(id) {
+  var data = BIXI_EXPEDITIONS[id];
+  if (!data) return;
+
+  var tabs = document.querySelectorAll('.lux-route-tab');
+  tabs.forEach(function (tab) {
+    if (tab.onclick.toString().indexOf(id) !== -1) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+
+  var titleEl = document.getElementById('routeTitle');
+  var descEl = document.getElementById('routeDesc');
+  var distEl = document.getElementById('routeDistance');
+  var timeEl = document.getElementById('routeTime');
+  var elevEl = document.getElementById('routeElevation');
+  var vehEl = document.getElementById('routeVehicle');
+  var wpContainer = document.getElementById('routeWaypoints');
+
+  if (titleEl) titleEl.textContent = data.title;
+  if (descEl) descEl.textContent = data.desc;
+  if (distEl) distEl.textContent = data.distance;
+  if (timeEl) timeEl.textContent = data.time;
+  if (elevEl) elevEl.textContent = data.elevation;
+  if (vehEl) vehEl.textContent = data.vehicle;
+
+  if (wpContainer && data.waypoints) {
+    var html = '';
+    data.waypoints.forEach(function (wp, idx) {
+      html += '<div class="lux-wp-node' + (idx === 0 ? ' active' : '') + '">';
+      html += '<span class="lux-wp-dot"></span>';
+      html += '<span class="lux-wp-name">' + wp + '</span>';
+      html += '</div>';
+      if (idx < data.waypoints.length - 1) {
+        html += '<div class="lux-wp-line"></div>';
+      }
+    });
+    wpContainer.innerHTML = html;
+  }
+}
+
+// ── 3. Editorial Testimonial Rotator ──────────────────────────────────
+var BIXI_EDITORIAL_QUOTES = [
+  {
+    quote: '"The Himalayan 450 delivered outside Madurai Junction made our Kodaikanal trip unforgettable. Zero deposit, brand new bike, and pure peace of mind on the hairpin curves."',
+    author: 'Rahul Krishnan',
+    trip: 'Bengaluru ➔ Kodaikanal Ghat Expedition • Verified Rider ★★★★★'
+  },
+  {
+    quote: '"Rented the Maruti Swift for our family pilgrimage to Meenakshi Temple and Rameswaram. Spotless car, ice-cold dual AC, and paperless check-in within 3 minutes on WhatsApp."',
+    author: 'Karthik Raja',
+    trip: 'Chennai ➔ Rameswaram Highway Tour • Verified Driver ★★★★★'
+  },
+  {
+    quote: '"Best bike rental near me in Madurai! The Activa 6G was silky smooth through Town Hall Road and Periyar bazaars. Zero security deposit is 100% genuine."',
+    author: 'Priya Sundaram',
+    trip: 'Coimbatore ➔ Madurai Heritage & Food Trail • Verified Rider ★★★★★'
+  },
+  {
+    quote: '"We took two Yamaha MT-15s down to Dhanushkodi beach. Outstanding 48 km/l mileage and high quality helmets. BIXI is the real deal for rental bikes in Madurai."',
+    author: 'Anand Mohan',
+    trip: 'Kochi ➔ Dhanushkodi Ocean Run • Verified Rider ★★★★★'
+  }
+];
+
+var currentQuoteIdx = 0;
+
+function updateQuoteDisplay() {
+  var q = BIXI_EDITORIAL_QUOTES[currentQuoteIdx];
+  var textEl = document.getElementById('quoteMainText');
+  var authorEl = document.getElementById('quoteAuthorName');
+  var tripEl = document.getElementById('quoteAuthorTrip');
+
+  if (textEl) {
+    textEl.style.opacity = '0';
+    textEl.style.transform = 'translateY(8px)';
+    setTimeout(function () {
+      textEl.textContent = q.quote;
+      if (authorEl) authorEl.textContent = q.author;
+      if (tripEl) tripEl.textContent = q.trip;
+      textEl.style.opacity = '1';
+      textEl.style.transform = 'translateY(0)';
+    }, 200);
+  }
+}
+
+function nextQuote() {
+  currentQuoteIdx = (currentQuoteIdx + 1) % BIXI_EDITORIAL_QUOTES.length;
+  updateQuoteDisplay();
+}
+
+function prevQuote() {
+  currentQuoteIdx = (currentQuoteIdx - 1 + BIXI_EDITORIAL_QUOTES.length) % BIXI_EDITORIAL_QUOTES.length;
+  updateQuoteDisplay();
+}
+
+// ── 4. Minimalist Line-Divided FAQ Accordion ──────────────────────────
+function toggleLuxFaq(btn) {
+  var row = btn.closest('.lux-faq-row');
+  if (!row) return;
+  var isOpen = row.classList.contains('active');
+  var allRows = document.querySelectorAll('.lux-faq-row');
+  allRows.forEach(function (r) {
+    r.classList.remove('active');
+    var content = r.querySelector('.lux-faq-content');
+    if (content) content.style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    row.classList.add('active');
+    var content = row.querySelector('.lux-faq-content');
+    if (content) content.style.maxHeight = content.scrollHeight + 50 + 'px';
+  }
+}
+
+// ── 5. Vehicle Filter Pills (bikes.html) ───────────────────────────────
+function filterVehicles(cat, btn) {
+  var pills = document.querySelectorAll('.lux-pill-btn');
+  pills.forEach(function (p) { p.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+
+  var items = document.querySelectorAll('.lux-roster-item');
+  items.forEach(function (item) {
+    if (cat === 'all' || item.dataset.category === cat) {
+      item.classList.remove('filter-hidden');
+    } else {
+      item.classList.add('filter-hidden');
+    }
+  });
+}
+
+// ── 6. Auto-Initialize Counter Animation on Telemetry Strip ───────────
+(function () {
+  function animateLuxCounters() {
+    if (typeof IntersectionObserver === 'undefined') return;
+    var cols = document.querySelectorAll('.lux-stat-col[data-target]');
+    if (!cols.length) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var col = entry.target;
+          var target = parseFloat(col.dataset.target);
+          var isDecimal = col.dataset.decimal === '1';
+          var counterEl = col.querySelector('.lux-counter');
+          if (counterEl) {
+            var start = 0;
+            var duration = 1600;
+            var startTime = null;
+            function step(timestamp) {
+              if (!startTime) startTime = timestamp;
+              var progress = Math.min((timestamp - startTime) / duration, 1);
+              var ease = 1 - Math.pow(1 - progress, 3);
+              var current = start + (target - start) * ease;
+              if (isDecimal) {
+                counterEl.textContent = current.toFixed(1);
+              } else {
+                counterEl.textContent = Math.floor(current).toLocaleString('en-IN');
+              }
+              if (progress < 1) {
+                requestAnimationFrame(step);
+              } else {
+                counterEl.textContent = isDecimal ? target.toFixed(1) : target.toLocaleString('en-IN');
+              }
+            }
+            requestAnimationFrame(step);
+          }
+          obs.unobserve(col);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    cols.forEach(function (col) { obs.observe(col); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', animateLuxCounters);
+  } else {
+    animateLuxCounters();
+  }
+})();

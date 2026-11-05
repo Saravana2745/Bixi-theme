@@ -2982,3 +2982,1396 @@ select.form-control:focus {
   visibility: visible !important;
   pointer-events: auto !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BIXI RIDE — ULTRA-LUXURY STUDIO & EDITORIAL DESIGN SYSTEM v8.0
+   Color Architecture: Pitch Carbon (#0D0D0F) | Slate Noir (#16161A)
+   Accent: BIXI Sunset Orange (#E88124) | Silver Light (#F1F5F9)
+   Zero Clunky Cards • Pure Typography • Floating Glass Stages
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Typography & Section Primitives ─────────────────────────────────── */
+.lux-category-tag {
+  display: inline-block;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-orange, #E88124);
+  margin-bottom: 0.85rem;
+}
+
+.lux-heading-giant {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.lux-sub-lead {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: #94A3B8;
+  max-width: 680px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.lux-section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.lux-section-header .lux-sub-lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── 1. Telemetry & Velocity Strip (No Boxes, Pure Architecture) ─────── */
+.lux-telemetry-strip {
+  padding: 4.5rem 0 2rem;
+  background: linear-gradient(180deg, rgba(13,13,15,0.6) 0%, rgba(22,22,26,0.4) 100%);
+  border-top: 1px solid rgba(232, 129, 36, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lux-live-status-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(232, 129, 36, 0.08);
+  border: 1px solid rgba(232, 129, 36, 0.25);
+  border-radius: 50px;
+  padding: 0.45rem 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.lux-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 10px #10B981;
+  animation: luxPulse 2s infinite;
+}
+@keyframes luxPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.lux-status-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #CBD5E1;
+}
+.lux-status-text strong {
+  color: var(--color-orange, #E88124);
+}
+
+.lux-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.lux-stat-col {
+  padding: 0.5rem 1rem;
+}
+
+.lux-stat-number {
+  font-family: var(--font-heading, sans-serif);
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #FFFFFF;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.35rem;
+}
+.lux-stat-accent {
+  color: var(--color-orange, #E88124);
+  font-size: 0.8em;
+  margin-left: 2px;
+}
+.lux-stat-prefix {
+  color: var(--color-orange, #E88124);
+  font-size: 0.7em;
+  margin-right: 2px;
+}
+
+.lux-stat-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+
+.lux-stat-desc {
+  font-size: 0.8rem;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+.lux-stat-divider {
+  width: 1px;
+  height: 75px;
+  background: linear-gradient(180deg, transparent, rgba(232, 129, 36, 0.25), transparent);
+}
+
+@media (max-width: 900px) {
+  .lux-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .lux-stat-divider {
+    display: none;
+  }
+}
+
+/* Continuous Luxury Ticker */
+.lux-ticker-wrap {
+  overflow: hidden;
+  padding: 1.2rem 0 0.5rem;
+  white-space: nowrap;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.lux-ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.8rem;
+  animation: luxTickerScroll 35s linear infinite;
+}
+@keyframes luxTickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.lux-ticker-track span {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  color: #64748B;
+  font-weight: 600;
+}
+.lux-ticker-gem {
+  color: var(--color-orange, #E88124);
+  font-size: 0.55rem;
+}
+
+/* ── 2. The BIXI Studio Showroom (Interactive Stage) ─────────────────── */
+.lux-studio-section {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.lux-stage-container {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(22, 22, 26, 0.95) 0%, #0D0D0F 85%);
+  border: 1px solid rgba(232, 129, 36, 0.2);
+  border-radius: 28px;
+  padding: 3.5rem 2.5rem 2.5rem;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  margin-bottom: 2rem;
+}
+
+.lux-stage-spotlight {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 60%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(232, 129, 36, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+  transition: background 0.6s ease;
+}
+
+.lux-stage-floor-halo {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;
+  height: 120px;
+  background: radial-gradient(ellipse at center, rgba(232, 129, 36, 0.35) 0%, transparent 75%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(16px);
+  transition: all 0.6s cubic-bezier(.22,1,.36,1);
+}
+
+.lux-stage-center {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.lux-vehicle-display {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.lux-stage-img {
+  max-width: 520px;
+  width: 90%;
+  max-height: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s cubic-bezier(.22,1,.36,1), opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+/* Floating High-Tech Telemetry HUD Tags */
+.lux-hud-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.lux-hud-card {
+  position: absolute;
+  background: rgba(13, 13, 15, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 129, 36, 0.25);
+  border-radius: 12px;
+  padding: 0.75rem 1.2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+}
+
+.lux-hud-left-top { top: 12%; left: 3%; text-align: left; }
+.lux-hud-left-bottom { bottom: 12%; left: 3%; text-align: left; }
+.lux-hud-right-top { top: 12%; right: 3%; text-align: right; }
+.lux-hud-right-bottom { bottom: 12%; right: 3%; text-align: right; }
+
+.lux-hud-label {
+  display: block;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--color-orange, #E88124);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.lux-hud-val {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.lux-hud-val small {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .lux-hud-overlay { display: none; }
+  .lux-stage-img { max-width: 340px; }
+  .lux-stage-center { min-height: 240px; }
+}
+
+/* Stage CTA Bar */
+.lux-stage-cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.lux-stage-cta-info {
+  flex: 1;
+  min-width: 260px;
+}
+.lux-stage-name {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+.lux-stage-subtitle {
+  display: block;
+  font-size: 0.88rem;
+  color: #94A3B8;
+}
+
+.lux-stage-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+.lux-stage-btn-book {
+  padding: 0.85rem 2.2rem;
+  font-size: 1rem;
+}
+
+/* Interactive Vehicle Selector Tabs */
+.lux-selector-track {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-orange, #E88124) rgba(255,255,255,0.05);
+}
+.lux-selector-track::-webkit-scrollbar { height: 4px; }
+.lux-selector-track::-webkit-scrollbar-thumb { background: var(--color-orange, #E88124); border-radius: 4px; }
+
+.lux-selector-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 0.6rem 1.25rem;
+  color: #94A3B8;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(.22,1,.36,1);
+  font-family: inherit;
+}
+.lux-selector-tab:hover {
+  background: rgba(232, 129, 36, 0.1);
+  border-color: rgba(232, 129, 36, 0.4);
+  color: #FFFFFF;
+}
+.lux-selector-tab.active {
+  background: var(--color-orange, #E88124);
+  border-color: var(--color-orange, #E88124);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(232, 129, 36, 0.4);
+}
+.lux-tab-icon { font-size: 1.05rem; }
+.lux-tab-price {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.15rem 0.45rem;
+  border-radius: 20px;
+}
+
+.lux-studio-footer-cta {
+  text-align: center;
+  margin-top: 2rem;
+  color: #64748B;
+  font-size: 0.95rem;
+}
+.lux-link-arrow {
+  color: var(--color-orange, #E88124);
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: color 0.2s;
+}
+.lux-link-arrow:hover {
+  color: #FFFFFF;
+}
+
+/* ── 3. Panoramic Expedition Trails Console ──────────────────────────── */
+.lux-expeditions-section {
+  padding: 6rem 0;
+  background: rgba(13, 13, 15, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lux-expedition-console {
+  background: rgba(22, 22, 26, 0.9);
+  border: 1px solid rgba(232, 129, 36, 0.18);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lux-route-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+@media (max-width: 800px) {
+  .lux-route-tabs { grid-template-columns: 1fr; }
+}
+
+.lux-route-tab {
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.6rem 1.8rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+.lux-route-tab:last-child { border-right: none; }
+.lux-route-tab:hover { background: rgba(232, 129, 36, 0.05); }
+.lux-route-tab.active {
+  background: rgba(232, 129, 36, 0.1);
+  border-bottom: 2px solid var(--color-orange, #E88124);
+}
+
+.lux-rt-number {
+  display: block;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.75rem;
+  color: var(--color-orange, #E88124);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.lux-rt-title {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+.lux-rt-badge {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748B;
+}
+
+.lux-route-stage {
+  padding: 3rem 2.5rem;
+}
+
+.lux-route-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 2.5rem;
+}
+
+.lux-rm-label {
+  display: block;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: #64748B;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.lux-rm-val {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+/* Route Waypoint Track */
+.lux-waypoint-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding: 0 1rem;
+}
+@media (max-width: 768px) {
+  .lux-waypoint-track {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .lux-wp-line {
+    width: 2px !important;
+    height: 30px !important;
+    margin: 0 0 0 7px !important;
+  }
+}
+
+.lux-wp-node {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.lux-wp-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-orange, #E88124);
+  box-shadow: 0 0 12px rgba(232, 129, 36, 0.5);
+  flex-shrink: 0;
+}
+.lux-wp-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #CBD5E1;
+}
+.lux-wp-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-orange, #E88124), rgba(232, 129, 36, 0.3));
+  margin: 0 1rem;
+}
+
+/* ── 4. The 4-Stage Frictionless Dispatch Flow ───────────────────────── */
+.lux-flow-section {
+  padding: 6rem 0;
+}
+
+.lux-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+@media (max-width: 900px) {
+  .lux-flow-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 500px) {
+  .lux-flow-grid { grid-template-columns: 1fr; }
+}
+
+.lux-flow-step {
+  padding: 0.5rem;
+}
+
+.lux-flow-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.lux-flow-num {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--color-orange, #E88124);
+  line-height: 1;
+}
+.lux-flow-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(232, 129, 36, 0.4), transparent);
+}
+.lux-flow-line-last {
+  background: transparent;
+}
+
+.lux-flow-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.65rem;
+}
+.lux-flow-text {
+  font-size: 0.92rem;
+  color: #94A3B8;
+  line-height: 1.65;
+}
+
+/* ── 5. Editorial Voices & Testimonial Showcase ──────────────────────── */
+.lux-testimonials-section {
+  padding: 6rem 0;
+  background: radial-gradient(circle at 50% 50%, rgba(22, 22, 26, 0.8) 0%, #0D0D0F 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lux-editorial-quote-wrap {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lux-quote-mark {
+  font-family: Georgia, serif;
+  font-size: 9rem;
+  line-height: 0.8;
+  color: rgba(232, 129, 36, 0.15);
+  user-select: none;
+  margin-bottom: -1rem;
+}
+
+.lux-quote-text {
+  font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #FFFFFF;
+  font-style: italic;
+  margin-bottom: 2rem;
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lux-quote-author-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lux-author-name {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-align: left;
+}
+.lux-author-trip {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-orange, #E88124);
+  text-align: left;
+}
+
+.lux-quote-nav-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+.lux-qnav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.lux-qnav-btn:hover {
+  background: var(--color-orange, #E88124);
+  border-color: var(--color-orange, #E88124);
+  color: #000000;
+}
+
+/* ── 6. Minimalist Luxury FAQ (Line Divided, No Boxes) ───────────────── */
+.lux-faq-section {
+  padding: 6rem 0;
+}
+
+.lux-faq-list {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.lux-faq-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lux-faq-trigger {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1.8rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+.lux-faq-q {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  transition: color 0.2s;
+}
+.lux-faq-trigger:hover .lux-faq-q {
+  color: var(--color-orange, #E88124);
+}
+
+.lux-faq-indicator {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-orange, #E88124);
+  transition: transform 0.3s ease;
+}
+.lux-faq-row.active .lux-faq-indicator {
+  transform: rotate(45deg);
+}
+
+.lux-faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(.22,1,.36,1);
+}
+.lux-faq-content p {
+  padding-bottom: 1.8rem;
+  font-size: 0.98rem;
+  color: #94A3B8;
+  line-height: 1.7;
+}
+
+/* ── 7. Grand Cinematic Conversion Banner ────────────────────────────── */
+.lux-grand-cta {
+  position: relative;
+  padding: 8rem 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 60%, rgba(232, 129, 36, 0.16) 0%, #0D0D0F 70%);
+  border-top: 1px solid rgba(232, 129, 36, 0.25);
+}
+
+.lux-grand-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 350px;
+  background: radial-gradient(ellipse at center, rgba(232, 129, 36, 0.2) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.lux-grand-cta-title {
+  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.lux-grand-cta-lead {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #CBD5E1;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.lux-grand-cta-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* ── 8. BIKES.HTML FLEET LUXURY STYLES ───────────────────────────────── */
+.lux-fleet-hero {
+  position: relative;
+  padding: 7rem 0 3rem;
+  overflow: hidden;
+}
+
+.lux-fleet-hero-glow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(232, 129, 36, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.lux-fleet-header {
+  margin-bottom: 3.5rem;
+}
+
+/* Flagship Dual-Spotlight Duo */
+.lux-flagship-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+@media (max-width: 850px) {
+  .lux-flagship-duo { grid-template-columns: 1fr; }
+}
+
+.lux-flagship-card {
+  background: radial-gradient(circle at 50% 20%, rgba(22, 22, 26, 0.95) 0%, #0D0D0F 100%);
+  border: 1px solid rgba(232, 129, 36, 0.25);
+  border-radius: 24px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.lux-flagship-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-orange, #E88124);
+  box-shadow: 0 20px 50px rgba(232, 129, 36, 0.2);
+}
+
+.lux-fc-badge {
+  display: inline-block;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--color-orange, #E88124);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.lux-fc-img-box {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.lux-fc-img {
+  max-height: 160px;
+  max-width: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+  transition: transform 0.4s ease;
+}
+.lux-flagship-card:hover .lux-fc-img {
+  transform: scale(1.06);
+}
+
+.lux-fc-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.lux-fc-cat {
+  font-size: 0.8rem;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.lux-fc-price {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--color-orange, #E88124);
+}
+.lux-fc-price small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #94A3B8;
+}
+
+.lux-fc-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+}
+.lux-fc-desc {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.lux-fc-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.lux-fc-tags span {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 0.2rem 0.65rem;
+  color: #CBD5E1;
+}
+
+.lux-fc-btn {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 0.95rem;
+}
+
+/* Minimalist Filter Bar */
+.lux-filter-bar {
+  margin-bottom: 3.5rem;
+}
+.lux-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+.lux-pill-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 0.6rem 1.4rem;
+  color: #94A3B8;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+.lux-pill-btn:hover {
+  background: rgba(232, 129, 36, 0.1);
+  border-color: rgba(232, 129, 36, 0.4);
+  color: #FFFFFF;
+}
+.lux-pill-btn.active {
+  background: var(--color-orange, #E88124);
+  border-color: var(--color-orange, #E88124);
+  color: #000000;
+  font-weight: 800;
+}
+
+/* Open Studio Vehicle Roster (No Clunky Box Cards) */
+.lux-roster-section {
+  padding: 0 0 6rem;
+}
+.lux-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.lux-roster-item {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1);
+}
+.lux-roster-item.filter-hidden {
+  display: none !important;
+}
+
+.lux-item-plinth {
+  position: relative;
+  background: radial-gradient(ellipse at center, rgba(22, 22, 26, 0.8) 0%, rgba(13, 13, 15, 0.95) 75%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  transition: border-color 0.3s ease;
+}
+.lux-roster-item:hover .lux-item-plinth {
+  border-color: rgba(232, 129, 36, 0.4);
+}
+
+.lux-item-type {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: #94A3B8;
+  text-transform: uppercase;
+}
+
+.lux-item-halo {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 70px;
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--halo-color, #E88124) 25%, transparent) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(10px);
+}
+
+.lux-item-img {
+  max-height: 130px;
+  max-width: 85%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+  transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+}
+.lux-roster-item:hover .lux-item-img {
+  transform: scale(1.08) translateY(-4px);
+}
+
+.lux-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.lux-item-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+.lux-item-price {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--color-orange, #E88124);
+  white-space: nowrap;
+}
+.lux-item-price small {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.lux-item-specs {
+  font-size: 0.8rem;
+  color: #64748B;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.2rem;
+}
+
+.lux-item-actions {
+  display: flex;
+  gap: 0.65rem;
+}
+.lux-item-btn {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 0.88rem;
+  text-align: center;
+}
+.lux-item-wa {
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Transparent Policies */
+.lux-policies-section {
+  padding: 5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.lux-policies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+@media (max-width: 800px) {
+  .lux-policies-grid { grid-template-columns: 1fr; }
+}
+.lux-policy-item {
+  position: relative;
+  border-top: 1px solid rgba(232, 129, 36, 0.3);
+  padding-top: 1.5rem;
+}
+.lux-policy-num {
+  display: block;
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-orange, #E88124);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+.lux-policy-item h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+}
+.lux-policy-item p {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  line-height: 1.65;
+}
+
+/* ── 9. ABOUT.HTML EDITORIAL STYLES ──────────────────────────────────── */
+.lux-about-hero {
+  position: relative;
+  padding: 8rem 0 5rem;
+  overflow: hidden;
+}
+.lux-about-hero-mesh {
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(232, 129, 36, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.lux-manifesto-block {
+  max-width: 820px;
+  margin-bottom: 4rem;
+}
+.lux-manifesto-h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  margin: 1rem 0 1.5rem;
+}
+.lux-manifesto-lead {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: #E2E8F0;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.lux-manifesto-body {
+  font-size: 1rem;
+  color: #94A3B8;
+  line-height: 1.75;
+}
+
+/* Metric Strip (Lines only, no boxes) */
+.lux-metrics-strip {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  border-top: 1px solid rgba(232, 129, 36, 0.2);
+  border-bottom: 1px solid rgba(232, 129, 36, 0.2);
+  padding: 2.5rem 0;
+}
+@media (max-width: 900px) {
+  .lux-metrics-strip {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .lux-metric-sep { display: none; }
+}
+
+.lux-metric-item {
+  padding: 0 1rem;
+}
+.lux-m-num {
+  display: block;
+  font-family: var(--font-heading, sans-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-orange, #E88124);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.lux-m-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.lux-m-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: #64748B;
+  margin-top: 0.2rem;
+}
+.lux-metric-sep {
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Split Editorial Section */
+.lux-car-manifesto-section {
+  padding: 6rem 0;
+  background: rgba(13, 13, 15, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.lux-split-editorial {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+@media (max-width: 850px) {
+  .lux-split-editorial { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+.lux-se-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin: 0.8rem 0 1.5rem;
+}
+.lux-se-p {
+  font-size: 1rem;
+  color: #94A3B8;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+.lux-se-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.lux-se-visual-box {
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, rgba(22, 22, 26, 0.9) 0%, #0D0D0F 100%);
+  border: 1px solid rgba(232, 129, 36, 0.2);
+  border-radius: 28px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.lux-se-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 120px;
+  background: radial-gradient(ellipse at center, rgba(232, 129, 36, 0.25) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+.lux-se-img {
+  max-width: 380px;
+  width: 90%;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+}
+.lux-se-caption strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+.lux-se-caption span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-orange, #E88124);
+}
+
+/* 6 Tenets Grid */
+.lux-tenets-section {
+  padding: 6rem 0;
+}
+.lux-tenets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem 2.5rem;
+  margin-top: 3.5rem;
+}
+@media (max-width: 850px) {
+  .lux-tenets-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+.lux-tenet-item {
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+}
+.lux-t-num {
+  display: block;
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-orange, #E88124);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+.lux-t-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+}
+.lux-t-desc {
+  font-size: 0.92rem;
+  color: #94A3B8;
+  line-height: 1.65;
+}
+
+/* Strategic Transit Hubs */
+.lux-hubs-section {
+  padding: 6rem 0;
+  background: rgba(13, 13, 15, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.lux-hubs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+@media (max-width: 850px) {
+  .lux-hubs-grid { grid-template-columns: 1fr; }
+}
+
+.lux-hub-card {
+  background: rgba(22, 22, 26, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2.2rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.lux-hub-card:hover {
+  border-color: rgba(232, 129, 36, 0.4);
+  transform: translateY(-5px);
+}
+
+.lux-hub-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.lux-hub-code {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: #64748B;
+  font-weight: 700;
+}
+.lux-hub-badge {
+  font-size: 0.68rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10B981;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.lux-hub-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+}
+.lux-hub-desc {
+  font-size: 0.9rem;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.lux-hub-address {
+  font-size: 0.82rem;
+  color: var(--color-orange, #E88124);
+  font-weight: 600;
+}

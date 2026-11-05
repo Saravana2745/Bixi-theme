@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=4.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=8.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -1227,7 +1227,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=8.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
@@ -1619,498 +1619,456 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       </div>
     </section>
 
-    <!-- 6 KEY PILLARS / WHY CHOOSE BIXI RIDE IN MADURAI -->
-    <section class="section">
+    <!-- ═══════════════════════════════════════════════════════════════════
+         EXPENSIVE LUXURY REDESIGN (NO GENERIC CARDS)
+         THE BIXI STUDIO SHOWROOM, EXPEDITION TRAILS & CONCIERGE FLOW
+    ═══════════════════════════════════════════════════════════════════ -->
+
+    <!-- SECTION 1: ARCHITECTURAL TELEMETRY STRIP (NO BOXES, PURE TYPOGRAPHY) -->
+    <section class="lux-telemetry-strip" id="bixi-telemetry">
       <div class="container">
-        <div class="section-head">
-          <span class="badge">Unmatched Quality &amp; Trust</span>
-          <h2>Why BIXI Ride is the #1 Choice for Bike Rental Madurai</h2>
-          <p>
-            We take the hassle out of two-wheeler rental. Whether you need <strong>madurai rental bikes</strong> for a local temple pilgrimage or a high-altitude climb to Kodaikanal, our fleet is prepped and verified.
-          </p>
+        <!-- Live status ticker pill -->
+        <div class="lux-live-status-bar">
+          <span class="lux-pulse-dot"></span>
+          <span class="lux-status-text">FLEET DISPATCH LIVE: <strong>42 VEHICLES READY</strong> AT MADURAI JUNCTION &amp; MATTUTHAVANI • ZERO SECURITY DEPOSIT</span>
         </div>
 
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            </div>
-            <h3>Zero Security Deposit</h3>
-            <p>Enjoy transparent rentals with zero hidden charges. Verify your Aadhaar/Driving License in 2 minutes and ride without locking your funds.</p>
-          </article>
+        <div class="lux-stats-grid">
+          <div class="lux-stat-col" data-target="500" data-suffix="+">
+            <div class="lux-stat-number"><span class="lux-counter">500</span><span class="lux-stat-accent">+</span></div>
+            <div class="lux-stat-label">Active Fleet in Madurai</div>
+            <div class="lux-stat-desc">Two-wheelers &amp; self-drive cars ready for instant pickup</div>
+          </div>
+          <div class="lux-stat-divider"></div>
+          <div class="lux-stat-col" data-target="25000" data-suffix="+">
+            <div class="lux-stat-number"><span class="lux-counter">25,000</span><span class="lux-stat-accent">+</span></div>
+            <div class="lux-stat-label">Journeys Completed</div>
+            <div class="lux-stat-desc">Trusted by tourists, pilgrims &amp; corporate travelers</div>
+          </div>
+          <div class="lux-stat-divider"></div>
+          <div class="lux-stat-col" data-target="399" data-prefix="₹">
+            <div class="lux-stat-number"><span class="lux-stat-prefix">₹</span><span class="lux-counter">399</span></div>
+            <div class="lux-stat-label">Starting Day Rate</div>
+            <div class="lux-stat-desc">Transparent pricing • Zero hidden fees • GST bill</div>
+          </div>
+          <div class="lux-stat-divider"></div>
+          <div class="lux-stat-col" data-target="4.9" data-decimal="1" data-suffix="★">
+            <div class="lux-stat-number"><span class="lux-counter">4.9</span><span class="lux-stat-accent">★</span></div>
+            <div class="lux-stat-label">Google Rating</div>
+            <div class="lux-stat-desc">1,800+ verified customer reviews across Tamil Nadu</div>
+          </div>
+        </div>
 
-          <article class="feature-card">
-            <div class="feature-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-            </div>
-            <h3>Complimentary ISI Helmets</h3>
-            <p>Safety is non-negotiable. Every booking includes a sanitized ISI-certified helmet and phone mount for effortless Google Maps navigation.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.488.488 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-            </div>
-            <h3>RTO-Verified Fleet</h3>
-            <p>Every motorcycle is 100% legal, RTO-registered with commercial permits, insurance, and serviced every 1,500 km by certified technicians.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
-            </div>
-            <h3>24/7 Roadside Assistance</h3>
-            <p>Flat tire or battery snag? Our dedicated rescue team covers all Madurai districts, highways, and Kodaikanal ghat routes 24 hours a day.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-            </div>
-            <h3>Doorstep &amp; Station Delivery</h3>
-            <p>Get your bike delivered directly at Madurai Railway Junction, Mattuthavani Bus Stand, Madurai Airport, or your hotel lobby.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon-box">
-              <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-            </div>
-            <h3>Flexible Pricing Tiers</h3>
-            <p>Choose from hourly rentals, 24-hour daily plans, weekend getaway bundles, or budget-friendly monthly commuter subscriptions.</p>
-          </article>
+        <!-- Continuous luxury ticker -->
+        <div class="lux-ticker-wrap" aria-hidden="true">
+          <div class="lux-ticker-track">
+            <span>SELF DRIVE CAR RENTAL IN MADURAI</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>MARUTI SWIFT ₹2,200/DAY</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>ZERO SECURITY DEPOSIT</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>BIKE RENTAL IN MADURAI</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>FREE ISI HELMETS &amp; PHONE MOUNT</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>DOORSTEP HOTEL DELIVERY</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>24/7 HIGHWAY RESCUE</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>CAR RENTAL SERVICE IN MADURAI</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>ROYAL ENFIELD HIMALAYAN 450</span>
+            <span class="lux-ticker-gem">◆</span>
+            <!-- duplicate for smooth loop -->
+            <span>SELF DRIVE CAR RENTAL IN MADURAI</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>MARUTI SWIFT ₹2,200/DAY</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>ZERO SECURITY DEPOSIT</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>BIKE RENTAL IN MADURAI</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>FREE ISI HELMETS &amp; PHONE MOUNT</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>DOORSTEP HOTEL DELIVERY</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>24/7 HIGHWAY RESCUE</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>CAR RENTAL SERVICE IN MADURAI</span>
+            <span class="lux-ticker-gem">◆</span>
+            <span>ROYAL ENFIELD HIMALAYAN 450</span>
+            <span class="lux-ticker-gem">◆</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED FLEET SHOWCASE -->
-    <section class="section" style="background: rgba(10, 27, 27, 0.4);">
+    <!-- SECTION 2: THE BIXI STUDIO SHOWROOM (INTERACTIVE VEHICLE STAGE) -->
+    <section class="lux-studio-section" id="bixi-studio-showroom">
       <div class="container">
-        <div class="section-head">
-          <span class="badge">Handpicked Two-Wheelers</span>
-          <h2>Explore Madurai Rental Bikes for Every Journey</h2>
-          <p>
-            Looking for the <strong>best bike rental near me</strong> in Madurai? Browse our top customer favorites, from zippy city scooters to mighty Western Ghat tourers.
+        <div class="lux-section-header">
+          <span class="lux-category-tag">THE BIXI STUDIO • 2026 EDITION</span>
+          <h2 class="lux-heading-giant">
+            Madurai Rental Bikes &amp; <span class="text-orange">Self-Drive Cars</span>
+          </h2>
+          <p class="lux-sub-lead">
+            Select any vehicle below to inspect live specifications, daily rates, and reserve with zero deposit.
           </p>
         </div>
 
-        <div class="fleet-grid">
-          <!-- Bike Card 1: Royal Enfield Hunter 350 -->
-          <article class="bike-card" data-category="cruiser">
-            <div class="bike-card-header">
-              <span class="bike-category-badge">Modern Classic</span>
-              <span class="bike-deposit-pill">Zero Deposit</span>
-              <div class="bike-card-image">
-                <img src="assets/images/bikes/hunter-350.svg" alt="Royal Enfield Hunter 350 bike rental in madurai" width="340" height="200" loading="lazy">
-              </div>
-            </div>
-            <div class="bike-card-body">
-              <div>
-                <h3 class="bike-title">Royal Enfield Hunter 350</h3>
-                <p class="bike-tagline">Agile, stylish retro roadster engineered for city streets &amp; weekend highway cruises.</p>
-                
-                <div class="bike-telemetry-grid">
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Engine</span>
-                    <span class="telemetry-val">349 cc</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Mileage</span>
-                    <span class="telemetry-val">36 km/l</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Brakes</span>
-                    <span class="telemetry-val">Dual ABS</span>
-                  </div>
-                </div>
-              </div>
+        <!-- Interactive Vehicle Stage Container -->
+        <div class="lux-stage-container" id="luxShowroomStage">
+          <!-- Ambient spotlight & floor reflection halo -->
+          <div class="lux-stage-spotlight" id="stageSpotlight"></div>
+          <div class="lux-stage-floor-halo" id="stageFloorHalo"></div>
 
-              <div class="bike-card-footer">
-                <div class="bike-price-box">
-                  <span class="price-sub">Daily Rate</span>
-                  <span class="price-main">₹899 <small>/ day</small></span>
-                </div>
-                <div class="bike-btn-group">
-                  <button class="btn-primary btn-book-now" data-bike="Royal Enfield Hunter 350" data-rate="899">Book Now</button>
-                </div>
-              </div>
+          <!-- Vehicle Showcase Center Stage -->
+          <div class="lux-stage-center">
+            <div class="lux-vehicle-display">
+              <img id="stageVehicleImg" src="assets/images/bikes/car-swift.svg" alt="Maruti Swift car rental in madurai" class="lux-stage-img">
             </div>
-          </article>
 
-          <!-- Bike Card 2: Yamaha MT-15 V2 -->
-          <article class="bike-card" data-category="sport">
-            <div class="bike-card-header">
-              <span class="bike-category-badge">Hyper Naked</span>
-              <span class="bike-deposit-pill">Zero Deposit</span>
-              <div class="bike-card-image">
-                <img src="assets/images/bikes/mt-15.svg" alt="Yamaha MT-15 rental bikes in madurai" width="340" height="200" loading="lazy">
+            <!-- Floating High-Tech Telemetry HUD Tags -->
+            <div class="lux-hud-overlay">
+              <div class="lux-hud-card lux-hud-left-top">
+                <span class="lux-hud-label">ENGINE &amp; POWER</span>
+                <span class="lux-hud-val" id="hudEngine">1.2L DualJet Petrol • 90 PS</span>
+              </div>
+              <div class="lux-hud-card lux-hud-left-bottom">
+                <span class="lux-hud-label">EFFICIENCY &amp; CAPACITY</span>
+                <span class="lux-hud-val" id="hudMileage">22 km/l • 5 Seater Hatchback</span>
+              </div>
+              <div class="lux-hud-card lux-hud-right-top">
+                <span class="lux-hud-label">SAFETY &amp; PERMITS</span>
+                <span class="lux-hud-val" id="hudSafety">Dual Airbags • RTO Yellow Plate</span>
+              </div>
+              <div class="lux-hud-card lux-hud-right-bottom">
+                <span class="lux-hud-label">DAILY 24H RATE</span>
+                <span class="lux-hud-val text-orange" id="hudRate">₹2,200 <small>/ day (Zero Deposit)</small></span>
               </div>
             </div>
-            <div class="bike-card-body">
-              <div>
-                <h3 class="bike-title">Yamaha MT-15 Version 2.0</h3>
-                <p class="bike-tagline">Torquey streetfighter with upside-down forks, liquid cooling, and aggressive acceleration.</p>
-                
-                <div class="bike-telemetry-grid">
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Engine</span>
-                    <span class="telemetry-val">155 cc</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Power</span>
-                    <span class="telemetry-val">18.4 PS</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Brakes</span>
-                    <span class="telemetry-val">Dual Disc</span>
-                  </div>
-                </div>
-              </div>
+          </div>
 
-              <div class="bike-card-footer">
-                <div class="bike-price-box">
-                  <span class="price-sub">Daily Rate</span>
-                  <span class="price-main">₹799 <small>/ day</small></span>
-                </div>
-                <div class="bike-btn-group">
-                  <button class="btn-primary btn-book-now" data-bike="Yamaha MT-15 V2" data-rate="799">Book Now</button>
-                </div>
-              </div>
+          <!-- Stage CTA Bar -->
+          <div class="lux-stage-cta-bar">
+            <div class="lux-stage-cta-info">
+              <span class="lux-stage-name" id="stageVehicleName">Maruti Suzuki Swift (2026)</span>
+              <span class="lux-stage-subtitle" id="stageVehicleTagline">Madurai's most loved self-drive car for city tours and temple circuits.</span>
             </div>
-          </article>
+            <div class="lux-stage-buttons">
+              <button type="button" class="btn-primary lux-stage-btn-book" id="stageBookBtn" onclick="bookStageVehicle()">
+                Reserve This Vehicle (₹2,200) →
+              </button>
+              <a href="https://wa.me/919876543210" class="btn-secondary btn-whatsapp" id="stageWhatsappBtn" target="_blank" rel="noopener">
+                💬 WhatsApp Concierge
+              </a>
+            </div>
+          </div>
 
-          <!-- Bike Card 3: Royal Enfield Himalayan 450 -->
-          <article class="bike-card" data-category="adventure">
-            <div class="bike-card-header">
-              <span class="bike-category-badge">Adventure Tourer</span>
-              <span class="bike-deposit-pill">Zero Deposit</span>
-              <div class="bike-card-image">
-                <img src="assets/images/bikes/himalayan-450.svg" alt="Royal Enfield Himalayan madurai bike rental" width="340" height="200" loading="lazy">
-              </div>
-            </div>
-            <div class="bike-card-body">
-              <div>
-                <h3 class="bike-title">RE Himalayan 450</h3>
-                <p class="bike-tagline">The undisputed champion for Kodaikanal, Munnar, and Western Ghats adventure expeditions.</p>
-                
-                <div class="bike-telemetry-grid">
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Engine</span>
-                    <span class="telemetry-val">452 cc</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Power</span>
-                    <span class="telemetry-val">40 PS</span>
-                  </div>
-                  <div class="telemetry-item">
-                    <span class="telemetry-label">Fuel Tank</span>
-                    <span class="telemetry-val">17 Liters</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bike-card-footer">
-                <div class="bike-price-box">
-                  <span class="price-sub">Daily Rate</span>
-                  <span class="price-main">₹1,499 <small>/ day</small></span>
-                </div>
-                <div class="bike-btn-group">
-                  <button class="btn-primary btn-book-now" data-bike="RE Himalayan 450" data-rate="1499">Book Now</button>
-                </div>
-              </div>
-            </div>
-          </article>
+          <!-- Interactive Vehicle Selector Navigation Track -->
+          <div class="lux-selector-track" role="tablist" aria-label="Vehicle Selector">
+            <button type="button" class="lux-selector-tab active" data-vehicle="swift" onclick="switchShowroomVehicle('swift')">
+              <span class="lux-tab-icon">🚗</span>
+              <span class="lux-tab-text">Maruti Swift</span>
+              <span class="lux-tab-price">₹2,200</span>
+            </button>
+            <button type="button" class="lux-selector-tab" data-vehicle="himalayan" onclick="switchShowroomVehicle('himalayan')">
+              <span class="lux-tab-icon">⛰️</span>
+              <span class="lux-tab-text">Himalayan 450</span>
+              <span class="lux-tab-price">₹1,499</span>
+            </button>
+            <button type="button" class="lux-selector-tab" data-vehicle="hunter" onclick="switchShowroomVehicle('hunter')">
+              <span class="lux-tab-icon">🏍️</span>
+              <span class="lux-tab-text">Hunter 350</span>
+              <span class="lux-tab-price">₹899</span>
+            </button>
+            <button type="button" class="lux-selector-tab" data-vehicle="thar" onclick="switchShowroomVehicle('thar')">
+              <span class="lux-tab-icon">🚙</span>
+              <span class="lux-tab-text">Thar 4×4 SUV</span>
+              <span class="lux-tab-price">₹3,800</span>
+            </button>
+            <button type="button" class="lux-selector-tab" data-vehicle="mt15" onclick="switchShowroomVehicle('mt15')">
+              <span class="lux-tab-icon">⚡</span>
+              <span class="lux-tab-text">Yamaha MT-15</span>
+              <span class="lux-tab-price">₹799</span>
+            </button>
+            <button type="button" class="lux-selector-tab" data-vehicle="activa" onclick="switchShowroomVehicle('activa')">
+              <span class="lux-tab-icon">🛵</span>
+              <span class="lux-tab-text">Honda Activa 6G</span>
+              <span class="lux-tab-price">₹499</span>
+            </button>
+            <button type="button" class="lux-selector-tab" data-vehicle="ather" onclick="switchShowroomVehicle('ather')">
+              <span class="lux-tab-icon">🔋</span>
+              <span class="lux-tab-text">Ather 450X EV</span>
+              <span class="lux-tab-price">₹599</span>
+            </button>
+          </div>
         </div>
 
-        <div style="text-align: center; margin-top: 3rem;">
-          <a href="bikes.html" class="btn-secondary" style="font-size: 1.05rem; padding: 0.85rem 2.2rem;">
-            Explore All 40+ Rental Bikes in Madurai <span>→</span>
+        <div class="lux-studio-footer-cta">
+          <p>Looking for a specific model? We have 40+ two-wheelers and 10+ self-drive cars in Madurai.</p>
+          <a href="bikes.html" class="lux-link-arrow">Browse Complete Vehicle Fleet &amp; Specifications <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EXPEDITION TRAILS (PANORAMIC ROUTE CONSOLE) -->
+    <section class="lux-expeditions-section" id="bixi-expeditions">
+      <div class="container">
+        <div class="lux-section-header">
+          <span class="lux-category-tag">PANORAMIC ROAD TRIPS</span>
+          <h2 class="lux-heading-giant">
+            Beyond the <span class="text-orange">Temple Gates</span>
+          </h2>
+          <p class="lux-sub-lead">
+            Madurai is Tamil Nadu's golden junction. Discover handpicked road trip itineraries with elevation profiles and recommended machines.
+          </p>
+        </div>
+
+        <!-- Expedition Selector Console -->
+        <div class="lux-expedition-console">
+          <!-- Route Tab Switcher -->
+          <div class="lux-route-tabs">
+            <button type="button" class="lux-route-tab active" onclick="switchExpeditionRoute('kodaikanal')">
+              <span class="lux-rt-number">01</span>
+              <span class="lux-rt-title">Madurai ➔ Kodaikanal</span>
+              <span class="lux-rt-badge">120 km • Ghat Climb</span>
+            </button>
+            <button type="button" class="lux-route-tab" onclick="switchExpeditionRoute('rameswaram')">
+              <span class="lux-rt-number">02</span>
+              <span class="lux-rt-title">Madurai ➔ Rameswaram</span>
+              <span class="lux-rt-badge">170 km • Pamban Sea Bridge</span>
+            </button>
+            <button type="button" class="lux-route-tab" onclick="switchExpeditionRoute('thekkady')">
+              <span class="lux-rt-number">03</span>
+              <span class="lux-rt-title">Madurai ➔ Thekkady</span>
+              <span class="lux-rt-badge">155 km • Cardamom Passes</span>
+            </button>
+          </div>
+
+          <!-- Dynamic Route Details Stage -->
+          <div class="lux-route-stage" id="luxRouteStage">
+            <div class="lux-route-meta-grid">
+              <div class="lux-route-meta-item">
+                <span class="lux-rm-label">DISTANCE</span>
+                <span class="lux-rm-val" id="routeDistance">120 km (One-way)</span>
+              </div>
+              <div class="lux-route-meta-item">
+                <span class="lux-rm-label">ESTIMATED TIME</span>
+                <span class="lux-rm-val" id="routeTime">3.5 Hours</span>
+              </div>
+              <div class="lux-route-meta-item">
+                <span class="lux-rm-label">ALTITUDE ELEVATION</span>
+                <span class="lux-rm-val text-orange" id="routeElevation">101m ➔ 2,133m (Ghat Road)</span>
+              </div>
+              <div class="lux-route-meta-item">
+                <span class="lux-rm-label">RECOMMENDED VEHICLE</span>
+                <span class="lux-rm-val" id="routeVehicle">RE Himalayan 450 / Maruti Swift</span>
+              </div>
+            </div>
+
+            <!-- Route Waypoint Track -->
+            <div class="lux-waypoint-track" id="routeWaypoints">
+              <div class="lux-wp-node active">
+                <span class="lux-wp-dot"></span>
+                <span class="lux-wp-name">Madurai Junction (101m)</span>
+              </div>
+              <div class="lux-wp-line"></div>
+              <div class="lux-wp-node">
+                <span class="lux-wp-dot"></span>
+                <span class="lux-wp-name">Batlagundu Toll (280m)</span>
+              </div>
+              <div class="lux-wp-line"></div>
+              <div class="lux-wp-node">
+                <span class="lux-wp-dot"></span>
+                <span class="lux-wp-name">Silver Cascade (1,800m)</span>
+              </div>
+              <div class="lux-wp-line"></div>
+              <div class="lux-wp-node">
+                <span class="lux-wp-dot"></span>
+                <span class="lux-wp-name">Kodaikanal Lake (2,133m)</span>
+              </div>
+            </div>
+
+            <div class="lux-route-editorial">
+              <h3 id="routeTitle" style="font-size: 1.6rem; color: #FFFFFF; margin-bottom: 0.6rem;">Madurai to Kodaikanal — The Ghat Expedition</h3>
+              <p id="routeDesc" style="color: #94A3B8; font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                Tackle 22 thrilling hairpin bends through lush eucalyptus groves, misty cascades, and panoramic valley views. Tested and tuned motorcycles with dual-channel ABS and robust tires guarantee sheer confidence.
+              </p>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="bikes.html" class="btn-primary" style="padding: 0.85rem 2rem;">Book Vehicle for This Trip →</a>
+                <a href="blog-post.html" class="btn-secondary" style="padding: 0.85rem 2rem;">Read Complete Travel Guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE 4-STAGE FRICTIONLESS DISPATCH (MINIMALIST PROGRESSION) -->
+    <section class="lux-flow-section" id="bixi-flow">
+      <div class="container">
+        <div class="lux-section-header">
+          <span class="lux-category-tag">HOW IT WORKS</span>
+          <h2 class="lux-heading-giant">
+            Zero Friction. <span class="text-orange">Pure Mobility.</span>
+          </h2>
+          <p class="lux-sub-lead">
+            Paperless digital onboarding from reservation to open road in under 5 minutes.
+          </p>
+        </div>
+
+        <div class="lux-flow-grid">
+          <div class="lux-flow-step">
+            <div class="lux-flow-top">
+              <span class="lux-flow-num">01</span>
+              <div class="lux-flow-line"></div>
+            </div>
+            <h3 class="lux-flow-title">Select Machine</h3>
+            <p class="lux-flow-text">
+              Choose from 50+ verified two-wheelers and self-drive cars tailored to your Madurai pilgrimage or Kodaikanal hill run.
+            </p>
+          </div>
+
+          <div class="lux-flow-step">
+            <div class="lux-flow-top">
+              <span class="lux-flow-num">02</span>
+              <div class="lux-flow-line"></div>
+            </div>
+            <h3 class="lux-flow-title">2-Min Digital KYC</h3>
+            <p class="lux-flow-text">
+              Share your Driving License &amp; Government ID via WhatsApp. Instant digital validation. Zero security deposit locked.
+            </p>
+          </div>
+
+          <div class="lux-flow-step">
+            <div class="lux-flow-top">
+              <span class="lux-flow-num">03</span>
+              <div class="lux-flow-line"></div>
+            </div>
+            <h3 class="lux-flow-title">Doorstep Handover</h3>
+            <p class="lux-flow-text">
+              Collect right outside Madurai Junction (West Veli St), Mattuthavani Bus Stand, or enjoy free delivery to your hotel lobby.
+            </p>
+          </div>
+
+          <div class="lux-flow-step">
+            <div class="lux-flow-top">
+              <span class="lux-flow-num">04</span>
+              <div class="lux-flow-line lux-flow-line-last"></div>
+            </div>
+            <h3 class="lux-flow-title">Unlimited Freedom</h3>
+            <p class="lux-flow-text">
+              Ride with sanitized ISI helmets, phone mounts, full commercial permits, and 24/7 highway breakdown protection.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: EDITORIAL VOICES & TESTIMONIAL SHOWCASE -->
+    <section class="lux-testimonials-section" id="bixi-voices">
+      <div class="container">
+        <div class="lux-editorial-quote-wrap">
+          <div class="lux-quote-mark" aria-hidden="true">&ldquo;</div>
+          <div class="lux-quote-body">
+            <p class="lux-quote-text" id="quoteMainText">
+              "The Himalayan 450 delivered outside Madurai Junction made our Kodaikanal trip unforgettable. Zero deposit, brand new bike, and pure peace of mind on the hairpin curves."
+            </p>
+            <div class="lux-quote-author-row">
+              <div>
+                <strong class="lux-author-name" id="quoteAuthorName">Rahul Krishnan</strong>
+                <span class="lux-author-trip" id="quoteAuthorTrip">Bengaluru ➔ Kodaikanal Ghat Expedition • Verified Rider ★★★★★</span>
+              </div>
+              <div class="lux-quote-nav-btns">
+                <button type="button" class="lux-qnav-btn" onclick="prevQuote()" aria-label="Previous Review">←</button>
+                <button type="button" class="lux-qnav-btn" onclick="nextQuote()" aria-label="Next Review">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: MINIMALIST LUXURY FAQ (LINE-DIVIDED, NO BOXES) -->
+    <section class="lux-faq-section" id="bixi-faq">
+      <div class="container">
+        <div class="lux-section-header">
+          <span class="lux-category-tag">QUESTIONS &amp; ANSWERS</span>
+          <h2 class="lux-heading-giant">
+            Everything You Need <span class="text-orange">to Know</span>
+          </h2>
+        </div>
+
+        <div class="lux-faq-list">
+          <div class="lux-faq-row active">
+            <button type="button" class="lux-faq-trigger" onclick="toggleLuxFaq(this)">
+              <span class="lux-faq-q">What documents are required for rental bikes &amp; cars in Madurai?</span>
+              <span class="lux-faq-indicator">+</span>
+            </button>
+            <div class="lux-faq-content" style="max-height: 250px;">
+              <p>You only need an original valid Indian or International Driving License (Motorcycle or LMV for cars) and one Government photo ID (Aadhaar Card, Passport, or Voter ID). Digital verification takes less than 2 minutes online or via WhatsApp.</p>
+            </div>
+          </div>
+
+          <div class="lux-faq-row">
+            <button type="button" class="lux-faq-trigger" onclick="toggleLuxFaq(this)">
+              <span class="lux-faq-q">Is there really zero security deposit for self-drive cars and bikes?</span>
+              <span class="lux-faq-indicator">+</span>
+            </button>
+            <div class="lux-faq-content">
+              <p>Yes! BIXI Ride operates on absolute trust. Verified riders pay only the agreed daily rental fee. No funds are locked or frozen from your travel budget, whether renting a scooter or our Maruti Swift self-drive car.</p>
+            </div>
+          </div>
+
+          <div class="lux-faq-row">
+            <button type="button" class="lux-faq-trigger" onclick="toggleLuxFaq(this)">
+              <span class="lux-faq-q">Can I drive to Kodaikanal, Munnar, or Rameswaram?</span>
+              <span class="lux-faq-indicator">+</span>
+            </button>
+            <div class="lux-faq-content">
+              <p>Absolutely. All our vehicles carry valid Tamil Nadu and All-India commercial permits with full insurance coverage. Popular models like the RE Himalayan 450, Hunter 350, and Maruti Swift are specifically tuned and tire-inspected for ghat roads.</p>
+            </div>
+          </div>
+
+          <div class="lux-faq-row">
+            <button type="button" class="lux-faq-trigger" onclick="toggleLuxFaq(this)">
+              <span class="lux-faq-q">Where are your pickup locations in Madurai?</span>
+              <span class="lux-faq-indicator">+</span>
+            </button>
+            <div class="lux-faq-content">
+              <p>Our flagship counter is directly opposite Madurai Railway Junction on West Veli Street. We also maintain strategic dispatch hubs at Mattuthavani Bus Terminus and near Periyar / Meenakshi Temple, plus free doorstep delivery to all major city hotels and Madurai International Airport.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: GRAND CINEMATIC CONVERSION BANNER -->
+    <section class="lux-grand-cta" id="bixi-grand-cta">
+      <div class="lux-grand-cta-glow" aria-hidden="true"></div>
+      <div class="container" style="position: relative; z-index: 2; text-align: center;">
+        <span class="lux-category-tag">PREMIER MOBILITY IN MADURAI</span>
+        <h2 class="lux-grand-cta-title">
+          The Open Road Is Calling.<br>
+          <span class="text-orange">Ride BIXI Today.</span>
+        </h2>
+        <p class="lux-grand-cta-lead">
+          Over 50+ pristine two-wheelers and self-drive cars ready for immediate handover. Zero deposit. Free doorstep delivery.
+        </p>
+        <div class="lux-grand-cta-buttons">
+          <a href="bikes.html" class="btn-primary" style="padding: 1.1rem 2.8rem; font-size: 1.1rem;">
+            Explore All Vehicles &amp; Pricing →
+          </a>
+          <a href="https://wa.me/919876543210" class="btn-secondary btn-whatsapp" style="padding: 1.1rem 2.8rem; font-size: 1.1rem;" target="_blank" rel="noopener">
+            💬 Quick WhatsApp Booking
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ROAD TRIP ROUTES FROM MADURAI -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="badge">Scenic Weekend Rides</span>
-          <h2>Top Road Trips on Your Madurai Rental Bikes</h2>
-          <p>
-            Madurai is the golden gateway to South India's most spectacular hill stations, pilgrimage sanctuaries, and coastal highways.
-          </p>
-        </div>
-
-        <div class="routes-grid">
-          <article class="route-card">
-            <div class="route-meta-pills">
-              <span class="route-pill">120 km</span>
-              <span class="route-pill">Hill Station</span>
-              <span class="route-pill">3.5 Hrs</span>
-            </div>
-            <h3>Madurai to Kodaikanal (Princess of Hills)</h3>
-            <p>Experience thrilling hairpin bends through Batlagundu and Silver Cascade Falls. Best enjoyed on Royal Enfield Himalayan or Hunter 350.</p>
-            <ul class="route-highlights">
-              <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Scenic ghat road with breathtaking valley views</li>
-              <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Perfect weekend bike rental in madurai package</li>
-            </ul>
-            <a href="blog-post.html" class="blog-card-link">Read Route Guide <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </article>
-
-          <article class="route-card">
-            <div class="route-meta-pills">
-              <span class="route-pill">170 km</span>
-              <span class="route-pill">Coastal Highway</span>
-              <span class="route-pill">3.8 Hrs</span>
-            </div>
-            <h3>Madurai to Rameswaram &amp; Dhanushkodi</h3>
-            <p>Cruise the NH49 coastal stretch across the iconic Pamban Sea Bridge right up to the ghost town of Dhanushkodi with ocean winds.</p>
-            <ul class="route-highlights">
-              <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> World-famous Pamban Bridge motorcycle ride</li>
-              <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Flawless smooth 4-lane highway tarmac</li>
-            </ul>
-            <a href="blog-post.html" class="blog-card-link">Read Route Guide <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </article>
-
-          <article class="route-card">
-            <div class="route-meta-pills">
-              <span class="route-pill">155 km</span>
-              <span class="route-pill">Wildlife &amp; Tea</span>
-              <span class="route-pill">4.0 Hrs</span>
-            </div>
-            <h3>Madurai to Thekkady (Periyar Tiger Reserve)</h3>
-            <p>Ascend into the spice plantations of Kerala via Theni and Kumily. High cloud canopy, elephant spotting, and refreshing mist.</p>
-            <ul class="route-highlights">
-              <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Lush cardamom plantations and mountain passes</li>
-              <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> High-power adventure bikes recommended</li>
-            </ul>
-            <a href="blog-post.html" class="blog-card-link">Read Route Guide <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW TO RENT IN 4 EASY STEPS -->
-    <section class="section" style="background: rgba(10, 27, 27, 0.4);">
-      <div class="container">
-        <div class="section-head">
-          <span class="badge">Seamless Process</span>
-          <h2>How to Book Your Rental Bikes in Madurai</h2>
-          <p>Get on the road in less than 5 minutes with our fully paperless digital onboarding.</p>
-        </div>
-
-        <div class="steps-grid">
-          <div class="step-card">
-            <span class="step-number">01</span>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-            </div>
-            <h3>Select Your Bike</h3>
-            <p>Choose from scooters, Royal Enfields, or sport bikes matching your ride style and budget.</p>
-          </div>
-
-          <div class="step-card">
-            <span class="step-number">02</span>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-            </div>
-            <h3>Verify Documents</h3>
-            <p>Quick WhatsApp or online check of your valid Driving License and Government ID. No security deposit needed.</p>
-          </div>
-
-          <div class="step-card">
-            <span class="step-number">03</span>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-            </div>
-            <h3>Pick Up or Get Delivered</h3>
-            <p>Collect at Madurai Railway Junction, Mattuthavani, or request free delivery to your hotel.</p>
-          </div>
-
-          <div class="step-card">
-            <span class="step-number">04</span>
-            <div class="step-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
-            </div>
-            <h3>Ride Free &amp; Return</h3>
-            <p>Enjoy unlimited memorable miles with complete peace of mind and 24/7 breakdown assistance.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REAL CUSTOMER REVIEWS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <span class="badge">Trusted by 25,000+ Riders</span>
-          <h2>What Riders Say About BIXI Bike Rental Madurai</h2>
-          <p>Verified reviews from tourists, corporate commuters, and road trip enthusiasts.</p>
-        </div>
-
-        <div class="reviews-grid">
-          <article class="review-card">
-            <div>
-              <div class="review-stars">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </div>
-              <p class="review-text">
-                "Hired the Himalayan 450 for a 3-day Kodaikanal trip. The bike was virtually brand new, with crisp brakes and great tires. The delivery right outside Madurai Junction Railway station was super convenient!"
-              </p>
-            </div>
-            <div class="reviewer-meta">
-              <div class="reviewer-avatar">RK</div>
-              <div>
-                <h4 class="reviewer-name">Rahul Krishnan</h4>
-                <span class="reviewer-ride">Bengaluru • Rented RE Himalayan</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="review-card">
-            <div>
-              <div class="review-stars">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </div>
-              <p class="review-text">
-                "Easily the best bike rental near me in Madurai. Visited Meenakshi Temple, Thirumalai Nayakkar Mahal, and Alagar Kovil on an Activa 6G. Seamless paperless check-in and zero deposit. Highly recommended!"
-              </p>
-            </div>
-            <div class="reviewer-meta">
-              <div class="reviewer-avatar">PS</div>
-              <div>
-                <h4 class="reviewer-name">Priya Sundaram</h4>
-                <span class="reviewer-ride">Chennai • Rented Honda Activa 6G</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="review-card">
-            <div>
-              <div class="review-stars">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </div>
-              <p class="review-text">
-                "Rode down to Rameswaram with my friend on two Yamaha MT-15s. Amazing fuel mileage and the team provided high quality phone holders and helmets. BIXI is the real deal for madurai rental bikes!"
-              </p>
-            </div>
-            <div class="reviewer-meta">
-              <div class="reviewer-avatar">AM</div>
-              <div>
-                <h4 class="reviewer-name">Anand Mohan</h4>
-                <span class="reviewer-ride">Kochi • Rented Yamaha MT-15</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ ACCORDION -->
-    <section class="section" style="background: rgba(10, 27, 27, 0.4);">
-      <div class="container">
-        <div class="section-head">
-          <span class="badge">Frequently Asked Questions</span>
-          <h2>Everything You Need to Know About Bike Rental in Madurai</h2>
-          <p>Clear, direct answers regarding rental policies, documents, deposits, and delivery.</p>
-        </div>
-
-        <div class="faq-accordion">
-          <div class="faq-item active">
-            <button class="faq-question">
-              <span>What documents are required for rental bikes in Madurai?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer" style="max-height: 200px;">
-              <div class="faq-answer-inner">
-                You only need an original valid Indian or International Two-Wheeler Driving License and one Government photo ID (Aadhaar Card, Passport, or Voter ID). Verification takes less than 2 minutes online or at our pickup counter.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>Is there a security deposit for madurai bike rental at BIXI Ride?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">
-                No! BIXI Ride offers a zero security deposit policy for verified riders. You only pay the rental fee agreed upon. We believe in building trust with travelers and local commuters alike.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>Can I take a rental bike from Madurai to Kodaikanal or Munnar?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">
-                Yes, absolutely! All our bikes hold valid Tamil Nadu commercial permits and full insurance. Models like the Royal Enfield Himalayan 450, Hunter 350, and Yamaha MT-15 are specifically tuned and tire-checked for ghat road climbs.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>Where are your pickup locations in Madurai?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">
-                Our main hubs are situated directly opposite Madurai Railway Junction (West Veli St), next to Mattuthavani Integrated Bus Stand, and near Periyar Bus Terminus. We also offer doorstep delivery directly to your hotel or Madurai Airport upon request.
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>How do I locate the best bike rental near me right now?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">
-                Simply click the "Rent a Bike" button or message our 24/7 WhatsApp dispatch at +91 98765 43210. Share your location in Madurai, and our mobile fleet manager will deliver your sanitized two-wheeler within 30 minutes!
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HIGH-CONVERSION CTA BANNER -->
-    <section class="section" style="padding-top: 2rem;">
-      <div class="container">
-        <div style="background: radial-gradient(circle at 50% 50%, #1A1A22 0%, #0D0D0F 100%); border: 1px solid var(--color-orange); border-radius: var(--radius-lg); padding: 3.5rem 2rem; text-align: center; box-shadow: var(--shadow-orange);">
-          <span class="badge" style="background: rgba(232, 129, 36, 0.15); color: var(--color-orange);">Instant Booking Available</span>
-          <h2 style="margin-bottom: 1rem; font-size: clamp(2rem, 3.5vw, 2.8rem);">
-            Ready to Experience the Ultimate <span class="text-orange">Bike Rental in Madurai</span>?
-          </h2>
-          <p style="max-width: 650px; margin: 0 auto 2rem; color: var(--color-gray-light);">
-            Reserve your bike today with zero deposit. Free doorstep delivery at Madurai Railway Station, Mattuthavani, and all city hotels.
-          </p>
-          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <a href="bikes.html" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">Browse All Rental Bikes</a>
-            <a href="https://wa.me/919876543210" class="btn-secondary btn-whatsapp" style="font-size: 1.05rem; padding: 0.85rem 2rem;">Chat on WhatsApp</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- BOOKING MODAL DIALOG -->
+    <!-- BOOKING MODAL DIALOG -->
   <div class="modal-overlay" id="bookingModal" aria-modal="true" role="dialog">
     <div class="modal-card">
       <button class="modal-close-btn" aria-label="Close Booking Dialog">&times;</button>
@@ -2266,6 +2224,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     };
   </script>
   <script src="assets/js/madurai-3d-map.js?v=6.0"></script>
-  <script src="assets/js/main.js?v=6.5"></script>
+  <script src="assets/js/main.js?v=8.0"></script>
 </body>
 </html>
