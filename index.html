@@ -407,10 +407,54 @@
     }
     
     /* CUSTOM ORANGE & BLACK SCROLLBAR & CONTROLS */
-    .map-reset-btn {
+    .map-zoom-toolbar {
       position: absolute !important;
       top: 1rem !important;
       right: 1rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.45rem !important;
+      z-index: 25 !important;
+      pointer-events: auto !important;
+    }
+    .map-zoom-btn {
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 8px !important;
+      background: rgba(14, 16, 22, 0.94) !important;
+      border: 1px solid rgba(232, 129, 36, 0.45) !important;
+      color: #FFFFFF !important;
+      font-size: 1.25rem !important;
+      font-weight: 700 !important;
+      font-family: inherit !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.75) !important;
+      user-select: none !important;
+      backdrop-filter: blur(8px) !important;
+    }
+    .map-zoom-btn:hover {
+      background: #E88124 !important;
+      color: #FFFFFF !important;
+      border-color: #E88124 !important;
+      box-shadow: 0 0 16px rgba(232, 129, 36, 0.7) !important;
+      transform: translateY(-1px) !important;
+    }
+    .map-zoom-btn.reset-btn {
+      font-size: 0.72rem !important;
+      width: auto !important;
+      height: 30px !important;
+      padding: 0 0.55rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.04em !important;
+    }
+    .map-reset-btn {
+      position: absolute !important;
+      top: 1rem !important;
+      left: 1rem !important;
       background: rgba(18, 20, 26, 0.94) !important;
       backdrop-filter: blur(14px) !important;
       -webkit-backdrop-filter: blur(14px) !important;
@@ -980,6 +1024,13 @@
               </div>
             </div>
 
+            <!-- Floating Zoom In, Zoom Out (+, -) and Overview Controls -->
+            <div class="map-zoom-toolbar">
+              <button type="button" class="map-zoom-btn" onclick="zoomMaduraiMap(1)" title="Zoom In (+)" aria-label="Zoom In">+</button>
+              <button type="button" class="map-zoom-btn" onclick="zoomMaduraiMap(-1)" title="Zoom Out (−)" aria-label="Zoom Out">−</button>
+              <button type="button" class="map-zoom-btn reset-btn" onclick="resetMaduraiMapOverview()" title="Full Overview / Zoom Out" aria-label="Full Overview">⟲ Overview</button>
+            </div>
+
             <!-- Floating Reset Zoom Out / Full Overview Button -->
             <button type="button" class="map-reset-btn" id="btnMapResetView" onclick="resetMaduraiMapOverview()" aria-label="Zoom Out to Full Overview">
               <span>&#10005;</span> Zoom Out / Overview
@@ -990,7 +1041,8 @@
               <div class="map-pills-container">
                 <button type="button" class="map-scroll-arrow" onclick="scrollPills(-1)" title="Scroll Left" aria-label="Scroll Left">&#9664;</button>
                 <div class="map-pills-row">
-                  <button type="button" class="map-pill-btn active" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">&#127989; Meenakshi Kovil</button>
+                  <button type="button" class="map-pill-btn active" data-id="overview" onclick="resetMaduraiMapOverview()">🌐 Full Overview</button>
+                  <button type="button" class="map-pill-btn" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">&#127989; Meenakshi Kovil</button>
                   <button type="button" class="map-pill-btn" data-id="alanganallur-vadivasal" onclick="focusMaduraiCheckpoint('alanganallur-vadivasal')">&#128002; Alanganallur Vadivasal</button>
                   <button type="button" class="map-pill-btn" data-id="lucky-mess" onclick="focusMaduraiCheckpoint('lucky-mess')">&#127831; Lucky Mess Alanganallur</button>
                   <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">&#129385; Power Kadai &amp; Bun Parotta</button>
@@ -1690,7 +1742,7 @@
       }
     };
   </script>
-  <script src="assets/js/madurai-3d-map.js?v=5.0"></script>
+  <script src="assets/js/madurai-3d-map.js?v=6.0"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
