@@ -58,6 +58,171 @@
       });
     });
 
+    // 2b. Custom Luxury Booking Select & Tab Controller (Cars & Bikes)
+    const tabBikes = document.getElementById('tabSelectBikes');
+    const tabCars = document.getElementById('tabSelectCars');
+    const hiddenType = document.getElementById('hiddenVehicleType');
+    const hiddenModel = document.getElementById('hiddenVehicleModel');
+    const hiddenHub = document.getElementById('hiddenPickupHub');
+    const hiddenDuration = document.getElementById('hiddenDuration');
+    const liveEstimate = document.getElementById('liveBookingEstimate');
+    const modelOptionsPanel = document.getElementById('modelOptionsPanel');
+    const selectedModelText = document.getElementById('selectedModelText');
+    const vehicleLabelText = document.getElementById('vehicleLabelText');
+
+    const BIKE_MODELS = [
+      { name: 'Royal Enfield Hunter 350', price: 899, sub: 'Retro Roadster • 350cc • Free Helmets' },
+      { name: 'Royal Enfield Himalayan 450', price: 1499, sub: 'Adventure Tourer • Kodaikanal Ready' },
+      { name: 'Yamaha MT-15 V2', price: 799, sub: 'Hyper Naked Street • 50+ kmpl' },
+      { name: 'Honda Activa 6G', price: 499, sub: 'Automatic Scooter • Lightweight City Ride' },
+      { name: 'Ather 450X Gen 3', price: 599, sub: 'Smart EV Scooter • Fast Charging Included' }
+    ];
+
+    const CAR_MODELS = [
+      { name: 'Maruti Suzuki Swift (2026)', price: 2200, sub: '5-Seater Hatchback • 22 km/l • Self-Drive AC' },
+      { name: 'Hyundai i20 N-Line', price: 2600, sub: '5-Seater Premium • Automatic • Sunroof' },
+      { name: 'Mahindra Thar 4x4', price: 3800, sub: '4-Seater Off-Road SUV • Kodaikanal Expedition' },
+      { name: 'Maruti Ertiga Hybrid', price: 3200, sub: '7-Seater Family MPV • Dual AC • Rameswaram Tour' }
+    ];
+
+    let currentVehicleMode = 'bike';
+    let currentSelectedPrice = 899;
+    let currentDays = 1;
+
+    function renderModelOptions(mode) {
+      if (!modelOptionsPanel) return;
+      modelOptionsPanel.innerHTML = '';
+      const list = mode === 'car' ? CAR_MODELS : BIKE_MODELS;
+
+      list.forEach((item, index) => {
+        const opt = document.createElement('div');
+        opt.className = `custom-option-item ${index === 0 ? 'selected' : ''}`;
+        opt.dataset.value = item.name;
+        opt.dataset.price = item.price;
+        opt.innerHTML = `
+          <div class="custom-option-header">
+            <span>${item.name}</span>
+            <span class="custom-option-price">₹${item.price.toLocaleString('en-IN')}/day</span>
+          </div>
+          <div class="custom-option-sub">${item.sub}</div>
+        `;
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectModel(item);
+        });
+        modelOptionsPanel.appendChild(opt);
+      });
+
+      selectModel(list[0]);
+    }
+
+    function selectModel(item) {
+      if (selectedModelText) selectedModelText.textContent = item.name;
+      if (hiddenModel) hiddenModel.value = item.name;
+      currentSelectedPrice = item.price;
+      updateFareEstimate();
+
+      if (modelOptionsPanel) {
+        modelOptionsPanel.querySelectorAll('.custom-option-item').forEach((el) => {
+          if (el.dataset.value === item.name) {
+            el.classList.add('selected');
+          } else {
+            el.classList.remove('selected');
+          }
+        });
+      }
+      closeAllDropdowns();
+    }
+
+    function updateFareEstimate() {
+      if (!liveEstimate) return;
+      const total = currentSelectedPrice * currentDays;
+      liveEstimate.innerHTML = `₹${total.toLocaleString('en-IN')} <span style="font-weight:400;font-size:0.8rem;">(${currentDays} Day${currentDays > 1 ? 's' : ''})</span>`;
+    }
+
+    if (tabBikes && tabCars) {
+      tabBikes.addEventListener('click', () => {
+        tabBikes.classList.add('active');
+        tabCars.classList.remove('active');
+        currentVehicleMode = 'bike';
+        if (hiddenType) hiddenType.value = 'bike';
+        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Rental Bike';
+        renderModelOptions('bike');
+      });
+
+      tabCars.addEventListener('click', () => {
+        tabCars.classList.add('active');
+        tabBikes.classList.remove('active');
+        currentVehicleMode = 'car';
+        if (hiddenType) hiddenType.value = 'car';
+        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Self-Drive Car';
+        renderModelOptions('car');
+      });
+
+      renderModelOptions('bike');
+    }
+
+    // Generic Custom Dropdown Click Handlers
+    function closeAllDropdowns() {
+      document.querySelectorAll('.custom-select-box').forEach((box) => {
+        box.classList.remove('open');
+      });
+    }
+
+    document.querySelectorAll('.custom-select-box').forEach((box) => {
+      const trigger = box.querySelector('.custom-select-trigger');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = box.classList.contains('open');
+        closeAllDropdowns();
+        if (!isOpen) {
+          box.classList.add('open');
+        }
+      });
+    });
+
+    document.addEventListener('click', closeAllDropdowns);
+
+    // Hub select options click
+    const hubBox = document.getElementById('hubSelectBox');
+    if (hubBox) {
+      hubBox.querySelectorAll('.custom-option-item').forEach((item) => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const val = item.dataset.value;
+          const header = item.querySelector('.custom-option-header')?.textContent || val;
+          const selectedText = document.getElementById('selectedHubText');
+          if (selectedText) selectedText.textContent = header;
+          if (hiddenHub) hiddenHub.value = val;
+          hubBox.querySelectorAll('.custom-option-item').forEach((i) => i.classList.remove('selected'));
+          item.classList.add('selected');
+          hubBox.classList.remove('open');
+        });
+      });
+    }
+
+    // Duration select options click
+    const durationBox = document.getElementById('durationSelectBox');
+    if (durationBox) {
+      durationBox.querySelectorAll('.custom-option-item').forEach((item) => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const days = parseInt(item.dataset.days, 10) || 1;
+          const header = item.querySelector('.custom-option-header')?.textContent || `${days} Days`;
+          const selectedText = document.getElementById('selectedDurationText');
+          if (selectedText) selectedText.textContent = header;
+          if (hiddenDuration) hiddenDuration.value = days;
+          currentDays = days;
+          updateFareEstimate();
+          durationBox.querySelectorAll('.custom-option-item').forEach((i) => i.classList.remove('selected'));
+          item.classList.add('selected');
+          durationBox.classList.remove('open');
+        });
+      });
+    }
+
     // 3. Bike Fleet Filtering System
     const filterButtons = document.querySelectorAll('.filter-btn');
     const bikeCards = document.querySelectorAll('.bike-card');

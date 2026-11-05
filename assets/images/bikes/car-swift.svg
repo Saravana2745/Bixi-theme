@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="swiftRedGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#E88124"/>
+      <stop offset="60%" stop-color="#D0421B"/>
+      <stop offset="100%" stop-color="#801008"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="wheelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="carGlow"><feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#E88124" flood-opacity="0.25"/></filter>
+  </defs>
+  <g filter="url(#carGlow)">
+    <!-- Ground Shadow -->
+    <ellipse cx="250" cy="265" rx="200" ry="16" fill="#000000" opacity="0.6"/>
+    
+    <!-- Wheels -->
+    <g id="swiftWheels">
+      <!-- Rear Wheel -->
+      <circle cx="130" cy="235" r="40" fill="#111827" stroke="#374151" stroke-width="7"/>
+      <circle cx="130" cy="235" r="26" fill="url(#wheelGrad)"/>
+      <circle cx="130" cy="235" r="12" fill="#E88124"/>
+      <line x1="130" y1="209" x2="130" y2="261" stroke="#E2E8F0" stroke-width="3"/>
+      <line x1="104" y1="235" x2="156" y2="235" stroke="#E2E8F0" stroke-width="3"/>
+      
+      <!-- Front Wheel -->
+      <circle cx="370" cy="235" r="40" fill="#111827" stroke="#374151" stroke-width="7"/>
+      <circle cx="370" cy="235" r="26" fill="url(#wheelGrad)"/>
+      <circle cx="370" cy="235" r="12" fill="#E88124"/>
+      <line x1="370" y1="209" x2="370" y2="261" stroke="#E2E8F0" stroke-width="3"/>
+      <line x1="344" y1="235" x2="396" y2="235" stroke="#E2E8F0" stroke-width="3"/>
+    </g>
+
+    <!-- Main Car Body (Swift Aerodynamic Hatchback) -->
+    <path d="M 65 220 
+             L 70 195 
+             Q 75 180 90 175 
+             L 135 170 
+             L 175 110 
+             Q 185 95 210 95 
+             L 320 95 
+             Q 340 98 355 120 
+             L 405 170 
+             L 435 180 
+             Q 450 188 448 215 
+             L 440 230 
+             L 420 230 
+             A 50 50 0 0 0 320 230 
+             L 180 230 
+             A 50 50 0 0 0 80 230 
+             Z" fill="url(#swiftRedGrad)" stroke="#E88124" stroke-width="2"/>
+
+    <!-- Roof & Pillars (Black Contrast Floating Roof) -->
+    <path d="M 175 110 
+             L 210 95 
+             L 320 95 
+             L 355 120 
+             L 345 124 
+             L 315 102 
+             L 215 102 
+             L 180 115 Z" fill="#0D0D0F"/>
+
+    <!-- Windows (Dark Glazing with Cyan Highlights) -->
+    <!-- Rear Quarter Glass -->
+    <path d="M 182 120 L 225 120 L 225 165 L 155 165 Z" fill="url(#glassGrad)" stroke="#1E293B" stroke-width="2"/>
+    <!-- Driver Window -->
+    <path d="M 233 120 L 310 120 L 310 165 L 233 165 Z" fill="url(#glassGrad)" stroke="#1E293B" stroke-width="2"/>
+    <!-- Front Windshield Side View -->
+    <path d="M 318 120 L 350 125 L 392 165 L 318 165 Z" fill="url(#glassGrad)" stroke="#1E293B" stroke-width="2"/>
+
+    <!-- Headlight (Aggressive Swept-back LED projector) -->
+    <path d="M 412 172 Q 438 180 445 195 L 420 200 Z" fill="#00E5FF" opacity="0.95"/>
+    <ellipse cx="430" cy="188" rx="8" ry="5" fill="#FFFFFF"/>
+
+    <!-- Taillight (C-shaped Signature LED) -->
+    <path d="M 72 178 L 92 180 L 85 205 L 68 200 Z" fill="#EF4444"/>
+
+    <!-- Door Character Lines -->
+    <line x1="160" y1="180" x2="395" y2="185" stroke="#FFA756" stroke-width="2" stroke-linecap="round"/>
+    <line x1="230" y1="120" x2="230" y2="225" stroke="#16161A" stroke-width="2"/>
+    <line x1="315" y1="120" x2="315" y2="225" stroke="#16161A" stroke-width="2"/>
+
+    <!-- Front Grill Accent & Fog Light -->
+    <rect x="425" y="212" width="18" height="6" rx="2" fill="#00E5FF"/>
+    
+    <!-- Model Badge -->
+    <text x="215" y="210" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="13" fill="#FFFFFF" letter-spacing="1">MARUTI SWIFT</text>
+  </g>
+</svg>

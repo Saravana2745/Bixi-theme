@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ertigaGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#94A3B8"/>
+      <stop offset="60%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <filter id="ertigaGlow"><feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#94A3B8" flood-opacity="0.2"/></filter>
+  </defs>
+  <g filter="url(#ertigaGlow)">
+    <ellipse cx="250" cy="265" rx="210" ry="16" fill="#000000" opacity="0.6"/>
+    <!-- Wheels -->
+    <circle cx="120" cy="235" r="38" fill="#111827" stroke="#475569" stroke-width="7"/>
+    <circle cx="120" cy="235" r="22" fill="#64748B"/>
+    <circle cx="380" cy="235" r="38" fill="#111827" stroke="#475569" stroke-width="7"/>
+    <circle cx="380" cy="235" r="22" fill="#64748B"/>
+    
+    <!-- 7-Seater Long MPV Body -->
+    <path d="M 55 220 L 58 165 L 120 150 L 170 100 Q 185 92 210 92 L 340 92 Q 360 95 385 125 L 430 170 L 450 180 Q 460 190 455 220 L 440 230 A 48 48 0 0 0 332 230 L 168 230 A 48 48 0 0 0 72 230 Z" fill="url(#ertigaGrad)" stroke="#CBD5E1" stroke-width="2"/>
+    
+    <!-- 3-Row Extended Glass Windows -->
+    <path d="M 125 145 L 175 105 L 225 105 L 225 150 L 125 150 Z" fill="#38BDF8" fill-opacity="0.75"/>
+    <path d="M 233 105 L 305 105 L 305 150 L 233 150 Z" fill="#38BDF8" fill-opacity="0.75"/>
+    <path d="M 312 105 L 360 115 L 415 150 L 312 150 Z" fill="#38BDF8" fill-opacity="0.75"/>
+    
+    <path d="M 432 172 Q 452 178 456 195 L 435 200 Z" fill="#00E5FF"/>
+    <text x="190" y="205" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="13" fill="#FFFFFF">ERTIGA 7-SEATER HYBRID</text>
+  </g>
+</svg>

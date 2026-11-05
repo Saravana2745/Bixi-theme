@@ -94,7 +94,7 @@
         <ul class="nav-links">
           <li><a href="index.html" class="nav-link active">Home</a></li>
           <li><a href="about.html" class="nav-link">About Us</a></li>
-          <li><a href="bikes.html" class="nav-link">Bike Rentals</a></li>
+          <li><a href="bikes.html" class="nav-link">Rent Vehicles</a></li>
           <li><a href="blog.html" class="nav-link">Blog & Guides</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
@@ -104,7 +104,7 @@
             <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
             +91 98765 43210
           </a>
-          <a href="bikes.html" class="btn-primary">Rent a Bike</a>
+          <a href="bikes.html" class="btn-primary">Rent Vehicle</a>
           <button class="nav-toggle" aria-label="Toggle Navigation Menu">
             <span></span>
             <span></span>
@@ -123,7 +123,7 @@
       <ul class="mobile-nav-links">
         <li><a href="index.html" class="mobile-nav-link active">Home <span>→</span></a></li>
         <li><a href="about.html" class="mobile-nav-link">About Us <span>→</span></a></li>
-        <li><a href="bikes.html" class="mobile-nav-link">Bike Rentals <span>→</span></a></li>
+        <li><a href="bikes.html" class="mobile-nav-link">Rent Vehicles <span>→</span></a></li>
         <li><a href="blog.html" class="mobile-nav-link">Blog & Guides <span>→</span></a></li>
         <li><a href="contact.html" class="mobile-nav-link">Contact Us <span>→</span></a></li>
       </ul>
@@ -153,7 +153,7 @@
             </h1>
 
             <p class="hero-subtitle">
-              Ride freedom across the Temple City. Explore top-condition <strong>rental bikes in madurai</strong> with zero security deposit, doorstep pickup near Madurai Junction, and 24/7 roadside assistance. Your trusted search for the <strong>best bike rental near me</strong> ends here.
+              Ride and drive freedom across the Temple City. Explore top-condition <strong>rental bikes in madurai</strong> and premium <strong>self drive car rental in madurai</strong> (including Maruti Swift from ₹2,200/day) with zero security deposit, doorstep pickup near Madurai Junction, and 24/7 roadside assistance. Madurai's #1 premier <strong>car rental service in madurai</strong> and your trusted search for the <strong>best bike rental near me</strong> ends here. We provide both bike and <strong>car rental in madurai</strong>.
             </p>
 
             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -219,40 +219,85 @@
       </div>
     </section>
 
-    <!-- LIVE BOOKING & RATE ESTIMATOR ENGINE -->
+        <!-- LIVE BOOKING & RATE ESTIMATOR ENGINE (CARS & BIKES) -->
     <section class="section" id="booking-engine" style="padding-top: 1rem;">
       <div class="container">
         <div class="booking-widget-card">
+          <!-- Vehicle Mode Tabs: Rental Bikes vs Self-Drive Cars -->
+          <div class="booking-tabs-wrapper">
+            <div class="booking-vehicle-tabs" role="tablist" aria-label="Select Fleet Type">
+              <button type="button" class="booking-tab-btn active" id="tabSelectBikes" role="tab" aria-selected="true">
+                🏍️ Rental Bikes (from ₹399)
+              </button>
+              <button type="button" class="booking-tab-btn" id="tabSelectCars" role="tab" aria-selected="false">
+                🚗 Self-Drive Cars (from ₹2,200)
+              </button>
+            </div>
+            <div class="booking-fare-pill">
+              Estimated Total: <strong id="liveBookingEstimate">₹899 (1 Day)</strong>
+            </div>
+          </div>
+
           <form class="booking-form-grid" id="homeQuickBookForm" action="bikes.html" method="GET">
+            <input type="hidden" name="type" id="hiddenVehicleType" value="bike">
+            <input type="hidden" name="model" id="hiddenVehicleModel" value="Royal Enfield Hunter 350">
+            <input type="hidden" name="hub" id="hiddenPickupHub" value="Madurai Railway Junction (West Veli St)">
+            <input type="hidden" name="days" id="hiddenDuration" value="1">
+
+            <!-- 1. Madurai Pickup Hub Dropdown -->
             <div class="form-group">
-              <label class="form-label" for="pickupHub">
+              <label class="form-label" id="labelPickupHub">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
                 Madurai Pickup Hub
               </label>
-              <select class="form-control" id="pickupHub" name="hub" required>
-                <option value="railway">Madurai Railway Junction (West Veli St)</option>
-                <option value="mattuthavani">Mattuthavani Integrated Bus Terminus</option>
-                <option value="meenakshi">Meenakshi Amman Temple / Periyar</option>
-                <option value="airport">Madurai International Airport Pickup</option>
-                <option value="doorstep">Doorstep Hotel / Residence Delivery</option>
-              </select>
+              <div class="custom-select-box" id="hubSelectBox">
+                <div class="custom-select-trigger" id="hubSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                  <span id="selectedHubText">Madurai Railway Junction (West Veli St)</span>
+                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="custom-options-panel" id="hubOptionsPanel" role="listbox">
+                  <div class="custom-option-item selected" data-value="Madurai Railway Junction (West Veli St)">
+                    <div class="custom-option-header"><span>Madurai Railway Junction</span></div>
+                    <div class="custom-option-sub">West Veli St • 2 mins walking distance from Platform 1</div>
+                  </div>
+                  <div class="custom-option-item" data-value="Mattuthavani Integrated Bus Terminus (MIBT)">
+                    <div class="custom-option-header"><span>Mattuthavani Bus Terminus (MIBT)</span></div>
+                    <div class="custom-option-sub">Omni Bus Stand &amp; MIBT Entrance Gate</div>
+                  </div>
+                  <div class="custom-option-item" data-value="Meenakshi Amman Temple / Periyar Hub">
+                    <div class="custom-option-header"><span>Meenakshi Amman Temple / Periyar</span></div>
+                    <div class="custom-option-sub">Heritage Walk &amp; Central Madurai Pickups</div>
+                  </div>
+                  <div class="custom-option-item" data-value="Madurai International Airport (IXM)">
+                    <div class="custom-option-header"><span>Madurai International Airport (IXM)</span></div>
+                    <div class="custom-option-sub">Terminal Arrival Gate Meet &amp; Greet Delivery</div>
+                  </div>
+                  <div class="custom-option-item" data-value="Doorstep Hotel / Residence Delivery">
+                    <div class="custom-option-header"><span>Doorstep Hotel / Home Delivery</span></div>
+                    <div class="custom-option-sub">Direct delivery across all Madurai city limits</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
+            <!-- 2. Vehicle Model Custom Dropdown -->
             <div class="form-group">
-              <label class="form-label" for="bikeType">
-                <svg viewBox="0 0 24 24"><path d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zm14-8.5c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/></svg>
-                Bike Category
+              <label class="form-label" id="labelVehicleModel">
+                <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                <span id="vehicleLabelText">Select Bike Model</span>
               </label>
-              <select class="form-control" id="bikeType" name="category">
-                <option value="all">All Available Models</option>
-                <option value="cruiser">Royal Enfield (Hunter 350 / Classic)</option>
-                <option value="adventure">Adventure (Himalayan 450)</option>
-                <option value="sport">Street &amp; Sports (Yamaha MT-15 / Duke)</option>
-                <option value="scooter">Automatic Scooter (Activa 6G / Fascino)</option>
-                <option value="ev">Electric Scooter (Ather 450X)</option>
-              </select>
+              <div class="custom-select-box" id="modelSelectBox">
+                <div class="custom-select-trigger" id="modelSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                  <span id="selectedModelText">Royal Enfield Hunter 350</span>
+                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
+                  <!-- Dynamically populated by main.js based on Bike or Car tab -->
+                </div>
+              </div>
             </div>
 
+            <!-- 3. Pickup Date & Time -->
             <div class="form-group">
               <label class="form-label" for="startDate">
                 <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
@@ -261,25 +306,290 @@
               <input type="datetime-local" class="form-control" id="startDate" name="start" required>
             </div>
 
+            <!-- 4. Rental Duration Custom Dropdown -->
             <div class="form-group">
-              <label class="form-label" for="duration">
+              <label class="form-label" id="labelDuration">
                 <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                 Rental Duration
               </label>
-              <select class="form-control" id="duration" name="days">
-                <option value="1">1 Day (24 Hours)</option>
-                <option value="2">2 Days (Weekend Trip)</option>
-                <option value="3">3 Days (Kodaikanal Special)</option>
-                <option value="5">5 Days (South Tour)</option>
-                <option value="7">7 Days (Weekly Discount)</option>
-                <option value="30">Monthly Subscription</option>
-              </select>
+              <div class="custom-select-box" id="durationSelectBox">
+                <div class="custom-select-trigger" id="durationSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                  <span id="selectedDurationText">1 Day (24 Hours)</span>
+                  <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="custom-options-panel" id="durationOptionsPanel" role="listbox">
+                  <div class="custom-option-item selected" data-value="1">
+                    <div class="custom-option-header"><span>1 Day (24 Hours)</span></div>
+                    <div class="custom-option-sub">Standard daily rental rate</div>
+                  </div>
+                  <div class="custom-option-item" data-value="2">
+                    <div class="custom-option-header"><span>2 Days (Weekend Trip)</span></div>
+                    <div class="custom-option-sub">Ideal for weekend getaways</div>
+                  </div>
+                  <div class="custom-option-item" data-value="3">
+                    <div class="custom-option-header"><span>3 Days (Kodaikanal Special)</span></div>
+                    <div class="custom-option-sub">Madurai &amp; Hill station circuit</div>
+                  </div>
+                  <div class="custom-option-item" data-value="5">
+                    <div class="custom-option-header"><span>5 Days (South Tour)</span></div>
+                    <div class="custom-option-sub">Rameswaram + Dhanushkodi tour</div>
+                  </div>
+                  <div class="custom-option-item" data-value="7">
+                    <div class="custom-option-header"><span>7 Days (Weekly Discount)</span></div>
+                    <div class="custom-option-sub">10% Flat weekly discount applied</div>
+                  </div>
+                  <div class="custom-option-item" data-value="30">
+                    <div class="custom-option-header"><span>30 Days (Monthly Subscription)</span></div>
+                    <div class="custom-option-sub">Best value for long-term work / internships</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <button type="submit" class="btn-primary" style="height: 48px;">
-              Search Rental Bikes <span>→</span>
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary" id="btnSubmitBooking" style="height: 48px;">
+              <span id="submitBtnText">Search Vehicles</span> <span>→</span>
             </button>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAMOUS PLACES IN MADURAI & ICONIC FOOD TRAILS (BELOW BOOKING ENGINE) -->
+    <section class="section" id="famous-places-madurai">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge">Madurai Sightseeing &amp; Food Circuit</span>
+          <h2>Famous Places in Madurai &amp; Iconic Food Stops</h2>
+          <p>
+            Whether you choose a nimble two-wheeler or our popular <strong>car rental in madurai</strong> like the <strong>Maruti Swift (₹2,200/day)</strong>, these are the unmissable historic checkpoints and legendary food destinations you must definitely visit with BIXI.
+          </p>
+        </div>
+
+        <div class="places-grid">
+          <!-- 1. Meenakshi Amman Temple -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">World Heritage Temple</span>
+                <span class="place-distance">1.2 km • 5 mins</span>
+              </div>
+              <h3 class="place-title">Madurai Meenakshi Amman Kovil</h3>
+              <p class="place-desc">
+                The eternal heart of Madurai. Featuring 14 towering gopurams adorned with thousands of colorful mythological sculptures, the Thousand Pillar Hall, and the Golden Lotus Tank.
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Activa 6G / Swift</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Vehicle →</a>
+            </div>
+          </article>
+
+          <!-- 2. Alagar Kovil -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">Scenic Foothills &amp; Springs</span>
+                <span class="place-distance">21 km • 35 mins</span>
+              </div>
+              <h3 class="place-title">Alagar Kovil (Kallazhagar Temple)</h3>
+              <p class="place-desc">
+                Nestled in the lush Alagar Hills with scenic canopy tree roads. Drive further up to Pazhamudircholai Murugan temple and the sacred mountain spring of Silambar River.
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Swift (₹2,200) / Himalayan</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Swift →</a>
+            </div>
+          </article>
+
+          <!-- 3. Alanganallur & Lucky Mess -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">Jallikattu &amp; Legendary Food</span>
+                <span class="place-distance">16 km • 28 mins</span>
+              </div>
+              <h3 class="place-title">Alanganallur &amp; Lucky Mess</h3>
+              <p class="place-desc">
+                The global epicenter of brave Jallikattu warriors! Stop by the iconic <strong>Lucky Mess in Alanganallur</strong> for an authentic Madurai country-style banana-leaf mutton feast and nattu-kozhi chukka.
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Self-Drive Swift / MT-15</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Vehicle →</a>
+            </div>
+          </article>
+
+          <!-- 4. Kilakarai Coastal Highway -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">Scenic Coastal Gateway</span>
+                <span class="place-distance">92 km • 1h 45m</span>
+              </div>
+              <h3 class="place-title">Kilakarai Coastal Highway &amp; Coast</h3>
+              <p class="place-desc">
+                Take the breathtaking 4-lane expressway from Madurai to Kilakarai, exploring historic sea trade architecture, palm-fringed coastlines, and continuing onwards to Rameswaram Pamban Bridge.
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Swift / Thar 4x4 / Ertiga</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Car →</a>
+            </div>
+          </article>
+
+          <!-- 5. Madurai Bun Parotta -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">World Famous Street Food</span>
+                <span class="place-distance">2.5 km • 8 mins</span>
+              </div>
+              <h3 class="place-title">Madurai Bun Parotta (Simmakkal)</h3>
+              <p class="place-desc">
+                Crispy, golden-fried exterior with steaming, pillowy-soft layered interior drenched in spicy mutton salna. Madurai's most famous culinary invention, served best piping hot at midnight!
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Hunter 350 / Activa</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Bike →</a>
+            </div>
+          </article>
+
+          <!-- 6. Power Kadai (Kari Dosa) -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">Iconic Non-Veg Legend</span>
+                <span class="place-distance">3.8 km • 12 mins</span>
+              </div>
+              <h3 class="place-title">Power Kadai (Goripalayam Kari Dosa)</h3>
+              <p class="place-desc">
+                Madurai's legendary non-veg supper landmark. Thick, crispy dosa layered with spiced omelette and generous tender minced mutton chukka. A flavor sensation unmatched in South India.
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Maruti Swift / Bike</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Vehicle →</a>
+            </div>
+          </article>
+
+          <!-- 7. Gandhi Memorial Museum -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">Historic Freedom Heritage</span>
+                <span class="place-distance">4.5 km • 14 mins</span>
+              </div>
+              <h3 class="place-title">Gandhi Memorial Museum (Tamukkam)</h3>
+              <p class="place-desc">
+                Housed inside the majestic 17th-century Nayak palace where Mahatma Gandhi decided to adopt the dhoti in 1921. Features rare freedom movement relics, peaceful manicured lawns, and gardens.
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Maruti Swift / Scooter</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Vehicle →</a>
+            </div>
+          </article>
+
+          <!-- 8. Thirumalai Nayakkar Mahal & Jigarthanda -->
+          <article class="place-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge">Architecture &amp; Dessert</span>
+                <span class="place-distance">2.1 km • 7 mins</span>
+              </div>
+              <h3 class="place-title">Thirumalai Nayakkar Mahal &amp; Jigarthanda</h3>
+              <p class="place-desc">
+                Marvel at massive 82-foot stucco pillars and royal courtyards, followed by a chilled glass of genuine Famous Jigarthanda at Vilakkuthoon made with badam pisin, nannari, and condensed basundi.
+              </p>
+            </div>
+            <div class="place-meta-bar">
+              <span class="place-vehicle-pill">Best Ride: <strong>Activa 6G / Hunter 350</strong></span>
+              <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Vehicle →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D INTERACTIVE MADURAI ROUTE & DESTINATION SIMULATOR (WITH 3D CAR IN LOOP) -->
+    <section class="section madurai-map-section" id="madurai-3d-map-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="badge">Next-Gen Real-Time 3D Simulation</span>
+          <h2>3D Madurai Route &amp; Destination Tour</h2>
+          <p>
+            Experience our procedural 3D map of Madurai with a live <strong>3D Swift cruising in an endless loop</strong> across famous pilgrimage spots, coastal highways, and food landmarks. Built with Three.js hardware acceleration and zero impact on site loading speed.
+          </p>
+        </div>
+
+        <div class="madurai-map-card-wrapper">
+          <!-- 3D Viewport with Live Telemetry & Quick Pins -->
+          <div class="map-viewport-container" id="madurai-3d-map-wrapper">
+            <canvas id="madurai-3d-map-canvas"></canvas>
+
+            <!-- Real-Time Telemetry HUD -->
+            <div class="map-live-telemetry">
+              <div class="telemetry-pulse-dot"></div>
+              <div class="map-telemetry-text">
+                CAR TELEMETRY: <strong id="mapLiveCheckpointText">Meenakshi Amman Kovil</strong> • LOOP ACTIVE
+              </div>
+            </div>
+
+            <!-- Bottom Interactive Checkpoint Switchers -->
+            <div class="map-controls-overlay">
+              <div class="map-pills-row">
+                <button type="button" class="map-pill-btn active" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">Meenakshi Kovil</button>
+                <button type="button" class="map-pill-btn" data-id="bun-parotta" onclick="focusMaduraiCheckpoint('bun-parotta')">Bun Parotta</button>
+                <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">Power Kadai</button>
+                <button type="button" class="map-pill-btn" data-id="gandhi-museum" onclick="focusMaduraiCheckpoint('gandhi-museum')">Gandhi Museum</button>
+                <button type="button" class="map-pill-btn" data-id="alagar-koil" onclick="focusMaduraiCheckpoint('alagar-koil')">Alagar Kovil</button>
+                <button type="button" class="map-pill-btn" data-id="alanganallur" onclick="focusMaduraiCheckpoint('alanganallur')">Alanganallur Lucky Mess</button>
+                <button type="button" class="map-pill-btn" data-id="kilakarai" onclick="focusMaduraiCheckpoint('kilakarai')">Kilakarai Coast</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Destination Telemetry Details Card -->
+          <aside class="map-side-card">
+            <div>
+              <div class="place-card-top">
+                <span class="place-category-badge" id="mapActiveCategory">Heritage Wonder</span>
+                <span class="place-distance" id="mapActiveDistance">1.2 km from Junction</span>
+              </div>
+              <h3 class="place-title" id="mapActiveTitle" style="font-size: 1.5rem; margin-top: 0.5rem;">Meenakshi Amman Kovil</h3>
+              <p class="place-desc" id="mapActiveDesc" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                World-renowned architectural wonder with 14 gopurams. Park at Periyar Multi-level and explore.
+              </p>
+              
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.88rem;">
+                  <span style="color: var(--color-muted);">Estimated Driving Time:</span>
+                  <strong id="mapActiveTime" style="color: var(--color-white);">5 mins</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
+                  <span style="color: var(--color-muted);">Recommended Vehicle:</span>
+                  <strong id="mapActiveVehicle" style="color: var(--color-orange);">Scooter / Maruti Swift</strong>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="bikes.html" class="btn-primary" style="flex: 1; text-align: center; justify-content: center;">
+                  Book Swift (₹2,200) →
+                </a>
+                <a href="#booking-engine" class="btn-secondary" style="flex: 1; text-align: center; justify-content: center;">
+                  Quick Book ⚡
+                </a>
+              </div>
+              <div style="margin-top: 0.75rem; font-size: 0.76rem; color: var(--color-muted); text-align: center;">
+                Procedural 3D WebGL • 60 FPS • 0% CPU off-screen
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -922,6 +1232,7 @@
   <!-- Three.js Library & Custom Application Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="assets/js/three-scene.js"></script>
+  <script src="assets/js/madurai-3d-map.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

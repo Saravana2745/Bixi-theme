@@ -1929,3 +1929,481 @@ ul, ol {
     padding-bottom: 70px;
   }
 }
+
+/* ==========================================================================
+   IMPROVISED LUXURY VEHICLE BOOKING ENGINE (CARS & BIKES)
+   ========================================================================== */
+.booking-tabs-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.booking-vehicle-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(13, 13, 15, 0.85);
+  padding: 0.35rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+.booking-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.booking-tab-btn.active {
+  background: var(--color-orange);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(232, 129, 36, 0.45);
+}
+
+.booking-tab-btn:hover:not(.active) {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.booking-fare-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(232, 129, 36, 0.12);
+  border: 1px solid rgba(232, 129, 36, 0.3);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.booking-fare-pill strong {
+  color: var(--color-orange);
+}
+
+/* Custom Interactive Select Controls (No Default Blue Dropdown!) */
+.custom-select-box {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  background: rgba(13, 13, 15, 0.9);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.custom-select-trigger:hover,
+.custom-select-box.open .custom-select-trigger {
+  border-color: var(--color-orange);
+  box-shadow: 0 0 14px rgba(232, 129, 36, 0.3);
+  background: rgba(22, 22, 26, 0.98);
+}
+
+.custom-select-trigger .arrow-icon {
+  width: 12px;
+  height: 12px;
+  fill: var(--color-orange);
+  transition: transform var(--transition-fast);
+}
+
+.custom-select-box.open .custom-select-trigger .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.custom-options-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: rgba(18, 18, 22, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(232, 129, 36, 0.2);
+  z-index: 100;
+  max-height: 280px;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: all var(--transition-fast);
+}
+
+.custom-select-box.open .custom-options-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.custom-option-item {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background var(--transition-fast);
+}
+
+.custom-option-item:last-child {
+  border-bottom: none;
+}
+
+.custom-option-item:hover,
+.custom-option-item.selected {
+  background: rgba(232, 129, 36, 0.15);
+}
+
+.custom-option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-white);
+}
+
+.custom-option-price {
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+  color: var(--color-orange);
+}
+
+.custom-option-sub {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+/* ==========================================================================
+   FAMOUS PLACES & FOOD TRAILS IN MADURAI
+   ========================================================================== */
+.places-filter-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.place-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.place-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-orange), transparent);
+}
+
+.place-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-orange);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6), 0 0 24px rgba(232, 129, 36, 0.25);
+}
+
+.place-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.place-category-badge {
+  font-family: var(--font-tech);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(232, 129, 36, 0.15);
+  color: var(--color-orange);
+  border: 1px solid rgba(232, 129, 36, 0.3);
+}
+
+.place-distance {
+  font-family: var(--font-tech);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-silver);
+}
+
+.place-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.6rem;
+  color: var(--color-white);
+}
+
+.place-desc {
+  font-size: 0.92rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.place-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.84rem;
+}
+
+.place-vehicle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-silver);
+  font-weight: 600;
+}
+
+.place-vehicle-pill strong {
+  color: var(--color-orange);
+}
+
+/* ==========================================================================
+   3D MADURAI ROUTE & DESTINATION SIMULATOR
+   ========================================================================== */
+.madurai-map-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, #16161E 0%, var(--color-bg) 70%, var(--color-bg-dark) 100%);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.madurai-map-card-wrapper {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.map-viewport-container {
+  position: relative;
+  height: 540px;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 50%, #16161A 0%, #070708 100%);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg), inset 0 0 45px rgba(232, 129, 36, 0.08);
+  overflow: hidden;
+}
+
+#madurai-3d-map-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+#madurai-3d-map-canvas:active {
+  cursor: grabbing;
+}
+
+.map-live-telemetry {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(13, 13, 15, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-white);
+  z-index: 5;
+}
+
+.telemetry-pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  box-shadow: 0 0 10px var(--color-orange);
+  animation: pulseBeacon 1.5s infinite;
+}
+
+@keyframes pulseBeacon {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.map-telemetry-text {
+  font-family: var(--font-tech);
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+}
+
+.map-telemetry-text strong {
+  color: var(--color-orange);
+}
+
+.map-controls-overlay {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.map-pills-row {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  pointer-events: auto;
+  max-width: 85%;
+  padding-bottom: 4px;
+}
+
+.map-pill-btn {
+  background: rgba(18, 18, 22, 0.9);
+  border: 1px solid var(--color-border);
+  color: var(--color-silver);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-family: var(--font-tech);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.map-pill-btn:hover,
+.map-pill-btn.active {
+  background: var(--color-orange);
+  color: #FFFFFF;
+  border-color: var(--color-orange);
+  box-shadow: 0 0 14px rgba(232, 129, 36, 0.45);
+}
+
+.map-side-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.map-active-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: 0.8rem;
+}
+
+.map-active-title {
+  font-size: 1.8rem;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.map-checkpoint-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: rgba(13, 13, 15, 0.6);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.map-spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.map-spec-label {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-tech);
+}
+
+.map-spec-val {
+  font-weight: 700;
+  color: var(--color-silver);
+  font-size: 0.95rem;
+}
+
+.map-spec-val.highlight {
+  color: var(--color-orange);
+}
+
+@media (max-width: 991px) {
+  .madurai-map-card-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .map-viewport-container {
+    height: 420px;
+  }
+}
