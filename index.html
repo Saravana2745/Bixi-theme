@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=3.2">
+  <link rel="stylesheet" href="assets/css/style.css?v=3.5">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -420,14 +420,22 @@
       display: flex !important;
       gap: 0.5rem !important;
       overflow-x: auto !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
       pointer-events: auto !important;
-      padding: 4px !important;
-      background: rgba(13, 15, 20, 0.8) !important;
-      backdrop-filter: blur(10px) !important;
-      -webkit-backdrop-filter: blur(10px) !important;
+      padding: 6px 12px !important;
+      background: rgba(13, 15, 20, 0.94) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
       border-radius: 50px !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(232, 129, 36, 0.35) !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.75) !important;
       max-width: 100% !important;
+    }
+    .map-pills-row::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
     }
     .map-pill-btn {
       background: rgba(22, 24, 30, 0.85) !important;
@@ -529,7 +537,7 @@
 
             <!-- Primary H1 Keyword Optimized Tag -->
             <h1 class="hero-title">
-              Best <span class="text-lime">Bike Rental in Madurai</span> – Affordable &amp; Premium <span class="text-orange">Madurai Bike Rental</span>
+              Best <span class="text-orange">Bike Rental in Madurai</span> – Affordable &amp; Premium <span class="text-orange">Madurai Bike Rental</span>
             </h1>
 
             <p class="hero-subtitle">
@@ -903,7 +911,7 @@
           <span class="badge">Next-Gen Real-Time 3D Nature &amp; Landmark Simulation</span>
           <h2>3D Madurai Route &amp; Destination Tour</h2>
           <p>
-            Cruise through Madurai’s natural landscapes with our <strong>3D Swift touring in an endless loop</strong>. Explore real 3D models of <strong>Meenakshi Temple, mountain waterfalls, Gandhi Museum, legendary food mess, and coastal highways</strong>. Powered by Three.js with zero impact on site loading speed.
+            Cruise through Madurai’s historic and natural landscapes with our <strong>3D Swift touring in an endless loop</strong>. Explore real 3D models of <strong>Meenakshi Temple, the historic Albert Victor Bridge across the Vaigai River, Alagar mountain waterfalls, Gandhi Museum, famous food mess, and Kilakarai Expressway Arch</strong>. Built with Three.js with zero impact on site loading speed.
           </p>
         </div>
 
@@ -924,11 +932,11 @@
             <div class="map-controls-overlay">
               <div class="map-pills-row">
                 <button type="button" class="map-pill-btn active" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">🛕 Meenakshi Kovil</button>
-                <button type="button" class="map-pill-btn" data-id="bun-parotta" onclick="focusMaduraiCheckpoint('bun-parotta')">🍛 Bun Parotta</button>
+                <button type="button" class="map-pill-btn" data-id="vaigai-bridge" onclick="focusMaduraiCheckpoint('vaigai-bridge')">🌉 Vaigai &amp; AV Bridge</button>
                 <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">🥩 Power Kadai &amp; Mess</button>
                 <button type="button" class="map-pill-btn" data-id="gandhi-museum" onclick="focusMaduraiCheckpoint('gandhi-museum')">🏛️ Gandhi Museum</button>
                 <button type="button" class="map-pill-btn" data-id="alagar-waterfalls" onclick="focusMaduraiCheckpoint('alagar-waterfalls')">🌊 Alagar Waterfalls</button>
-                <button type="button" class="map-pill-btn" data-id="kilakarai" onclick="focusMaduraiCheckpoint('kilakarai')">🏖️ Kilakarai Coast</button>
+                <button type="button" class="map-pill-btn" data-id="kilakarai-highway" onclick="focusMaduraiCheckpoint('kilakarai-highway')">🛣️ Kilakarai Highway</button>
               </div>
             </div>
           </div>

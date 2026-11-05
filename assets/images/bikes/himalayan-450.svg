@@ -3,21 +3,21 @@
     <linearGradient id="tankHim" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#E2E8F0"/>
       <stop offset="70%" stop-color="#64748B"/>
-      <stop offset="100%" stop-color="#102A2A"/>
+      <stop offset="100%" stop-color="#16161A"/>
     </linearGradient>
     <filter id="himGlow"><feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#E2E8F0" flood-opacity="0.15"/></filter>
   </defs>
   <g filter="url(#himGlow)">
     <ellipse cx="250" cy="285" rx="195" ry="14" fill="#000000" opacity="0.6"/>
     <circle cx="110" cy="215" r="56" fill="#0B1313" stroke="#334155" stroke-width="7"/>
-    <circle cx="110" cy="215" r="42" fill="none" stroke="#C8F169" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <circle cx="110" cy="215" r="42" fill="none" stroke="#E88124" stroke-width="1.5" stroke-dasharray="3 5"/>
     <circle cx="390" cy="205" r="66" fill="#0B1313" stroke="#334155" stroke-width="7"/>
-    <circle cx="390" cy="205" r="52" fill="none" stroke="#C8F169" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <circle cx="390" cy="205" r="52" fill="none" stroke="#E88124" stroke-width="1.5" stroke-dasharray="3 5"/>
     <line x1="390" y1="205" x2="340" y2="85" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
-    <path d="M 370 155 Q 405 150, 420 165" fill="none" stroke="#102A2A" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 370 155 Q 405 150, 420 165" fill="none" stroke="#16161A" stroke-width="8" stroke-linecap="round"/>
     <path d="M 230 225 Q 260 240, 275 220 L 150 180" fill="none" stroke="#CBD5E1" stroke-width="11" stroke-linecap="round"/>
-    <path d="M 240 120 C 265 95, 320 100, 335 125 L 320 160 L 245 155 Z" fill="url(#tankHim)" stroke="#C8F169" stroke-width="2"/>
-    <path d="M 270 105 L 330 115 L 340 145" fill="none" stroke="#C8F169" stroke-width="3"/>
+    <path d="M 240 120 C 265 95, 320 100, 335 125 L 320 160 L 245 155 Z" fill="url(#tankHim)" stroke="#E88124" stroke-width="2"/>
+    <path d="M 270 105 L 330 115 L 340 145" fill="none" stroke="#E88124" stroke-width="3"/>
     <text x="255" y="142" font-family="Space Grotesk, sans-serif" font-weight="900" font-size="10" fill="#FFFFFF" letter-spacing="1">HIMALAYAN</text>
     <path d="M 335 85 L 350 55 L 360 85 Z" fill="#93C5FD" opacity="0.6"/>
     <line x1="320" y1="80" x2="345" y2="82" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
