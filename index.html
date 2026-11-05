@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=8.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=9.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -51,20 +51,20 @@
     "image": "https://bixiride.com/assets/images/logo.svg",
     "@id": "https://bixiride.com/#organization",
     "url": "https://bixiride.com/",
-    "telephone": "+919876543210",
+    "telephone": "+919037000266",
     "priceRange": "₹399 - ₹2500 per day",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "No. 42, West Veli Street, Opposite Railway Junction",
+      "streetAddress": "No. 16, Sankar Nagar 4th Street, Beside Karpaga Nagar, K. Pudur, Walkable distance from Mattuthavani Bus Stand",
       "addressLocality": "Madurai",
       "addressRegion": "Tamil Nadu",
-      "postalCode": "625001",
+      "postalCode": "625007",
       "addressCountry": "IN"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 9.9252,
-      "longitude": 78.1198
+      "latitude": 9.9482,
+      "longitude": 78.1565
     },
     "openingHoursSpecification": [
       {
@@ -1016,6 +1016,23 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
 </head>
 <body>
+  <!-- Subtle Background Architectural & Topographic Art -->
+  <div class="site-bg-art" aria-hidden="true">
+    <div class="site-bg-ambient-1"></div>
+    <div class="site-bg-ambient-2"></div>
+    <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-100 200 C300 150 600 350 1000 180 C1200 100 1400 220 1600 150" stroke="#E88124" stroke-width="1.5" stroke-dasharray="8 12"/>
+      <path d="M-100 350 C200 400 500 250 900 420 C1200 500 1450 320 1600 380" stroke="#E88124" stroke-width="1" stroke-opacity="0.6"/>
+      <path d="M-100 520 C350 480 700 600 1100 480 C1350 400 1500 550 1600 500" stroke="#E88124" stroke-width="1.2" stroke-dasharray="15 15" stroke-opacity="0.4"/>
+      <path d="M-100 700 C400 750 800 620 1200 750 C1400 800 1550 700 1600 720" stroke="#E88124" stroke-width="1" stroke-opacity="0.5"/>
+      <circle cx="1250" cy="250" r="120" stroke="#E88124" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="4 8"/>
+      <circle cx="1250" cy="250" r="4" fill="#E88124" fill-opacity="0.4"/>
+      <circle cx="200" cy="650" r="90" stroke="#E88124" stroke-width="0.8" stroke-opacity="0.25"/>
+      <line x1="200" y1="530" x2="200" y2="770" stroke="#E88124" stroke-width="0.5" stroke-opacity="0.2"/>
+      <line x1="80" y1="650" x2="320" y2="650" stroke="#E88124" stroke-width="0.5" stroke-opacity="0.2"/>
+    </svg>
+  </div>
+
 
   <!-- Site Navigation Header -->
   <header class="site-header">
@@ -1034,9 +1051,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         </ul>
 
         <div class="nav-actions">
-          <a href="tel:+919876543210" class="btn-hotline" aria-label="Call BIXI Hotline">
+          <a href="tel:+919037000266" class="btn-hotline" aria-label="Call BIXI Hotline">
             <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
-            +91 98765 43210
+            +91 90370 00266
           </a>
           <a href="bikes.html" class="btn-primary">Rent Vehicle</a>
           <button class="nav-toggle" aria-label="Toggle Navigation Menu">
@@ -1064,7 +1081,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     </div>
     <div class="mobile-nav-footer">
       <a href="bikes.html" class="btn-primary" style="width: 100%; margin-bottom: 0.8rem;">Explore Fleet</a>
-      <a href="https://wa.me/919876543210" class="btn-secondary btn-whatsapp" style="width: 100%;">WhatsApp Booking</a>
+      <a href="https://wa.me/919037000266" class="btn-secondary btn-whatsapp" style="width: 100%;">WhatsApp Booking</a>
     </div>
   </aside>
 
@@ -1227,7 +1244,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js?v=8.0 based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=9.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
@@ -1760,7 +1777,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               <button type="button" class="btn-primary lux-stage-btn-book" id="stageBookBtn" onclick="bookStageVehicle()">
                 Reserve This Vehicle (₹2,200) →
               </button>
-              <a href="https://wa.me/919876543210" class="btn-secondary btn-whatsapp" id="stageWhatsappBtn" target="_blank" rel="noopener">
+              <a href="https://wa.me/919037000266" class="btn-secondary btn-whatsapp" id="stageWhatsappBtn" target="_blank" rel="noopener">
                 💬 WhatsApp Concierge
               </a>
             </div>
@@ -2038,7 +2055,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               <span class="lux-faq-indicator">+</span>
             </button>
             <div class="lux-faq-content">
-              <p>Our flagship counter is directly opposite Madurai Railway Junction on West Veli Street. We also maintain strategic dispatch hubs at Mattuthavani Bus Terminus and near Periyar / Meenakshi Temple, plus free doorstep delivery to all major city hotels and Madurai International Airport.</p>
+              <p>Our primary flagship hub is located at No. 16, Sankar Nagar 4th Street, K. Pudur — easily walkable from Madurai Mattuthavani (M.G.R) Bus Stand. We also provide direct vehicle handovers at Madurai Railway Junction, Periyar Bus Stand, and door-to-door delivery across all city hotels and Madurai Airport.</p>
             </div>
           </div>
         </div>
@@ -2061,7 +2078,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
           <a href="bikes.html" class="btn-primary" style="padding: 1.1rem 2.8rem; font-size: 1.1rem;">
             Explore All Vehicles &amp; Pricing →
           </a>
-          <a href="https://wa.me/919876543210" class="btn-secondary btn-whatsapp" style="padding: 1.1rem 2.8rem; font-size: 1.1rem;" target="_blank" rel="noopener">
+          <a href="https://wa.me/919037000266" class="btn-secondary btn-whatsapp" style="padding: 1.1rem 2.8rem; font-size: 1.1rem;" target="_blank" rel="noopener">
             💬 Quick WhatsApp Booking
           </a>
         </div>
@@ -2089,7 +2106,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
         <div class="form-group" style="margin-bottom: 1rem;">
           <label class="form-label" for="userPhoneInput">WhatsApp Phone Number</label>
-          <input type="tel" class="form-control" id="userPhoneInput" placeholder="+91 98765 43210" required>
+          <input type="tel" class="form-control" id="userPhoneInput" placeholder="+91 90370 00266" required>
         </div>
 
         <div class="form-group" style="margin-bottom: 1rem;">
@@ -2133,73 +2150,93 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   </div>
 
   <!-- SITE FOOTER WITH ALL SEO TARGET KEYWORDS -->
-  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="container">
       <div class="footer-top-grid">
         <div class="footer-brand">
           <img src="assets/images/logo.svg" alt="BIXI Ride - Best Bike Rental in Madurai" width="160" height="58">
           <p>
-            BIXI Ride is the premier two-wheeler rental agency in Madurai, Tamil Nadu. We empower tourists, travelers, and commuters with reliable, fuel-efficient, and certified bikes for city commuting and Western Ghat expeditions.
+            BIXI Ride is the trusted authority for <strong>rental bikes in madurai</strong> and premier <strong>car rental in madurai</strong>. Certified commercial fleet, zero security deposit, and round-the-clock rider concierge.
           </p>
-          <div style="display: flex; gap: 0.75rem;">
-            <a href="tel:+919876543210" class="btn-hotline" style="font-size: 0.85rem;">📞 +91 98765 43210</a>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem;">
+            <a href="tel:+919037000266" class="btn-hotline" style="font-size: 0.88rem;">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
+              +91 90370 00266
+            </a>
           </div>
         </div>
 
         <div>
-          <h4 class="footer-title">Quick Links</h4>
+          <h4 class="footer-title">Navigation</h4>
           <ul class="footer-links">
             <li><a href="index.html" class="footer-link">Home</a></li>
-            <li><a href="about.html" class="footer-link">About BIXI Ride</a></li>
-            <li><a href="bikes.html" class="footer-link">Bike Rental Fleet</a></li>
-            <li><a href="blog.html" class="footer-link">Madurai Travel Blog</a></li>
-            <li><a href="contact.html" class="footer-link">Contact &amp; Hubs</a></li>
+            <li><a href="about.html" class="footer-link">About BIXI</a></li>
+            <li><a href="bikes.html" class="footer-link">Rent Vehicles</a></li>
+            <li><a href="blog.html" class="footer-link">Travel Guides</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-title">Popular Fleets</h4>
+          <h4 class="footer-title">Top Fleet</h4>
           <ul class="footer-links">
+            <li><a href="bikes.html" class="footer-link">Maruti Swift Self-Drive</a></li>
             <li><a href="bikes.html" class="footer-link">Royal Enfield Hunter 350</a></li>
-            <li><a href="bikes.html" class="footer-link">RE Himalayan 450 Tourer</a></li>
-            <li><a href="bikes.html" class="footer-link">Yamaha MT-15 Version 2</a></li>
-            <li><a href="bikes.html" class="footer-link">Honda Activa 6G Scooter</a></li>
-            <li><a href="bikes.html" class="footer-link">Ather 450X Electric Scooter</a></li>
+            <li><a href="bikes.html" class="footer-link">RE Himalayan 450</a></li>
+            <li><a href="bikes.html" class="footer-link">Honda Activa 6G</a></li>
+            <li><a href="bikes.html" class="footer-link">Mahindra Thar 4×4</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-title">Madurai Hubs</h4>
-          <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.75rem;">
-            📍 Central Station Hub: West Veli St, opp. Madurai Junction<br>
-            📍 Mattuthavani Hub: Near Integrated Bus Stand<br>
-            📍 Periyar Hub: Near Meenakshi Amman Temple<br>
-            📍 Airport Hub: Madurai International Airport
+          <h4 class="footer-title">Main Hub &amp; Concierge</h4>
+          <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.6;">
+            📞 <strong>Direct Call:</strong> <a href="tel:+919037000266" class="footer-tel-link">+91 90370 00266</a> / <a href="tel:+919037000255" class="footer-tel-link">+91 90370 00255</a><br>
+            💬 <strong>WhatsApp:</strong> <a href="https://wa.me/919037000266" target="_blank" rel="noopener" class="footer-tel-link">Chat 24/7 Dispatch</a><br>
+            ✉️ <strong>Email:</strong> <a href="mailto:info@bixiride.com" class="footer-mail-link">info@bixiride.com</a><br>
+            📍 <strong>Main Shop:</strong> No. 16, Sankar Nagar 4th St, K. Pudur, Madurai – 625007<br>
+            <strong style="color: #E88124;">(Walkable distance from Mattuthavani Bus Stand)</strong>
           </p>
-          <span style="font-size: 0.85rem; color: var(--color-yellow); font-weight: 600;">Open Daily: 6:00 AM – 11:00 PM</span>
         </div>
       </div>
 
-      <!-- SEO Keywords Bar (Ensures 100% crawl indexability) -->
+      <!-- Embedded Google Map & Directions Card in Footer -->
+      <div class="footer-map-card">
+        <div class="footer-map-header">
+          <div class="footer-map-header-left">
+            <span class="footer-map-icon">📍</span>
+            <div>
+              <div class="footer-map-title">BIXI Ride — Main Hub (Walkable from Mattuthavani Bus Stand)</div>
+              <div class="footer-map-desc">No. 16, Sankar Nagar 4th Street, 1st Cross St, Beside Karpaga Nagar, K. Pudur, Madurai – 625007</div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Bixi+Ride+Madurai+Sankar+Nagar+K+Pudur" target="_blank" rel="noopener" class="footer-map-btn">
+            Open in Google Maps ↗
+          </a>
+        </div>
+        <div class="footer-map-frame-box">
+          <iframe src="https://maps.google.com/maps?q=Bixi%20Ride%20Madurai%20Sankar%20Nagar%20K%20Pudur%20Mattuthavani&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BIXI Ride Madurai Mattuthavani Location"></iframe>
+        </div>
+      </div>
+
+      <!-- SEO Keywords Bar -->
       <div class="footer-seo-bar">
-        <div class="footer-seo-title">Verified Madurai Two-Wheeler Keywords Directory</div>
+        <div class="footer-seo-title">Verified Madurai Two-Wheeler &amp; Car Rental Directory</div>
         <div class="footer-keywords-cloud">
           <a href="index.html" class="keyword-tag">bike rental in madurai</a>
-          <a href="bikes.html" class="keyword-tag">madurai bike rental</a>
+          <a href="about.html" class="keyword-tag">madurai bike rental</a>
           <a href="bikes.html" class="keyword-tag">rental bikes in madurai</a>
           <a href="contact.html" class="keyword-tag">bike rental madurai</a>
           <a href="bikes.html" class="keyword-tag">madurai rental bikes</a>
           <a href="contact.html" class="keyword-tag">best bike rental near me</a>
-          <a href="bikes.html" class="keyword-tag">rent scooter in madurai</a>
-          <a href="bikes.html" class="keyword-tag">royal enfield rental madurai</a>
-          <a href="about.html" class="keyword-tag">two wheeler rental madurai railway station</a>
-          <a href="blog.html" class="keyword-tag">madurai to kodaikanal bike rental</a>
+          <a href="bikes.html" class="keyword-tag">car rental in madurai</a>
+          <a href="bikes.html" class="keyword-tag">self drive car rental in madurai</a>
+          <a href="bikes.html" class="keyword-tag">car rental service in madurai</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2026 BIXI Ride (Bixi Theme). All rights reserved. Registered RTO Self-Drive Two-Wheeler Operator.</div>
-        <div>Engineered with Three.js 3D &amp; Pure Semantic SEO.</div>
+        <div>&copy; 2026 BIXI Ride (Bixi Theme). All rights reserved. Zero indexing issues guarantee.</div>
       </div>
     </div>
   </footer>
@@ -2207,7 +2244,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   <!-- Mobile Floating Quick Call / WhatsApp Bar -->
   <div class="mobile-floating-bar">
     <div class="mobile-floating-inner">
-      <a href="tel:+919876543210" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem;">📞 Call Now</a>
+      <a href="tel:+919037000266" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem;">📞 Call Now</a>
       <a href="bikes.html" class="btn-primary" style="font-size: 0.9rem; padding: 0.6rem;">⚡ Rent Bike</a>
     </div>
   </div>
@@ -2224,6 +2261,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     };
   </script>
   <script src="assets/js/madurai-3d-map.js?v=6.0"></script>
-  <script src="assets/js/main.js?v=8.0"></script>
+  <script src="assets/js/main.js?v=9.0"></script>
 </body>
 </html>

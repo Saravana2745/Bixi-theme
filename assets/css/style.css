@@ -4375,3 +4375,166 @@ select.form-control:focus {
   color: var(--color-orange, #E88124);
   font-weight: 600;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BIXI RIDE — SUBTLE BACKGROUND ART, FOOTER MAP & PHONE DIALER v9.0
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Subtle Background Architectural & Topographic Art */
+.site-bg-art {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.site-bg-art svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  transition: opacity 0.5s ease;
+}
+.site-bg-ambient-1 {
+  position: absolute;
+  top: -15%;
+  left: -10%;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 129, 36, 0.08) 0%, transparent 65%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+.site-bg-ambient-2 {
+  position: absolute;
+  bottom: -15%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 129, 36, 0.06) 0%, transparent 65%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Ensure content sits above subtle background */
+main, .site-header, .site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar Hotline Button with Phone Icon */
+.btn-hotline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(232, 129, 36, 0.08);
+  border: 1px solid rgba(232, 129, 36, 0.25);
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.btn-hotline:hover {
+  background: rgba(232, 129, 36, 0.2);
+  border-color: var(--color-orange, #E88124);
+  color: var(--color-orange, #E88124) !important;
+  transform: translateY(-2px);
+}
+.btn-hotline svg, .btn-hotline-icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-orange, #E88124);
+  flex-shrink: 0;
+}
+
+/* Footer Map & Directions Card */
+.footer-map-card {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  background: rgba(22, 22, 26, 0.85);
+  border: 1px solid rgba(232, 129, 36, 0.22);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+.footer-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.footer-map-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.footer-map-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.footer-map-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.2rem;
+}
+.footer-map-desc {
+  font-size: 0.85rem;
+  color: #94A3B8;
+}
+.footer-map-desc strong {
+  color: var(--color-orange, #E88124);
+}
+.footer-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(232, 129, 36, 0.12);
+  border: 1px solid rgba(232, 129, 36, 0.35);
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  color: #FFFFFF !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.footer-map-btn:hover {
+  background: var(--color-orange, #E88124);
+  color: #000000 !important;
+}
+.footer-map-frame-box {
+  width: 100%;
+  height: 220px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.footer-map-frame-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Clickable Telephone & Mail Links in Footer */
+.footer-tel-link, .footer-mail-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 600;
+}
+.footer-tel-link:hover, .footer-mail-link:hover {
+  color: var(--color-orange, #E88124);
+  text-decoration: underline;
+}

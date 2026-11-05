@@ -558,7 +558,7 @@
         const location = document.getElementById('userLocationSelect')?.value || 'Madurai Junction';
 
         const message = `Hello BIXI Ride! I would like to book a ${bike} for ${days} day(s) from ${pickupDate} at ${location}. Name: ${name}, Phone: ${phone}. Please confirm availability!`;
-        const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/919037000266?text=${encodeURIComponent(message)}`;
 
         closeBookingModal();
         showToast('Booking request submitted! Connecting with Madurai Hub...');
