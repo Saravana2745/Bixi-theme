@@ -4961,3 +4961,441 @@ select.form-control option {
   padding-top: 1.5rem;
 }
 
+
+
+/* ==========================================================================
+   CUSTOM DATEPICKER & CALENDAR - HIGH CONTRAST NUMBERS REINFORCEMENT
+   Fixes browser default buttonface white background bleached numbers
+   ========================================================================== */
+.bixi-cal-days-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 5px !important;
+}
+
+button.bixi-cal-day,
+.bixi-cal-day {
+  aspect-ratio: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: var(--font-body, 'Inter', sans-serif) !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  background: #161A24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+button.bixi-cal-day:hover:not(.disabled):not(.selected),
+.bixi-cal-day:hover:not(.disabled):not(.selected) {
+  background: rgba(255, 122, 24, 0.28) !important;
+  border-color: #FF7A18 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) scale(1.04) !important;
+}
+
+button.bixi-cal-day.selected,
+.bixi-cal-day.selected {
+  background: #FF7A18 !important;
+  border-color: #FF7A18 !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 14px rgba(255, 122, 24, 0.55) !important;
+}
+
+button.bixi-cal-day.today:not(.selected),
+.bixi-cal-day.today:not(.selected) {
+  border: 1.5px solid #FF7A18 !important;
+  color: #FF7A18 !important;
+  background: rgba(255, 122, 24, 0.12) !important;
+}
+
+button.bixi-cal-day.disabled,
+.bixi-cal-day.disabled {
+  opacity: 0.28 !important;
+  background: #0B0D13 !important;
+  border-color: rgba(255, 255, 255, 0.04) !important;
+  color: #64748B !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+button.bixi-cal-day.empty,
+.bixi-cal-day.empty {
+  pointer-events: none !important;
+  opacity: 0 !important;
+  cursor: default !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+
+/* ==========================================================================
+   CINEMATIC SCROLLYTELLING EXPEDITION SECTION (MADURAI & BIXI FLEET)
+   ========================================================================== */
+
+.scrolly-expedition-section {
+  position: relative;
+  height: 320vh;
+  background: #090A0E;
+  margin: 0;
+  padding: 0;
+}
+
+.scrolly-sticky-stage {
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  width: 100%;
+  overflow: hidden;
+  background: #06070A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrolly-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+}
+
+.scrolly-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(9, 10, 14, 0.2) 0%, rgba(9, 10, 14, 0.75) 85%, #090A0E 100%),
+    linear-gradient(to bottom, rgba(9, 10, 14, 0.6) 0%, transparent 20%, transparent 80%, rgba(9, 10, 14, 0.85) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.scrolly-hud-left {
+  position: absolute;
+  top: 2rem;
+  left: 2.5rem;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scrolly-hud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(17, 20, 29, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.scrolly-hud-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF7A18;
+  box-shadow: 0 0 10px #FF7A18;
+  animation: scrollyPulse 2s infinite ease-in-out;
+}
+
+@keyframes scrollyPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.scrolly-hud-label {
+  font-family: var(--font-tech, 'Barlow Condensed', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.scrolly-hud-label span {
+  color: #FF7A18;
+}
+
+.scrolly-progress-track {
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.scrolly-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #FF7A18;
+  transition: width 0.1s linear;
+}
+
+.scrolly-brand-topright {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  z-index: 5;
+}
+
+.scrolly-brand-glass {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(17, 20, 29, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.6rem 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.scrolly-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 0.25rem;
+}
+
+.scrolly-brand-sub {
+  font-family: var(--font-tech, 'Barlow Condensed', sans-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #FF7A18;
+  text-transform: uppercase;
+}
+
+.scrolly-narrative-container {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.scrolly-story-card {
+  position: absolute;
+  width: 100%;
+  max-width: 520px;
+  background: rgba(17, 20, 29, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  padding: 2.25rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 1px rgba(255, 255, 255, 0.15);
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+}
+
+.scrolly-story-card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.scrolly-story-card.story-stage-1 {
+  left: 3rem;
+}
+
+.scrolly-story-card.story-stage-2 {
+  right: 3rem;
+}
+
+.scrolly-story-card.story-stage-3 {
+  left: 3rem;
+}
+
+.scrolly-story-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 122, 24, 0.12);
+  border: 1px solid rgba(255, 122, 24, 0.3);
+  color: #FF7A18;
+  font-family: var(--font-tech, 'Barlow Condensed', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+}
+
+.scrolly-story-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+.text-accent-solid {
+  color: #FF7A18;
+}
+
+.scrolly-story-desc {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: #CBD5E1;
+  margin-bottom: 1.25rem;
+}
+
+.scrolly-story-desc strong {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.scrolly-story-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.scrolly-chip {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #090A0E;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  color: #CBD5E1;
+}
+
+.scrolly-story-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.scrolly-call-btn {
+  background: rgba(255, 122, 24, 0.12) !important;
+  border-color: rgba(255, 122, 24, 0.35) !important;
+}
+
+.scrolly-scroll-indicator {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: #94A3B8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-mouse-icon {
+  width: 20px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 6px;
+  background: #FF7A18;
+  border-radius: 2px;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollyWheel 1.8s infinite ease-in-out;
+}
+
+@keyframes scrollyWheel {
+  0% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 12px); }
+}
+
+@media (max-width: 1024px) {
+  .scrolly-story-card.story-stage-1,
+  .scrolly-story-card.story-stage-2,
+  .scrolly-story-card.story-stage-3 {
+    left: 1.5rem;
+    right: 1.5rem;
+    max-width: calc(100% - 3rem);
+  }
+  .scrolly-brand-topright {
+    top: 1.25rem;
+    right: 1.25rem;
+  }
+  .scrolly-hud-left {
+    top: 1.25rem;
+    left: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .scrolly-expedition-section {
+    height: 280vh;
+  }
+  .scrolly-story-card {
+    padding: 1.5rem;
+    border-radius: 18px;
+    bottom: 2rem;
+    top: auto;
+  }
+  .scrolly-story-title {
+    font-size: 1.35rem;
+  }
+  .scrolly-story-desc {
+    font-size: 0.88rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .scrolly-scroll-indicator {
+    display: none;
+  }
+  .scrolly-brand-glass {
+    padding: 0.4rem 0.8rem;
+  }
+  .scrolly-logo-img {
+    height: 24px;
+  }
+}

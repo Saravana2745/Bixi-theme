@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=13.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=14.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -1092,96 +1092,119 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
   <!-- Main Content -->
   <main>
-    <!-- HERO SECTION WITH 3D INTERACTIVE MOTORCYCLE SHOWCASE -->
-    <section class="hero-section">
-      <div class="horizon-ambient-aurora" aria-hidden="true"></div>
-      <div class="hero-horizon-grid" aria-hidden="true"></div>
-      <div class="container">
-        <div class="hero-grid">
+    <!-- ═══════════════ CINEMATIC SCROLLYTELLING EXPEDITION SECTION (MADURAI & BIXI FLEET) ═══════════════ -->
+    <section class="scrolly-expedition-section" id="scrolly-tour" aria-label="Cinematic Madurai & BIXI Scrollytelling Experience">
+      <!-- Pinned Sticky Canvas Stage -->
+      <div class="scrolly-sticky-stage">
+        <!-- Active Canvas Frame Renderer -->
+        <canvas id="scrollyCanvas" class="scrolly-canvas"></canvas>
+        
+        <!-- Edge Ambient Vignette & Depth Mask -->
+        <div class="scrolly-vignette" aria-hidden="true"></div>
+
+        <!-- Top Left: Sequence HUD & Telemetry -->
+        <div class="scrolly-hud-left">
+          <div class="scrolly-hud-pill">
+            <span class="scrolly-hud-dot"></span>
+            <span class="scrolly-hud-label">MADURAI EXPEDITION • <span id="scrollyFrameCount">01 / 75</span></span>
+          </div>
+          <div class="scrolly-progress-track">
+            <div id="scrollyProgressBar" class="scrolly-progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Top Right: BIXI Official Logo Glass Badge (Requested: BIXI logo in top right) -->
+        <div class="scrolly-brand-topright">
+          <div class="scrolly-brand-glass">
+            <img src="assets/images/logo.svg" alt="BIXI Ride Madurai" class="scrolly-logo-img">
+            <span class="scrolly-brand-sub">MADURAI OFFICIAL RENTAL</span>
+          </div>
+        </div>
+
+        <!-- Left / Right Narrative Bento Story Cards (Controlled by Scroll Progress) -->
+        <div class="scrolly-narrative-container container">
           
-          <div class="hero-content">
-            <div class="hero-pill">
-              <span class="hero-pill-dot"></span>
-              <span class="hero-pill-text">#1 Rated Bike Rental in Madurai • 2026 Fleet Active</span>
+          <!-- Milestone 1: 0% - 33% (Meenakshi Heritage & Aerials) -->
+          <div class="scrolly-story-card story-stage-1 active" id="storyStage1">
+            <div class="scrolly-story-badge">
+              <span>🏛️</span>
+              <span>ANCIENT HERITAGE • 2,500 YRS LEGACY</span>
             </div>
-
-            <!-- Primary H1 Keyword Optimized Tag with Solar Gradient Mask -->
-            <h1 class="hero-title">
-              Best <span class="text-solar-gradient">Bike Rental in Madurai</span> – Premium &amp; Affordable <span class="text-solar-gradient">Madurai Bike Rental</span>
+            <h1 class="scrolly-story-title">
+              Best <span class="text-accent-solid">Bike Rental in Madurai</span> &amp; <span class="text-accent-solid">Self-Drive Car Rental</span>
             </h1>
-
-            <p class="hero-subtitle">
-              Unleash freedom across the Temple City. Explore top-condition <strong>rental bikes in madurai</strong> and certified <strong>self drive car rental in madurai</strong> (including Maruti Swift from ₹2,200/day) with zero security deposit, doorstep delivery at Madurai Junction, and 24/7 roadside assistance. Madurai's #1 premier <strong>car rental service in madurai</strong> and your trusted search for the <strong>best bike rental near me</strong> ends here. We provide both bike and <strong>car rental in madurai</strong>.
+            <p class="scrolly-story-desc">
+              Soar above the legendary Dravidian gopurams of Meenakshi Amman Temple. Experience the sacred soul of Madurai with top-tier <strong>rental bikes in madurai</strong> and certified <strong>self drive car rental in madurai</strong>. Unlimited freedom, transparent pricing, and 24/7 support. Premier choice for <strong>bike rental madurai</strong> and verified <strong>madurai rental bikes</strong>.
             </p>
-
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-              <a href="#booking-engine" class="btn-solar-primary">Instant Booking <span>⚡</span></a>
-              <a href="#madurai-3d-map-section" class="btn-solar-glass">3D Route Tour <span>📍</span></a>
-              <a href="tel:+919037000266" class="btn-hotline" aria-label="Call BIXI Hotline" style="background: rgba(255, 122, 24, 0.12); border-color: rgba(255, 122, 24, 0.35);">
-                <svg viewBox="0 0 24 24" class="btn-hotline-icon" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
-                <span class="hotline-number">+91 90370 00266</span>
-              </a>
+            <div class="scrolly-story-chips">
+              <span class="scrolly-chip">Meenakshi Amman Kovil</span>
+              <span class="scrolly-chip">Walkable Mattuthavani Hub</span>
+              <span class="scrolly-chip">Zero Deposit Protocol</span>
             </div>
-
-            <div class="hero-stats-row">
-              <div class="stat-item">
-                <span class="stat-number stat-number-accent">500+</span>
-                <span class="stat-label">Bikes in Madurai</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">₹399</span>
-                <span class="stat-label">Starting Day Rate</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number stat-number-accent">4.9 ★</span>
-                <span class="stat-label">Google Rating</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">3 MIN</span>
-                <span class="stat-label">From Mattuthavani</span>
-              </div>
+            <div class="scrolly-story-actions">
+              <a href="#booking-engine" class="btn-primary">Reserve Vehicle Now ↓</a>
+              <a href="tel:+919037000266" class="btn-hotline scrolly-call-btn">
+                <svg viewBox="0 0 24 24" class="btn-hotline-icon"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
+                <span>+91 90370 00266</span>
+              </a>
             </div>
           </div>
 
-          <!-- 3D Three.js Interactive Showcase -->
-          <div class="hero-showcase">
-            <div class="showcase-3d-wrapper">
-              <canvas id="threejs-hero-canvas"></canvas>
+          <!-- Milestone 2: 34% - 66% (Temple Corridors & Swift Fleet) -->
+          <div class="scrolly-story-card story-stage-2" id="storyStage2">
+            <div class="scrolly-story-badge">
+              <span>🏎️</span>
+              <span>HERITAGE PILLARS TO HIGHWAYS</span>
+            </div>
+            <h2 class="scrolly-story-title">
+              Cruising Temple Corridors with <span class="text-accent-solid">BIXI Swift &amp; Royal Enfields</span>
+            </h2>
+            <p class="scrolly-story-desc">
+              Glide past historic stone pillars and vibrant bazaars in chilled dual-AC comfort. Choose from our sanitized <strong>car rental service in madurai</strong> featuring the 2026 Maruti Swift (₹2,200/day) or iconic <strong>madurai bike rental</strong> fleet. Doorstep delivery at Madurai Junction and hotels.
+            </p>
+            <div class="scrolly-story-chips">
+              <span class="scrolly-chip">Swift ₹2,200/Day</span>
+              <span class="scrolly-chip">Activa &amp; Hunter 350</span>
+              <span class="scrolly-chip">Sanitized &amp; Insured</span>
+            </div>
+            <div class="scrolly-story-actions">
+              <a href="bikes.html" class="btn-primary">View 40+ Fleet →</a>
+              <a href="https://wa.me/919037000266" class="btn-secondary btn-whatsapp">WhatsApp Booking 💬</a>
+            </div>
+          </div>
 
-              <div class="showcase-hud">
-                <div class="hud-top">
-                  <span class="hud-badge">
-                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2v2a8 8 0 018 8h2a10 10 0 00-10-10zm0 18v2a10 10 0 0010-10h-2a8 8 0 01-8 8zm-8-8H2a10 10 0 0010 10v-2a8 8 0 01-8-8zm8-8V2A10 10 0 002 12h2a8 8 0 018-8z"/></svg>
-                    Interactive 3D Viewport
-                  </span>
-                  <span class="hud-hint">Drag to Orbit 360°</span>
-                </div>
-
-                <div class="hud-bottom">
-                  <!-- Livery Color Switcher -->
-                  <div class="color-switcher-box">
-                    <span class="switcher-title">Solar Livery</span>
-                    <div class="switcher-swatches">
-                      <button class="swatch-btn swatch-orange active" data-color="#FF7A18" title="Solar Amber" aria-label="Solar Amber Color"></button>
-                      <button class="swatch-btn swatch-carbon" data-color="#0E121A" title="Obsidian Carbon" aria-label="Obsidian Carbon Color"></button>
-                      <button class="swatch-btn swatch-white" data-color="#FFFFFF" title="Pure White" aria-label="Pure White Color"></button>
-                      <button class="swatch-btn swatch-chrome" data-color="#00E5FF" title="Cyan Flash" aria-label="Cyan Flash Color"></button>
-                    </div>
-                  </div>
-
-                  <!-- Camera Angle Presets -->
-                  <div class="camera-controls-box">
-                    <button class="cam-btn active" data-preset="spin">360°</button>
-                    <button class="cam-btn" data-preset="side">Side</button>
-                    <button class="cam-btn" data-preset="cockpit">Cockpit</button>
-                    <button class="cam-btn" data-preset="engine">Engine</button>
-                  </div>
-                </div>
-              </div>
+          <!-- Milestone 3: 67% - 100% (Vandiyur Teppakulam & Booking Entry) -->
+          <div class="scrolly-story-card story-stage-3" id="storyStage3">
+            <div class="scrolly-story-badge">
+              <span>🌊</span>
+              <span>VANDIYUR TEPPAKULAM &amp; GHAT EXPEDITIONS</span>
+            </div>
+            <h2 class="scrolly-story-title">
+              From Lake Waters to <span class="text-accent-solid">Kodaikanal Hairpins</span>
+            </h2>
+            <p class="scrolly-story-desc">
+              From the tranquil waters of Vandiyur Mariamman Teppakulam to Alagar Hills and Kodaikanal misty heights. Your search for the <strong>best bike rental near me</strong> and premier <strong>car rental in madurai</strong> is complete. Lock your dates below with instant verification!
+            </p>
+            <div class="scrolly-story-chips">
+              <span class="scrolly-chip">No Hidden Charges</span>
+              <span class="scrolly-chip">Helmets Provided</span>
+              <span class="scrolly-chip">Unlimited Km Plans</span>
+            </div>
+            <div class="scrolly-story-actions">
+              <a href="#booking-engine" class="btn-primary" style="background: #FF7A18; box-shadow: 0 0 25px rgba(255, 122, 24, 0.6);">Instant Booking Form Below ↓</a>
             </div>
           </div>
 
         </div>
+
+        <!-- Bottom Scroll Indicator -->
+        <div class="scrolly-scroll-indicator">
+          <span>Scroll Down to Scrub Video Expedition</span>
+          <div class="scroll-mouse-icon">
+            <div class="scroll-wheel"></div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1340,7 +1363,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js?v=13.0 based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=14.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
@@ -2341,6 +2364,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     };
   </script>
   <script src="assets/js/madurai-3d-map.js?v=6.0"></script>
-  <script src="assets/js/main.js?v=13.0"></script>
+  <script src="assets/js/main.js?v=14.0"></script>
 </body>
 </html>

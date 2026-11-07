@@ -1275,3 +1275,135 @@ function filterVehicles(cat, btn) {
     init3DTiltCards();
   }
 })();
+
+
+// ==========================================================================
+// CINEMATIC SCROLLYTELLING CANVAS ENGINE (75 FRAMES SCRUBBER)
+// ==========================================================================
+(function initScrollytelling() {
+  const section = document.getElementById('scrolly-tour');
+  const canvas = document.getElementById('scrollyCanvas');
+  if (!section || !canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const TOTAL_FRAMES = 75;
+  const frameImages = [];
+  let isLoaded = false;
+  let loadedCount = 0;
+  let currentRenderedFrame = -1;
+  let animFrameId = null;
+
+  const hudCount = document.getElementById('scrollyFrameCount');
+  const hudBar = document.getElementById('scrollyProgressBar');
+  const stage1 = document.getElementById('storyStage1');
+  const stage2 = document.getElementById('storyStage2');
+  const stage3 = document.getElementById('storyStage3');
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+    if (currentRenderedFrame > 0) {
+      drawFrame(currentRenderedFrame);
+    }
+  }
+
+  function drawCover(img) {
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+    const cw = canvas.width;
+    const ch = canvas.height;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
+
+    const r = Math.max(cw / iw, ch / ih);
+    const nw = iw * r;
+    const nh = ih * r;
+    const cx = (cw - nw) * 0.5;
+    const cy = (ch - nh) * 0.5;
+
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(img, cx, cy, nw, nh);
+  }
+
+  function drawFrame(idx) {
+    const img = frameImages[idx];
+    if (img && img.complete) {
+      drawCover(img);
+      currentRenderedFrame = idx;
+    }
+  }
+
+  // Preload all 75 frames progressively
+  for (let i = 1; i <= TOTAL_FRAMES; i++) {
+    const img = new Image();
+    const pad = String(i).padStart(3, '0');
+    img.src = `assets/images/scrolly-frames/frame_${pad}.webp`;
+    img.onload = () => {
+      loadedCount++;
+      if (i === 1 && currentRenderedFrame === -1) {
+        drawFrame(1);
+      }
+      if (loadedCount === TOTAL_FRAMES) {
+        isLoaded = true;
+      }
+    };
+    frameImages[i] = img;
+  }
+
+  function updateScroll() {
+    const rect = section.getBoundingClientRect();
+    const sectionHeight = section.offsetHeight;
+    const windowHeight = window.innerHeight;
+
+    const scrollStart = -rect.top;
+    const scrollEnd = sectionHeight - windowHeight;
+    if (scrollEnd <= 0) return;
+
+    let progress = scrollStart / scrollEnd;
+    progress = Math.max(0, Math.min(1, progress));
+
+    const targetFrame = Math.min(TOTAL_FRAMES, Math.max(1, Math.floor(progress * (TOTAL_FRAMES - 1)) + 1));
+
+    if (targetFrame !== currentRenderedFrame) {
+      drawFrame(targetFrame);
+    }
+
+    if (hudCount) {
+      hudCount.textContent = `${String(targetFrame).padStart(2, '0')} / ${TOTAL_FRAMES}`;
+    }
+    if (hudBar) {
+      hudBar.style.width = `${(progress * 100).toFixed(1)}%`;
+    }
+
+    if (stage1 && stage2 && stage3) {
+      if (progress < 0.34) {
+        stage1.classList.add('active');
+        stage2.classList.remove('active');
+        stage3.classList.remove('active');
+      } else if (progress < 0.68) {
+        stage1.classList.remove('active');
+        stage2.classList.add('active');
+        stage3.classList.remove('active');
+      } else {
+        stage1.classList.remove('active');
+        stage2.classList.remove('active');
+        stage3.classList.add('active');
+      }
+    }
+  }
+
+  function onScroll() {
+    if (animFrameId) cancelAnimationFrame(animFrameId);
+    animFrameId = requestAnimationFrame(updateScroll);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    updateScroll();
+  });
+
+  resizeCanvas();
+  updateScroll();
+})();
