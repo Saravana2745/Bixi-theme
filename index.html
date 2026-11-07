@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=16.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=17.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -1095,9 +1095,13 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     <!-- ═══════════════ CINEMATIC SCROLLYTELLING EXPEDITION SECTION (MADURAI & BIXI FLEET) ═══════════════ -->
     
     <!-- ═══════════════ HERO HEADER BANNER (DESKTOP & MOBILE RESPONSIVE) ═══════════════ -->
-    <section class="hero-banner-section" aria-label="BIXI Ride - Best Bike Rental in Madurai">
+
+    <!-- ═══════════════ HERO HEADER BANNER WITH DOCKED BOOKING ENGINE ═══════════════ -->
+    <section class="hero-banner-section" id="booking-engine" aria-label="BIXI Ride - Best Bike Rental in Madurai">
       <div class="container hero-banner-wrapper">
-        <a href="#booking-engine" class="hero-banner-anchor" aria-label="Rent Your Ride Today with BIXI Ride Madurai – Quick Booking Form">
+        
+        <!-- Banner Graphic Frame -->
+        <div class="hero-banner-frame">
           <picture class="hero-banner-picture">
             <!-- Mobile Viewport (max-width: 768px) -->
             <source media="(max-width: 768px)" srcset="assets/images/hero/best-bike-rental-in-madurai-banner-mobile.webp" type="image/webp">
@@ -1115,7 +1119,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                  loading="eager"
                  decoding="async">
           </picture>
-        </a>
+        </div>
 
         <!-- Semantic SEO Keyword Structure for Search Engine Bots -->
         <div class="hero-banner-seo-meta sr-only">
@@ -1124,12 +1128,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             BIXI Ride is the #1 verified destination for <strong>bike rental in madurai</strong>, offering high-performance <strong>madurai bike rental</strong>, certified <strong>rental bikes in madurai</strong>, <strong>bike rental madurai</strong>, and <strong>madurai rental bikes</strong>. Looking for the <strong>best bike rental near me</strong>? We provide verified <strong>car rental in madurai</strong>, <strong>self drive car rental in madurai</strong>, and 24/7 <strong>car rental service in madurai</strong> with doorstep handover at Madurai Junction and walkable from Mattuthavani Bus Stand.
           </p>
         </div>
-      </div>
-    </section>
 
-<section class="section" id="booking-engine">
-      <div class="container">
-        <div class="booking-widget-card">
+        <!-- DOCKED BOOKING FORM ON THE BANNER -->
+        <div class="booking-widget-card banner-docked-widget">
           <!-- Mode Switcher: Rental Bikes vs Self-Drive Cars -->
           <div class="booking-tabs-wrapper">
             <div class="booking-vehicle-tabs" role="tablist" aria-label="Select Fleet Mode">
@@ -1199,7 +1200,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js?v=16.0 based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=17.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
@@ -1332,10 +1333,11 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             </button>
           </form>
         </div>
+
       </div>
     </section>
 
-<section class="scrolly-expedition-section" id="scrolly-tour" aria-label="Cinematic Madurai & BIXI Scrollytelling Experience">
+    <section class="scrolly-expedition-section" id="scrolly-tour" aria-label="Cinematic Madurai & BIXI Scrollytelling Experience">
       <!-- Pinned Sticky Canvas Stage -->
       <div class="scrolly-sticky-stage">
         <!-- Active Canvas Frame Renderer -->
@@ -1384,11 +1386,8 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               <span class="scrolly-chip">Zero Deposit</span>
             </div>
             <div class="scrolly-story-actions">
-              <a href="#booking-engine" class="btn-primary">Reserve Vehicle Now ↓</a>
-              <a href="tel:+919037000266" class="btn-hotline scrolly-call-btn">
-                <svg viewBox="0 0 24 24" class="btn-hotline-icon"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
-                <span>+91 90370 00266</span>
-              </a>
+              <a href="#booking-engine" class="btn-primary scrolly-btn-book">Book Ride ⚡</a>
+              <a href="contact.html" class="btn-secondary scrolly-btn-contact">Contact Us 📞</a>
             </div>
           </div>
 
@@ -1410,8 +1409,8 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               <span class="scrolly-chip">Junction Delivery</span>
             </div>
             <div class="scrolly-story-actions">
-              <a href="bikes.html" class="btn-primary">View Fleet (40+) →</a>
-              <a href="https://wa.me/919037000266" class="btn-secondary btn-whatsapp">WhatsApp 💬</a>
+              <a href="#booking-engine" class="btn-primary scrolly-btn-book">Book Ride ⚡</a>
+              <a href="contact.html" class="btn-secondary scrolly-btn-contact">Contact Us 📞</a>
             </div>
           </div>
 
@@ -1425,7 +1424,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               From Lake Waters to <span class="text-accent-solid">Kodaikanal Hairpins</span>
             </h2>
             <p class="scrolly-story-desc">
-              From serene Vandiyur Teppakulam to misty hill roads. Top search for <strong>best bike rental near me</strong> and certified <strong>car rental in madurai</strong>. Lock your ride with zero deposit below!
+              From serene Vandiyur Teppakulam to misty hill roads. Top search for <strong>best bike rental near me</strong> and certified <strong>car rental in madurai</strong>. Lock your ride with zero deposit today!
             </p>
             <div class="scrolly-story-chips">
               <span class="scrolly-chip">No Deposit</span>
@@ -1433,7 +1432,8 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               <span class="scrolly-chip">Instant Booking</span>
             </div>
             <div class="scrolly-story-actions">
-              <a href="#booking-engine" class="btn-primary" style="background: #FF7A18; box-shadow: 0 0 20px rgba(255, 122, 24, 0.5);">Book Vehicle Below ↓</a>
+              <a href="#booking-engine" class="btn-primary scrolly-btn-book">Book Ride ⚡</a>
+              <a href="contact.html" class="btn-secondary scrolly-btn-contact">Contact Us 📞</a>
             </div>
           </div>
 
@@ -1450,7 +1450,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       </div>
     </section>
 
-<section class="bixi-3d-manifesto-stage" id="horizon-manifesto">
+    <section class="bixi-3d-manifesto-stage" id="horizon-manifesto">
       <div class="container">
         <div class="manifesto-split-grid">
           
@@ -2393,6 +2393,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     };
   </script>
   <script src="assets/js/madurai-3d-map.js?v=6.0"></script>
-  <script src="assets/js/main.js?v=16.0"></script>
+  <script src="assets/js/main.js?v=17.0"></script>
 </body>
 </html>
