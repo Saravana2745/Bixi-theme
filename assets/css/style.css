@@ -5658,3 +5658,94 @@ button.bixi-cal-day.empty,
     font-size: 0.7rem !important;
   }
 }
+
+
+/* ==========================================================================
+   HERO HEADER BANNER (DESKTOP & MOBILE RESPONSIVE PICTURE BANNER)
+   Ultra-optimized LCP image banner with smooth rounded glass frame
+   ========================================================================== */
+.hero-banner-section {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 0 1rem;
+  background: #090A0E;
+  overflow: hidden;
+}
+
+.hero-banner-wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-banner-anchor {
+  display: block;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  background: #0D1017;
+  cursor: pointer;
+}
+
+.hero-banner-anchor:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 122, 24, 0.25);
+  border-color: rgba(255, 122, 24, 0.4);
+}
+
+.hero-banner-picture {
+  display: block;
+  width: 100%;
+}
+
+.hero-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 19px;
+  aspect-ratio: 1024 / 512;
+}
+
+/* Screen reader only utility class for SEO metadata */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Adjust booking engine spacing when directly below hero banner */
+#booking-engine {
+  padding-top: 1rem !important;
+  padding-bottom: 3.5rem !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-banner-section {
+    padding: 0.75rem 0 0.5rem;
+  }
+  .hero-banner-wrapper {
+    padding: 0 0.75rem;
+  }
+  .hero-banner-anchor {
+    border-radius: 14px;
+  }
+  .hero-banner-img {
+    border-radius: 13px;
+    aspect-ratio: 576 / 1024;
+    max-height: 80vh;
+    object-position: center top;
+  }
+}
+
+.hero-banner-seo-meta { display: none; }
