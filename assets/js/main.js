@@ -1140,3 +1140,138 @@ function filterVehicles(cat, btn) {
     animateLuxCounters();
   }
 })();
+
+
+
+// ==========================================================================
+// HORIZON SOLAR WORD SCROLL REVEAL & PARALLAX ENGINE
+// ==========================================================================
+(function() {
+  function initHorizonWordScrollReveal() {
+    var textEl = document.querySelector('.word-scroll-text');
+    var sectionEl = document.querySelector('.word-scroll-section');
+    if (!textEl || !sectionEl) return;
+
+    var rawText = textEl.textContent.trim();
+    var words = rawText.split(/\s+/);
+    var accentKeywords = ['Meenakshi', 'Kovil', 'Kodaikanal', 'BIXI', 'Ride', 'exhilarating', 'certified', 'freedom.', 'freedom'];
+
+    var html = words.map(function(w) {
+      var clean = w.replace(/[^a-zA-Z]/g, '');
+      var isAccent = accentKeywords.indexOf(clean) !== -1;
+      var cls = 'scroll-word' + (isAccent ? ' word-accent' : '');
+      return '<span class="' + cls + '">' + w + '</span>';
+    }).join(' ');
+
+    textEl.innerHTML = html;
+    var wordSpans = textEl.querySelectorAll('.scroll-word');
+
+    var ticking = false;
+    function updateScrollProgress() {
+      var rect = sectionEl.getBoundingClientRect();
+      var windowH = window.innerHeight;
+      
+      // Calculate progress from 0 (when top of section enters 85% of viewport) to 1 (passed center)
+      var start = windowH * 0.85;
+      var end = -rect.height * 0.2;
+      var progress = (start - rect.top) / (start - end);
+      progress = Math.max(0, Math.min(1, progress));
+
+      var totalWords = wordSpans.length;
+      var litCount = Math.floor(progress * totalWords * 1.15);
+
+      for (var i = 0; i < totalWords; i++) {
+        if (i <= litCount) {
+          wordSpans[i].classList.add('word-lit');
+        } else {
+          wordSpans[i].classList.remove('word-lit');
+        }
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial check
+    updateScrollProgress();
+  }
+
+  function initHorizonParallax() {
+    var parallaxCards = document.querySelectorAll('[data-parallax]');
+    if (!parallaxCards.length) return;
+
+    var ticking = false;
+    function onParallaxScroll() {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      var windowH = window.innerHeight;
+
+      parallaxCards.forEach(function(el) {
+        var rect = el.getBoundingClientRect();
+        // Only compute if within or near viewport
+        if (rect.top < windowH + 150 && rect.bottom > -150) {
+          var speed = parseFloat(el.getAttribute('data-parallax')) || 0.08;
+          var centerOffset = (rect.top + rect.height / 2) - (windowH / 2);
+          var translateY = centerOffset * speed;
+          el.style.transform = 'translate3d(0, ' + translateY.toFixed(1) + 'px, 0)';
+        }
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(onParallaxScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    onParallaxScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initHorizonWordScrollReveal();
+      initHorizonParallax();
+    });
+  } else {
+    initHorizonWordScrollReveal();
+    initHorizonParallax();
+  }
+})();
+
+
+
+// ==========================================================================
+// 3D PERSPECTIVE TILT INTERACTION ENGINE
+// ==========================================================================
+(function() {
+  function init3DTiltCards() {
+    var cards = document.querySelectorAll('.card-3d-tilt, [data-tilt="true"]');
+    cards.forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var rotateX = ((y - centerY) / centerY) * -7;
+        var rotateY = ((x - centerX) / centerX) * 7;
+        card.style.transform = 'perspective(900px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init3DTiltCards);
+  } else {
+    init3DTiltCards();
+  }
+})();
