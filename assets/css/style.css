@@ -5752,190 +5752,374 @@ button.bixi-cal-day.empty,
 
 
 /* ==========================================================================
-   BANNER DOCKED BOOKING WIDGET & MOBILE SCROLLER PERFECTION
+   HERO BANNER EXPANSION, DROPDOWN Z-INDEX FIX & COMPACT VIDEO SCROLLER HUD
    ========================================================================== */
 
-/* 1. Hero Banner Frame & Docked Widget */
-.hero-banner-frame {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #090A0E;
+/* 1. Hero Banner Expanded Dimensions & Stacking Context */
+.hero-banner-section {
+  position: relative !important;
+  z-index: 100 !important;
+  overflow: visible !important;
+  width: 100% !important;
+  padding: 1rem 0 1.5rem !important;
+  background: #090A0E !important;
 }
 
+.hero-banner-wrapper {
+  position: relative !important;
+  overflow: visible !important;
+  max-width: 1540px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+}
+
+.hero-banner-frame {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: #090A0E !important;
+  width: 100% !important;
+}
+
+.hero-banner-picture {
+  display: block !important;
+  width: 100% !important;
+}
+
+.hero-banner-img {
+  width: 100% !important;
+  min-height: 480px !important;
+  max-height: 640px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  border-radius: 19px !important;
+}
+
+/* 2. Hero Banner Interactive Action Buttons */
+.hero-banner-cta-bar {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.85rem !important;
+  flex-wrap: wrap !important;
+  padding: 2.5rem 1.5rem 1.25rem !important;
+  background: linear-gradient(180deg, rgba(9, 10, 14, 0) 0%, rgba(9, 10, 14, 0.75) 45%, rgba(9, 10, 14, 0.96) 100%) !important;
+  z-index: 15 !important;
+  pointer-events: auto !important;
+}
+
+.hero-banner-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  height: 44px !important;
+  padding: 0 1.4rem !important;
+  border-radius: 9999px !important;
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+}
+
+.hero-btn-rent {
+  background: linear-gradient(135deg, #FF7A18 0%, #E6690B 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 18px rgba(255, 122, 24, 0.5), 0 0 10px rgba(255, 122, 24, 0.3) !important;
+}
+
+.hero-btn-rent:hover {
+  background: linear-gradient(135deg, #FF8D36 0%, #FF6F00 100%) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 6px 24px rgba(255, 122, 24, 0.7) !important;
+  color: #FFFFFF !important;
+}
+
+.hero-btn-fleet {
+  background: rgba(13, 16, 24, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+}
+
+.hero-btn-fleet:hover {
+  background: rgba(255, 122, 24, 0.18) !important;
+  border-color: #FF7A18 !important;
+  transform: translateY(-2px) !important;
+  color: #FFFFFF !important;
+}
+
+.hero-btn-contact {
+  background: rgba(13, 16, 24, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  color: #E2E8F0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+.hero-btn-contact:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+}
+
+.hero-btn-call {
+  background: rgba(13, 16, 24, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  color: #FF7A18 !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+}
+
+.hero-btn-call:hover {
+  background: rgba(255, 122, 24, 0.25) !important;
+  border-color: #FF7A18 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 3. Docked Booking Widget & Dropdown Z-Index Guarantee */
 .banner-docked-widget {
-  margin-top: -3.5rem !important;
-  background: rgba(13, 16, 24, 0.94) !important;
+  margin-top: 1.25rem !important;
+  position: relative !important;
+  z-index: 120 !important;
+  overflow: visible !important;
+  background: rgba(13, 16, 24, 0.95) !important;
   backdrop-filter: blur(28px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
   border-radius: 20px !important;
   border: 1px solid rgba(255, 122, 24, 0.35) !important;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 122, 24, 0.2) !important;
+}
+
+.booking-form-grid,
+.form-group,
+.custom-select-box,
+.custom-datepicker-box {
+  overflow: visible !important;
+}
+
+.custom-select-box {
   position: relative !important;
-  z-index: 10 !important;
+  z-index: 150 !important;
 }
 
-/* 2. Scroller Story Card - Book Ride & Contact Us Buttons */
-.scrolly-btn-book {
-  background: #FF7A18 !important;
-  border: 1px solid #FF7A18 !important;
+.custom-select-box.open,
+.custom-datepicker-box.open {
+  z-index: 99999 !important;
+}
+
+.custom-options-panel,
+.custom-datepicker-panel {
+  z-index: 999999 !important;
+}
+
+/* Dropdown list open state */
+.custom-select-box.open .custom-options-panel {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: auto !important;
+}
+
+/* 4. Small, Compact, Sleek Scroller HUD Card (Allows Full Video Viewing) */
+.scrolly-expedition-section {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.scrolly-narrative-container {
+  pointer-events: none !important;
+}
+
+.scrolly-story-card {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 2.5rem !important;
+  left: 2.5rem !important;
+  right: auto !important;
+  width: auto !important;
+  max-width: 360px !important;
+  padding: 0.85rem 1.15rem !important;
+  border-radius: 14px !important;
+  background: rgba(9, 11, 18, 0.58) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65) !important;
+  pointer-events: auto !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(12px) scale(0.98) !important;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s !important;
+}
+
+.scrolly-story-card.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.scrolly-story-card.story-stage-1,
+.scrolly-story-card.story-stage-2,
+.scrolly-story-card.story-stage-3 {
+  left: 2.5rem !important;
+  right: auto !important;
+}
+
+.scrolly-story-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  padding: 0.18rem 0.55rem !important;
+  margin-bottom: 0.3rem !important;
+  border-radius: 50px !important;
+  background: rgba(255, 122, 24, 0.15) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  color: #FF7A18 !important;
+}
+
+.scrolly-story-title {
+  font-size: 1.12rem !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.35rem !important;
+  font-weight: 800 !important;
   color: #FFFFFF !important;
-  box-shadow: 0 4px 16px rgba(255, 122, 24, 0.4) !important;
 }
 
-.scrolly-btn-book:hover {
-  background: #E6690B !important;
-  border-color: #E6690B !important;
-  transform: translateY(-2px);
+.scrolly-story-desc {
+  font-size: 0.78rem !important;
+  line-height: 1.38 !important;
+  color: #CBD5E1 !important;
+  margin: 0 !important;
 }
 
-.scrolly-btn-contact {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: #FFFFFF !important;
+/* Hide chips and buttons inside story cards */
+.scrolly-story-chips,
+.scrolly-story-actions {
+  display: none !important;
 }
 
-.scrolly-btn-contact:hover {
-  background: rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
-  transform: translateY(-2px);
-}
-
-/* 3. Mobile Responsiveness (Screen <= 768px) */
+/* 5. Mobile Responsiveness (Screen <= 768px) */
 @media (max-width: 768px) {
   .hero-banner-section {
-    padding: 0.5rem 0 1.5rem !important;
+    padding: 0.5rem 0 1rem !important;
   }
-  
+
+  .hero-banner-wrapper {
+    padding: 0 0.75rem !important;
+  }
+
   .hero-banner-frame {
     border-radius: 16px !important;
   }
-  
+
+  .hero-banner-img {
+    min-height: 480px !important;
+    max-height: 82vh !important;
+    aspect-ratio: 576 / 980 !important;
+    object-position: center top !important;
+  }
+
+  .hero-banner-cta-bar {
+    padding: 1.5rem 0.75rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .hero-banner-btn {
+    height: 38px !important;
+    padding: 0 0.95rem !important;
+    font-size: 0.78rem !important;
+    flex: 1 1 calc(50% - 0.5rem) !important;
+  }
+
   .banner-docked-widget {
-    margin-top: -1.75rem !important;
+    margin-top: 1rem !important;
     padding: 1.15rem 1rem !important;
     border-radius: 16px !important;
-    border-color: rgba(255, 122, 24, 0.3) !important;
   }
 
-  /* Scroller card cleanly anchored ABOVE the fixed mobile bar (height: 64px) */
+  /* Scroller card compact floating HUD above mobile bar */
   .scrolly-story-card {
     top: auto !important;
-    bottom: 5.5rem !important; /* Clears the mobile floating bottom bar completely */
-    left: 0.85rem !important;
-    right: 0.85rem !important;
+    bottom: 5.25rem !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
     width: auto !important;
     max-width: none !important;
-    padding: 1rem 1.15rem !important;
-    border-radius: 16px !important;
+    padding: 0.75rem 0.95rem !important;
+    border-radius: 14px !important;
     background: rgba(9, 11, 18, 0.65) !important;
-    backdrop-filter: blur(24px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7) !important;
-    transform: translateY(18px) scale(0.98) !important;
   }
 
-  .scrolly-story-card.active {
-    transform: translateY(0) scale(1) !important;
+  .scrolly-story-card.story-stage-1,
+  .scrolly-story-card.story-stage-2,
+  .scrolly-story-card.story-stage-3 {
+    left: 0.75rem !important;
+    right: 0.75rem !important;
   }
 
   .scrolly-story-badge {
-    font-size: 0.7rem !important;
-    padding: 0.2rem 0.6rem !important;
-    margin-bottom: 0.4rem !important;
+    font-size: 0.64rem !important;
+    padding: 0.15rem 0.45rem !important;
+    margin-bottom: 0.25rem !important;
   }
 
   .scrolly-story-title {
-    font-size: 1.2rem !important;
-    line-height: 1.22 !important;
-    margin-bottom: 0.35rem !important;
+    font-size: 1.05rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.25rem !important;
   }
 
   .scrolly-story-desc {
-    font-size: 0.8rem !important;
-    line-height: 1.4 !important;
-    margin-bottom: 0.6rem !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* Hide chips on mobile to maximize video visibility and keep buttons reachable */
-  .scrolly-story-chips {
-    display: none !important;
-  }
-
-  .scrolly-story-actions {
-    display: flex !important;
-    gap: 0.5rem !important;
-    width: 100% !important;
-  }
-
-  .scrolly-story-actions .btn-primary,
-  .scrolly-story-actions .btn-secondary,
-  .scrolly-story-actions .btn-hotline,
-  .scrolly-btn-book,
-  .scrolly-btn-contact {
-    flex: 1 !important;
-    height: 40px !important;
-    min-height: 40px !important;
-    padding: 0 0.8rem !important;
-    font-size: 0.82rem !important;
-    font-weight: 700 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 9999px !important;
-  }
-
-  /* Compact top telemetry & logo on mobile */
-  .scrolly-hud-left {
-    top: 0.75rem !important;
-    left: 0.75rem !important;
-  }
-  .scrolly-hud-pill {
-    padding: 0.25rem 0.65rem !important;
-    font-size: 0.72rem !important;
-  }
-  .scrolly-progress-track {
-    width: 70px !important;
-  }
-
-  .scrolly-brand-topright {
-    top: 0.75rem !important;
-    right: 0.75rem !important;
-  }
-  .scrolly-brand-glass {
-    padding: 0.25rem 0.65rem !important;
-  }
-  .scrolly-logo-img {
-    height: 20px !important;
-    margin-bottom: 0 !important;
-  }
-  .scrolly-brand-sub {
-    display: none !important;
+    font-size: 0.74rem !important;
+    line-height: 1.35 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
   }
 }
 
 @media (max-width: 480px) {
+  .hero-banner-img {
+    min-height: 440px !important;
+  }
+
+  .hero-banner-btn {
+    height: 36px !important;
+    padding: 0 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+
   .scrolly-story-card {
-    bottom: 5.25rem !important;
+    bottom: 5.15rem !important;
     left: 0.65rem !important;
     right: 0.65rem !important;
-    padding: 0.85rem 1rem !important;
+    padding: 0.65rem 0.85rem !important;
   }
+
   .scrolly-story-title {
-    font-size: 1.12rem !important;
-  }
-  .scrolly-story-actions .btn-primary,
-  .scrolly-story-actions .btn-secondary,
-  .scrolly-btn-book,
-  .scrolly-btn-contact {
-    font-size: 0.8rem !important;
-    height: 38px !important;
-    min-height: 38px !important;
+    font-size: 0.98rem !important;
   }
 }

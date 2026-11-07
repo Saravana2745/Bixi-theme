@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=17.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=18.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -85,9 +85,9 @@
   <style id="luxury-booking-and-3d-styles">
     /* LUXURY COMPACT BOOKING CONSOLE */
     #booking-engine {
-      padding: 1.5rem 0 2.5rem;
-      position: relative;
-      z-index: 50;
+      position: relative !important;
+      z-index: 100 !important;
+      overflow: visible !important;
     }
     .booking-widget-card {
       background: rgba(18, 20, 26, 0.96) !important;
@@ -247,7 +247,7 @@
       border: 1px solid rgba(232, 129, 36, 0.35) !important;
       border-radius: 10px !important;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(232, 129, 36, 0.15) !important;
-      z-index: 1000 !important;
+      z-index: 999999 !important;
       max-height: 250px !important;
       overflow-y: auto !important;
       box-sizing: border-box !important;
@@ -1119,6 +1119,27 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                  loading="eager"
                  decoding="async">
           </picture>
+        
+
+          <!-- Interactive Action Buttons on Hero Banner -->
+          <div class="hero-banner-cta-bar" aria-label="Hero Banner Quick Actions">
+            <a href="#homeQuickBookForm" class="hero-banner-btn hero-btn-rent" id="heroBannerBtnRent">
+              <span class="hero-btn-icon">⚡</span>
+              <span>Rent Your Ride Today</span>
+            </a>
+            <a href="bikes.html" class="hero-banner-btn hero-btn-fleet">
+              <span class="hero-btn-icon">🏍️</span>
+              <span>Explore Fleet (40+)</span>
+            </a>
+            <a href="contact.html" class="hero-banner-btn hero-btn-contact">
+              <span class="hero-btn-icon">📞</span>
+              <span>Contact Us</span>
+            </a>
+            <a href="tel:+919037000266" class="hero-banner-btn hero-btn-call">
+              <span class="hero-btn-icon">💬</span>
+              <span>+91 90370 00266</span>
+            </a>
+          </div>
         </div>
 
         <!-- Semantic SEO Keyword Structure for Search Engine Bots -->
@@ -1200,7 +1221,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js?v=17.0 based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=18.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
@@ -1380,15 +1401,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             <p class="scrolly-story-desc">
               Experience the sacred soul of Madurai with verified <strong>rental bikes in madurai</strong> and certified <strong>self drive car rental in madurai</strong>. Unlimited km freedom, zero deposit, and trusted service for <strong>bike rental madurai</strong> and <strong>madurai rental bikes</strong>.
             </p>
-            <div class="scrolly-story-chips">
-              <span class="scrolly-chip">Meenakshi Amman Kovil</span>
-              <span class="scrolly-chip">Walkable from Mattuthavani</span>
-              <span class="scrolly-chip">Zero Deposit</span>
-            </div>
-            <div class="scrolly-story-actions">
-              <a href="#booking-engine" class="btn-primary scrolly-btn-book">Book Ride ⚡</a>
-              <a href="contact.html" class="btn-secondary scrolly-btn-contact">Contact Us 📞</a>
-            </div>
           </div>
 
           <!-- Milestone 2: 34% - 66% (Temple Corridors & Swift Fleet) -->
@@ -1403,15 +1415,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             <p class="scrolly-story-desc">
               Glide past Dravidian stone pillars in chilled AC comfort. Sanitized <strong>car rental service in madurai</strong> featuring 2026 Maruti Swift (₹2,200/day) and premier <strong>madurai bike rental</strong> with doorstep handover.
             </p>
-            <div class="scrolly-story-chips">
-              <span class="scrolly-chip">Swift ₹2,200/Day</span>
-              <span class="scrolly-chip">Activa &amp; Hunter 350</span>
-              <span class="scrolly-chip">Junction Delivery</span>
-            </div>
-            <div class="scrolly-story-actions">
-              <a href="#booking-engine" class="btn-primary scrolly-btn-book">Book Ride ⚡</a>
-              <a href="contact.html" class="btn-secondary scrolly-btn-contact">Contact Us 📞</a>
-            </div>
           </div>
 
           <!-- Milestone 3: 67% - 100% (Vandiyur Teppakulam & Booking Entry) -->
@@ -1426,15 +1429,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             <p class="scrolly-story-desc">
               From serene Vandiyur Teppakulam to misty hill roads. Top search for <strong>best bike rental near me</strong> and certified <strong>car rental in madurai</strong>. Lock your ride with zero deposit today!
             </p>
-            <div class="scrolly-story-chips">
-              <span class="scrolly-chip">No Deposit</span>
-              <span class="scrolly-chip">Helmets Provided</span>
-              <span class="scrolly-chip">Instant Booking</span>
-            </div>
-            <div class="scrolly-story-actions">
-              <a href="#booking-engine" class="btn-primary scrolly-btn-book">Book Ride ⚡</a>
-              <a href="contact.html" class="btn-secondary scrolly-btn-contact">Contact Us 📞</a>
-            </div>
           </div>
 
         </div>
@@ -2393,6 +2387,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     };
   </script>
   <script src="assets/js/madurai-3d-map.js?v=6.0"></script>
-  <script src="assets/js/main.js?v=17.0"></script>
+  <script src="assets/js/main.js?v=18.0"></script>
 </body>
 </html>
