@@ -5755,23 +5755,23 @@ button.bixi-cal-day.empty,
    HERO BANNER EXPANSION, DROPDOWN Z-INDEX FIX & COMPACT VIDEO SCROLLER HUD
    ========================================================================== */
 
-/* 1. Hero Banner Expanded Dimensions & Stacking Context */
+/* 1. Hero Banner Balanced Dimensions & Top Headroom (No Logo Clipping) */
 .hero-banner-section {
   position: relative !important;
   z-index: 100 !important;
   overflow: visible !important;
   width: 100% !important;
-  padding: 1rem 0 1.5rem !important;
+  padding: 1.25rem 0 1.25rem !important;
   background: #090A0E !important;
 }
 
 .hero-banner-wrapper {
   position: relative !important;
   overflow: visible !important;
-  max-width: 1540px !important;
+  max-width: 1320px !important; /* Balanced desktop width */
   width: 100% !important;
   margin: 0 auto !important;
-  padding: 0 1.5rem !important;
+  padding: 0 1.25rem !important;
 }
 
 .hero-banner-frame {
@@ -5791,12 +5791,14 @@ button.bixi-cal-day.empty,
 
 .hero-banner-img {
   width: 100% !important;
-  min-height: 480px !important;
-  max-height: 640px !important;
+  height: auto !important;
+  aspect-ratio: 1024 / 512 !important;
   object-fit: cover !important;
-  object-position: center !important;
+  object-position: center top !important; /* Preserves top headroom so logo is never cut off */
   display: block !important;
   border-radius: 19px !important;
+  min-height: unset !important;
+  max-height: none !important;
 }
 
 /* 2. Hero Banner Interactive Action Buttons */
@@ -5808,10 +5810,10 @@ button.bixi-cal-day.empty,
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 0.85rem !important;
+  gap: 0.75rem !important;
   flex-wrap: wrap !important;
-  padding: 2.5rem 1.5rem 1.25rem !important;
-  background: linear-gradient(180deg, rgba(9, 10, 14, 0) 0%, rgba(9, 10, 14, 0.75) 45%, rgba(9, 10, 14, 0.96) 100%) !important;
+  padding: 1.8rem 1.25rem 1rem !important;
+  background: linear-gradient(180deg, rgba(9, 10, 14, 0) 0%, rgba(9, 10, 14, 0.65) 45%, rgba(9, 10, 14, 0.94) 100%) !important;
   z-index: 15 !important;
   pointer-events: auto !important;
 }
@@ -5820,12 +5822,12 @@ button.bixi-cal-day.empty,
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 0.5rem !important;
-  height: 44px !important;
-  padding: 0 1.4rem !important;
+  gap: 0.45rem !important;
+  height: 40px !important;
+  padding: 0 1.25rem !important;
   border-radius: 9999px !important;
   font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
-  font-size: 0.88rem !important;
+  font-size: 0.84rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.02em !important;
   text-decoration: none !important;
@@ -5838,13 +5840,13 @@ button.bixi-cal-day.empty,
   background: linear-gradient(135deg, #FF7A18 0%, #E6690B 100%) !important;
   color: #FFFFFF !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 4px 18px rgba(255, 122, 24, 0.5), 0 0 10px rgba(255, 122, 24, 0.3) !important;
+  box-shadow: 0 4px 16px rgba(255, 122, 24, 0.45), 0 0 10px rgba(255, 122, 24, 0.25) !important;
 }
 
 .hero-btn-rent:hover {
   background: linear-gradient(135deg, #FF8D36 0%, #FF6F00 100%) !important;
   transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 0 6px 24px rgba(255, 122, 24, 0.7) !important;
+  box-shadow: 0 6px 20px rgba(255, 122, 24, 0.65) !important;
   color: #FFFFFF !important;
 }
 
@@ -6035,9 +6037,11 @@ button.bixi-cal-day.empty,
   }
 
   .hero-banner-img {
-    min-height: 480px !important;
-    max-height: 82vh !important;
-    aspect-ratio: 576 / 980 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 80vh !important;
+    aspect-ratio: 576 / 1024 !important;
+    object-fit: cover !important;
     object-position: center top !important;
   }
 
