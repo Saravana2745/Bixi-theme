@@ -5399,3 +5399,262 @@ button.bixi-cal-day.empty,
     height: 24px;
   }
 }
+
+
+/* ==========================================================================
+   TRANSPARENT GLASS BENTO STORY CARDS & MOBILE RESPONSIVE ENGINE
+   Replaces messy solid box with ultra-minimal frosted glass and responsive layout
+   ========================================================================== */
+
+.scrolly-story-card {
+  position: absolute;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(9, 12, 18, 0.42) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 22px !important;
+  padding: 1.5rem 1.85rem !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+  top: 52%;
+  transform: translateY(-50%) translateY(24px) scale(0.96);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.45s !important;
+  z-index: 10;
+}
+
+.scrolly-story-card.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(-50%) translateY(0) scale(1) !important;
+}
+
+.scrolly-story-card.story-stage-1 {
+  left: 3.5rem !important;
+  right: auto !important;
+}
+
+.scrolly-story-card.story-stage-2 {
+  right: 3.5rem !important;
+  left: auto !important;
+}
+
+.scrolly-story-card.story-stage-3 {
+  left: 3.5rem !important;
+  right: auto !important;
+}
+
+.scrolly-story-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 122, 24, 0.15) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  color: #FF7A18 !important;
+  font-family: var(--font-tech, 'Barlow Condensed', sans-serif);
+  font-size: 0.78rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.28rem 0.75rem !important;
+  border-radius: 9999px !important;
+  margin-bottom: 0.65rem !important;
+  text-transform: uppercase;
+}
+
+.scrolly-story-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.5rem !important;
+  font-weight: 800;
+  line-height: 1.2 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 0.6rem !important;
+  letter-spacing: -0.02em;
+}
+
+.scrolly-story-desc {
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  color: #CBD5E1 !important;
+  margin-bottom: 0.95rem !important;
+}
+
+.scrolly-story-desc strong {
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+.scrolly-story-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem !important;
+  margin-bottom: 1.15rem !important;
+}
+
+.scrolly-chip {
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 0.24rem 0.6rem !important;
+  border-radius: 6px !important;
+  color: #CBD5E1 !important;
+}
+
+.scrolly-story-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem !important;
+  flex-wrap: wrap;
+}
+
+.scrolly-story-actions .btn-primary {
+  padding: 0.65rem 1.35rem !important;
+  font-size: 0.84rem !important;
+}
+
+.scrolly-story-actions .btn-secondary,
+.scrolly-story-actions .btn-hotline {
+  padding: 0.65rem 1.15rem !important;
+  font-size: 0.84rem !important;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS OVERHAUL
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .scrolly-story-card {
+    max-width: 400px !important;
+  }
+  .scrolly-story-card.story-stage-1,
+  .scrolly-story-card.story-stage-3 {
+    left: 2rem !important;
+  }
+  .scrolly-story-card.story-stage-2 {
+    right: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .scrolly-expedition-section {
+    height: 250vh !important;
+  }
+  
+  .scrolly-hud-left {
+    top: 1rem !important;
+    left: 1rem !important;
+  }
+  .scrolly-hud-pill {
+    padding: 0.3rem 0.75rem !important;
+    font-size: 0.74rem !important;
+  }
+  .scrolly-progress-track {
+    width: 90px !important;
+  }
+  
+  .scrolly-brand-topright {
+    top: 1rem !important;
+    right: 1rem !important;
+  }
+  .scrolly-brand-glass {
+    padding: 0.35rem 0.75rem !important;
+  }
+  .scrolly-logo-img {
+    height: 22px !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .scrolly-brand-sub {
+    font-size: 0.6rem !important;
+  }
+
+  /* Anchor glass box cleanly to bottom on mobile */
+  .scrolly-story-card {
+    top: auto !important;
+    bottom: 1.25rem !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 1.15rem 1.25rem !important;
+    border-radius: 18px !important;
+    background: rgba(8, 10, 16, 0.58) !important;
+    backdrop-filter: blur(24px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+    transform: translateY(20px) scale(0.98) !important;
+  }
+
+  .scrolly-story-card.active {
+    transform: translateY(0) scale(1) !important;
+  }
+
+  .scrolly-story-badge {
+    font-size: 0.72rem !important;
+    padding: 0.22rem 0.65rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  .scrolly-story-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .scrolly-story-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 0.7rem !important;
+  }
+
+  .scrolly-story-chips {
+    margin-bottom: 0.8rem !important;
+    gap: 0.3rem !important;
+  }
+  
+  .scrolly-chip {
+    font-size: 0.72rem !important;
+    padding: 0.2rem 0.5rem !important;
+  }
+
+  .scrolly-story-actions {
+    display: flex !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+  }
+
+  .scrolly-story-actions .btn-primary,
+  .scrolly-story-actions .btn-secondary,
+  .scrolly-story-actions .btn-hotline {
+    flex: 1 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 0.6rem 0.75rem !important;
+    font-size: 0.8rem !important;
+    min-height: 42px !important;
+  }
+
+  .scrolly-scroll-indicator {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .scrolly-story-card {
+    bottom: 0.85rem !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    padding: 1rem 1.1rem !important;
+  }
+  .scrolly-story-title {
+    font-size: 1.15rem !important;
+  }
+  .scrolly-story-desc {
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+  }
+  .scrolly-hud-label {
+    font-size: 0.7rem !important;
+  }
+}
