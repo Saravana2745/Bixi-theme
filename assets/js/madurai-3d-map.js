@@ -416,6 +416,9 @@
     orangeAccentLight.position.set(0, 9, 0);
     scene.add(orangeAccentLight);
 
+    // Universal Road & Highway Elevation Constant (Declared at Top of World Scope to Prevent Any TDZ)
+    const ROAD_Y = 0.25;
+
     // =========================================================================
     // 1. VAST ENCLOSED TERRAIN & 360° MOUNTAIN HORIZON (ZERO BLACK VOID!)
     // Expansive 320x320 master terrain covering entire viewable horizon
@@ -1916,6 +1919,190 @@
       scene.add(createPalm(s.x, s.z, 0.8 + Math.random() * 0.3));
     });
 
+    // Factory: Create Detailed Sculpted Maruti Suzuki Swift
+    function createMarutiSwift(hasHazards = true) {
+      const car = new THREE.Group();
+      
+      const carPaintMat = new THREE.MeshStandardMaterial({
+        color: 0xeb6b12,
+        metalness: 0.88,
+        roughness: 0.16
+      });
+      const glossBlackMat = new THREE.MeshStandardMaterial({
+        color: 0x090a0d,
+        metalness: 0.8,
+        roughness: 0.2
+      });
+      const carGlassMat = new THREE.MeshStandardMaterial({
+        color: 0x1e2d42,
+        metalness: 0.95,
+        roughness: 0.08,
+        transparent: true,
+        opacity: 0.88
+      });
+      const chromeMat = new THREE.MeshStandardMaterial({
+        color: 0xf1f5f9,
+        metalness: 0.98,
+        roughness: 0.12
+      });
+
+      // Sculpted Main Chassis & Aerodynamic Beltline
+      const chassis = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.24, 1.48), carPaintMat);
+      chassis.position.y = 0.22;
+      chassis.castShadow = true;
+      car.add(chassis);
+
+      // Sculpted Front Clamshell Hood
+      const hood = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.12, 0.42), carPaintMat);
+      hood.position.set(0, 0.25, 0.62);
+      hood.rotation.x = 0.12;
+      car.add(hood);
+
+      // Front Bumper with Hexagonal Mesh Grille & Chrome Slat
+      const frontBumper = new THREE.Mesh(new THREE.BoxGeometry(0.70, 0.16, 0.15), carPaintMat);
+      frontBumper.position.set(0, 0.16, 0.82);
+      car.add(frontBumper);
+
+      const grille = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.09, 0.05), glossBlackMat);
+      grille.position.set(0, 0.18, 0.88);
+      car.add(grille);
+
+      const grilleChrome = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.015, 0.06), chromeMat);
+      grilleChrome.position.set(0, 0.18, 0.885);
+      car.add(grilleChrome);
+
+      // Floating Roof Greenhouse
+      const cabinPillars = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.24, 0.78), glossBlackMat);
+      cabinPillars.position.set(0, 0.42, -0.05);
+      car.add(cabinPillars);
+
+      // Raked Front Windshield
+      const frontWindshield = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.22, 0.04), carGlassMat);
+      frontWindshield.position.set(0, 0.42, 0.32);
+      frontWindshield.rotation.x = -0.52;
+      car.add(frontWindshield);
+
+      // Rear Windshield
+      const rearWindshield = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.20, 0.04), carGlassMat);
+      rearWindshield.position.set(0, 0.42, -0.42);
+      rearWindshield.rotation.x = 0.45;
+      car.add(rearWindshield);
+
+      // Side Windows
+      const sideGlassL = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.18, 0.68), carGlassMat);
+      sideGlassL.position.set(-0.31, 0.42, -0.05);
+      car.add(sideGlassL);
+      const sideGlassR = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.18, 0.68), carGlassMat);
+      sideGlassR.position.set(0.31, 0.42, -0.05);
+      car.add(sideGlassR);
+
+      // Roof Canopy & Integrated Spoiler
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.04, 0.82), carPaintMat);
+      roof.position.set(0, 0.54, -0.06);
+      car.add(roof);
+
+      const spoiler = new THREE.Mesh(new THREE.BoxGeometry(0.60, 0.03, 0.12), glossBlackMat);
+      spoiler.position.set(0, 0.54, -0.48);
+      spoiler.rotation.x = -0.15;
+      car.add(spoiler);
+
+      // Wing Mirrors
+      for (let side = -1; side <= 1; side += 2) {
+        const mirror = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.05, 0.07), carPaintMat);
+        mirror.position.set(side * 0.38, 0.40, 0.24);
+        car.add(mirror);
+      }
+
+      // Swept-Back Projector LED Headlamps
+      const headMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const hlLensL = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.06, 12), headMat);
+      hlLensL.rotation.x = Math.PI / 2;
+      hlLensL.position.set(-0.24, 0.24, 0.78);
+      car.add(hlLensL);
+
+      const hlLensR = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.06, 12), headMat);
+      hlLensR.rotation.x = Math.PI / 2;
+      hlLensR.position.set(0.24, 0.24, 0.78);
+      car.add(hlLensR);
+
+      // Active Headlight Projector Beam
+      const carHeadlightSpot = new THREE.SpotLight(0xfffaed, 3.8, 7, Math.PI / 6, 0.35);
+      carHeadlightSpot.position.set(0, 0.28, 0.8);
+      const spotTarget = new THREE.Object3D();
+      spotTarget.position.set(0, 0, 4.0);
+      car.add(spotTarget);
+      carHeadlightSpot.target = spotTarget;
+      car.add(carHeadlightSpot);
+
+      // Taillights
+      const tailMat = new THREE.MeshBasicMaterial({ color: 0xdc2626 });
+      const tl1 = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.08, 0.04), tailMat);
+      tl1.position.set(-0.26, 0.26, -0.74);
+      car.add(tl1);
+      const tl2 = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.08, 0.04), tailMat);
+      tl2.position.set(0.26, 0.26, -0.74);
+      car.add(tl2);
+
+      // Dual-Tone 5-Spoke Precision Alloy Wheels with Treaded Rubber Tires
+      const tireRubberMat = new THREE.MeshStandardMaterial({ color: 0x121417, roughness: 0.92 });
+      const alloyRimMat = new THREE.MeshStandardMaterial({ color: 0xd4d8e0, metalness: 0.95, roughness: 0.15 });
+      const wheels = [];
+
+      const wheelOffsets = [
+        { x: -0.34, y: 0.13, z: 0.44 },
+        { x: 0.34, y: 0.13, z: 0.44 },
+        { x: -0.34, y: 0.13, z: -0.44 },
+        { x: 0.34, y: 0.13, z: -0.44 }
+      ];
+
+      wheelOffsets.forEach(wo => {
+        const wGroup = new THREE.Group();
+        const tire = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.042, 12, 24), tireRubberMat);
+        tire.rotation.y = Math.PI / 2;
+        wGroup.add(tire);
+
+        const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.07, 12), alloyRimMat);
+        hub.rotation.z = Math.PI / 2;
+        wGroup.add(hub);
+
+        for (let sp = 0; sp < 5; sp++) {
+          const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.07, 0.015), chromeMat);
+          spoke.rotation.x = (sp * Math.PI * 2) / 5;
+          spoke.position.set(0.038, 0, 0);
+          wGroup.add(spoke);
+        }
+
+        wGroup.position.set(wo.x, wo.y, wo.z);
+        car.add(wGroup);
+        wheels.push(wGroup);
+      });
+
+      // Amber Hazard Indicators
+      const carHazards = [];
+      if (hasHazards) {
+        const hazardMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
+        const hOffsets = [
+          [-0.33, 0.24, 0.76], [0.33, 0.24, 0.76],
+          [-0.33, 0.26, -0.72], [0.33, 0.26, -0.72]
+        ];
+        hOffsets.forEach(ho => {
+          const h = new THREE.Mesh(new THREE.SphereGeometry(0.03, 6, 6), hazardMat);
+          h.position.set(ho[0], ho[1], ho[2]);
+          h.visible = false;
+          car.add(h);
+          carHazards.push(h);
+        });
+      }
+
+      car.userData = {
+        wheels: wheels,
+        hazards: carHazards,
+        headlight: carHeadlightSpot
+      };
+
+      return car;
+    }
+
     // =========================================================================
     // 5b. LEFT BLACK ROAD, MATTUTHAVANI BUS STAND, TNSTC BUS & BIXI RENTAL HUB
     // =========================================================================
@@ -2350,7 +2537,6 @@
     // =========================================================================
     // 6. HIGHWAY ROAD LOOP & PARKING BAYS (ELEVATED FIRMLY AT y = 0.25)
     // =========================================================================
-    const ROAD_Y = 0.25;
 
     const roadControlPoints = [
       new THREE.Vector3(-4.8, ROAD_Y, 1.2),  // 0: Meenakshi Stop
@@ -2414,191 +2600,12 @@
     }
 
     // =========================================================================
+    // =========================================================================
     // 7. AUTHENTIC 3D MARUTI SWIFT HATCHBACK (METALLIC BIXI ORANGE + FLOATING ROOF + ALLOY WHEELS)
-    const carGroup = new THREE.Group();
-
-    // High-Gloss Automotive Metallic Paint (Signature BIXI Sunset Orange)
-    const carPaintMat = new THREE.MeshStandardMaterial({
-      color: 0xeb6b12,
-      metalness: 0.88,
-      roughness: 0.16
-    });
-
-    // Gloss Black Trim for Floating Roof (A/B/C Pillars & Mirror Mounts)
-    const glossBlackMat = new THREE.MeshStandardMaterial({
-      color: 0x090a0d,
-      metalness: 0.8,
-      roughness: 0.2
-    });
-
-    // Dark Tinted Automotive Glass with Specular Reflection
-    const carGlassMat = new THREE.MeshStandardMaterial({
-      color: 0x1e2d42,
-      metalness: 0.95,
-      roughness: 0.08,
-      transparent: true,
-      opacity: 0.88
-    });
-
-    const chromeMat = new THREE.MeshStandardMaterial({
-      color: 0xf1f5f9,
-      metalness: 0.98,
-      roughness: 0.12
-    });
-
-    // Sculpted Main Chassis & Aerodynamic Beltline
-    const chassis = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.24, 1.48), carPaintMat);
-    chassis.position.y = 0.22;
-    chassis.castShadow = true;
-    carGroup.add(chassis);
-
-    // Sculpted Front Clamshell Hood (Sloping forward aerodynamically)
-    const hood = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.12, 0.42), carPaintMat);
-    hood.position.set(0, 0.25, 0.62);
-    hood.rotation.x = 0.12;
-    carGroup.add(hood);
-
-    // Front Bumper with Hexagonal Mesh Grille & Chrome Slat
-    const frontBumper = new THREE.Mesh(new THREE.BoxGeometry(0.70, 0.16, 0.15), carPaintMat);
-    frontBumper.position.set(0, 0.16, 0.82);
-    carGroup.add(frontBumper);
-
-    const grille = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.09, 0.05), glossBlackMat);
-    grille.position.set(0, 0.18, 0.88);
-    carGroup.add(grille);
-
-    const grilleChrome = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.015, 0.06), chromeMat);
-    grilleChrome.position.set(0, 0.18, 0.885);
-    carGroup.add(grilleChrome);
-
-    // Iconic "Floating Roof" Architecture (Gloss Black Greenhouse Pillars)
-    const cabinPillars = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.24, 0.78), glossBlackMat);
-    cabinPillars.position.set(0, 0.42, -0.05);
-    carGroup.add(cabinPillars);
-
-    // Raked Front Windshield
-    const frontWindshield = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.22, 0.04), carGlassMat);
-    frontWindshield.position.set(0, 0.42, 0.32);
-    frontWindshield.rotation.x = -0.52;
-    carGroup.add(frontWindshield);
-
-    // Rear Windshield Hatch
-    const rearWindshield = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.20, 0.04), carGlassMat);
-    rearWindshield.position.set(0, 0.42, -0.42);
-    rearWindshield.rotation.x = 0.45;
-    carGroup.add(rearWindshield);
-
-    // Side Window Panels
-    const sideGlassL = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.18, 0.68), carGlassMat);
-    sideGlassL.position.set(-0.31, 0.42, -0.05);
-    carGroup.add(sideGlassL);
-    const sideGlassR = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.18, 0.68), carGlassMat);
-    sideGlassR.position.set(0.31, 0.42, -0.05);
-    carGroup.add(sideGlassR);
-
-    // Body-Colored Roof Canopy with Integrated Rear Spoiler Lip
-    const roof = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.04, 0.82), carPaintMat);
-    roof.position.set(0, 0.54, -0.06);
-    carGroup.add(roof);
-
-    const spoiler = new THREE.Mesh(new THREE.BoxGeometry(0.60, 0.03, 0.12), glossBlackMat);
-    spoiler.position.set(0, 0.54, -0.48);
-    spoiler.rotation.x = -0.15;
-    carGroup.add(spoiler);
-
-    // Aerodynamic Wing Mirrors
-    for (let side = -1; side <= 1; side += 2) {
-      const mirror = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.05, 0.07), carPaintMat);
-      mirror.position.set(side * 0.38, 0.40, 0.24);
-      carGroup.add(mirror);
-    }
-
-    // Swept-Back Projector LED Headlamps (Clear Casing + White Projector Lens)
-    const headMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    const hlLensL = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.06, 12), headMat);
-    hlLensL.rotation.x = Math.PI / 2;
-    hlLensL.position.set(-0.24, 0.24, 0.78);
-    carGroup.add(hlLensL);
-
-    const hlLensR = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.06, 12), headMat);
-    hlLensR.rotation.x = Math.PI / 2;
-    hlLensR.position.set(0.24, 0.24, 0.78);
-    carGroup.add(hlLensR);
-
-    // Active Headlight Projector Beam
-    const carHeadlightSpot = new THREE.SpotLight(0xfffaed, 3.8, 7, Math.PI / 6, 0.35);
-    carHeadlightSpot.position.set(0, 0.28, 0.8);
-    const spotTarget = new THREE.Object3D();
-    spotTarget.position.set(0, 0, 4.0);
-    carGroup.add(spotTarget);
-    carHeadlightSpot.target = spotTarget;
-    carGroup.add(carHeadlightSpot);
-
-    // Sculpted C-Shaped 3D LED Taillights
-    const tailMat = new THREE.MeshBasicMaterial({ color: 0xdc2626 });
-    const tl1 = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.08, 0.04), tailMat);
-    tl1.position.set(-0.26, 0.26, -0.74);
-    carGroup.add(tl1);
-    const tl2 = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.08, 0.04), tailMat);
-    tl2.position.set(0.26, 0.26, -0.74);
-    carGroup.add(tl2);
-
-    // Dual-Tone 5-Spoke Precision Alloy Wheels with Treaded Rubber Tires
-    const tireRubberMat = new THREE.MeshStandardMaterial({ color: 0x121417, roughness: 0.92 });
-    const alloyRimMat = new THREE.MeshStandardMaterial({ color: 0xd4d8e0, metalness: 0.95, roughness: 0.15 });
-    const carWheels = [];
-
-    const wheelOffsets = [
-      { x: -0.34, y: 0.13, z: 0.44 },
-      { x: 0.34, y: 0.13, z: 0.44 },
-      { x: -0.34, y: 0.13, z: -0.44 },
-      { x: 0.34, y: 0.13, z: -0.44 }
-    ];
-
-    wheelOffsets.forEach(wo => {
-      const wGroup = new THREE.Group();
-
-      // Deep Rubber Torus Tire
-      const tire = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.042, 12, 24), tireRubberMat);
-      tire.rotation.y = Math.PI / 2;
-      wGroup.add(tire);
-
-      // Machined Alloy Wheel Hub
-      const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.07, 12), alloyRimMat);
-      hub.rotation.z = Math.PI / 2;
-      wGroup.add(hub);
-
-      // 5-Spoke Star Rim Pattern
-      for (let sp = 0; sp < 5; sp++) {
-        const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.07, 0.015), chromeMat);
-        spoke.rotation.x = (sp * Math.PI * 2) / 5;
-        spoke.position.set(0.038, 0, 0);
-        wGroup.add(spoke);
-      }
-
-      wGroup.position.set(wo.x, wo.y, wo.z);
-      carGroup.add(wGroup);
-      carWheels.push(wGroup);
-    });
-
-    // Amber Hazard Indicators
-    const hazardMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
-    const hazards = [
-      new THREE.Mesh(new THREE.SphereGeometry(0.03, 6, 6), hazardMat),
-      new THREE.Mesh(new THREE.SphereGeometry(0.03, 6, 6), hazardMat),
-      new THREE.Mesh(new THREE.SphereGeometry(0.03, 6, 6), hazardMat),
-      new THREE.Mesh(new THREE.SphereGeometry(0.03, 6, 6), hazardMat)
-    ];
-    hazards[0].position.set(-0.33, 0.24, 0.76);
-    hazards[1].position.set(0.33, 0.24, 0.76);
-    hazards[2].position.set(-0.33, 0.26, -0.72);
-    hazards[3].position.set(0.33, 0.26, -0.72);
-    hazards.forEach(h => {
-      h.visible = false;
-      carGroup.add(h);
-    });
-
+    const carGroup = createMarutiSwift(true);
     scene.add(carGroup);
+    const carWheels = carGroup.userData.wheels;
+    const hazards = carGroup.userData.hazards;
 
     // Passenger Figures
     const touristOut = createPassengerFigure(0xffffff, 0x1e3a8a);
@@ -2844,7 +2851,7 @@
     const STOP_DURATION_FRAMES = 240;
 
     let animationFrameId = null;
-    let isVisible = false;
+    let isVisible = true;
 
     function animate() {
       if (!isVisible) return;
@@ -3214,23 +3221,28 @@
       renderer.render(scene, camera);
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (!isVisible) {
-            isVisible = true;
-            animate();
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!isVisible) {
+              isVisible = true;
+              animate();
+            }
+          } else {
+            // Only pause if completely scrolled out of view
+            if (entry.intersectionRatio === 0) {
+              isVisible = false;
+              if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+              }
+            }
           }
-        } else {
-          isVisible = false;
-          if (animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-          }
-        }
-      });
-    }, { threshold: 0.1 });
+        });
+      }, { threshold: [0, 0.1] });
 
-    observer.observe(container);
+      observer.observe(container);
+    }
 
     window.addEventListener('resize', () => {
       if (!container) return;
