@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=21.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=23.0">
 
   <!-- Breadcrumb & Organization Schema -->
     <!-- Mobile Floating Quick Call / Rent Bar -->
@@ -152,18 +152,51 @@
           <a href="index.html">Home</a> &nbsp;/&nbsp; <span>About Us</span>
         </nav>
 
-        <div class="lux-manifesto-block">
-          <span class="lux-category-tag">OUR ORIGIN &amp; PURPOSE • ESTD 2018</span>
-          <h1 class="lux-manifesto-h1">
-            Born in the Temple City.<br>
-            <span class="text-orange">Built for the Open Road.</span>
-          </h1>
-          <p class="lux-manifesto-lead">
-            Madurai is steeped in 2,500 years of glorious Dravidian heritage. Yet for decades, travelers arriving at Madurai Railway Junction or Mattuthavani were trapped between rigid bus routes and exorbitant taxi negotiations.
-          </p>
-          <p class="lux-manifesto-body">
-            In 2018, BIXI Ride opened its main headquarters walkable from Mattuthavani Bus Stand (K. Pudur) and West Veli Street with a radical commitment: <strong>zero security deposit, 100% legal commercial permits, sanitized protective gear, and paperless digital onboarding</strong>. Today, BIXI is Madurai’s premier two-wheeler and self-drive car mobility partner — providing dependable <strong>bike rental in madurai</strong>, <strong>madurai bike rental</strong>, and comprehensive <strong>car rental in madurai</strong>.
-          </p>
+        <div class="lux-about-hero-grid">
+          <!-- Left: Editorial Manifesto -->
+          <div class="lux-manifesto-block">
+            <span class="lux-category-tag">OUR ORIGIN &amp; PURPOSE • ESTD 2018</span>
+            <h1 class="lux-manifesto-h1">
+              Born in the Temple City.<br>
+              <span class="text-orange">Built for the Open Road.</span>
+            </h1>
+            <p class="lux-manifesto-lead">
+              Madurai is steeped in 2,500 years of glorious Dravidian heritage. Yet for decades, travelers arriving at Madurai Railway Junction or Mattuthavani were trapped between rigid bus routes and exorbitant taxi negotiations.
+            </p>
+            <p class="lux-manifesto-body">
+              In 2018, BIXI Ride opened its main headquarters walkable from Mattuthavani Bus Stand (K. Pudur) and West Veli Street with a radical commitment: <strong>zero security deposit, 100% legal commercial permits, sanitized protective gear, and paperless digital onboarding</strong>. Today, BIXI is Madurai’s premier two-wheeler and self-drive car mobility partner — providing dependable <strong>bike rental in madurai</strong>, <strong>madurai bike rental</strong>, and comprehensive <strong>car rental in madurai</strong>.
+            </p>
+          </div>
+
+          <!-- Right: Luxury Visual Hub Showcase Card (Eliminates Blank Space) -->
+          <div class="lux-about-showcase-card">
+            <div class="lux-showcase-badge">
+              <span>✦</span>
+              <span>MADURAI OFFICIAL RENTAL HEADQUARTERS</span>
+            </div>
+            <h3 class="lux-showcase-title">Pioneering Frictionless Freedom Across Tamil Nadu</h3>
+            <p class="lux-showcase-lead">
+              From historic Meenakshi Gopurams to the misty hairpin roads of Kodaikanal, our fleet of 500+ verified vehicles is engineered for unforgettable explorations.
+            </p>
+            <div class="lux-showcase-points-grid">
+              <div class="lux-showcase-point">
+                <span class="lux-sp-label">Zero Deposit</span>
+                <span class="lux-sp-sub">Aadhaar KYC protocol with no frozen funds</span>
+              </div>
+              <div class="lux-showcase-point">
+                <span class="lux-sp-label">Yellow Plates</span>
+                <span class="lux-sp-sub">100% RTO legal commercial road permits</span>
+              </div>
+              <div class="lux-showcase-point">
+                <span class="lux-sp-label">Walkable Hub</span>
+                <span class="lux-sp-sub">3 mins from Mattuthavani Integrated Terminus</span>
+              </div>
+              <div class="lux-showcase-point">
+                <span class="lux-sp-label">Junction Delivery</span>
+                <span class="lux-sp-sub">Instant 60-second doorstep train handover</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Metric Pillars (Pure Typography & Subtle Lines) -->
@@ -198,6 +231,97 @@
             <span class="lux-m-sub">Across All Tamil Nadu Roads</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MULTI-LAYER 3-STAGE CINEMATIC CAR & SHOP EXPEDITION ═══════════════ -->
+    <section class="about-journey-scrolly-section" id="about-scrolly-journey" aria-label="BIXI Fleet & Flagship Hub Multi-Layer Experience">
+      
+      <!-- Pinned 3D WebGL Viewport -->
+      <div class="about-journey-sticky-stage">
+        <canvas id="about-car-canvas" class="about-car-webgl-canvas"></canvas>
+
+        <!-- Dynamic Camera & Stage Telemetry HUD -->
+        <div class="about-journey-hud">
+          <div class="journey-hud-pill">
+            <span class="journey-hud-dot"></span>
+            <span id="journeyHudLabel">STAGE 1/3 • AERODYNAMIC SIDE PROFILE</span>
+          </div>
+          <div class="journey-hud-track">
+            <div class="journey-hud-bar" id="journeyProgressBar" style="width: 15%;"></div>
+          </div>
+        </div>
+
+        <!-- 3 Multi-Layer Scrollytelling Diva Cards -->
+        <div class="container about-divas-container">
+          
+          <!-- Diva 1: Car Side View (0% - 33%) -->
+          <div class="about-diva-card diva-stage-1 active" id="aboutDiva1">
+            <div class="about-diva-badge">
+              <span>✦</span>
+              <span>SCROLL STAGE 01 • SIDE PROFILE SPECIFICATION</span>
+            </div>
+            <h2 class="about-diva-title">
+              Pristine Fleet <span class="text-orange">Aerodynamic Precision</span>
+            </h2>
+            <p class="about-diva-desc">
+              Every Maruti Swift and certified two-wheeler in our <strong>bike rental in madurai</strong> fleet is maintained to showroom perfection. Featuring commercial yellow-plate registration, zero security deposit, and verified insurance.
+            </p>
+            <div class="about-diva-chips">
+              <span class="about-diva-chip">Side Profile Inspection</span>
+              <span class="about-diva-chip">Zero Deposit Protocol</span>
+              <span class="about-diva-chip">100% Legal Commercial Fleet</span>
+            </div>
+          </div>
+
+          <!-- Diva 2: Front Cockpit Zoom on People (34% - 66%) -->
+          <div class="about-diva-card diva-stage-2" id="aboutDiva2">
+            <div class="about-diva-badge">
+              <span>✦</span>
+              <span>SCROLL STAGE 02 • IN-CABIN PASSENGER COMFORT</span>
+            </div>
+            <h2 class="about-diva-title">
+              Spacious Luxury for <span class="text-orange">Families &amp; Friends</span>
+            </h2>
+            <p class="about-diva-desc">
+              Step inside chilled climate-controlled comfort. Certified <strong>self drive car rental in madurai</strong> offering premium 5-passenger seating, bluetooth navigation, and spotless sanitized interiors for temple pilgrimages and hill climbs.
+            </p>
+            <div class="about-diva-chips">
+              <span class="about-diva-chip">5-Seater Chilled AC</span>
+              <span class="about-diva-chip">Sanitized Interior Cabin</span>
+              <span class="about-diva-chip">Infotainment &amp; GPS</span>
+            </div>
+          </div>
+
+          <!-- Diva 3: Wide Pull-Back Revealing Car + BIXI Shop (67% - 100%) -->
+          <div class="about-diva-card diva-stage-3" id="aboutDiva3">
+            <div class="about-diva-badge">
+              <span>✦</span>
+              <span>SCROLL STAGE 03 • THE BIXI FLAGSHIP SHOP &amp; DISPATCH</span>
+            </div>
+            <h2 class="about-diva-title">
+              The Flagship Hub at <span class="text-orange">Mattuthavani &amp; Junction</span>
+            </h2>
+            <p class="about-diva-desc">
+              Walk 2 minutes from Mattuthavani Bus Terminus or collect at Madurai Railway Junction. Our flagship 24/7 dispatch hub provides lightning-fast 60-second handovers, comprehensive <strong>car rental service in madurai</strong>, and round-the-clock highway rescue.
+            </p>
+            <div class="about-diva-chips">
+              <span class="about-diva-chip">Walkable MIBT Hub</span>
+              <span class="about-diva-chip">60-Second Handover</span>
+              <span class="about-diva-chip">24/7 Roadside Rescue</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Scroll Indicator Hint -->
+        <div class="about-journey-indicator">
+          <span>Scroll to Glide 3D Camera &amp; Reveal BIXI Hub</span>
+          <div class="journey-mouse-icon">
+            <div class="journey-wheel"></div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -595,6 +719,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=21.0"></script>
+  <script src="assets/js/main.js?v=23.0"></script>
+  <script src="assets/js/about-3d-journey.js?v=23.0"></script>
 </body>
 </html>

@@ -3333,14 +3333,13 @@ select.form-control:focus {
   margin-bottom: 1.25rem;
 }
 .lux-manifesto-body {
-  min-height: 100vh;
-  line-height: 1.6;
-  background-color: #090A0E !important;
-  color: #F1F5F9;
-  overflow-x: hidden;
-  position: relative;
-  padding-top: var(--header-height, 72px) !important;
-  margin: 0 !important;
+  font-size: 1.05rem !important;
+  color: #94A3B8 !important;
+  line-height: 1.7 !important;
+  margin-bottom: 2rem !important;
+  min-height: unset !important;
+  padding-top: 0 !important;
+  background-color: transparent !important;
 }
 .lux-t-num {
   display: block;
@@ -6125,5 +6124,376 @@ button.bixi-cal-day.empty,
 
   .scrolly-story-title {
     font-size: 0.98rem !important;
+  }
+}
+
+
+/* ==========================================================================
+   ABOUT US - HERO REBALANCING & 3-STAGE MULTI-LAYER CINEMATIC JOURNEY
+   ========================================================================== */
+
+/* Split Hero Grid Layout (Eliminates Blank Right Space) */
+.lux-about-hero-grid {
+  display: grid !important;
+  grid-template-columns: 1.2fr 0.95fr !important;
+  gap: 3.5rem !important;
+  align-items: center !important;
+  margin-bottom: 3.5rem !important;
+}
+
+.lux-about-showcase-card {
+  position: relative !important;
+  background: rgba(14, 17, 25, 0.8) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 20px !important;
+  padding: 2.2rem 2.4rem !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 122, 24, 0.12) !important;
+}
+
+.lux-showcase-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  color: #FF7A18 !important;
+  background: rgba(255, 122, 24, 0.14) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  padding: 0.3rem 0.85rem !important;
+  border-radius: 50px !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.lux-showcase-title {
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 0.75rem !important;
+  line-height: 1.25 !important;
+}
+
+.lux-showcase-lead {
+  font-size: 0.9rem !important;
+  color: #94A3B8 !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1.6rem !important;
+}
+
+.lux-showcase-points-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.85rem !important;
+}
+
+.lux-showcase-point {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 0.85rem 1rem !important;
+}
+
+.lux-sp-label {
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  display: block !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.lux-sp-sub {
+  font-size: 0.75rem !important;
+  color: #94A3B8 !important;
+  display: block !important;
+  line-height: 1.35 !important;
+}
+
+/* 3-Stage Multi-Layer Cinematic Scrollytelling Section */
+.about-journey-scrolly-section {
+  position: relative !important;
+  height: 320vh !important;
+  background: #090A0E !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 10 !important;
+}
+
+.about-journey-sticky-stage {
+  position: sticky !important;
+  top: 72px !important;
+  height: calc(100vh - 72px) !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  background: radial-gradient(circle at 50% 40%, #151826 0%, #090a0e 70%, #050608 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.about-car-webgl-canvas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+/* Dynamic HUD Telemetry */
+.about-journey-hud {
+  position: absolute !important;
+  top: 1.5rem !important;
+  left: 2rem !important;
+  z-index: 20 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+  pointer-events: none !important;
+}
+
+.journey-hud-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  background: rgba(13, 16, 24, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 122, 24, 0.4) !important;
+  padding: 0.4rem 0.95rem !important;
+  border-radius: 50px !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.journey-hud-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #FF7A18 !important;
+  box-shadow: 0 0 10px #FF7A18 !important;
+  animation: pulseDot 1.4s infinite !important;
+}
+
+.journey-hud-track {
+  width: 140px !important;
+  height: 4px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+}
+
+.journey-hud-bar {
+  height: 100% !important;
+  background: linear-gradient(90deg, #FF7A18, #FFA048) !important;
+  border-radius: 4px !important;
+  transition: width 0.1s ease !important;
+}
+
+/* 3 Multi-Layer Scrollytelling Diva Cards */
+.about-divas-container {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  pointer-events: none !important;
+  z-index: 15 !important;
+}
+
+.about-diva-card {
+  position: absolute !important;
+  bottom: 3.5rem !important;
+  left: 3rem !important;
+  width: auto !important;
+  max-width: 440px !important;
+  padding: 1.4rem 1.75rem !important;
+  border-radius: 18px !important;
+  background: rgba(10, 13, 20, 0.68) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 122, 24, 0.1) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) scale(0.96) !important;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s !important;
+  pointer-events: auto !important;
+}
+
+.about-diva-card.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Diva 1: Bottom Left */
+.about-diva-card.diva-stage-1 {
+  bottom: 3.5rem !important;
+  left: 3rem !important;
+  right: auto !important;
+}
+
+/* Diva 2: Bottom Right (opposite side so user sees zoom inside) */
+.about-diva-card.diva-stage-2 {
+  bottom: 3.5rem !important;
+  right: 3rem !important;
+  left: auto !important;
+}
+
+/* Diva 3: Bottom Left (wide panoramic shop view) */
+.about-diva-card.diva-stage-3 {
+  bottom: 3.5rem !important;
+  left: 3rem !important;
+  right: auto !important;
+}
+
+.about-diva-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  color: #FF7A18 !important;
+  background: rgba(255, 122, 24, 0.14) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  padding: 0.22rem 0.65rem !important;
+  border-radius: 50px !important;
+  margin-bottom: 0.55rem !important;
+}
+
+.about-diva-title {
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  line-height: 1.22 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.about-diva-desc {
+  font-size: 0.84rem !important;
+  line-height: 1.5 !important;
+  color: #CBD5E1 !important;
+  margin-bottom: 0.85rem !important;
+}
+
+.about-diva-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.4rem !important;
+}
+
+.about-diva-chip {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: #94A3B8 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 0.2rem 0.55rem !important;
+  border-radius: 50px !important;
+}
+
+/* Scroll Hint Indicator */
+.about-journey-indicator {
+  position: absolute !important;
+  bottom: 1.25rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  font-size: 0.72rem !important;
+  color: #64748B !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+
+.journey-mouse-icon {
+  width: 18px !important;
+  height: 28px !important;
+  border: 2px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  justify-content: center !important;
+  padding-top: 4px !important;
+}
+
+.journey-wheel {
+  width: 3px !important;
+  height: 6px !important;
+  background: #FF7A18 !important;
+  border-radius: 2px !important;
+  animation: mouseWheel 1.5s infinite !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .lux-about-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-journey-scrolly-section {
+    height: 260vh !important;
+  }
+
+  .about-journey-hud {
+    top: 1rem !important;
+    left: 1rem !important;
+  }
+
+  .journey-hud-pill {
+    padding: 0.25rem 0.65rem !important;
+    font-size: 0.68rem !important;
+  }
+
+  .about-diva-card {
+    left: 1rem !important;
+    right: 1rem !important;
+    bottom: 5.5rem !important;
+    max-width: none !important;
+    padding: 1rem 1.15rem !important;
+    border-radius: 16px !important;
+  }
+
+  .about-diva-card.diva-stage-1,
+  .about-diva-card.diva-stage-2,
+  .about-diva-card.diva-stage-3 {
+    left: 1rem !important;
+    right: 1rem !important;
+  }
+
+  .about-diva-title {
+    font-size: 1.12rem !important;
+  }
+
+  .about-diva-desc {
+    font-size: 0.78rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .about-diva-chips {
+    display: none !important;
+  }
+
+  .about-journey-indicator {
+    display: none !important;
   }
 }
