@@ -7664,7 +7664,11 @@ button.bixi-cal-day.empty,
   width: 100vw !important;
   height: 100vh !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding-top: var(--header-height, 72px) !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
   background: #06070A !important;
@@ -7836,9 +7840,28 @@ button.bixi-cal-day.empty,
   position: relative !important;
   flex: 1 !important;
   width: 100% !important;
-  height: calc(100vh - 64px) !important;
+  height: calc(100vh - var(--header-height, 72px)) !important;
   overflow: hidden !important;
   background: #06070A !important;
+}
+
+/* Floating Stage Mode Switcher (Integrated into 3D Viewport) */
+.app-stage-switcher-floating {
+  position: absolute !important;
+  top: 1.2rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 35 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: auto !important;
+}
+
+@media (max-width: 1400px) {
+  .app-telemetry-hud {
+    top: 4.8rem !important;
+  }
 }
 
 .bixi-full-canvas {
@@ -8320,7 +8343,10 @@ html {
     font-size: 0.75rem !important;
   }
   .bixi-app-stage {
-    height: calc(100vh - 52px) !important;
+    height: calc(100vh - var(--header-height, 72px)) !important;
+  }
+  .app-stage-switcher-floating {
+    top: 3.2rem !important;
   }
   .app-bottom-hint-pill {
     display: none !important;

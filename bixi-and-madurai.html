@@ -166,31 +166,63 @@
     </div>
   </div>
 
-  <!-- ═══════════════ FULL-SCREEN TOP APPLICATION HEADER ═══════════════ -->
-  <header class="bixi-app-header">
-    <div class="app-header-left">
-      <a href="index.html" class="app-back-btn" title="Return to Main Website">
-        <svg viewBox="0 0 24 24" class="app-back-icon" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        <span>Back to Home</span>
-      </a>
-
-      <div class="app-header-divider"></div>
-
-      <a href="index.html" class="app-brand-link">
-        <img src="assets/images/logo.svg" alt="BIXI Ride" width="105" height="38" class="app-logo">
-      </a>
-
-      <div class="app-title-badge">
-        <span class="live-dot pulse"></span>
-        <span class="app-title-text">3D MADURAI ROUTE LAB</span>
-      </div>
+  <!-- Standard Site Navigation (Identical to all other pages) -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="nav-brand" aria-label="BIXI Ride Madurai Home">
+          <img src="assets/images/logo.svg" alt="BIXI Ride Logo" class="nav-logo" width="160" height="60">
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="bixi-and-madurai.html" class="nav-link active">BIXI &amp; Madurai</a></li>
+          <li><a href="bikes.html" class="nav-link">Rent Vehicles</a></li>
+          <li><a href="blog.html" class="nav-link">Blog &amp; Guides</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="tel:+919037000266" class="btn-hotline" aria-label="Call BIXI Hotline">
+            <svg viewBox="0 0 24 24" class="btn-hotline-icon" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
+            <span class="hotline-number">+91 90370 00266</span>
+          </a>
+          <a href="bikes.html" class="btn-primary">Rent Vehicle</a>
+          <button class="nav-toggle" aria-label="Toggle Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <!-- Center Stage Controls Inspired by Arura 3D Lab -->
-    <div class="app-header-center">
+  <!-- Mobile Drawer Menu (Identical to all other pages) -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-top">
+      <img src="assets/images/logo.svg" alt="BIXI Ride" width="140" style="margin-bottom: 2rem;">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link">Home <span>→</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">About Us <span>→</span></a></li>
+        <li><a href="bixi-and-madurai.html" class="mobile-nav-link active">BIXI &amp; Madurai <span>→</span></a></li>
+        <li><a href="bikes.html" class="mobile-nav-link">Rent Vehicles <span>→</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog &amp; Guides <span>→</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact Us <span>→</span></a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-footer">
+      <a href="tel:+919037000266" class="btn-hotline mobile-drawer-call">
+        <svg viewBox="0 0 24 24" class="btn-hotline-icon" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
+        <span>+91 90370 00266</span>
+      </a>
+      <a href="bikes.html" class="btn-primary" style="width: 100%; margin-bottom: 0.8rem;">Explore Fleet</a>
+      <a href="https://wa.me/919037000266" class="btn-secondary btn-whatsapp" style="width: 100%;">WhatsApp Booking</a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ FULL-SCREEN INTERACTIVE 3D VIEWPORT STAGE ═══════════════ -->
+  <main class="bixi-app-stage" id="madurai-3d-map-wrapper">
+    <!-- Floating Center Stage Mode Switcher (Heritage Tour / Swift Cruise / Food Circuit) -->
+    <div class="app-stage-switcher-floating">
       <div class="app-stage-switcher" role="tablist" aria-label="3D Tour Perspective Modes">
         <button type="button" class="app-stage-btn active" id="btnStageMacro" onclick="switchAppStage(1)" role="tab" aria-selected="true" title="Overview of Madurai Route & Temples">
           <span class="stage-num">1</span>
@@ -208,22 +240,6 @@
         </button>
       </div>
     </div>
-
-    <!-- Right Header Actions -->
-    <div class="app-header-right">
-      <a href="tel:+919037000266" class="btn-hotline app-hotline-btn" title="Call 24/7 BIXI Dispatch">
-        <svg viewBox="0 0 24 24" class="btn-hotline-icon" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
-        <span class="hotline-text">+91 90370 00266</span>
-      </a>
-
-      <a href="bikes.html" class="btn-primary app-rent-btn">
-        <span>Rent Vehicle</span>
-      </a>
-    </div>
-  </header>
-
-  <!-- ═══════════════ FULL-SCREEN INTERACTIVE 3D VIEWPORT STAGE ═══════════════ -->
-  <main class="bixi-app-stage" id="madurai-3d-map-wrapper">
     <!-- WebGL Canvas Filling 100% of Stage -->
     <canvas id="madurai-3d-map-canvas" class="bixi-full-canvas"></canvas>
 
@@ -435,6 +451,7 @@
   <!-- Scripts -->
   <script src="assets/js/madurai-3d-map.js?v=27.0"></script>
   <script src="assets/js/react-bits-animations.js?v=25.0"></script>
+  <script src="assets/js/main.js?v=25.0"></script>
 
   <!-- Preloader & Interaction Logic -->
   <script>
