@@ -37,13 +37,13 @@
   const CHECKPOINTS = [
     {
       id: 'meenakshi',
-      name: 'Meenakshi Amman Kovil',
+      name: 'Shri Meenakshi Amman Kovil',
       category: 'Temple Wonder',
       roadPos: { x: -4.8, y: 0.25, z: 1.2 },
-      modelPos: { x: -7.5, y: 0, z: 1.2 },
+      modelPos: { x: -11.8, y: 0, z: 1.2 },
       facing: Math.PI / 2, // Facing East toward road
-      camPos: { x: -2.0, y: 10.5, z: 9.0 },
-      target: { x: -6.8, y: 2.5, z: 1.2 },
+      camPos: { x: -4.2, y: 13.5, z: 12.0 },
+      target: { x: -11.2, y: 3.8, z: 1.2 },
       distance: '1.2 km from Junction',
       time: '5 mins',
       vehicle: 'Activa 6G / Maruti Swift',
@@ -880,17 +880,41 @@
       vimanaGroup.add(stupiKalasam);
       temple.add(vimanaGroup);
 
+      // Grand Elevated Temple Signboard (Mounted High Above Gateway Arch for 100% Unobstructed Visibility)
       const signTex = createSignboardTexture(
-        'SRI MEENAKSHI AMMAN TEMPLE',
-        'MADURAI HERITAGE • 2,500 YRS • 14 SACRED GOPURAMS',
-        '#160e0a',
+        'Shri Meenakshi Amman Kovil',
+        'அருள்மிகு மீனாட்சி அம்மன் கோவில் • MADURAI 2,500 YR HERITAGE • 14 SACRED GOPURAMS',
+        '#140d08',
         '#ffffff',
         '#ff9933'
       );
       const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.5, 0.55), signMat);
-      sign.position.set(0, 2.05, 1.12);
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.72), signMat);
+      sign.position.set(0, 3.25, 1.35); // Elevated high above the torana arch for crystal-clear readability
       temple.add(sign);
+
+      // Ornamental Temple Entrance Plinth Flagstones (5m Spacious Courtyard)
+      const courtGeo = new THREE.BoxGeometry(4.8, 0.08, 3.8);
+      const courtMat = new THREE.MeshStandardMaterial({ color: 0x221f1c, roughness: 0.92 });
+      const court = new THREE.Mesh(courtGeo, courtMat);
+      court.position.set(0, 0.04, 2.6);
+      temple.add(court);
+
+      // Traditional Brass Deepam Pillars (Oil Lamp Columns with Golden Glow)
+      [-1.8, 1.8].forEach(dx => {
+        const deepamPost = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.09, 1.8, 10), brassMat);
+        deepamPost.position.set(dx, 0.9, 3.8);
+        temple.add(deepamPost);
+
+        const flameBowl = new THREE.Mesh(new THREE.SphereGeometry(0.12, 10, 8, 0, Math.PI * 2, 0, Math.PI * 0.5), brassMat);
+        flameBowl.rotation.x = Math.PI;
+        flameBowl.position.set(dx, 1.82, 3.8);
+        temple.add(flameBowl);
+
+        const diyaLight = new THREE.PointLight(0xffa500, 1.2, 4);
+        diyaLight.position.set(dx, 1.95, 3.8);
+        temple.add(diyaLight);
+      });
 
       // 7-Tier Sculpted Dravidian Raja Gopuram (Parabolic 4-sided Frustums with Kudu Arches & Corner Stupis)
       let currentY = 2.25;
@@ -1012,9 +1036,9 @@
       tankGroup.add(lotus);
       temple.add(tankGroup);
 
-      const badge = createBixiPopupBadge('Meenakshi Amman Kovil', 'Temple Wonder');
-      badge.position.set(0, 6.8, 0);
-      badge.userData.baseY = 6.8;
+      const badge = createBixiPopupBadge('Shri Meenakshi Amman Kovil', 'Temple Wonder');
+      badge.position.set(0, 7.6, 0);
+      badge.userData.baseY = 7.6;
       temple.add(badge);
       popupBadges['meenakshi'] = badge;
 
@@ -1022,7 +1046,7 @@
     }
 
     const meenakshiModel = createMeenakshiTemple();
-    meenakshiModel.position.set(-7.5, 0, 1.2);
+    meenakshiModel.position.set(-11.8, 0, 1.2);
     meenakshiModel.rotation.y = Math.PI / 2; // Faces East towards Road
     scene.add(meenakshiModel);
 
@@ -1515,13 +1539,67 @@
       chimneyCowl.position.set(1.2, 3.46, -0.6);
       hotel.add(chimneyCowl);
 
+      // Realistic Volumetric Flowing Smoke & Sizzling Bun Parotta Tawa Steam
       const smokeGroup = new THREE.Group();
-      const smokeMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.5, roughness: 1.0 });
-      for (let sm = 0; sm < 5; sm++) {
-        const puff = new THREE.Mesh(new THREE.SphereGeometry(0.14 + sm * 0.04, 8, 8), smokeMat);
-        puff.position.set(1.2, 3.6 + sm * 0.28, -0.6 + sm * 0.05);
-        puff.userData = { baseY: 3.6 + sm * 0.28, offset: sm * 0.8 };
+      const smokeMat = new THREE.MeshStandardMaterial({
+        color: 0xe2e8f0,
+        transparent: true,
+        opacity: 0.55,
+        roughness: 1.0,
+        depthWrite: false
+      });
+      const steamMat = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.45,
+        roughness: 1.0,
+        depthWrite: false
+      });
+
+      // 1. Chimney Exhaust Billowing Smoke (22 particles)
+      for (let sm = 0; sm < 22; sm++) {
+        const puff = new THREE.Mesh(new THREE.SphereGeometry(0.14, 8, 8), smokeMat.clone());
+        const initialProg = sm / 22;
+        puff.position.set(
+          1.2 + (Math.random() - 0.5) * 0.1,
+          3.5 + initialProg * 3.4,
+          -0.6 + (Math.random() - 0.5) * 0.1
+        );
+        puff.userData = {
+          type: 'chimney',
+          baseX: 1.2,
+          baseY: 3.5,
+          baseZ: -0.6,
+          maxRise: 3.5,
+          speed: 0.016 + Math.random() * 0.012,
+          seed: sm * 0.55,
+          baseOpacity: 0.55
+        };
         smokeGroup.add(puff);
+        chimneySmokeParticles.push(puff);
+      }
+
+      // 2. Sizzling Iron Bun Parotta Tawa Culinary Steam (14 particles)
+      for (let st = 0; st < 14; st++) {
+        const steam = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), steamMat.clone());
+        const initialProg = st / 14;
+        steam.position.set(
+          -0.35 + (Math.random() - 0.5) * 0.35,
+          1.0 + initialProg * 1.6,
+          0.7 + (Math.random() - 0.5) * 0.35
+        );
+        steam.userData = {
+          type: 'tawa',
+          baseX: -0.35,
+          baseY: 1.0,
+          baseZ: 0.7,
+          maxRise: 1.7,
+          speed: 0.014 + Math.random() * 0.01,
+          seed: st * 0.75,
+          baseOpacity: 0.45
+        };
+        smokeGroup.add(steam);
+        chimneySmokeParticles.push(steam);
       }
       hotel.add(smokeGroup);
 
@@ -1837,6 +1915,437 @@
     scenicPalmSpots.forEach(s => {
       scene.add(createPalm(s.x, s.z, 0.8 + Math.random() * 0.3));
     });
+
+    // =========================================================================
+    // 5b. LEFT BLACK ROAD, MATTUTHAVANI BUS STAND, TNSTC BUS & BIXI RENTAL HUB
+    // =========================================================================
+
+    // 1. Left Black Road (Entering from the West leading into Mattuthavani Bus Stand)
+    const busRoadPoints = [
+      new THREE.Vector3(-25.0, ROAD_Y, -5.6),
+      new THREE.Vector3(-21.0, ROAD_Y, -5.4),
+      new THREE.Vector3(-17.5, ROAD_Y, -5.0),
+      new THREE.Vector3(-14.5, ROAD_Y, -4.2),
+      new THREE.Vector3(-12.0, ROAD_Y, -3.2),
+      new THREE.Vector3(-9.5, ROAD_Y, -2.0),
+      new THREE.Vector3(-7.2, ROAD_Y, -0.6) // Merges smoothly into main Madurai tour road
+    ];
+    const busRoadCurve = new THREE.CatmullRomCurve3(busRoadPoints);
+
+    // Deep Black Asphalt Road Ribbon
+    const busRoadGeo = new THREE.TubeGeometry(busRoadCurve, 60, 0.52, 8, false);
+    busRoadGeo.scale(1, 0.04, 1);
+    const busRoadMat = new THREE.MeshStandardMaterial({
+      color: 0x12141a,
+      roughness: 0.82,
+      metalness: 0.15
+    });
+    const busRoadMesh = new THREE.Mesh(busRoadGeo, busRoadMat);
+    scene.add(busRoadMesh);
+
+    // Glowing Yellow Centerline on the Black Road
+    const busRoadLineGeo = new THREE.TubeGeometry(busRoadCurve, 60, 0.045, 4, false);
+    busRoadLineGeo.scale(1, 0.05, 1);
+    const busRoadLineMat = new THREE.MeshBasicMaterial({ color: 0xffcc00 });
+    const busRoadLineMesh = new THREE.Mesh(busRoadLineGeo, busRoadLineMat);
+    busRoadLineMesh.position.y = 0.022;
+    scene.add(busRoadLineMesh);
+
+    // Left Road Streetlights
+    [-23.0, -18.5, -14.0, -10.0].forEach((lx, idx) => {
+      const lamp = new THREE.Group();
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 2.2, 8), new THREE.MeshStandardMaterial({ color: 0x334155 }));
+      pole.position.y = 1.1;
+      lamp.add(pole);
+
+      const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.55, 6), new THREE.MeshStandardMaterial({ color: 0x334155 }));
+      arm.position.set(0.18, 2.18, 0);
+      arm.rotation.z = Math.PI / 3;
+      lamp.add(arm);
+
+      const head = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.08, 0.14), new THREE.MeshStandardMaterial({ color: 0x1e293b }));
+      head.position.set(0.38, 2.28, 0);
+      lamp.add(head);
+
+      const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffe680 }));
+      bulb.position.set(0.38, 2.22, 0);
+      lamp.add(bulb);
+
+      const pLight = new THREE.PointLight(0xffe680, 0.85, 5.5);
+      pLight.position.set(0.38, 2.15, 0);
+      lamp.add(pLight);
+
+      lamp.position.set(lx, 0, -6.1);
+      scene.add(lamp);
+    });
+
+    // 2. Mattuthavani Integrated Bus Stand Building (MIBT)
+    function createMattuthavaniBusStand() {
+      const stand = new THREE.Group();
+      const concourseMat = new THREE.MeshStandardMaterial({ color: 0x1a1e29, roughness: 0.85 });
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x2e3547, roughness: 0.65 });
+      const canopyGlass = new THREE.MeshStandardMaterial({ color: 0x0ea5e9, roughness: 0.15, metalness: 0.7, transparent: true, opacity: 0.45 });
+      const steelPillar = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.85, roughness: 0.25 });
+      const platformYellow = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.6 });
+
+      // Raised Platform Base
+      const base = new THREE.Mesh(new THREE.BoxGeometry(7.6, 0.28, 3.8), concourseMat);
+      base.position.set(0, 0.14, 0);
+      base.receiveShadow = true;
+      stand.add(base);
+
+      // Yellow Safety Platform Edges
+      const edge = new THREE.Mesh(new THREE.BoxGeometry(7.6, 0.04, 0.15), platformYellow);
+      edge.position.set(0, 0.29, 1.8);
+      stand.add(edge);
+
+      // Passenger Terminal Building
+      const terminalHall = new THREE.Mesh(new THREE.BoxGeometry(7.2, 1.6, 1.5), wallMat);
+      terminalHall.position.set(0, 0.95, -1.0);
+      terminalHall.castShadow = true;
+      stand.add(terminalHall);
+
+      // Glass Waiting Concourse Windows
+      const glassFront = new THREE.Mesh(new THREE.PlaneGeometry(6.6, 0.95), canopyGlass);
+      glassFront.position.set(0, 1.05, -0.24);
+      stand.add(glassFront);
+
+      // Arched Terminal Canopy Over Platforms (Steel Trusses & Glass)
+      const roof = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.4, 7.6, 16, 1, false, 0, Math.PI), canopyGlass);
+      roof.rotation.z = Math.PI / 2;
+      roof.position.set(0, 2.15, 0.6);
+      stand.add(roof);
+
+      // Steel Support Pillars
+      [-3.4, -1.2, 1.2, 3.4].forEach(px => {
+        const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.0, 10), steelPillar);
+        pillar.position.set(px, 1.15, 1.7);
+        stand.add(pillar);
+      });
+
+      // Terminal Signboard: MATTUTHAVANI BUS STAND (MIBT)
+      const signTex = createSignboardTexture(
+        'MATTUTHAVANI BUS STAND (MIBT)',
+        'MADURAI INTEGRATED BUS TERMINUS • TNSTC PLATFORM 1',
+        '#081226',
+        '#ffffff',
+        '#38bdf8'
+      );
+      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 0.65), signMat);
+      sign.position.set(0, 2.4, -0.22);
+      stand.add(sign);
+
+      // Platform Overhead Bay Indicator
+      const bayTex = createSignboardTexture(
+        'BAY 1: INTERSTATE & CHENNAI EXPRESS',
+        'ARRIVALS: EVERY 5 MINS • 24/7 TERMINAL',
+        '#022c22',
+        '#4ade80',
+        '#ffffff'
+      );
+      const baySign = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 0.45), new THREE.MeshBasicMaterial({ map: bayTex }));
+      baySign.position.set(0, 1.85, 1.68);
+      stand.add(baySign);
+
+      // Interior Concourse Warm Ambient Light
+      const concourseLight = new THREE.PointLight(0xfff1b8, 1.4, 8);
+      concourseLight.position.set(0, 1.5, 0.2);
+      stand.add(concourseLight);
+
+      return stand;
+    }
+
+    const busStandModel = createMattuthavaniBusStand();
+    busStandModel.position.set(-16.8, 0, -6.2);
+    scene.add(busStandModel);
+
+    // 3. Realistic TNSTC Ultra Deluxe / AC Sleeper Bus Model
+    function createRealisticTnstcBus() {
+      const bus = new THREE.Group();
+      
+      const tnstcGreen = new THREE.MeshStandardMaterial({ color: 0x00703c, roughness: 0.45, metalness: 0.2 }); // TNSTC Emerald Green
+      const pearlWhite = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.35, metalness: 0.1 });
+      const windowGlass = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.1, metalness: 0.9 });
+      const rubberMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.95 });
+      const rimMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2 });
+      const chromeMat = new THREE.MeshStandardMaterial({ color: 0xd8dde4, metalness: 0.95, roughness: 0.15 });
+      const headlampMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const redStopMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+
+      // Lower Chassis Frame
+      const chassis = new THREE.Mesh(new THREE.BoxGeometry(4.3, 0.25, 1.35), new THREE.MeshStandardMaterial({ color: 0x111827 }));
+      chassis.position.y = 0.35;
+      bus.add(chassis);
+
+      // Lower Green Body (Classic TNSTC Emerald Stripe)
+      const lowerBody = new THREE.Mesh(new THREE.BoxGeometry(4.25, 0.55, 1.32), tnstcGreen);
+      lowerBody.position.y = 0.65;
+      lowerBody.castShadow = true;
+      bus.add(lowerBody);
+
+      // Upper White Body & Roof
+      const upperBody = new THREE.Mesh(new THREE.BoxGeometry(4.25, 0.55, 1.32), pearlWhite);
+      upperBody.position.y = 1.15;
+      upperBody.castShadow = true;
+      bus.add(upperBody);
+
+      // Aerodynamic Front Nose (Curved Bumper)
+      const noseGeo = new THREE.CylinderGeometry(0.66, 0.66, 1.32, 16, 1, false, -Math.PI / 2, Math.PI);
+      const nose = new THREE.Mesh(noseGeo, tnstcGreen);
+      nose.rotation.z = Math.PI / 2;
+      nose.position.set(2.12, 0.65, 0);
+      bus.add(nose);
+
+      // Large Tinted Front Panoramic Windshield with Curved Glass
+      const windshield = new THREE.Mesh(new THREE.PlaneGeometry(1.22, 0.65), windowGlass);
+      windshield.rotation.y = Math.PI / 2;
+      windshield.position.set(2.14, 1.18, 0);
+      bus.add(windshield);
+
+      // Electronic LED Destination Matrix: MADURAI - MATTUTHAVANI
+      const destTex = createSignboardTexture(
+        'MADURAI - MATTUTHAVANI',
+        'TNSTC ULTRA DELUXE • EXPRESS SERVICE',
+        '#022c22',
+        '#22c55e',
+        '#ffffff'
+      );
+      const destSign = new THREE.Mesh(new THREE.PlaneGeometry(1.05, 0.22), new THREE.MeshBasicMaterial({ map: destTex }));
+      destSign.rotation.y = Math.PI / 2;
+      destSign.position.set(2.14, 1.42, 0);
+      bus.add(destSign);
+
+      // Passenger Tinted Window Ribbon (Both Sides)
+      [-0.67, 0.67].forEach(zSide => {
+        const sideWindows = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.42, 0.04), windowGlass);
+        sideWindows.position.set(-0.15, 1.15, zSide);
+        bus.add(sideWindows);
+
+        // Window Pillar Dividers
+        for (let w = -1.6; w <= 1.4; w += 0.5) {
+          const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.42, 0.05), pearlWhite);
+          pillar.position.set(w, 1.15, zSide);
+          bus.add(pillar);
+        }
+      });
+
+      // Dual High-Beam Projector Headlights
+      [-0.45, 0.45].forEach(zHead => {
+        const headlamp = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.06, 12), headlampMat);
+        headlamp.rotation.z = Math.PI / 2;
+        headlamp.position.set(2.14, 0.55, zHead);
+        bus.add(headlamp);
+
+        // Bright Forward Headlight Beam Cone illuminating the asphalt
+        const beamGeo = new THREE.ConeGeometry(0.65, 3.2, 16, 1, true);
+        const beamMat = new THREE.MeshBasicMaterial({ color: 0xfff3b0, transparent: true, opacity: 0.18, side: THREE.DoubleSide });
+        const beam = new THREE.Mesh(beamGeo, beamMat);
+        beam.rotation.z = -Math.PI / 2;
+        beam.position.set(3.7, 0.52, zHead);
+        bus.add(beam);
+      });
+
+      // Chrome Front Grille & TNSTC Badge
+      const grille = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.16, 0.55), chromeMat);
+      grille.position.set(2.14, 0.55, 0);
+      bus.add(grille);
+
+      // Rear Red Stop Lamps
+      [-0.5, 0.5].forEach(zTail => {
+        const tail = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.22, 0.1), redStopMat);
+        tail.position.set(-2.14, 0.65, zTail);
+        bus.add(tail);
+      });
+
+      // Roof Carrier AC Pod Unit
+      const acUnit = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.18, 0.85), new THREE.MeshStandardMaterial({ color: 0xd1d5db, roughness: 0.3 }));
+      acUnit.position.set(-0.2, 1.48, 0);
+      bus.add(acUnit);
+
+      // 6 Heavy-Duty Wheels (Front Axle + Dual Rear Axles)
+      const busWheelMeshes = [];
+      const wheelPositions = [
+        { x: 1.35, z: 0.68 }, { x: 1.35, z: -0.68 },   // Front Steering
+        { x: -0.9, z: 0.68 }, { x: -0.9, z: -0.68 },   // Mid-Rear Axle
+        { x: -1.6, z: 0.68 }, { x: -1.6, z: -0.68 }    // Rear Drive Axle
+      ];
+
+      wheelPositions.forEach(wp => {
+        const wg = new THREE.Group();
+        const tire = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.16, 16), rubberMat);
+        tire.rotation.x = Math.PI / 2;
+        wg.add(tire);
+
+        const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.17, 12), rimMat);
+        rim.rotation.x = Math.PI / 2;
+        wg.add(rim);
+
+        wg.position.set(wp.x, 0.26, wp.z);
+        bus.add(wg);
+        busWheelMeshes.push(wg);
+      });
+
+      bus.userData = { wheels: busWheelMeshes };
+      return bus;
+    }
+
+    const tnstcBusModel = createRealisticTnstcBus();
+    tnstcBusModel.position.set(-24.0, ROAD_Y, -5.6);
+    scene.add(tnstcBusModel);
+
+    // 4. BIXI Ride Rental Hub (Mattuthavani Headquarters - Walkable from Bus Stand)
+    function createBixiRentalHub() {
+      const hub = new THREE.Group();
+      
+      const darkPlateMat = new THREE.MeshStandardMaterial({ color: 0x0a0c12, roughness: 0.88 });
+      const bixiOrangeMat = new THREE.MeshStandardMaterial({ color: 0xff7a18, metalness: 0.5, roughness: 0.25 });
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.45, roughness: 0.1 });
+      const bayYellow = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.5 });
+
+      // Ground Paved Concrete Yard
+      const yard = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.2, 4.4), darkPlateMat);
+      yard.position.set(0, 0.1, 0);
+      yard.receiveShadow = true;
+      hub.add(yard);
+
+      // Glass Rental Lounge & Reception Office
+      const lounge = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.4, 2.2), darkPlateMat);
+      lounge.position.set(-1.2, 0.8, -0.9);
+      lounge.castShadow = true;
+      hub.add(lounge);
+
+      const glassWall = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 1.1), glassMat);
+      glassWall.position.set(-1.2, 0.85, 0.21);
+      hub.add(glassWall);
+
+      // Reception Desk Counter Inside Lounge
+      const desk = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.55, 0.4), bixiOrangeMat);
+      desk.position.set(-1.2, 0.45, -0.2);
+      hub.add(desk);
+
+      // Dispatch Canopy (Cantilevered Roof over Rental Bays)
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.14, 2.6), darkPlateMat);
+      canopy.position.set(1.2, 1.6, 0.4);
+      hub.add(canopy);
+
+      const canopyPillar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.5, 10), bixiOrangeMat);
+      canopyPillar.position.set(2.3, 0.85, 1.5);
+      hub.add(canopyPillar);
+
+      // Marked Vehicle Rental Stall (Yellow Box Lines on Tarmac)
+      const stallBorder = new THREE.Mesh(new THREE.RingGeometry(0.85, 0.95, 4, 1, Math.PI / 4), bayYellow);
+      stallBorder.rotation.x = -Math.PI / 2;
+      stallBorder.position.set(1.2, 0.21, 0.4);
+      hub.add(stallBorder);
+
+      // Illuminated BIXI HQ Signboard
+      const signTex = createSignboardTexture(
+        'BIXI RIDE • VEHICLE RENTAL HUB',
+        'MATTUTHAVANI HQ • WALKABLE FROM BUS STAND • ZERO DEPOSIT',
+        '#0d111a',
+        '#ffffff',
+        '#ff7a18'
+      );
+      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.65), signMat);
+      sign.position.set(0, 1.85, -0.88);
+      hub.add(sign);
+
+      // Neon Orange Accent Crown Strip
+      const neonStrip = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.08, 0.08), new THREE.MeshBasicMaterial({ color: 0xff7a18 }));
+      neonStrip.position.set(0, 2.2, -0.88);
+      hub.add(neonStrip);
+
+      // Orange Dispatch Ambient Floodlight
+      const flood = new THREE.PointLight(0xff7a18, 1.8, 7.5);
+      flood.position.set(1.2, 1.45, 0.4);
+      hub.add(flood);
+
+      return hub;
+    }
+
+    const bixiHubModel = createBixiRentalHub();
+    bixiHubModel.position.set(-11.5, 0, -3.2);
+    scene.add(bixiHubModel);
+
+    // 5. The Customer Rental Car (Maruti Suzuki Swift at BIXI Dispatch Bay)
+    const bixiCustomerCar = createMarutiSwift();
+    bixiCustomerCar.position.set(-10.3, ROAD_Y, -2.8);
+    bixiCustomerCar.rotation.y = Math.PI * 0.4; // Facing outward toward exit lane
+    bixiCustomerCar.scale.set(0.9, 0.9, 0.9);
+    scene.add(bixiCustomerCar);
+
+    // 6. The 3D Animated Traveler (Walks from Bus Stand to BIXI Hub, Picks Up Car & Drives Out)
+    function createTravelerFigure() {
+      const traveler = new THREE.Group();
+      
+      const jacketMat = new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.65 }); // Traveler Blue
+      const skinMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.8 });
+      const pantsMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.9 });
+      const backpackMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.7 });
+      const capMat = new THREE.MeshStandardMaterial({ color: 0xff7a18, roughness: 0.5 }); // BIXI Cap
+
+      // Torso
+      const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.45, 10), jacketMat);
+      torso.position.y = 0.58;
+      traveler.add(torso);
+
+      // Travel Backpack on Back
+      const pack = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.28, 0.14), backpackMat);
+      pack.position.set(0, 0.62, -0.12);
+      traveler.add(pack);
+
+      // Head
+      const head = new THREE.Mesh(new THREE.SphereGeometry(0.08, 10, 10), skinMat);
+      head.position.y = 0.88;
+      traveler.add(head);
+
+      // Cap
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.05, 10), capMat);
+      cap.position.set(0, 0.94, 0.02);
+      traveler.add(cap);
+
+      // Articulated Left & Right Legs
+      const legGeo = new THREE.CylinderGeometry(0.04, 0.035, 0.38, 8);
+      const lLeg = new THREE.Mesh(legGeo, pantsMat);
+      lLeg.position.set(-0.06, 0.22, 0);
+      traveler.add(lLeg);
+
+      const rLeg = new THREE.Mesh(legGeo, pantsMat);
+      rLeg.position.set(0.06, 0.22, 0);
+      traveler.add(rLeg);
+
+      // Articulated Arms
+      const armGeo = new THREE.CylinderGeometry(0.03, 0.025, 0.35, 8);
+      const lArm = new THREE.Mesh(armGeo, jacketMat);
+      lArm.position.set(-0.16, 0.6, 0);
+      traveler.add(lArm);
+
+      const rArm = new THREE.Mesh(armGeo, jacketMat);
+      rArm.position.set(0.16, 0.6, 0);
+      traveler.add(rArm);
+
+      traveler.userData = {
+        lLeg: lLeg,
+        rLeg: rLeg,
+        lArm: lArm,
+        rArm: rArm
+      };
+
+      traveler.scale.set(1.1, 1.1, 1.1);
+      return traveler;
+    }
+
+    const bixiTraveler = createTravelerFigure();
+    bixiTraveler.position.set(-16.0, ROAD_Y, -4.8);
+    bixiTraveler.visible = false;
+    scene.add(bixiTraveler);
+
+    // Customer Journey State Tracking Variables
+    let journeyFrame = 0;
+    const JOURNEY_CYCLE_FRAMES = 720; // ~12 second full continuous loop
+
 
     // =========================================================================
     // 6. HIGHWAY ROAD LOOP & PARKING BAYS (ELEVATED FIRMLY AT y = 0.25)
@@ -2539,20 +3048,121 @@
       }
 
       // -----------------------------------------------------------------------
-      // F. ANIMATE POWER KADAI BILLOWING CHIMNEY SMOKE
+      // F. ANIMATE POWER KADAI REALISTIC FLOWING SMOKE & TAWAS STEAM
       // -----------------------------------------------------------------------
       chimneySmokeParticles.forEach((puff) => {
         puff.position.y += puff.userData.speed;
-        puff.position.x += puff.userData.drift;
-        const progress = (puff.position.y - puff.userData.baseY) / 1.6;
-        puff.scale.set(1 + progress * 1.6, 1 + progress * 1.6, 1 + progress * 1.6);
-        puff.material.opacity = Math.max(0, 0.6 * (1 - progress));
-        if (puff.position.y > puff.userData.baseY + 1.6) {
+        const rise = puff.position.y - puff.userData.baseY;
+        const progress = Math.min(rise / puff.userData.maxRise, 1.0);
+
+        // Natural swirling breeze turbulence
+        puff.position.x = puff.userData.baseX + Math.sin(timeSec * 2.2 + puff.userData.seed) * 0.16 * progress;
+        puff.position.z = puff.userData.baseZ + Math.cos(timeSec * 1.8 + puff.userData.seed) * 0.14 * progress;
+
+        // Expanding volumetric billows as smoke rises into the night air
+        const scaleVal = (puff.userData.type === 'chimney' ? 0.7 : 0.4) + progress * 2.2;
+        puff.scale.set(scaleVal, scaleVal * 1.15, scaleVal);
+
+        // Opacity softly fades out into the atmosphere
+        puff.material.opacity = Math.max(0, puff.userData.baseOpacity * (1.0 - progress));
+
+        // Recycle particle to base when reaching maximum rise
+        if (puff.position.y > puff.userData.baseY + puff.userData.maxRise) {
           puff.position.y = puff.userData.baseY;
-          puff.position.x = 0.8 + (Math.random() - 0.5) * 0.1;
-          puff.scale.set(1, 1, 1);
+          puff.position.x = puff.userData.baseX + (Math.random() - 0.5) * 0.12;
+          puff.position.z = puff.userData.baseZ + (Math.random() - 0.5) * 0.12;
+          puff.scale.set(0.5, 0.5, 0.5);
+          puff.material.opacity = puff.userData.baseOpacity;
         }
       });
+
+      // -----------------------------------------------------------------------
+      // G. ANIMATE LEFT ROAD TNSTC BUS & BIXI CUSTOMER JOURNEY SEQUENCE
+      // -----------------------------------------------------------------------
+      journeyFrame = (journeyFrame + 1) % JOURNEY_CYCLE_FRAMES;
+
+      // Phase 1: Bus Driving In Along Left Black Road (Frames 0 to 180)
+      if (journeyFrame < 180) {
+        const busProg = journeyFrame / 180;
+        // Travel from x = -25.0 to x = -16.5 at Mattuthavani Bus Stand
+        const busT = busProg * 0.42; // travels first 42% of the road curve to the bus platform
+        const bPt = busRoadCurve.getPointAt(busT);
+        const bNext = busRoadCurve.getPointAt(busT + 0.01);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+
+        // Spin bus wheels matching speed
+        if (tnstcBusModel.userData.wheels) {
+          tnstcBusModel.userData.wheels.forEach(w => {
+            w.rotation.x += 0.22;
+          });
+        }
+        bixiTraveler.visible = false;
+        bixiCustomerCar.position.set(-10.3, ROAD_Y, -2.8);
+        bixiCustomerCar.rotation.y = Math.PI * 0.4;
+      } 
+      // Phase 2: Bus Stops at Platform, Traveler Steps Out and Walks to BIXI Hub (Frames 180 to 360)
+      else if (journeyFrame >= 180 && journeyFrame < 360) {
+        // Bus stays parked at platform
+        const bPt = busRoadCurve.getPointAt(0.42);
+        const bNext = busRoadCurve.getPointAt(0.43);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+
+        bixiTraveler.visible = true;
+        const walkProg = (journeyFrame - 180) / 180;
+        const startPos = new THREE.Vector3(-16.0, ROAD_Y, -4.8);
+        const bixiDeskPos = new THREE.Vector3(-11.6, ROAD_Y, -3.1);
+        bixiTraveler.position.lerpVectors(startPos, bixiDeskPos, walkProg);
+        bixiTraveler.lookAt(bixiDeskPos);
+
+        // Natural walking stride
+        const stride = journeyFrame * 0.25;
+        bixiTraveler.userData.lLeg.rotation.x = Math.sin(stride) * 0.6;
+        bixiTraveler.userData.rLeg.rotation.x = -Math.sin(stride) * 0.6;
+        bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.5;
+        bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.5;
+        bixiTraveler.position.y = ROAD_Y + Math.abs(Math.sin(stride)) * 0.04;
+      }
+      // Phase 3: Traveler Arrives at BIXI Desk & Collects Car Keys (Frames 360 to 440)
+      else if (journeyFrame >= 360 && journeyFrame < 440) {
+        bixiTraveler.visible = true;
+        bixiTraveler.position.set(-11.6, ROAD_Y, -3.1);
+        bixiTraveler.lookAt(new THREE.Vector3(-12.4, ROAD_Y, -3.1)); // Looking at BIXI reception desk
+
+        bixiTraveler.userData.lLeg.rotation.x = 0;
+        bixiTraveler.userData.rLeg.rotation.x = 0;
+        bixiTraveler.userData.lArm.rotation.x = -0.3;
+        bixiTraveler.userData.rArm.rotation.x = 0.4; // Hand outstretched receiving keys
+      }
+      // Phase 4: Traveler Walks to Maruti Swift and Gets In (Frames 440 to 520)
+      else if (journeyFrame >= 440 && journeyFrame < 520) {
+        bixiTraveler.visible = true;
+        const toCarProg = (journeyFrame - 440) / 80;
+        const deskPos = new THREE.Vector3(-11.6, ROAD_Y, -3.1);
+        const carDoorPos = new THREE.Vector3(-10.5, ROAD_Y, -2.6);
+        bixiTraveler.position.lerpVectors(deskPos, carDoorPos, toCarProg);
+        bixiTraveler.lookAt(carDoorPos);
+
+        const stride = journeyFrame * 0.25;
+        bixiTraveler.userData.lLeg.rotation.x = Math.sin(stride) * 0.6;
+        bixiTraveler.userData.rLeg.rotation.x = -Math.sin(stride) * 0.6;
+        bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.5;
+        bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.5;
+      }
+      // Phase 5: Traveler in Car, Swift Accelerates Out of BIXI and Drives Along Road (Frames 520 to 720)
+      else {
+        bixiTraveler.visible = false; // Person is inside the car!
+
+        const driveProg = (journeyFrame - 520) / 200;
+        // Car drives along connector road from 0.48 to 1.0 (merging onto main Madurai highway)
+        const carTVal = 0.48 + driveProg * 0.52;
+        const cPt = busRoadCurve.getPointAt(Math.min(carTVal, 0.99));
+        const cNext = busRoadCurve.getPointAt(Math.min(carTVal + 0.01, 1.0));
+        bixiCustomerCar.position.set(cPt.x, ROAD_Y + 0.12, cPt.z);
+        bixiCustomerCar.lookAt(new THREE.Vector3(cNext.x, ROAD_Y + 0.12, cNext.z));
+      }
+
 
       // -----------------------------------------------------------------------
       // G. SPIN PIN BEACONS

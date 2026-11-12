@@ -7983,14 +7983,14 @@ button.bixi-cal-day.empty,
 /* Telemetry HUD Top-Left */
 .app-telemetry-hud {
   position: absolute !important;
-  top: 1.4rem !important;
-  left: 360px !important;
+  top: 5.2rem !important;
+  left: 1.5rem !important;
   z-index: 25 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 0.4rem !important;
   pointer-events: none !important;
-  transition: left 0.3s ease !important;
+  transition: all 0.3s ease !important;
 }
 
 .telemetry-meta-tags {
