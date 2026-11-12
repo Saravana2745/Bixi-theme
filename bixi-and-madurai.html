@@ -35,8 +35,9 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css?v=24.0">
 
-  <!-- Three.js (Loaded for this dedicated 3D interactive application) -->
+  <!-- Three.js + Official OrbitControls for 360 Free Rotation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="assets/js/OrbitControls.js?v=25.0"></script>
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -235,16 +236,21 @@
     </div>
 
     <!-- Floating Left-Side Landmark Quick-Select Panel (Arura-style) -->
-    <aside class="app-landmarks-sidebar" aria-label="Interactive Madurai Checkpoints">
+    <aside class="app-landmarks-sidebar" id="appLandmarksSidebar" aria-label="Interactive Madurai Checkpoints">
       <div class="sidebar-header">
-        <span class="sidebar-badge">SELECT DESTINATION</span>
+        <div class="sidebar-header-top">
+          <span class="sidebar-badge">SELECT DESTINATION</span>
+          <button type="button" class="sidebar-toggle-btn" id="btnToggleSidebar" onclick="toggleLandmarksSidebar()" title="Collapse / Expand Panel" aria-label="Toggle Waypoints Panel">
+            <span class="toggle-icon">◀</span>
+          </button>
+        </div>
         <h3>Interactive 3D Waypoints</h3>
         <p>Click any landmark to fly camera &amp; open historical guide</p>
       </div>
 
       <nav class="sidebar-landmarks-list">
         <button type="button" class="sidebar-checkpoint-btn active dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('meenakshi')" data-checkpoint="meenakshi">
-          <span class="cp-icon">🛕</span>
+          <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v3m-7 4h14l-2 12H7L5 9zm3-4h8v4H8V5z"/></svg></span>
           <div class="cp-info">
             <span class="cp-name">Meenakshi Amman Kovil</span>
             <span class="cp-sub">1.2 km from Junction • 14 Gopurams</span>
@@ -253,7 +259,7 @@
         </button>
 
         <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('alagar-kovil')" data-checkpoint="alagar-kovil">
-          <span class="cp-icon">🌿</span>
+          <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg></span>
           <div class="cp-info">
             <span class="cp-name">Alagar Kovil (Hill Temple)</span>
             <span class="cp-sub">21 km • 35 mins • Alagar Hills</span>
@@ -262,7 +268,7 @@
         </button>
 
         <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('alanganallur-vadivasal')" data-checkpoint="alanganallur-vadivasal">
-          <span class="cp-icon">🐂</span>
+          <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="14" r="6"/><path d="M7 9C6 6 3 5 2 6m15 3c1-3 4-4 5-3m-13 8v3m6-3v3"/></svg></span>
           <div class="cp-info">
             <span class="cp-name">Alanganallur Vadivasal</span>
             <span class="cp-sub">16 km • 26 mins • Jallikattu Arena</span>
@@ -271,7 +277,7 @@
         </button>
 
         <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('lucky-mess')" data-checkpoint="lucky-mess">
-          <span class="cp-icon">🍗</span>
+          <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2v20M6 2v20m-3-15h6m-6 5h6m9-10c0 4 3 6 3 10v10"/></svg></span>
           <div class="cp-info">
             <span class="cp-name">Lucky Mess (Food Stop)</span>
             <span class="cp-sub">16.5 km • Authentic Banana-Leaf Feast</span>
@@ -280,7 +286,7 @@
         </button>
 
         <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('power-kadai')" data-checkpoint="power-kadai">
-          <span class="cp-icon">🥩</span>
+          <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3z"/></svg></span>
           <div class="cp-info">
             <span class="cp-name">Power Kadai (Bun Parotta)</span>
             <span class="cp-sub">3.5 km • Midnight Street Food Legend</span>
@@ -289,7 +295,7 @@
         </button>
 
         <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('gandhi-museum')" data-checkpoint="gandhi-museum">
-          <span class="cp-icon">🏛️</span>
+          <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M2 22h20M12 2l10 4H2l10-4z"/></svg></span>
           <div class="cp-info">
             <span class="cp-name">Gandhi Memorial Museum</span>
             <span class="cp-sub">4.5 km • Historic Tamukkam Palace</span>
@@ -299,38 +305,38 @@
       </nav>
 
       <div class="sidebar-footer-hint">
-        <span>💡 Orbit 360° with mouse drag / touch</span>
+        <span><span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg></span> Orbit 360° with mouse drag / touch</span>
       </div>
     </aside>
 
     <!-- Floating Bottom Navigation Hint -->
     <div class="app-bottom-hint-pill">
-      <span>✦ Touch or click any 3D pin to open landmark history &amp; vehicle strategy • 360° Orbit active</span>
+      <span>Touch or click any 3D pin to open landmark history &amp; vehicle strategy • 360° Orbit active</span>
     </div>
 
     <!-- ═══════════════ SLIDE-IN DESTINATION HISTORY & MARKETING DRAWER ═══════════════ -->
     <div id="destinationDrawer" class="destination-slide-drawer" aria-hidden="true" role="dialog" aria-labelledby="drawerTitle">
       <div class="drawer-overlay" id="drawerBackdrop" onclick="closeDestinationDrawer()"></div>
       <div class="drawer-panel">
-        <button class="drawer-close-btn" onclick="closeDestinationDrawer()" aria-label="Close destination drawer">✕</button>
+        <button class="drawer-close-btn" onclick="closeDestinationDrawer()" aria-label="Close destination drawer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
 
         <!-- Header Tag -->
         <div class="drawer-header-badge">
-          <span id="drawerIcon" class="drawer-icon">🌿</span>
+          <span id="drawerIcon" class="drawer-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg></span>
           <span id="drawerCategory" class="drawer-cat">SACRED HILL TEMPLE</span>
           <span id="drawerDistance" class="drawer-dist">21 km • 35 mins</span>
         </div>
 
         <h2 id="drawerTitle" class="drawer-title">Alagar Kovil (Kallazhagar Temple)</h2>
         <div class="drawer-route-meta" id="drawerRouteMeta">
-          <span>📍 Route: K. Pudur → Alagar Kovil Main Road</span>
-          <span>✦ Best Time: Morning 6:00 AM – 11:30 AM &amp; Evening 4:30 PM</span>
+          <span>Route: K. Pudur → Alagar Kovil Main Road</span>
+          <span>Best Time: Morning 6:00 AM – 11:30 AM &amp; Evening 4:30 PM</span>
         </div>
 
         <!-- 2,500-Year Ancient Legacy & Cultural History -->
         <div class="drawer-history-block">
           <div class="drawer-section-title">
-            <span class="title-bullet">📜</span>
+            <span class="title-bullet bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg></span>
             <h3>2,500-Year Ancient Legacy &amp; Cultural Heritage</h3>
           </div>
           <p id="drawerHistoryText">
@@ -341,7 +347,7 @@
         <!-- BIXI Vehicle Strategy: Car vs Bike Marketing -->
         <div class="drawer-marketing-block">
           <div class="drawer-section-title">
-            <span class="title-bullet">🚗</span>
+            <span class="title-bullet bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C2.1 11.2 2 11.6 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>
             <h3>BIXI Vehicle Strategy: How to Travel &amp; What to Pick</h3>
           </div>
           
@@ -387,10 +393,10 @@
 
           <!-- Verified BIXI Trust Pillars -->
           <div class="drawer-trust-grid">
-            <div class="trust-pill">✓ 100% Legal Yellow Plates</div>
-            <div class="trust-pill">✓ Walkable from Mattuthavani MIBT</div>
-            <div class="trust-pill">✓ Railway Junction Delivery</div>
-            <div class="trust-pill">✓ 24/7 Roadside Rescue</div>
+            <div class="trust-pill"><span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> 100% Legal Yellow Plates</div>
+            <div class="trust-pill"><span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Walkable from Mattuthavani MIBT</div>
+            <div class="trust-pill"><span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Railway Junction Delivery</div>
+            <div class="trust-pill"><span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> 24/7 Roadside Rescue</div>
           </div>
 
           <!-- SEO Keywords Grounding Block -->
@@ -406,8 +412,8 @@
   </main>
 
   <!-- Scripts -->
-  <script src="assets/js/madurai-3d-map.js?v=24.0"></script>
-  <script src="assets/js/react-bits-animations.js?v=24.0"></script>
+  <script src="assets/js/madurai-3d-map.js?v=25.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=25.0"></script>
 
   <!-- Preloader & Interaction Logic -->
   <script>
@@ -495,11 +501,11 @@
     // ═══════════════ DESTINATION DRAWER LOGIC ═══════════════
     var DESTINATION_DETAILS = {
       'alagar-kovil': {
-        icon: '🌿',
+        icon: 'badge',
         category: 'SACRED HILL TEMPLE & NATURE',
         title: 'Alagar Kovil (Kallazhagar Temple)',
         distance: '21 km • 35 mins',
-        routeMeta: '📍 Route: K. Pudur → Alagar Kovil Main Road | Best Time: 6:00 AM – 11:30 AM & 4:30 PM',
+        routeMeta: 'Route: K. Pudur → Alagar Kovil Main Road | Best Time: 6:00 AM – 11:30 AM & 4:30 PM',
         history: 'Set against the majestic backdrop of the lush Alagar Hills, this sacred Vaishnavite shrine dates back over 2,500 years to early Pandya kings and Sangam epics. Lord Kallazhagar (Sundararaja Perumal) is famous for the grand Chithirai festival where he enters the Vaigai river riding a golden horse chariot. Ascending 3 km up the hill brings you to the sacred mountain spring Noopura Gangai (Rakkayi Amman Kovil), with clear, perennial mineral-rich spring waters believed to bestow blessings.',
         carTitle: 'Maruti Suzuki Swift (Self-Drive AC)',
         carPrice: 'from ₹2,200/day',
@@ -509,11 +515,11 @@
         bikeDesc: 'For solo explorers and couples, cruising along Alagar Kovil Road with the hillside breeze is an exhilarating experience. Enjoy effortless parking right next to the temple elephant archway and stop freely at village tender coconut groves.'
       },
       'meenakshi': {
-        icon: '🛕',
+        icon: 'badge',
         category: 'WORLD HERITAGE TEMPLE WONDER',
         title: 'Madurai Meenakshi Amman Kovil',
         distance: '1.2 km from Junction',
-        routeMeta: '📍 Route: West Veli St → Town Hall Rd → Chithirai St | Best Time: 5:00 AM – 12:30 PM & 4:00 PM – 9:30 PM',
+        routeMeta: 'Route: West Veli St → Town Hall Rd → Chithirai St | Best Time: 5:00 AM – 12:30 PM & 4:00 PM – 9:30 PM',
         history: 'The historic and spiritual heart of Madurai, with an uninterrupted living history spanning over 2,500 years. Designed in the concentric mandala pattern of a sacred lotus, the temple features 14 towering Dravidian Gopurams, the legendary Hall of 1000 Pillars, and the sacred Golden Lotus Pond (Potramarai Kulam) where ancient Tamil poets judged classical Sangam literature.',
         carTitle: 'Maruti Swift / Hyundai i20',
         carPrice: 'from ₹2,200/day',
@@ -523,11 +529,11 @@
         bikeDesc: 'THE LOCAL CHAMPION! Madurais concentric temple streets (Masi, Veli, and Chithirai streets) are lively and bustling. A nimble scooter gives you effortless navigation and instant dedicated two-wheeler parking right at the temple entrance.'
       },
       'alanganallur-vadivasal': {
-        icon: '🐂',
+        icon: 'badge',
         category: 'WORLD JALLIKATTU ARENA',
         title: 'Alanganallur Vadivasal (Jallikattu)',
         distance: '16 km • 26 mins',
-        routeMeta: '📍 Route: Mattuthavani → Alanganallur Main Road | Best Time: Morning 8:00 AM or Festival Pongal Week',
+        routeMeta: 'Route: Mattuthavani → Alanganallur Main Road | Best Time: Morning 8:00 AM or Festival Pongal Week',
         history: 'The undisputed global capital of Jallikattu (ஏறுதழுவுதல் - Eru Thazhuvuthal), an ancient Dravidian courage tradition documented in Sangam poetry over 2,000 years old. The Vadivasal is the historic narrow gateway from which indigenous Kangayam, Pulikulam, and Umblachery bulls surge into the sandy arena where courageous village tamers embrace the bull hump.',
         carTitle: 'Mahindra Thar 4x4 / Maruti Swift',
         carPrice: 'from ₹2,200/day',
@@ -537,11 +543,11 @@
         bikeDesc: 'Experience the raw rural energy of Tamil Nadu with the thump of a Royal Enfield. Quick, exciting ride through village bypasses with easy parking near the Vadivasal arch.'
       },
       'lucky-mess': {
-        icon: '🍗',
+        icon: 'badge',
         category: 'LEGENDARY VILLAGE MESS',
         title: 'Lucky Mess (Alanganallur Village Feast)',
         distance: '16.5 km • 28 mins',
-        routeMeta: '📍 Route: Alanganallur Bus Stand Cross | Best Time: 12:00 PM – 3:30 PM (Lunch Hours)',
+        routeMeta: 'Route: Alanganallur Bus Stand Cross | Best Time: 12:00 PM – 3:30 PM (Lunch Hours)',
         history: 'Madurais legendary rural culinary icon! Located in the heart of Alanganallur, Lucky Mess has served authentic Tamil country feasts for generations. Known for sizzling nattu-kozhi chukka (country chicken roast), spicy pepper mutton fry, brain masala, and piping hot seeraga samba biryani served on freshly cut green plantain leaves.',
         carTitle: 'Maruti Swift / Maruti Ertiga',
         carPrice: 'from ₹2,200/day',
@@ -551,11 +557,11 @@
         bikeDesc: 'Beat the lunchtime crowd with a quick two-wheeler dash straight from BIXI Mattuthavani Hub in under 25 minutes.'
       },
       'power-kadai': {
-        icon: '🥩',
+        icon: 'badge',
         category: 'ICONIC MIDNIGHT STREET FOOD',
         title: 'Power Kadai & Bun Parotta',
         distance: '3.5 km • 12 mins',
-        routeMeta: '📍 Route: Simmakkal & Goripalayam Junction | Best Time: 6:30 PM – 2:00 AM (Midnight Circuit)',
+        routeMeta: 'Route: Simmakkal & Goripalayam Junction | Best Time: 6:30 PM – 2:00 AM (Midnight Circuit)',
         history: 'Madurai is universally acclaimed as the City That Never Sleeps (Thoonga Nagaram), and Power Kadai is its culinary heartbeat. Famous for inventing the legendary Bun Parotta—a multi-layered, crispy yet soft bread pan-fried in hot oil—served alongside piping hot salna, crispy mutton kari dosa, and chilled jigarthanda.',
         carTitle: 'Maruti Swift (Self-Drive)',
         carPrice: 'from ₹2,200/day',
@@ -565,11 +571,11 @@
         bikeDesc: 'The ultimate Madurai midnight street experience! Pull up right at the roadside stall, enjoy steaming hot parottas, and hop between culinary stalls with zero hassle.'
       },
       'gandhi-museum': {
-        icon: '🏛️',
+        icon: 'badge',
         category: 'HISTORIC PALACE MUSEUM',
         title: 'Gandhi Memorial Palace Museum',
         distance: '4.5 km • 14 mins',
-        routeMeta: '📍 Route: Tamukkam, Tallakulam | Best Time: 10:00 AM – 1:00 PM & 2:00 PM – 5:30 PM',
+        routeMeta: 'Route: Tamukkam, Tallakulam | Best Time: 10:00 AM – 1:00 PM & 2:00 PM – 5:30 PM',
         history: 'Set inside the majestic 17th-century Tamukkam Palace originally built by Rani Mangammal of the Nayak dynasty around 1670 CE. This hallowed ground marks where Mahatma Gandhi in 1921 made the historic decision to discard traditional formal attire and adopt the simple peasant loincloth (dhoti) to identify with Indias impoverished masses.',
         carTitle: 'Maruti Swift / Hyundai i20',
         carPrice: 'from ₹2,200/day',
@@ -585,7 +591,16 @@
       var drawer = document.getElementById('destinationDrawer');
       if (!drawer) return;
 
-      document.getElementById('drawerIcon').textContent = data.icon;
+      var iconMap = {
+        'alagar-kovil': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>',
+        'meenakshi': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v3m-7 4h14l-2 12H7L5 9zm3-4h8v4H8V5z"/></svg>',
+        'alanganallur-vadivasal': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="14" r="6"/><path d="M7 9C6 6 3 5 2 6m15 3c1-3 4-4 5-3m-13 8v3m6-3v3"/></svg>',
+        'lucky-mess': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2v20M6 2v20m-3-15h6m-6 5h6m9-10c0 4 3 6 3 10v10"/></svg>',
+        'power-kadai': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3z"/></svg>',
+        'gandhi-museum': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M2 22h20M12 2l10 4H2l10-4z"/></svg>'
+      };
+      var dIcon = document.getElementById('drawerIcon');
+      if (dIcon) dIcon.innerHTML = iconMap[id] || iconMap['alagar-kovil'];
       document.getElementById('drawerCategory').textContent = data.category;
       document.getElementById('drawerDistance').textContent = data.distance;
       document.getElementById('drawerTitle').textContent = data.title;
@@ -615,6 +630,18 @@
       if (!drawer) return;
       drawer.classList.remove('open');
       drawer.setAttribute('aria-hidden', 'true');
+    };
+
+    window.toggleLandmarksSidebar = function() {
+      var sidebar = document.getElementById('appLandmarksSidebar');
+      var toggleBtn = document.getElementById('btnToggleSidebar');
+      if (!sidebar) return;
+      sidebar.classList.toggle('collapsed');
+      var isCollapsed = sidebar.classList.contains('collapsed');
+      if (toggleBtn) {
+        toggleBtn.querySelector('.toggle-icon').textContent = isCollapsed ? '▶' : '◀';
+        toggleBtn.setAttribute('title', isCollapsed ? 'Expand Panel' : 'Collapse Panel');
+      }
     };
 
     document.addEventListener('keydown', function(e) {
