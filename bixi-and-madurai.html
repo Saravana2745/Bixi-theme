@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>3D Madurai Route &amp; Destination Tour | BIXI &amp; Madurai 3D Lab</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore the full-screen 3D Madurai Route &amp; Destination Tour with BIXI Ride. Interactive 3D simulation of Meenakshi Temple, Alagar Kovil, Vadivasal, and food stops. Tailored bike rental in madurai and certified self drive car rental in madurai guides.">
+  <meta name="keywords" content="bike rental in madurai, madurai bike rental, rental bikes in madurai, bike rental madurai, madurai rental bikes, best bike rental near me, car rental in madurai, self drive car rental in madurai, car rental service in madurai">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://bixiride.com/bixi-and-madurai.html">
+  <meta name="geo.region" content="IN-TN">
+  <meta name="geo.placename" content="Madurai">
+  <meta name="geo.position" content="9.9252;78.1198">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bixiride.com/bixi-and-madurai.html">
+  <meta property="og:title" content="3D Madurai Route &amp; Destination Tour – Full-Screen Interactive Lab">
+  <meta property="og:description" content="Immersive 3D Madurai route simulation with live car telemetry, ancient temple history, and vehicle rental strategies.">
+  <meta property="og:image" content="https://bixiride.com/assets/images/about-journey/swift-shop-wide.jpg">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Favicon & Fonts -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css?v=24.0">
+
+  <!-- Three.js (Loaded for this dedicated 3D interactive application) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "3D Madurai Route & Destination Tour",
+    "url": "https://bixiride.com/bixi-and-madurai.html",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "All",
+    "description": "Full-screen interactive 3D Madurai route simulator and cultural landmark explorer with BIXI bike rental in madurai and self drive car rental in madurai strategies.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "BIXI Ride Madurai",
+      "telephone": "+919037000266",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No. 16, Sankar Nagar 4th St, K. Pudur, Walkable from Mattuthavani Bus Stand",
+        "addressLocality": "Madurai",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "625007",
+        "addressCountry": "IN"
+      }
+    }
+  }
+  </script>
+</head>
+<body class="bixi-fullscreen-app-body">
+
+  <!-- ═══════════════ LUXURY VEHICLE PRELOADER ═══════════════ -->
+  <div id="bixiTourPreloader" class="bixi-tour-preloader" aria-label="Loading 3D Madurai Virtual Tour">
+    <div class="preloader-backdrop-glow"></div>
+    <div class="preloader-card">
+      <div class="preloader-brand">
+        <img src="assets/images/logo.svg" alt="BIXI Ride" width="130" height="48" class="preloader-logo">
+        <span class="preloader-badge shiny-text">NEXT-GEN 3D TOUR ENGINE</span>
+      </div>
+
+      <!-- Animated Morphing Vehicle Stage (Bike <-> Car) -->
+      <div class="preloader-vehicle-stage">
+        <div class="preloader-runway">
+          <div class="preloader-road-line"></div>
+          <div class="preloader-road-line"></div>
+          <div class="preloader-road-line"></div>
+        </div>
+
+        <div class="preloader-vehicle-box" id="preloaderVehicleBox" data-vehicle="bike">
+          <!-- Animated Bike -->
+          <div class="vehicle-anim bike-anim" id="preloaderBike">
+            <svg viewBox="0 0 120 70" class="vehicle-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="48" r="16" stroke="#FF7A18" stroke-width="3" stroke-dasharray="4 2" class="wheel-spin"/>
+              <circle cx="28" cy="48" r="7" fill="#FF7A18"/>
+              <circle cx="92" cy="48" r="16" stroke="#FF7A18" stroke-width="3" stroke-dasharray="4 2" class="wheel-spin"/>
+              <circle cx="92" cy="48" r="7" fill="#FF7A18"/>
+              <path d="M28 48L52 48L64 30L44 30L34 40" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M52 48L74 24L88 24" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M92 48L76 24" stroke="#FF7A18" stroke-width="3" stroke-linecap="round"/>
+              <path d="M48 24L62 24" stroke="#FF7A18" stroke-width="4" stroke-linecap="round"/>
+              <path d="M84 22L98 22" stroke="#FFD43B" stroke-width="3" stroke-linecap="round"/>
+              <polygon points="98,22 120,12 120,32" fill="url(#headlightGradBike)" opacity="0.6"/>
+              <defs>
+                <linearGradient id="headlightGradBike" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#FFD43B" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#FFD43B" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="vehicle-tag">Royal Enfield Hunter 350</div>
+          </div>
+
+          <!-- Animated Car -->
+          <div class="vehicle-anim car-anim" id="preloaderCar">
+            <svg viewBox="0 0 140 70" class="vehicle-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="34" cy="50" r="14" stroke="#FF7A18" stroke-width="3" stroke-dasharray="4 2" class="wheel-spin"/>
+              <circle cx="34" cy="50" r="6" fill="#FF7A18"/>
+              <circle cx="106" cy="50" r="14" stroke="#FF7A18" stroke-width="3" stroke-dasharray="4 2" class="wheel-spin"/>
+              <circle cx="106" cy="50" r="6" fill="#FF7A18"/>
+              <path d="M14 48C14 42 18 38 24 38L38 38L52 20C54 18 58 17 62 17L96 17C102 17 106 20 110 24L122 36C126 38 128 42 128 46L128 50L14 50Z" fill="rgba(255,255,255,0.08)" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M54 22L92 22L106 36L44 36Z" fill="rgba(255,122,24,0.2)" stroke="#FF7A18" stroke-width="2"/>
+              <polygon points="126,42 140,32 140,54" fill="url(#headlightGradCar)" opacity="0.7"/>
+              <defs>
+                <linearGradient id="headlightGradCar" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#FF7A18" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="vehicle-tag">Maruti Suzuki Swift</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Counter & Status -->
+      <div class="preloader-progress-area">
+        <div class="preloader-stats">
+          <span class="preloader-label" id="preloaderStatusText">Initializing 3D Madurai Landmarks...</span>
+          <span class="preloader-pct" id="preloaderPctText">0%</span>
+        </div>
+        <div class="preloader-track">
+          <div class="preloader-fill" id="preloaderProgressBar" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <p class="preloader-subtext">Optimizing 60fps WebGL Simulation • Full-Screen Interactive Tour</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FULL-SCREEN TOP APPLICATION HEADER ═══════════════ -->
+  <header class="bixi-app-header">
+    <div class="app-header-left">
+      <a href="index.html" class="app-back-btn" title="Return to Main Website">
+        <svg viewBox="0 0 24 24" class="app-back-icon" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Home</span>
+      </a>
+
+      <div class="app-header-divider"></div>
+
+      <a href="index.html" class="app-brand-link">
+        <img src="assets/images/logo.svg" alt="BIXI Ride" width="105" height="38" class="app-logo">
+      </a>
+
+      <div class="app-title-badge">
+        <span class="live-dot pulse"></span>
+        <span class="app-title-text">3D MADURAI ROUTE LAB</span>
+      </div>
+    </div>
+
+    <!-- Center Stage Controls Inspired by Arura 3D Lab -->
+    <div class="app-header-center">
+      <div class="app-stage-switcher" role="tablist" aria-label="3D Tour Perspective Modes">
+        <button type="button" class="app-stage-btn active" id="btnStageMacro" onclick="switchAppStage(1)" role="tab" aria-selected="true" title="Overview of Madurai Route & Temples">
+          <span class="stage-num">1</span>
+          <span class="stage-label">Heritage Tour</span>
+        </button>
+        <span class="stage-divider">/</span>
+        <button type="button" class="app-stage-btn" id="btnStageTelemetry" onclick="switchAppStage(2)" role="tab" aria-selected="false" title="Follow 3D Maruti Swift Cruiser in Endless Loop">
+          <span class="stage-num">2</span>
+          <span class="stage-label">Swift Cruise</span>
+        </button>
+        <span class="stage-divider">/</span>
+        <button type="button" class="app-stage-btn" id="btnStageFood" onclick="switchAppStage(3)" role="tab" aria-selected="false" title="Explore Madurai Culinary & Midnight Circuit">
+          <span class="stage-num">3</span>
+          <span class="stage-label">Food Circuit</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Header Actions -->
+    <div class="app-header-right">
+      <a href="tel:+919037000266" class="btn-hotline app-hotline-btn" title="Call 24/7 BIXI Dispatch">
+        <svg viewBox="0 0 24 24" class="btn-hotline-icon" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68.09.31.02.66-.24 1.02l-2.23 2.09z"/></svg>
+        <span class="hotline-text">+91 90370 00266</span>
+      </a>
+
+      <a href="bikes.html" class="btn-primary app-rent-btn">
+        <span>Rent Vehicle</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══════════════ FULL-SCREEN INTERACTIVE 3D VIEWPORT STAGE ═══════════════ -->
+  <main class="bixi-app-stage" id="madurai-3d-map-wrapper">
+    <!-- WebGL Canvas Filling 100% of Stage -->
+    <canvas id="madurai-3d-map-canvas" class="bixi-full-canvas"></canvas>
+
+    <!-- Floating Top-Left Telemetry HUD -->
+    <div class="app-telemetry-hud">
+      <div class="telemetry-pill">
+        <div class="telemetry-pulse-dot"></div>
+        <div class="telemetry-text">
+          CAR TELEMETRY: <strong id="mapLiveCheckpointText">Meenakshi Amman Kovil</strong> • LOOP ACTIVE
+        </div>
+      </div>
+      <div class="telemetry-meta-tags">
+        <span class="meta-tag">60 FPS WebGL</span>
+        <span class="meta-tag">Vaigai River Basin</span>
+        <span class="meta-tag">Madurai RTO Certified</span>
+      </div>
+    </div>
+
+    <!-- Floating Top-Right Viewport Tools (+, -, 360 Overview) -->
+    <div class="app-tools-toolbar">
+      <button type="button" class="app-tool-btn" onclick="zoomMaduraiMap(1)" title="Zoom In (+)" aria-label="Zoom In">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+      <button type="button" class="app-tool-btn" onclick="zoomMaduraiMap(-1)" title="Zoom Out (−)" aria-label="Zoom Out">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+      <button type="button" class="app-tool-btn overview-tool-btn" onclick="resetMaduraiMapOverview()" title="Reset Full Overview" aria-label="Reset Overview">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+        <span>Reset</span>
+      </button>
+    </div>
+
+    <!-- Floating Left-Side Landmark Quick-Select Panel (Arura-style) -->
+    <aside class="app-landmarks-sidebar" aria-label="Interactive Madurai Checkpoints">
+      <div class="sidebar-header">
+        <span class="sidebar-badge">SELECT DESTINATION</span>
+        <h3>Interactive 3D Waypoints</h3>
+        <p>Click any landmark to fly camera &amp; open historical guide</p>
+      </div>
+
+      <nav class="sidebar-landmarks-list">
+        <button type="button" class="sidebar-checkpoint-btn active dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('meenakshi')" data-checkpoint="meenakshi">
+          <span class="cp-icon">🛕</span>
+          <div class="cp-info">
+            <span class="cp-name">Meenakshi Amman Kovil</span>
+            <span class="cp-sub">1.2 km from Junction • 14 Gopurams</span>
+          </div>
+          <span class="cp-arrow">→</span>
+        </button>
+
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('alagar-kovil')" data-checkpoint="alagar-kovil">
+          <span class="cp-icon">🌿</span>
+          <div class="cp-info">
+            <span class="cp-name">Alagar Kovil (Hill Temple)</span>
+            <span class="cp-sub">21 km • 35 mins • Alagar Hills</span>
+          </div>
+          <span class="cp-arrow">→</span>
+        </button>
+
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('alanganallur-vadivasal')" data-checkpoint="alanganallur-vadivasal">
+          <span class="cp-icon">🐂</span>
+          <div class="cp-info">
+            <span class="cp-name">Alanganallur Vadivasal</span>
+            <span class="cp-sub">16 km • 26 mins • Jallikattu Arena</span>
+          </div>
+          <span class="cp-arrow">→</span>
+        </button>
+
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('lucky-mess')" data-checkpoint="lucky-mess">
+          <span class="cp-icon">🍗</span>
+          <div class="cp-info">
+            <span class="cp-name">Lucky Mess (Food Stop)</span>
+            <span class="cp-sub">16.5 km • Authentic Banana-Leaf Feast</span>
+          </div>
+          <span class="cp-arrow">→</span>
+        </button>
+
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('power-kadai')" data-checkpoint="power-kadai">
+          <span class="cp-icon">🥩</span>
+          <div class="cp-info">
+            <span class="cp-name">Power Kadai (Bun Parotta)</span>
+            <span class="cp-sub">3.5 km • Midnight Street Food Legend</span>
+          </div>
+          <span class="cp-arrow">→</span>
+        </button>
+
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('gandhi-museum')" data-checkpoint="gandhi-museum">
+          <span class="cp-icon">🏛️</span>
+          <div class="cp-info">
+            <span class="cp-name">Gandhi Memorial Museum</span>
+            <span class="cp-sub">4.5 km • Historic Tamukkam Palace</span>
+          </div>
+          <span class="cp-arrow">→</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer-hint">
+        <span>💡 Orbit 360° with mouse drag / touch</span>
+      </div>
+    </aside>
+
+    <!-- Floating Bottom Navigation Hint -->
+    <div class="app-bottom-hint-pill">
+      <span>✦ Touch or click any 3D pin to open landmark history &amp; vehicle strategy • 360° Orbit active</span>
+    </div>
+
+    <!-- ═══════════════ SLIDE-IN DESTINATION HISTORY & MARKETING DRAWER ═══════════════ -->
+    <div id="destinationDrawer" class="destination-slide-drawer" aria-hidden="true" role="dialog" aria-labelledby="drawerTitle">
+      <div class="drawer-overlay" id="drawerBackdrop" onclick="closeDestinationDrawer()"></div>
+      <div class="drawer-panel">
+        <button class="drawer-close-btn" onclick="closeDestinationDrawer()" aria-label="Close destination drawer">✕</button>
+
+        <!-- Header Tag -->
+        <div class="drawer-header-badge">
+          <span id="drawerIcon" class="drawer-icon">🌿</span>
+          <span id="drawerCategory" class="drawer-cat">SACRED HILL TEMPLE</span>
+          <span id="drawerDistance" class="drawer-dist">21 km • 35 mins</span>
+        </div>
+
+        <h2 id="drawerTitle" class="drawer-title">Alagar Kovil (Kallazhagar Temple)</h2>
+        <div class="drawer-route-meta" id="drawerRouteMeta">
+          <span>📍 Route: K. Pudur → Alagar Kovil Main Road</span>
+          <span>✦ Best Time: Morning 6:00 AM – 11:30 AM &amp; Evening 4:30 PM</span>
+        </div>
+
+        <!-- 2,500-Year Ancient Legacy & Cultural History -->
+        <div class="drawer-history-block">
+          <div class="drawer-section-title">
+            <span class="title-bullet">📜</span>
+            <h3>2,500-Year Ancient Legacy &amp; Cultural Heritage</h3>
+          </div>
+          <p id="drawerHistoryText">
+            Nestled amidst the lush forested slopes of the Alagar Hills (Alagar Malai), Alagar Kovil is an ancient Divya Desam dedicated to Lord Sundararaja Perumal (Kallazhagar). Celebrated in Sangam literature and celebrated during the world-renowned Chithirai Festival, millions of devotees gather as Lord Kallazhagar, riding a golden horse chariot, journeys toward the sacred Vaigai river. Higher up the mountain slopes lies the holy spring of Noopura Gangai (Rakkayi Amman Kovil), where natural sweet mountain water has cascaded without interruption for millennia.
+          </p>
+        </div>
+
+        <!-- BIXI Vehicle Strategy: Car vs Bike Marketing -->
+        <div class="drawer-marketing-block">
+          <div class="drawer-section-title">
+            <span class="title-bullet">🚗</span>
+            <h3>BIXI Vehicle Strategy: How to Travel &amp; What to Pick</h3>
+          </div>
+          
+          <!-- Car Recommendation -->
+          <div class="drawer-vehicle-card option-car">
+            <div class="drawer-veh-header">
+              <div class="veh-type-badge">RECOMMENDED FOR FAMILIES &amp; GROUPS</div>
+              <div class="veh-price">from ₹2,200/day</div>
+            </div>
+            <h4 class="veh-name">Maruti Suzuki Swift (Self-Drive AC)</h4>
+            <p class="veh-desc">
+              Ascending the 21 km stretch along Alagar Kovil Road is ideal in a climate-controlled self-drive car. Keeps family members and elders refreshed away from the midday heat, provides ample boot space for temple offerings, and maneuvers smoothly through uphill curves.
+            </p>
+            <div class="veh-tags">
+              <span>5-Seater Chilled AC</span>
+              <span>Zero Security Deposit</span>
+              <span>100% Commercial Yellow Plates</span>
+            </div>
+            <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20a%20Maruti%20Swift%20for%20Alagar%20Kovil%20Tour" target="_blank" rel="noopener" class="btn-primary drawer-btn">
+              Reserve Swift for this Route →
+            </a>
+          </div>
+
+          <!-- Bike Recommendation -->
+          <div class="drawer-vehicle-card option-bike">
+            <div class="drawer-veh-header">
+              <div class="veh-type-badge bike-badge">POPULAR FOR ADVENTURERS &amp; COUPLES</div>
+              <div class="veh-price">from ₹399/day</div>
+            </div>
+            <h4 class="veh-name">Royal Enfield Hunter 350 / Honda Activa 6G</h4>
+            <p class="veh-desc">
+              Want to feel the crisp forest breeze as you approach the hillside? Taking a <strong>rental bikes in madurai</strong> option gives you ultimate freedom, zero parking delays right at the temple gateway, and effortless stops at roadside tender coconut groves. Premier <strong>bike rental in madurai</strong> service.
+            </p>
+            <div class="veh-tags">
+              <span>High Fuel Efficiency</span>
+              <span>2 Free Helmets</span>
+              <span>Instant Handover</span>
+            </div>
+            <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20a%20Bike%20for%20Alagar%20Kovil%20Tour" target="_blank" rel="noopener" class="btn-secondary drawer-btn">
+              Reserve Bike for this Route →
+            </a>
+          </div>
+
+          <!-- Verified BIXI Trust Pillars -->
+          <div class="drawer-trust-grid">
+            <div class="trust-pill">✓ 100% Legal Yellow Plates</div>
+            <div class="trust-pill">✓ Walkable from Mattuthavani MIBT</div>
+            <div class="trust-pill">✓ Railway Junction Delivery</div>
+            <div class="trust-pill">✓ 24/7 Roadside Rescue</div>
+          </div>
+
+          <!-- SEO Keywords Grounding Block -->
+          <div class="drawer-seo-grounding">
+            <small>
+              BIXI Ride is rated #1 for <strong>madurai bike rental</strong>, verified <strong>madurai rental bikes</strong>, and trusted <strong>car rental service in madurai</strong>. Book your <strong>bike rental madurai</strong> or <strong>best bike rental near me</strong> today.
+            </small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="assets/js/madurai-3d-map.js?v=24.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=24.0"></script>
+
+  <!-- Preloader & Interaction Logic -->
+  <script>
+    // ═══════════════ PRELOADER LOGIC ═══════════════
+    (function() {
+      var preloader = document.getElementById('bixiTourPreloader');
+      var pctText = document.getElementById('preloaderPctText');
+      var progressBar = document.getElementById('preloaderProgressBar');
+      var statusText = document.getElementById('preloaderStatusText');
+      var vehicleBox = document.getElementById('preloaderVehicleBox');
+      if (!preloader) return;
+
+      var current = 0;
+      var phrases = [
+        { pct: 0, text: "Initializing 3D Madurai Landmarks & Vaigai Canvas..." },
+        { pct: 25, text: "Building Dravidian Temple Towers & Alagar Hills..." },
+        { pct: 50, text: "Simulating Alanganallur Vadivasal & Jallikattu Arena..." },
+        { pct: 75, text: "Generating PBR Road Textures & Madurai Food Circuit..." },
+        { pct: 92, text: "Finalizing 60fps WebGL Simulation & Telemetry..." },
+        { pct: 100, text: "3D Virtual Tour Ready! Welcome to Madurai!" }
+      ];
+
+      // Vehicle Morph Interval (swaps between bike and car every 1.2s)
+      var vInterval = setInterval(function() {
+        if (!vehicleBox) return;
+        var currentV = vehicleBox.getAttribute('data-vehicle');
+        vehicleBox.setAttribute('data-vehicle', currentV === 'bike' ? 'car' : 'bike');
+      }, 1200);
+
+      var timer = setInterval(function() {
+        current += Math.floor(Math.random() * 8) + 4;
+        if (current >= 100) {
+          current = 100;
+          clearInterval(timer);
+          clearInterval(vInterval);
+          
+          if (pctText) pctText.textContent = '100%';
+          if (progressBar) progressBar.style.width = '100%';
+          if (statusText) statusText.textContent = "3D Virtual Tour Ready! Welcome to Madurai!";
+
+          setTimeout(function() {
+            preloader.classList.add('fade-out');
+            setTimeout(function() {
+              preloader.style.display = 'none';
+            }, 650);
+          }, 300);
+        } else {
+          if (pctText) pctText.textContent = current + '%';
+          if (progressBar) progressBar.style.width = current + '%';
+          
+          for (var i = phrases.length - 1; i >= 0; i--) {
+            if (current >= phrases[i].pct) {
+              if (statusText) statusText.textContent = phrases[i].text;
+              break;
+            }
+          }
+        }
+      }, 45);
+    })();
+
+    // ═══════════════ APP STAGE SWITCHER ═══════════════
+    window.switchAppStage = function(stageNum) {
+      document.querySelectorAll('.app-stage-btn').forEach(function(btn, idx) {
+        if (idx + 1 === stageNum) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+        } else {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        }
+      });
+
+      if (stageNum === 1) {
+        // Focus on Meenakshi / Heritage Overview
+        if (typeof focusMaduraiCheckpoint === 'function') focusMaduraiCheckpoint('meenakshi');
+      } else if (stageNum === 2) {
+        // Focus on car cruise loop
+        if (typeof resetMaduraiMapOverview === 'function') resetMaduraiMapOverview();
+      } else if (stageNum === 3) {
+        // Focus on Food stop (Lucky Mess / Power Kadai)
+        if (typeof focusMaduraiCheckpoint === 'function') focusMaduraiCheckpoint('lucky-mess');
+      }
+    };
+
+    // ═══════════════ DESTINATION DRAWER LOGIC ═══════════════
+    var DESTINATION_DETAILS = {
+      'alagar-kovil': {
+        icon: '🌿',
+        category: 'SACRED HILL TEMPLE & NATURE',
+        title: 'Alagar Kovil (Kallazhagar Temple)',
+        distance: '21 km • 35 mins',
+        routeMeta: '📍 Route: K. Pudur → Alagar Kovil Main Road | Best Time: 6:00 AM – 11:30 AM & 4:30 PM',
+        history: 'Set against the majestic backdrop of the lush Alagar Hills, this sacred Vaishnavite shrine dates back over 2,500 years to early Pandya kings and Sangam epics. Lord Kallazhagar (Sundararaja Perumal) is famous for the grand Chithirai festival where he enters the Vaigai river riding a golden horse chariot. Ascending 3 km up the hill brings you to the sacred mountain spring Noopura Gangai (Rakkayi Amman Kovil), with clear, perennial mineral-rich spring waters believed to bestow blessings.',
+        carTitle: 'Maruti Suzuki Swift (Self-Drive AC)',
+        carPrice: 'from ₹2,200/day',
+        carDesc: 'Ascending the 21 km winding foothills of Alagar Malai is ideal in a climate-controlled self-drive car. Keeps your family cool, provides safe storage for temple prasad and puja baskets, and handles mountain gradients effortlessly.',
+        bikeTitle: 'Royal Enfield Hunter 350 / Himalayan 450',
+        bikePrice: 'from ₹399/day',
+        bikeDesc: 'For solo explorers and couples, cruising along Alagar Kovil Road with the hillside breeze is an exhilarating experience. Enjoy effortless parking right next to the temple elephant archway and stop freely at village tender coconut groves.'
+      },
+      'meenakshi': {
+        icon: '🛕',
+        category: 'WORLD HERITAGE TEMPLE WONDER',
+        title: 'Madurai Meenakshi Amman Kovil',
+        distance: '1.2 km from Junction',
+        routeMeta: '📍 Route: West Veli St → Town Hall Rd → Chithirai St | Best Time: 5:00 AM – 12:30 PM & 4:00 PM – 9:30 PM',
+        history: 'The historic and spiritual heart of Madurai, with an uninterrupted living history spanning over 2,500 years. Designed in the concentric mandala pattern of a sacred lotus, the temple features 14 towering Dravidian Gopurams, the legendary Hall of 1000 Pillars, and the sacred Golden Lotus Pond (Potramarai Kulam) where ancient Tamil poets judged classical Sangam literature.',
+        carTitle: 'Maruti Swift / Hyundai i20',
+        carPrice: 'from ₹2,200/day',
+        carDesc: 'Park comfortably at the modern multi-level parking complex near Periyar or West Tower. Great for luggage security when arriving directly from Madurai Junction or Airport.',
+        bikeTitle: 'Honda Activa 6G / TVS Jupiter',
+        bikePrice: 'from ₹399/day',
+        bikeDesc: 'THE LOCAL CHAMPION! Madurais concentric temple streets (Masi, Veli, and Chithirai streets) are lively and bustling. A nimble scooter gives you effortless navigation and instant dedicated two-wheeler parking right at the temple entrance.'
+      },
+      'alanganallur-vadivasal': {
+        icon: '🐂',
+        category: 'WORLD JALLIKATTU ARENA',
+        title: 'Alanganallur Vadivasal (Jallikattu)',
+        distance: '16 km • 26 mins',
+        routeMeta: '📍 Route: Mattuthavani → Alanganallur Main Road | Best Time: Morning 8:00 AM or Festival Pongal Week',
+        history: 'The undisputed global capital of Jallikattu (ஏறுதழுவுதல் - Eru Thazhuvuthal), an ancient Dravidian courage tradition documented in Sangam poetry over 2,000 years old. The Vadivasal is the historic narrow gateway from which indigenous Kangayam, Pulikulam, and Umblachery bulls surge into the sandy arena where courageous village tamers embrace the bull hump.',
+        carTitle: 'Mahindra Thar 4x4 / Maruti Swift',
+        carPrice: 'from ₹2,200/day',
+        carDesc: 'The scenic rural road through mango orchards and sugarcane fields to Alanganallur is a wonderful group drive. Comfortable 4-wheeler cruising with family and friends.',
+        bikeTitle: 'Royal Enfield Hunter 350 / Classic 350',
+        bikePrice: 'from ₹399/day',
+        bikeDesc: 'Experience the raw rural energy of Tamil Nadu with the thump of a Royal Enfield. Quick, exciting ride through village bypasses with easy parking near the Vadivasal arch.'
+      },
+      'lucky-mess': {
+        icon: '🍗',
+        category: 'LEGENDARY VILLAGE MESS',
+        title: 'Lucky Mess (Alanganallur Village Feast)',
+        distance: '16.5 km • 28 mins',
+        routeMeta: '📍 Route: Alanganallur Bus Stand Cross | Best Time: 12:00 PM – 3:30 PM (Lunch Hours)',
+        history: 'Madurais legendary rural culinary icon! Located in the heart of Alanganallur, Lucky Mess has served authentic Tamil country feasts for generations. Known for sizzling nattu-kozhi chukka (country chicken roast), spicy pepper mutton fry, brain masala, and piping hot seeraga samba biryani served on freshly cut green plantain leaves.',
+        carTitle: 'Maruti Swift / Maruti Ertiga',
+        carPrice: 'from ₹2,200/day',
+        carDesc: 'Bring the entire family or foodie friends for a hearty Sunday village feast. Relax in AC comfort after enjoying rich, spicy Madurai delicacies.',
+        bikeTitle: 'Honda Activa 6G / Duke 250',
+        bikePrice: 'from ₹399/day',
+        bikeDesc: 'Beat the lunchtime crowd with a quick two-wheeler dash straight from BIXI Mattuthavani Hub in under 25 minutes.'
+      },
+      'power-kadai': {
+        icon: '🥩',
+        category: 'ICONIC MIDNIGHT STREET FOOD',
+        title: 'Power Kadai & Bun Parotta',
+        distance: '3.5 km • 12 mins',
+        routeMeta: '📍 Route: Simmakkal & Goripalayam Junction | Best Time: 6:30 PM – 2:00 AM (Midnight Circuit)',
+        history: 'Madurai is universally acclaimed as the City That Never Sleeps (Thoonga Nagaram), and Power Kadai is its culinary heartbeat. Famous for inventing the legendary Bun Parotta—a multi-layered, crispy yet soft bread pan-fried in hot oil—served alongside piping hot salna, crispy mutton kari dosa, and chilled jigarthanda.',
+        carTitle: 'Maruti Swift (Self-Drive)',
+        carPrice: 'from ₹2,200/day',
+        carDesc: 'Cruising the illuminated Goripalayam flyover and night streets of Madurai in an AC car makes midnight food hopping seamless and secure.',
+        bikeTitle: 'Honda Activa 6G / Hunter 350',
+        bikePrice: 'from ₹399/day',
+        bikeDesc: 'The ultimate Madurai midnight street experience! Pull up right at the roadside stall, enjoy steaming hot parottas, and hop between culinary stalls with zero hassle.'
+      },
+      'gandhi-museum': {
+        icon: '🏛️',
+        category: 'HISTORIC PALACE MUSEUM',
+        title: 'Gandhi Memorial Palace Museum',
+        distance: '4.5 km • 14 mins',
+        routeMeta: '📍 Route: Tamukkam, Tallakulam | Best Time: 10:00 AM – 1:00 PM & 2:00 PM – 5:30 PM',
+        history: 'Set inside the majestic 17th-century Tamukkam Palace originally built by Rani Mangammal of the Nayak dynasty around 1670 CE. This hallowed ground marks where Mahatma Gandhi in 1921 made the historic decision to discard traditional formal attire and adopt the simple peasant loincloth (dhoti) to identify with Indias impoverished masses.',
+        carTitle: 'Maruti Swift / Hyundai i20',
+        carPrice: 'from ₹2,200/day',
+        carDesc: 'Spacious campus with shaded parking under banyan trees. Perfect educational and cultural family visit.',
+        bikeTitle: 'Honda Activa / Hunter 350',
+        bikePrice: 'from ₹399/day',
+        bikeDesc: 'Located just 5 minutes from our Mattuthavani rental hub. Effortless quick ride across the Tamukkam grounds.'
+      }
+    };
+
+    window.openDestinationDrawer = function(id) {
+      var data = DESTINATION_DETAILS[id] || DESTINATION_DETAILS['alagar-kovil'];
+      var drawer = document.getElementById('destinationDrawer');
+      if (!drawer) return;
+
+      document.getElementById('drawerIcon').textContent = data.icon;
+      document.getElementById('drawerCategory').textContent = data.category;
+      document.getElementById('drawerDistance').textContent = data.distance;
+      document.getElementById('drawerTitle').textContent = data.title;
+      document.getElementById('drawerRouteMeta').innerHTML = '<span>' + data.routeMeta + '</span>';
+      document.getElementById('drawerHistoryText').textContent = data.history;
+
+      var optCar = drawer.querySelector('.option-car');
+      if (optCar) {
+        optCar.querySelector('.veh-name').textContent = data.carTitle;
+        optCar.querySelector('.veh-price').textContent = data.carPrice;
+        optCar.querySelector('.veh-desc').textContent = data.carDesc;
+      }
+
+      var optBike = drawer.querySelector('.option-bike');
+      if (optBike) {
+        optBike.querySelector('.veh-name').textContent = data.bikeTitle;
+        optBike.querySelector('.veh-price').textContent = data.bikePrice;
+        optBike.querySelector('.veh-desc').textContent = data.bikeDesc;
+      }
+
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+    };
+
+    window.closeDestinationDrawer = function() {
+      var drawer = document.getElementById('destinationDrawer');
+      if (!drawer) return;
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDestinationDrawer();
+    });
+  </script>
+</body>
+</html>

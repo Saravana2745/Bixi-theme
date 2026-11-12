@@ -6497,3 +6497,1639 @@ button.bixi-cal-day.empty,
     display: none !important;
   }
 }
+
+
+/* ==========================================================================
+   REACT BITS MODERN UI ANIMATION SUITE (VANILLA CSS/JS)
+   ========================================================================== */
+
+/* 1. Spotlight Card Effect */
+.spotlight-card {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.spotlight-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: radial-gradient(450px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(255, 122, 24, 0.14), transparent 60%) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  opacity: 1 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* 2. Shiny Text Metallic Shimmer */
+.shiny-text {
+  background: linear-gradient(110deg, #FFFFFF 0%, #FFFFFF 40%, #FFD43B 50%, #FF7A18 60%, #FFFFFF 70%, #FFFFFF 100%) !important;
+  background-size: 200% auto !important;
+  color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  animation: shinySweep 4s linear infinite !important;
+  display: inline-block !important;
+}
+
+@keyframes shinySweep {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* 3. Border Beam Effect */
+.border-beam {
+  position: relative !important;
+}
+
+.border-beam::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -1px !important;
+  border-radius: inherit !important;
+  padding: 1.5px !important;
+  background: linear-gradient(90deg, transparent 0%, #FF7A18 35%, #FFD43B 50%, transparent 70%) !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  -webkit-mask-composite: xor !important;
+  mask-composite: exclude !important;
+  pointer-events: none !important;
+  animation: borderBeamRotate 5s linear infinite !important;
+}
+
+@keyframes borderBeamRotate {
+  0% { filter: hue-rotate(0deg); opacity: 0.8; }
+  50% { filter: hue-rotate(25deg); opacity: 1; }
+  100% { filter: hue-rotate(0deg); opacity: 0.8; }
+}
+
+/* 4. Magnetic Buttons */
+.magnet-btn {
+  will-change: transform !important;
+  transform-style: preserve-3d !important;
+}
+
+/* ==========================================================================
+   BIXI & MADURAI STANDALONE 3D TOUR & PRELOADER
+   ========================================================================== */
+
+/* Preloader Overlay */
+.bixi-tour-preloader {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: #06070A !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.65s !important;
+}
+
+.bixi-tour-preloader.fade-out {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.preloader-backdrop-glow {
+  position: absolute !important;
+  width: 500px !important;
+  height: 500px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.18) 0%, transparent 70%) !important;
+  filter: blur(80px) !important;
+  pointer-events: none !important;
+}
+
+.preloader-card {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 90% !important;
+  max-width: 480px !important;
+  background: rgba(13, 16, 24, 0.85) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 24px !important;
+  padding: 2.2rem 2rem !important;
+  text-align: center !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 122, 24, 0.12) !important;
+}
+
+.preloader-brand {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.preloader-badge {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  background: rgba(255, 122, 24, 0.14) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  padding: 0.25rem 0.8rem !important;
+  border-radius: 50px !important;
+}
+
+/* Vehicle Animation Stage */
+.preloader-vehicle-stage {
+  position: relative !important;
+  width: 100% !important;
+  height: 120px !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.preloader-runway {
+  position: absolute !important;
+  bottom: 16px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  display: flex !important;
+  gap: 24px !important;
+  overflow: hidden !important;
+}
+
+.preloader-road-line {
+  width: 40px !important;
+  height: 100% !important;
+  background: #FF7A18 !important;
+  box-shadow: 0 0 8px #FF7A18 !important;
+  animation: roadRunwayAnim 0.7s linear infinite !important;
+}
+
+@keyframes roadRunwayAnim {
+  0% { transform: translateX(200px); }
+  100% { transform: translateX(-150px); }
+}
+
+/* Vehicle Box (Morphing between bike and car) */
+.preloader-vehicle-box {
+  position: relative !important;
+  width: 140px !important;
+  height: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.vehicle-anim {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.vehicle-tag {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  color: #94A3B8 !important;
+  letter-spacing: 0.08em !important;
+  margin-top: 0.2rem !important;
+}
+
+/* Data attribute switching */
+.preloader-vehicle-box[data-vehicle="bike"] .bike-anim {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+  pointer-events: auto !important;
+}
+.preloader-vehicle-box[data-vehicle="bike"] .car-anim {
+  opacity: 0 !important;
+  transform: scale(0.85) translateY(10px) !important;
+  pointer-events: none !important;
+}
+
+.preloader-vehicle-box[data-vehicle="car"] .bike-anim {
+  opacity: 0 !important;
+  transform: scale(0.85) translateY(-10px) !important;
+  pointer-events: none !important;
+}
+.preloader-vehicle-box[data-vehicle="car"] .car-anim {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.wheel-spin {
+  animation: wheelRotation 0.45s linear infinite !important;
+  transform-origin: center !important;
+}
+
+@keyframes wheelRotation {
+  100% { transform: rotate(360deg); }
+}
+
+.vehicle-svg {
+  width: 100% !important;
+  height: 60px !important;
+  filter: drop-shadow(0 4px 12px rgba(255, 122, 24, 0.35)) !important;
+}
+
+/* Preloader Progress Area */
+.preloader-progress-area {
+  margin-bottom: 1rem !important;
+}
+
+.preloader-stats {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0.6rem !important;
+  font-size: 0.8rem !important;
+}
+
+.preloader-label {
+  color: #94A3B8 !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+  max-width: 80% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.preloader-pct {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  color: #FF7A18 !important;
+}
+
+.preloader-track {
+  width: 100% !important;
+  height: 6px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.preloader-fill {
+  height: 100% !important;
+  background: linear-gradient(90deg, #FF7A18 0%, #FFD43B 100%) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 0 12px rgba(255, 122, 24, 0.7) !important;
+  transition: width 0.08s ease !important;
+}
+
+.preloader-subtext {
+  font-size: 0.75rem !important;
+  color: #64748B !important;
+  margin: 0 !important;
+}
+
+/* Standalone Hero Layout */
+.bixi-madurai-hero-section {
+  padding-top: 6.5rem !important;
+  padding-bottom: 2rem !important;
+}
+
+.bixi-madurai-hero-head {
+  max-width: 840px !important;
+  margin: 0 auto 2.5rem !important;
+}
+
+.bixi-madurai-hero-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  background: rgba(255, 122, 24, 0.12) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  padding: 0.35rem 0.95rem !important;
+  border-radius: 50px !important;
+  color: #FF7A18 !important;
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.bixi-madurai-hero-title {
+  font-size: 2.85rem !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 1rem !important;
+}
+
+.bixi-madurai-hero-desc {
+  font-size: 1.08rem !important;
+  line-height: 1.7 !important;
+  color: #94A3B8 !important;
+  margin: 0 auto !important;
+}
+
+/* Standalone 3D Viewport Card */
+.bixi-tour-standalone-wrapper {
+  margin-bottom: 3rem !important;
+}
+
+.bixi-tour-standalone-wrapper .map-viewport-container {
+  height: 680px !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 122, 24, 0.1) !important;
+}
+
+.map-interaction-pill {
+  position: absolute !important;
+  bottom: 4.8rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(10, 13, 20, 0.78) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  padding: 0.35rem 1rem !important;
+  border-radius: 50px !important;
+  font-size: 0.74rem !important;
+  color: #E2E8F0 !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+  white-space: nowrap !important;
+}
+
+/* ==========================================================================
+   SLIDE-IN DESTINATION HISTORY & MARKETING DRAWER
+   ========================================================================== */
+
+.destination-slide-drawer {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 10000 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: visibility 0.4s !important;
+}
+
+.destination-slide-drawer.open {
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.drawer-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+}
+
+.destination-slide-drawer.open .drawer-overlay {
+  opacity: 1 !important;
+}
+
+.drawer-panel {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 540px !important;
+  height: 100vh !important;
+  background: #0B0E17 !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.9), -5px 0 30px rgba(255, 122, 24, 0.12) !important;
+  overflow-y: auto !important;
+  padding: 2.5rem 2.2rem 3rem !important;
+  transform: translateX(100%) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+.destination-slide-drawer.open .drawer-panel {
+  transform: translateX(0) !important;
+}
+
+.drawer-close-btn {
+  position: absolute !important;
+  top: 1.4rem !important;
+  right: 1.4rem !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
+  font-size: 1.1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+
+.drawer-close-btn:hover {
+  background: #FF7A18 !important;
+  color: #000000 !important;
+  transform: rotate(90deg) !important;
+}
+
+.drawer-header-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.drawer-icon {
+  font-size: 1.8rem !important;
+}
+
+.drawer-cat {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  color: #FF7A18 !important;
+  background: rgba(255, 122, 24, 0.14) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  padding: 0.22rem 0.65rem !important;
+  border-radius: 50px !important;
+}
+
+.drawer-dist {
+  font-size: 0.76rem !important;
+  color: #94A3B8 !important;
+  margin-left: auto !important;
+}
+
+.drawer-title {
+  font-size: 1.85rem !important;
+  font-weight: 900 !important;
+  color: #FFFFFF !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+}
+
+.drawer-route-meta {
+  font-size: 0.82rem !important;
+  color: #CBD5E1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+  padding: 0.8rem 1rem !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.drawer-history-block {
+  background: rgba(18, 22, 34, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 1.4rem !important;
+}
+
+.drawer-section-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.drawer-section-title h3 {
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin: 0 !important;
+}
+
+.drawer-history-block p {
+  font-size: 0.92rem !important;
+  line-height: 1.65 !important;
+  color: #94A3B8 !important;
+  margin: 0 !important;
+}
+
+.drawer-marketing-block {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.1rem !important;
+}
+
+.drawer-vehicle-card {
+  background: rgba(15, 19, 28, 0.85) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  border-radius: 16px !important;
+  padding: 1.3rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.drawer-vehicle-card.option-bike {
+  border-color: rgba(255, 212, 59, 0.35) !important;
+}
+
+.drawer-veh-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.veh-type-badge {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  color: #FF7A18 !important;
+  background: rgba(255, 122, 24, 0.12) !important;
+  padding: 0.2rem 0.55rem !important;
+  border-radius: 4px !important;
+}
+
+.bike-badge {
+  color: #FFD43B !important;
+  background: rgba(255, 212, 59, 0.12) !important;
+}
+
+.veh-price {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.92rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+}
+
+.veh-name {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin: 0.3rem 0 0.5rem !important;
+}
+
+.veh-desc {
+  font-size: 0.86rem !important;
+  line-height: 1.55 !important;
+  color: #94A3B8 !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.veh-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.4rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.veh-tags span {
+  font-size: 0.7rem !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 4px !important;
+  color: #CBD5E1 !important;
+}
+
+.drawer-btn {
+  width: 100% !important;
+  text-align: center !important;
+  padding: 0.75rem 1.2rem !important;
+  font-size: 0.9rem !important;
+}
+
+.drawer-trust-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.6rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.trust-pill {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: #94A3B8 !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 0.45rem 0.65rem !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+}
+
+/* ==========================================================================
+   CIRCUIT ITINERARY GRID ON BIXI & MADURAI PAGE
+   ========================================================================== */
+
+.circuit-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1.8rem !important;
+  margin-bottom: 3.5rem !important;
+}
+
+.circuit-card {
+  background: rgba(13, 16, 24, 0.7) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 1.8rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s !important;
+}
+
+.circuit-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(255, 122, 24, 0.45) !important;
+}
+
+.circuit-card-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.circuit-step {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  color: #FF7A18 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.circuit-dist {
+  font-size: 0.75rem !important;
+  color: #64748B !important;
+}
+
+.circuit-card-title {
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.65rem !important;
+}
+
+.circuit-card-history {
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
+  color: #94A3B8 !important;
+  margin-bottom: 1rem !important;
+  flex-grow: 1 !important;
+}
+
+.circuit-ride-strategy {
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+  color: #CBD5E1 !important;
+  background: rgba(255, 122, 24, 0.08) !important;
+  border-left: 3px solid #FF7A18 !important;
+  padding: 0.65rem 0.85rem !important;
+  border-radius: 0 8px 8px 0 !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.btn-circuit-explore {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  padding: 0.65rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: background 0.2s, border-color 0.2s, color 0.2s !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.btn-circuit-explore:hover {
+  background: #FF7A18 !important;
+  border-color: #FF7A18 !important;
+  color: #000000 !important;
+}
+
+.circuit-cta-banner {
+  background: radial-gradient(circle at 50% 50%, #151A28 0%, #0C0F17 100%) !important;
+  border: 1px solid rgba(255, 122, 24, 0.4) !important;
+  border-radius: 24px !important;
+  padding: 3rem 2.5rem !important;
+  text-align: center !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7) !important;
+}
+
+.cta-banner-content {
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+
+.cta-badge {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  color: #FF7A18 !important;
+  letter-spacing: 0.12em !important;
+  background: rgba(255, 122, 24, 0.12) !important;
+  padding: 0.3rem 0.8rem !important;
+  border-radius: 50px !important;
+  display: inline-block !important;
+  margin-bottom: 1rem !important;
+}
+
+.circuit-cta-banner h3 {
+  font-size: 2.2rem !important;
+  font-weight: 900 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.circuit-cta-banner p {
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  color: #94A3B8 !important;
+  margin-bottom: 1.8rem !important;
+}
+
+.cta-banner-buttons {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+}
+
+/* ==========================================================================
+   INDEX.HTML REPLACEMENT SECTION (FLEET RUNWAY & 3D PORTAL)
+   ========================================================================== */
+
+.fleet-expedition-home-section {
+  position: relative !important;
+  background: #080A0F !important;
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+.home-fleet-runway-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1.5rem !important;
+  margin-bottom: 3.5rem !important;
+}
+
+.fleet-runway-card {
+  background: rgba(13, 16, 24, 0.75) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 1.4rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s, box-shadow 0.35s !important;
+}
+
+.fleet-runway-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(255, 122, 24, 0.5) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 122, 24, 0.15) !important;
+}
+
+.runway-card-badge {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.65rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  color: #FF7A18 !important;
+  background: rgba(255, 122, 24, 0.14) !important;
+  padding: 0.22rem 0.55rem !important;
+  border-radius: 4px !important;
+  display: inline-block !important;
+  margin-bottom: 0.8rem !important;
+  width: fit-content !important;
+}
+
+.cruiser-badge { color: #FFD43B !important; background: rgba(255, 212, 59, 0.14) !important; }
+.city-badge { color: #38BDF8 !important; background: rgba(56, 189, 248, 0.14) !important; }
+.hill-badge { color: #4ADE80 !important; background: rgba(74, 222, 128, 0.14) !important; }
+
+.runway-visual-stage {
+  position: relative !important;
+  width: 100% !important;
+  height: 130px !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 1.1rem !important;
+}
+
+.runway-road-anim {
+  position: absolute !important;
+  bottom: 12px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: repeating-linear-gradient(90deg, #FF7A18 0px, #FF7A18 20px, transparent 20px, transparent 40px) !important;
+  opacity: 0.35 !important;
+  animation: roadStripeRoll 0.8s linear infinite !important;
+}
+
+.fleet-runway-card:hover .runway-road-anim {
+  opacity: 0.85 !important;
+  animation-duration: 0.35s !important;
+}
+
+@keyframes roadStripeRoll {
+  0% { background-position: 0 0; }
+  100% { background-position: -40px 0; }
+}
+
+.runway-veh-img {
+  max-width: 85% !important;
+  max-height: 85px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6)) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.fleet-runway-card:hover .runway-veh-img {
+  transform: scale(1.08) translateY(-4px) !important;
+  filter: drop-shadow(0 10px 20px rgba(255, 122, 24, 0.3)) !important;
+}
+
+.runway-info {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+.runway-title-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.runway-title-row h3 {
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin: 0 !important;
+}
+
+.runway-price {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #FF7A18 !important;
+}
+
+.runway-price small {
+  font-size: 0.65rem !important;
+  color: #94A3B8 !important;
+}
+
+.runway-desc {
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+  color: #94A3B8 !important;
+  margin-bottom: 0.9rem !important;
+  flex-grow: 1 !important;
+}
+
+.runway-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  margin-bottom: 1.1rem !important;
+}
+
+.runway-chips span {
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 0.15rem 0.45rem !important;
+  border-radius: 4px !important;
+  color: #CBD5E1 !important;
+}
+
+/* 3D Portal Launchpad Card */
+.interactive-3d-portal-card {
+  background: radial-gradient(circle at 75% 50%, #151928 0%, #0B0E17 100%) !important;
+  border: 1px solid rgba(255, 122, 24, 0.45) !important;
+  border-radius: 24px !important;
+  padding: 3rem !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 122, 24, 0.12) !important;
+}
+
+.portal-grid {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1fr !important;
+  gap: 3rem !important;
+  align-items: center !important;
+}
+
+.portal-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  background: rgba(255, 122, 24, 0.12) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  padding: 0.3rem 0.85rem !important;
+  border-radius: 50px !important;
+  color: #FF7A18 !important;
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 1rem !important;
+}
+
+.portal-title {
+  font-size: 2.1rem !important;
+  font-weight: 900 !important;
+  line-height: 1.2 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 0.85rem !important;
+}
+
+.portal-desc {
+  font-size: 0.96rem !important;
+  line-height: 1.65 !important;
+  color: #94A3B8 !important;
+  margin-bottom: 1.4rem !important;
+}
+
+.portal-features {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.6rem !important;
+  font-size: 0.82rem !important;
+  color: #CBD5E1 !important;
+  margin-bottom: 1.8rem !important;
+}
+
+.portal-cta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.2rem !important;
+}
+
+.portal-btn {
+  padding: 0.95rem 2rem !important;
+  font-size: 1rem !important;
+}
+
+.portal-hint {
+  font-size: 0.8rem !important;
+  color: #64748B !important;
+}
+
+.portal-preview-frame {
+  position: relative !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+.portal-preview-img {
+  width: 100% !important;
+  height: 270px !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.portal-preview-frame:hover .portal-preview-img {
+  transform: scale(1.05) !important;
+}
+
+.portal-play-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+  transition: background 0.3s ease !important;
+}
+
+.portal-preview-frame:hover .portal-play-overlay {
+  background: rgba(0, 0, 0, 0.25) !important;
+}
+
+.portal-play-btn {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background: #FF7A18 !important;
+  color: #000000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.3rem !important;
+  box-shadow: 0 0 25px #FF7A18 !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.portal-preview-frame:hover .portal-play-btn {
+  transform: scale(1.15) !important;
+}
+
+.portal-play-label {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (MOBILE & TABLET)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .home-fleet-runway-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .circuit-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .portal-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .bixi-madurai-hero-section {
+    padding-top: 5rem !important;
+  }
+  .bixi-madurai-hero-title {
+    font-size: 2rem !important;
+  }
+  .bixi-tour-standalone-wrapper .map-viewport-container {
+    height: 520px !important;
+  }
+  .drawer-panel {
+    max-width: 100% !important;
+    padding: 2rem 1.4rem 2.5rem !important;
+  }
+  .drawer-trust-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .home-fleet-runway-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .circuit-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .portal-features {
+    grid-template-columns: 1fr !important;
+  }
+  .portal-cta {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .cta-banner-buttons {
+    flex-direction: column !important;
+  }
+  .circuit-cta-banner h3 {
+    font-size: 1.6rem !important;
+  }
+}
+
+
+/* ==========================================================================
+   FULL-SCREEN 3D LAB APPLICATION (ARURA-STYLE INTERACTIVE EXPERIENCE)
+   ========================================================================== */
+
+.bixi-fullscreen-app-body {
+  overflow: hidden !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #06070A !important;
+}
+
+/* App Header */
+.bixi-app-header {
+  height: 64px !important;
+  width: 100% !important;
+  background: rgba(10, 13, 20, 0.94) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 1.5rem !important;
+  z-index: 100 !important;
+  flex-shrink: 0 !important;
+}
+
+.app-header-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.app-back-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #FFFFFF !important;
+  padding: 0.45rem 0.95rem !important;
+  border-radius: 10px !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+
+.app-back-btn:hover {
+  background: #FF7A18 !important;
+  color: #000000 !important;
+  transform: translateX(-2px) !important;
+}
+
+.app-back-icon {
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.app-header-divider {
+  width: 1px !important;
+  height: 22px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.app-brand-link {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.app-logo {
+  height: 34px !important;
+  width: auto !important;
+}
+
+.app-title-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  background: rgba(255, 122, 24, 0.12) !important;
+  border: 1px solid rgba(255, 122, 24, 0.3) !important;
+  padding: 0.22rem 0.65rem !important;
+  border-radius: 50px !important;
+  color: #FF7A18 !important;
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* App Header Center (Stage Switcher) */
+.app-header-center {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.app-stage-switcher {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.3rem !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 0.25rem 0.4rem !important;
+  border-radius: 12px !important;
+}
+
+.app-stage-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  background: transparent !important;
+  border: none !important;
+  color: #94A3B8 !important;
+  padding: 0.35rem 0.8rem !important;
+  border-radius: 8px !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.app-stage-btn:hover {
+  color: #FFFFFF !important;
+}
+
+.app-stage-btn.active {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+.stage-num {
+  width: 17px !important;
+  height: 17px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 122, 24, 0.18) !important;
+  color: #FF7A18 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.65rem !important;
+  font-weight: 800 !important;
+}
+
+.app-stage-btn.active .stage-num {
+  background: #FF7A18 !important;
+  color: #000000 !important;
+}
+
+.stage-divider {
+  color: rgba(255, 255, 255, 0.2) !important;
+  font-size: 0.75rem !important;
+  user-select: none !important;
+}
+
+/* App Header Right */
+.app-header-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+}
+
+.app-hotline-btn {
+  padding: 0.45rem 0.95rem !important;
+  font-size: 0.8rem !important;
+}
+
+.app-rent-btn {
+  padding: 0.45rem 1.15rem !important;
+  font-size: 0.82rem !important;
+}
+
+/* Full-Screen Stage */
+.bixi-app-stage {
+  position: relative !important;
+  flex: 1 !important;
+  width: 100% !important;
+  height: calc(100vh - 64px) !important;
+  overflow: hidden !important;
+  background: #06070A !important;
+}
+
+.bixi-full-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  cursor: grab !important;
+}
+
+.bixi-full-canvas:active {
+  cursor: grabbing !important;
+}
+
+/* Telemetry HUD Top-Left */
+.app-telemetry-hud {
+  position: absolute !important;
+  top: 1.4rem !important;
+  left: 360px !important;
+  z-index: 25 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.4rem !important;
+  pointer-events: none !important;
+  transition: left 0.3s ease !important;
+}
+
+.telemetry-meta-tags {
+  display: flex !important;
+  gap: 0.4rem !important;
+}
+
+.meta-tag {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.64rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  background: rgba(10, 13, 20, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 0.18rem 0.55rem !important;
+  border-radius: 4px !important;
+  color: #94A3B8 !important;
+}
+
+/* Floating Tools Top-Right */
+.app-tools-toolbar {
+  position: absolute !important;
+  top: 1.4rem !important;
+  right: 1.5rem !important;
+  z-index: 25 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.app-tool-btn {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 10px !important;
+  background: rgba(13, 16, 24, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  transition: all 0.2s ease !important;
+}
+
+.app-tool-btn:hover {
+  background: #FF7A18 !important;
+  color: #000000 !important;
+  transform: translateY(-2px) !important;
+}
+
+.overview-tool-btn {
+  width: auto !important;
+  padding: 0 0.85rem !important;
+  gap: 0.4rem !important;
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+}
+
+/* Floating Left-Side Landmark Dock */
+.app-landmarks-sidebar {
+  position: absolute !important;
+  top: 1.4rem !important;
+  left: 1.5rem !important;
+  width: 320px !important;
+  max-height: calc(100vh - 100px) !important;
+  background: rgba(10, 13, 20, 0.82) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 20px !important;
+  padding: 1.25rem !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 122, 24, 0.08) !important;
+  z-index: 30 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+  overflow: hidden !important;
+}
+
+.sidebar-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.sidebar-badge {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.62rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  color: #FF7A18 !important;
+  display: block !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.sidebar-header h3 {
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 0.2rem !important;
+}
+
+.sidebar-header p {
+  font-size: 0.72rem !important;
+  color: #94A3B8 !important;
+  margin: 0 !important;
+}
+
+.sidebar-landmarks-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.45rem !important;
+  overflow-y: auto !important;
+  max-height: 380px !important;
+  padding-right: 0.2rem !important;
+}
+
+.sidebar-checkpoint-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.65rem !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 0.6rem 0.8rem !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: #FFFFFF !important;
+}
+
+.sidebar-checkpoint-btn:hover {
+  background: rgba(255, 122, 24, 0.14) !important;
+  border-color: rgba(255, 122, 24, 0.4) !important;
+  transform: translateX(3px) !important;
+}
+
+.sidebar-checkpoint-btn.active {
+  background: linear-gradient(90deg, rgba(255, 122, 24, 0.22) 0%, rgba(255, 212, 59, 0.08) 100%) !important;
+  border-color: #FF7A18 !important;
+  box-shadow: 0 4px 16px rgba(255, 122, 24, 0.2) !important;
+}
+
+.cp-icon {
+  font-size: 1.3rem !important;
+  flex-shrink: 0 !important;
+}
+
+.cp-info {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+.cp-name {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  line-height: 1.2 !important;
+}
+
+.cp-sub {
+  font-size: 0.68rem !important;
+  color: #94A3B8 !important;
+  margin-top: 0.15rem !important;
+}
+
+.cp-arrow {
+  color: #64748B !important;
+  font-size: 0.85rem !important;
+  transition: transform 0.2s, color 0.2s !important;
+}
+
+.sidebar-checkpoint-btn:hover .cp-arrow,
+.sidebar-checkpoint-btn.active .cp-arrow {
+  color: #FF7A18 !important;
+  transform: translateX(2px) !important;
+}
+
+.sidebar-footer-hint {
+  font-size: 0.68rem !important;
+  color: #64748B !important;
+  text-align: center !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding-top: 0.5rem !important;
+}
+
+/* Bottom Hint */
+.app-bottom-hint-pill {
+  position: absolute !important;
+  bottom: 1.4rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(10, 13, 20, 0.78) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  padding: 0.35rem 1rem !important;
+  border-radius: 50px !important;
+  font-size: 0.74rem !important;
+  color: #E2E8F0 !important;
+  pointer-events: none !important;
+  z-index: 25 !important;
+  white-space: nowrap !important;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS FOR FULL-SCREEN APP
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .app-telemetry-hud {
+    left: 1.5rem !important;
+    top: 4.8rem !important;
+  }
+  .app-landmarks-sidebar {
+    top: auto !important;
+    bottom: 3.5rem !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    width: auto !important;
+    max-height: 140px !important;
+    padding: 0.8rem !important;
+  }
+  .sidebar-header, .sidebar-footer-hint {
+    display: none !important;
+  }
+  .sidebar-landmarks-list {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    max-height: none !important;
+    gap: 0.5rem !important;
+  }
+  .sidebar-checkpoint-btn {
+    min-width: 220px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .bixi-app-header {
+    height: 54px !important;
+    padding: 0 0.8rem !important;
+  }
+  .app-title-badge, .hotline-text, .app-header-divider {
+    display: none !important;
+  }
+  .bixi-app-stage {
+    height: calc(100vh - 54px) !important;
+  }
+  .app-stage-switcher {
+    padding: 0.2rem 0.3rem !important;
+  }
+  .app-stage-btn {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.7rem !important;
+  }
+  .app-bottom-hint-pill {
+    display: none !important;
+  }
+  .app-telemetry-hud {
+    top: 0.8rem !important;
+    left: 0.8rem !important;
+  }
+  .telemetry-meta-tags {
+    display: none !important;
+  }
+  .app-tools-toolbar {
+    top: 0.8rem !important;
+    right: 0.8rem !important;
+  }
+  .app-landmarks-sidebar {
+    bottom: 1rem !important;
+    left: 0.8rem !important;
+    right: 0.8rem !important;
+    max-height: 120px !important;
+    padding: 0.6rem !important;
+  }
+  .sidebar-checkpoint-btn {
+    min-width: 190px !important;
+    padding: 0.5rem 0.65rem !important;
+  }
+  .cp-name {
+    font-size: 0.75rem !important;
+  }
+  .destination-slide-drawer .drawer-panel {
+    max-width: 100% !important;
+    height: 82vh !important;
+    top: auto !important;
+    bottom: 0 !important;
+    border-radius: 24px 24px 0 0 !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
+    transform: translateY(100%) !important;
+  }
+  .destination-slide-drawer.open .drawer-panel {
+    transform: translateY(0) !important;
+  }
+}

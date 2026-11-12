@@ -1752,6 +1752,21 @@
           btn.classList.remove('active');
         }
       });
+
+      // Update standalone landmark dock buttons
+      document.querySelectorAll('.dock-checkpoint-btn').forEach(btn => {
+        if (btn.dataset.checkpoint === cp.id) {
+          btn.classList.add('active');
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Open interactive destination history & vehicle recommendation slide drawer
+      if (typeof window.openDestinationDrawer === 'function') {
+        window.openDestinationDrawer(cp.id);
+      }
     }
 
     function resetMaduraiOverview() {

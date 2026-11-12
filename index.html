@@ -44,7 +44,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=23.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=24.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -1050,8 +1050,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         <ul class="nav-links">
           <li><a href="index.html" class="nav-link active">Home</a></li>
           <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="bixi-and-madurai.html" class="nav-link">BIXI &amp; Madurai</a></li>
           <li><a href="bikes.html" class="nav-link">Rent Vehicles</a></li>
-          <li><a href="blog.html" class="nav-link">Blog & Guides</a></li>
+          <li><a href="blog.html" class="nav-link">Blog &amp; Guides</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
 
@@ -1079,8 +1080,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       <ul class="mobile-nav-links">
         <li><a href="index.html" class="mobile-nav-link active">Home <span>→</span></a></li>
         <li><a href="about.html" class="mobile-nav-link">About Us <span>→</span></a></li>
+        <li><a href="bixi-and-madurai.html" class="mobile-nav-link">BIXI &amp; Madurai <span>→</span></a></li>
         <li><a href="bikes.html" class="mobile-nav-link">Rent Vehicles <span>→</span></a></li>
-        <li><a href="blog.html" class="mobile-nav-link">Blog & Guides <span>→</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">Blog &amp; Guides <span>→</span></a></li>
         <li><a href="contact.html" class="mobile-nav-link">Contact Us <span>→</span></a></li>
       </ul>
     </div>
@@ -1225,7 +1227,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js?v=23.0 based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=24.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
@@ -1526,100 +1528,168 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       </div>
     </section>
 
-<!-- 3D INTERACTIVE MADURAI ROUTE & DESTINATION SIMULATOR (WITH 3D CAR IN LOOP) -->
-        <!-- 3D INTERACTIVE MADURAI ROUTE, LANDMARKS & NATURE SIMULATOR -->
-    <section class="section madurai-map-section" id="madurai-3d-map-section">
+    <!-- ═══════════════ ANIMATED FLEET & MADURAI EXPEDITION SHOWCASE ═══════════════ -->
+    <section class="section fleet-expedition-home-section" id="madurai-fleet-expedition-section" aria-label="Curated Fleet & Madurai Expedition Circuit">
       <div class="container">
-        <div class="section-head">
-          <span class="badge">Next-Gen Real-Time 3D Nature &amp; Landmark Simulation</span>
-          <h2>3D Madurai Route &amp; Destination Tour</h2>
+        <div class="section-head text-center">
+          <span class="badge shiny-text">✦ VERIFIED COMMERCIAL FLEET (40+ VEHICLES)</span>
+          <h2>Curated Fleet &amp; Madurai Expedition Circuit</h2>
           <p>
-            Cruise through Madurai’s historic and cultural landmarks with our <strong>3D Swift touring in an endless road loop</strong>. Explore authentic 3D models of <strong>Meenakshi Temple, Alanganallur Vadivasal with a live animated Jallikattu bull simulation, Lucky Mess, Power Kadai &amp; Bun Parotta, Gandhi Museum, and Alagar Kovil (Kallazhagar Temple)</strong>. The sacred Vaigai River flows along its natural palm banks while your car cruises strictly on the road.
+            Experience pure road freedom with Madurai’s premier <strong>bike rental in madurai</strong> and certified <strong>self drive car rental in madurai</strong>. Enjoy transparent pricing, zero security deposit, 100% legal commercial yellow plates, and 24/7 breakdown rescue across Mattuthavani and Madurai Junction. Premier choice for <strong>madurai bike rental</strong> and verified <strong>madurai rental bikes</strong>.
           </p>
         </div>
 
-        <div class="madurai-map-card-wrapper">
-                              <!-- 3D Viewport with Live Telemetry, Reset Zoom Out, and Scrollable Landmark Dock -->
-          <div class="map-viewport-container" id="madurai-3d-map-wrapper">
-            <canvas id="madurai-3d-map-canvas"></canvas>
+        <!-- Interactive Animated Vehicles Grid -->
+        <div class="home-fleet-runway-grid">
+          
+          <!-- Vehicle 1: Maruti Swift -->
+          <article class="fleet-runway-card spotlight-card border-beam" data-vehicle="swift">
+            <div class="runway-card-badge">TOP FAMILY PICK • SELF-DRIVE</div>
+            <div class="runway-visual-stage">
+              <div class="runway-road-anim"></div>
+              <img src="assets/images/bikes/car-swift.svg" alt="Maruti Swift Self-Drive Car Rental in Madurai" class="runway-veh-img veh-car-swift" width="220" height="110" loading="lazy">
+            </div>
+            <div class="runway-info">
+              <div class="runway-title-row">
+                <h3>Maruti Suzuki Swift</h3>
+                <span class="runway-price">₹2,200<small>/day</small></span>
+              </div>
+              <p class="runway-desc">
+                Chilled AC 5-seater hatchback ideal for temple pilgrimages to Meenakshi Amman Kovil and scenic Alagar Hills. Spotless sanitized cabin with touchscreen navigation.
+              </p>
+              <div class="runway-chips">
+                <span>5 Seats</span>
+                <span>Chilled AC</span>
+                <span>Zero Deposit</span>
+              </div>
+              <div class="runway-actions">
+                <a href="#booking-engine" class="btn-primary magnet-btn" style="width: 100%;">Select Vehicle &amp; Reserve →</a>
+              </div>
+            </div>
+          </article>
 
-            <!-- Real-Time Telemetry HUD -->
-            <div class="map-live-telemetry">
-              <div class="telemetry-pulse-dot"></div>
-              <div class="map-telemetry-text">
-                CAR TELEMETRY: <strong id="mapLiveCheckpointText">Meenakshi Amman Kovil</strong> • LOOP ACTIVE
+          <!-- Vehicle 2: Royal Enfield Hunter 350 -->
+          <article class="fleet-runway-card spotlight-card" data-vehicle="hunter">
+            <div class="runway-card-badge cruiser-badge">YOUTH &amp; ADVENTURE ICON</div>
+            <div class="runway-visual-stage">
+              <div class="runway-road-anim"></div>
+              <img src="assets/images/bikes/hunter-350.svg" alt="Royal Enfield Hunter 350 Rental Bikes in Madurai" class="runway-veh-img veh-bike-hunter" width="200" height="110" loading="lazy">
+            </div>
+            <div class="runway-info">
+              <div class="runway-title-row">
+                <h3>Royal Enfield Hunter 350</h3>
+                <span class="runway-price">₹899<small>/day</small></span>
+              </div>
+              <p class="runway-desc">
+                Punchy J-series 350cc engine with modern retro styling. Effortless city navigation and scenic highway cruising toward Alanganallur Vadivasal. Premier <strong>rental bikes in madurai</strong>.
+              </p>
+              <div class="runway-chips">
+                <span>350cc Thump</span>
+                <span>Dual Disc ABS</span>
+                <span>Free Helmets</span>
+              </div>
+              <div class="runway-actions">
+                <a href="#booking-engine" class="btn-primary magnet-btn" style="width: 100%;">Select Vehicle &amp; Reserve →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Vehicle 3: Honda Activa 6G -->
+          <article class="fleet-runway-card spotlight-card" data-vehicle="activa">
+            <div class="runway-card-badge city-badge">BEST LOCAL COMMUTER</div>
+            <div class="runway-visual-stage">
+              <div class="runway-road-anim"></div>
+              <img src="assets/images/bikes/activa-6g.svg" alt="Honda Activa 6G Madurai Bike Rental" class="runway-veh-img veh-scooter-activa" width="190" height="110" loading="lazy">
+            </div>
+            <div class="runway-info">
+              <div class="runway-title-row">
+                <h3>Honda Activa 6G</h3>
+                <span class="runway-price">₹399<small>/day</small></span>
+              </div>
+              <p class="runway-desc">
+                Nimble, high-mileage automatic scooter. Effortless parking around Masi and Veli streets where cars get trapped in temple traffic. Trusted <strong>best bike rental near me</strong>.
+              </p>
+              <div class="runway-chips">
+                <span>Automatic</span>
+                <span>55+ km/l</span>
+                <span>Instant Handover</span>
+              </div>
+              <div class="runway-actions">
+                <a href="#booking-engine" class="btn-primary magnet-btn" style="width: 100%;">Select Vehicle &amp; Reserve →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Vehicle 4: Royal Enfield Himalayan 450 -->
+          <article class="fleet-runway-card spotlight-card" data-vehicle="himalayan">
+            <div class="runway-card-badge hill-badge">HILL EXPLORER</div>
+            <div class="runway-visual-stage">
+              <div class="runway-road-anim"></div>
+              <img src="assets/images/bikes/himalayan-450.svg" alt="Royal Enfield Himalayan 450 Madurai Rental Bikes" class="runway-veh-img veh-bike-himalayan" width="210" height="110" loading="lazy">
+            </div>
+            <div class="runway-info">
+              <div class="runway-title-row">
+                <h3>RE Himalayan 450</h3>
+                <span class="runway-price">₹1,299<small>/day</small></span>
+              </div>
+              <p class="runway-desc">
+                Liquid-cooled Sherpa 450 powerhouse. Built for thrilling hill ascents to Kodaikanal, Megamalai, and the rugged slopes of Alagar Hills. Unmatched <strong>car rental service in madurai</strong> &amp; bike fleet.
+              </p>
+              <div class="runway-chips">
+                <span>40 BHP</span>
+                <span>Off-Road Ready</span>
+                <span>Tripper Dash</span>
+              </div>
+              <div class="runway-actions">
+                <a href="#booking-engine" class="btn-primary magnet-btn" style="width: 100%;">Select Vehicle &amp; Reserve →</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ═══════════════ 3D VIRTUAL TOUR LAUNCHPAD PORTAL BANNER ═══════════════ -->
+        <div class="interactive-3d-portal-card border-beam">
+          <div class="portal-grid">
+            <div class="portal-info">
+              <div class="portal-pill">
+                <span class="live-dot pulse"></span>
+                <span>SEPARATE 60FPS VIRTUAL EXPERIENCE</span>
+              </div>
+              <h3 class="portal-title">
+                Explore Madurai in <span class="text-orange">Full 3D Real-Time Simulation</span>
+              </h3>
+              <p class="portal-desc">
+                Take an interactive virtual road trip through Madurai! Watch our 3D Swift tour Meenakshi Amman Temple, Alagar Kovil, and Alanganallur Vadivasal in an endless road loop. Click any temple or food stop to discover its 2,500-year history and compare <strong>car rental in madurai</strong> vs <strong>bike rental madurai</strong> strategies.
+              </p>
+              <div class="portal-features">
+                <span>✓ 6 Authentic 3D Landmarks</span>
+                <span>✓ Live Car Telemetry &amp; Speed Controls</span>
+                <span>✓ Madurai Cultural History &amp; Travel Guides</span>
+                <span>✓ 60fps Zero-Lag Smooth Performance</span>
+              </div>
+              <div class="portal-cta">
+                <a href="bixi-and-madurai.html" class="btn-primary magnet-btn portal-btn">
+                  Launch 3D Madurai Tour →
+                </a>
+                <span class="portal-hint">Opens dedicated high-speed 3D page</span>
               </div>
             </div>
 
-            <!-- Floating Zoom In, Zoom Out (+, -) and Overview Controls -->
-            <div class="map-zoom-toolbar">
-              <button type="button" class="map-zoom-btn" onclick="zoomMaduraiMap(1)" title="Zoom In (+)" aria-label="Zoom In">+</button>
-              <button type="button" class="map-zoom-btn" onclick="zoomMaduraiMap(-1)" title="Zoom Out (−)" aria-label="Zoom Out">−</button>
-              <button type="button" class="map-zoom-btn reset-btn" onclick="resetMaduraiMapOverview()" title="Full Overview / Zoom Out" aria-label="Full Overview">⟲ Overview</button>
-            </div>
-
-            <!-- Floating Reset Zoom Out / Full Overview Button -->
-            <button type="button" class="map-reset-btn" id="btnMapResetView" onclick="resetMaduraiMapOverview()" aria-label="Zoom Out to Full Overview">
-              <span>&#10005;</span> Zoom Out / Overview
-            </button>
-
-            <!-- Bottom Interactive Checkpoint Switchers with Orange/Black Scrollbar & Arrows -->
-            <div class="map-controls-overlay">
-              <div class="map-pills-container">
-                <button type="button" class="map-scroll-arrow" onclick="scrollPills(-1)" title="Scroll Left" aria-label="Scroll Left">&#9664;</button>
-                <div class="map-pills-row">
-                  <button type="button" class="map-pill-btn active" data-id="overview" onclick="resetMaduraiMapOverview()">🌐 Full Overview</button>
-                  <button type="button" class="map-pill-btn" data-id="meenakshi" onclick="focusMaduraiCheckpoint('meenakshi')">&#127989; Meenakshi Kovil</button>
-                  <button type="button" class="map-pill-btn" data-id="alanganallur-vadivasal" onclick="focusMaduraiCheckpoint('alanganallur-vadivasal')">&#128002; Alanganallur Vadivasal</button>
-                  <button type="button" class="map-pill-btn" data-id="lucky-mess" onclick="focusMaduraiCheckpoint('lucky-mess')">&#127831; Lucky Mess Alanganallur</button>
-                  <button type="button" class="map-pill-btn" data-id="power-kadai" onclick="focusMaduraiCheckpoint('power-kadai')">&#129385; Power Kadai &amp; Bun Parotta</button>
-                  <button type="button" class="map-pill-btn" data-id="gandhi-museum" onclick="focusMaduraiCheckpoint('gandhi-museum')">&#127963; Gandhi Museum</button>
-                  <button type="button" class="map-pill-btn" data-id="alagar-kovil" onclick="focusMaduraiCheckpoint('alagar-kovil')">&#127989; Alagar Kovil (Temple)</button>
+            <div class="portal-visual">
+              <div class="portal-preview-frame">
+                <img src="assets/images/about-journey/swift-shop-wide.webp" alt="BIXI Madurai 3D Virtual Tour Preview" width="460" height="260" class="portal-preview-img" loading="lazy">
+                <div class="portal-play-overlay">
+                  <div class="portal-play-btn">
+                    <span>▶</span>
+                  </div>
+                  <span class="portal-play-label">ENTER 3D VIRTUAL TOUR</span>
                 </div>
-                <button type="button" class="map-scroll-arrow" onclick="scrollPills(1)" title="Scroll Right" aria-label="Scroll Right">&#9654;</button>
               </div>
             </div>
           </div>
-
-          <!-- Dynamic Destination Telemetry Details Card -->
-          <aside class="map-side-card">
-            <div>
-              <div class="place-card-top">
-                <span class="place-category-badge" id="mapActiveCategory">Temple Wonder</span>
-                <span class="place-distance" id="mapActiveDistance">1.2 km from Junction</span>
-              </div>
-              <h3 class="place-title" id="mapActiveTitle" style="font-size: 1.5rem; margin-top: 0.5rem; color: #FFFFFF;">Meenakshi Amman Kovil</h3>
-              <p class="place-desc" id="mapActiveDesc" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; color: #94A3B8;">
-                Madurai’s eternal jewel with 14 towering sculpted Dravidian gopurams, Thousand Pillar Hall, and sacred Golden Lotus tank.
-              </p>
-              
-              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.88rem;">
-                  <span style="color: #94A3B8;">Estimated Driving Time:</span>
-                  <strong id="mapActiveTime" style="color: #FFFFFF;">5 mins</strong>
-                </div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                  <span style="color: #94A3B8;">Recommended Vehicle:</span>
-                  <strong id="mapActiveVehicle" style="color: #E88124;">Activa 6G / Maruti Swift</strong>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-                <a href="bikes.html" class="btn-primary" style="flex: 1.4; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center;">
-                  Book Swift (₹2,200) →
-                </a>
-                <button type="button" class="btn-secondary" onclick="resetMaduraiMapOverview()" style="flex: 1; text-align: center; justify-content: center; height: 44px; display: inline-flex; align-items: center; cursor: pointer;">
-                  ✕ Overview
-                </button>
-              </div>
-              <div style="margin-top: 0.75rem; font-size: 0.76rem; color: #64748B; text-align: center;">
-                Procedural 3D WebGL • Real 3D Landmarks • 0% CPU off-screen
-              </div>
-            </div>
-          </aside>
         </div>
+
       </div>
     </section>
 
@@ -2158,6 +2228,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
           <ul class="footer-links">
             <li><a href="index.html" class="footer-link">Home</a></li>
             <li><a href="about.html" class="footer-link">About BIXI</a></li>
+            <li><a href="bixi-and-madurai.html" class="footer-link">BIXI &amp; Madurai 3D Tour</a></li>
             <li><a href="bikes.html" class="footer-link">Rent Vehicles</a></li>
             <li><a href="blog.html" class="footer-link">Travel Guides</a></li>
             <li><a href="contact.html" class="footer-link">Contact</a></li>
@@ -2221,8 +2292,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   </div>
 
   <!-- Three.js Library & Custom Application Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="assets/js/three-scene.js"></script>
     <script>
     window.scrollPills = function(dir) {
       const row = document.querySelector('.map-pills-row');
@@ -2231,7 +2300,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       }
     };
   </script>
-  <script src="assets/js/madurai-3d-map.js?v=23.0"></script>
-  <script src="assets/js/main.js?v=23.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=24.0"></script>
+  <script src="assets/js/main.js?v=24.0"></script>
 </body>
 </html>
