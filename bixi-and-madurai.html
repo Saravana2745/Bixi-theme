@@ -37,7 +37,7 @@
 
   <!-- Three.js + Official OrbitControls for 360 Free Rotation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="assets/js/OrbitControls.js?v=25.0"></script>
+  <script src="assets/js/OrbitControls.js?v=26.0"></script>
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -68,12 +68,33 @@
 <body class="bixi-fullscreen-app-body">
 
   <!-- ═══════════════ LUXURY VEHICLE PRELOADER ═══════════════ -->
+  <!-- ═══════════════ LUXURY VEHICLE PRELOADER ═══════════════ -->
   <div id="bixiTourPreloader" class="bixi-tour-preloader" aria-label="Loading 3D Madurai Virtual Tour">
     <div class="preloader-backdrop-glow"></div>
     <div class="preloader-card">
       <div class="preloader-brand">
         <img src="assets/images/logo.svg" alt="BIXI Ride" width="130" height="48" class="preloader-logo">
         <span class="preloader-badge shiny-text">NEXT-GEN 3D TOUR ENGINE</span>
+      </div>
+
+      <!-- Prominent 0 to 100% Circular Progress Gauge -->
+      <div class="preloader-hero-counter">
+        <div class="preloader-counter-ring">
+          <svg class="counter-svg-ring" viewBox="0 0 120 120">
+            <circle class="ring-bg" cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+            <circle class="ring-progress" id="preloaderSvgRing" cx="60" cy="60" r="48" fill="none" stroke="url(#preloaderRingGrad)" stroke-width="6" stroke-dasharray="301.6" stroke-dashoffset="301.6" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="preloaderRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF9E4A"/>
+                <stop offset="100%" stop-color="#FF5500"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="counter-value-box">
+            <span class="counter-num" id="preloaderPctNum">0</span>
+            <span class="counter-symbol">%</span>
+          </div>
+        </div>
       </div>
 
       <!-- Animated Morphing Vehicle Stage (Bike <-> Car) -->
@@ -130,10 +151,10 @@
         </div>
       </div>
 
-      <!-- Live Counter & Status -->
+      <!-- Live Counter & Milestone Status -->
       <div class="preloader-progress-area">
         <div class="preloader-stats">
-          <span class="preloader-label" id="preloaderStatusText">Initializing 3D Madurai Landmarks...</span>
+          <span class="preloader-label" id="preloaderStatusText">Booting 3D Madurai Landmarks & Vaigai Canvas...</span>
           <span class="preloader-pct" id="preloaderPctText">0%</span>
         </div>
         <div class="preloader-track">
@@ -141,7 +162,7 @@
         </div>
       </div>
 
-      <p class="preloader-subtext">Optimizing 60fps WebGL Simulation • Full-Screen Interactive Tour</p>
+      <p class="preloader-subtext">60 FPS WebGL Engine • Free 360° Orbit Navigation</p>
     </div>
   </div>
 
@@ -412,57 +433,71 @@
   </main>
 
   <!-- Scripts -->
-  <script src="assets/js/madurai-3d-map.js?v=25.0"></script>
+  <script src="assets/js/madurai-3d-map.js?v=26.0"></script>
   <script src="assets/js/react-bits-animations.js?v=25.0"></script>
 
   <!-- Preloader & Interaction Logic -->
   <script>
-    // ═══════════════ PRELOADER LOGIC ═══════════════
+    // ═══════════════ PRELOADER LOGIC (VISIBLE 0% TO 100% COUNT-UP) ═══════════════
     (function() {
       var preloader = document.getElementById('bixiTourPreloader');
+      var pctNum = document.getElementById('preloaderPctNum');
       var pctText = document.getElementById('preloaderPctText');
       var progressBar = document.getElementById('preloaderProgressBar');
       var statusText = document.getElementById('preloaderStatusText');
+      var svgRing = document.getElementById('preloaderSvgRing');
       var vehicleBox = document.getElementById('preloaderVehicleBox');
       if (!preloader) return;
 
       var current = 0;
+      var circumference = 301.6; // 2 * PI * 48
+      if (svgRing) svgRing.style.strokeDasharray = circumference;
+
       var phrases = [
-        { pct: 0, text: "Initializing 3D Madurai Landmarks & Vaigai Canvas..." },
-        { pct: 25, text: "Building Dravidian Temple Towers & Alagar Hills..." },
-        { pct: 50, text: "Simulating Alanganallur Vadivasal & Jallikattu Arena..." },
-        { pct: 75, text: "Generating PBR Road Textures & Madurai Food Circuit..." },
-        { pct: 92, text: "Finalizing 60fps WebGL Simulation & Telemetry..." },
+        { pct: 0, text: "Powering up 60 FPS WebGL Engine & Vaigai Basin..." },
+        { pct: 20, text: "Sculpting Meenakshi Temple Gopurams & Kalasams..." },
+        { pct: 45, text: "Simulating Alanganallur Vadivasal & Jallikattu Bull..." },
+        { pct: 65, text: "Rendering Nayak Palace Colonnade & Alagar Hills..." },
+        { pct: 85, text: "Configuring Maruti Swift Cruise & Midnight Food Circuit..." },
+        { pct: 95, text: "Calibrating 360° Free Orbit Navigation & Sky Clouds..." },
         { pct: 100, text: "3D Virtual Tour Ready! Welcome to Madurai!" }
       ];
 
-      // Vehicle Morph Interval (swaps between bike and car every 1.2s)
+      // Vehicle Morphing Interval
       var vInterval = setInterval(function() {
         if (!vehicleBox) return;
         var currentV = vehicleBox.getAttribute('data-vehicle');
         vehicleBox.setAttribute('data-vehicle', currentV === 'bike' ? 'car' : 'bike');
-      }, 1200);
+      }, 1000);
 
+      // Smooth, visible 0% to 100% count-up (~2.4 seconds total)
       var timer = setInterval(function() {
-        current += Math.floor(Math.random() * 8) + 4;
+        current += 1;
         if (current >= 100) {
           current = 100;
           clearInterval(timer);
           clearInterval(vInterval);
           
+          if (pctNum) pctNum.textContent = '100';
           if (pctText) pctText.textContent = '100%';
           if (progressBar) progressBar.style.width = '100%';
+          if (svgRing) svgRing.style.strokeDashoffset = '0';
           if (statusText) statusText.textContent = "3D Virtual Tour Ready! Welcome to Madurai!";
 
           setTimeout(function() {
             preloader.classList.add('fade-out');
             setTimeout(function() {
               preloader.style.display = 'none';
-            }, 650);
-          }, 300);
+            }, 600);
+          }, 350);
         } else {
+          if (pctNum) pctNum.textContent = current;
           if (pctText) pctText.textContent = current + '%';
           if (progressBar) progressBar.style.width = current + '%';
+          if (svgRing) {
+            var offset = circumference - (current / 100) * circumference;
+            svgRing.style.strokeDashoffset = offset;
+          }
           
           for (var i = phrases.length - 1; i >= 0; i--) {
             if (current >= phrases[i].pct) {
@@ -471,7 +506,7 @@
             }
           }
         }
-      }, 45);
+      }, 24);
     })();
 
     // ═══════════════ APP STAGE SWITCHER ═══════════════

@@ -8126,12 +8126,138 @@ button.bixi-cal-day.empty,
 }
 
 /* ==========================================================================
+   UNIVERSAL BIXI SIGNATURE ORANGE SITE SCROLLBAR
+   ========================================================================== */
+html {
+  scrollbar-color: #FF7A18 #080A0F !important;
+  scrollbar-width: thin !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #080A0F !important;
+  border-left: 1px solid rgba(255, 122, 24, 0.12) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF9E4A 0%, #FF7A18 50%, #FF5500 100%) !important;
+  border-radius: 999px !important;
+  border: 2px solid #080A0F !important;
+  box-shadow: 0 0 10px rgba(255, 122, 24, 0.45) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFB366 0%, #FF8C33 50%, #FF661A 100%) !important;
+  box-shadow: 0 0 16px rgba(255, 122, 24, 0.75) !important;
+}
+
+/* Scrollable drawers, sidebars, and panels */
+.sidebar-landmarks-list,
+.destination-slide-drawer,
+.drawer-panel,
+.drawer-content {
+  scrollbar-color: #FF7A18 #0D1018 !important;
+  scrollbar-width: thin !important;
+}
+
+.sidebar-landmarks-list::-webkit-scrollbar,
+.destination-slide-drawer::-webkit-scrollbar,
+.drawer-panel::-webkit-scrollbar,
+.drawer-content::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.sidebar-landmarks-list::-webkit-scrollbar-track,
+.destination-slide-drawer::-webkit-scrollbar-track,
+.drawer-panel::-webkit-scrollbar-track,
+.drawer-content::-webkit-scrollbar-track {
+  background: #0D1018 !important;
+}
+
+.sidebar-landmarks-list::-webkit-scrollbar-thumb,
+.destination-slide-drawer::-webkit-scrollbar-thumb,
+.drawer-panel::-webkit-scrollbar-thumb,
+.drawer-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF9E4A 0%, #FF7A18 100%) !important;
+  border-radius: 8px !important;
+}
+
+
+/* Preloader Hero Circular Progress & 0-100% Counter */
+.preloader-hero-counter {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 1.1rem 0 1.3rem 0 !important;
+}
+
+.preloader-counter-ring {
+  position: relative !important;
+  width: 120px !important;
+  height: 120px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.counter-svg-ring {
+  width: 100% !important;
+  height: 100% !important;
+  transform: rotate(-90deg) !important;
+}
+
+.counter-svg-ring .ring-bg {
+  stroke: rgba(255, 255, 255, 0.08) !important;
+}
+
+.counter-svg-ring .ring-progress {
+  transition: stroke-dashoffset 0.08s linear !important;
+  filter: drop-shadow(0 0 10px rgba(255, 122, 24, 0.6)) !important;
+}
+
+.counter-value-box {
+  position: absolute !important;
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+}
+
+.counter-num {
+  font-family: 'Cabinet Grotesk', var(--font-primary), -apple-system, sans-serif !important;
+  font-size: 3.2rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFA858 55%, #FF7A18 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 16px rgba(255, 122, 24, 0.45)) !important;
+}
+
+.counter-symbol {
+  font-family: 'Cabinet Grotesk', var(--font-primary), sans-serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  color: #FF7A18 !important;
+  margin-left: 2px !important;
+}
+
+
+#madurai-3d-map-canvas {
+  touch-action: none !important;
+}
+
+/* ==========================================================================
    MOBILE & TABLET RESPONSIVENESS FOR FULL-SCREEN APP
    ========================================================================== */
 
 @media (max-width: 1024px) {
   .app-telemetry-hud {
-    left: 1.5rem !important;
+    left: 1.2rem !important;
     top: 4.8rem !important;
   }
   .app-landmarks-sidebar {
@@ -8160,70 +8286,139 @@ button.bixi-cal-day.empty,
 
 @media (max-width: 768px) {
   .bixi-app-header {
-    height: 54px !important;
-    padding: 0 0.8rem !important;
+    height: 52px !important;
+    padding: 0 0.75rem !important;
   }
-  .app-title-badge, .hotline-text, .app-header-divider {
+  .app-back-btn span,
+  .app-title-badge,
+  .hotline-text,
+  .app-header-divider {
     display: none !important;
   }
-  .bixi-app-stage {
-    height: calc(100vh - 54px) !important;
+  .app-back-btn {
+    padding: 0.35rem !important;
+    min-width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .app-logo {
+    height: 28px !important;
+    width: auto !important;
   }
   .app-stage-switcher {
-    padding: 0.2rem 0.3rem !important;
+    padding: 0.15rem 0.25rem !important;
+    gap: 0.15rem !important;
   }
   .app-stage-btn {
-    padding: 0.25rem 0.5rem !important;
-    font-size: 0.7rem !important;
+    padding: 0.22rem 0.45rem !important;
+    font-size: 0.68rem !important;
+  }
+  .app-rent-btn {
+    padding: 0.35rem 0.85rem !important;
+    font-size: 0.75rem !important;
+  }
+  .bixi-app-stage {
+    height: calc(100vh - 52px) !important;
   }
   .app-bottom-hint-pill {
     display: none !important;
   }
   .app-telemetry-hud {
-    top: 0.8rem !important;
-    left: 0.8rem !important;
+    top: 0.6rem !important;
+    left: 0.6rem !important;
+    max-width: calc(100vw - 120px) !important;
+  }
+  .telemetry-pill {
+    padding: 0.3rem 0.65rem !important;
+    font-size: 0.68rem !important;
   }
   .telemetry-meta-tags {
     display: none !important;
   }
   .app-tools-toolbar {
-    top: 0.8rem !important;
-    right: 0.8rem !important;
+    top: 0.6rem !important;
+    right: 0.6rem !important;
+    gap: 0.35rem !important;
   }
+  .app-tool-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .overview-tool-btn span {
+    display: none !important;
+  }
+  .overview-tool-btn {
+    padding: 0 !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Quick Waypoints on Mobile */
   .app-landmarks-sidebar {
-    bottom: 1rem !important;
-    left: 0.8rem !important;
-    right: 0.8rem !important;
-    max-height: 120px !important;
-    padding: 0.6rem !important;
+    bottom: 0.8rem !important;
+    left: 0.6rem !important;
+    right: 0.6rem !important;
+    max-height: 95px !important;
+    padding: 0.5rem !important;
+    background: rgba(10, 13, 20, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    border-radius: 16px !important;
+  }
+  .sidebar-landmarks-list {
+    gap: 0.4rem !important;
   }
   .sidebar-checkpoint-btn {
-    min-width: 190px !important;
-    padding: 0.5rem 0.65rem !important;
+    min-width: 175px !important;
+    padding: 0.45rem 0.6rem !important;
   }
   .cp-name {
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
   }
+  .cp-sub {
+    font-size: 0.62rem !important;
+  }
+
+  /* Destination Drawer Bottom Sheet on Mobile */
   .destination-slide-drawer {
+    position: fixed !important;
     top: auto !important;
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: 80vh !important;
+    height: 78vh !important;
+    border-radius: 22px 22px 0 0 !important;
+    transform: translateY(105%) !important;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(255, 122, 24, 0.25) !important;
+    border: 1px solid rgba(255, 122, 24, 0.35) !important;
+    border-bottom: none !important;
+  }
+  .destination-slide-drawer.open {
+    transform: translateY(0) !important;
   }
   .destination-slide-drawer .drawer-panel {
-    max-width: 100% !important;
-    height: 100% !important;
-    top: auto !important;
-    bottom: 0 !important;
-    border-radius: 24px 24px 0 0 !important;
-    border-left: none !important;
-    border-top: 1px solid rgba(255, 122, 24, 0.35) !important;
-    transform: translateY(105%) !important;
+    border-radius: 22px 22px 0 0 !important;
   }
-  .destination-slide-drawer.open .drawer-panel {
-    transform: translateY(0) !important;
+
+  /* Preloader on Mobile */
+  .preloader-card {
+    padding: 1.6rem 1.2rem !important;
+    width: 92% !important;
+  }
+  .counter-num {
+    font-size: 2.7rem !important;
+  }
+  .preloader-counter-ring {
+    width: 105px !important;
+    height: 105px !important;
+  }
+  .counter-symbol {
+    font-size: 1.15rem !important;
   }
 }
