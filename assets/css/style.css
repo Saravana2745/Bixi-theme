@@ -7973,12 +7973,6 @@ button.bixi-cal-day.empty,
   pointer-events: auto !important;
 }
 
-@media (max-width: 1400px) {
-  .app-telemetry-hud {
-    top: 4.8rem !important;
-  }
-}
-
 .bixi-full-canvas {
   position: absolute !important;
   inset: 0 !important;
@@ -7992,22 +7986,63 @@ button.bixi-cal-day.empty,
   cursor: grabbing !important;
 }
 
-/* Telemetry HUD Top-Left */
+/* Telemetry HUD Centered Under Stage Switcher (Cockpit Command Center) */
 .app-telemetry-hud {
   position: absolute !important;
-  top: 5.2rem !important;
-  left: 1.5rem !important;
+  top: 4.4rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   z-index: 25 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.4rem !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
   pointer-events: none !important;
+  text-align: center !important;
+  white-space: nowrap !important;
   transition: all 0.3s ease !important;
+}
+
+.telemetry-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  background: rgba(10, 13, 20, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  padding: 0.32rem 0.85rem !important;
+  border-radius: 999px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
+}
+
+.telemetry-pulse-dot {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  border-radius: 50% !important;
+  background: #E88124 !important;
+  box-shadow: 0 0 10px #E88124 !important;
+  animation: pulseDot 1.4s infinite !important;
+}
+
+.telemetry-text {
+  font-family: var(--font-tech, monospace) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #E2E8F0 !important;
+}
+
+.telemetry-text strong {
+  color: #FFA858 !important;
+  font-weight: 800 !important;
 }
 
 .telemetry-meta-tags {
   display: flex !important;
   gap: 0.4rem !important;
+  justify-content: center !important;
 }
 
 .meta-tag {
@@ -8343,8 +8378,9 @@ html {
 
 @media (max-width: 1024px) {
   .app-telemetry-hud {
-    left: 1.2rem !important;
-    top: 4.8rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 4.2rem !important;
   }
   .app-landmarks-sidebar {
     top: auto !important;
@@ -8409,18 +8445,21 @@ html {
     height: calc(100vh - var(--header-height, 72px)) !important;
   }
   .app-stage-switcher-floating {
-    top: 3.2rem !important;
+    top: 0.8rem !important;
   }
   .app-bottom-hint-pill {
     display: none !important;
   }
   .app-telemetry-hud {
-    top: 0.6rem !important;
-    left: 0.6rem !important;
-    max-width: calc(100vw - 120px) !important;
+    top: 3.4rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    max-width: 92vw !important;
   }
   .telemetry-pill {
-    padding: 0.3rem 0.65rem !important;
+    padding: 0.25rem 0.65rem !important;
+  }
+  .telemetry-text {
     font-size: 0.68rem !important;
   }
   .telemetry-meta-tags {
