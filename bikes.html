@@ -43,72 +43,196 @@
     </div>
   </div>
 
-  <script type="application/ld+json">
+    <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "BIXI Ride Madurai Bike Rental Fleet",
-    "description": "Comprehensive catalogue of verified rental bikes in Madurai",
-    "itemListElement": [
+    "@graph": [
       {
-        "@type": "Product",
-        "position": 1,
-        "name": "Royal Enfield Hunter 350",
-        "description": "349cc retro roadster ideal for city and highway rides in Madurai.",
-        "image": "https://bixiride.com/assets/images/bikes/hunter-350.svg",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "INR",
-          "price": "899",
-          "priceValidUntil": "2027-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://bixiride.com/bikes.html"
+        "@type": "AutoRental",
+        "@id": "https://bixiride.com/#autorental",
+        "name": "BIXI RIDE - Bike & Car Rental Madurai",
+        "url": "https://bixiride.com/bikes.html",
+        "telephone": "+919037000266",
+        "priceRange": "₹600 - ₹3500",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Opposite Railway Junction & Mattuthavani MGR Bus Stand",
+          "addressLocality": "Madurai",
+          "addressRegion": "Tamil Nadu",
+          "postalCode": "625001",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 9.9252,
+          "longitude": 78.1198
+        },
+        "description": "Premier bike rental in madurai and self drive car rental in madurai. Verified commercial fleet including Activa, Access, Hunter 350, Classic 350, Himalayan 450, Swift, Wagon R, and Ertiga. 24-hour cycle, zero deposit, doorstep delivery within 5 km for ₹100.",
+        "areaServed": ["Madurai", "Kodaikanal", "Rameswaram", "Theni"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "BIXI Madurai Rental Vehicles Fleet",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Suzuki Access 125",
+                "image": "https://bixiride.com/assets/images/bikes/access-125.webp",
+                "description": "125cc automatic scooter rental in Madurai. 120 km limit ₹600/day, 240 km limit ₹800/day (24-hour format)."
+              },
+              "price": "600",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Honda Activa 6G",
+                "image": "https://bixiride.com/assets/images/bikes/activa-6g.webp",
+                "description": "110cc automatic scooter rental in Madurai. 120 km limit ₹600/day, 240 km limit ₹800/day (24-hour format)."
+              },
+              "price": "600",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Yamaha Fascino 125",
+                "image": "https://bixiride.com/assets/images/bikes/fascino-125.webp",
+                "description": "125cc hybrid retro scooter rental in Madurai. 120 km limit ₹600/day, 240 km limit ₹800/day (24-hour format)."
+              },
+              "price": "600",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Yamaha Ray ZR 125",
+                "image": "https://bixiride.com/assets/images/bikes/ray-zr-125.webp",
+                "description": "125cc street rally scooter rental in Madurai. 120 km limit ₹600/day, 240 km limit ₹800/day (24-hour format)."
+              },
+              "price": "600",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Royal Enfield Hunter 350",
+                "image": "https://bixiride.com/assets/images/bikes/hunter-350.webp",
+                "description": "349cc roadster bike rental in Madurai. 120 km limit ₹1,000/day, 240 km limit ₹1,500/day (24-hour format)."
+              },
+              "price": "1000",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Royal Enfield Classic 350",
+                "image": "https://bixiride.com/assets/images/bikes/classic-350.webp",
+                "description": "349cc vintage cruiser bike rental in Madurai. 120 km limit ₹1,000/day, 240 km limit ₹1,500/day (24-hour format)."
+              },
+              "price": "1000",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Royal Enfield Meteor 350",
+                "image": "https://bixiride.com/assets/images/bikes/meteor-350.webp",
+                "description": "349cc highway cruiser bike rental in Madurai. 120 km limit ₹1,000/day, 240 km limit ₹1,500/day (24-hour format)."
+              },
+              "price": "1000",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Royal Enfield Himalayan 450",
+                "image": "https://bixiride.com/assets/images/bikes/himalayan-450.webp",
+                "description": "452cc adventure tourer bike rental in Madurai. 120 km limit ₹1,200/day, 300 km limit ₹2,000/day (24-hour format)."
+              },
+              "price": "1200",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Maruti Suzuki Swift",
+                "image": "https://bixiride.com/assets/images/bikes/car-swift.webp",
+                "description": "Self-drive hatchback car rental in Madurai. 300 km daily limit at ₹2,200/day (24-hour format)."
+              },
+              "price": "2200",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Maruti Suzuki Wagon R",
+                "image": "https://bixiride.com/assets/images/bikes/car-wagonr.webp",
+                "description": "Self-drive city hatchback car rental in Madurai. 300 km daily limit at ₹1,800/day (24-hour format)."
+              },
+              "price": "1800",
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Maruti Suzuki Ertiga 7-Seater",
+                "image": "https://bixiride.com/assets/images/bikes/car-ertiga.webp",
+                "description": "7-seater family MPV car rental in Madurai. 300 km daily limit at ₹3,500/day (24-hour format)."
+              },
+              "price": "3500",
+              "priceCurrency": "INR"
+            }
+          ]
         }
       },
       {
-        "@type": "Product",
-        "position": 2,
-        "name": "Yamaha MT-15 Version 2.0",
-        "description": "155cc liquid-cooled hyper naked street motorcycle for high performance.",
-        "image": "https://bixiride.com/assets/images/bikes/mt-15.svg",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "INR",
-          "price": "799",
-          "priceValidUntil": "2027-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://bixiride.com/bikes.html"
-        }
-      },
-      {
-        "@type": "Product",
-        "position": 3,
-        "name": "Royal Enfield Himalayan 450",
-        "description": "452cc adventure tourer engineered for Kodaikanal and Western Ghats mountain trails.",
-        "image": "https://bixiride.com/assets/images/bikes/himalayan-450.svg",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "INR",
-          "price": "1499",
-          "priceValidUntil": "2027-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://bixiride.com/bikes.html"
-        }
-      },
-      {
-        "@type": "Product",
-        "position": 4,
-        "name": "Honda Activa 6G",
-        "description": "110cc automatic scooter for smooth temple tours and local Madurai commuting.",
-        "image": "https://bixiride.com/assets/images/bikes/activa-6g.svg",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "INR",
-          "price": "499",
-          "priceValidUntil": "2027-12-31",
-          "availability": "https://schema.org/InStock",
-          "url": "https://bixiride.com/bikes.html"
-        }
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are the scooter rental charges in Madurai with BIXI RIDE?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Scooters including Honda Activa, Suzuki Access, Yamaha Fascino, and Yamaha Ray ZR rent at ₹600 per day for 120 km limit, or ₹800 per day for 240 km limit. All rentals operate on a 24-hour cycle with zero security deposit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the Royal Enfield bike rental rates in Madurai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Royal Enfield Hunter 350, Classic 350, and Meteor 350 cost ₹1,000/day for 120 km, or ₹1,500/day for 240 km. The Royal Enfield Himalayan 450 costs ₹1,200/day for 120 km, or ₹2,000/day for 300 km."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does self-drive car rental cost in Madurai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Self-drive car rentals start at ₹1,800/day for Wagon R, ₹2,200/day for Swift, ₹2,400/day for Dzire, Baleno, and i20, ₹2,500/day for Exter and Punch, and ₹3,500/day for Ertiga and Rumion 7-seater MPVs. All cars include 300 km daily limit and 24-hour rental format."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where can I pick up rental vehicles in Madurai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Direct pickup points are located opposite Madurai Railway Junction and nearby Mattuthavani MGR Integrated Bus Stand (MIBT). Doorstep delivery is available within a 5 km radius for a ₹100 flat delivery charge."
+            }
+          }
+        ]
       }
     ]
   }
@@ -207,23 +331,23 @@
           </p>
         </div>
 
-        <!-- Flagship Dual-Spotlight Stage (Car vs Adventure Bike) -->
+                <!-- Flagship Dual-Spotlight Stage (Car vs Adventure Bike) -->
         <div class="lux-flagship-duo">
           <!-- Spotlight 1: Maruti Swift -->
           <div class="lux-flagship-card">
             <div class="lux-fc-badge">TOP RATED SELF-DRIVE CAR</div>
             <div class="lux-fc-img-box">
-              <img src="assets/images/bikes/car-swift.svg" alt="Maruti Swift self drive car rental in madurai" class="lux-fc-img">
+              <img src="assets/images/bikes/car-swift.webp" alt="Maruti Swift self drive car rental in madurai" class="lux-fc-img" width="400" height="240" loading="eager">
             </div>
             <div class="lux-fc-content">
               <div class="lux-fc-meta">
                 <span class="lux-fc-cat">Self-Drive Hatchback</span>
-                <span class="lux-fc-price">₹2,200 <small>/ day</small></span>
+                <span class="lux-fc-price">₹2,200 <small>/ 24 hrs</small></span>
               </div>
               <h3 class="lux-fc-title">Maruti Suzuki Swift (2026)</h3>
-              <p class="lux-fc-desc">Chilled dual AC, 22 km/l mileage, 5-seater comfort for Meenakshi Amman Temple and Kodaikanal runs.</p>
+              <p class="lux-fc-desc">Chilled dual AC, 22.4 km/l mileage, 5-seater comfort for Meenakshi Amman Temple and Kodaikanal runs. 300 km daily limit included.</p>
               <div class="lux-fc-tags">
-                <span>5 Seats</span><span>Petrol MT</span><span>Zero Deposit</span>
+                <span>300 km/day Limit</span><span>5 Seats</span><span>Petrol MT</span><span>Zero Deposit</span>
               </div>
               <button class="btn-primary lux-fc-btn btn-book-now" data-bike="Maruti Suzuki Swift (2026)" data-rate="2200">
                 Book Swift (₹2,200) →
@@ -235,20 +359,20 @@
           <div class="lux-flagship-card">
             <div class="lux-fc-badge">WESTERN GHATS ADVENTURE KING</div>
             <div class="lux-fc-img-box">
-              <img src="assets/images/bikes/himalayan-450.svg" alt="Royal Enfield Himalayan madurai bike rental" class="lux-fc-img">
+              <img src="assets/images/bikes/himalayan-450.webp" alt="Royal Enfield Himalayan madurai bike rental" class="lux-fc-img" width="400" height="240" loading="eager">
             </div>
             <div class="lux-fc-content">
               <div class="lux-fc-meta">
                 <span class="lux-fc-cat">Adventure Tourer</span>
-                <span class="lux-fc-price">₹1,499 <small>/ day</small></span>
+                <span class="lux-fc-price">From ₹1,200 <small>/ 24 hrs</small></span>
               </div>
               <h3 class="lux-fc-title">Royal Enfield Himalayan 450</h3>
-              <p class="lux-fc-desc">452cc liquid-cooled Sherpa engine with 40 PS power. Built for Kodaikanal hairpins and off-road tracks.</p>
+              <p class="lux-fc-desc">452cc liquid-cooled Sherpa engine with 40 PS power. Built for Kodaikanal hairpins and off-road tracks. 120 km and 300 km options.</p>
               <div class="lux-fc-tags">
-                <span>452 cc</span><span>40 PS</span><span>Dual ABS</span>
+                <span>120 km: ₹1,200</span><span>300 km: ₹2,000</span><span>Dual ABS</span>
               </div>
-              <button class="btn-primary lux-fc-btn btn-book-now" data-bike="RE Himalayan 450" data-rate="1499">
-                Book Himalayan (₹1,499) →
+              <button class="btn-primary lux-fc-btn btn-book-now" data-bike="Royal Enfield Himalayan 450" data-rate="1200">
+                Book Himalayan (₹1,200) →
               </button>
             </div>
           </div>
@@ -257,13 +381,11 @@
         <!-- Minimalist Segmented Filter Controls -->
         <div class="lux-filter-bar">
           <div class="lux-filter-pills" role="tablist">
-            <button class="lux-pill-btn active" data-filter="all" onclick="filterVehicles('all', this)">All Vehicles (50+)</button>
-            <button class="lux-pill-btn" data-filter="car" onclick="filterVehicles('car', this)">Self-Drive Cars</button>
-            <button class="lux-pill-btn" data-filter="cruiser" onclick="filterVehicles('cruiser', this)">Royal Enfield Classic</button>
-            <button class="lux-pill-btn" data-filter="adventure" onclick="filterVehicles('adventure', this)">Mountain Adventure</button>
-            <button class="lux-pill-btn" data-filter="sport" onclick="filterVehicles('sport', this)">Sport / Naked</button>
-            <button class="lux-pill-btn" data-filter="scooter" onclick="filterVehicles('scooter', this)">City Scooters</button>
-            <button class="lux-pill-btn" data-filter="ev" onclick="filterVehicles('ev', this)">Smart Electric EV</button>
+            <button class="lux-pill-btn active" data-filter="all" onclick="filterVehicles('all', this)">All Fleet (23 Vehicles)</button>
+            <button class="lux-pill-btn" data-filter="scooter" onclick="filterVehicles('scooter', this)">Scooters (4)</button>
+            <button class="lux-pill-btn" data-filter="re" onclick="filterVehicles('re', this)">Royal Enfield (4)</button>
+            <button class="lux-pill-btn" data-filter="bike" onclick="filterVehicles('bike', this)">Performance Bikes (6)</button>
+            <button class="lux-pill-btn" data-filter="car" onclick="filterVehicles('car', this)">Self-Drive Cars (9)</button>
           </div>
         </div>
       </div>
@@ -272,227 +394,682 @@
     <!-- ═══════════════ OPEN STUDIO VEHICLE ROSTER ═══════════════ -->
     <section class="lux-roster-section">
       <div class="container">
+        <!-- Direct Pickup & Doorstep Delivery Hub Strip -->
+        <div class="lux-hub-locations-strip">
+          <div class="lux-hub-col">
+            <div class="lux-hub-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <div>
+              <div><strong>Direct Pickup 1:</strong> Madurai Railway Station Opposite</div>
+              <div style="font-size: 0.72rem; color: #94A3B8;">Walk across from Railway Junction main exit &amp; drive away in 2 mins</div>
+            </div>
+          </div>
+          <div class="lux-hub-col">
+            <div class="lux-hub-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15h10M7 9h10"/></svg>
+            </div>
+            <div>
+              <div><strong>Direct Pickup 2:</strong> Mattuthavani MGR Bus Stand Nearby</div>
+              <div style="font-size: 0.72rem; color: #94A3B8;">Instant vehicle handover at Madurai Integrated Bus Terminal (MIBT)</div>
+            </div>
+          </div>
+          <div class="lux-hub-col">
+            <div class="lux-hub-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <div><strong>Doorstep Delivery:</strong> ₹100 Flat (Within 5 km)</div>
+              <div style="font-size: 0.72rem; color: #94A3B8;">Delivered to your hotel, resort, or homestay in 30 minutes</div>
+            </div>
+          </div>
+          <div class="lux-hub-col">
+            <a href="https://maps.google.com/?q=Madurai+Junction" target="_blank" rel="noopener" class="btn-secondary" style="font-size: 0.78rem; padding: 0.45rem 0.85rem;">
+              Google Location Pin
+            </a>
+          </div>
+        </div>
+
         <div class="lux-roster-grid" id="vehiclesGrid">
 
-          <!-- 1. Maruti Swift -->
-          <article class="lux-roster-item" data-category="car">
+          <!-- ══════ SCOOTERS (4 Models • 24-Hour Format) ══════ -->
+
+          <!-- 1. Suzuki Access 125 -->
+          <article class="lux-roster-item" data-category="scooter">
             <div class="lux-item-plinth">
-              <span class="lux-item-type">Self-Drive Car</span>
+              <span class="lux-item-type">Automatic Scooter</span>
               <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
-              <img src="assets/images/bikes/car-swift.svg" alt="Maruti Swift self drive car rental in madurai" class="lux-item-img" loading="lazy">
+              <img src="assets/images/bikes/access-125.webp" alt="Suzuki Access 125 bike rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
-                <h3 class="lux-item-name">Maruti Suzuki Swift (2026)</h3>
-                <span class="lux-item-price">₹2,200 <small>/day</small></span>
+                <h3 class="lux-item-name">Suzuki Access 125</h3>
+                <span class="lux-item-price">From ₹600 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹600</span><span>•</span><span>240 km: ₹800</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>5 Seater</span><span>•</span><span>22 km/l Mileage</span><span>•</span><span>Petrol AC</span><span>•</span><span>Zero Deposit</span>
+                <span>124 cc SEP</span><span>•</span><span>52 km/l</span><span>•</span><span>Telescopic Suspension</span><span>•</span><span>Zero Deposit</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Maruti Suzuki Swift (2026)" data-rate="2200">Reserve Car →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Maruti%20Swift%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Suzuki Access 125" data-rate="600">Reserve Scooter →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Suzuki%20Access%20125%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
 
-          <!-- 2. Hyundai i20 N-Line -->
-          <article class="lux-roster-item" data-category="car">
+          <!-- 2. Honda Activa 6G -->
+          <article class="lux-roster-item" data-category="scooter">
             <div class="lux-item-plinth">
-              <span class="lux-item-type">Premium Automatic</span>
-              <div class="lux-item-halo" style="--halo-color: #0284C7;"></div>
-              <img src="assets/images/bikes/car-i20.svg" alt="Hyundai i20 car rental service in madurai" class="lux-item-img" loading="lazy">
-            </div>
-            <div class="lux-item-details">
-              <div class="lux-item-top">
-                <h3 class="lux-item-name">Hyundai i20 N-Line Turbo</h3>
-                <span class="lux-item-price">₹2,600 <small>/day</small></span>
-              </div>
-              <div class="lux-item-specs">
-                <span>7-Speed DCT</span><span>•</span><span>1.0L Turbo</span><span>•</span><span>Sunroof</span><span>•</span><span>Bose Audio</span>
-              </div>
-              <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Hyundai i20 N-Line" data-rate="2600">Reserve Car →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Hyundai%20i20%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 3. Mahindra Thar 4x4 -->
-          <article class="lux-roster-item" data-category="car">
-            <div class="lux-item-plinth">
-              <span class="lux-item-type">4×4 Off-Road SUV</span>
-              <div class="lux-item-halo" style="--halo-color: #C0392B;"></div>
-              <img src="assets/images/bikes/car-thar.svg" alt="Mahindra Thar 4x4 car rental in madurai" class="lux-item-img" loading="lazy">
-            </div>
-            <div class="lux-item-details">
-              <div class="lux-item-top">
-                <h3 class="lux-item-name">Mahindra Thar 4×4 Hardtop</h3>
-                <span class="lux-item-price">₹3,800 <small>/day</small></span>
-              </div>
-              <div class="lux-item-specs">
-                <span>4×4 Low/High</span><span>•</span><span>150 BHP</span><span>•</span><span>226mm Clearance</span><span>•</span><span>Convertible Hardtop</span>
-              </div>
-              <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Mahindra Thar 4x4" data-rate="3800">Reserve SUV →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Mahindra%20Thar%204x4%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 4. Maruti Ertiga 7-Seater -->
-          <article class="lux-roster-item" data-category="car">
-            <div class="lux-item-plinth">
-              <span class="lux-item-type">7-Seater Family MPV</span>
+              <span class="lux-item-type">Automatic Scooter</span>
               <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
-              <img src="assets/images/bikes/car-ertiga.svg" alt="Maruti Ertiga 7 seater car rental in madurai" class="lux-item-img" loading="lazy">
+              <img src="assets/images/bikes/activa-6g.webp" alt="Honda Activa 6G best bike rental near me" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
-                <h3 class="lux-item-name">Maruti Ertiga Smart Hybrid</h3>
-                <span class="lux-item-price">₹3,200 <small>/day</small></span>
+                <h3 class="lux-item-name">Honda Activa 6G</h3>
+                <span class="lux-item-price">From ₹600 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹600</span><span>•</span><span>240 km: ₹800</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>7 Adults</span><span>•</span><span>Dual Roof AC</span><span>•</span><span>Foldable Luggage Bay</span><span>•</span><span>Rameswaram Tours</span>
+                <span>109 cc eSP</span><span>•</span><span>55 km/l</span><span>•</span><span>Silent ACG Starter</span><span>•</span><span>Underseat Bay</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Maruti Ertiga Hybrid" data-rate="3200">Reserve 7-Str →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Ertiga%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Honda Activa 6G" data-rate="600">Reserve Scooter →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Honda%20Activa%206G%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
+
+          <!-- 3. Yamaha Fascino 125 -->
+          <article class="lux-roster-item" data-category="scooter">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Retro-Classic Scooter</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/fascino-125.webp" alt="Yamaha Fascino 125 rental bikes in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Yamaha Fascino 125</h3>
+                <span class="lux-item-price">From ₹600 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹600</span><span>•</span><span>240 km: ₹800</span><span>•</span><span>24 Hrs</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>125 cc Fi Hybrid</span><span>•</span><span>58 km/l</span><span>•</span><span>99 kg Lightweight</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Yamaha Fascino 125" data-rate="600">Reserve Scooter →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Yamaha%20Fascino%20125%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Yamaha Ray ZR 125 -->
+          <article class="lux-roster-item" data-category="scooter">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Street Rally Scooter</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/ray-zr-125.webp" alt="Yamaha Ray ZR 125 madurai bike rental" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Yamaha Ray ZR 125</h3>
+                <span class="lux-item-price">From ₹600 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹600</span><span>•</span><span>240 km: ₹800</span><span>•</span><span>24 Hrs</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>125 cc Fi Hybrid</span><span>•</span><span>56 km/l</span><span>•</span><span>Block Tires</span><span>•</span><span>Sporty Chassis</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Yamaha Ray ZR 125" data-rate="600">Reserve Scooter →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Yamaha%20Ray%20ZR%20125%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══════ ROYAL ENFIELD (4 Models • 24-Hour Format) ══════ -->
 
           <!-- 5. Royal Enfield Hunter 350 -->
-          <article class="lux-roster-item" data-category="cruiser">
+          <article class="lux-roster-item" data-category="re">
             <div class="lux-item-plinth">
-              <span class="lux-item-type">Modern Classic</span>
+              <span class="lux-item-type">Modern Classic Roadster</span>
               <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
-              <img src="assets/images/bikes/hunter-350.svg" alt="Royal Enfield Hunter 350 bike rental in madurai" class="lux-item-img" loading="lazy">
+              <img src="assets/images/bikes/hunter-350.webp" alt="Royal Enfield Hunter 350 bike rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
                 <h3 class="lux-item-name">Royal Enfield Hunter 350</h3>
-                <span class="lux-item-price">₹899 <small>/day</small></span>
+                <span class="lux-item-price">From ₹1,000 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹1,000</span><span>•</span><span>240 km: ₹1,500</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>349 cc J-Series</span><span>•</span><span>36 km/l</span><span>•</span><span>Dual ABS</span><span>•</span><span>Zero Deposit</span>
+                <span>349 cc J-Series</span><span>•</span><span>36 km/l</span><span>•</span><span>Dual ABS</span><span>•</span><span>Agile Chassis</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Royal Enfield Hunter 350" data-rate="899">Reserve Bike →</button>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Royal Enfield Hunter 350" data-rate="1000">Reserve Hunter →</button>
                 <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Hunter%20350%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
 
-          <!-- 6. Yamaha MT-15 V2 -->
-          <article class="lux-roster-item" data-category="sport">
+          <!-- 6. Royal Enfield Classic 350 -->
+          <article class="lux-roster-item" data-category="re">
             <div class="lux-item-plinth">
-              <span class="lux-item-type">Hyper Naked</span>
-              <div class="lux-item-halo" style="--halo-color: #1565C0;"></div>
-              <img src="assets/images/bikes/mt-15.svg" alt="Yamaha MT-15 rental bikes in madurai" class="lux-item-img" loading="lazy">
+              <span class="lux-item-type">Timeless Vintage Cruiser</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/classic-350.webp" alt="Royal Enfield Classic 350 madurai rental bikes" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
-                <h3 class="lux-item-name">Yamaha MT-15 Version 2.0</h3>
-                <span class="lux-item-price">₹799 <small>/day</small></span>
+                <h3 class="lux-item-name">Royal Enfield Classic 350</h3>
+                <span class="lux-item-price">From ₹1,000 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹1,000</span><span>•</span><span>240 km: ₹1,500</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>155 cc Liquid Cooled</span><span>•</span><span>18.4 PS</span><span>•</span><span>USD Forks</span><span>•</span><span>48 km/l</span>
+                <span>349 cc J-Series</span><span>•</span><span>Chrome Spokes</span><span>•</span><span>Split Saddle</span><span>•</span><span>Authentic Thump</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Yamaha MT-15 V2" data-rate="799">Reserve Bike →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20MT-15%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Royal Enfield Classic 350" data-rate="1000">Reserve Classic →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Classic%20350%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
 
-          <!-- 7. RE Himalayan 450 -->
-          <article class="lux-roster-item" data-category="adventure">
+          <!-- 7. Royal Enfield Meteor 350 -->
+          <article class="lux-roster-item" data-category="re">
             <div class="lux-item-plinth">
-              <span class="lux-item-type">Adventure Tourer</span>
-              <div class="lux-item-halo" style="--halo-color: #27AE60;"></div>
-              <img src="assets/images/bikes/himalayan-450.svg" alt="Royal Enfield Himalayan madurai bike rental" class="lux-item-img" loading="lazy">
+              <span class="lux-item-type">Highway Cruiser</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/meteor-350.webp" alt="Royal Enfield Meteor 350 rental bikes in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Royal Enfield Meteor 350</h3>
+                <span class="lux-item-price">From ₹1,000 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹1,000</span><span>•</span><span>240 km: ₹1,500</span><span>•</span><span>24 Hrs</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>349 cc Low-Slung</span><span>•</span><span>765mm Seat</span><span>•</span><span>Forward Pegs</span><span>•</span><span>Tripper Navigation</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Royal Enfield Meteor 350" data-rate="1000">Reserve Meteor →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Meteor%20350%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. Royal Enfield Himalayan 450 -->
+          <article class="lux-roster-item" data-category="re">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Ghats Adventure King</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/himalayan-450.webp" alt="Royal Enfield Himalayan 450 bike rental madurai" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
                 <h3 class="lux-item-name">Royal Enfield Himalayan 450</h3>
-                <span class="lux-item-price">₹1,499 <small>/day</small></span>
+                <span class="lux-item-price">From ₹1,200 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹1,200</span><span>•</span><span>300 km: ₹2,000</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>452 cc Sherpa</span><span>•</span><span>40 PS</span><span>•</span><span>17L Tank</span><span>•</span><span>Switchable ABS</span>
+                <span>452 cc Sherpa 40 PS</span><span>•</span><span>230mm Clearance</span><span>•</span><span>Switchable ABS</span><span>•</span><span>TFT Navigation</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="RE Himalayan 450" data-rate="1499">Reserve Bike →</button>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Royal Enfield Himalayan 450" data-rate="1200">Reserve Himalayan →</button>
                 <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Himalayan%20450%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
 
-          <!-- 8. Honda Activa 6G -->
-          <article class="lux-roster-item" data-category="scooter">
+          <!-- ══════ PERFORMANCE & COMMUTER BIKES (6 Models • 24-Hour Format) ══════ -->
+
+          <!-- 9. Yamaha FZS V3 -->
+          <article class="lux-roster-item" data-category="bike">
             <div class="lux-item-plinth">
-              <span class="lux-item-type">Automatic Scooter</span>
+              <span class="lux-item-type">Muscular Street Fighter</span>
               <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
-              <img src="assets/images/bikes/activa-6g.svg" alt="Honda Activa 6G best bike rental near me" class="lux-item-img" loading="lazy">
+              <img src="assets/images/bikes/fzs-v3.webp" alt="Yamaha FZS V3 bike rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
-                <h3 class="lux-item-name">Honda Activa 6G</h3>
-                <span class="lux-item-price">₹499 <small>/day</small></span>
+                <h3 class="lux-item-name">Yamaha FZS V3</h3>
+                <span class="lux-item-price">From ₹800 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹800</span><span>•</span><span>240 km: ₹1,200</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>110 cc eSP</span><span>•</span><span>55 km/l</span><span>•</span><span>Automatic CVT</span><span>•</span><span>Underseat Storage</span>
+                <span>149 cc Blue Core</span><span>•</span><span>46 km/l</span><span>•</span><span>Single ABS</span><span>•</span><span>Zero Deposit</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Honda Activa 6G" data-rate="499">Reserve Scooter →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Activa%206G%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Yamaha FZS V3" data-rate="800">Reserve Bike →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Yamaha%20FZS%20V3%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
 
-          <!-- 9. KTM Duke 250 -->
-          <article class="lux-roster-item" data-category="sport">
+          <!-- 10. Yamaha FZS V4 -->
+          <article class="lux-roster-item" data-category="bike">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Connected Street Bike</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/fzs-v4.webp" alt="Yamaha FZS V4 madurai rental bikes" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Yamaha FZS V4</h3>
+                <span class="lux-item-price">From ₹800 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹800</span><span>•</span><span>240 km: ₹1,200</span><span>•</span><span>24 Hrs</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>149 cc Fi</span><span>•</span><span>Traction Control</span><span>•</span><span>LED Flashers</span><span>•</span><span>Y-Connect App</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Yamaha FZS V4" data-rate="800">Reserve Bike →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Yamaha%20FZS%20V4%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 11. Yamaha FZX -->
+          <article class="lux-roster-item" data-category="bike">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Neo-Retro Roadster</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/fzx.webp" alt="Yamaha FZX rental bikes in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Yamaha FZX</h3>
+                <span class="lux-item-price">From ₹800 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹800</span><span>•</span><span>240 km: ₹1,200</span><span>•</span><span>24 Hrs</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>149 cc Engine</span><span>•</span><span>Upright Stance</span><span>•</span><span>Fork Gaiters</span><span>•</span><span>Retro Headlamp</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Yamaha FZX" data-rate="800">Reserve Bike →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Yamaha%20FZX%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 12. Bajaj Pulsar NS200 -->
+          <article class="lux-roster-item" data-category="bike">
             <div class="lux-item-plinth">
               <span class="lux-item-type">Naked Streetfighter</span>
               <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
-              <img src="assets/images/bikes/duke-250.svg" alt="KTM Duke 250 madurai rental bikes" class="lux-item-img" loading="lazy">
+              <img src="assets/images/bikes/ns200.webp" alt="Bajaj Pulsar NS200 bike rental madurai" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
-                <h3 class="lux-item-name">KTM Duke 250</h3>
-                <span class="lux-item-price">₹1,199 <small>/day</small></span>
+                <h3 class="lux-item-name">Bajaj Pulsar NS200</h3>
+                <span class="lux-item-price">From ₹900 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹900</span><span>•</span><span>240 km: ₹1,400</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>248 cc DOHC</span><span>•</span><span>31 PS</span><span>•</span><span>Slipper Clutch</span><span>•</span><span>Supermoto ABS</span>
+                <span>199.5 cc 4V Liquid-Cooled</span><span>•</span><span>24.5 PS</span><span>•</span><span>Perimeter Frame</span><span>•</span><span>Dual ABS</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="KTM Duke 250" data-rate="1199">Reserve Bike →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20KTM%20Duke%20250%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Bajaj Pulsar NS200" data-rate="900">Reserve Bike →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Pulsar%20NS200%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
 
-          <!-- 10. Ather 450X Gen 3 EV -->
-          <article class="lux-roster-item" data-category="ev">
+          <!-- 13. Yamaha MT-15 V2 -->
+          <article class="lux-roster-item" data-category="bike">
             <div class="lux-item-plinth">
-              <span class="lux-item-type">Smart EV Scooter</span>
-              <div class="lux-item-halo" style="--halo-color: #00E5FF;"></div>
-              <img src="assets/images/bikes/ather-450x.svg" alt="Ather 450X electric scooter bike rental in madurai" class="lux-item-img" loading="lazy">
+              <span class="lux-item-type">Hyper Naked</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/mt-15.webp" alt="Yamaha MT-15 V2 best bike rental near me" class="lux-item-img" width="300" height="200" loading="lazy">
             </div>
             <div class="lux-item-details">
               <div class="lux-item-top">
-                <h3 class="lux-item-name">Ather 450X Gen 3</h3>
-                <span class="lux-item-price">₹599 <small>/day</small></span>
+                <h3 class="lux-item-name">Yamaha MT-15 V2</h3>
+                <span class="lux-item-price">From ₹900 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹900</span><span>•</span><span>240 km: ₹1,400</span><span>•</span><span>24 Hrs</span>
               </div>
               <div class="lux-item-specs">
-                <span>105 km Range</span><span>•</span><span>3.3s 0-40 km/h</span><span>•</span><span>Google Maps Touchscreen</span><span>•</span><span>Fast Grid Charging</span>
+                <span>155 cc VVA Liquid-Cooled</span><span>•</span><span>18.4 PS</span><span>•</span><span>Golden USD Forks</span><span>•</span><span>Slipper Clutch</span>
               </div>
               <div class="lux-item-actions">
-                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Ather 450X EV" data-rate="599">Reserve EV →</button>
-                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Ather%20EV%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Yamaha MT-15 V2" data-rate="900">Reserve MT-15 →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20MT-15%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
               </div>
             </div>
           </article>
+
+          <!-- 14. Hero Xpulse 200 / 210 -->
+          <article class="lux-roster-item" data-category="bike">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Adventure Trail Dual-Sport</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/xpulse-200.webp" alt="Hero Xpulse 200 bike rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Hero Xpulse 200 / 210</h3>
+                <span class="lux-item-price">From ₹900 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>120 km: ₹900</span><span>•</span><span>240 km: ₹1,400</span><span>•</span><span>24 Hrs</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>199.6 cc 4-Valve</span><span>•</span><span>220mm Clearance</span><span>•</span><span>21" Front Spoke</span><span>•</span><span>Rally Shocks</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Hero Xpulse 200" data-rate="900">Reserve Xpulse →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Hero%20Xpulse%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══════ SELF-DRIVE CARS (9 Models • 300 km Limit • 24-Hour Format) ══════ -->
+
+          <!-- 15. Maruti Suzuki Wagon R -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Tall-Boy City Hatchback</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-wagonr.webp" alt="Maruti Suzuki Wagon R car rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Maruti Suzuki Wagon R</h3>
+                <span class="lux-item-price">₹1,800 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>5 Seater</span><span>•</span><span>1.0L K-Series</span><span>•</span><span>24.3 km/l</span><span>•</span><span>Chilled AC</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Maruti Suzuki Wagon R" data-rate="1800">Reserve Car →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Wagon%20R%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 16. Maruti Suzuki Swift -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Sport Hatchback</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-swift.webp" alt="Maruti Swift self drive car rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Maruti Suzuki Swift</h3>
+                <span class="lux-item-price">₹2,200 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>5 Seater</span><span>•</span><span>1.2L DualJet</span><span>•</span><span>22.4 km/l</span><span>•</span><span>Touchscreen CarPlay</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Maruti Suzuki Swift" data-rate="2200">Reserve Car →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Maruti%20Swift%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 17. Maruti Suzuki Dzire -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Executive Sedan</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-dzire.webp" alt="Maruti Suzuki Dzire car rental service in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Maruti Suzuki Dzire</h3>
+                <span class="lux-item-price">₹2,400 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>5 Seater</span><span>•</span><span>378L Boot Space</span><span>•</span><span>Rear AC Vents</span><span>•</span><span>22.6 km/l</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Maruti Suzuki Dzire" data-rate="2400">Reserve Sedan →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Maruti%20Dzire%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 18. Maruti Suzuki Baleno -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Premium Hatchback</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-baleno.webp" alt="Maruti Suzuki Baleno self drive car rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Maruti Suzuki Baleno</h3>
+                <span class="lux-item-price">₹2,400 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>5 Seater</span><span>•</span><span>SmartPlay Pro+</span><span>•</span><span>Head-Up Display</span><span>•</span><span>22.3 km/l</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Maruti Suzuki Baleno" data-rate="2400">Reserve Car →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Maruti%20Baleno%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 19. Hyundai i20 -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Modern European Hatchback</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-i20.webp" alt="Hyundai i20 car rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Hyundai i20</h3>
+                <span class="lux-item-price">₹2,400 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>5 Seater</span><span>•</span><span>Bose Premium Sound</span><span>•</span><span>Electric Sunroof</span><span>•</span><span>Chilled AC</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Hyundai i20" data-rate="2400">Reserve Car →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Hyundai%20i20%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 20. Hyundai Exter -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Urban Micro SUV</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-exter.webp" alt="Hyundai Exter car rental service in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Hyundai Exter</h3>
+                <span class="lux-item-price">₹2,500 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>5 Seater</span><span>•</span><span>185mm Clearance</span><span>•</span><span>6 Airbags Standard</span><span>•</span><span>Dashcam</span><span>•</span><span>Roof Rails</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Hyundai Exter" data-rate="2500">Reserve SUV →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Hyundai%20Exter%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 21. Tata Punch -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">Rugged Sub-Compact SUV</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-punch.webp" alt="Tata Punch self drive car rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Tata Punch</h3>
+                <span class="lux-item-price">₹2,500 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>5 Seater</span><span>•</span><span>5-Star Global NCAP</span><span>•</span><span>187mm Clearance</span><span>•</span><span>366L Boot</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Tata Punch" data-rate="2500">Reserve SUV →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Tata%20Punch%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 22. Maruti Suzuki Ertiga -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">7-Seater Family MPV</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-ertiga.webp" alt="Maruti Suzuki Ertiga car rental in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Maruti Suzuki Ertiga</h3>
+                <span class="lux-item-price">₹3,500 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>7 Adults Comfort</span><span>•</span><span>Dual Roof AC</span><span>•</span><span>Foldable Third Row</span><span>•</span><span>Smart Hybrid</span><span>•</span><span>Rameswaram Tours</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Maruti Suzuki Ertiga" data-rate="3500">Reserve 7-Seater →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Ertiga%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 23. Toyota Rumion -->
+          <article class="lux-roster-item" data-category="car">
+            <div class="lux-item-plinth">
+              <span class="lux-item-type">7-Seater Premium MPV</span>
+              <div class="lux-item-halo" style="--halo-color: #E88124;"></div>
+              <img src="assets/images/bikes/car-rumion.webp" alt="Toyota Rumion car rental service in madurai" class="lux-item-img" width="300" height="200" loading="lazy">
+            </div>
+            <div class="lux-item-details">
+              <div class="lux-item-top">
+                <h3 class="lux-item-name">Toyota Rumion</h3>
+                <span class="lux-item-price">₹3,500 <small>/24 hrs</small></span>
+              </div>
+              <div class="tariff-tier-badge">
+                <span>300 km / Day Limit</span><span>•</span><span>24-Hour Rental</span>
+              </div>
+              <div class="lux-item-specs">
+                <span>7 Adults Comfort</span><span>•</span><span>Toyota Chrome Grille</span><span>•</span><span>Dual AC</span><span>•</span><span>Cruise Control</span><span>•</span><span>Zero Deposit</span>
+              </div>
+              <div class="lux-item-actions">
+                <button class="btn-primary lux-item-btn btn-book-now" data-bike="Toyota Rumion" data-rate="3500">Reserve 7-Seater →</button>
+                <a href="https://wa.me/919037000266?text=Hi%20BIXI,%20I%20want%20to%20rent%20the%20Toyota%20Rumion%20in%20Madurai" class="btn-secondary lux-item-wa" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ AI SEARCH & LLM CITATION TARIFF TABLE ═══════════════ -->
+    <section class="lux-tariff-summary-section" style="padding: 3.5rem 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+      <div class="container">
+        <div class="lux-section-header" style="margin-bottom: 2rem;">
+          <span class="lux-category-tag">OFFICIAL 2026 TARIFF CARD</span>
+          <h2 class="lux-heading-giant" style="font-size: 2.2rem;">
+            Transparent Rates &amp; <span class="text-orange">Kilometer Allowances</span>
+          </h2>
+          <p class="lux-sub-lead" style="max-width: 820px;">
+            Compare all 23 vehicles available for <strong>bike rental in madurai</strong>, top-rated <strong>madurai rental bikes</strong>, and verified <strong>self drive car rental in madurai</strong>. All tariffs follow a strict 24-hour cycle with zero security deposit and verified Tamil Nadu commercial plates.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto; background: rgba(13, 16, 24, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1.5rem;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid rgba(232, 129, 36, 0.4); color: #FFA858; font-family: var(--font-tech, monospace); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;">
+                <th style="padding: 1rem 0.75rem;">Vehicle Model</th>
+                <th style="padding: 1rem 0.75rem;">Category</th>
+                <th style="padding: 1rem 0.75rem;">Tier 1 Tariff (120 km)</th>
+                <th style="padding: 1rem 0.75rem;">Tier 2 Tariff (240/300 km)</th>
+                <th style="padding: 1rem 0.75rem;">Rental Format</th>
+                <th style="padding: 1rem 0.75rem;">Direct Pickup Point</th>
+              </tr>
+            </thead>
+            <tbody style="color: #CBD5E1; line-height: 1.8;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Suzuki Access 125</td><td>Automatic Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Honda Activa 6G</td><td>Automatic Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha Fascino 125</td><td>Retro Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha Ray ZR 125</td><td>Street Rally Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha FZS V3</td><td>Street Commuter</td><td>₹800 / day</td><td>₹1,200 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha FZS V4</td><td>Connected Street Bike</td><td>₹800 / day</td><td>₹1,200 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha FZX</td><td>Neo-Retro Roadster</td><td>₹800 / day</td><td>₹1,200 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Bajaj Pulsar NS200</td><td>Naked Sports Bike</td><td>₹900 / day</td><td>₹1,400 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha MT-15 V2</td><td>Hyper Naked 155cc</td><td>₹900 / day</td><td>₹1,400 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Hero Xpulse 200 / 210</td><td>Adventure Trail Bike</td><td>₹900 / day</td><td>₹1,400 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Hunter 350</td><td>Modern Roadster 350cc</td><td>₹1,000 / day</td><td>₹1,500 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Classic 350</td><td>Vintage Cruiser 350cc</td><td>₹1,000 / day</td><td>₹1,500 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Meteor 350</td><td>Highway Cruiser 350cc</td><td>₹1,000 / day</td><td>₹1,500 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Himalayan 450</td><td>Western Ghats Adventure</td><td>₹1,200 / day</td><td>₹2,000 / day (300 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Wagon R</td><td>Tall-Boy Hatchback</td><td colspan="2">₹1,800 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Swift</td><td>5-Seater Sport Hatchback</td><td colspan="2">₹2,200 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Dzire</td><td>Compact Executive Sedan</td><td colspan="2">₹2,400 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Baleno</td><td>Nexa Premium Hatchback</td><td colspan="2">₹2,400 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Hyundai i20</td><td>European Premium Hatchback</td><td colspan="2">₹2,400 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Hyundai Exter</td><td>Urban Micro SUV</td><td colspan="2">₹2,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Tata Punch</td><td>5-Star Safety Micro SUV</td><td colspan="2">₹2,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Ertiga</td><td>7-Seater Family MPV</td><td colspan="2">₹3,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+              <tr><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Toyota Rumion</td><td>7-Seater Premium MPV</td><td colspan="2">₹3,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

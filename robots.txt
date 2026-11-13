@@ -1,6 +1,28 @@
-# BIXI Ride - Robots Configuration for Maximum Googlebot Indexing
+# BIXI Ride - Robots Configuration for Maximum Search & AI Engine Indexing
 User-agent: *
 Allow: /
 
-# Direct Googlebot and Bingbot to the valid sitemap
+# Dedicated AI Search Engine Crawlers (Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# AI Information Manifest
+# LLMs: https://bixiride.com/llms.txt
+
+# Direct Googlebot, Bingbot, and AI Search Engines to Sitemap
 Sitemap: https://bixiride.com/sitemap.xml
