@@ -97,22 +97,26 @@
     }
 
     const BIKE_MODELS = [
-      { name: 'Royal Enfield Hunter 350', price: 899, sub: 'Retro Roadster • 350cc • Free Helmets' },
-      { name: 'Royal Enfield Himalayan 450', price: 1499, sub: 'Adventure Tourer • Kodaikanal Ready' },
-      { name: 'Yamaha MT-15 V2', price: 799, sub: 'Hyper Naked Street • 50+ kmpl' },
-      { name: 'Honda Activa 6G', price: 499, sub: 'Automatic Scooter • Lightweight City Ride' },
-      { name: 'Ather 450X Gen 3', price: 599, sub: 'Smart EV Scooter • Fast Charging Included' }
+      { name: 'Royal Enfield Hunter 350', price: 1000, sub: 'Retro Roadster • Comfortable in Different Terrains • 120km: ₹1,000 / 240km: ₹1,500' },
+      { name: 'Royal Enfield Himalayan 450', price: 1200, sub: 'Adventure Tourer • Comfortable in Different Terrains • 120km: ₹1,200 / 300km: ₹2,000' },
+      { name: 'Royal Enfield Classic 350', price: 1000, sub: 'Heritage Cruiser • Comfortable in Different Terrains • 120km: ₹1,000 / 240km: ₹1,500' },
+      { name: 'Yamaha MT-15 V2', price: 900, sub: 'Hyper Naked Street • Comfortable in Different Terrains • 120km: ₹900 / 240km: ₹1,400' },
+      { name: 'Yamaha FZ-S V4', price: 800, sub: 'Street Commuter • Comfortable in Different Terrains • 120km: ₹800 / 240km: ₹1,200' },
+      { name: 'Honda Activa 6G', price: 600, sub: 'Automatic Scooter • Comfortable in Different Terrains • 120km: ₹600 / 240km: ₹800' },
+      { name: 'Suzuki Access 125', price: 600, sub: 'Family Scooter • Comfortable in Different Terrains • 120km: ₹600 / 240km: ₹800' }
     ];
 
     const CAR_MODELS = [
-      { name: 'Maruti Suzuki Swift (2026)', price: 2200, sub: '5-Seater Hatchback • 22 km/l • Self-Drive AC' },
-      { name: 'Hyundai i20 N-Line', price: 2600, sub: '5-Seater Premium • Automatic • Sunroof' },
-      { name: 'Mahindra Thar 4x4', price: 3800, sub: '4-Seater Off-Road SUV • Kodaikanal Expedition' },
-      { name: 'Maruti Ertiga Hybrid', price: 3200, sub: '7-Seater Family MPV • Dual AC • Rameswaram Tour' }
+      { name: 'Maruti Suzuki Swift (2026)', price: 2200, sub: '5-Seater Hatchback • Comfortable in Different Terrains • 300 km limit' },
+      { name: 'Maruti Suzuki Dzire', price: 2400, sub: '5-Seater Sedan • Comfortable in Different Terrains • 300 km limit' },
+      { name: 'Hyundai i20', price: 2400, sub: '5-Seater Premium • Comfortable in Different Terrains • 300 km limit' },
+      { name: 'Tata Punch', price: 2500, sub: '5-Seater SUV • Comfortable in Different Terrains • 300 km limit' },
+      { name: 'Maruti Suzuki Ertiga', price: 3500, sub: '7-Seater Family MPV • Comfortable in Different Terrains • 300 km limit' },
+      { name: 'Maruti Suzuki Wagon R', price: 1800, sub: '5-Seater City Commuter • Comfortable in Different Terrains • 300 km limit' }
     ];
 
     let currentVehicleMode = 'bike';
-    let currentSelectedPrice = 899;
+    let currentSelectedPrice = 1000;
     let currentDays = 1;
 
     function renderModelOptions(mode) {
@@ -756,84 +760,84 @@ var BIXI_SHOWROOM_DATA = {
     tagline: 'Madurai\'s favorite 5-seater self-drive hatchback for city & hills.',
     rate: 2200,
     rateStr: '₹2,200',
-    img: 'assets/images/bikes/car-swift.svg',
+    img: 'assets/images/bikes/car-swift.webp',
     haloColor: 'rgba(232, 129, 36, 0.4)',
     engine: '1.2L DualJet Petrol • 90 PS',
-    mileage: '22 km/l • 5 Seater Hatchback',
-    safety: 'Dual Airbags • RTO Yellow Plate',
+    mileage: 'Comfortable in different terrains • Smooth highway & city drive',
+    safety: 'Dual Airbags • RTO Yellow Plate • 300 km limit',
     bookRate: '2200'
   },
   himalayan: {
     name: 'Royal Enfield Himalayan 450',
     tagline: 'Western Ghats champion with 40 PS power for Kodaikanal hairpins.',
-    rate: 1499,
-    rateStr: '₹1,499',
-    img: 'assets/images/bikes/himalayan-450.svg',
+    rate: 1200,
+    rateStr: '₹1,200',
+    img: 'assets/images/bikes/himalayan-450.webp',
     haloColor: 'rgba(39, 174, 96, 0.4)',
     engine: '452cc Liquid Sherpa • 40 PS',
-    mileage: '30 km/l • 17L Long Range Tank',
-    safety: 'Dual ABS • All-Terrain Spoke Wheels',
-    bookRate: '1499'
+    mileage: 'Comfortable in different terrains • Long-travel suspension for ghats, highways & rough roads',
+    safety: 'Dual ABS • All-Terrain Spoke Wheels • 120km: ₹1,200 / 300km: ₹2,000',
+    bookRate: '1200'
   },
   hunter: {
     name: 'Royal Enfield Hunter 350',
     tagline: 'Compact retro roadster engineered for nimble city & temple hops.',
-    rate: 899,
-    rateStr: '₹899',
-    img: 'assets/images/bikes/hunter-350.svg',
+    rate: 1000,
+    rateStr: '₹1,000',
+    img: 'assets/images/bikes/hunter-350.webp',
     haloColor: 'rgba(232, 129, 36, 0.4)',
     engine: '349cc J-Series • 20.2 BHP',
-    mileage: '36 km/l • Low 790mm Seat Height',
-    safety: 'Dual Disc ABS • RTO Permitted',
-    bookRate: '899'
+    mileage: 'Comfortable in different terrains • Easy maneuvering across urban traffic & countryside roads',
+    safety: 'Dual Disc ABS • RTO Permitted • 120km: ₹1,000 / 240km: ₹1,500',
+    bookRate: '1000'
   },
-  thar: {
-    name: 'Mahindra Thar 4×4 Hardtop',
-    tagline: 'Iconic 4x4 beast for off-road trails and rugged mountain passes.',
-    rate: 3800,
-    rateStr: '₹3,800',
-    img: 'assets/images/bikes/car-thar.svg',
-    haloColor: 'rgba(192, 57, 43, 0.4)',
-    engine: '2.0L mStallion Turbo • 150 BHP',
-    mileage: '4×4 Shift-on-Fly • 226mm Ground Clearance',
-    safety: 'ESP & Roll Cage • 4-Star Safety',
-    bookRate: '3800'
+  classic: {
+    name: 'Royal Enfield Classic 350',
+    tagline: 'Timeless retro thumper with signature comfort for heritage circuits.',
+    rate: 1000,
+    rateStr: '₹1,000',
+    img: 'assets/images/bikes/classic-350.webp',
+    haloColor: 'rgba(218, 165, 32, 0.4)',
+    engine: '349cc J-Series • Relaxed Cruiser',
+    mileage: 'Comfortable in different terrains • Heavy-set stability & upright posture on any road',
+    safety: 'Dual Channel ABS • RTO Yellow Plate • 120km: ₹1,000 / 240km: ₹1,500',
+    bookRate: '1000'
   },
   mt15: {
     name: 'Yamaha MT-15 Version 2.0',
     tagline: 'Liquid-cooled hyper naked streetfighter with inverted gold forks.',
-    rate: 799,
-    rateStr: '₹799',
-    img: 'assets/images/bikes/mt-15.svg',
+    rate: 900,
+    rateStr: '₹900',
+    img: 'assets/images/bikes/mt-15.webp',
     haloColor: 'rgba(21, 101, 192, 0.4)',
     engine: '155cc VVA Liquid Cooled • 18.4 PS',
-    mileage: '48 km/l • Assist & Slipper Clutch',
-    safety: 'Dual Disc • USD Telescopic Forks',
-    bookRate: '799'
+    mileage: 'Comfortable in different terrains • USD forks & Deltabox chassis for sharp control & bumpy roads',
+    safety: 'Dual Disc ABS • Assist & Slipper Clutch • 120km: ₹900 / 240km: ₹1,400',
+    bookRate: '900'
   },
   activa: {
     name: 'Honda Activa 6G',
     tagline: 'Smooth, effortless automatic commuting for Meenakshi temple tours.',
-    rate: 499,
-    rateStr: '₹499',
-    img: 'assets/images/bikes/activa-6g.svg',
+    rate: 600,
+    rateStr: '₹600',
+    img: 'assets/images/bikes/activa-6g.webp',
     haloColor: 'rgba(232, 129, 36, 0.35)',
     engine: '109.5cc PGM-FI eSP • Silent Start',
-    mileage: '55 km/l • Underseat Helmet Storage',
-    safety: 'Combi-Brake System (CBS) • Tubeless',
-    bookRate: '499'
+    mileage: 'Comfortable in different terrains • Telescopic suspension & high clearance for temple streets',
+    safety: 'Combi-Brake System (CBS) • Tubeless • 120km: ₹600 / 240km: ₹800',
+    bookRate: '600'
   },
-  ather: {
-    name: 'Ather 450X Gen 3 EV',
-    tagline: 'High-torque smart electric scooter with touchscreen navigation.',
-    rate: 599,
-    rateStr: '₹599',
-    img: 'assets/images/bikes/ather-450x.svg',
-    haloColor: 'rgba(0, 229, 255, 0.4)',
-    engine: '6.2 kW Motor • 26 Nm Instant Torque',
-    mileage: '105 km TrueRange • 3.3s 0-40 km/h',
-    safety: 'Google Maps Touchscreen • Fast Grid',
-    bookRate: '599'
+  ertiga: {
+    name: 'Maruti Suzuki Ertiga (2026)',
+    tagline: 'Spacious 7-seater self-drive MPV with chilled AC for family pilgrimages.',
+    rate: 3500,
+    rateStr: '₹3,500',
+    img: 'assets/images/bikes/car-ertiga.webp',
+    haloColor: 'rgba(52, 152, 219, 0.4)',
+    engine: '1.5L K15C Smart Hybrid • 103 PS',
+    mileage: 'Comfortable in different terrains • Ergonomic 7-seater comfort for long family tours & varied roads',
+    safety: 'Dual Airbags • Rear AC Vents • 300 km limit included',
+    bookRate: '3500'
   }
 };
 
@@ -1020,7 +1024,7 @@ var BIXI_EDITORIAL_QUOTES = [
     trip: 'Coimbatore ➔ Madurai Heritage & Food Trail • Verified Rider ★★★★★'
   },
   {
-    quote: '"We took two Yamaha MT-15s down to Dhanushkodi beach. Outstanding 48 km/l mileage and high quality helmets. BIXI is the real deal for rental bikes in Madurai."',
+    quote: '"We took two Yamaha MT-15s down to Dhanushkodi beach. Super comfortable in different terrains and high quality helmets. BIXI is the real deal for rental bikes in Madurai."',
     author: 'Anand Mohan',
     trip: 'Kochi ➔ Dhanushkodi Ocean Run • Verified Rider ★★★★★'
   }
