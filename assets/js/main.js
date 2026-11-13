@@ -1599,3 +1599,177 @@ function filterVehicles(cat, btn) {
   resizeCanvas();
   updateScroll();
 })();
+
+
+// ==========================================================================
+// MARVEL RIVALS-INSPIRED 3D SCOOTER & VEHICLE CARD HOVER ENGINE
+// ==========================================================================
+(function initMarvelRivalsSuite() {
+  function initMarvelRivalsCards() {
+    // Enable exclusively on devices with fine pointer (mouse / precision trackpad)
+    var isFinePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!isFinePointer) return;
+
+    var rosterItems = document.querySelectorAll('.lux-roster-item');
+    if (!rosterItems.length) return;
+
+    rosterItems.forEach(function(item) {
+      var plinth = item.querySelector('.lux-item-plinth');
+      var img = item.querySelector('.lux-item-img');
+      if (!plinth || !img) return;
+
+      // Ensure dynamic spotlight layer exists behind vehicle
+      var spotlight = plinth.querySelector('.rivals-spotlight-layer');
+      if (!spotlight) {
+        spotlight = document.createElement('div');
+        spotlight.className = 'rivals-spotlight-layer';
+        spotlight.setAttribute('aria-hidden', 'true');
+        plinth.appendChild(spotlight);
+      }
+
+      // Physics state variables
+      var isHovered = false;
+      var animId = null;
+      var startTime = 0;
+
+      // Current smooth interpolated values (spring lerp)
+      var curRotX = 0, curRotY = 0;
+      var curTransX = 0, curTransY = 0, curTransZ = 0;
+      var curScale = 1;
+
+      // Target values driven by mouse
+      var targetRotX = 0, targetRotY = 0;
+      var targetTransX = 0, targetTransY = 0, targetTransZ = 0;
+      var targetScale = 1;
+
+      function renderFrame(now) {
+        if (!startTime) startTime = now;
+        var elapsed = now - startTime;
+
+        // Spring ease coefficient (0.12 creates weighted physics feel)
+        var ease = 0.12;
+        curRotX += (targetRotX - curRotX) * ease;
+        curRotY += (targetRotY - curRotY) * ease;
+        curTransX += (targetTransX - curTransX) * ease;
+        curTransY += (targetTransY - curTransY) * ease;
+        curTransZ += (targetTransZ - curTransZ) * ease;
+        curScale += (targetScale - curScale) * ease;
+
+        // Subtle suspended floating breathing motion while hovering
+        var floatY = 0;
+        var floatRotZ = 0;
+        if (isHovered) {
+          floatY = Math.sin(elapsed * 0.0035) * 2.2;
+          floatRotZ = Math.sin(elapsed * 0.0025) * 0.55;
+        }
+
+        var totalTransY = curTransY + floatY;
+        var totalRotZ = floatRotZ;
+
+        // 3D Perspective transform applied strictly to vehicle image
+        img.style.transform = 'perspective(1000px) translate3d(' +
+          curTransX.toFixed(2) + 'px, ' +
+          totalTransY.toFixed(2) + 'px, ' +
+          curTransZ.toFixed(2) + 'px) rotateX(' +
+          curRotX.toFixed(2) + 'deg) rotateY(' +
+          curRotY.toFixed(2) + 'deg) rotateZ(' +
+          totalRotZ.toFixed(2) + 'deg) scale(' +
+          curScale.toFixed(3) + ')';
+
+        // Dynamic reactive contact shadow (shifts realistically opposite to tilt)
+        var shadowX = (-curRotY * 1.15).toFixed(1);
+        var shadowY = (18 - (curRotX * 0.8)).toFixed(1);
+        var shadowBlur = (22 + (curTransZ * 0.3)).toFixed(1);
+        var orangeGlow = isHovered ? (0.45 + (Math.sin(elapsed * 0.004) * 0.08)).toFixed(2) : '0';
+
+        img.style.filter = 'drop-shadow(' + shadowX + 'px ' + shadowY + 'px ' + shadowBlur + 'px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 28px rgba(232, 129, 36, ' + orangeGlow + ')) brightness(1.08) contrast(1.04)';
+
+        // Continue animation while moving or hovered
+        var stillMoving = Math.abs(targetRotX - curRotX) > 0.01 ||
+                          Math.abs(targetRotY - curRotY) > 0.01 ||
+                          Math.abs(targetTransX - curTransX) > 0.01 ||
+                          Math.abs(targetTransY - curTransY) > 0.01 ||
+                          Math.abs(targetTransZ - curTransZ) > 0.01 ||
+                          Math.abs(targetScale - curScale) > 0.002 ||
+                          isHovered;
+
+        if (stillMoving) {
+          animId = requestAnimationFrame(renderFrame);
+        } else {
+          // Clean reset to natural CSS state
+          img.style.transform = '';
+          img.style.filter = '';
+          img.style.transition = '';
+          animId = null;
+          startTime = 0;
+        }
+      }
+
+      function startAnimation() {
+        if (!animId) {
+          animId = requestAnimationFrame(renderFrame);
+        }
+      }
+
+      plinth.addEventListener('mouseenter', function(e) {
+        isHovered = true;
+        targetTransZ = 28;      // Lift out of card
+        targetScale = 1.065;    // Enlarge slightly
+        targetTransY = -14;     // Natural elevation
+        img.style.transition = 'none'; // Instant response to physics lerp
+        spotlight.style.opacity = '1';
+        startAnimation();
+      });
+
+      plinth.addEventListener('mousemove', function(e) {
+        var rect = plinth.getBoundingClientRect();
+        var mouseX = e.clientX - rect.left;
+        var mouseY = e.clientY - rect.top;
+
+        // Normalized coordinates (-1 to 1) from center
+        var normX = ((mouseX / rect.width) * 2) - 1;
+        var normY = ((mouseY / rect.height) * 2) - 1;
+
+        // Marvel Rivals 3D tilt:
+        // Mouse moves left -> tilts left (negative rotateY)
+        // Mouse moves right -> tilts right (positive rotateY)
+        // Mouse moves up -> tilts up (positive rotateX)
+        // Mouse moves down -> tilts down (negative rotateX)
+        targetRotY = normX * 11.5;         // Max 11.5 degrees
+        targetRotX = -normY * 9.5;         // Max 9.5 degrees
+        targetTransX = normX * 8.5;        // Subtle horizontal parallax
+        targetTransY = -14 + (normY * 6);  // Subtle vertical parallax
+
+        // Update spotlight position
+        plinth.style.setProperty('--mouse-x', mouseX + 'px');
+        plinth.style.setProperty('--mouse-y', mouseY + 'px');
+
+        if (!isHovered) {
+          isHovered = true;
+          targetTransZ = 28;
+          targetScale = 1.065;
+          img.style.transition = 'none';
+        }
+        startAnimation();
+      });
+
+      plinth.addEventListener('mouseleave', function() {
+        isHovered = false;
+        targetRotX = 0;
+        targetRotY = 0;
+        targetTransX = 0;
+        targetTransY = 0;
+        targetTransZ = 0;
+        targetScale = 1;
+        spotlight.style.opacity = '0';
+        startAnimation();
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMarvelRivalsCards);
+  } else {
+    initMarvelRivalsCards();
+  }
+})();

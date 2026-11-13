@@ -9232,3 +9232,49 @@ html {
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   MARVEL RIVALS 3D SCOOTER & VEHICLE CARD HOVER ENGINE STYLES
+   ========================================================================== */
+.lux-item-plinth {
+  perspective: 1000px !important;
+  transform-style: preserve-3d !important;
+  cursor: pointer;
+}
+
+.rivals-spotlight-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(232, 129, 36, 0.48) 0%,
+    rgba(255, 168, 88, 0.2) 42%,
+    rgba(232, 129, 36, 0.05) 70%,
+    transparent 100%
+  );
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+
+.lux-roster-item:hover .rivals-spotlight-layer {
+  opacity: 1;
+}
+
+.lux-item-img {
+  transform-style: preserve-3d !important;
+  will-change: transform, filter !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lux-item-img {
+    transform: none !important;
+    transition: none !important;
+  }
+  .rivals-spotlight-layer {
+    display: none !important;
+  }
+}
