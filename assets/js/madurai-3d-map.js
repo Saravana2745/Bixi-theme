@@ -137,8 +137,11 @@
   const bixiEmblemImg = new Image();
   bixiEmblemImg.src = 'assets/images/logo-icon.svg';
 
+  // Array to refresh all 3D Canvas badges once Google Fonts finish loading
+  const allBadgeRefreshers = [];
+
   /**
-   * Helper: Create crisp dynamic canvas texture for signboards
+   * Helper: Create crisp dynamic canvas texture for signboards using official site fonts
    * Dynamically calculates font size so NO text is ever clipped!
    */
   function createSignboardTexture(title, subtitle, bgColor, textColor, accentColor) {
@@ -172,10 +175,10 @@
     const maxTextWidth = 920;
 
     let titleFontSize = 52;
-    ctx.font = `bold ${titleFontSize}px "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
+    ctx.font = `800 ${titleFontSize}px "Space Grotesk", "Outfit", -apple-system, sans-serif`;
     while (ctx.measureText(title).width > maxTextWidth && titleFontSize > 18) {
       titleFontSize -= 2;
-      ctx.font = `bold ${titleFontSize}px "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
+      ctx.font = `800 ${titleFontSize}px "Space Grotesk", "Outfit", -apple-system, sans-serif`;
     }
 
     ctx.fillStyle = textColor || '#ffffff';
@@ -190,10 +193,10 @@
       ctx.fillRect(256, 142, 512, 4);
 
       let subFontSize = 32;
-      ctx.font = `bold ${subFontSize}px "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
+      ctx.font = `700 ${subFontSize}px "Barlow Condensed", "Space Grotesk", sans-serif`;
       while (ctx.measureText(subtitle).width > maxTextWidth && subFontSize > 14) {
         subFontSize -= 2;
-        ctx.font = `bold ${subFontSize}px "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
+        ctx.font = `700 ${subFontSize}px "Barlow Condensed", "Space Grotesk", sans-serif`;
       }
 
       ctx.fillStyle = accentColor || '#e88124';
@@ -208,7 +211,7 @@
   }
 
   /**
-   * Helper: Create floating 3D popup badge hovering above each landmark
+   * Helper: Create floating 3D popup badge hovering above each landmark using official site fonts
    */
   function createBixiPopupBadge(title, category) {
     const c = document.createElement('canvas');
@@ -243,34 +246,34 @@
       ctx.stroke();
 
       ctx.fillStyle = '#FFA858';
-      ctx.font = 'bold 26px "Cabinet Grotesk", "Segoe UI", sans-serif';
+      ctx.font = '800 24px "Barlow Condensed", "Space Grotesk", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(`BIXI STOP • ${category.toUpperCase()}`, 512, 71);
 
-      // Landmark Title (Big, Bold, Crisp White)
+      // Landmark Title (Big, Bold, Crisp White in Official Space Grotesk Font)
       let fontSize = 54;
       const maxW = 900;
-      ctx.font = `900 ${fontSize}px "Cabinet Grotesk", "Segoe UI", Roboto, sans-serif`;
+      ctx.font = `800 ${fontSize}px "Space Grotesk", "Outfit", -apple-system, sans-serif`;
       while (ctx.measureText(title).width > maxW && fontSize > 28) {
         fontSize -= 2;
-        ctx.font = `900 ${fontSize}px "Cabinet Grotesk", "Segoe UI", Roboto, sans-serif`;
+        ctx.font = `800 ${fontSize}px "Space Grotesk", "Outfit", -apple-system, sans-serif`;
       }
       ctx.fillStyle = '#FFFFFF';
       ctx.fillText(title, 512, 190);
 
-      // Bottom Subtitle (Route & Dispatch Guidance)
+      // Bottom Subtitle (Route & Dispatch Guidance in Inter)
       ctx.fillStyle = '#94A3B8';
-      ctx.font = '600 28px "Segoe UI", Roboto, sans-serif';
+      ctx.font = '600 24px "Inter", -apple-system, sans-serif';
       ctx.fillText('CLICK TO VIEW 3D WAYPOINT & RENTAL STRATEGY', 512, 290);
 
-      // Bottom Button Pill
+      // Bottom Button Pill (Space Grotesk)
       ctx.fillStyle = '#FF7A18';
       ctx.beginPath();
       ctx.roundRect(362, 345, 300, 56, 28);
       ctx.fill();
       ctx.fillStyle = '#0B0D13';
-      ctx.font = '900 26px "Segoe UI", sans-serif';
+      ctx.font = '800 25px "Space Grotesk", "Inter", -apple-system, sans-serif';
       ctx.fillText('EXPLORE GUIDE →', 512, 373);
     }
 
@@ -291,9 +294,28 @@
       targetScale: 0,
       baseY: 0,
       maxScaleX: 4.5,
-      maxScaleY: 2.05
+      maxScaleY: 2.05,
+      refresh: () => {
+        renderBadge();
+        tex.needsUpdate = true;
+      }
     };
+
+    allBadgeRefreshers.push(() => {
+      renderBadge();
+      tex.needsUpdate = true;
+    });
+
     return sprite;
+  }
+
+  // Refresh all 3D badge canvas textures automatically as soon as Google Fonts are loaded
+  if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      allBadgeRefreshers.forEach(fn => {
+        try { fn(); } catch (e) {}
+      });
+    });
   }
 
   /**

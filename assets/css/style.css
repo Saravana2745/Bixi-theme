@@ -7038,6 +7038,7 @@ button.bixi-cal-day.empty,
 }
 
 .drawer-panel {
+  font-family: var(--font-body) !important;
   position: relative !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -7110,12 +7111,14 @@ button.bixi-cal-day.empty,
 }
 
 .drawer-dist {
+  font-family: var(--font-tech, monospace) !important;
   font-size: 0.76rem !important;
   color: #94A3B8 !important;
   margin-left: auto !important;
 }
 
 .drawer-title {
+  font-family: var(--font-heading) !important;
   font-size: 1.85rem !important;
   font-weight: 900 !important;
   color: #FFFFFF !important;
@@ -7124,6 +7127,7 @@ button.bixi-cal-day.empty,
 }
 
 .drawer-route-meta {
+  font-family: var(--font-body) !important;
   font-size: 0.82rem !important;
   color: #CBD5E1 !important;
   display: flex !important;
@@ -7150,6 +7154,7 @@ button.bixi-cal-day.empty,
 }
 
 .drawer-section-title h3 {
+  font-family: var(--font-heading) !important;
   font-size: 1.05rem !important;
   font-weight: 800 !important;
   color: #FFFFFF !important;
@@ -7157,6 +7162,7 @@ button.bixi-cal-day.empty,
 }
 
 .drawer-history-block p {
+  font-family: var(--font-body) !important;
   font-size: 0.92rem !important;
   line-height: 1.65 !important;
   color: #94A3B8 !important;
@@ -7212,6 +7218,7 @@ button.bixi-cal-day.empty,
 }
 
 .veh-name {
+  font-family: var(--font-heading) !important;
   font-size: 1.15rem !important;
   font-weight: 800 !important;
   color: #FFFFFF !important;
@@ -7219,6 +7226,7 @@ button.bixi-cal-day.empty,
 }
 
 .veh-desc {
+  font-family: var(--font-body) !important;
   font-size: 0.86rem !important;
   line-height: 1.55 !important;
   color: #94A3B8 !important;
@@ -7233,6 +7241,7 @@ button.bixi-cal-day.empty,
 }
 
 .veh-tags span {
+  font-family: var(--font-body) !important;
   font-size: 0.7rem !important;
   background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -7242,6 +7251,7 @@ button.bixi-cal-day.empty,
 }
 
 .drawer-btn {
+  font-family: var(--font-heading) !important;
   width: 100% !important;
   text-align: center !important;
   padding: 0.75rem 1.2rem !important;
@@ -7863,6 +7873,7 @@ button.bixi-cal-day.empty,
 }
 
 .app-stage-switcher {
+  font-family: var(--font-heading) !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 0.3rem !important;
@@ -7873,6 +7884,7 @@ button.bixi-cal-day.empty,
 }
 
 .app-stage-btn {
+  font-family: var(--font-heading) !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 0.45rem !important;
@@ -8142,6 +8154,7 @@ button.bixi-cal-day.empty,
 }
 
 .sidebar-header h3 {
+  font-family: var(--font-heading) !important;
   font-size: 1.05rem !important;
   font-weight: 800 !important;
   color: #FFFFFF !important;
@@ -8149,6 +8162,7 @@ button.bixi-cal-day.empty,
 }
 
 .sidebar-header p {
+  font-family: var(--font-body) !important;
   font-size: 0.72rem !important;
   color: #94A3B8 !important;
   margin: 0 !important;
@@ -8201,6 +8215,7 @@ button.bixi-cal-day.empty,
 }
 
 .cp-name {
+  font-family: var(--font-heading) !important;
   font-size: 0.82rem !important;
   font-weight: 700 !important;
   color: #FFFFFF !important;
@@ -8208,6 +8223,7 @@ button.bixi-cal-day.empty,
 }
 
 .cp-sub {
+  font-family: var(--font-body) !important;
   font-size: 0.68rem !important;
   color: #94A3B8 !important;
   margin-top: 0.15rem !important;
