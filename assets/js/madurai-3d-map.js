@@ -33,17 +33,17 @@
 (function () {
   'use strict';
 
-  // Checkpoints with road stop coordinates, offset roadside model positions, and camera presets
+  // Checkpoints with spacious real-city coordinates, offset roadside plazas, and cinematic camera presets
   const CHECKPOINTS = [
     {
       id: 'meenakshi',
       name: 'Shri Meenakshi Amman Kovil',
       category: 'Temple Wonder',
-      roadPos: { x: -4.8, y: 0.25, z: 1.2 },
-      modelPos: { x: -11.8, y: 0, z: 1.2 },
+      roadPos: { x: -16.0, y: 0.25, z: 14.0 },
+      modelPos: { x: -24.0, y: 0, z: 14.0 },
       facing: Math.PI / 2, // Facing East toward road
-      camPos: { x: -4.2, y: 13.5, z: 12.0 },
-      target: { x: -11.2, y: 3.8, z: 1.2 },
+      camPos: { x: -6.0, y: 15.0, z: 22.0 },
+      target: { x: -23.0, y: 4.5, z: 14.0 },
       distance: '1.2 km from Junction',
       time: '5 mins',
       vehicle: 'Activa 6G / Maruti Swift',
@@ -55,11 +55,11 @@
       id: 'alanganallur-vadivasal',
       name: 'Alanganallur Vadivasal (Jallikattu)',
       category: 'World Jallikattu Arena',
-      roadPos: { x: -2.4, y: 0.25, z: 3.4 },
-      modelPos: { x: -2.4, y: 0, z: 5.6 },
-      facing: Math.PI, // Facing South toward road
-      camPos: { x: -2.4, y: 3.2, z: 0.6 },
-      target: { x: -2.4, y: 1.4, z: 5.4 },
+      roadPos: { x: -12.0, y: 0.25, z: 26.0 },
+      modelPos: { x: -12.0, y: 0, z: 34.0 },
+      facing: 0, // Facing South toward road
+      camPos: { x: -12.0, y: 4.8, z: 18.0 },
+      target: { x: -12.0, y: 1.8, z: 33.0 },
       distance: '16 km',
       time: '26 mins',
       vehicle: 'Hunter 350 / Maruti Swift',
@@ -71,11 +71,11 @@
       id: 'lucky-mess',
       name: 'Lucky Mess (Alanganallur)',
       category: 'Authentic Village Feast',
-      roadPos: { x: 2.4, y: 0.25, z: 3.4 },
-      modelPos: { x: 3.6, y: 0, z: 5.6 },
-      facing: Math.PI, // Facing South toward road
-      camPos: { x: 3.6, y: 3.4, z: 0.6 },
-      target: { x: 3.6, y: 1.4, z: 5.4 },
+      roadPos: { x: 8.0, y: 0.25, z: 24.0 },
+      modelPos: { x: 8.0, y: 0, z: 32.0 },
+      facing: 0, // Facing South toward road
+      camPos: { x: 8.0, y: 5.2, z: 16.0 },
+      target: { x: 8.0, y: 2.0, z: 31.0 },
       distance: '16.5 km',
       time: '28 mins',
       vehicle: 'Maruti Swift / Hunter 350',
@@ -87,11 +87,11 @@
       id: 'power-kadai',
       name: 'Power Kadai & Bun Parotta',
       category: 'Madurai Street Food',
-      roadPos: { x: 4.8, y: 0.25, z: 1.0 },
-      modelPos: { x: 7.6, y: 0, z: 1.0 },
+      roadPos: { x: 20.0, y: 0.25, z: 14.0 },
+      modelPos: { x: 28.0, y: 0, z: 14.0 },
       facing: -Math.PI / 2, // Facing West toward road
-      camPos: { x: 1.8, y: 4.2, z: 1.0 },
-      target: { x: 7.2, y: 2.0, z: 1.0 },
+      camPos: { x: 12.0, y: 6.0, z: 14.0 },
+      target: { x: 27.0, y: 2.5, z: 14.0 },
       distance: '3.5 km',
       time: '12 mins',
       vehicle: 'Activa 6G / Swift',
@@ -103,11 +103,11 @@
       id: 'gandhi-museum',
       name: 'Gandhi Memorial Palace Museum',
       category: 'Historic Tamukkam Palace',
-      roadPos: { x: 3.6, y: 0.25, z: -3.2 },
-      modelPos: { x: 6.2, y: 0, z: -5.4 },
-      facing: -Math.PI * 0.75, // Facing North-West toward road
-      camPos: { x: 0.8, y: 4.8, z: -1.6 },
-      target: { x: 5.8, y: 2.0, z: -5.0 },
+      roadPos: { x: 22.0, y: 0.25, z: -8.0 },
+      modelPos: { x: 30.0, y: 0, z: -8.0 },
+      facing: -Math.PI / 2, // Facing West toward road
+      camPos: { x: 12.0, y: 8.0, z: -8.0 },
+      target: { x: 29.0, y: 3.5, z: -8.0 },
       distance: '4.5 km',
       time: '14 mins',
       vehicle: 'Maruti Swift / Thar 4x4',
@@ -119,11 +119,11 @@
       id: 'alagar-kovil',
       name: 'Alagar Kovil (Kallazhagar Temple)',
       category: 'Sacred Hill Temple',
-      roadPos: { x: -3.0, y: 0.25, z: -3.8 },
-      modelPos: { x: -4.8, y: 0, z: -6.0 },
-      facing: Math.PI, // Facing South toward road
-      camPos: { x: -1.2, y: 5.2, z: -1.2 },
-      target: { x: -4.5, y: 2.4, z: -5.0 },
+      roadPos: { x: 4.0, y: 0.25, z: -20.0 },
+      modelPos: { x: 4.0, y: 0, z: -28.0 },
+      facing: 0, // Facing South toward road
+      camPos: { x: 4.0, y: 8.0, z: -10.0 },
+      target: { x: 4.0, y: 3.5, z: -27.0 },
       distance: '21 km',
       time: '35 mins',
       vehicle: 'Maruti Swift / RE Himalayan',
@@ -357,16 +357,16 @@
     // --- Scene Setup ---
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x182232);
-    scene.fog = new THREE.Fog(0x182232, 34, 95);
+    scene.fog = new THREE.Fog(0x182232, 60, 220);
 
     const camera = new THREE.PerspectiveCamera(
       45,
       container.clientWidth / container.clientHeight,
       0.1,
-      160
+      350
     );
-    const defaultCamPos = new THREE.Vector3(0, 13, 17.5);
-    const defaultLookAt = new THREE.Vector3(0, 1.0, 0);
+    const defaultCamPos = new THREE.Vector3(0, 36, 48);
+    const defaultLookAt = new THREE.Vector3(0, 1.0, 4);
     const currentLookAt = defaultLookAt.clone();
     camera.position.copy(defaultCamPos);
     camera.lookAt(currentLookAt);
@@ -393,8 +393,8 @@
       controls.panSpeed = 0.8;
       controls.maxPolarAngle = Math.PI / 2 - 0.04;
       controls.minPolarAngle = 0.08;
-      controls.minDistance = 3.5;
-      controls.maxDistance = 50.0;
+      controls.minDistance = 4.0;
+      controls.maxDistance = 140.0;
       controls.target.copy(defaultLookAt);
     }
 
@@ -434,8 +434,8 @@
     terrain.receiveShadow = true;
     scene.add(terrain);
 
-    // Inner Madurai City Greenery & Earth Patch (radius 18m)
-    const cityPlazaGeo = new THREE.CircleGeometry(19, 32);
+    // Inner Madurai City Greenery & Earth Patch (covering the active urban grid)
+    const cityPlazaGeo = new THREE.CircleGeometry(52, 48);
     cityPlazaGeo.rotateX(-Math.PI / 2);
     const cityPlazaMat = new THREE.MeshStandardMaterial({
       color: 0x181f2c,
@@ -638,19 +638,19 @@
     scene.add(birdsFlockGroup);
 
     // =========================================================================
-    // 3. SACRED VAIGAI RIVER (FAR SOUTH AT z = 8.5 - NEVER TOUCHES ROAD!)
+    // 3. SACRED VAIGAI RIVER (FLOWING WEST TO EAST THROUGH THE HEART OF MADURAI)
     // =========================================================================
     const riverCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-18, 0.04, 8.8),
-      new THREE.Vector3(-8, 0.04, 8.4),
-      new THREE.Vector3(0, 0.04, 8.2),
-      new THREE.Vector3(8, 0.04, 8.5),
-      new THREE.Vector3(18, 0.04, 8.9)
+      new THREE.Vector3(-60, 0.04, 4.0),
+      new THREE.Vector3(-30, 0.04, 5.0),
+      new THREE.Vector3(0, 0.04, 5.5),
+      new THREE.Vector3(30, 0.04, 5.0),
+      new THREE.Vector3(60, 0.04, 4.2)
     ]);
-    const riverGeo = new THREE.TubeGeometry(riverCurve, 40, 1.25, 8, false);
+    const riverGeo = new THREE.TubeGeometry(riverCurve, 60, 1.8, 8, false);
     riverGeo.scale(1, 0.05, 1);
     const riverMat = new THREE.MeshStandardMaterial({
-      color: 0x103b62,
+      color: 0x0f4b75,
       roughness: 0.15,
       metalness: 0.85,
       transparent: true,
@@ -1049,8 +1049,8 @@
     }
 
     const meenakshiModel = createMeenakshiTemple();
-    meenakshiModel.position.set(-11.8, 0, 1.2);
-    meenakshiModel.rotation.y = Math.PI / 2; // Faces East towards Road
+    meenakshiModel.position.set(-24.0, 0, 14.0);
+    meenakshiModel.rotation.y = Math.PI / 2; // Faces East towards Road plaza
     scene.add(meenakshiModel);
 
     // B. ALANGANALLUR VADIVASAL & REALISTIC KANGAYAM JALLIKATTU BULL (SOLO MAJESTIC BULL)
@@ -1300,8 +1300,8 @@
     }
 
     const vadivasalModel = createAlanganallurVadivasal();
-    vadivasalModel.position.set(-2.4, 0, 5.6);
-    vadivasalModel.rotation.y = 0; // Front opens directly to the black road
+    vadivasalModel.position.set(-12.0, 0, 34.0);
+    vadivasalModel.rotation.y = 0; // Front opens directly to the black road plaza
     scene.add(vadivasalModel);
 
     // C. LUCKY MESS (TRADITIONAL VILLAGE MESS WITH MANGALORE BARREL RIDGE TILES & TURNED TEAK PILLARS)
@@ -1452,8 +1452,8 @@
     }
 
     const luckyMessModel = createLuckyMess();
-    luckyMessModel.position.set(3.6, 0, 5.6);
-    luckyMessModel.rotation.y = 0; // Facing South toward Road
+    luckyMessModel.position.set(8.0, 0, 32.0);
+    luckyMessModel.rotation.y = 0; // Facing South toward Road plaza
     scene.add(luckyMessModel);
 
     // D. POWER KADAI & MADURAI BUN PAROTTA (CIRCULAR IRON TAVA + SPIRAL BUN PAROTTAS + CHIMNEY SMOKE)
@@ -1634,8 +1634,8 @@
     }
 
     const powerKadaiModel = createPowerKadai();
-    powerKadaiModel.position.set(7.6, 0, 1.0);
-    powerKadaiModel.rotation.y = -Math.PI / 2; // Facing West toward Road
+    powerKadaiModel.position.set(28.0, 0, 14.0);
+    powerKadaiModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza
     scene.add(powerKadaiModel);
 
     // E. GANDHI MEMORIAL PALACE MUSEUM (TAMUKKAM NAYAK PALACE - FLUTED COLONNADE & PALACE DOME)
@@ -1742,8 +1742,8 @@
     }
 
     const museumModel = createGandhiMuseum();
-    museumModel.position.set(6.2, 0, -5.4);
-    museumModel.rotation.y = -Math.PI * 0.75; // Facing North-West toward Road
+    museumModel.position.set(30.0, 0, -8.0);
+    museumModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza
     scene.add(museumModel);
 
     // F. ALAGAR KOVIL (KALLAZHAGAR SACRED TEMPLE - STEPPED OCTAGONAL VIMANA & ROCKY OUTCROP)
@@ -1904,21 +1904,29 @@
     }
 
     const alagarModel = createAlagarTemple();
-    alagarModel.position.set(-4.8, 0, -5.2);
-    alagarModel.rotation.y = Math.PI * 0.25;
+    alagarModel.position.set(4.0, 0, -28.0);
+    alagarModel.rotation.y = 0; // Front faces South toward hill approach road
     scene.add(alagarModel);
 
     // =========================================================================
-    // 5. NATURAL SCENIC PALMS (CLEARED FROM ALL ENTRANCES)
+    // 5. NATURAL SCENIC PALMS & LUSH NATURE GROVES (SPACIOUS & BALANCED)
     // =========================================================================
     const scenicPalmSpots = [
-      { x: -8.8, z: -1.2 }, { x: -8.5, z: 3.5 },
-      { x: 8.8, z: 3.2 },   { x: 8.5, z: -2.2 },
-      { x: 4.5, z: -8.5 },  { x: -1.5, z: -8.8 },
-      { x: -8.0, z: -7.5 }
+      // South Vaigai Riverbank green belt
+      { x: -28.0, z: 8.0 }, { x: -18.0, z: 7.5 }, { x: 2.0, z: 8.5 }, { x: 16.0, z: 7.8 }, { x: 34.0, z: 7.0 },
+      // North Vaigai Riverbank green belt
+      { x: -28.0, z: 2.0 }, { x: -4.0, z: 2.8 }, { x: 14.0, z: 2.5 }, { x: 32.0, z: 2.2 },
+      // Rural Alanganallur groves (framing Vadivasal & Lucky Mess with clear vistas)
+      { x: -18.0, z: 32.0 }, { x: -6.0, z: 36.0 }, { x: 2.0, z: 34.0 }, { x: 14.0, z: 32.0 }, { x: 18.0, z: 28.0 },
+      // Alagar Malai hillside forest fringe
+      { x: -6.0, z: -26.0 }, { x: 14.0, z: -26.0 }, { x: -2.0, z: -32.0 }, { x: 10.0, z: -32.0 },
+      // Historic Tamukkam & Gandhi Museum gardens
+      { x: 24.0, z: -2.0 }, { x: 36.0, z: -14.0 }, { x: 26.0, z: -16.0 },
+      // Mattuthavani Bus Terminus park fringe
+      { x: -42.0, z: -2.0 }, { x: -32.0, z: -12.0 }, { x: -22.0, z: -8.0 }
     ];
     scenicPalmSpots.forEach(s => {
-      scene.add(createPalm(s.x, s.z, 0.8 + Math.random() * 0.3));
+      scene.add(createPalm(s.x, s.z, 0.9 + Math.random() * 0.35));
     });
 
     // Factory: Create Detailed Sculpted Maruti Suzuki Swift
@@ -2109,15 +2117,15 @@
     // 5b. LEFT BLACK ROAD, MATTUTHAVANI BUS STAND, TNSTC BUS & BIXI RENTAL HUB
     // =========================================================================
 
-    // 1. Left Black Road (Entering from the West leading into Mattuthavani Bus Stand)
+    // 1. Left Black Road (Entering from the West leading into Mattuthavani Bus Stand and merging into BIXI Hub)
     const busRoadPoints = [
-      new THREE.Vector3(-25.0, ROAD_Y, -5.6),
-      new THREE.Vector3(-21.0, ROAD_Y, -5.4),
-      new THREE.Vector3(-17.5, ROAD_Y, -5.0),
-      new THREE.Vector3(-14.5, ROAD_Y, -4.2),
-      new THREE.Vector3(-12.0, ROAD_Y, -3.2),
-      new THREE.Vector3(-9.5, ROAD_Y, -2.0),
-      new THREE.Vector3(-7.2, ROAD_Y, -0.6) // Merges smoothly into main Madurai tour road
+      new THREE.Vector3(-56.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-46.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-40.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-36.0, ROAD_Y, -5.5), // Bus Platform at Mattuthavani Bus Stand
+      new THREE.Vector3(-30.0, ROAD_Y, -4.0),
+      new THREE.Vector3(-26.0, ROAD_Y, -2.5), // BIXI Hub front road
+      new THREE.Vector3(-22.0, ROAD_Y, 0.0)   // Merges into Grand Highway Loop start
     ];
     const busRoadCurve = new THREE.CatmullRomCurve3(busRoadPoints);
 
@@ -2141,7 +2149,7 @@
     scene.add(busRoadLineMesh);
 
     // Left Road Streetlights
-    [-23.0, -18.5, -14.0, -10.0].forEach((lx, idx) => {
+    [-50.0, -42.0, -34.0, -26.0].forEach((lx, idx) => {
       const lamp = new THREE.Group();
       const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 2.2, 8), new THREE.MeshStandardMaterial({ color: 0x334155 }));
       pole.position.y = 1.1;
@@ -2164,7 +2172,7 @@
       pLight.position.set(0.38, 2.15, 0);
       lamp.add(pLight);
 
-      lamp.position.set(lx, 0, -6.1);
+      lamp.position.set(lx, 0, -6.8);
       scene.add(lamp);
     });
 
@@ -2246,7 +2254,7 @@
     }
 
     const busStandModel = createMattuthavaniBusStand();
-    busStandModel.position.set(-16.8, 0, -6.2);
+    busStandModel.position.set(-36.0, 0, -6.0);
     scene.add(busStandModel);
 
     // 3. Realistic TNSTC Ultra Deluxe / AC Sleeper Bus Model
@@ -2380,7 +2388,7 @@
     }
 
     const tnstcBusModel = createRealisticTnstcBus();
-    tnstcBusModel.position.set(-24.0, ROAD_Y, -5.6);
+    tnstcBusModel.position.set(-56.0, ROAD_Y, -5.5);
     scene.add(tnstcBusModel);
 
     // 4. BIXI Ride Rental Hub (Mattuthavani Headquarters - Walkable from Bus Stand)
@@ -2455,7 +2463,7 @@
     }
 
     const bixiHubModel = createBixiRentalHub();
-    bixiHubModel.position.set(-11.5, 0, -3.2);
+    bixiHubModel.position.set(-26.0, 0, -2.0);
     scene.add(bixiHubModel);
 
     // 5. The 3D Animated Traveler (Walks from Bus Stand to BIXI Hub, Picks Up Car & Drives Out)
@@ -2520,7 +2528,7 @@
     }
 
     const bixiTraveler = createTravelerFigure();
-    bixiTraveler.position.set(-16.0, ROAD_Y, -4.8);
+    bixiTraveler.position.set(-34.5, ROAD_Y, -4.5);
     bixiTraveler.visible = false;
     scene.add(bixiTraveler);
 
@@ -2530,20 +2538,21 @@
     // =========================================================================
 
     const roadControlPoints = [
-      new THREE.Vector3(-10.5, ROAD_Y, -2.8), // 0: BIXI Hub Departure / Arrival Bay
-      new THREE.Vector3(-8.0, ROAD_Y, -1.2),  // 1: Highway merge lane
-      new THREE.Vector3(-4.8, ROAD_Y, 1.2),   // 2: Shri Meenakshi Amman Kovil Stop
-      new THREE.Vector3(-3.6, ROAD_Y, 2.4),   // 3: Turn toward Vadivasal
-      new THREE.Vector3(-2.4, ROAD_Y, 3.4),   // 4: Alanganallur Vadivasal Stop (Jallikattu Arena & Bull)
-      new THREE.Vector3(0.0, ROAD_Y, 3.8),    // 5: Midway Bridge
-      new THREE.Vector3(2.4, ROAD_Y, 3.4),    // 6: Lucky Mess Stop
-      new THREE.Vector3(4.2, ROAD_Y, 2.4),    // 7: East Turn
-      new THREE.Vector3(4.8, ROAD_Y, 1.0),    // 8: Power Kadai Stop
-      new THREE.Vector3(4.5, ROAD_Y, -1.2),   // 9: East Curve Bypass
-      new THREE.Vector3(3.6, ROAD_Y, -3.2),   // 10: Gandhi Museum Stop
-      new THREE.Vector3(0.5, ROAD_Y, -4.2),   // 11: Tamukkam North Connector
-      new THREE.Vector3(-3.0, ROAD_Y, -3.8),  // 12: Alagar Kovil Stop
-      new THREE.Vector3(-6.8, ROAD_Y, -3.4)   // 13: Connector back to BIXI Hub
+      new THREE.Vector3(-22.0, ROAD_Y, 0.0),   // 0: BIXI Hub Departure / Arrival Bay
+      new THREE.Vector3(-20.0, ROAD_Y, 7.0),   // 1: Highway merge lane heading South
+      new THREE.Vector3(-16.0, ROAD_Y, 14.0),  // 2: Shri Meenakshi Amman Kovil Stop
+      new THREE.Vector3(-14.0, ROAD_Y, 20.0),  // 3: Northward transition curve
+      new THREE.Vector3(-12.0, ROAD_Y, 26.0),  // 4: Alanganallur Vadivasal Stop (Jallikattu Arena & Bull)
+      new THREE.Vector3(-2.0, ROAD_Y, 25.0),   // 5: Countryside Green Corridor
+      new THREE.Vector3(8.0, ROAD_Y, 24.0),    // 6: Lucky Mess Stop
+      new THREE.Vector3(15.0, ROAD_Y, 20.0),   // 7: East Highway Curve
+      new THREE.Vector3(20.0, ROAD_Y, 14.0),   // 8: Power Kadai Stop (Bun Parotta)
+      new THREE.Vector3(22.0, ROAD_Y, 3.0),    // 9: East River Vaigai Crossing
+      new THREE.Vector3(22.0, ROAD_Y, -8.0),   // 10: Gandhi Memorial Palace Museum Stop
+      new THREE.Vector3(14.0, ROAD_Y, -15.0),  // 11: Foothills Ascent Lane
+      new THREE.Vector3(4.0, ROAD_Y, -20.0),   // 12: Alagar Kovil Stop (Kallazhagar Temple)
+      new THREE.Vector3(-8.0, ROAD_Y, -15.0),  // 13: West Scenic Ring Road
+      new THREE.Vector3(-17.0, ROAD_Y, -8.0)   // 14: Connector back to BIXI Hub
     ];
 
     const roadCurve = new THREE.CatmullRomCurve3(roadControlPoints, true, 'catmullrom', 0.25);
@@ -2575,22 +2584,22 @@
       scene.add(bay);
     });
 
-    // Roadside Streetlights
+    // Roadside Streetlights along Highway Loop
     const lampMat = new THREE.MeshStandardMaterial({ color: 0x475569 });
     const bulbMat = new THREE.MeshBasicMaterial({ color: 0xffd166 });
-    for (let l = 0; l < 8; l++) {
-      const u = l / 8;
+    for (let l = 0; l < 16; l++) {
+      const u = l / 16;
       const pt = roadCurve.getPointAt(u);
       const tangent = roadCurve.getTangentAt(u);
       const normal = new THREE.Vector3(-tangent.z, 0, tangent.x).normalize();
 
-      const polePos = pt.clone().add(normal.clone().multiplyScalar(0.75));
-      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.4), lampMat);
-      pole.position.set(polePos.x, ROAD_Y + 0.7, polePos.z);
+      const polePos = pt.clone().add(normal.clone().multiplyScalar(0.85));
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 1.8), lampMat);
+      pole.position.set(polePos.x, ROAD_Y + 0.9, polePos.z);
       scene.add(pole);
 
-      const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.07, 6, 6), bulbMat);
-      bulb.position.set(polePos.x, ROAD_Y + 1.4, polePos.z);
+      const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), bulbMat);
+      bulb.position.set(polePos.x, ROAD_Y + 1.8, polePos.z);
       scene.add(bulb);
     }
 
@@ -2848,11 +2857,11 @@
     let masterJourneyState = 'BUS_ARRIVING'; // 'BUS_ARRIVING' | 'WALK_TO_BIXI' | 'COLLECT_KEYS' | 'ENTER_SWIFT' | 'TOUR_CRUISING' | 'TOUR_STOPPED' | 'RETURN_TO_BIXI'
     let journeyTimer = 0;
     let carT = 0;
-    const cruiseSpeed = 0.0007;
+    const cruiseSpeed = 0.0016;
     let currentSpeed = 0;
     let currentStopIdx = -1;
     let stopTimer = 0;
-    const STOP_DURATION_FRAMES = 140; // ~2.3 seconds pause per landmark
+    const STOP_DURATION_FRAMES = 130; // ~2.1 seconds pause per landmark
 
     let animationFrameId = null;
     let isVisible = true;
@@ -2872,9 +2881,9 @@
       if (masterJourneyState === 'BUS_ARRIVING') {
         journeyTimer++;
         const prog = Math.min(journeyTimer / 120, 1.0);
-        const busT = prog * 0.42; // Travels along black road to Platform 1
+        const busT = prog * 0.50; // Travels along black road to Platform 1
         const bPt = busRoadCurve.getPointAt(busT);
-        const bNext = busRoadCurve.getPointAt(Math.min(busT + 0.01, 0.43));
+        const bNext = busRoadCurve.getPointAt(Math.min(busT + 0.01, 0.51));
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
         tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
         if (tnstcBusModel.userData.wheels) {
@@ -2882,7 +2891,7 @@
         }
 
         // Maruti Swift waiting parked in BIXI dispatch bay
-        carGroup.position.set(-10.5, ROAD_Y + 0.12, -2.8);
+        carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
         hazards.forEach(h => { h.visible = false; });
         bixiTraveler.visible = false;
@@ -2903,8 +2912,8 @@
         journeyTimer++;
         bixiTraveler.visible = true;
         const prog = Math.min(journeyTimer / 120, 1.0);
-        const startPos = new THREE.Vector3(-16.0, ROAD_Y, -4.8);
-        const bixiDeskPos = new THREE.Vector3(-11.6, ROAD_Y, -3.1);
+        const startPos = new THREE.Vector3(-34.5, ROAD_Y, -4.5);
+        const bixiDeskPos = new THREE.Vector3(-26.5, ROAD_Y, -1.8);
         bixiTraveler.position.lerpVectors(startPos, bixiDeskPos, prog);
         bixiTraveler.lookAt(bixiDeskPos);
 
@@ -2916,12 +2925,12 @@
         bixiTraveler.position.y = ROAD_Y + Math.abs(Math.sin(stride)) * 0.04;
 
         // Keep bus parked at platform
-        const bPt = busRoadCurve.getPointAt(0.42);
-        const bNext = busRoadCurve.getPointAt(0.43);
+        const bPt = busRoadCurve.getPointAt(0.50);
+        const bNext = busRoadCurve.getPointAt(0.51);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
         tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
 
-        carGroup.position.set(-10.5, ROAD_Y + 0.12, -2.8);
+        carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
         hazards.forEach(h => { h.visible = false; });
         if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
@@ -2938,14 +2947,14 @@
       else if (masterJourneyState === 'COLLECT_KEYS') {
         journeyTimer++;
         bixiTraveler.visible = true;
-        bixiTraveler.position.set(-11.6, ROAD_Y, -3.1);
-        bixiTraveler.lookAt(new THREE.Vector3(-12.4, ROAD_Y, -3.1));
+        bixiTraveler.position.set(-26.5, ROAD_Y, -1.8);
+        bixiTraveler.lookAt(new THREE.Vector3(-26.5, ROAD_Y, -1.0));
         bixiTraveler.userData.lLeg.rotation.x = 0;
         bixiTraveler.userData.rLeg.rotation.x = 0;
         bixiTraveler.userData.lArm.rotation.x = -0.3;
         bixiTraveler.userData.rArm.rotation.x = 0.4; // Outstretched receiving keys
 
-        carGroup.position.set(-10.5, ROAD_Y + 0.12, -2.8);
+        carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
 
         const liveHud = document.getElementById('mapLiveCheckpointText');
@@ -2960,8 +2969,8 @@
       else if (masterJourneyState === 'ENTER_SWIFT') {
         journeyTimer++;
         const prog = Math.min(journeyTimer / 60, 1.0);
-        const deskPos = new THREE.Vector3(-11.6, ROAD_Y, -3.1);
-        const carDoorPos = new THREE.Vector3(-10.5, ROAD_Y, -2.6);
+        const deskPos = new THREE.Vector3(-26.5, ROAD_Y, -1.8);
+        const carDoorPos = new THREE.Vector3(-22.0, ROAD_Y, -0.4);
         bixiTraveler.position.lerpVectors(deskPos, carDoorPos, prog);
         bixiTraveler.lookAt(carDoorPos);
 
@@ -2971,7 +2980,7 @@
         bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.5;
         bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.5;
 
-        carGroup.position.set(-10.5, ROAD_Y + 0.12, -2.8);
+        carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
 
         if (prog > 0.85) {
@@ -2986,14 +2995,14 @@
           masterJourneyState = 'TOUR_CRUISING';
           journeyTimer = 0;
           carT = 0;
-          currentSpeed = 0.0002;
+          currentSpeed = 0.0004;
           currentStopIdx = -1;
         }
       }
       // Phase 5: Maruti Swift Cruises the Black Road to ALL 6 Madurai Destinations!
       else if (masterJourneyState === 'TOUR_CRUISING') {
         carT = (carT + currentSpeed) % 1;
-        if (currentSpeed < cruiseSpeed) currentSpeed += 0.00002;
+        if (currentSpeed < cruiseSpeed) currentSpeed += 0.00004;
 
         const pt = roadCurve.getPointAt(carT);
         const tangent = roadCurve.getTangentAt(carT);
@@ -3011,7 +3020,7 @@
           let diff = Math.abs(carT - targetT);
           if (diff > 0.5) diff = 1.0 - diff;
 
-          if (diff < 0.010 && currentStopIdx !== i) {
+          if (diff < 0.012 && currentStopIdx !== i) {
             masterJourneyState = 'TOUR_STOPPED';
             currentStopIdx = i;
             stopTimer = 0;
@@ -3108,13 +3117,13 @@
         if (stopTimer >= STOP_DURATION_FRAMES) {
           if (popupBadges[cp.id]) popupBadges[cp.id].userData.targetScale = 0.0;
           masterJourneyState = 'TOUR_CRUISING';
-          currentSpeed = 0.00015;
+          currentSpeed = 0.0003;
         }
       }
       // Phase 7: Swift Returns to BIXI Hub & Resets Cycle
       else if (masterJourneyState === 'RETURN_TO_BIXI') {
         journeyTimer++;
-        carGroup.position.set(-10.5, ROAD_Y + 0.12, -2.8);
+        carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
         hazards.forEach(h => { h.visible = false; });
         if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
