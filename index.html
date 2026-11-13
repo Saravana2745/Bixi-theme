@@ -1176,7 +1176,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
           <form class="booking-form-grid" id="homeQuickBookForm" action="bikes.html" method="GET">
             <input type="hidden" name="type" id="hiddenVehicleType" value="bike">
             <input type="hidden" name="model" id="hiddenVehicleModel" value="Royal Enfield Hunter 350">
-            <input type="hidden" name="hub" id="hiddenPickupHub" value="Madurai Railway Junction (West Veli St)">
+            <input type="hidden" name="hub" id="hiddenPickupHub" value="Railway station opposite">
             <input type="hidden" name="days" id="hiddenDuration" value="1">
 
             <!-- 1. Madurai Pickup Hub Dropdown -->
@@ -1187,29 +1187,21 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               </label>
               <div class="custom-select-box" id="hubSelectBox">
                 <div class="custom-select-trigger" id="hubSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
-                  <span id="selectedHubText">Madurai Railway Junction (West Veli St)</span>
+                  <span id="selectedHubText">Railway station opposite</span>
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="hubOptionsPanel" role="listbox">
-                  <div class="custom-option-item selected" data-value="Madurai Railway Junction (West Veli St)">
-                    <div class="custom-option-header"><span>Madurai Railway Junction</span></div>
-                    <div class="custom-option-sub">West Veli St • 2 mins walking distance from Platform 1</div>
+                  <div class="custom-option-item selected" data-value="Railway station opposite" data-charge="0">
+                    <div class="custom-option-header"><span>Railway station opposite</span></div>
+                    <div class="custom-option-sub">Free direct pickup opposite Madurai Railway Junction</div>
                   </div>
-                  <div class="custom-option-item" data-value="Mattuthavani Integrated Bus Terminus (MIBT)">
-                    <div class="custom-option-header"><span>Mattuthavani Bus Terminus (MIBT)</span></div>
-                    <div class="custom-option-sub">Omni Bus Stand &amp; MIBT Entrance Gate</div>
+                  <div class="custom-option-item" data-value="Mgr bus Stand near By" data-charge="0">
+                    <div class="custom-option-header"><span>Mgr bus Stand near By</span></div>
+                    <div class="custom-option-sub">Free direct pickup near Mattuthavani MGR Bus Stand</div>
                   </div>
-                  <div class="custom-option-item" data-value="Meenakshi Amman Temple / Periyar Hub">
-                    <div class="custom-option-header"><span>Meenakshi Amman Temple / Periyar</span></div>
-                    <div class="custom-option-sub">Heritage Walk &amp; Central Madurai Pickups</div>
-                  </div>
-                  <div class="custom-option-item" data-value="Madurai International Airport (IXM)">
-                    <div class="custom-option-header"><span>Madurai International Airport (IXM)</span></div>
-                    <div class="custom-option-sub">Terminal Arrival Gate Meet &amp; Greet Delivery</div>
-                  </div>
-                  <div class="custom-option-item" data-value="Doorstep Hotel / Residence Delivery">
-                    <div class="custom-option-header"><span>Doorstep Hotel / Home Delivery</span></div>
-                    <div class="custom-option-sub">Direct delivery across all Madurai city limits</div>
+                  <div class="custom-option-item" data-value="Google location" data-charge="100">
+                    <div class="custom-option-header"><span>Google location (Doorstep Delivery)</span></div>
+                    <div class="custom-option-sub">5 km surrounding delivery (+₹100 flat delivery charges)</div>
                   </div>
                 </div>
               </div>
@@ -2169,11 +2161,17 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         <div class="form-group" style="margin-bottom: 1rem;">
           <label class="form-label" for="userLocationSelect">Madurai Pickup Hub</label>
           <select class="form-control" id="userLocationSelect">
-            <option value="Madurai Railway Junction">Madurai Railway Junction (West Veli St)</option>
-            <option value="Mattuthavani Bus Stand">Mattuthavani Bus Stand</option>
-            <option value="Periyar Bus Stand">Periyar / Meenakshi Temple</option>
-            <option value="Madurai Airport">Madurai Airport Delivery</option>
-            <option value="Hotel Delivery">Doorstep Hotel Delivery</option>
+            <option value="Railway station opposite" data-charge="0" selected>Railway station opposite (Free Direct Pickup)</option>
+            <option value="Mgr bus Stand near By" data-charge="0">Mgr bus Stand near By (Free Direct Pickup)</option>
+            <option value="Google location" data-charge="100">Google location (5 km surrounding delivery: +₹100)</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;" id="modalKmLimitGroup">
+          <label class="form-label" for="modalKmLimitSelect">Kilometer Limit Tier (24h format)</label>
+          <select class="form-control" id="modalKmLimitSelect">
+            <option value="120" selected>120 kms limit / day (Standard Rate)</option>
+            <option value="240">240 kms limit / day (Extended Rate)</option>
           </select>
         </div>
 
@@ -2189,13 +2187,16 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         </div>
 
         <div style="background: rgba(22, 22, 26, 0.7); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
-          <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.9rem; color: var(--color-gray-light);">
+          <label id="modalHelmetWrapper" style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.9rem; color: var(--color-gray-light);">
             <input type="checkbox" id="extraHelmetCheckbox" style="accent-color: var(--color-orange); width: 16px; height: 16px;">
             Add Pillion Rider Helmet (+₹50/day)
           </label>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-            <span style="font-size: 0.9rem; color: var(--color-muted);">Estimated Total:</span>
-            <span id="modalTotalEstimate" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-orange);">₹1,000</span>
+            <div>
+              <span style="font-size: 0.85rem; color: var(--color-muted); display: block;">Estimated Total:</span>
+              <span id="modalPricingBreakdown" style="font-size: 0.75rem; color: #a0aec0; display: block;">1 Day • 120 km/day • Free Direct Pickup</span>
+            </div>
+            <span id="modalTotalEstimate" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-orange);">₹600</span>
           </div>
         </div>
 

@@ -96,28 +96,48 @@
       });
     }
 
+    // Complete 2026 Official Fleet (All 23 Vehicles with exact dual km tariffs & 24h format)
     const BIKE_MODELS = [
-      { name: 'Royal Enfield Hunter 350', price: 1000, sub: 'Retro Roadster • Comfortable in Different Terrains • 120km: ₹1,000 / 240km: ₹1,500' },
-      { name: 'Royal Enfield Himalayan 450', price: 1200, sub: 'Adventure Tourer • Comfortable in Different Terrains • 120km: ₹1,200 / 300km: ₹2,000' },
-      { name: 'Royal Enfield Classic 350', price: 1000, sub: 'Heritage Cruiser • Comfortable in Different Terrains • 120km: ₹1,000 / 240km: ₹1,500' },
-      { name: 'Yamaha MT-15 V2', price: 900, sub: 'Hyper Naked Street • Comfortable in Different Terrains • 120km: ₹900 / 240km: ₹1,400' },
-      { name: 'Yamaha FZ-S V4', price: 800, sub: 'Street Commuter • Comfortable in Different Terrains • 120km: ₹800 / 240km: ₹1,200' },
-      { name: 'Honda Activa 6G', price: 600, sub: 'Automatic Scooter • Comfortable in Different Terrains • 120km: ₹600 / 240km: ₹800' },
-      { name: 'Suzuki Access 125', price: 600, sub: 'Family Scooter • Comfortable in Different Terrains • 120km: ₹600 / 240km: ₹800' }
+      // Scooters (120 km: ₹600/day | 240 km: ₹800/day)
+      { name: 'Honda Activa 6G', price: 600, price240: 800, category: 'Scooter', sub: '120 km: ₹600/day • 240 km: ₹800/day • 24h cycle' },
+      { name: 'Suzuki Access 125', price: 600, price240: 800, category: 'Scooter', sub: '120 km: ₹600/day • 240 km: ₹800/day • 24h cycle' },
+      { name: 'Yamaha Fascino 125', price: 600, price240: 800, category: 'Scooter', sub: '120 km: ₹600/day • 240 km: ₹800/day • 24h cycle' },
+      { name: 'Yamaha Ray ZR 125', price: 600, price240: 800, category: 'Scooter', sub: '120 km: ₹600/day • 240 km: ₹800/day • 24h cycle' },
+
+      // Bikes 150cc (120 km: ₹800/day | 240 km: ₹1,200/day)
+      { name: 'Yamaha FZS V3', price: 800, price240: 1200, category: 'Bike', sub: '120 km: ₹800/day • 240 km: ₹1,200/day • 24h cycle' },
+      { name: 'Yamaha FZS V4', price: 800, price240: 1200, category: 'Bike', sub: '120 km: ₹800/day • 240 km: ₹1,200/day • 24h cycle' },
+      { name: 'Yamaha FZX', price: 800, price240: 1200, category: 'Bike', sub: '120 km: ₹800/day • 240 km: ₹1,200/day • 24h cycle' },
+
+      // Performance Bikes 200cc (120 km: ₹900/day | 240 km: ₹1,400/day)
+      { name: 'Bajaj Pulsar NS200', price: 900, price240: 1400, category: 'Bike', sub: '120 km: ₹900/day • 240 km: ₹1,400/day • 24h cycle' },
+      { name: 'Yamaha MT-15 V2', price: 900, price240: 1400, category: 'Bike', sub: '120 km: ₹900/day • 240 km: ₹1,400/day • 24h cycle' },
+      { name: 'Hero Xpulse 200', price: 900, price240: 1400, category: 'Bike', sub: '120 km: ₹900/day • 240 km: ₹1,400/day • 24h cycle' },
+
+      // Royal Enfield (120 km: ₹1,000/day | 240 km: ₹1,500/day; Himalayan 120 km: ₹1,200 | 300 km: ₹2,000)
+      { name: 'Royal Enfield Hunter 350', price: 1000, price240: 1500, category: 'Royal Enfield', sub: '120 km: ₹1,000/day • 240 km: ₹1,500/day • 24h cycle' },
+      { name: 'Royal Enfield Classic 350', price: 1000, price240: 1500, category: 'Royal Enfield', sub: '120 km: ₹1,000/day • 240 km: ₹1,500/day • 24h cycle' },
+      { name: 'Royal Enfield Meteor 350', price: 1000, price240: 1500, category: 'Royal Enfield', sub: '120 km: ₹1,000/day • 240 km: ₹1,500/day • 24h cycle' },
+      { name: 'Royal Enfield Himalayan 450', price: 1200, price240: 2000, category: 'Royal Enfield', sub: '120 km: ₹1,200/day • 300 km: ₹2,000/day • 24h cycle' }
     ];
 
     const CAR_MODELS = [
-      { name: 'Maruti Suzuki Swift (2026)', price: 2200, sub: '5-Seater Hatchback • Comfortable in Different Terrains • 300 km limit' },
-      { name: 'Maruti Suzuki Dzire', price: 2400, sub: '5-Seater Sedan • Comfortable in Different Terrains • 300 km limit' },
-      { name: 'Hyundai i20', price: 2400, sub: '5-Seater Premium • Comfortable in Different Terrains • 300 km limit' },
-      { name: 'Tata Punch', price: 2500, sub: '5-Seater SUV • Comfortable in Different Terrains • 300 km limit' },
-      { name: 'Maruti Suzuki Ertiga', price: 3500, sub: '7-Seater Family MPV • Comfortable in Different Terrains • 300 km limit' },
-      { name: 'Maruti Suzuki Wagon R', price: 1800, sub: '5-Seater City Commuter • Comfortable in Different Terrains • 300 km limit' }
+      // Cars (All 300 km / day limit included, 24h format)
+      { name: 'Maruti Suzuki Wagon R', price: 1800, category: 'Car', sub: '300 km/day limit included • 24h cycle • ₹1,800/day' },
+      { name: 'Maruti Suzuki Swift', price: 2200, category: 'Car', sub: '300 km/day limit included • 24h cycle • ₹2,200/day' },
+      { name: 'Maruti Suzuki Dzire', price: 2400, category: 'Car', sub: '300 km/day limit included • 24h cycle • ₹2,400/day' },
+      { name: 'Maruti Suzuki Baleno', price: 2400, category: 'Car', sub: '300 km/day limit included • 24h cycle • ₹2,400/day' },
+      { name: 'Hyundai i20', price: 2400, category: 'Car', sub: '300 km/day limit included • 24h cycle • ₹2,400/day' },
+      { name: 'Hyundai Exter', price: 2500, category: 'Car', sub: '300 km/day limit included • 24h cycle • ₹2,500/day' },
+      { name: 'Tata Punch', price: 2500, category: 'Car', sub: '300 km/day limit included • 24h cycle • ₹2,500/day' },
+      { name: 'Maruti Suzuki Ertiga', price: 3500, category: 'Car', sub: '300 km/day limit included • 24h cycle • 7-Seater • ₹3,500/day' },
+      { name: 'Toyota Rumion', price: 3500, category: 'Car', sub: '300 km/day limit included • 24h cycle • 7-Seater • ₹3,500/day' }
     ];
 
     let currentVehicleMode = 'bike';
-    let currentSelectedPrice = 1000;
+    let currentSelectedPrice = 600;
     let currentDays = 1;
+    let currentHubCharge = 0;
 
     function renderModelOptions(mode) {
       if (!modelOptionsPanel) return;
@@ -168,8 +188,9 @@
 
     function updateFareEstimate() {
       if (!liveEstimate) return;
-      const total = currentSelectedPrice * currentDays;
-      liveEstimate.innerHTML = `₹${total.toLocaleString('en-IN')} <span style="font-weight:400;font-size:0.8rem;">(${currentDays} Day${currentDays > 1 ? 's' : ''})</span>`;
+      const total = (currentSelectedPrice * currentDays) + currentHubCharge;
+      let hubNote = currentHubCharge > 0 ? ' + ₹100 Doorstep Delivery' : '';
+      liveEstimate.innerHTML = `₹${total.toLocaleString('en-IN')} <span style="font-weight:400;font-size:0.8rem;">(${currentDays} Day${currentDays > 1 ? 's' : ''}${hubNote})</span>`;
     }
 
     if (tabBikes && tabCars) {
@@ -230,18 +251,20 @@
       if (e.key === 'Escape') closeAllDropdowns();
     });
 
-    // Hub select options click
+    // Hub select options click (Railway station opposite, Mgr bus Stand near By, Google location)
     if (hubBox) {
       hubBox.querySelectorAll('.custom-option-item').forEach((item) => {
         item.addEventListener('click', (e) => {
           e.stopPropagation();
           const val = item.dataset.value;
           const header = item.querySelector('.custom-option-header')?.textContent?.trim() || val;
+          currentHubCharge = parseInt(item.dataset.charge, 10) || 0;
           if (selectedHubText) selectedHubText.textContent = header;
           if (hiddenHub) hiddenHub.value = val;
           hubBox.querySelectorAll('.custom-option-item').forEach((i) => i.classList.remove('selected'));
           item.classList.add('selected');
           hubBox.classList.remove('open');
+          updateFareEstimate();
         });
       });
     }
@@ -480,25 +503,115 @@
       });
     });
 
-    // 4. Booking Modal & Rate Calculator
+    // 4. Booking Modal & Precise Rate Calculator (All 23 Vehicles • Dual KM Limits • Exact Pickup Calculations)
+    const VEHICLE_CATALOG = {
+      // Scooters (120 km: ₹600/day | 240 km: ₹800/day)
+      'suzuki access 125': { name: 'Suzuki Access 125', rate120: 600, rateExt: 800, extKm: 240, car: false, cat: 'Scooter' },
+      'honda activa 6g': { name: 'Honda Activa 6G', rate120: 600, rateExt: 800, extKm: 240, car: false, cat: 'Scooter' },
+      'yamaha fascino 125': { name: 'Yamaha Fascino 125', rate120: 600, rateExt: 800, extKm: 240, car: false, cat: 'Scooter' },
+      'yamaha ray zr 125': { name: 'Yamaha Ray ZR 125', rate120: 600, rateExt: 800, extKm: 240, car: false, cat: 'Scooter' },
+
+      // Bikes 150cc (120 km: ₹800/day | 240 km: ₹1,200/day)
+      'yamaha fzs v3': { name: 'Yamaha FZ-S V3', rate120: 800, rateExt: 1200, extKm: 240, car: false, cat: 'Bike' },
+      'yamaha fzs v4': { name: 'Yamaha FZ-S V4', rate120: 800, rateExt: 1200, extKm: 240, car: false, cat: 'Bike' },
+      'yamaha fzx': { name: 'Yamaha FZ-X', rate120: 800, rateExt: 1200, extKm: 240, car: false, cat: 'Bike' },
+
+      // Performance Bikes 200cc (120 km: ₹900/day | 240 km: ₹1,400/day)
+      'bajaj pulsar ns200': { name: 'Bajaj Pulsar NS200', rate120: 900, rateExt: 1400, extKm: 240, car: false, cat: 'Bike' },
+      'yamaha mt-15 v2': { name: 'Yamaha MT-15 Version 2.0', rate120: 900, rateExt: 1400, extKm: 240, car: false, cat: 'Bike' },
+      'hero xpulse 200': { name: 'Hero XPulse 200 4V', rate120: 900, rateExt: 1400, extKm: 240, car: false, cat: 'Bike' },
+
+      // Royal Enfield (120 km: ₹1,000/day | 240 km: ₹1,500/day)
+      'royal enfield hunter 350': { name: 'Royal Enfield Hunter 350', rate120: 1000, rateExt: 1500, extKm: 240, car: false, cat: 'Royal Enfield' },
+      'royal enfield classic 350': { name: 'Royal Enfield Classic 350', rate120: 1000, rateExt: 1500, extKm: 240, car: false, cat: 'Royal Enfield' },
+      'royal enfield meteor 350': { name: 'Royal Enfield Meteor 350', rate120: 1000, rateExt: 1500, extKm: 240, car: false, cat: 'Royal Enfield' },
+      'royal enfield himalayan 450': { name: 'Royal Enfield Himalayan 450', rate120: 1200, rateExt: 2000, extKm: 300, car: false, cat: 'Royal Enfield' },
+
+      // Cars (All 300 km/day limit included, 24h format)
+      'maruti suzuki wagon r': { name: 'Maruti Suzuki Wagon R', rate120: 1800, rateExt: 1800, extKm: 300, car: true, cat: 'Car' },
+      'maruti suzuki swift': { name: 'Maruti Suzuki Swift', rate120: 2200, rateExt: 2200, extKm: 300, car: true, cat: 'Car' },
+      'maruti suzuki swift (2026)': { name: 'Maruti Suzuki Swift (2026)', rate120: 2200, rateExt: 2200, extKm: 300, car: true, cat: 'Car' },
+      'maruti suzuki dzire': { name: 'Maruti Suzuki Dzire', rate120: 2400, rateExt: 2400, extKm: 300, car: true, cat: 'Car' },
+      'maruti suzuki baleno': { name: 'Maruti Suzuki Baleno', rate120: 2400, rateExt: 2400, extKm: 300, car: true, cat: 'Car' },
+      'hyundai i20': { name: 'Hyundai i20', rate120: 2400, rateExt: 2400, extKm: 300, car: true, cat: 'Car' },
+      'hyundai exter': { name: 'Hyundai Exter', rate120: 2500, rateExt: 2500, extKm: 300, car: true, cat: 'Car' },
+      'tata punch': { name: 'Tata Punch', rate120: 2500, rateExt: 2500, extKm: 300, car: true, cat: 'Car' },
+      'maruti suzuki ertiga': { name: 'Maruti Suzuki Ertiga', rate120: 3500, rateExt: 3500, extKm: 300, car: true, cat: 'Car' },
+      'toyota rumion': { name: 'Toyota Rumion', rate120: 3500, rateExt: 3500, extKm: 300, car: true, cat: 'Car' }
+    };
+
+    function findVehicle(name) {
+      if (!name) return null;
+      const lower = name.toLowerCase().trim();
+      if (VEHICLE_CATALOG[lower]) return VEHICLE_CATALOG[lower];
+      for (const k in VEHICLE_CATALOG) {
+        if (lower.includes(k) || k.includes(lower)) {
+          return VEHICLE_CATALOG[k];
+        }
+      }
+      return null;
+    }
+
     const bookingModal = document.getElementById('bookingModal');
     const modalCloseBtn = document.querySelector('.modal-close-btn');
     const modalBikeName = document.getElementById('modalBikeName');
     const modalBikePrice = document.getElementById('modalBikePrice');
     const modalBikeInput = document.getElementById('modalBikeInput');
     const modalTotalEstimate = document.getElementById('modalTotalEstimate');
+    const modalPricingBreakdown = document.getElementById('modalPricingBreakdown');
+    const modalKmLimitSelect = document.getElementById('modalKmLimitSelect');
+    const modalKmLimitGroup = document.getElementById('modalKmLimitGroup');
+    const modalHelmetWrapper = document.getElementById('modalHelmetWrapper');
     const daysCountInput = document.getElementById('rentalDaysInput');
+    const userLocationSelect = document.getElementById('userLocationSelect');
     const extraHelmetCheckbox = document.getElementById('extraHelmetCheckbox');
     const modalForm = document.getElementById('rentalBookingForm');
 
-    let currentDailyRate = 599;
+    let currentVehicleData = null;
+    let currentDailyRate = 600;
 
     function openBookingModal(bikeName, dailyRate) {
       if (!bookingModal) return;
-      currentDailyRate = parseInt(dailyRate, 10) || 599;
-      if (modalBikeName) modalBikeName.textContent = bikeName;
-      if (modalBikePrice) modalBikePrice.textContent = `₹${currentDailyRate} / day`;
-      if (modalBikeInput) modalBikeInput.value = bikeName;
+      currentVehicleData = findVehicle(bikeName);
+
+      if (currentVehicleData) {
+        currentDailyRate = currentVehicleData.rate120;
+      } else {
+        currentDailyRate = parseInt(dailyRate, 10) || 600;
+      }
+
+      if (modalBikeName) modalBikeName.textContent = currentVehicleData ? currentVehicleData.name : bikeName;
+      if (modalBikeInput) modalBikeInput.value = currentVehicleData ? currentVehicleData.name : bikeName;
+
+      // Dynamically configure KM Limit options based on vehicle type
+      if (modalKmLimitSelect) {
+        if (currentVehicleData && currentVehicleData.car) {
+          modalKmLimitSelect.innerHTML = `
+            <option value="300" selected>300 kms limit / day (Included in ₹${currentVehicleData.rate120.toLocaleString('en-IN')})</option>
+          `;
+          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'none';
+        } else if (currentVehicleData && currentVehicleData.extKm === 300) {
+          // Himalayan 450 (120 km vs 300 km)
+          modalKmLimitSelect.innerHTML = `
+            <option value="120" selected>120 kms limit / day — ₹${currentVehicleData.rate120.toLocaleString('en-IN')}/day</option>
+            <option value="300">300 kms limit / day — ₹${currentVehicleData.rateExt.toLocaleString('en-IN')}/day</option>
+          `;
+          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'flex';
+        } else if (currentVehicleData) {
+          // Standard bike or scooter
+          modalKmLimitSelect.innerHTML = `
+            <option value="120" selected>120 kms limit / day — ₹${currentVehicleData.rate120.toLocaleString('en-IN')}/day</option>
+            <option value="240">240 kms limit / day — ₹${currentVehicleData.rateExt.toLocaleString('en-IN')}/day</option>
+          `;
+          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'flex';
+        } else {
+          modalKmLimitSelect.innerHTML = `
+            <option value="120" selected>120 kms limit / day</option>
+            <option value="240">240 kms limit / day</option>
+          `;
+          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'flex';
+        }
+      }
 
       updateModalTotal();
       bookingModal.classList.add('active');
@@ -514,11 +627,44 @@
     function updateModalTotal() {
       if (!modalTotalEstimate) return;
       const days = parseInt(daysCountInput ? daysCountInput.value : 1, 10) || 1;
-      let total = currentDailyRate * days;
-      if (extraHelmetCheckbox && extraHelmetCheckbox.checked) {
-        total += 50 * days;
+      const kmTier = modalKmLimitSelect ? modalKmLimitSelect.value : '120';
+
+      let baseRate = currentDailyRate;
+      if (currentVehicleData) {
+        if (currentVehicleData.car) {
+          baseRate = currentVehicleData.rate120;
+        } else if (kmTier === '240' || kmTier === '300') {
+          baseRate = currentVehicleData.rateExt;
+        } else {
+          baseRate = currentVehicleData.rate120;
+        }
+      }
+
+      // Check delivery charge (Google location: ₹100, Station / MGR Bus Stand: ₹0)
+      let deliveryCharge = 0;
+      const locVal = userLocationSelect ? userLocationSelect.value : '';
+      if (locVal.toLowerCase().includes('google location')) {
+        deliveryCharge = 100;
+      }
+
+      // Pillion helmet addon
+      let helmetCharge = 0;
+      if (extraHelmetCheckbox && extraHelmetCheckbox.checked && (!currentVehicleData || !currentVehicleData.car)) {
+        helmetCharge = 50 * days;
+      }
+
+      const total = (baseRate * days) + deliveryCharge + helmetCharge;
+
+      if (modalBikePrice) {
+        modalBikePrice.textContent = `₹${baseRate.toLocaleString('en-IN')} / day`;
       }
       modalTotalEstimate.textContent = `₹${total.toLocaleString('en-IN')}`;
+
+      if (modalPricingBreakdown) {
+        const kmStr = currentVehicleData && currentVehicleData.car ? '300 km limit/day' : `${kmTier} km limit/day`;
+        const locStr = deliveryCharge > 0 ? 'Doorstep Delivery (+₹100)' : 'Free Direct Pickup';
+        modalPricingBreakdown.textContent = `${days} Day${days > 1 ? 's' : ''} • ${kmStr} • ${locStr}`;
+      }
     }
 
     if (daysCountInput) {
@@ -527,6 +673,12 @@
     if (extraHelmetCheckbox) {
       extraHelmetCheckbox.addEventListener('change', updateModalTotal);
     }
+    if (userLocationSelect) {
+      userLocationSelect.addEventListener('change', updateModalTotal);
+    }
+    if (modalKmLimitSelect) {
+      modalKmLimitSelect.addEventListener('change', updateModalTotal);
+    }
 
     // Attach to all "Book Now" buttons
     const bookNowBtns = document.querySelectorAll('.btn-book-now');
@@ -534,7 +686,7 @@
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const bike = btn.dataset.bike || 'Royal Enfield Hunter 350';
-        const rate = btn.dataset.rate || '999';
+        const rate = btn.dataset.rate || '1000';
         openBookingModal(bike, rate);
       });
     });
@@ -554,21 +706,42 @@
     if (modalForm) {
       modalForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const bike = modalBikeInput ? modalBikeInput.value : 'Rental Bike';
+        const bike = modalBikeInput ? modalBikeInput.value : 'Rental Vehicle';
         const name = document.getElementById('userNameInput')?.value || 'Guest';
         const phone = document.getElementById('userPhoneInput')?.value || '';
         const pickupDate = document.getElementById('userDateInput')?.value || 'Today';
         const days = daysCountInput ? daysCountInput.value : '1';
-        const location = document.getElementById('userLocationSelect')?.value || 'Madurai Junction';
+        const location = userLocationSelect ? userLocationSelect.value : 'Railway station opposite';
+        const kmTier = modalKmLimitSelect ? modalKmLimitSelect.value : '120';
+        const isGoogle = location.toLowerCase().includes('google location');
+        const helmetAdded = extraHelmetCheckbox && extraHelmetCheckbox.checked;
 
-        const message = `Hello BIXI Ride! I would like to book a ${bike} for ${days} day(s) from ${pickupDate} at ${location}. Name: ${name}, Phone: ${phone}. Please confirm availability!`;
-        const whatsappUrl = `https://wa.me/919037000266?text=${encodeURIComponent(message)}`;
+        let baseRate = currentDailyRate;
+        if (currentVehicleData) {
+          baseRate = (kmTier === '240' || kmTier === '300') ? currentVehicleData.rateExt : currentVehicleData.rate120;
+        }
+        const total = (baseRate * parseInt(days, 10)) + (isGoogle ? 100 : 0) + (helmetAdded ? 50 * parseInt(days, 10) : 0);
+
+        const lines = [
+          `Hello BIXI Ride Madurai! I would like to reserve:`,
+          `Vehicle: ${bike}`,
+          `Tariff: ₹${baseRate.toLocaleString('en-IN')} / day (${kmTier} kms limit • 24h format)`,
+          `Rental Duration: ${days} day(s) starting ${pickupDate}`,
+          `Pickup Hub: ${location} ${isGoogle ? '(₹100 Doorstep Delivery)' : '(Free Direct Pickup)'}`,
+          helmetAdded ? `Pillion Helmet: Included (+₹${50 * parseInt(days, 10)})` : `Pillion Helmet: Not needed`,
+          `Estimated Total: ₹${total.toLocaleString('en-IN')} (Zero Security Deposit)`,
+          `Customer Name: ${name}`,
+          `WhatsApp: ${phone}`,
+          `Please confirm vehicle availability & reservation!`
+        ];
+
+        const whatsappUrl = `https://wa.me/919037000266?text=${encodeURIComponent(lines.join('\n'))}`;
 
         closeBookingModal();
-        showToast('Booking request submitted! Connecting with Madurai Hub...');
+        showToast('Booking request prepared! Connecting to BIXI Ride WhatsApp...');
         setTimeout(() => {
           window.open(whatsappUrl, '_blank');
-        }, 800);
+        }, 600);
       });
     }
 
