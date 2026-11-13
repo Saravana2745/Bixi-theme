@@ -416,7 +416,7 @@
           <div class="drawer-vehicle-card option-bike">
             <div class="drawer-veh-header">
               <div class="veh-type-badge bike-badge">POPULAR FOR ADVENTURERS &amp; COUPLES</div>
-              <div class="veh-price">from ₹399/day</div>
+              <div class="veh-price">from ₹600/day</div>
             </div>
             <h4 class="veh-name">Royal Enfield Hunter 350 / Honda Activa 6G</h4>
             <p class="veh-desc">
@@ -681,6 +681,18 @@
         optBike.querySelector('.veh-desc').textContent = data.bikeDesc;
       }
 
+      // Auto-collapse landmarks sidebar on smaller screens / tablets so 3D scene and drawer never crowd
+      var sidebar = document.getElementById('appLandmarksSidebar');
+      if (sidebar && window.innerWidth <= 1180) {
+        sidebar.classList.add('collapsed');
+        var toggleBtn = document.getElementById('btnToggleSidebar');
+        if (toggleBtn) {
+          var tIcon = toggleBtn.querySelector('.toggle-icon');
+          if (tIcon) tIcon.textContent = '▶';
+        }
+      }
+
+      document.body.classList.add('destination-drawer-active');
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
     };
@@ -690,6 +702,7 @@
       if (!drawer) return;
       drawer.classList.remove('open');
       drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('destination-drawer-active');
     };
 
     window.toggleLandmarksSidebar = function() {

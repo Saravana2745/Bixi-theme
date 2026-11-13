@@ -58,8 +58,8 @@
       roadPos: { x: -12.0, y: 0.25, z: 26.0 },
       modelPos: { x: -12.0, y: 0, z: 34.0 },
       facing: 0, // Facing South toward road
-      camPos: { x: -12.0, y: 7.2, z: 16.0 },
-      target: { x: -12.0, y: 2.8, z: 33.0 },
+      camPos: { x: -12.0, y: 8.5, z: 15.0 },
+      target: { x: -12.0, y: 2.8, z: 34.0 },
       distance: '16 km',
       time: '26 mins',
       vehicle: 'Hunter 350 / Maruti Swift',
@@ -413,6 +413,10 @@
       controls.rotateSpeed = 0.85;
       controls.zoomSpeed = 1.0;
       controls.panSpeed = 0.8;
+      controls.touches = {
+        ONE: THREE.TOUCH.ROTATE,
+        TWO: THREE.TOUCH.DOLLY_PAN
+      };
       controls.maxPolarAngle = Math.PI / 2 - 0.04;
       controls.minPolarAngle = 0.08;
       controls.minDistance = 4.0;
@@ -498,34 +502,36 @@
     const mountainMatLush = new THREE.MeshStandardMaterial({ color: 0x1e4231, roughness: 0.88, flatShading: true });
     const mountainMaterials = [mountainMatDark, mountainMatMid, mountainMatLush];
 
+    // Continuous 360-Degree Mountain Enclosure (North, South, East, West - Majestic Distant Horizon!)
+    // Generously set back so landmarks (like Vadivasal & Alagar Kovil) are never crowded or inside mountain slopes!
     const perimeterPeaks = [
-      // NORTH MOUNTAIN CHAIN (Alagar Malai Sacred Ranges)
-      { r: 10.5, h: 18.0, x: -48, z: -42 },
-      { r: 12.0, h: 22.5, x: -30, z: -45 },
-      { r: 14.5, h: 26.0, x: -10, z: -48 },
-      { r: 13.0, h: 24.0, x: 12,  z: -46 },
-      { r: 11.5, h: 20.0, x: 32,  z: -44 },
-      { r: 10.0, h: 16.5, x: 50,  z: -40 },
+      // NORTH MOUNTAIN CHAIN (Alagar Malai Sacred Ranges - Distant Majestic Ridge)
+      { r: 16.0, h: 32.0, x: -65, z: -76 },
+      { r: 19.0, h: 38.0, x: -40, z: -82 },
+      { r: 22.0, h: 42.0, x: -12, z: -86 },
+      { r: 20.0, h: 40.0, x:  18, z: -84 },
+      { r: 18.0, h: 35.0, x:  45, z: -80 },
+      { r: 15.0, h: 30.0, x:  70, z: -75 },
 
-      // SOUTH MOUNTAIN CHAIN (Thirupparankundram Sacred Hill Ridge)
-      { r: 10.0, h: 17.0, x: -48, z: 42 },
-      { r: 12.5, h: 21.0, x: -28, z: 46 },
-      { r: 14.0, h: 24.5, x: -6,  z: 48 },
-      { r: 13.5, h: 23.0, x: 16,  z: 46 },
-      { r: 11.0, h: 19.5, x: 36,  z: 43 },
-      { r: 9.5,  h: 15.5, x: 52,  z: 39 },
+      // SOUTH MOUNTAIN CHAIN (Thirupparankundram Sacred Hill Ridge - Set 40+ units behind Vadivasal & Lucky Mess)
+      { r: 16.0, h: 30.0, x: -68, z: 75 },
+      { r: 19.5, h: 36.0, x: -42, z: 82 },
+      { r: 22.0, h: 42.0, x: -10, z: 86 },
+      { r: 20.5, h: 39.0, x:  22, z: 84 },
+      { r: 18.0, h: 34.0, x:  48, z: 78 },
+      { r: 15.0, h: 28.0, x:  72, z: 72 },
 
-      // EAST MOUNTAIN CHAIN (Vaigai River Basin Hills & Ridges)
-      { r: 11.0, h: 18.5, x: 44, z: -28 },
-      { r: 13.0, h: 22.0, x: 48, z: -10 },
-      { r: 12.5, h: 21.5, x: 47, z: 12 },
-      { r: 10.5, h: 17.5, x: 43, z: 28 },
+      // EAST MOUNTAIN CHAIN (Vaigai River Basin Hills & Distant Silhouettes)
+      { r: 16.5, h: 32.0, x: 74, z: -50 },
+      { r: 19.0, h: 38.0, x: 80, z: -20 },
+      { r: 18.5, h: 36.0, x: 82, z:  15 },
+      { r: 15.5, h: 30.0, x: 76, z:  48 },
 
-      // WEST MOUNTAIN CHAIN (Nagamalai Western Ghats Foothills)
-      { r: 11.0, h: 19.0, x: -44, z: -28 },
-      { r: 13.5, h: 23.0, x: -48, z: -8 },
-      { r: 12.0, h: 21.0, x: -47, z: 14 },
-      { r: 10.0, h: 17.0, x: -43, z: 28 }
+      // WEST MOUNTAIN CHAIN (Nagamalai Western Ghats Distant Horizons)
+      { r: 16.5, h: 33.0, x: -74, z: -50 },
+      { r: 19.5, h: 39.0, x: -82, z: -18 },
+      { r: 18.0, h: 37.0, x: -80, z:  20 },
+      { r: 15.0, h: 29.0, x: -75, z:  50 }
     ];
 
     perimeterPeaks.forEach((p, idx) => {
@@ -536,14 +542,14 @@
       scene.add(peak);
     });
 
-    // Outer rolling foothills connecting all gaps seamlessly
-    for (let f = 0; f < 28; f++) {
-      const angle = (f / 28) * Math.PI * 2;
-      const dist = 58 + (f % 3) * 6;
+    // Outer rolling foothills connecting all horizon gaps seamlessly (dist: 98 - 122)
+    for (let f = 0; f < 32; f++) {
+      const angle = (f / 32) * Math.PI * 2;
+      const dist = 98 + (f % 4) * 8;
       const fX = Math.cos(angle) * dist;
       const fZ = Math.sin(angle) * dist;
-      const fH = 8.0 + (f % 4) * 3.5;
-      const fR = 7.5 + (f % 3) * 2.5;
+      const fH = 14.0 + (f % 4) * 5.0;
+      const fR = 12.0 + (f % 3) * 4.0;
 
       const footGeo = new THREE.ConeGeometry(fR, fH, 7);
       const footMat = mountainMaterials[(f + 1) % 3];
@@ -3493,12 +3499,26 @@
       observer.observe(container);
     }
 
-    window.addEventListener('resize', () => {
-      if (!container) return;
-      camera.aspect = container.clientWidth / container.clientHeight;
+    function updateCameraForViewport() {
+      if (!container || !camera || !renderer) return;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      const aspect = w / h;
+      camera.aspect = aspect;
+      // On mobile portrait, expand vertical FOV so horizontal landmark width is never clipped
+      if (aspect < 1.0) {
+        camera.fov = window.innerWidth <= 480 ? 58 : 52;
+      } else if (window.innerWidth <= 1024) {
+        camera.fov = 48;
+      } else {
+        camera.fov = 45;
+      }
       camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
-    });
+      renderer.setSize(w, h);
+    }
+
+    updateCameraForViewport();
+    window.addEventListener('resize', updateCameraForViewport);
 
     animate();
   }

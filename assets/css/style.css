@@ -8525,22 +8525,41 @@ html {
 
 /* ==========================================================================
    MOBILE & TABLET RESPONSIVENESS FOR FULL-SCREEN APP
+   Zero UI overlap, spacious viewports, and native-feeling touch ergonomics
    ========================================================================== */
 
+/* Laptops & Tablets (1025px - 1200px) */
+@media (max-width: 1200px) {
+  .app-landmarks-sidebar {
+    width: 270px !important;
+  }
+  .destination-slide-drawer {
+    width: 360px !important;
+  }
+  body.destination-drawer-active .app-landmarks-sidebar:not(.collapsed) {
+    opacity: 0.35 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Tablets & Small Laptops (769px - 1024px) */
 @media (max-width: 1024px) {
   .app-telemetry-hud {
     left: 50% !important;
     transform: translateX(-50%) !important;
-    top: 4.2rem !important;
+    top: 4.0rem !important;
+    max-width: 86vw !important;
   }
   .app-landmarks-sidebar {
     top: auto !important;
-    bottom: 3.5rem !important;
+    bottom: 1.2rem !important;
     left: 1rem !important;
     right: 1rem !important;
     width: auto !important;
-    max-height: 140px !important;
-    padding: 0.8rem !important;
+    max-height: 100px !important;
+    padding: 0.6rem !important;
+    background: rgba(11, 14, 23, 0.92) !important;
+    border-radius: 16px !important;
   }
   .sidebar-header, .sidebar-footer-hint {
     display: none !important;
@@ -8550,13 +8569,22 @@ html {
     overflow-x: auto !important;
     max-height: none !important;
     gap: 0.5rem !important;
+    scrollbar-width: none !important;
   }
   .sidebar-checkpoint-btn {
-    min-width: 220px !important;
+    min-width: 200px !important;
     flex-shrink: 0 !important;
+  }
+  
+  /* When destination drawer opens on tablet, hide bottom bar */
+  body.destination-drawer-active .app-landmarks-sidebar {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(20px) !important;
   }
 }
 
+/* Mobile Devices & Phones (max-width: 768px) */
 @media (max-width: 768px) {
   .bixi-app-header {
     height: 52px !important;
@@ -8596,22 +8624,28 @@ html {
     height: calc(100vh - var(--header-height, 72px)) !important;
   }
   .app-stage-switcher-floating {
-    top: 0.8rem !important;
+    top: 0.6rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 50 !important;
   }
   .app-bottom-hint-pill {
     display: none !important;
   }
   .app-telemetry-hud {
-    top: 3.4rem !important;
+    top: 3.2rem !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    max-width: 92vw !important;
+    max-width: 94vw !important;
   }
   .telemetry-pill {
-    padding: 0.25rem 0.65rem !important;
+    padding: 0.22rem 0.6rem !important;
   }
   .telemetry-text {
-    font-size: 0.68rem !important;
+    font-size: 0.66rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
   .telemetry-meta-tags {
     display: none !important;
@@ -8619,50 +8653,60 @@ html {
   .app-tools-toolbar {
     top: 0.6rem !important;
     right: 0.6rem !important;
-    gap: 0.35rem !important;
+    gap: 0.3rem !important;
+    z-index: 55 !important;
   }
   .app-tool-btn {
-    width: 32px !important;
-    height: 32px !important;
+    width: 34px !important;
+    height: 34px !important;
   }
   .overview-tool-btn span {
     display: none !important;
   }
   .overview-tool-btn {
     padding: 0 !important;
-    width: 32px !important;
-    height: 32px !important;
+    width: 34px !important;
+    height: 34px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
   }
   
-  /* Quick Waypoints on Mobile */
+  /* Quick Waypoints Horizontal Dock on Mobile */
   .app-landmarks-sidebar {
-    bottom: 0.8rem !important;
-    left: 0.6rem !important;
-    right: 0.6rem !important;
-    max-height: 95px !important;
-    padding: 0.5rem !important;
-    background: rgba(10, 13, 20, 0.88) !important;
+    bottom: 0.75rem !important;
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    max-height: 84px !important;
+    padding: 0.45rem 0.5rem !important;
+    background: rgba(11, 14, 23, 0.92) !important;
     backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 122, 24, 0.35) !important;
     border-radius: 16px !important;
+    z-index: 60 !important;
+    transition: opacity 0.28s ease, transform 0.28s ease !important;
   }
   .sidebar-landmarks-list {
     gap: 0.4rem !important;
+    scrollbar-width: none !important;
+  }
+  .sidebar-landmarks-list::-webkit-scrollbar {
+    display: none !important;
   }
   .sidebar-checkpoint-btn {
-    min-width: 175px !important;
-    padding: 0.45rem 0.6rem !important;
+    min-width: 170px !important;
+    padding: 0.4rem 0.55rem !important;
+    border-radius: 12px !important;
   }
   .cp-name {
-    font-size: 0.72rem !important;
+    font-size: 0.70rem !important;
   }
   .cp-sub {
-    font-size: 0.62rem !important;
+    font-size: 0.60rem !important;
   }
 
-  /* Destination Drawer Bottom Sheet on Mobile */
+  /* Seamless Mobile Bottom Sheet for Destination Drawer */
   .destination-slide-drawer {
     position: fixed !important;
     top: auto !important;
@@ -8671,18 +8715,72 @@ html {
     right: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: 78vh !important;
-    border-radius: 22px 22px 0 0 !important;
+    height: 75vh !important;
+    max-height: 85vh !important;
+    border-radius: 24px 24px 0 0 !important;
+    z-index: 100 !important;
     transform: translateY(105%) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease !important;
     box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(255, 122, 24, 0.25) !important;
     border: 1px solid rgba(255, 122, 24, 0.35) !important;
     border-bottom: none !important;
   }
   .destination-slide-drawer.open {
     transform: translateY(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+  .destination-slide-drawer.open .drawer-overlay {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(0, 0, 0, 0.65) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    z-index: 90 !important;
+    cursor: pointer !important;
   }
   .destination-slide-drawer .drawer-panel {
-    border-radius: 22px 22px 0 0 !important;
+    transform: none !important;
+    border-radius: 24px 24px 0 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    border-bottom: none !important;
+    padding: 1.25rem 1.1rem 2.2rem !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  /* Modern Touch Pull-Down Handle */
+  .destination-slide-drawer .drawer-panel::before {
+    content: "" !important;
+    display: block !important;
+    width: 44px !important;
+    height: 5px !important;
+    border-radius: 3px !important;
+    background: rgba(255, 255, 255, 0.28) !important;
+    margin: 0 auto 0.8rem !important;
+    flex-shrink: 0 !important;
+  }
+  .drawer-close-btn {
+    top: 1rem !important;
+    right: 1rem !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1rem !important;
+  }
+  .drawer-title {
+    font-size: 1.35rem !important;
+  }
+  .drawer-vehicle-card {
+    padding: 1rem !important;
+  }
+
+  /* Hide Waypoints dock when Destination Drawer is active on mobile */
+  body.destination-drawer-active .app-landmarks-sidebar {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(20px) !important;
   }
 
   /* Preloader on Mobile */
