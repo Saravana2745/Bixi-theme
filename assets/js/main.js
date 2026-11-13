@@ -1782,7 +1782,7 @@ function filterVehicles(cat, btn) {
 
 
 /* ═════════════════════════════════════════════════════════════════════
-   3D ANIMATED TARIFF COMPARISON SHOWCASE (MARVEL RIVALS & REACT BITS)
+   3D ANIMATED TARIFF COMPARISON SHOWCASE (STABLE LUXURY & SPOTLIGHT)
    ═════════════════════════════════════════════════════════════════════ */
 (function() {
   function init3DTariffShowcase() {
@@ -1791,66 +1791,27 @@ function filterVehicles(cat, btn) {
     if (!stage || !card) return;
 
     let bounds = null;
-    let isHovering = false;
-    let rafId = null;
-    let currentRotX = 0;
-    let currentRotY = 0;
-    let targetRotX = 0;
-    let targetRotY = 0;
 
     function getCardBounds() {
       bounds = card.getBoundingClientRect();
     }
 
-    function renderTilt() {
-      currentRotX += (targetRotX - currentRotX) * 0.12;
-      currentRotY += (targetRotY - currentRotY) * 0.12;
-
-      card.style.transform = `perspective(1200px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
-
-      if (isHovering || Math.abs(targetRotX - currentRotX) > 0.05 || Math.abs(targetRotY - currentRotY) > 0.05) {
-        rafId = requestAnimationFrame(renderTilt);
-      } else {
-        card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
-        rafId = null;
-      }
-    }
-
-    card.addEventListener('mouseenter', () => {
-      isHovering = true;
-      getCardBounds();
-      if (!rafId) rafId = requestAnimationFrame(renderTilt);
-    });
+    // Only update cursor spotlight (No whole-table tilt - rock solid & stable)
+    card.addEventListener('mouseenter', getCardBounds);
 
     card.addEventListener('mousemove', (e) => {
       if (!bounds) getCardBounds();
       const mouseX = e.clientX - bounds.left;
       const mouseY = e.clientY - bounds.top;
-
       card.style.setProperty('--spot-x', `${mouseX}px`);
       card.style.setProperty('--spot-y', `${mouseY}px`);
-
-      const centerX = bounds.width / 2;
-      const centerY = bounds.height / 2;
-
-      // Gentle, sophisticated 3D tilt (max 3 degrees)
-      targetRotX = ((mouseY - centerY) / centerY) * -3.2;
-      targetRotY = ((mouseX - centerX) / centerX) * 3.2;
-
-      if (!rafId) rafId = requestAnimationFrame(renderTilt);
-    });
-
-    card.addEventListener('mouseleave', () => {
-      isHovering = false;
-      targetRotX = 0;
-      targetRotY = 0;
     });
 
     window.addEventListener('resize', () => {
       bounds = null;
     });
 
-    // Category Tabs Filtering
+    // Clean, instant category filtering
     const filterBtns = document.querySelectorAll('.lux-tariff-filter-btn');
     const tableRows = document.querySelectorAll('.lux-3d-tariff-table tbody tr');
 
@@ -1864,17 +1825,13 @@ function filterVehicles(cat, btn) {
         btn.setAttribute('aria-selected', 'true');
 
         const cat = btn.getAttribute('data-category');
-        let visibleCount = 0;
 
         tableRows.forEach((row) => {
           const rowCat = row.getAttribute('data-category');
           if (cat === 'all' || rowCat === cat) {
             row.classList.remove('is-hidden');
-            row.style.animation = `fadeSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${visibleCount * 0.025}s forwards`;
-            visibleCount++;
           } else {
             row.classList.add('is-hidden');
-            row.style.animation = '';
           }
         });
       });
@@ -1895,7 +1852,6 @@ function filterVehicles(cat, btn) {
           if (modalBikeName) modalBikeName.textContent = model;
           if (modalBikeInput) modalBikeInput.value = model;
 
-          // Dispatch modal event if booking engine listener exists
           const reserveBtn = document.querySelector(`.lux-reserve-btn[data-bike="${model}"]`);
           if (reserveBtn) {
             reserveBtn.click();
