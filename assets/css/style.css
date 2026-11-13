@@ -8906,55 +8906,59 @@ html {
   color: #E88124;
 }
 
+.lux-storefront-spotlight-card {
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .storefront-photo-frame {
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  height: 250px;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* Exact 765x1020 aspect ratio - shows 100% of photo uncropped */
   background: #090B10;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
 }
 .storefront-hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center center;
+  display: block;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .lux-storefront-spotlight-card:hover .storefront-hero-img {
-  transform: scale(1.035);
+  transform: scale(1.025);
 }
-.storefront-photo-vignette {
+
+.storefront-expand-pill {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(9, 11, 16, 0.08) 0%, rgba(9, 11, 16, 0.75) 100%);
-  pointer-events: none;
-}
-.storefront-floating-tag {
-  position: absolute;
-  bottom: 0.75rem;
-  left: 0.75rem;
+  top: 0.75rem;
   right: 0.75rem;
-  background: rgba(9, 12, 18, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  padding: 0.55rem 0.85rem;
-}
-.tag-title {
-  display: block;
-  font-family: var(--font-tech, monospace);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  font-weight: 800;
-  color: #E88124;
-}
-.tag-sub {
-  display: block;
-  font-size: 0.78rem;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(9, 12, 18, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #F8FAFC;
+  padding: 0.25rem 0.6rem;
+  border-radius: 50px;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  z-index: 5;
+}
+.storefront-expand-pill:hover {
+  background: rgba(232, 129, 36, 0.9);
+  border-color: #E88124;
+  color: #FFFFFF;
 }
 
 .storefront-meta-panel {
