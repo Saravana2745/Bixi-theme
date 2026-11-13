@@ -1677,12 +1677,12 @@ function filterVehicles(cat, btn) {
           curScale.toFixed(3) + ')';
 
         // Dynamic reactive contact shadow (shifts realistically opposite to tilt)
-        var shadowX = (-curRotY * 1.15).toFixed(1);
-        var shadowY = (18 - (curRotX * 0.8)).toFixed(1);
-        var shadowBlur = (22 + (curTransZ * 0.3)).toFixed(1);
-        var orangeGlow = isHovered ? (0.45 + (Math.sin(elapsed * 0.004) * 0.08)).toFixed(2) : '0';
+        var shadowX = (-curRotY * 1.3).toFixed(1);
+        var shadowY = (24 - (curRotX * 0.9)).toFixed(1);
+        var shadowBlur = (28 + (curTransZ * 0.25)).toFixed(1);
+        var orangeGlow = isHovered ? (0.48 + (Math.sin(elapsed * 0.004) * 0.08)).toFixed(2) : '0';
 
-        img.style.filter = 'drop-shadow(' + shadowX + 'px ' + shadowY + 'px ' + shadowBlur + 'px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 28px rgba(232, 129, 36, ' + orangeGlow + ')) brightness(1.08) contrast(1.04)';
+        img.style.filter = 'drop-shadow(' + shadowX + 'px ' + shadowY + 'px ' + shadowBlur + 'px rgba(0, 0, 0, 0.92)) drop-shadow(0 0 35px rgba(232, 129, 36, ' + orangeGlow + ')) brightness(1.1) contrast(1.05)';
 
         // Continue animation while moving or hovered
         var stillMoving = Math.abs(targetRotX - curRotX) > 0.01 ||
@@ -1697,6 +1697,7 @@ function filterVehicles(cat, btn) {
           animId = requestAnimationFrame(renderFrame);
         } else {
           // Clean reset to natural CSS state
+          item.style.zIndex = '';
           img.style.transform = '';
           img.style.filter = '';
           img.style.transition = '';
@@ -1713,11 +1714,12 @@ function filterVehicles(cat, btn) {
 
       plinth.addEventListener('mouseenter', function(e) {
         isHovered = true;
-        targetTransZ = 28;      // Lift out of card
-        targetScale = 1.065;    // Enlarge slightly
-        targetTransY = -14;     // Natural elevation
+        targetTransZ = 65;      // True 3D forward pop towards viewer
+        targetScale = 1.34;     // Enlarge to 1.34x (breaks card boundary!)
+        targetTransY = -28;     // Elevates -28px to break top card edge
+        item.style.zIndex = '60';
         img.style.transition = 'none'; // Instant response to physics lerp
-        spotlight.style.opacity = '1';
+        if (spotlight) spotlight.style.opacity = '1';
         startAnimation();
       });
 
@@ -1735,10 +1737,10 @@ function filterVehicles(cat, btn) {
         // Mouse moves right -> tilts right (positive rotateY)
         // Mouse moves up -> tilts up (positive rotateX)
         // Mouse moves down -> tilts down (negative rotateX)
-        targetRotY = normX * 11.5;         // Max 11.5 degrees
-        targetRotX = -normY * 9.5;         // Max 9.5 degrees
-        targetTransX = normX * 8.5;        // Subtle horizontal parallax
-        targetTransY = -14 + (normY * 6);  // Subtle vertical parallax
+        targetRotY = normX * 12;           // Max 12 degrees
+        targetRotX = -normY * 10;          // Max 10 degrees
+        targetTransX = normX * 14;         // Horizontal depth parallax
+        targetTransY = -28 + (normY * 10); // Vertical depth parallax
 
         // Update spotlight position
         plinth.style.setProperty('--mouse-x', mouseX + 'px');
@@ -1746,8 +1748,10 @@ function filterVehicles(cat, btn) {
 
         if (!isHovered) {
           isHovered = true;
-          targetTransZ = 28;
-          targetScale = 1.065;
+          targetTransZ = 65;
+          targetScale = 1.34;
+          targetTransY = -28;
+          item.style.zIndex = '60';
           img.style.transition = 'none';
         }
         startAnimation();

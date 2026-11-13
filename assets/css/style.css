@@ -3187,24 +3187,46 @@ select.form-control:focus {
   display: none !important;
 }
 
-/* ═══════════════ THEATRICAL STAGE SPOTLIGHT & SINGER FOCUS EFFECT ═══════════════ */
+/* ═══════════════ THEATRICAL STAGE SPOTLIGHT & MARVEL RIVALS 3D POPOUT ═══════════════ */
+.lux-roster-item {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1), z-index 0.2s ease;
+}
+.lux-roster-item:hover,
+.lux-roster-item:focus-within {
+  z-index: 60 !important;
+}
+
+/* Plinth Container: UNCLIPPED (overflow: visible) allows true 3D pop-out beyond card boundaries */
 .lux-item-plinth {
   position: relative;
-  background: radial-gradient(ellipse at bottom, rgba(28, 32, 42, 0.95) 0%, rgba(13, 15, 20, 0.98) 75%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
   height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible !important;
   margin-bottom: 1.25rem;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-  perspective: 800px;
+  perspective: 1000px !important;
+  transform-style: preserve-3d !important;
+  cursor: pointer;
 }
 
-/* Overhead Conical Stage Spotlight Beam (Like a Singer on Stage) */
+/* Plinth Backdrop: Clipped with 20px rounded corners for dark gradient, borders, and lighting beams */
+.lux-plinth-backdrop {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at bottom, rgba(28, 32, 42, 0.95) 0%, rgba(13, 15, 20, 0.98) 75%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Overhead Conical Stage Spotlight Beam */
+.lux-plinth-backdrop::before,
 .lux-item-plinth::before {
   content: '';
   position: absolute;
@@ -3234,6 +3256,7 @@ select.form-control:focus {
 }
 
 /* Top Follow-Spot Lens Emitter */
+.lux-plinth-backdrop::after,
 .lux-item-plinth::after {
   content: '';
   position: absolute;
@@ -3260,7 +3283,7 @@ select.form-control:focus {
   letter-spacing: 0.1em;
   color: #94A3B8;
   text-transform: uppercase;
-  z-index: 4;
+  z-index: 5;
 }
 
 /* Elliptical Stage Floor Light Pool */
@@ -3280,43 +3303,54 @@ select.form-control:focus {
   z-index: 1;
 }
 
+/* Pop-out 3D Stage Wrapper */
+.rivals-popout-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+  z-index: 15;
+  pointer-events: none;
+  transform-style: preserve-3d !important;
+}
+
 /* Real Cutout Vehicle on Stage */
 .lux-item-img {
   max-height: 145px;
   max-width: 90%;
   object-fit: contain;
   position: relative;
-  z-index: 3;
+  z-index: 25;
   filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65));
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
-  will-change: transform, filter;
+  transform-style: preserve-3d !important;
+  will-change: transform, filter !important;
+  pointer-events: none;
 }
 
-/* ── SINGER SPOTLIGHT FOCUS STATE ON HOVER & TOUCH ── */
-.lux-roster-item:hover .lux-item-plinth,
-.lux-roster-item:active .lux-item-plinth,
-.lux-roster-item:focus-within .lux-item-plinth {
+/* Hover States on Backdrop */
+.lux-roster-item:hover .lux-plinth-backdrop,
+.lux-roster-item:focus-within .lux-plinth-backdrop {
   border-color: rgba(232, 129, 36, 0.6);
   box-shadow: 0 12px 35px rgba(232, 129, 36, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-.lux-roster-item:hover .lux-item-plinth::before,
-.lux-roster-item:active .lux-item-plinth::before,
-.lux-roster-item:focus-within .lux-item-plinth::before {
+.lux-roster-item:hover .lux-plinth-backdrop::before,
+.lux-roster-item:focus-within .lux-plinth-backdrop::before {
   opacity: 0.95;
   filter: blur(5px);
   transform: translateX(-50%) scale(1.08);
 }
 
-.lux-roster-item:hover .lux-item-plinth::after,
-.lux-roster-item:active .lux-item-plinth::after,
-.lux-roster-item:focus-within .lux-item-plinth::after {
+.lux-roster-item:hover .lux-plinth-backdrop::after,
+.lux-roster-item:focus-within .lux-plinth-backdrop::after {
   opacity: 1;
   box-shadow: 0 0 24px #FFA858, 0 0 45px #E88124;
 }
 
 .lux-roster-item:hover .lux-item-halo,
-.lux-roster-item:active .lux-item-halo,
 .lux-roster-item:focus-within .lux-item-halo {
   opacity: 0.95;
   width: 240px;
@@ -3325,12 +3359,11 @@ select.form-control:focus {
   background: radial-gradient(ellipse at center, rgba(255, 215, 110, 0.9) 0%, rgba(232, 129, 36, 0.65) 45%, transparent 75%);
 }
 
-.lux-roster-item:hover .lux-item-img,
-.lux-roster-item:active .lux-item-img,
-.lux-roster-item:focus-within .lux-item-img {
-  transform: translateY(-16px) scale(1.06);
-  filter: drop-shadow(0 24px 26px rgba(0, 0, 0, 0.85))
-          drop-shadow(0 0 30px rgba(255, 180, 80, 0.5))
+/* Fallback CSS Popout for touch / static */
+.lux-roster-item:hover .lux-item-img {
+  transform: perspective(1000px) translateY(-26px) translateZ(65px) scale(1.32);
+  filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.92))
+          drop-shadow(0 0 35px rgba(255, 180, 80, 0.55))
           brightness(1.1)
           contrast(1.05);
 }
