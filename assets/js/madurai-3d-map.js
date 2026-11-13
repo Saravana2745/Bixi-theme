@@ -42,8 +42,8 @@
       roadPos: { x: -16.0, y: 0.25, z: 14.0 },
       modelPos: { x: -24.0, y: 0, z: 14.0 },
       facing: Math.PI / 2, // Facing East toward road
-      camPos: { x: -6.0, y: 15.0, z: 22.0 },
-      target: { x: -23.0, y: 4.5, z: 14.0 },
+      camPos: { x: -6.0, y: 16.5, z: 24.0 },
+      target: { x: -23.0, y: 5.2, z: 14.0 },
       distance: '1.2 km from Junction',
       time: '5 mins',
       vehicle: 'Activa 6G / Maruti Swift',
@@ -58,8 +58,8 @@
       roadPos: { x: -12.0, y: 0.25, z: 26.0 },
       modelPos: { x: -12.0, y: 0, z: 34.0 },
       facing: 0, // Facing South toward road
-      camPos: { x: -12.0, y: 4.8, z: 18.0 },
-      target: { x: -12.0, y: 1.8, z: 33.0 },
+      camPos: { x: -12.0, y: 7.2, z: 16.0 },
+      target: { x: -12.0, y: 2.8, z: 33.0 },
       distance: '16 km',
       time: '26 mins',
       vehicle: 'Hunter 350 / Maruti Swift',
@@ -74,8 +74,8 @@
       roadPos: { x: 8.0, y: 0.25, z: 24.0 },
       modelPos: { x: 8.0, y: 0, z: 32.0 },
       facing: 0, // Facing South toward road
-      camPos: { x: 8.0, y: 5.2, z: 16.0 },
-      target: { x: 8.0, y: 2.0, z: 31.0 },
+      camPos: { x: 8.0, y: 7.2, z: 14.5 },
+      target: { x: 8.0, y: 2.6, z: 31.0 },
       distance: '16.5 km',
       time: '28 mins',
       vehicle: 'Maruti Swift / Hunter 350',
@@ -90,8 +90,8 @@
       roadPos: { x: 20.0, y: 0.25, z: 14.0 },
       modelPos: { x: 28.0, y: 0, z: 14.0 },
       facing: -Math.PI / 2, // Facing West toward road
-      camPos: { x: 12.0, y: 6.0, z: 14.0 },
-      target: { x: 27.0, y: 2.5, z: 14.0 },
+      camPos: { x: 10.0, y: 7.8, z: 14.0 },
+      target: { x: 27.0, y: 3.2, z: 14.0 },
       distance: '3.5 km',
       time: '12 mins',
       vehicle: 'Activa 6G / Swift',
@@ -106,8 +106,8 @@
       roadPos: { x: 22.0, y: 0.25, z: -8.0 },
       modelPos: { x: 30.0, y: 0, z: -8.0 },
       facing: -Math.PI / 2, // Facing West toward road
-      camPos: { x: 12.0, y: 8.0, z: -8.0 },
-      target: { x: 29.0, y: 3.5, z: -8.0 },
+      camPos: { x: 10.0, y: 9.8, z: -8.0 },
+      target: { x: 29.0, y: 4.4, z: -8.0 },
       distance: '4.5 km',
       time: '14 mins',
       vehicle: 'Maruti Swift / Thar 4x4',
@@ -122,8 +122,8 @@
       roadPos: { x: 4.0, y: 0.25, z: -20.0 },
       modelPos: { x: 4.0, y: 0, z: -28.0 },
       facing: 0, // Facing South toward road
-      camPos: { x: 4.0, y: 8.0, z: -10.0 },
-      target: { x: 4.0, y: 3.5, z: -27.0 },
+      camPos: { x: 4.0, y: 9.8, z: -7.5 },
+      target: { x: 4.0, y: 4.4, z: -27.0 },
       distance: '21 km',
       time: '35 mins',
       vehicle: 'Maruti Swift / RE Himalayan',
@@ -638,7 +638,7 @@
     scene.add(birdsFlockGroup);
 
     // =========================================================================
-    // 3. SACRED VAIGAI RIVER (FLOWING WEST TO EAST THROUGH THE HEART OF MADURAI)
+    // 3. SACRED VAIGAI RIVER (VIBRANT GLOWING BLUE WATER THROUGH THE HEART OF MADURAI)
     // =========================================================================
     const riverCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-60, 0.04, 4.0),
@@ -647,17 +647,172 @@
       new THREE.Vector3(30, 0.04, 5.0),
       new THREE.Vector3(60, 0.04, 4.2)
     ]);
-    const riverGeo = new THREE.TubeGeometry(riverCurve, 60, 1.8, 8, false);
+
+    // Primary Vibrant Blue Water Channel (Unmistakable Cerulean / Azure Blue with Glowing Depth)
+    const riverGeo = new THREE.TubeGeometry(riverCurve, 80, 2.3, 8, false);
     riverGeo.scale(1, 0.05, 1);
     const riverMat = new THREE.MeshStandardMaterial({
-      color: 0x0f4b75,
-      roughness: 0.15,
-      metalness: 0.85,
+      color: 0x0284c7, // Vibrant Azure Blue
+      emissive: 0x0369a1, // Deep glowing water blue
+      emissiveIntensity: 0.45,
+      roughness: 0.12,
+      metalness: 0.70,
       transparent: true,
       opacity: 0.94
     });
     const riverMesh = new THREE.Mesh(riverGeo, riverMat);
     scene.add(riverMesh);
+
+    // Inner Sparkling Water Core (Sunlit Turquoise Shimmer)
+    const riverCoreGeo = new THREE.TubeGeometry(riverCurve, 80, 1.45, 8, false);
+    riverCoreGeo.scale(1, 0.06, 1);
+    const riverCoreMat = new THREE.MeshStandardMaterial({
+      color: 0x38bdf8, // Brilliant Cyan-Blue core
+      emissive: 0x0ea5e9,
+      emissiveIntensity: 0.38,
+      roughness: 0.08,
+      metalness: 0.85,
+      transparent: true,
+      opacity: 0.92
+    });
+    const riverCoreMesh = new THREE.Mesh(riverCoreGeo, riverCoreMat);
+    riverCoreMesh.position.y = 0.005;
+    scene.add(riverCoreMesh);
+
+    // Sandy Riverbank Silts along North and South banks
+    const bankGeo = new THREE.TubeGeometry(riverCurve, 80, 2.7, 6, false);
+    bankGeo.scale(1, 0.03, 1);
+    const bankMat = new THREE.MeshStandardMaterial({
+      color: 0x78716c, // Sandy river silt & stone
+      roughness: 0.95,
+      metalness: 0.05
+    });
+    const riverBankMesh = new THREE.Mesh(bankGeo, bankMat);
+    riverBankMesh.position.y = -0.01;
+    scene.add(riverBankMesh);
+
+    // =========================================================================
+    // 3b. HISTORIC VAIGAI RIVER ARCH & PIER BRIDGES (PATH CROSSING OVER THE BLUE RIVER)
+    // =========================================================================
+    function createVaigaiRiverBridge(name, subtitle) {
+      const bridge = new THREE.Group();
+      
+      const graniteMat = new THREE.MeshStandardMaterial({ color: 0xd1d5db, roughness: 0.72 });
+      const pierMat = new THREE.MeshStandardMaterial({ color: 0x64748b, roughness: 0.85 });
+      const railMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.4, metalness: 0.3 });
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.6 });
+      const roadbedMat = new THREE.MeshStandardMaterial({ color: 0x181a20, roughness: 0.8 });
+      const lanternMat = new THREE.MeshBasicMaterial({ color: 0xffd166 });
+      const chevronRed = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+      const chevronWhite = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+      const bridgeLength = 6.6;
+      const bridgeWidth = 1.6;
+
+      // Concrete Sub-Deck Slab
+      const deck = new THREE.Mesh(new THREE.BoxGeometry(bridgeWidth, 0.16, bridgeLength), graniteMat);
+      deck.position.y = ROAD_Y + 0.06;
+      deck.castShadow = true;
+      deck.receiveShadow = true;
+      bridge.add(deck);
+
+      // Elevated Asphalt Roadbed on Bridge
+      const roadbed = new THREE.Mesh(new THREE.BoxGeometry(bridgeWidth - 0.28, 0.02, bridgeLength), roadbedMat);
+      roadbed.position.y = ROAD_Y + 0.145;
+      roadbed.receiveShadow = true;
+      bridge.add(roadbed);
+
+      // Bridge Center Warning Line
+      const centerLine = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.025, bridgeLength - 0.2), new THREE.MeshBasicMaterial({ color: 0xffcc00 }));
+      centerLine.position.y = ROAD_Y + 0.15;
+      bridge.add(centerLine);
+
+      // Raised Curbs & Safety Parapet Railings on Left & Right
+      [-1, 1].forEach(side => {
+        const xPos = side * (bridgeWidth / 2 - 0.07);
+
+        // Solid Concrete Curb Base
+        const curb = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.14, bridgeLength), curbMat);
+        curb.position.set(xPos, ROAD_Y + 0.18, 0);
+        curb.castShadow = true;
+        bridge.add(curb);
+
+        // Top Continuous Handrail Bar
+        const handrail = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, bridgeLength, 8), railMat);
+        handrail.rotation.x = Math.PI / 2;
+        handrail.position.set(xPos, ROAD_Y + 0.46, 0);
+        bridge.add(handrail);
+
+        // Vertical Balustrade Pillars
+        for (let b = -bridgeLength / 2 + 0.3; b <= bridgeLength / 2 - 0.2; b += 0.5) {
+          const bal = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.03, 0.28, 6), railMat);
+          bal.position.set(xPos, ROAD_Y + 0.32, b);
+          bridge.add(bal);
+        }
+
+        // Approach Reflector Panels (Red & White hazard markings at bridge ends)
+        [-bridgeLength / 2 + 0.1, bridgeLength / 2 - 0.1].forEach((bz, idx) => {
+          const panel = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.16, 0.08), idx === 0 ? chevronRed : chevronWhite);
+          panel.position.set(xPos, ROAD_Y + 0.20, bz);
+          bridge.add(panel);
+        });
+      });
+
+      // 4 Massive Granite Bridge Piers Underneath (Extending deep into the blue water)
+      [-1.8, 1.8].forEach(pz => {
+        const pier = new THREE.Mesh(new THREE.BoxGeometry(bridgeWidth + 0.2, 0.45, 0.65), pierMat);
+        pier.position.set(0, ROAD_Y - 0.14, pz);
+        pier.castShadow = true;
+        pier.receiveShadow = true;
+        bridge.add(pier);
+
+        // Cutwaters (Triangular pointed prow facing upstream against river current)
+        const cutwater = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.45, 3), pierMat);
+        cutwater.position.set(-bridgeWidth / 2 - 0.18, ROAD_Y - 0.14, pz);
+        cutwater.rotation.y = Math.PI / 2;
+        bridge.add(cutwater);
+      });
+
+      // 4 Historic Stone Entrance Pylons with Amber Glowing Lanterns
+      [-bridgeWidth / 2 - 0.06, bridgeWidth / 2 + 0.06].forEach(px => {
+        [-bridgeLength / 2 + 0.15, bridgeLength / 2 - 0.15].forEach(pz => {
+          const pylon = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.65, 0.24), graniteMat);
+          pylon.position.set(px, ROAD_Y + 0.42, pz);
+          pylon.castShadow = true;
+          bridge.add(pylon);
+
+          const lantern = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), lanternMat);
+          lantern.position.set(px, ROAD_Y + 0.80, pz);
+          bridge.add(lantern);
+
+          const lampLight = new THREE.PointLight(0xffb703, 1.2, 4.5);
+          lampLight.position.set(px, ROAD_Y + 0.85, pz);
+          bridge.add(lampLight);
+        });
+      });
+
+      // Illuminated Bridge Nameplate Signboard
+      const signTex = createSignboardTexture(name, subtitle, '#090d16', '#ffffff', '#38bdf8');
+      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.48), signMat);
+      sign.position.set(-bridgeWidth / 2 - 0.12, ROAD_Y + 0.42, 0);
+      sign.rotation.y = -Math.PI / 2;
+      bridge.add(sign);
+
+      return bridge;
+    }
+
+    // West Bridge: Albert Victor Bridge (AV Bridge - Connecting North Madurai & Meenakshi)
+    const westBridge = createVaigaiRiverBridge('ALBERT VICTOR BRIDGE', 'VAIGAI RIVER • HISTORIC BRIDGE');
+    westBridge.position.set(-20.8, 0, 4.8);
+    westBridge.rotation.y = 0.25; // Aligned with road heading South-East
+    scene.add(westBridge);
+
+    // East Bridge: Vaigai Kalpalam / Goripalayam Causeway
+    const eastBridge = createVaigaiRiverBridge('VAIGAI KALPALAM CAUSEWAY', 'HISTORIC RIVER CROSSING • MADURAI');
+    eastBridge.position.set(21.4, 0, 5.0);
+    eastBridge.rotation.y = -0.15; // Aligned with road heading North
+    scene.add(eastBridge);
 
     // Authentic Madurai Coconut Palms & Shady Banyan Trees
     function createPalm(x, z, scale) {
@@ -1051,6 +1206,7 @@
     const meenakshiModel = createMeenakshiTemple();
     meenakshiModel.position.set(-24.0, 0, 14.0);
     meenakshiModel.rotation.y = Math.PI / 2; // Faces East towards Road plaza
+    meenakshiModel.scale.set(1.45, 1.45, 1.45);
     scene.add(meenakshiModel);
 
     // B. ALANGANALLUR VADIVASAL & REALISTIC KANGAYAM JALLIKATTU BULL (SOLO MAJESTIC BULL)
@@ -1302,6 +1458,7 @@
     const vadivasalModel = createAlanganallurVadivasal();
     vadivasalModel.position.set(-12.0, 0, 34.0);
     vadivasalModel.rotation.y = 0; // Front opens directly to the black road plaza
+    vadivasalModel.scale.set(1.40, 1.40, 1.40);
     scene.add(vadivasalModel);
 
     // C. LUCKY MESS (TRADITIONAL VILLAGE MESS WITH MANGALORE BARREL RIDGE TILES & TURNED TEAK PILLARS)
@@ -1454,6 +1611,7 @@
     const luckyMessModel = createLuckyMess();
     luckyMessModel.position.set(8.0, 0, 32.0);
     luckyMessModel.rotation.y = 0; // Facing South toward Road plaza
+    luckyMessModel.scale.set(1.38, 1.38, 1.38);
     scene.add(luckyMessModel);
 
     // D. POWER KADAI & MADURAI BUN PAROTTA (CIRCULAR IRON TAVA + SPIRAL BUN PAROTTAS + CHIMNEY SMOKE)
@@ -1636,6 +1794,7 @@
     const powerKadaiModel = createPowerKadai();
     powerKadaiModel.position.set(28.0, 0, 14.0);
     powerKadaiModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza
+    powerKadaiModel.scale.set(1.38, 1.38, 1.38);
     scene.add(powerKadaiModel);
 
     // E. GANDHI MEMORIAL PALACE MUSEUM (TAMUKKAM NAYAK PALACE - FLUTED COLONNADE & PALACE DOME)
@@ -1744,6 +1903,7 @@
     const museumModel = createGandhiMuseum();
     museumModel.position.set(30.0, 0, -8.0);
     museumModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza
+    museumModel.scale.set(1.42, 1.42, 1.42);
     scene.add(museumModel);
 
     // F. ALAGAR KOVIL (KALLAZHAGAR SACRED TEMPLE - STEPPED OCTAGONAL VIMANA & ROCKY OUTCROP)
@@ -1906,6 +2066,7 @@
     const alagarModel = createAlagarTemple();
     alagarModel.position.set(4.0, 0, -28.0);
     alagarModel.rotation.y = 0; // Front faces South toward hill approach road
+    alagarModel.scale.set(1.45, 1.45, 1.45);
     scene.add(alagarModel);
 
     // =========================================================================
@@ -2255,6 +2416,7 @@
 
     const busStandModel = createMattuthavaniBusStand();
     busStandModel.position.set(-36.0, 0, -6.0);
+    busStandModel.scale.set(1.32, 1.32, 1.32);
     scene.add(busStandModel);
 
     // 3. Realistic TNSTC Ultra Deluxe / AC Sleeper Bus Model
@@ -2389,6 +2551,7 @@
 
     const tnstcBusModel = createRealisticTnstcBus();
     tnstcBusModel.position.set(-56.0, ROAD_Y, -5.5);
+    tnstcBusModel.scale.set(1.22, 1.22, 1.22);
     scene.add(tnstcBusModel);
 
     // 4. BIXI Ride Rental Hub (Mattuthavani Headquarters - Walkable from Bus Stand)
@@ -2464,6 +2627,7 @@
 
     const bixiHubModel = createBixiRentalHub();
     bixiHubModel.position.set(-26.0, 0, -2.0);
+    bixiHubModel.scale.set(1.32, 1.32, 1.32);
     scene.add(bixiHubModel);
 
     // 5. The 3D Animated Traveler (Walks from Bus Stand to BIXI Hub, Picks Up Car & Drives Out)
@@ -2529,6 +2693,7 @@
 
     const bixiTraveler = createTravelerFigure();
     bixiTraveler.position.set(-34.5, ROAD_Y, -4.5);
+    bixiTraveler.scale.set(1.30, 1.30, 1.30);
     bixiTraveler.visible = false;
     scene.add(bixiTraveler);
 
@@ -2539,20 +2704,21 @@
 
     const roadControlPoints = [
       new THREE.Vector3(-22.0, ROAD_Y, 0.0),   // 0: BIXI Hub Departure / Arrival Bay
-      new THREE.Vector3(-20.0, ROAD_Y, 7.0),   // 1: Highway merge lane heading South
-      new THREE.Vector3(-16.0, ROAD_Y, 14.0),  // 2: Shri Meenakshi Amman Kovil Stop
-      new THREE.Vector3(-14.0, ROAD_Y, 20.0),  // 3: Northward transition curve
-      new THREE.Vector3(-12.0, ROAD_Y, 26.0),  // 4: Alanganallur Vadivasal Stop (Jallikattu Arena & Bull)
-      new THREE.Vector3(-2.0, ROAD_Y, 25.0),   // 5: Countryside Green Corridor
-      new THREE.Vector3(8.0, ROAD_Y, 24.0),    // 6: Lucky Mess Stop
-      new THREE.Vector3(15.0, ROAD_Y, 20.0),   // 7: East Highway Curve
-      new THREE.Vector3(20.0, ROAD_Y, 14.0),   // 8: Power Kadai Stop (Bun Parotta)
-      new THREE.Vector3(22.0, ROAD_Y, 3.0),    // 9: East River Vaigai Crossing
-      new THREE.Vector3(22.0, ROAD_Y, -8.0),   // 10: Gandhi Memorial Palace Museum Stop
-      new THREE.Vector3(14.0, ROAD_Y, -15.0),  // 11: Foothills Ascent Lane
-      new THREE.Vector3(4.0, ROAD_Y, -20.0),   // 12: Alagar Kovil Stop (Kallazhagar Temple)
-      new THREE.Vector3(-8.0, ROAD_Y, -15.0),  // 13: West Scenic Ring Road
-      new THREE.Vector3(-17.0, ROAD_Y, -8.0)   // 14: Connector back to BIXI Hub
+      new THREE.Vector3(-20.8, ROAD_Y + 0.10, 4.8), // 1: Albert Victor Bridge Deck Crown (West Crossing)
+      new THREE.Vector3(-20.0, ROAD_Y, 7.5),   // 2: South approach road
+      new THREE.Vector3(-16.0, ROAD_Y, 14.0),  // 3: Shri Meenakshi Amman Kovil Stop
+      new THREE.Vector3(-14.0, ROAD_Y, 20.0),  // 4: Northward transition curve
+      new THREE.Vector3(-12.0, ROAD_Y, 26.0),  // 5: Alanganallur Vadivasal Stop (Jallikattu Arena & Bull)
+      new THREE.Vector3(-2.0, ROAD_Y, 25.0),   // 6: Countryside Green Corridor
+      new THREE.Vector3(8.0, ROAD_Y, 24.0),    // 7: Lucky Mess Stop
+      new THREE.Vector3(15.0, ROAD_Y, 20.0),   // 8: East Highway Curve
+      new THREE.Vector3(20.0, ROAD_Y, 14.0),   // 9: Power Kadai Stop (Bun Parotta)
+      new THREE.Vector3(21.4, ROAD_Y + 0.10, 5.0), // 10: Vaigai Kalpalam Bridge Deck Crown (East Crossing)
+      new THREE.Vector3(22.0, ROAD_Y, -8.0),   // 11: Gandhi Memorial Palace Museum Stop
+      new THREE.Vector3(14.0, ROAD_Y, -15.0),  // 12: Foothills Ascent Lane
+      new THREE.Vector3(4.0, ROAD_Y, -20.0),   // 13: Alagar Kovil Stop (Kallazhagar Temple)
+      new THREE.Vector3(-8.0, ROAD_Y, -15.0),  // 14: West Scenic Ring Road
+      new THREE.Vector3(-17.0, ROAD_Y, -8.0)   // 15: Connector back to BIXI Hub
     ];
 
     const roadCurve = new THREE.CatmullRomCurve3(roadControlPoints, true, 'catmullrom', 0.25);
@@ -2607,15 +2773,18 @@
     // =========================================================================
     // 7. AUTHENTIC 3D MARUTI SWIFT HATCHBACK (METALLIC BIXI ORANGE + FLOATING ROOF + ALLOY WHEELS)
     const carGroup = createMarutiSwift(true);
+    carGroup.scale.set(1.28, 1.28, 1.28);
     scene.add(carGroup);
     const carWheels = carGroup.userData.wheels;
     const hazards = carGroup.userData.hazards;
 
     // Passenger Figures
     const touristOut = createPassengerFigure(0xffffff, 0x1e3a8a);
+    touristOut.scale.set(1.25, 1.25, 1.25);
     scene.add(touristOut);
 
     const touristIn = createPassengerFigure(0xe88124, 0x0f172a);
+    touristIn.scale.set(1.25, 1.25, 1.25);
     scene.add(touristIn);
 
     // Calculate parameter t along road curve for each stop point
