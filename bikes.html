@@ -1147,44 +1147,656 @@
           </p>
         </div>
 
-        <div style="overflow-x: auto; background: rgba(13, 16, 24, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1.5rem;">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem;">
-            <thead>
-              <tr style="border-bottom: 2px solid rgba(232, 129, 36, 0.4); color: #FFA858; font-family: var(--font-tech, monospace); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;">
-                <th style="padding: 1rem 0.75rem;">Vehicle Model</th>
-                <th style="padding: 1rem 0.75rem;">Category</th>
-                <th style="padding: 1rem 0.75rem;">Tier 1 Tariff (120 km)</th>
-                <th style="padding: 1rem 0.75rem;">Tier 2 Tariff (240/300 km)</th>
-                <th style="padding: 1rem 0.75rem;">Rental Format</th>
-                <th style="padding: 1rem 0.75rem;">Direct Pickup Point</th>
+        <!-- CATEGORY QUICK FILTER TABS -->
+        <div class="lux-tariff-filter-bar" role="tablist" aria-label="Vehicle Category Filter">
+          <button type="button" class="lux-tariff-filter-btn active" data-category="all" role="tab" aria-selected="true">
+            <span>All Vehicles</span> <span class="lux-filter-count">23</span>
+          </button>
+          <button type="button" class="lux-tariff-filter-btn" data-category="scooter" role="tab" aria-selected="false">
+            <span>Automatic Scooters</span> <span class="lux-filter-count">4</span>
+          </button>
+          <button type="button" class="lux-tariff-filter-btn" data-category="bike" role="tab" aria-selected="false">
+            <span>Geared Commuters</span> <span class="lux-filter-count">6</span>
+          </button>
+          <button type="button" class="lux-tariff-filter-btn" data-category="re" role="tab" aria-selected="false">
+            <span>Royal Enfield</span> <span class="lux-filter-count">4</span>
+          </button>
+          <button type="button" class="lux-tariff-filter-btn" data-category="car" role="tab" aria-selected="false">
+            <span>Self-Drive Cars</span> <span class="lux-filter-count">9</span>
+          </button>
+        </div>
+
+        <!-- 3D INTERACTIVE TARIFF STAGE -->
+        <div class="lux-tariff-stage-wrapper" id="tariff3DStage">
+          <div class="lux-tariff-3d-card" id="tariff3DCard">
+            <div class="lux-tariff-card-meta">
+              <div class="lux-tariff-live-pill">
+                <span class="lux-live-pulse-dot"></span>
+                <span>Live Fleet Availability &bull; Madurai Junction &amp; Mattuthavani Hubs</span>
+              </div>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <span class="lux-meta-badge">Zero Security Deposit</span>
+                <span class="lux-meta-badge">100% Commercial Permits</span>
+                <span class="lux-meta-badge">24/7 Roadside Rescue</span>
+              </div>
+            </div>
+
+            <div class="lux-tariff-table-wrap">
+              <table class="lux-3d-tariff-table" id="pricingTable">
+                <thead>
+                  <tr>
+                    <th>Vehicle Model</th>
+                    <th>Category</th>
+                    <th>Tier 1 (120 km)</th>
+                    <th>Tier 2 (240/300 km)</th>
+                    <th>Rental Format</th>
+                    <th>Direct Pickup Point</th>
+                    <th style="text-align: right;">Instant Reserve</th>
+                  </tr>
+                </thead>
+                <tbody>
+              <tr data-category="scooter" data-model="Suzuki Access 125">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/access-125.webp" alt="Suzuki Access 125 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Suzuki Access 125</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Automatic Scooter</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹600</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹800</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Suzuki Access 125" data-rate="600">Reserve &rarr;</button>
+                </td>
               </tr>
-            </thead>
-            <tbody style="color: #CBD5E1; line-height: 1.8;">
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Suzuki Access 125</td><td>Automatic Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Honda Activa 6G</td><td>Automatic Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha Fascino 125</td><td>Retro Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha Ray ZR 125</td><td>Street Rally Scooter</td><td>₹600 / day</td><td>₹800 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha FZS V3</td><td>Street Commuter</td><td>₹800 / day</td><td>₹1,200 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha FZS V4</td><td>Connected Street Bike</td><td>₹800 / day</td><td>₹1,200 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha FZX</td><td>Neo-Retro Roadster</td><td>₹800 / day</td><td>₹1,200 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Bajaj Pulsar NS200</td><td>Naked Sports Bike</td><td>₹900 / day</td><td>₹1,400 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Yamaha MT-15 V2</td><td>Hyper Naked 155cc</td><td>₹900 / day</td><td>₹1,400 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Hero Xpulse 200 / 210</td><td>Adventure Trail Bike</td><td>₹900 / day</td><td>₹1,400 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Hunter 350</td><td>Modern Roadster 350cc</td><td>₹1,000 / day</td><td>₹1,500 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Classic 350</td><td>Vintage Cruiser 350cc</td><td>₹1,000 / day</td><td>₹1,500 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Meteor 350</td><td>Highway Cruiser 350cc</td><td>₹1,000 / day</td><td>₹1,500 / day (240 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Royal Enfield Himalayan 450</td><td>Western Ghats Adventure</td><td>₹1,200 / day</td><td>₹2,000 / day (300 km)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Wagon R</td><td>Tall-Boy Hatchback</td><td colspan="2">₹1,800 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Swift</td><td>5-Seater Sport Hatchback</td><td colspan="2">₹2,200 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Dzire</td><td>Compact Executive Sedan</td><td colspan="2">₹2,400 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Baleno</td><td>Nexa Premium Hatchback</td><td colspan="2">₹2,400 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Hyundai i20</td><td>European Premium Hatchback</td><td colspan="2">₹2,400 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Hyundai Exter</td><td>Urban Micro SUV</td><td colspan="2">₹2,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Tata Punch</td><td>5-Star Safety Micro SUV</td><td colspan="2">₹2,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Maruti Suzuki Ertiga</td><td>7-Seater Family MPV</td><td colspan="2">₹3,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-              <tr><td style="padding: 0.75rem; font-weight: 700; color: #FFF;">Toyota Rumion</td><td>7-Seater Premium MPV</td><td colspan="2">₹3,500 / day (Full 300 km daily limit included)</td><td>24 Hours</td><td>Railway Junction &amp; Mattuthavani</td></tr>
-            </tbody>
-          </table>
+              <tr data-category="scooter" data-model="Honda Activa 6G">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/activa-6g.webp" alt="Honda Activa 6G bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Honda Activa 6G</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Automatic Scooter</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹600</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹800</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Honda Activa 6G" data-rate="600">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="scooter" data-model="Yamaha Fascino 125">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/fascino-125.webp" alt="Yamaha Fascino 125 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Yamaha Fascino 125</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Retro Scooter</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹600</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹800</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Yamaha Fascino 125" data-rate="600">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="scooter" data-model="Yamaha Ray ZR 125">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/ray-zr-125.webp" alt="Yamaha Ray ZR 125 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Yamaha Ray ZR 125</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Street Rally Scooter</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹600</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹800</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Yamaha Ray ZR 125" data-rate="600">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="bike" data-model="Yamaha FZS V3">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/fzs-v3.webp" alt="Yamaha FZS V3 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Yamaha FZS V3</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Street Commuter</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹800</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,200</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Yamaha FZS V3" data-rate="800">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="bike" data-model="Yamaha FZS V4">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/fzs-v4.webp" alt="Yamaha FZS V4 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Yamaha FZS V4</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Connected Street Bike</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹800</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,200</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Yamaha FZS V4" data-rate="800">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="bike" data-model="Yamaha FZX">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/fzx.webp" alt="Yamaha FZX bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Yamaha FZX</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Neo-Retro Roadster</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹800</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,200</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Yamaha FZX" data-rate="800">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="bike" data-model="Bajaj Pulsar NS200">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/ns200.webp" alt="Bajaj Pulsar NS200 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Bajaj Pulsar NS200</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Naked Sports Bike</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹900</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,400</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Bajaj Pulsar NS200" data-rate="900">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="bike" data-model="Yamaha MT-15 V2">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/mt-15.webp" alt="Yamaha MT-15 V2 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Yamaha MT-15 V2</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Hyper Naked 155cc</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹900</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,400</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Yamaha MT-15 V2" data-rate="900">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="bike" data-model="Hero Xpulse 200 / 210">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/xpulse-200.webp" alt="Hero Xpulse 200 / 210 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Hero Xpulse 200 / 210</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Adventure Trail Bike</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹900</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,400</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Hero Xpulse 200 / 210" data-rate="900">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="re" data-model="Royal Enfield Hunter 350">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/hunter-350.webp" alt="Royal Enfield Hunter 350 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Royal Enfield Hunter 350</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Modern Roadster 350cc</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹1,000</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,500</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Royal Enfield Hunter 350" data-rate="1000">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="re" data-model="Royal Enfield Classic 350">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/classic-350.webp" alt="Royal Enfield Classic 350 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Royal Enfield Classic 350</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Vintage Cruiser 350cc</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹1,000</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,500</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Royal Enfield Classic 350" data-rate="1000">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="re" data-model="Royal Enfield Meteor 350">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/meteor-350.webp" alt="Royal Enfield Meteor 350 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Royal Enfield Meteor 350</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Highway Cruiser 350cc</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹1,000</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹1,500</span>
+                    <span class="lux-tariff-sub-km">/ 240km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Royal Enfield Meteor 350" data-rate="1000">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="re" data-model="Royal Enfield Himalayan 450">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/himalayan-450.webp" alt="Royal Enfield Himalayan 450 bike rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Royal Enfield Himalayan 450</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Western Ghats Adventure</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹1,200</span>
+                    <span class="lux-tariff-sub-km">/ 120km</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>₹2,000</span>
+                    <span class="lux-tariff-sub-km">/ 300km</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Royal Enfield Himalayan 450" data-rate="1200">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Maruti Suzuki Wagon R">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-wagonr.webp" alt="Maruti Suzuki Wagon R self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Maruti Suzuki Wagon R</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Tall-Boy Hatchback</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹1,800</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Maruti Suzuki Wagon R" data-rate="1800">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Maruti Suzuki Swift">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-swift.webp" alt="Maruti Suzuki Swift self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Maruti Suzuki Swift</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">5-Seater Sport Hatchback</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹2,200</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Maruti Suzuki Swift" data-rate="2200">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Maruti Suzuki Dzire">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-dzire.webp" alt="Maruti Suzuki Dzire self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Maruti Suzuki Dzire</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Compact Executive Sedan</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹2,400</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Maruti Suzuki Dzire" data-rate="2400">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Maruti Suzuki Baleno">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-baleno.webp" alt="Maruti Suzuki Baleno self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Maruti Suzuki Baleno</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Nexa Premium Hatchback</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹2,400</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Maruti Suzuki Baleno" data-rate="2400">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Hyundai i20">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-i20.webp" alt="Hyundai i20 self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Hyundai i20</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">European Premium Hatchback</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹2,400</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Hyundai i20" data-rate="2400">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Hyundai Exter">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-exter.webp" alt="Hyundai Exter self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Hyundai Exter</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">Urban Micro SUV</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹2,500</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Hyundai Exter" data-rate="2500">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Tata Punch">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-punch.webp" alt="Tata Punch self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Tata Punch</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">5-Star Safety Micro SUV</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹2,500</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Tata Punch" data-rate="2500">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Maruti Suzuki Ertiga">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-ertiga.webp" alt="Maruti Suzuki Ertiga self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Maruti Suzuki Ertiga</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">7-Seater Family MPV</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹3,500</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Maruti Suzuki Ertiga" data-rate="3500">Reserve &rarr;</button>
+                </td>
+              </tr>
+              <tr data-category="car" data-model="Toyota Rumion">
+                <td>
+                  <div class="lux-vehicle-cell">
+                    <img src="assets/images/bikes/car-rumion.webp" alt="Toyota Rumion self drive car rental in madurai" class="lux-vehicle-thumb" width="48" height="32" loading="lazy">
+                    <span class="lux-vehicle-title">Toyota Rumion</span>
+                  </div>
+                </td>
+                <td><span class="lux-cat-badge">7-Seater Premium MPV</span></td>
+                <td>
+                  <div class="lux-tariff-pill-t1">
+                    <span>₹3,500</span>
+                    <span class="lux-tariff-sub-km">/ day</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="lux-tariff-pill-t2">
+                    <span>300 km Included</span>
+                    <span class="lux-tariff-sub-km">Full Day Limit</span>
+                  </div>
+                </td>
+                <td><span class="lux-format-tag">24 Hours</span></td>
+                <td><span class="lux-pickup-cell"><span class="lux-hub-dot"></span> Railway Stn &amp; Mattuthavani</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="lux-table-reserve-btn" data-model="Toyota Rumion" data-rate="3500">Reserve &rarr;</button>
+                </td>
+              </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </section>

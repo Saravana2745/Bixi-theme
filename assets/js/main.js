@@ -1779,3 +1779,137 @@ function filterVehicles(cat, btn) {
     initMarvelRivalsCards();
   }
 })();
+
+
+/* ═════════════════════════════════════════════════════════════════════
+   3D ANIMATED TARIFF COMPARISON SHOWCASE (MARVEL RIVALS & REACT BITS)
+   ═════════════════════════════════════════════════════════════════════ */
+(function() {
+  function init3DTariffShowcase() {
+    const stage = document.getElementById('tariff3DStage');
+    const card = document.getElementById('tariff3DCard');
+    if (!stage || !card) return;
+
+    let bounds = null;
+    let isHovering = false;
+    let rafId = null;
+    let currentRotX = 0;
+    let currentRotY = 0;
+    let targetRotX = 0;
+    let targetRotY = 0;
+
+    function getCardBounds() {
+      bounds = card.getBoundingClientRect();
+    }
+
+    function renderTilt() {
+      currentRotX += (targetRotX - currentRotX) * 0.12;
+      currentRotY += (targetRotY - currentRotY) * 0.12;
+
+      card.style.transform = `perspective(1200px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+
+      if (isHovering || Math.abs(targetRotX - currentRotX) > 0.05 || Math.abs(targetRotY - currentRotY) > 0.05) {
+        rafId = requestAnimationFrame(renderTilt);
+      } else {
+        card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+        rafId = null;
+      }
+    }
+
+    card.addEventListener('mouseenter', () => {
+      isHovering = true;
+      getCardBounds();
+      if (!rafId) rafId = requestAnimationFrame(renderTilt);
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      if (!bounds) getCardBounds();
+      const mouseX = e.clientX - bounds.left;
+      const mouseY = e.clientY - bounds.top;
+
+      card.style.setProperty('--spot-x', `${mouseX}px`);
+      card.style.setProperty('--spot-y', `${mouseY}px`);
+
+      const centerX = bounds.width / 2;
+      const centerY = bounds.height / 2;
+
+      // Gentle, sophisticated 3D tilt (max 3 degrees)
+      targetRotX = ((mouseY - centerY) / centerY) * -3.2;
+      targetRotY = ((mouseX - centerX) / centerX) * 3.2;
+
+      if (!rafId) rafId = requestAnimationFrame(renderTilt);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      isHovering = false;
+      targetRotX = 0;
+      targetRotY = 0;
+    });
+
+    window.addEventListener('resize', () => {
+      bounds = null;
+    });
+
+    // Category Tabs Filtering
+    const filterBtns = document.querySelectorAll('.lux-tariff-filter-btn');
+    const tableRows = document.querySelectorAll('.lux-3d-tariff-table tbody tr');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const cat = btn.getAttribute('data-category');
+        let visibleCount = 0;
+
+        tableRows.forEach((row) => {
+          const rowCat = row.getAttribute('data-category');
+          if (cat === 'all' || rowCat === cat) {
+            row.classList.remove('is-hidden');
+            row.style.animation = `fadeSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${visibleCount * 0.025}s forwards`;
+            visibleCount++;
+          } else {
+            row.classList.add('is-hidden');
+            row.style.animation = '';
+          }
+        });
+      });
+    });
+
+    // Instant Reserve Action Button Trigger
+    document.querySelectorAll('.lux-table-reserve-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const model = btn.getAttribute('data-model');
+        const rate = btn.getAttribute('data-rate');
+
+        const modal = document.getElementById('bookingModal');
+        const modalBikeName = document.getElementById('modalBikeName');
+        const modalBikeInput = document.getElementById('modalBikeInput');
+
+        if (modal) {
+          if (modalBikeName) modalBikeName.textContent = model;
+          if (modalBikeInput) modalBikeInput.value = model;
+
+          // Dispatch modal event if booking engine listener exists
+          const reserveBtn = document.querySelector(`.lux-reserve-btn[data-bike="${model}"]`);
+          if (reserveBtn) {
+            reserveBtn.click();
+          } else {
+            modal.classList.add('active');
+          }
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init3DTariffShowcase);
+  } else {
+    init3DTariffShowcase();
+  }
+})();
