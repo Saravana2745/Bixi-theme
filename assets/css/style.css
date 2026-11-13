@@ -3303,7 +3303,7 @@ select.form-control:focus {
   z-index: 1;
 }
 
-/* Pop-out 3D Stage Wrapper */
+/* Pop-out 3D Stage Wrapper (Unclipped top, fixed bottom) */
 .rivals-popout-stage {
   position: absolute;
   inset: 0;
@@ -3316,7 +3316,7 @@ select.form-control:focus {
   transform-style: preserve-3d !important;
 }
 
-/* Real Cutout Vehicle on Stage */
+/* Real Cutout Vehicle on Stage - Anchored at Bottom, Topsides Hover */
 .lux-item-img {
   max-height: 145px;
   max-width: 90%;
@@ -3326,6 +3326,7 @@ select.form-control:focus {
   filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.65));
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
   transform-style: preserve-3d !important;
+  transform-origin: center bottom !important; /* Fix bottom: tires stay anchored, top hovers out */
   will-change: transform, filter !important;
   pointer-events: none;
 }
@@ -3361,11 +3362,11 @@ select.form-control:focus {
 
 /* Fallback CSS Popout for touch / static */
 .lux-roster-item:hover .lux-item-img {
-  transform: perspective(1000px) translateY(-26px) translateZ(65px) scale(1.32);
-  filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.92))
-          drop-shadow(0 0 35px rgba(255, 180, 80, 0.55))
-          brightness(1.1)
-          contrast(1.05);
+  transform: perspective(1000px) translateY(-14px) translateZ(18px) scale(1.12);
+  filter: drop-shadow(0 20px 24px rgba(0, 0, 0, 0.85))
+          drop-shadow(0 0 26px rgba(255, 180, 80, 0.45))
+          brightness(1.06)
+          contrast(1.03);
 }
 
 /* Dual Rate Tariff Tag */

@@ -1655,12 +1655,12 @@ function filterVehicles(cat, btn) {
         curTransZ += (targetTransZ - curTransZ) * ease;
         curScale += (targetScale - curScale) * ease;
 
-        // Subtle suspended floating breathing motion while hovering
+        // Subtle top-side floating breathing motion while hovering (anchored bottom)
         var floatY = 0;
         var floatRotZ = 0;
         if (isHovered) {
-          floatY = Math.sin(elapsed * 0.0035) * 2.2;
-          floatRotZ = Math.sin(elapsed * 0.0025) * 0.55;
+          floatY = Math.sin(elapsed * 0.0035) * 1.5;
+          floatRotZ = Math.sin(elapsed * 0.0025) * 0.35;
         }
 
         var totalTransY = curTransY + floatY;
@@ -1676,13 +1676,13 @@ function filterVehicles(cat, btn) {
           totalRotZ.toFixed(2) + 'deg) scale(' +
           curScale.toFixed(3) + ')';
 
-        // Dynamic reactive contact shadow (shifts realistically opposite to tilt)
-        var shadowX = (-curRotY * 1.3).toFixed(1);
-        var shadowY = (24 - (curRotX * 0.9)).toFixed(1);
-        var shadowBlur = (28 + (curTransZ * 0.25)).toFixed(1);
-        var orangeGlow = isHovered ? (0.48 + (Math.sin(elapsed * 0.004) * 0.08)).toFixed(2) : '0';
+        // Dynamic reactive contact shadow (anchored underneath on the stage floor)
+        var shadowX = (-curRotY * 0.9).toFixed(1);
+        var shadowY = (16 - (curRotX * 0.5)).toFixed(1);
+        var shadowBlur = (20 + (curTransZ * 0.2)).toFixed(1);
+        var orangeGlow = isHovered ? (0.4 + (Math.sin(elapsed * 0.004) * 0.06)).toFixed(2) : '0';
 
-        img.style.filter = 'drop-shadow(' + shadowX + 'px ' + shadowY + 'px ' + shadowBlur + 'px rgba(0, 0, 0, 0.92)) drop-shadow(0 0 35px rgba(232, 129, 36, ' + orangeGlow + ')) brightness(1.1) contrast(1.05)';
+        img.style.filter = 'drop-shadow(' + shadowX + 'px ' + shadowY + 'px ' + shadowBlur + 'px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 24px rgba(232, 129, 36, ' + orangeGlow + ')) brightness(1.06) contrast(1.03)';
 
         // Continue animation while moving or hovered
         var stillMoving = Math.abs(targetRotX - curRotX) > 0.01 ||
@@ -1714,10 +1714,11 @@ function filterVehicles(cat, btn) {
 
       plinth.addEventListener('mouseenter', function(e) {
         isHovered = true;
-        targetTransZ = 65;      // True 3D forward pop towards viewer
-        targetScale = 1.34;     // Enlarge to 1.34x (breaks card boundary!)
-        targetTransY = -28;     // Elevates -28px to break top card edge
+        targetTransZ = 18;      // Subtle 3D depth, no aggressive face pop
+        targetScale = 1.12;     // Crisp 1.12x scale (maintains 100% retina clarity, zero image breaking)
+        targetTransY = -14;     // Top side hovers upward while bottom stays grounded
         item.style.zIndex = '60';
+        img.style.transformOrigin = 'center bottom'; // Fix bottom: tires stay anchored to plinth floor
         img.style.transition = 'none'; // Instant response to physics lerp
         if (spotlight) spotlight.style.opacity = '1';
         startAnimation();
@@ -1732,15 +1733,15 @@ function filterVehicles(cat, btn) {
         var normX = ((mouseX / rect.width) * 2) - 1;
         var normY = ((mouseY / rect.height) * 2) - 1;
 
-        // Marvel Rivals 3D tilt:
+        // Smooth subtle 3D tilt (anchored at bottom):
         // Mouse moves left -> tilts left (negative rotateY)
         // Mouse moves right -> tilts right (positive rotateY)
-        // Mouse moves up -> tilts up (positive rotateX)
-        // Mouse moves down -> tilts down (negative rotateX)
-        targetRotY = normX * 12;           // Max 12 degrees
-        targetRotX = -normY * 10;          // Max 10 degrees
-        targetTransX = normX * 14;         // Horizontal depth parallax
-        targetTransY = -28 + (normY * 10); // Vertical depth parallax
+        // Mouse moves up -> top tilts up
+        // Mouse moves down -> top tilts down
+        targetRotY = normX * 7.5;         // Controlled 7.5 deg max
+        targetRotX = -normY * 6.0;        // Controlled 6 deg max
+        targetTransX = normX * 6.0;       // Subtle horizontal parallax
+        targetTransY = -14 + (normY * 4); // Top hovers, bottom stays fixed
 
         // Update spotlight position
         plinth.style.setProperty('--mouse-x', mouseX + 'px');
@@ -1748,10 +1749,11 @@ function filterVehicles(cat, btn) {
 
         if (!isHovered) {
           isHovered = true;
-          targetTransZ = 65;
-          targetScale = 1.34;
-          targetTransY = -28;
+          targetTransZ = 18;
+          targetScale = 1.12;
+          targetTransY = -14;
           item.style.zIndex = '60';
+          img.style.transformOrigin = 'center bottom';
           img.style.transition = 'none';
         }
         startAnimation();
