@@ -1424,24 +1424,39 @@ function filterVehicles(cat, btn) {
 
 
 // ==========================================================================
-// 3D PERSPECTIVE TILT INTERACTION ENGINE
+// REACT BITS - 3D PERSPECTIVE TILT & CURSOR SPOTLIGHT INTERACTION ENGINE
 // ==========================================================================
 (function() {
   function init3DTiltCards() {
-    var cards = document.querySelectorAll('.card-3d-tilt, [data-tilt="true"]');
+    var cards = document.querySelectorAll('.card-3d-tilt, [data-tilt], [data-spotlight], .lux-storefront-spotlight-card, .lux-customer-card');
+    if (!cards.length) return;
+
+    var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
     cards.forEach(function(card) {
       card.addEventListener('mousemove', function(e) {
         var rect = card.getBoundingClientRect();
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
-        var centerX = rect.width / 2;
-        var centerY = rect.height / 2;
-        var rotateX = ((y - centerY) / centerY) * -7;
-        var rotateY = ((x - centerX) / centerX) * 7;
-        card.style.transform = 'perspective(900px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) translateY(-4px)';
+
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
+
+        if (!isTouch) {
+          var centerX = rect.width / 2;
+          var centerY = rect.height / 2;
+          var rotateX = ((y - centerY) / centerY) * -8;
+          var rotateY = ((x - centerX) / centerX) * 8;
+          card.style.transform = 'perspective(1000px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale3d(1.02, 1.02, 1.02)';
+          card.style.transition = 'transform 0.08s ease-out';
+        }
       });
+
       card.addEventListener('mouseleave', function() {
-        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        if (!isTouch) {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          card.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        }
       });
     });
   }

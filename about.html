@@ -50,7 +50,7 @@
     "mainEntity": {
       "@type": "LocalBusiness",
       "name": "BIXI Ride Madurai",
-      "image": "https://bixiride.com/assets/images/logo.svg",
+      "image": ["https://bixiride.com/assets/images/store/bixi-ride-madurai-railway-station-hub.webp", "https://bixiride.com/assets/images/logo.svg"],
       "telephone": "+919037000266",
       "address": {
         "@type": "PostalAddress",
@@ -170,32 +170,51 @@
             </p>
           </div>
 
-          <!-- Right: Luxury Visual Hub Showcase Card (Eliminates Blank Space) -->
-          <div class="lux-about-showcase-card">
-            <div class="lux-showcase-badge">
-              <span class="bixi-badge-dot">•</span>
-              <span>MADURAI OFFICIAL RENTAL HEADQUARTERS</span>
-            </div>
-            <h3 class="lux-showcase-title">Pioneering Frictionless Freedom Across Tamil Nadu</h3>
-            <p class="lux-showcase-lead">
-              From historic Meenakshi Gopurams to the misty hairpin roads of Kodaikanal, our fleet of 500+ verified vehicles is engineered for unforgettable explorations.
-            </p>
-            <div class="lux-showcase-points-grid">
-              <div class="lux-showcase-point">
-                <span class="lux-sp-label">Zero Deposit</span>
-                <span class="lux-sp-sub">Aadhaar KYC protocol with no frozen funds</span>
+          <!-- Right: Authentic Storefront Showcase Card with React Bits Spotlight & 3D Tilt -->
+          <div class="lux-storefront-spotlight-card" id="heroStorefrontCard" data-tilt data-spotlight>
+            <div class="spotlight-glare" aria-hidden="true"></div>
+            <div class="storefront-card-inner">
+              <div class="storefront-topbar">
+                <div class="storefront-live-pill">
+                  <span class="live-pulse-dot" aria-hidden="true"></span>
+                  <span class="live-pill-text">MADURAI RAILWAY STATION HUB • OPEN 24/7</span>
+                </div>
+                <span class="storefront-verified-chip">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="#E88124"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  Official Store
+                </span>
               </div>
-              <div class="lux-showcase-point">
-                <span class="lux-sp-label">Yellow Plates</span>
-                <span class="lux-sp-sub">100% RTO legal commercial road permits</span>
+
+              <div class="storefront-photo-frame">
+                <img src="assets/images/store/bixi-ride-madurai-railway-station-hub.webp" 
+                     alt="BIXI Ride Madurai Railway Station Flagship Storefront - Bike rental in madurai" 
+                     width="765" height="1020" 
+                     class="storefront-hero-img" 
+                     fetchpriority="high">
+                <div class="storefront-photo-vignette" aria-hidden="true"></div>
+                <div class="storefront-floating-tag">
+                  <span class="tag-title">BIXI RIDE RENTALS</span>
+                  <span class="tag-sub">Opp. Supreme Hotel • 2 Mins Walk From Platform 1</span>
+                </div>
               </div>
-              <div class="lux-showcase-point">
-                <span class="lux-sp-label">Walkable Hub</span>
-                <span class="lux-sp-sub">3 mins from Mattuthavani Integrated Terminus</span>
-              </div>
-              <div class="lux-showcase-point">
-                <span class="lux-sp-label">Junction Delivery</span>
-                <span class="lux-sp-sub">Instant 60-second doorstep train handover</span>
+
+              <div class="storefront-meta-panel">
+                <div class="storefront-address-row">
+                  <div class="address-icon-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="#E88124"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  </div>
+                  <div class="address-text-wrap">
+                    <strong class="address-title">11A, Thalaiviruchan Lane, Opp. Supreme Hotel</strong>
+                    <span class="address-city">Near Madurai Railway Junction, Madurai - 625001</span>
+                  </div>
+                </div>
+
+                <div class="storefront-quick-chips">
+                  <span class="storefront-chip">Zero Deposit</span>
+                  <span class="storefront-chip">Yellow Plates</span>
+                  <span class="storefront-chip">500+ Fleet</span>
+                  <span class="storefront-chip">Instant WhatsApp</span>
+                </div>
               </div>
             </div>
           </div>
@@ -616,6 +635,152 @@
             <div class="place-meta-bar">
               <span class="place-vehicle-pill">Best Ride: <strong>Activa 6G / Hunter 350</strong></span>
               <a href="bikes.html" class="btn-secondary" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Rent Vehicle →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ REAL RIDERS & HAPPY CUSTOMERS SHOWCASE ═══════════════ -->
+    <section class="lux-customers-section" id="happy-customers">
+      <div class="container">
+        <div class="lux-section-header" style="text-align: center; max-width: 820px; margin: 0 auto 3rem;">
+          <span class="lux-category-tag">REAL RIDERS • REAL EXPERIENCES</span>
+          <h2 class="lux-heading-giant">
+            Trusted by 25,000+ Travelers: <span class="text-orange">Happy Customers Across Tamil Nadu</span>
+          </h2>
+          <p class="lux-customers-sub">
+            From early-morning Meenakshi temple heritage loops to high-altitude Kodaikanal hairpin curves, see authentic moments from travelers who trusted BIXI for reliable <strong>bike rental in madurai</strong>, <strong>madurai bike rental</strong>, and self-drive exploration with zero deposit.
+          </p>
+        </div>
+
+        <!-- React Bits Interactive Spotlight Bento Grid -->
+        <div class="lux-customer-cards-grid">
+          <!-- Customer Card 1 -->
+          <article class="lux-customer-card" data-tilt data-spotlight>
+            <div class="customer-spotlight-glare" aria-hidden="true"></div>
+            <div class="customer-img-wrapper">
+              <img src="assets/images/customers/bixi-happy-customers-madurai-scooter-rental.webp" 
+                   alt="Happy group of travelers renting scooters in Madurai from BIXI Ride" 
+                   width="423" height="705" 
+                   class="customer-photo" 
+                   loading="lazy">
+              <div class="customer-img-gradient" aria-hidden="true"></div>
+              <div class="customer-top-tags">
+                <span class="customer-rating-chip">Rating 5.0 / 5</span>
+                <span class="customer-verified-chip">Verified Riders</span>
+              </div>
+              <div class="customer-vehicle-floating-pill">Honda Activa 6G &amp; Ray ZR</div>
+            </div>
+            <div class="customer-card-content">
+              <span class="customer-route-tag">Madurai Junction → Meenakshi Amman Temple → Simmakkal</span>
+              <h3 class="customer-card-title">Temple Heritage &amp; Midnight Food Trail</h3>
+              <p class="customer-quote">
+                &ldquo;Arrived at Madurai Junction at 6 AM. Booked 2 scooters on WhatsApp in under 3 minutes. Spotless vehicle condition and zero security deposit made our college reunion trip totally hassle-free!&rdquo;
+              </p>
+              <div class="customer-author-footer">
+                <div class="customer-avatar-initials">AK</div>
+                <div class="customer-author-meta">
+                  <strong class="customer-author-name">Arun, Karthi &amp; Dinesh</strong>
+                  <span class="customer-author-city">Chennai, Tamil Nadu • 3-Day Rental</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Customer Card 2 -->
+          <article class="lux-customer-card" data-tilt data-spotlight>
+            <div class="customer-spotlight-glare" aria-hidden="true"></div>
+            <div class="customer-img-wrapper">
+              <img src="assets/images/customers/bixi-happy-rider-kodaikanal-hill-tour.webp" 
+                   alt="Solo traveler enjoying scenic hill tour on rented scooter from BIXI Ride Madurai" 
+                   width="423" height="528" 
+                   class="customer-photo" 
+                   loading="lazy">
+              <div class="customer-img-gradient" aria-hidden="true"></div>
+              <div class="customer-top-tags">
+                <span class="customer-rating-chip">Rating 5.0 / 5</span>
+                <span class="customer-verified-chip">Verified Rider</span>
+              </div>
+              <div class="customer-vehicle-floating-pill">Yamaha Fascino 125</div>
+            </div>
+            <div class="customer-card-content">
+              <span class="customer-route-tag">Madurai Hub → Batlagundu → Kodaikanal Pine Forest</span>
+              <h3 class="customer-card-title">Kodaikanal Hill Station Expedition</h3>
+              <p class="customer-quote">
+                &ldquo;Rented the Yamaha Fascino on the 240 km tier for a weekend hill getaway. Crisp disc brakes, smooth throttle up all 14 hairpin bends, and incredible fuel efficiency. BIXI is the best bike rental near me!&rdquo;
+              </p>
+              <div class="customer-author-footer">
+                <div class="customer-avatar-initials">SM</div>
+                <div class="customer-author-meta">
+                  <strong class="customer-author-name">Suresh Menon</strong>
+                  <span class="customer-author-city">Kochi, Kerala • Weekend Hill Run</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Customer Card 3 -->
+          <article class="lux-customer-card" data-tilt data-spotlight>
+            <div class="customer-spotlight-glare" aria-hidden="true"></div>
+            <div class="customer-img-wrapper">
+              <img src="assets/images/customers/bixi-happy-customer-thirumalai-palace-heritage-ride.webp" 
+                   alt="Customer on orange Yamaha Fascino scooter outside Thirumalai Nayak Palace Madurai" 
+                   width="1024" height="768" 
+                   class="customer-photo" 
+                   loading="lazy">
+              <div class="customer-img-gradient" aria-hidden="true"></div>
+              <div class="customer-top-tags">
+                <span class="customer-rating-chip">Rating 5.0 / 5</span>
+                <span class="customer-verified-chip">Verified Rider</span>
+              </div>
+              <div class="customer-vehicle-floating-pill">Yamaha Fascino 125</div>
+            </div>
+            <div class="customer-card-content">
+              <span class="customer-route-tag">Thirumalai Nayak Palace → Gandhi Museum → Teppakulam</span>
+              <h3 class="customer-card-title">Historic Architecture &amp; Cultural Loop</h3>
+              <p class="customer-quote">
+                &ldquo;The orange Fascino was pristine! 100% legal commercial yellow plates, sanitized helmet, and transparent documentation gave me absolute peace of mind cruising through old Madurai streets.&rdquo;
+              </p>
+              <div class="customer-author-footer">
+                <div class="customer-avatar-initials">VK</div>
+                <div class="customer-author-meta">
+                  <strong class="customer-author-name">Vignesh Kumar</strong>
+                  <span class="customer-author-city">Coimbatore, Tamil Nadu • 2-Day City Tour</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Customer Card 4 -->
+          <article class="lux-customer-card" data-tilt data-spotlight>
+            <div class="customer-spotlight-glare" aria-hidden="true"></div>
+            <div class="customer-img-wrapper">
+              <img src="assets/images/customers/bixi-happy-riders-city-exploration.webp" 
+                   alt="Two happy customers picking up cyan scooter rental near Mattuthavani MGR Bus Stand" 
+                   width="423" height="528" 
+                   class="customer-photo" 
+                   loading="lazy">
+              <div class="customer-img-gradient" aria-hidden="true"></div>
+              <div class="customer-top-tags">
+                <span class="customer-rating-chip">Rating 5.0 / 5</span>
+                <span class="customer-verified-chip">Verified Riders</span>
+              </div>
+              <div class="customer-vehicle-floating-pill">Yamaha Ray ZR 125</div>
+            </div>
+            <div class="customer-card-content">
+              <span class="customer-route-tag">Mattuthavani Hub → Alagar Malai Hill Temple → K. Pudur</span>
+              <h3 class="customer-card-title">Alagar Kovil &amp; Scenic Foothills</h3>
+              <p class="customer-quote">
+                &ldquo;Direct pickup near Mattuthavani MGR Bus Stand. Quick 60-second digital verification, super punchy engine, and honest pricing with zero hidden charges. Top tier rental bikes in madurai!&rdquo;
+              </p>
+              <div class="customer-author-footer">
+                <div class="customer-avatar-initials">PS</div>
+                <div class="customer-author-meta">
+                  <strong class="customer-author-name">Praveen &amp; Sanjay</strong>
+                  <span class="customer-author-city">Madurai, Tamil Nadu • Weekend Trip</span>
+                </div>
+              </div>
             </div>
           </article>
         </div>
