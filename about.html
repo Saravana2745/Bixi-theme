@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=24.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=30.0">
 
   <!-- Breadcrumb & Organization Schema -->
     <!-- Mobile Floating Quick Call / Rent Bar -->
@@ -166,66 +166,148 @@
               Madurai is steeped in 2,500 years of glorious Dravidian heritage. Yet for decades, travelers arriving at Madurai Railway Junction or Mattuthavani were trapped between rigid bus routes and exorbitant taxi negotiations.
             </p>
             <p class="lux-manifesto-body">
-              In 2018, BIXI Ride opened its main headquarters walkable from Mattuthavani Bus Stand (K. Pudur) and West Veli Street with a radical commitment: <strong>zero security deposit, 100% legal commercial permits, sanitized protective gear, and paperless digital onboarding</strong>. Today, BIXI is Madurai’s premier two-wheeler and self-drive car mobility partner — providing dependable <strong>bike rental in madurai</strong>, <strong>madurai bike rental</strong>, and comprehensive <strong>car rental in madurai</strong>.
+              In 2018, BIXI Ride opened its main headquarters walkable from Mattuthavani Bus Stand (K. Pudur) and West Veli Street with a radical commitment: <strong>zero security deposit, 100% legal commercial permits, sanitized protective gear, and paperless digital onboarding</strong>. Today, BIXI is Madurai’s premier two-wheeler and self-drive car mobility partner — providing dependable <strong>bike rental in madurai</strong>, <strong>madurai bike rental</strong>, and comprehensive <strong>car rental in madurai</strong>, and trusted <strong>car rental service in madurai</strong>.
             </p>
           </div>
 
-          <!-- Right: Authentic Storefront Showcase Card with React Bits Spotlight & 3D Tilt -->
-          <div class="lux-storefront-spotlight-card" id="heroStorefrontCard" data-tilt data-spotlight>
+                    <!-- Right: Interactive React Bits Dual-Showcase (Flagship Storefront Hub & Happy Customers) -->
+          <div class="lux-storefront-spotlight-card border-beam" id="heroStorefrontCard" data-tilt data-spotlight>
             <div class="spotlight-glare" aria-hidden="true"></div>
+            
             <div class="storefront-card-inner">
-              <div class="storefront-topbar">
-                <div class="storefront-live-pill">
-                  <span class="live-pulse-dot" aria-hidden="true"></span>
-                  <span class="live-pill-text">MADURAI RAILWAY STATION HUB • OPEN 24/7</span>
-                </div>
-                <span class="storefront-verified-chip">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="#E88124"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                  Official Store
-                </span>
+              <!-- React Bits Interactive Tab Switcher -->
+              <div class="hero-showcase-tabs" role="tablist" aria-label="BIXI Madurai Flagship & Riders Showcase">
+                <button type="button" class="hero-tab-btn active" id="tabBtnHub" role="tab" aria-selected="true" aria-controls="viewPanelHub">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21h18M3 7v14M21 7v14M6 10h3M15 10h3M6 14h3M15 14h3M6 18h3M15 18h3M9 3l3-2 3 2v4H9z"/></svg>
+                  <span>Flagship Storefront</span>
+                </button>
+                <button type="button" class="hero-tab-btn" id="tabBtnRiders" role="tab" aria-selected="false" aria-controls="viewPanelRiders">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span>Happy Customers</span>
+                  <span class="hero-tab-badge">25K+</span>
+                </button>
               </div>
 
-              <!-- Uncropped Full Storefront Photo (Exact 3:4 Aspect Ratio) -->
-              <div class="storefront-photo-frame">
-                <img src="assets/images/store/bixi-ride-madurai-railway-station-hub.webp" 
-                     alt="BIXI Ride Madurai Railway Station Flagship Storefront - Bike rental in madurai" 
-                     width="765" height="1020" 
-                     class="storefront-hero-img" 
-                     fetchpriority="high">
-                <a href="assets/images/store/bixi-ride-madurai-railway-station-hub.jpg" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="storefront-expand-pill" 
-                   title="Click to view full photo in high resolution">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                  <span>Full View</span>
-                </a>
-              </div>
-
-              <div class="storefront-meta-panel">
-                <div class="storefront-address-row">
-                  <div class="address-icon-box">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="#E88124"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <!-- View 1: Authentic Flagship Storefront Hub -->
+              <div class="hero-showcase-panel active" id="viewPanelHub" role="tabpanel" aria-labelledby="tabBtnHub">
+                <div class="storefront-topbar">
+                  <div class="storefront-live-pill">
+                    <span class="live-pulse-dot" aria-hidden="true"></span>
+                    <span class="live-pill-text">MADURAI RAILWAY STATION HUB • OPEN 24/7</span>
                   </div>
-                  <div class="address-text-wrap">
-                    <strong class="address-title">11A, Thalaiviruchan Lane, Opp. Supreme Hotel</strong>
-                    <span class="address-city">Near Madurai Railway Junction, Madurai - 625001</span>
-                  </div>
+                  <span class="storefront-verified-chip">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="#E88124"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    Official Store
+                  </span>
                 </div>
 
-                <div class="storefront-quick-chips">
-                  <span class="storefront-chip">Zero Deposit</span>
-                  <span class="storefront-chip">Yellow Plates</span>
-                  <span class="storefront-chip">500+ Fleet</span>
-                  <span class="storefront-chip">Instant WhatsApp</span>
+                <div class="storefront-photo-frame">
+                  <img src="assets/images/store/bixi-ride-madurai-railway-station-hub.webp" 
+                       alt="BIXI Ride Madurai Railway Station Flagship Storefront - Bike rental in madurai" 
+                       width="765" height="1020" 
+                       class="storefront-hero-img" 
+                       fetchpriority="high">
+                  
+                  <!-- Full View Expand Pill -->
+                  <a href="assets/images/store/bixi-ride-madurai-railway-station-hub.jpg" 
+                     target="_blank" 
+                     rel="noopener noreferrer" 
+                     class="storefront-expand-pill" 
+                     title="Click to view full photo in high resolution">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    <span>Full View</span>
+                  </a>
+
+                  <!-- Picture-in-Picture Quick Switcher Chip -->
+                  <button type="button" class="hero-pip-switcher" id="pipToRiders" title="Switch to Happy Customers photo">
+                    <img src="assets/images/customers/bixi-happy-customers-madurai-scooter-rental.webp" alt="Preview happy customers" class="pip-thumb-img">
+                    <span class="pip-label">View Riders →</span>
+                  </button>
+                </div>
+
+                <div class="storefront-meta-panel">
+                  <div class="storefront-address-row">
+                    <div class="address-icon-box">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="#E88124"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div class="address-text-wrap">
+                      <strong class="address-title">11A, Thalaiviruchan Lane, Opp. Supreme Hotel</strong>
+                      <span class="address-city">Near Madurai Railway Junction &amp; Bus Stand • 625001</span>
+                    </div>
+                  </div>
+
+                  <div class="storefront-quick-chips">
+                    <span class="storefront-chip">Zero Deposit</span>
+                    <span class="storefront-chip">Yellow Commercial Plates</span>
+                    <span class="storefront-chip">500+ Fleet</span>
+                    <span class="storefront-chip">Instant WhatsApp Handover</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- View 2: Real Happy Customers Group Photo -->
+              <div class="hero-showcase-panel" id="viewPanelRiders" role="tabpanel" aria-labelledby="tabBtnRiders" style="display: none;">
+                <div class="storefront-topbar">
+                  <div class="storefront-live-pill" style="background: rgba(232, 129, 36, 0.12); border-color: rgba(232, 129, 36, 0.35);">
+                    <span class="live-pulse-dot" style="background: #E88124; box-shadow: 0 0 8px #E88124;" aria-hidden="true"></span>
+                    <span class="live-pill-text" style="color: #E88124;">25,000+ HAPPY RIDERS • RATED 5.0 / 5</span>
+                  </div>
+                  <span class="storefront-verified-chip" style="color: #10B981;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="#10B981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    Verified Experience
+                  </span>
+                </div>
+
+                <div class="storefront-photo-frame">
+                  <img src="assets/images/customers/bixi-happy-customers-madurai-scooter-rental.webp" 
+                       alt="Happy group of travelers renting scooters in Madurai from BIXI Ride - best bike rental near me" 
+                       width="423" height="705" 
+                       class="storefront-hero-img" 
+                       loading="lazy">
+                  
+                  <!-- Full View Expand Pill -->
+                  <a href="assets/images/customers/bixi-happy-customers-madurai-scooter-rental.jpg" 
+                     target="_blank" 
+                     rel="noopener noreferrer" 
+                     class="storefront-expand-pill" 
+                     title="Click to view full customer photo in high resolution">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    <span>Full View</span>
+                  </a>
+
+                  <!-- Picture-in-Picture Quick Switcher Chip -->
+                  <button type="button" class="hero-pip-switcher" id="pipToHub" title="Switch to Flagship Storefront photo">
+                    <img src="assets/images/store/bixi-ride-madurai-railway-station-hub.webp" alt="Preview flagship hub" class="pip-thumb-img">
+                    <span class="pip-label">View Storefront →</span>
+                  </button>
+                </div>
+
+                <div class="storefront-meta-panel">
+                  <div class="storefront-address-row">
+                    <div class="address-icon-box" style="background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.3);">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="#10B981"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <div class="address-text-wrap">
+                      <strong class="address-title">Arun, Karthi &amp; Dinesh (Chennai) • Honda Activa 6G</strong>
+                      <span class="address-city">&ldquo;Booked in 3 mins on WhatsApp. Spotless bikes, zero deposit, unforgettable Madurai food loop!&rdquo;</span>
+                    </div>
+                  </div>
+
+                  <div class="storefront-quick-chips">
+                    <span class="storefront-chip">Verified 5.0 Star</span>
+                    <span class="storefront-chip">Honda Activa &amp; Ray ZR</span>
+                    <span class="storefront-chip">60-Sec Onboarding</span>
+                    <span class="storefront-chip">Self Drive Car Rental in Madurai Partner</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
+        <!-- Metric Pillars (Pure Typography & Subtle Lines) with React Bits Border Beam -->
+        <div class="lux-metrics-strip border-beam">
 
-        <!-- Metric Pillars (Pure Typography & Subtle Lines) -->
-        <div class="lux-metrics-strip">
           <div class="lux-metric-item">
             <span class="lux-m-num">500+</span>
             <span class="lux-m-label">Active Fleet</span>
@@ -256,97 +338,6 @@
             <span class="lux-m-sub">Across All Tamil Nadu Roads</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ MULTI-LAYER 3-STAGE CINEMATIC CAR & SHOP EXPEDITION ═══════════════ -->
-    <section class="about-journey-scrolly-section" id="about-scrolly-journey" aria-label="BIXI Fleet & Flagship Hub Multi-Layer Experience">
-      
-      <!-- Pinned 3D WebGL Viewport -->
-      <div class="about-journey-sticky-stage">
-        <canvas id="about-car-canvas" class="about-car-webgl-canvas"></canvas>
-
-        <!-- Dynamic Camera & Stage Telemetry HUD -->
-        <div class="about-journey-hud">
-          <div class="journey-hud-pill">
-            <span class="journey-hud-dot"></span>
-            <span id="journeyHudLabel">STAGE 1/3 • AERODYNAMIC SIDE PROFILE</span>
-          </div>
-          <div class="journey-hud-track">
-            <div class="journey-hud-bar" id="journeyProgressBar" style="width: 15%;"></div>
-          </div>
-        </div>
-
-        <!-- 3 Multi-Layer Scrollytelling Diva Cards -->
-        <div class="container about-divas-container">
-          
-          <!-- Diva 1: Car Side View (0% - 33%) -->
-          <div class="about-diva-card diva-stage-1 active" id="aboutDiva1">
-            <div class="about-diva-badge">
-              <span class="bixi-badge-dot">•</span>
-              <span>SCROLL STAGE 01 • SIDE PROFILE SPECIFICATION</span>
-            </div>
-            <h2 class="about-diva-title">
-              Pristine Fleet <span class="text-orange">Aerodynamic Precision</span>
-            </h2>
-            <p class="about-diva-desc">
-              Every Maruti Swift and certified two-wheeler in our <strong>bike rental in madurai</strong> fleet is maintained to showroom perfection. Featuring commercial yellow-plate registration, zero security deposit, and verified insurance.
-            </p>
-            <div class="about-diva-chips">
-              <span class="about-diva-chip">Side Profile Inspection</span>
-              <span class="about-diva-chip">Zero Deposit Protocol</span>
-              <span class="about-diva-chip">100% Legal Commercial Fleet</span>
-            </div>
-          </div>
-
-          <!-- Diva 2: Front Cockpit Zoom on People (34% - 66%) -->
-          <div class="about-diva-card diva-stage-2" id="aboutDiva2">
-            <div class="about-diva-badge">
-              <span class="bixi-badge-dot">•</span>
-              <span>SCROLL STAGE 02 • IN-CABIN PASSENGER COMFORT</span>
-            </div>
-            <h2 class="about-diva-title">
-              Spacious Luxury for <span class="text-orange">Families &amp; Friends</span>
-            </h2>
-            <p class="about-diva-desc">
-              Step inside chilled climate-controlled comfort. Certified <strong>self drive car rental in madurai</strong> offering premium 5-passenger seating, bluetooth navigation, and spotless sanitized interiors for temple pilgrimages and hill climbs.
-            </p>
-            <div class="about-diva-chips">
-              <span class="about-diva-chip">5-Seater Chilled AC</span>
-              <span class="about-diva-chip">Sanitized Interior Cabin</span>
-              <span class="about-diva-chip">Infotainment &amp; GPS</span>
-            </div>
-          </div>
-
-          <!-- Diva 3: Wide Pull-Back Revealing Car + BIXI Shop (67% - 100%) -->
-          <div class="about-diva-card diva-stage-3" id="aboutDiva3">
-            <div class="about-diva-badge">
-              <span class="bixi-badge-dot">•</span>
-              <span>SCROLL STAGE 03 • THE BIXI FLAGSHIP SHOP &amp; DISPATCH</span>
-            </div>
-            <h2 class="about-diva-title">
-              The Flagship Hub at <span class="text-orange">Mattuthavani &amp; Junction</span>
-            </h2>
-            <p class="about-diva-desc">
-              Walk 2 minutes from Mattuthavani Bus Terminus or collect at Madurai Railway Junction. Our flagship 24/7 dispatch hub provides lightning-fast 60-second handovers, comprehensive <strong>car rental service in madurai</strong>, and round-the-clock highway rescue.
-            </p>
-            <div class="about-diva-chips">
-              <span class="about-diva-chip">Walkable MIBT Hub</span>
-              <span class="about-diva-chip">60-Second Handover</span>
-              <span class="about-diva-chip">24/7 Roadside Rescue</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Scroll Indicator Hint -->
-        <div class="about-journey-indicator">
-          <span>Scroll to Glide 3D Camera &amp; Reveal BIXI Hub</span>
-          <div class="journey-mouse-icon">
-            <div class="journey-wheel"></div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -661,7 +652,7 @@
         <!-- React Bits Interactive Spotlight Bento Grid -->
         <div class="lux-customer-cards-grid">
           <!-- Customer Card 1 -->
-          <article class="lux-customer-card" data-tilt data-spotlight>
+          <article class="lux-customer-card border-beam" data-tilt data-spotlight>
             <div class="customer-spotlight-glare" aria-hidden="true"></div>
             <div class="customer-img-wrapper">
               <img src="assets/images/customers/bixi-happy-customers-madurai-scooter-rental.webp" 
@@ -693,7 +684,7 @@
           </article>
 
           <!-- Customer Card 2 -->
-          <article class="lux-customer-card" data-tilt data-spotlight>
+          <article class="lux-customer-card border-beam" data-tilt data-spotlight>
             <div class="customer-spotlight-glare" aria-hidden="true"></div>
             <div class="customer-img-wrapper">
               <img src="assets/images/customers/bixi-happy-rider-kodaikanal-hill-tour.webp" 
@@ -725,7 +716,7 @@
           </article>
 
           <!-- Customer Card 3 -->
-          <article class="lux-customer-card" data-tilt data-spotlight>
+          <article class="lux-customer-card border-beam" data-tilt data-spotlight>
             <div class="customer-spotlight-glare" aria-hidden="true"></div>
             <div class="customer-img-wrapper">
               <img src="assets/images/customers/bixi-happy-customer-thirumalai-palace-heritage-ride.webp" 
@@ -757,7 +748,7 @@
           </article>
 
           <!-- Customer Card 4 -->
-          <article class="lux-customer-card" data-tilt data-spotlight>
+          <article class="lux-customer-card border-beam" data-tilt data-spotlight>
             <div class="customer-spotlight-glare" aria-hidden="true"></div>
             <div class="customer-img-wrapper">
               <img src="assets/images/customers/bixi-happy-riders-city-exploration.webp" 
@@ -891,8 +882,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/react-bits-animations.js?v=24.0"></script>
-  <script src="assets/js/main.js?v=24.0"></script>
-  <script src="assets/js/about-3d-journey.js?v=24.0"></script>
-</body>
+  <script src="assets/js/react-bits-animations.js?v=30.0"></script>
+  <script src="assets/js/main.js?v=30.0"></script>
+  </body>
 </html>

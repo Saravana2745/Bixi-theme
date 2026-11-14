@@ -14,7 +14,7 @@
 
   function initReactBits() {
     // ═══════════════ 1. SPOTLIGHT EFFECT ═══════════════
-    var spotlightCards = document.querySelectorAll('.spotlight-card, .vehicle-card, .lux-bento-card, .circuit-card');
+    var spotlightCards = document.querySelectorAll('.spotlight-card, .vehicle-card, .lux-bento-card, .circuit-card, .lux-storefront-spotlight-card, .lux-customer-card, [data-spotlight]');
     
     spotlightCards.forEach(function (card) {
       card.addEventListener('pointermove', function (e) {
@@ -110,6 +110,48 @@
         scrambleObserver.observe(el);
       });
     }
+
+    // ═══════════════ 6. ABOUT US HERO DUAL-SHOWCASE (REACT BITS) ═══════════════
+    var tabHub = document.getElementById('tabBtnHub');
+    var tabRiders = document.getElementById('tabBtnRiders');
+    var panelHub = document.getElementById('viewPanelHub');
+    var panelRiders = document.getElementById('viewPanelRiders');
+    var pipToRiders = document.getElementById('pipToRiders');
+    var pipToHub = document.getElementById('pipToHub');
+
+    function switchHeroShowcase(toView) {
+      if (toView === 'riders') {
+        if (tabHub) { tabHub.classList.remove('active'); tabHub.setAttribute('aria-selected', 'false'); }
+        if (tabRiders) { tabRiders.classList.add('active'); tabRiders.setAttribute('aria-selected', 'true'); }
+        if (panelHub) { panelHub.classList.remove('active'); panelHub.style.display = 'none'; }
+        if (panelRiders) { panelRiders.classList.add('active'); panelRiders.style.display = 'block'; }
+      } else {
+        if (tabRiders) { tabRiders.classList.remove('active'); tabRiders.setAttribute('aria-selected', 'false'); }
+        if (tabHub) { tabHub.classList.add('active'); tabHub.setAttribute('aria-selected', 'true'); }
+        if (panelRiders) { panelRiders.classList.remove('active'); panelRiders.style.display = 'none'; }
+        if (panelHub) { panelHub.classList.add('active'); panelHub.style.display = 'block'; }
+      }
+    }
+
+    if (tabHub) {
+      tabHub.addEventListener('click', function() { switchHeroShowcase('hub'); });
+    }
+    if (tabRiders) {
+      tabRiders.addEventListener('click', function() { switchHeroShowcase('riders'); });
+    }
+    if (pipToRiders) {
+      pipToRiders.addEventListener('click', function(e) {
+        e.stopPropagation();
+        switchHeroShowcase('riders');
+      });
+    }
+    if (pipToHub) {
+      pipToHub.addEventListener('click', function(e) {
+        e.stopPropagation();
+        switchHeroShowcase('hub');
+      });
+    }
+
   }
 
   if (document.readyState === 'loading') {

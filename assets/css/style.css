@@ -9662,3 +9662,185 @@ html {
   box-shadow: 0 4px 18px rgba(232, 129, 36, 0.55);
   color: #000;
 }
+
+
+/* ═════════════════════════════════════════════════════════════════════
+   REACT BITS HERO DUAL-SHOWCASE (STOREFRONT & HAPPY CUSTOMERS)
+   ═════════════════════════════════════════════════════════════════════ */
+.hero-showcase-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(10, 14, 22, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.35rem;
+  border-radius: 12px;
+  margin-bottom: 0.95rem;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94A3B8;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.hero-tab-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-tab-btn.active {
+  color: #FFFFFF;
+  background: rgba(232, 129, 36, 0.2);
+  border-color: rgba(232, 129, 36, 0.5);
+  box-shadow: 0 4px 15px rgba(232, 129, 36, 0.2);
+}
+
+.hero-tab-badge {
+  font-size: 0.62rem;
+  background: #E88124;
+  color: #FFFFFF;
+  padding: 0.1rem 0.4rem;
+  border-radius: 50px;
+  font-weight: 800;
+}
+
+.hero-showcase-panel {
+  position: relative;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-showcase-panel.active {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.hero-pip-switcher {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(12, 16, 24, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(232, 129, 36, 0.6);
+  padding: 0.3rem 0.65rem 0.3rem 0.35rem;
+  border-radius: 50px;
+  color: #FFFFFF;
+  cursor: pointer;
+  z-index: 6;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(232, 129, 36, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-pip-switcher:hover {
+  transform: translateY(-2px) scale(1.04);
+  border-color: #E88124;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.85), 0 0 25px rgba(232, 129, 36, 0.45);
+}
+
+.pip-thumb-img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #E88124;
+}
+
+.pip-label {
+  font-family: var(--font-tech, monospace);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #F8FAFC;
+}
+
+/* Adjust photo frame for perfect desktop & mobile balance */
+.storefront-photo-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+  height: 380px;
+  background: #090B10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+}
+
+.storefront-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lux-storefront-spotlight-card:hover .storefront-hero-img {
+  transform: scale(1.035);
+}
+
+/* Customer Expand Pill for High-Res View */
+.customer-expand-pill {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(9, 12, 18, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #F8FAFC;
+  padding: 0.22rem 0.55rem;
+  border-radius: 50px;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  z-index: 5;
+}
+
+.customer-expand-pill:hover {
+  background: rgba(232, 129, 36, 0.9);
+  border-color: #E88124;
+  color: #FFFFFF;
+}
+
+/* Enhanced 3D Parallax Depth for Customer & Storefront Cards */
+.lux-customer-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.customer-top-tags,
+.customer-vehicle-floating-pill,
+.customer-author-footer {
+  transform: translateZ(24px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lux-customer-card:hover .customer-top-tags,
+.lux-customer-card:hover .customer-vehicle-floating-pill {
+  transform: translateZ(32px);
+}
