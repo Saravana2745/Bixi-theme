@@ -40,7 +40,7 @@
       name: 'Mattuthavani Madurai Bus',
       category: 'Central Bus Terminal (MIBT)',
       roadPos: { x: -36.0, y: 0.25, z: -5.5 },
-      modelPos: { x: -36.0, y: 0, z: -6.0 },
+      modelPos: { x: -36.0, y: 0, z: -6.3 },
       facing: 0,
       camPos: { x: -26.0, y: 8.5, z: 9.0 },
       target: { x: -36.0, y: 2.5, z: -5.5 },
@@ -2477,20 +2477,34 @@
     // 5b. LEFT BLACK ROAD, MATTUTHAVANI BUS STAND, TNSTC BUS & BIXI RENTAL HUB
     // =========================================================================
 
-    // 1. Left Black Road (Entering from West, Mattuthavani Bus Stand, through to East Highway Horizon)
+    // 1. Left Black Road (Arrival into Mattuthavani Bus Stand & Smooth Western Highway Loop Departure)
     const busRoadPoints = [
-      new THREE.Vector3(-58.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-48.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-42.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-36.0, ROAD_Y, -5.5), // Bus Platform 1 at Mattuthavani Madurai Bus Stand
-      new THREE.Vector3(-28.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-16.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-4.0, ROAD_Y, -5.5),
-      new THREE.Vector3(8.0, ROAD_Y, -5.5),
-      new THREE.Vector3(22.0, ROAD_Y, -5.5),
-      new THREE.Vector3(36.0, ROAD_Y, -5.5)   // Outbound Highway to Horizon
+      new THREE.Vector3(-58.0, ROAD_Y, -5.5),  // Western Highway Horizon (Entry from Chennai/Bengaluru)
+      new THREE.Vector3(-48.0, ROAD_Y, -5.5),  // West Terminal Approach Lane
+      new THREE.Vector3(-42.0, ROAD_Y, -5.5),  // Mattuthavani Entry Plaza
+      new THREE.Vector3(-36.0, ROAD_Y, -5.5),  // Platform 1 (Arrival Bay & Passenger Handoff)
+      new THREE.Vector3(-29.0, ROAD_Y, -5.5),  // Terminal Exit Straight Lane
+      new THREE.Vector3(-25.5, ROAD_Y, -8.0),  // Sweeping Turn North of Terminal (Clear of Gandhi Museum!)
+      new THREE.Vector3(-28.0, ROAD_Y, -12.0), // North Terminal Roundabout Arc
+      new THREE.Vector3(-36.0, ROAD_Y, -13.5), // Westbound Outbound Expressway
+      new THREE.Vector3(-46.0, ROAD_Y, -12.5), // Western Highway Green Corridor
+      new THREE.Vector3(-58.0, ROAD_Y, -9.5)   // Outbound Interstate Highway to Horizon
     ];
     const busRoadCurve = new THREE.CatmullRomCurve3(busRoadPoints);
+
+    // Calculate exact arc-length parameter t for Platform 1 (-36.0, ROAD_Y, -5.5)
+    let BUS_PLATFORM_T = 0.32;
+    let minBusD = 999;
+    const busPlatPos = new THREE.Vector3(-36.0, ROAD_Y, -5.5);
+    for (let s = 0; s <= 500; s++) {
+      const testT = s / 500;
+      const pt = busRoadCurve.getPointAt(testT);
+      const d = pt.distanceTo(busPlatPos);
+      if (d < minBusD) {
+        minBusD = d;
+        BUS_PLATFORM_T = testT;
+      }
+    }
 
     // Deep Black Asphalt Road Ribbon
     const busRoadGeo = new THREE.TubeGeometry(busRoadCurve, 100, 0.54, 8, false);
@@ -2511,8 +2525,15 @@
     busRoadLineMesh.position.y = 0.022;
     scene.add(busRoadLineMesh);
 
-    // Left Road Streetlights across the entire transit highway
-    [-52.0, -44.0, -36.0, -28.0, -16.0, -4.0, 8.0, 20.0, 32.0].forEach((lx) => {
+    // Streetlights positioned strictly alongside the Western Bus Terminal & Departure Loop
+    [
+      { x: -52.0, z: -7.0 },
+      { x: -44.0, z: -7.0 },
+      { x: -36.0, z: -7.0 },
+      { x: -28.0, z: -14.2 },
+      { x: -38.0, z: -15.5 },
+      { x: -48.0, z: -14.5 }
+    ].forEach((lp) => {
       const lamp = new THREE.Group();
       const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 2.2, 8), new THREE.MeshStandardMaterial({ color: 0x334155 }));
       pole.position.y = 1.1;
@@ -2535,104 +2556,104 @@
       pLight.position.set(0.38, 2.15, 0);
       lamp.add(pLight);
 
-      lamp.position.set(lx, 0, -6.8);
+      lamp.position.set(lp.x, 0, lp.z);
       scene.add(lamp);
     });
-
     // 2. Mattuthavani Madurai Central Bus Stand Building (MIBT) - 360-degree Architectural Masterpiece
     function createMattuthavaniBusStand() {
       const stand = new THREE.Group();
       const concourseMat = new THREE.MeshStandardMaterial({ color: 0x181c26, roughness: 0.82 });
       const wallMat = new THREE.MeshStandardMaterial({ color: 0x222a3a, roughness: 0.55 });
       const trimMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.4 });
-      const canopyGlass = new THREE.MeshStandardMaterial({ color: 0x0284c7, roughness: 0.18, metalness: 0.75, transparent: true, opacity: 0.55 });
+      const canopyGlass = new THREE.MeshStandardMaterial({ color: 0x0284c7, roughness: 0.18, metalness: 0.75, transparent: true, opacity: 0.65 });
       const steelPillar = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.85, roughness: 0.25 });
       const platformYellow = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.6 });
 
-      // Raised Platform Base
-      const base = new THREE.Mesh(new THREE.BoxGeometry(9.2, 0.35, 4.6), concourseMat);
-      base.position.set(0, 0.175, 0);
+      // Raised Platform Base (Width 10.6, Depth 3.6, Height 0.36)
+      // Placed from z = 0.0 to z = -3.6 in local space (world z = -6.30 to -9.90, right behind bus driveway)
+      const base = new THREE.Mesh(new THREE.BoxGeometry(10.6, 0.36, 3.6), concourseMat);
+      base.position.set(0, 0.18, -1.8);
       base.receiveShadow = true;
       stand.add(base);
 
-      // Yellow Tactile Platform Edge
-      const edge = new THREE.Mesh(new THREE.BoxGeometry(9.2, 0.05, 0.2), platformYellow);
-      edge.position.set(0, 0.36, 2.2);
+      // Yellow Tactile Platform Edge Curb (Facing Bus Driveway at z = -6.30)
+      const edge = new THREE.Mesh(new THREE.BoxGeometry(10.6, 0.06, 0.24), platformYellow);
+      edge.position.set(0, 0.36, -0.12);
       stand.add(edge);
 
-      // Main Passenger Terminal Concourse Hall
-      const terminalHall = new THREE.Mesh(new THREE.BoxGeometry(8.6, 1.8, 2.0), wallMat);
-      terminalHall.position.set(0, 1.075, -1.1);
+      // Main Passenger Terminal Concourse Hall (Behind Waiting Platform)
+      const terminalHall = new THREE.Mesh(new THREE.BoxGeometry(9.8, 2.2, 2.2), wallMat);
+      terminalHall.position.set(0, 1.28, -2.8);
       terminalHall.castShadow = true;
       stand.add(terminalHall);
 
       // Golden Architectural Fascia Trim
-      const fascia = new THREE.Mesh(new THREE.BoxGeometry(8.8, 0.12, 2.1), trimMat);
-      fascia.position.set(0, 1.98, -1.1);
+      const fascia = new THREE.Mesh(new THREE.BoxGeometry(10.0, 0.14, 2.3), trimMat);
+      fascia.position.set(0, 2.45, -2.8);
       stand.add(fascia);
 
       // Front Glass Waiting Concourse Windows
-      const glassFront = new THREE.Mesh(new THREE.PlaneGeometry(8.0, 1.1), canopyGlass);
-      glassFront.position.set(0, 1.1, -0.09);
+      const glassFront = new THREE.Mesh(new THREE.PlaneGeometry(9.2, 1.3), canopyGlass);
+      glassFront.position.set(0, 1.35, -1.69);
       stand.add(glassFront);
 
       // Rear Glass Windows (Ensures back is never an untextured grey box)
-      const glassRear = new THREE.Mesh(new THREE.PlaneGeometry(8.0, 1.1), canopyGlass);
+      const glassRear = new THREE.Mesh(new THREE.PlaneGeometry(9.2, 1.3), canopyGlass);
       glassRear.rotation.y = Math.PI;
-      glassRear.position.set(0, 1.1, -2.11);
+      glassRear.position.set(0, 1.35, -3.91);
       stand.add(glassRear);
 
       // Arched Terminal Canopy Over Platforms
-      const roof = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 9.0, 16, 1, false, 0, Math.PI), canopyGlass);
+      const roof = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.2, 10.4, 16, 1, false, 0, Math.PI), canopyGlass);
       roof.rotation.z = Math.PI / 2;
-      roof.position.set(0, 2.35, 0.8);
+      roof.position.set(0, 2.55, -0.9);
       stand.add(roof);
 
-      // Steel Support Pillars
-      [-3.8, -1.9, 0, 1.9, 3.8].forEach(px => {
-        const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.15, 10), steelPillar);
-        pillar.position.set(px, 1.25, 2.1);
+      // Steel Support Pillars (Positioned along platform curb at z = -0.32, clear of bus)
+      [-4.6, -2.3, 0, 2.3, 4.6].forEach(px => {
+        const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.35, 10), steelPillar);
+        pillar.position.set(px, 1.35, -0.32);
         stand.add(pillar);
       });
 
       // Iconic Madurai Terminal Clock Tower
       const clockTower = new THREE.Group();
-      const towerBase = new THREE.Mesh(new THREE.BoxGeometry(1.6, 2.6, 1.6), wallMat);
-      towerBase.position.set(0, 2.9, -1.1);
+      const towerBase = new THREE.Mesh(new THREE.BoxGeometry(1.8, 3.2, 1.8), wallMat);
+      towerBase.position.set(0, 3.8, -2.8);
       clockTower.add(towerBase);
 
-      const towerTrim = new THREE.Mesh(new THREE.BoxGeometry(1.75, 0.12, 1.75), trimMat);
-      towerTrim.position.set(0, 4.22, -1.1);
+      const towerTrim = new THREE.Mesh(new THREE.BoxGeometry(1.95, 0.14, 1.95), trimMat);
+      towerTrim.position.set(0, 5.47, -2.8);
       clockTower.add(towerTrim);
 
-      const towerCap = new THREE.Mesh(new THREE.ConeGeometry(1.25, 0.9, 4), trimMat);
+      const towerCap = new THREE.Mesh(new THREE.ConeGeometry(1.4, 1.1, 4), trimMat);
       towerCap.rotation.y = Math.PI / 4;
-      towerCap.position.set(0, 4.75, -1.1);
+      towerCap.position.set(0, 6.08, -2.8);
       clockTower.add(towerCap);
 
-      const towerSpire = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.08, 0.7, 8), steelPillar);
-      towerSpire.position.set(0, 5.4, -1.1);
+      const towerSpire = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.08, 0.8, 8), steelPillar);
+      towerSpire.position.set(0, 6.8, -2.8);
       clockTower.add(towerSpire);
 
       // Clock Dial (Front Face)
       const clockDialMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      const clockDialFront = new THREE.Mesh(new THREE.CircleGeometry(0.42, 24), clockDialMat);
-      clockDialFront.position.set(0, 3.4, -0.29);
+      const clockDialFront = new THREE.Mesh(new THREE.CircleGeometry(0.48, 24), clockDialMat);
+      clockDialFront.position.set(0, 4.4, -1.89);
       clockTower.add(clockDialFront);
 
-      const clockHandFront = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.28, 0.02), new THREE.MeshBasicMaterial({ color: 0x111827 }));
-      clockHandFront.position.set(0.06, 3.45, -0.28);
+      const clockHandFront = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.32, 0.02), new THREE.MeshBasicMaterial({ color: 0x111827 }));
+      clockHandFront.position.set(0.07, 4.46, -1.88);
       clockHandFront.rotation.z = -0.5;
       clockTower.add(clockHandFront);
 
       // Clock Dial (Rear Face)
-      const clockDialRear = new THREE.Mesh(new THREE.CircleGeometry(0.42, 24), clockDialMat);
+      const clockDialRear = new THREE.Mesh(new THREE.CircleGeometry(0.48, 24), clockDialMat);
       clockDialRear.rotation.y = Math.PI;
-      clockDialRear.position.set(0, 3.4, -1.91);
+      clockDialRear.position.set(0, 4.4, -3.71);
       clockTower.add(clockDialRear);
 
       const clockBeacon = new THREE.PointLight(0xf59e0b, 1.5, 6);
-      clockBeacon.position.set(0, 5.6, -1.1);
+      clockBeacon.position.set(0, 7.1, -2.8);
       clockTower.add(clockBeacon);
 
       stand.add(clockTower);
@@ -2645,8 +2666,8 @@
         '#ffffff',
         '#38bdf8'
       );
-      const frontSign = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 0.72), new THREE.MeshBasicMaterial({ map: frontSignTex }));
-      frontSign.position.set(0, 2.45, -0.08);
+      const frontSign = new THREE.Mesh(new THREE.PlaneGeometry(6.0, 0.82), new THREE.MeshBasicMaterial({ map: frontSignTex }));
+      frontSign.position.set(0, 2.95, -1.68);
       stand.add(frontSign);
 
       // Rear Facade Sign: MATTUTHAVANI MADURAI BUS STAND (360-degree visibility)
@@ -2657,9 +2678,9 @@
         '#ffffff',
         '#f59e0b'
       );
-      const rearSign = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 0.72), new THREE.MeshBasicMaterial({ map: rearSignTex }));
+      const rearSign = new THREE.Mesh(new THREE.PlaneGeometry(6.0, 0.82), new THREE.MeshBasicMaterial({ map: rearSignTex }));
       rearSign.rotation.y = Math.PI;
-      rearSign.position.set(0, 2.45, -2.12);
+      rearSign.position.set(0, 2.95, -3.92);
       stand.add(rearSign);
 
       // West End Sign (Facing arriving bus and camera from the west)
@@ -2670,9 +2691,9 @@
         '#4ade80',
         '#ffffff'
       );
-      const westSign = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 0.62), new THREE.MeshBasicMaterial({ map: westSignTex }));
+      const westSign = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 0.65), new THREE.MeshBasicMaterial({ map: westSignTex }));
       westSign.rotation.y = -Math.PI / 2;
-      westSign.position.set(-4.32, 1.4, -1.1);
+      westSign.position.set(-4.92, 1.5, -2.8);
       stand.add(westSign);
 
       // East End Sign (Facing BIXI Rental Hub)
@@ -2683,9 +2704,9 @@
         '#38bdf8',
         '#ffffff'
       );
-      const eastSign = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 0.62), new THREE.MeshBasicMaterial({ map: eastSignTex }));
+      const eastSign = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 0.65), new THREE.MeshBasicMaterial({ map: eastSignTex }));
       eastSign.rotation.y = Math.PI / 2;
-      eastSign.position.set(4.32, 1.4, -1.1);
+      eastSign.position.set(4.92, 1.5, -2.8);
       stand.add(eastSign);
 
       // Platform 1 Bay Indicator Overhead Sign
@@ -2696,27 +2717,27 @@
         '#4ade80',
         '#ffffff'
       );
-      const baySign = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 0.52), new THREE.MeshBasicMaterial({ map: bayTex }));
-      baySign.position.set(0, 1.95, 2.05);
+      const baySign = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 0.58), new THREE.MeshBasicMaterial({ map: bayTex }));
+      baySign.position.set(0, 2.25, -0.30);
       stand.add(baySign);
 
       // Passenger Benches along Platform
       const benchMat = new THREE.MeshStandardMaterial({ color: 0x475569 });
-      [-2.6, 0, 2.6].forEach(bx => {
-        const bench = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.32, 0.42), benchMat);
-        bench.position.set(bx, 0.52, 1.2);
+      [-3.2, 0, 3.2].forEach(bx => {
+        const bench = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.35, 0.45), benchMat);
+        bench.position.set(bx, 0.54, -1.2);
         stand.add(bench);
       });
 
       // Interior Concourse Warm Ambient Light
       const concourseLight = new THREE.PointLight(0xfff1b8, 1.6, 9.5);
-      concourseLight.position.set(0, 1.6, 0.2);
+      concourseLight.position.set(0, 1.8, -1.2);
       stand.add(concourseLight);
 
       // 3D Floating Popup Badge for Mattuthavani Madurai Bus Stand
       const badge = createBixiPopupBadge('Mattuthavani Madurai Bus Stand', 'Central Bus Terminal (MIBT)');
-      badge.position.set(0, 6.2, 0);
-      badge.userData.baseY = 6.2;
+      badge.position.set(0, 7.2, -2.0);
+      badge.userData.baseY = 7.2;
       stand.add(badge);
       popupBadges['mattuthavani-bus-stand'] = badge;
 
@@ -2724,140 +2745,347 @@
     }
 
     const busStandModel = createMattuthavaniBusStand();
-    busStandModel.position.set(-36.0, 0, -6.0);
-    busStandModel.scale.set(1.32, 1.32, 1.32);
+    busStandModel.position.set(-36.0, 0, -6.30);
     scene.add(busStandModel);
 
-    // 3. Realistic TNSTC Ultra Deluxe / AC Sleeper Bus Model (Pointing Straight Forward Along Road)
+    // 3. Authentic Realistic TNSTC Ultra Deluxe Interstate Coach Bus Model (Pointing Forward along +Z)
     function createRealisticTnstcBus() {
       const bus = new THREE.Group();
-      const innerBusGroup = new THREE.Group();
       
-      const tnstcGreen = new THREE.MeshStandardMaterial({ color: 0x00703c, roughness: 0.45, metalness: 0.2 }); // TNSTC Emerald Green
-      const pearlWhite = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.35, metalness: 0.1 });
-      const windowGlass = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.1, metalness: 0.9 });
-      const rubberMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.95 });
-      const rimMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.2 });
-      const chromeMat = new THREE.MeshStandardMaterial({ color: 0xd8dde4, metalness: 0.95, roughness: 0.15 });
-      const headlampMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      const redStopMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+      const tnstcGreen = new THREE.MeshStandardMaterial({ color: 0x006837, roughness: 0.35, metalness: 0.25 }); // Authentic TNSTC Emerald Green
+      const goldStripe = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.3, metalness: 0.3 }); // Iconic Golden Waistline Divider
+      const pearlWhite = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.25, metalness: 0.15 }); // Crisp Coach White
+      const windowGlass = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.08, metalness: 0.95, transparent: true, opacity: 0.88 }); // Dark Tinted Panoramic Glass
+      const rubberMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.92 }); // Heavy-Duty Commercial Bus Rubber
+      const rimMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.88, roughness: 0.22 }); // Polished Steel Bus Rims
+      const chromeMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, metalness: 0.98, roughness: 0.08 }); // Chrome Grille, Wipers & Mirror Stalks
+      const chassisMat = new THREE.MeshStandardMaterial({ color: 0x0a0f1d, roughness: 0.85 }); // Heavy Underbody Steel Rails
+      const headlampMat = new THREE.MeshBasicMaterial({ color: 0xffffff }); // Bright Xenon Projector
+      const indicatorMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b }); // Amber Turn Signal
+      const redStopMat = new THREE.MeshBasicMaterial({ color: 0xef4444 }); // LED Red Tail Lamp
+      const reverseMat = new THREE.MeshBasicMaterial({ color: 0xffffff }); // White Reverse Lamp
+      const plateYellowMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 }); // Tamil Nadu Commercial Yellow Plate
 
-      // Lower Chassis Frame
-      const chassis = new THREE.Mesh(new THREE.BoxGeometry(4.3, 0.25, 1.35), new THREE.MeshStandardMaterial({ color: 0x111827 }));
-      chassis.position.y = 0.35;
-      innerBusGroup.add(chassis);
+      // 1. Heavy Commercial Ladder Chassis Frame
+      const chassis = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.18, 4.4), chassisMat);
+      chassis.position.set(0, 0.28, 0);
+      bus.add(chassis);
 
-      // Lower Green Body (Classic TNSTC Emerald Stripe)
-      const lowerBody = new THREE.Mesh(new THREE.BoxGeometry(4.25, 0.55, 1.32), tnstcGreen);
-      lowerBody.position.y = 0.65;
-      lowerBody.castShadow = true;
-      innerBusGroup.add(lowerBody);
+      // Axle Differentials
+      [-1.25, 1.45].forEach(ax => {
+        const diff = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 1.1, 10), chassisMat);
+        diff.rotation.z = Math.PI / 2;
+        diff.position.set(0, 0.26, ax);
+        bus.add(diff);
+      });
 
-      // Upper White Body & Roof
-      const upperBody = new THREE.Mesh(new THREE.BoxGeometry(4.25, 0.55, 1.32), pearlWhite);
-      upperBody.position.y = 1.15;
-      upperBody.castShadow = true;
-      innerBusGroup.add(upperBody);
+      // 2. Sculpted Lower Body in TNSTC Emerald Green with Open Wheel Wells
+      [-0.60, 0.60].forEach(sx => {
+        // Front section (in front of steer axle)
+        const frontSkirt = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.32, 0.65), tnstcGreen);
+        frontSkirt.position.set(sx, 0.42, 2.05);
+        frontSkirt.castShadow = true;
+        bus.add(frontSkirt);
 
-      // Aerodynamic Front Nose (Curved Bumper)
-      const noseGeo = new THREE.CylinderGeometry(0.66, 0.66, 1.32, 16, 1, false, -Math.PI / 2, Math.PI);
-      const nose = new THREE.Mesh(noseGeo, tnstcGreen);
-      nose.rotation.z = Math.PI / 2;
-      nose.position.set(2.12, 0.65, 0);
-      innerBusGroup.add(nose);
+        // Middle section (between front and rear axles)
+        const midSkirt = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.32, 1.75), tnstcGreen);
+        midSkirt.position.set(sx, 0.42, 0.25);
+        midSkirt.castShadow = true;
+        bus.add(midSkirt);
 
-      // Large Tinted Front Panoramic Windshield with Curved Glass
-      const windshield = new THREE.Mesh(new THREE.PlaneGeometry(1.22, 0.65), windowGlass);
-      windshield.rotation.y = Math.PI / 2;
-      windshield.position.set(2.14, 1.18, 0);
-      innerBusGroup.add(windshield);
+        // Rear overhang section (behind rear axle)
+        const rearSkirt = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.32, 0.45), tnstcGreen);
+        rearSkirt.position.set(sx, 0.42, -2.15);
+        rearSkirt.castShadow = true;
+        bus.add(rearSkirt);
 
-      // Electronic LED Destination Matrix: MADURAI - MATTUTHAVANI
+        // Continuous upper belt of lower body spanning above wheel arches
+        const upperSkirt = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.18, 4.75), tnstcGreen);
+        upperSkirt.position.set(sx, 0.66, 0);
+        upperSkirt.castShadow = true;
+        bus.add(upperSkirt);
+
+        // Heavy-duty rubber mudflaps behind front and rear wheels
+        const frontMudflap = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.18, 0.04), rubberMat);
+        frontMudflap.position.set(sx, 0.24, 1.12);
+        bus.add(frontMudflap);
+
+        const rearMudflap = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.18, 0.04), rubberMat);
+        rearMudflap.position.set(sx, 0.24, -1.95);
+        bus.add(rearMudflap);
+      });
+
+      // Lower floor pan
+      const floor = new THREE.Mesh(new THREE.BoxGeometry(1.20, 0.08, 4.7), chassisMat);
+      floor.position.set(0, 0.36, 0);
+      bus.add(floor);
+
+      // Front & Rear Aerodynamic Molded Bumpers
+      const frontBumper = new THREE.Mesh(new THREE.BoxGeometry(1.26, 0.28, 0.22), tnstcGreen);
+      frontBumper.position.set(0, 0.38, 2.36);
+      frontBumper.castShadow = true;
+      bus.add(frontBumper);
+
+      const rearBumper = new THREE.Mesh(new THREE.BoxGeometry(1.26, 0.28, 0.20), tnstcGreen);
+      rearBumper.position.set(0, 0.38, -2.36);
+      rearBumper.castShadow = true;
+      bus.add(rearBumper);
+
+      // Iconic TNSTC Golden Yellow Livery Waistline Divider Ribbon
+      const goldRibbon = new THREE.Mesh(new THREE.BoxGeometry(1.29, 0.06, 4.76), goldStripe);
+      goldRibbon.position.set(0, 0.77, 0);
+      bus.add(goldRibbon);
+
+      // 3. Upper Passenger Cabin & Roof in Pearl White
+      const upperCabin = new THREE.Mesh(new THREE.BoxGeometry(1.26, 0.48, 4.74), pearlWhite);
+      upperCabin.position.set(0, 1.04, 0);
+      upperCabin.castShadow = true;
+      bus.add(upperCabin);
+
+      // Curved Aerodynamic Roof Canopy
+      const roofCanopy = new THREE.Mesh(new THREE.BoxGeometry(1.24, 0.12, 4.72), pearlWhite);
+      roofCanopy.position.set(0, 1.32, 0);
+      roofCanopy.castShadow = true;
+      bus.add(roofCanopy);
+
+      // 4. Passenger Panoramic Window Ribbons (Both Sides)
+      [-0.645, 0.645].forEach(wx => {
+        // Continuous tinted glass ribbon
+        const windowRibbon = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.40, 3.75), windowGlass);
+        windowRibbon.position.set(wx, 1.05, -0.18);
+        bus.add(windowRibbon);
+
+        // Slim vertical window pillar dividers
+        for (let pz = -1.8; pz <= 1.4; pz += 0.52) {
+          const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.40, 0.045), pearlWhite);
+          pillar.position.set(wx, 1.05, pz);
+          bus.add(pillar);
+        }
+      });
+
+      // Passenger Boarding Door on LEFT Side (x = -0.645, z = 1.85 facing Mattuthavani platform)
+      const doorFrame = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.82, 0.52), chassisMat);
+      doorFrame.position.set(-0.645, 0.82, 1.85);
+      bus.add(doorFrame);
+
+      const doorGlass1 = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.68, 0.20), windowGlass);
+      doorGlass1.position.set(-0.645, 0.85, 1.72);
+      bus.add(doorGlass1);
+
+      const doorGlass2 = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.68, 0.20), windowGlass);
+      doorGlass2.position.set(-0.645, 0.85, 1.98);
+      bus.add(doorGlass2);
+
+      // Yellow boarding grab handle inside door
+      const grabRail = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.75, 8), goldStripe);
+      grabRail.position.set(-0.58, 0.85, 1.68);
+      bus.add(grabRail);
+
+      // Driver side door window on right side (x = +0.645, z = 1.85)
+      const driverWindow = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.40, 0.52), windowGlass);
+      driverWindow.position.set(0.645, 1.05, 1.85);
+      bus.add(driverWindow);
+
+      // 5. Front Face: Aerodynamic Raked Windshield & Destination Board
+      // Two-piece Panoramic Windshield with center wiper division
+      const windshield = new THREE.Mesh(new THREE.BoxGeometry(1.20, 0.46, 0.04), windowGlass);
+      windshield.position.set(0, 1.05, 2.36);
+      windshield.rotation.x = -0.16;
+      bus.add(windshield);
+
+      const centerBeading = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.48, 0.05), chassisMat);
+      centerBeading.position.set(0, 1.05, 2.37);
+      centerBeading.rotation.x = -0.16;
+      bus.add(centerBeading);
+
+      // Dual Chrome Windshield Wipers
+      [-0.30, 0.30].forEach(wipX => {
+        const wiper = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.02, 0.03), chromeMat);
+        wiper.position.set(wipX, 0.86, 2.38);
+        wiper.rotation.z = -0.18;
+        bus.add(wiper);
+      });
+
+      // Aerodynamic Front Visor Brow in TNSTC Green
+      const sunVisor = new THREE.Mesh(new THREE.BoxGeometry(1.24, 0.09, 0.12), tnstcGreen);
+      sunVisor.position.set(0, 1.28, 2.36);
+      bus.add(sunVisor);
+
+      // Glowing Electronic LED Destination Matrix: MADURAI - MATTUTHAVANI
       const destTex = createSignboardTexture(
         'MADURAI - MATTUTHAVANI',
-        'TNSTC ULTRA DELUXE • EXPRESS SERVICE',
+        'TNSTC ULTRA DELUXE • ROUTE 124 EX',
         '#022c22',
         '#22c55e',
         '#ffffff'
       );
-      const destSign = new THREE.Mesh(new THREE.PlaneGeometry(1.05, 0.22), new THREE.MeshBasicMaterial({ map: destTex }));
-      destSign.rotation.y = Math.PI / 2;
-      destSign.position.set(2.14, 1.42, 0);
-      innerBusGroup.add(destSign);
+      const destSign = new THREE.Mesh(new THREE.PlaneGeometry(0.96, 0.18), new THREE.MeshBasicMaterial({ map: destTex }));
+      destSign.position.set(0, 1.39, 2.37);
+      bus.add(destSign);
 
-      // Passenger Tinted Window Ribbon (Both Sides)
-      [-0.67, 0.67].forEach(zSide => {
-        const sideWindows = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.42, 0.04), windowGlass);
-        sideWindows.position.set(-0.15, 1.15, zSide);
-        innerBusGroup.add(sideWindows);
+      // Chrome Front Grille with Horizontal Slats & Golden Emblem
+      const grille = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.12, 0.04), chromeMat);
+      grille.position.set(0, 0.48, 2.45);
+      bus.add(grille);
 
-        // Window Pillar Dividers
-        for (let w = -1.6; w <= 1.4; w += 0.5) {
-          const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.42, 0.05), pearlWhite);
-          pillar.position.set(w, 1.15, zSide);
-          innerBusGroup.add(pillar);
-        }
+      const emblem = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.05, 12), goldStripe);
+      emblem.rotation.x = Math.PI / 2;
+      emblem.position.set(0, 0.48, 2.47);
+      bus.add(emblem);
+
+      // Dual Xenon Projector Headlights & Amber Indicators
+      [-0.44, 0.44].forEach(hx => {
+        const hlRing = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.04, 14), chromeMat);
+        hlRing.rotation.x = Math.PI / 2;
+        hlRing.position.set(hx, 0.46, 2.45);
+        bus.add(hlRing);
+
+        const hlLens = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.05, 12), headlampMat);
+        hlLens.rotation.x = Math.PI / 2;
+        hlLens.position.set(hx, 0.46, 2.46);
+        bus.add(hlLens);
+
+        const indX = hx > 0 ? hx + 0.11 : hx - 0.11;
+        const ind = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.08, 0.03), indicatorMat);
+        ind.position.set(indX, 0.46, 2.45);
+        bus.add(ind);
+
+        const fog = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.04, 10), headlampMat);
+        fog.rotation.x = Math.PI / 2;
+        fog.position.set(hx * 0.75, 0.30, 2.45);
+        bus.add(fog);
       });
 
-      // Dual High-Beam Projector Headlights
-      [-0.45, 0.45].forEach(zHead => {
-        const headlamp = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.06, 12), headlampMat);
-        headlamp.rotation.z = Math.PI / 2;
-        headlamp.position.set(2.14, 0.55, zHead);
-        innerBusGroup.add(headlamp);
+      // Front Madurai Commercial Number Plate: TN 58 N 4567
+      const frontPlate = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.08, 0.02), plateYellowMat);
+      frontPlate.position.set(0, 0.28, 2.46);
+      bus.add(frontPlate);
 
-        // Bright Forward Headlight Beam Cone illuminating the asphalt
-        const beamGeo = new THREE.ConeGeometry(0.65, 3.2, 16, 1, true);
-        const beamMat = new THREE.MeshBasicMaterial({ color: 0xfff3b0, transparent: true, opacity: 0.18, side: THREE.DoubleSide });
-        const beam = new THREE.Mesh(beamGeo, beamMat);
-        beam.rotation.z = -Math.PI / 2;
-        beam.position.set(3.7, 0.52, zHead);
-        innerBusGroup.add(beam);
+      // Dual Aerodynamic Rearview Mirrors on Extended Tubular Stalks
+      [-0.72, 0.72].forEach(mx => {
+        const stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.32, 8), chromeMat);
+        stalk.position.set(mx * 0.92, 1.12, 2.28);
+        stalk.rotation.z = mx > 0 ? -0.35 : 0.35;
+        bus.add(stalk);
+
+        const mirror = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.22, 0.10), chassisMat);
+        mirror.position.set(mx, 1.18, 2.32);
+        bus.add(mirror);
+
+        const glassFace = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.20, 0.08), chromeMat);
+        glassFace.position.set(mx > 0 ? mx - 0.026 : mx + 0.026, 1.18, 2.32);
+        bus.add(glassFace);
       });
 
-      // Chrome Front Grille & TNSTC Badge
-      const grille = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.16, 0.55), chromeMat);
-      grille.position.set(2.14, 0.55, 0);
-      innerBusGroup.add(grille);
+      // 6. Rear Facade (Taillights, Hazard Chevrons & Rear Window)
+      const rearWindow = new THREE.Mesh(new THREE.BoxGeometry(1.10, 0.38, 0.04), windowGlass);
+      rearWindow.position.set(0, 1.06, -2.38);
+      bus.add(rearWindow);
 
-      // Rear Red Stop Lamps
-      [-0.5, 0.5].forEach(zTail => {
-        const tail = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.22, 0.1), redStopMat);
-        tail.position.set(-2.14, 0.65, zTail);
-        innerBusGroup.add(tail);
+      // Vertical 3-Chamber LED Taillights (Red, Amber, White)
+      [-0.50, 0.50].forEach(tx => {
+        const rStop = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.10, 0.03), redStopMat);
+        rStop.position.set(tx, 0.65, -2.46);
+        bus.add(rStop);
+
+        const rInd = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.08, 0.03), indicatorMat);
+        rInd.position.set(tx, 0.54, -2.46);
+        bus.add(rInd);
+
+        const rRev = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.06, 0.03), reverseMat);
+        rRev.position.set(tx, 0.45, -2.46);
+        bus.add(rRev);
       });
 
-      // Roof Carrier AC Pod Unit
-      const acUnit = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.18, 0.85), new THREE.MeshStandardMaterial({ color: 0xd1d5db, roughness: 0.3 }));
-      acUnit.position.set(-0.2, 1.48, 0);
-      innerBusGroup.add(acUnit);
+      // Rear Yellow Registration Plate: TN 58 N 4567
+      const rearPlate = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.09, 0.02), plateYellowMat);
+      rearPlate.position.set(0, 0.40, -2.46);
+      bus.add(rearPlate);
 
-      // 6 Heavy-Duty Wheels (Front Axle + Dual Rear Axles)
+      // Red/White Reflective Safety Hazard Chevron Strip across rear bumper
+      const chevron = new THREE.Mesh(new THREE.BoxGeometry(1.18, 0.06, 0.02), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      chevron.position.set(0, 0.28, -2.46);
+      bus.add(chevron);
+
+      // High-Mounted Center Brake Light (HMSL)
+      const hmsl = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.03, 0.02), redStopMat);
+      hmsl.position.set(0, 1.34, -2.38);
+      bus.add(hmsl);
+
+      // Polished Steel Exhaust Pipe
+      const exhaust = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.25, 8), chromeMat);
+      exhaust.rotation.x = Math.PI / 2;
+      exhaust.position.set(0.45, 0.22, -2.40);
+      bus.add(exhaust);
+
+      // 7. Roof AC Unit & Emergency Hatches
+      const acUnit = new THREE.Mesh(new THREE.BoxGeometry(0.86, 0.16, 1.8), new THREE.MeshStandardMaterial({ color: 0xd1d5db, roughness: 0.35 }));
+      acUnit.position.set(0, 1.42, 0.1);
+      acUnit.castShadow = true;
+      bus.add(acUnit);
+
+      // Twin circular cooling fan housings on AC unit
+      [-0.45, 0.45].forEach(fz => {
+        const fan = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.04, 14), chassisMat);
+        fan.position.set(0, 1.51, 0.1 + fz);
+        bus.add(fan);
+      });
+
+      // Roof safety escape hatches
+      [-1.35, 1.45].forEach(hz => {
+        const hatch = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.03, 0.48), pearlWhite);
+        hatch.position.set(0, 1.38, hz);
+        bus.add(hatch);
+      });
+
+      // 8. 6 Commercial Heavy-Duty Bus Wheels (Front Steer + Mid-Rear + Rear Drive Axle)
       const busWheelMeshes = [];
       const wheelPositions = [
-        { x: 1.35, z: 0.68 }, { x: 1.35, z: -0.68 },   // Front Steering
-        { x: -0.9, z: 0.68 }, { x: -0.9, z: -0.68 },   // Mid-Rear Axle
-        { x: -1.6, z: 0.68 }, { x: -1.6, z: -0.68 }    // Rear Drive Axle
+        { x: -0.60, z: 1.45 }, { x: 0.60, z: 1.45 },   // Front Steer Axle
+        { x: -0.60, z: -0.95 }, { x: 0.60, z: -0.95 }, // Mid-Rear Axle
+        { x: -0.60, z: -1.60 }, { x: 0.60, z: -1.60 }  // Rear Drive Axle
       ];
 
       wheelPositions.forEach(wp => {
         const wg = new THREE.Group();
-        const tire = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.16, 16), rubberMat);
-        tire.rotation.x = Math.PI / 2;
+
+        // Heavy-duty commercial bus radial tire (axis along X)
+        const tire = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.15, 18), rubberMat);
+        tire.rotation.z = Math.PI / 2;
+        tire.castShadow = true;
         wg.add(tire);
 
-        const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.17, 12), rimMat);
-        rim.rotation.x = Math.PI / 2;
+        // Polished commercial steel bus rim
+        const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.16, 14), rimMat);
+        rim.rotation.z = Math.PI / 2;
         wg.add(rim);
 
+        // Center hub cap with 10 chrome lug nuts arranged in a circle
+        const hubCap = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.17, 12), chassisMat);
+        hubCap.rotation.z = Math.PI / 2;
+        wg.add(hubCap);
+
+        for (let l = 0; l < 10; l++) {
+          const angle = (l / 10) * Math.PI * 2;
+          const lug = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.015, 0.015), chromeMat);
+          const lugR = 0.11;
+          lug.position.set(wp.x > 0 ? 0.085 : -0.085, Math.cos(angle) * lugR, Math.sin(angle) * lugR);
+          wg.add(lug);
+        }
+
         wg.position.set(wp.x, 0.26, wp.z);
-        innerBusGroup.add(wg);
+        bus.add(wg);
         busWheelMeshes.push(wg);
       });
 
-      // Crucial rotation: align nose with +Z of bus object so Three.js lookAt points straight forward along the road
-      innerBusGroup.rotation.y = -Math.PI / 2;
-      bus.add(innerBusGroup);
+      // 9. Soft Realistic Volumetric Ground Lighting (Zero Polygonal Obstacles!)
+      const forwardGlow = new THREE.PointLight(0xfff3b0, 0.85, 6.0);
+      forwardGlow.position.set(0, 0.38, 2.8);
+      bus.add(forwardGlow);
+
+      const rearGlow = new THREE.PointLight(0xef4444, 0.40, 3.5);
+      rearGlow.position.set(0, 0.45, -2.6);
+      bus.add(rearGlow);
 
       bus.userData = { wheels: busWheelMeshes };
       return bus;
@@ -2865,7 +3093,6 @@
 
     const tnstcBusModel = createRealisticTnstcBus();
     tnstcBusModel.position.set(-58.0, ROAD_Y, -5.5);
-    tnstcBusModel.scale.set(1.22, 1.22, 1.22);
     scene.add(tnstcBusModel);
 
     // 4. BIXI Ride Rental Hub (Mattuthavani Headquarters - Walkable from Bus Stand)
@@ -3006,7 +3233,7 @@
     }
 
     const bixiTraveler = createTravelerFigure();
-    bixiTraveler.position.set(-34.5, ROAD_Y, -4.5);
+    bixiTraveler.position.set(-34.5, 0.36, -6.35);
     bixiTraveler.scale.set(1.30, 1.30, 1.30);
     bixiTraveler.visible = false;
     scene.add(bixiTraveler);
@@ -3386,13 +3613,13 @@
       if (masterJourneyState === 'BUS_ARRIVING') {
         journeyTimer++;
         const prog = Math.min(journeyTimer / 240, 1.0);
-        const busT = prog * 0.234; // Travels along black road from west to Platform 1
+        const busT = prog * BUS_PLATFORM_T; // Travels along black road from west to Platform 1
         const bPt = busRoadCurve.getPointAt(busT);
-        const bNext = busRoadCurve.getPointAt(Math.min(busT + 0.008, 1.0));
+        const bTangent = busRoadCurve.getTangentAt(Math.min(busT, 0.999));
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
         if (tnstcBusModel.userData.wheels) {
-          tnstcBusModel.userData.wheels.forEach(w => { w.rotation.z -= 0.12; });
+          tnstcBusModel.userData.wheels.forEach(w => { w.rotation.x += 0.12; });
         }
 
         // Maruti Swift waiting parked in BIXI dispatch bay
@@ -3419,7 +3646,7 @@
         journeyTimer++;
         bixiTraveler.visible = true;
         const prog = Math.min(journeyTimer / 200, 1.0);
-        const startPos = new THREE.Vector3(-34.5, ROAD_Y, -4.5);
+        const startPos = new THREE.Vector3(-34.5, 0.36, -6.35);
         const bixiDeskPos = new THREE.Vector3(-26.5, ROAD_Y, -1.8);
         bixiTraveler.position.lerpVectors(startPos, bixiDeskPos, prog);
         bixiTraveler.lookAt(bixiDeskPos);
@@ -3432,10 +3659,10 @@
         bixiTraveler.position.y = ROAD_Y + Math.abs(Math.sin(stride)) * 0.035;
 
         // Keep bus parked at Platform 1
-        const bPt = busRoadCurve.getPointAt(0.234);
-        const bNext = busRoadCurve.getPointAt(0.242);
+        const bPt = busRoadCurve.getPointAt(BUS_PLATFORM_T);
+        const bTangent = busRoadCurve.getTangentAt(BUS_PLATFORM_T);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
 
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
@@ -3464,10 +3691,10 @@
         bixiTraveler.userData.rArm.rotation.x = 0.35; // Outstretched receiving keys
 
         // Bus stays at Platform 1
-        const bPt = busRoadCurve.getPointAt(0.234);
-        const bNext = busRoadCurve.getPointAt(0.242);
+        const bPt = busRoadCurve.getPointAt(BUS_PLATFORM_T);
+        const bTangent = busRoadCurve.getTangentAt(BUS_PLATFORM_T);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
 
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
@@ -3498,10 +3725,10 @@
         bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.45;
 
         // Bus stays at Platform 1
-        const bPt = busRoadCurve.getPointAt(0.234);
-        const bNext = busRoadCurve.getPointAt(0.242);
+        const bPt = busRoadCurve.getPointAt(BUS_PLATFORM_T);
+        const bTangent = busRoadCurve.getTangentAt(BUS_PLATFORM_T);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
 
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
@@ -3540,10 +3767,10 @@
         touristIn.visible = false;
 
         // Bus stays parked at Platform 1 during the tour
-        const bPt = busRoadCurve.getPointAt(0.234);
-        const bNext = busRoadCurve.getPointAt(0.242);
+        const bPt = busRoadCurve.getPointAt(BUS_PLATFORM_T);
+        const bTangent = busRoadCurve.getTangentAt(BUS_PLATFORM_T);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
 
         // Check for arrival at tourist destinations (stops 0 to 5)
         for (let i = 0; i < stopTValues.length; i++) {
@@ -3607,10 +3834,10 @@
         hazards.forEach(h => { h.visible = hazardBlink; });
 
         // Bus stays at Platform 1
-        const bPt = busRoadCurve.getPointAt(0.234);
-        const bNext = busRoadCurve.getPointAt(0.242);
+        const bPt = busRoadCurve.getPointAt(BUS_PLATFORM_T);
+        const bTangent = busRoadCurve.getTangentAt(BUS_PLATFORM_T);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
 
         const stopItem = stopTValues[currentStopIdx];
         const cp = stopItem ? stopItem.cp : CHECKPOINTS[1];
@@ -3670,10 +3897,10 @@
         if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
 
         // Bus waiting at Platform 1
-        const bPt = busRoadCurve.getPointAt(0.234);
-        const bNext = busRoadCurve.getPointAt(0.242);
+        const bPt = busRoadCurve.getPointAt(BUS_PLATFORM_T);
+        const bTangent = busRoadCurve.getTangentAt(BUS_PLATFORM_T);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
 
         if (!isFocusingCheckpoint) {
           const liveHud = document.getElementById('mapLiveCheckpointText');
@@ -3691,7 +3918,7 @@
         bixiTraveler.visible = true;
         const prog = Math.min(journeyTimer / 200, 1.0);
         const carDoorPos = new THREE.Vector3(-22.0, ROAD_Y, -0.4);
-        const busPlatformPos = new THREE.Vector3(-34.5, ROAD_Y, -4.5);
+        const busPlatformPos = new THREE.Vector3(-34.5, 0.36, -6.35);
         bixiTraveler.position.lerpVectors(carDoorPos, busPlatformPos, prog);
         bixiTraveler.lookAt(busPlatformPos);
 
@@ -3703,10 +3930,10 @@
         bixiTraveler.position.y = ROAD_Y + Math.abs(Math.sin(stride)) * 0.035;
 
         // Bus waiting at Platform 1
-        const bPt = busRoadCurve.getPointAt(0.234);
-        const bNext = busRoadCurve.getPointAt(0.242);
+        const bPt = busRoadCurve.getPointAt(BUS_PLATFORM_T);
+        const bTangent = busRoadCurve.getTangentAt(BUS_PLATFORM_T);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
 
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
@@ -3732,13 +3959,13 @@
       else if (masterJourneyState === 'BUS_DEPARTING') {
         journeyTimer++;
         const prog = Math.min(journeyTimer / 240, 1.0);
-        const busT = 0.234 + prog * (1.0 - 0.234); // Departs Platform 1 and drives to highway horizon!
+        const busT = BUS_PLATFORM_T + prog * (1.0 - BUS_PLATFORM_T); // Departs Platform 1 and sweeps around terminal loop to highway horizon!
         const bPt = busRoadCurve.getPointAt(Math.min(busT, 1.0));
-        const bNext = busRoadCurve.getPointAt(Math.min(busT + 0.008, 1.0));
+        const bTangent = busRoadCurve.getTangentAt(Math.min(busT, 0.999));
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
-        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        tnstcBusModel.lookAt(new THREE.Vector3(bPt.x + bTangent.x, ROAD_Y, bPt.z + bTangent.z));
         if (tnstcBusModel.userData.wheels) {
-          tnstcBusModel.userData.wheels.forEach(w => { w.rotation.z -= 0.12; });
+          tnstcBusModel.userData.wheels.forEach(w => { w.rotation.x += 0.12; });
         }
 
         bixiTraveler.visible = false;
