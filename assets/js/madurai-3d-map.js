@@ -42,8 +42,8 @@
       roadPos: { x: -16.0, y: 0.25, z: 14.0 },
       modelPos: { x: -24.0, y: 0, z: 14.0 },
       facing: Math.PI / 2, // Facing East toward road
-      camPos: { x: -6.0, y: 16.5, z: 24.0 },
-      target: { x: -23.0, y: 5.2, z: 14.0 },
+      camPos: { x: -9.0, y: 8.8, z: 23.0 },
+      target: { x: -23.0, y: 4.2, z: 14.0 },
       distance: '1.2 km from Junction',
       time: '5 mins',
       vehicle: 'Activa 6G / Maruti Swift',
@@ -1006,67 +1006,136 @@
       });
       temple.add(wallGroup);
 
-      // Grand Dravidian Arched Portal Gateway (Torana)
-      const gatewayGroup = new THREE.Group();
-      const jambL = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.16, 1.5, 12), detailStoneMat);
-      jambL.position.set(-0.65, 0.95, 1.05);
-      gatewayGroup.add(jambL);
-      const jambR = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.16, 1.5, 12), detailStoneMat);
-      jambR.position.set(0.65, 0.95, 1.05);
-      gatewayGroup.add(jambR);
+      // =======================================================================
+      // MONUMENTAL DRAVIDIAN DWARASHALA (SOLID GRANITE GATEWAY BASE UNDER GOPURAM)
+      // Spans from plinth (y = 0.35) directly to Gopuram Tier 1 (y = 2.25)
+      // Monolithic, solid Dravidian masonry: Zero floating gaps, Zero see-through voids!
+      // =======================================================================
+      const dwarashalaGroup = new THREE.Group();
 
-      // Carved Torus Column Capitals
-      const capL = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.04, 8, 16), detailStoneMat);
-      capL.rotation.x = Math.PI / 2;
-      capL.position.set(-0.65, 1.68, 1.05);
-      gatewayGroup.add(capL);
-      const capR = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.04, 8, 16), detailStoneMat);
-      capR.rotation.x = Math.PI / 2;
-      capR.position.set(0.65, 1.68, 1.05);
-      gatewayGroup.add(capR);
+      // 1. Heavy Dravidian Granite Plinth Block (Upapitha / Adhisthana)
+      const baseBlock = new THREE.Mesh(new THREE.BoxGeometry(3.85, 0.50, 2.70), baseGranite);
+      baseBlock.position.set(0, 0.60, 0);
+      baseBlock.receiveShadow = true;
+      baseBlock.castShadow = true;
+      dwarashalaGroup.add(baseBlock);
 
-      // Multi-Cusped Torana Arch
-      const toranaArch = new THREE.Mesh(new THREE.TorusGeometry(0.65, 0.14, 10, 24, Math.PI), detailStoneMat);
-      toranaArch.position.set(0, 1.7, 1.05);
-      gatewayGroup.add(toranaArch);
+      // Molded Kumuda Torus stone belt running around plinth perimeter
+      const baseBelt = new THREE.Mesh(new THREE.BoxGeometry(3.95, 0.12, 2.78), detailStoneMat);
+      baseBelt.position.set(0, 0.85, 0);
+      dwarashalaGroup.add(baseBelt);
 
-      const sanctumVoid = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 1.4, 12), new THREE.MeshBasicMaterial({ color: 0x050608 }));
-      sanctumVoid.position.set(0, 0.95, 0.6);
-      gatewayGroup.add(sanctumVoid);
+      // 2. Solid Granite Gateway Bastions (Left & Right Flanks)
+      const wingL = new THREE.Mesh(new THREE.BoxGeometry(1.25, 1.15, 2.65), mainStoneMat);
+      wingL.position.set(-1.28, 1.45, 0);
+      wingL.castShadow = true;
+      dwarashalaGroup.add(wingL);
 
-      // Brass Carved Temple Doors
-      const doorL = new THREE.Mesh(new THREE.BoxGeometry(0.42, 1.1, 0.06), brassMat);
-      doorL.position.set(-0.24, 0.9, 0.95);
-      doorL.rotation.y = 0.35;
-      gatewayGroup.add(doorL);
-      const doorR = new THREE.Mesh(new THREE.BoxGeometry(0.42, 1.1, 0.06), brassMat);
-      doorR.position.set(0.24, 0.9, 0.95);
-      doorR.rotation.y = -0.35;
-      gatewayGroup.add(doorR);
-      temple.add(gatewayGroup);
+      const wingR = new THREE.Mesh(new THREE.BoxGeometry(1.25, 1.15, 2.65), mainStoneMat);
+      wingR.position.set(1.28, 1.45, 0);
+      wingR.castShadow = true;
+      dwarashalaGroup.add(wingR);
 
-      // Inner Sanctum (Golden Vimana Tower behind Gopuram)
+      // Solid Rear Gateway Wall (Enclosing inner courtyard side)
+      const rearWall = new THREE.Mesh(new THREE.BoxGeometry(1.36, 1.15, 0.40), detailStoneMat);
+      rearWall.position.set(0, 1.45, -1.12);
+      rearWall.castShadow = true;
+      dwarashalaGroup.add(rearWall);
+
+      // 3. Grand Dravidian Stone Lintel (Uttira) Spanning Over Portal
+      const lintelBeam = new THREE.Mesh(new THREE.BoxGeometry(3.85, 0.30, 2.68), mainStoneMat);
+      lintelBeam.position.set(0, 2.05, 0);
+      lintelBeam.castShadow = true;
+      dwarashalaGroup.add(lintelBeam);
+
+      // 4. Projecting Kapota Cornice (Heavy Dravidian Eave directly seating Gopuram Tier 1 at y = 2.25)
+      const kapotaCornice = new THREE.Mesh(new THREE.BoxGeometry(3.95, 0.12, 2.78), terracottaAccent);
+      kapotaCornice.position.set(0, 2.21, 0);
+      kapotaCornice.castShadow = true;
+      dwarashalaGroup.add(kapotaCornice);
+
+      // Miniature golden corner Stupis on the 4 corners of Dwarashala Cornice
+      [[-1.85, 1.30], [1.85, 1.30], [-1.85, -1.30], [1.85, -1.30]].forEach(cpos => {
+        const cStupi = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.22, 8), goldMat);
+        cStupi.position.set(cpos[0], 2.36, cpos[1]);
+        dwarashalaGroup.add(cStupi);
+      });
+
+      // 5. Grand Dravidian Arched Portal (Dwara) Through-Passage
+      const portalJambL = new THREE.Mesh(new THREE.BoxGeometry(0.20, 1.25, 0.35), detailStoneMat);
+      portalJambL.position.set(-0.62, 1.45, 1.25);
+      dwarashalaGroup.add(portalJambL);
+      const portalJambR = new THREE.Mesh(new THREE.BoxGeometry(0.20, 1.25, 0.35), detailStoneMat);
+      portalJambR.position.set(0.62, 1.45, 1.25);
+      dwarashalaGroup.add(portalJambR);
+
+      // Carved Dravidian Torana Arch spanning portal opening
+      const toranaArch = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.12, 10, 24, Math.PI), detailStoneMat);
+      toranaArch.position.set(0, 1.88, 1.25);
+      dwarashalaGroup.add(toranaArch);
+
+      // Deep Inner Sanctum Chamber Interior (Dark void inside passage)
+      const chamberVoid = new THREE.Mesh(new THREE.BoxGeometry(1.05, 1.15, 1.8), new THREE.MeshBasicMaterial({ color: 0x06080c }));
+      chamberVoid.position.set(0, 1.45, 0.1);
+      dwarashalaGroup.add(chamberVoid);
+
+      // Massive Heavy Carved Temple Teakwood Doors with Polished Brass Studs
+      const doorL = new THREE.Mesh(new THREE.BoxGeometry(0.50, 1.15, 0.08), brassMat);
+      doorL.position.set(-0.28, 1.42, 0.75);
+      doorL.rotation.y = 0.40;
+      dwarashalaGroup.add(doorL);
+      const doorR = new THREE.Mesh(new THREE.BoxGeometry(0.50, 1.15, 0.08), brassMat);
+      doorR.position.set(0.28, 1.42, 0.75);
+      doorR.rotation.y = -0.40;
+      dwarashalaGroup.add(doorR);
+
+      // Carved Dravidian Pilasters on the Front Façade (Salabhanjika Pilasters)
+      [-1.75, -0.95, 0.95, 1.75].forEach(px => {
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.09, 1.20, 8), detailStoneMat);
+        col.position.set(px, 1.45, 1.35);
+        col.castShadow = true;
+        dwarashalaGroup.add(col);
+
+        const bracket = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.08, 0.16), detailStoneMat);
+        bracket.position.set(px, 2.02, 1.35);
+        dwarashalaGroup.add(bracket);
+      });
+
+      // Carved Devakoshta Niches on Outer Gateway Wings
+      [-1.35, 1.35].forEach(nx => {
+        const nicheFrame = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.035, 6, 12, Math.PI), detailStoneMat);
+        nicheFrame.position.set(nx, 1.62, 1.34);
+        dwarashalaGroup.add(nicheFrame);
+
+        const nicheSilh = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.10, 0.35, 8), baseGranite);
+        nicheSilh.position.set(nx, 1.42, 1.33);
+        dwarashalaGroup.add(nicheSilh);
+      });
+
+      temple.add(dwarashalaGroup);
+
+      // Inner Sanctum (Golden Vimana Tower in Sacred Inner Courtyard behind Gopuram)
       const vimanaGroup = new THREE.Group();
       const vimanaDrum = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.25, 0.9, 8), mainStoneMat);
-      vimanaDrum.position.set(0, 0.9, -0.6);
+      vimanaDrum.position.set(0, 0.9, -2.5);
       vimanaDrum.castShadow = true;
       vimanaGroup.add(vimanaDrum);
 
       const vimanaCornice = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.05, 0.12, 8), terracottaAccent);
-      vimanaCornice.position.set(0, 1.38, -0.6);
+      vimanaCornice.position.set(0, 1.38, -2.5);
       vimanaGroup.add(vimanaCornice);
 
       const stupiDome = new THREE.Mesh(new THREE.SphereGeometry(0.8, 20, 16, 0, Math.PI * 2, 0, Math.PI * 0.5), goldMat);
-      stupiDome.position.set(0, 1.44, -0.6);
+      stupiDome.position.set(0, 1.44, -2.5);
       stupiDome.castShadow = true;
       vimanaGroup.add(stupiDome);
 
       const stupiKalasam = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.45, 12), goldMat);
-      stupiKalasam.position.set(0, 2.35, -0.6);
+      stupiKalasam.position.set(0, 2.35, -2.5);
       vimanaGroup.add(stupiKalasam);
       temple.add(vimanaGroup);
 
-      // Grand Elevated Temple Signboard (Mounted High Above Gateway Arch for 100% Unobstructed Visibility)
+      // Grand Front Entrance Temple Signboard (Positioned at Front Courtyard with Dedicated Stone Posts)
       const signTex = createSignboardTexture(
         'Shri Meenakshi Amman Kovil',
         'அருள்மிகு மீனாட்சி அம்மன் கோவில் • MADURAI 2,500 YR HERITAGE • 14 SACRED GOPURAMS',
@@ -1075,9 +1144,16 @@
         '#ff9933'
       );
       const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.72), signMat);
-      sign.position.set(0, 3.25, 1.35); // Elevated high above the torana arch for crystal-clear readability
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.68), signMat);
+      sign.position.set(0, 1.48, 2.25);
       temple.add(sign);
+
+      // Dedicated Stone Support Posts for Signboard
+      [-1.75, 1.75].forEach(sx => {
+        const sPillar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 1.50, 8), detailStoneMat);
+        sPillar.position.set(sx, 0.75, 2.25);
+        temple.add(sPillar);
+      });
 
       // Ornamental Temple Entrance Plinth Flagstones (5m Spacious Courtyard)
       const courtGeo = new THREE.BoxGeometry(4.8, 0.08, 3.8);
@@ -1980,23 +2056,50 @@
       });
 
       // Stepped Granite Plinth
-      const plinth = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.8, 0.28, 16), stoneMat);
+      const plinth = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 3.0, 0.28, 16), stoneMat);
       plinth.position.y = 0.14;
       plinth.receiveShadow = true;
       temple.add(plinth);
 
-      // Pillared Mandapam Entrance with Stone Steps
-      const mandapam = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.8, 1.1, 12), stoneMat);
-      mandapam.position.set(0, 0.68, 0.2);
+      // Solid Monolithic Stone Sanctuary Base Under Gopuram (Zero air gap, solid structural anchoring)
+      const gopuramBase = new THREE.Mesh(new THREE.BoxGeometry(3.40, 0.96, 2.55), stoneMat);
+      gopuramBase.position.set(0, 0.76, 0);
+      gopuramBase.castShadow = true;
+      gopuramBase.receiveShadow = true;
+      temple.add(gopuramBase);
+
+      // Transition Cornice (Kapota) supporting Gopuram Tier 1 flush
+      const baseCornice = new THREE.Mesh(new THREE.BoxGeometry(3.55, 0.12, 2.70), terracottaAccent);
+      baseCornice.position.set(0, 1.22, 0);
+      baseCornice.castShadow = true;
+      temple.add(baseCornice);
+
+      // Front Pillared Mandapam Hall
+      const mandapam = new THREE.Mesh(new THREE.BoxGeometry(2.60, 0.96, 1.40), detailStoneMat);
+      mandapam.position.set(0, 0.76, 1.35);
       mandapam.castShadow = true;
       temple.add(mandapam);
 
-      // Carved Entrance Pillars
-      for (let p = -0.8; p <= 0.8; p += 0.8) {
-        const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.09, 1.1, 10), detailStoneMat);
-        pillar.position.set(p, 0.68, 1.2);
+      // Carved Granite Steps leading up into Mandapam
+      for (let stp = 0; stp < 3; stp++) {
+        const step = new THREE.Mesh(new THREE.BoxGeometry(1.6 - stp * 0.15, 0.09, 0.35), stoneMat);
+        step.position.set(0, 0.18 + stp * 0.09, 2.10 + stp * 0.20);
+        step.receiveShadow = true;
+        temple.add(step);
+      }
+
+      // Carved Entrance Pillars on Front Porch
+      for (let p = -1.0; p <= 1.0; p += 1.0) {
+        const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.09, 1.05, 10), detailStoneMat);
+        pillar.position.set(p, 0.76, 2.0);
+        pillar.castShadow = true;
         temple.add(pillar);
       }
+
+      // Carved Brass-Studded Temple Gate
+      const alagarDoor = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.90, 0.08), brassMat);
+      alagarDoor.position.set(0, 0.76, 1.95);
+      temple.add(alagarDoor);
 
       // =======================================================================
       // 5-TIER SCULPTED DRAVIDIAN HILL TEMPLE GOPURAM
@@ -2991,10 +3094,19 @@
       if (!cp) return;
       isFocusingCheckpoint = true;
 
-      flyCameraTo(
-        new THREE.Vector3(cp.camPos.x, cp.camPos.y, cp.camPos.z),
-        new THREE.Vector3(cp.target.x, cp.target.y, cp.target.z)
-      );
+      let destCam = new THREE.Vector3(cp.camPos.x, cp.camPos.y, cp.camPos.z);
+      let destTarget = new THREE.Vector3(cp.target.x, cp.target.y, cp.target.z);
+
+      if (window.innerWidth <= 768) {
+        // Mobile framing optimization: pull back slightly so landmark sits dead center in upper 65% above the bottom peek sheet
+        const camOffset = new THREE.Vector3().subVectors(destCam, destTarget);
+        camOffset.multiplyScalar(1.28); // pull back 28% for mobile portrait FOV
+        destCam.copy(destTarget).add(camOffset);
+        destCam.y += 1.0;
+        destTarget.y += 0.5;
+      }
+
+      flyCameraTo(destCam, destTarget);
 
       const resetBtn = document.getElementById('btnMapResetView');
       if (resetBtn) resetBtn.style.display = 'inline-flex';
