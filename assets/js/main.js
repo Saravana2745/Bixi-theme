@@ -1490,6 +1490,14 @@ function filterVehicles(cat, btn) {
   const stage1 = document.getElementById('storyStage1');
   const stage2 = document.getElementById('storyStage2');
   const stage3 = document.getElementById('storyStage3');
+  const scrollIndicator = document.getElementById('scrollyScrollIndicator') || document.querySelector('.scrolly-scroll-indicator');
+
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const targetY = section.offsetTop + window.innerHeight * 0.45;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    });
+  }
 
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
@@ -1566,6 +1574,15 @@ function filterVehicles(cat, btn) {
     }
     if (hudBar) {
       hudBar.style.width = `${(progress * 100).toFixed(1)}%`;
+    }
+
+    // Hide center scroll prompt as soon as scrubbing starts
+    if (scrollIndicator) {
+      if (progress > 0.02) {
+        scrollIndicator.classList.add('scrolled-hide');
+      } else {
+        scrollIndicator.classList.remove('scrolled-hide');
+      }
     }
 
     if (stage1 && stage2 && stage3) {

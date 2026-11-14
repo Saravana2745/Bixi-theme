@@ -44,7 +44,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=24.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=31.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -1219,7 +1219,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js?v=24.0 based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=31.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
@@ -1431,11 +1431,16 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
         </div>
 
-        <!-- Bottom Scroll Indicator -->
-        <div class="scrolly-scroll-indicator">
-          <span>Scroll Down to Scrub Video Expedition</span>
-          <div class="scroll-mouse-icon">
-            <div class="scroll-wheel"></div>
+        <!-- Center Stage Interactive Scroll Prompt -->
+        <div class="scrolly-scroll-indicator border-beam" id="scrollyScrollIndicator" role="button" aria-label="Scroll down to scrub video expedition" tabindex="0">
+          <div class="scroll-indicator-inner">
+            <div class="scroll-mouse-icon" aria-hidden="true">
+              <div class="scroll-wheel"></div>
+            </div>
+            <span class="scroll-indicator-text">Scroll Down to Scrub Video Expedition</span>
+            <div class="scroll-indicator-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E88124" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
           </div>
         </div>
 
@@ -2440,7 +2445,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       }
     };
   </script>
-  <script src="assets/js/react-bits-animations.js?v=24.0"></script>
-  <script src="assets/js/main.js?v=24.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=31.0"></script>
+  <script src="assets/js/main.js?v=31.0"></script>
 </body>
 </html>
