@@ -36,6 +36,23 @@
   // Checkpoints with spacious real-city coordinates, offset roadside plazas, and cinematic camera presets
   const CHECKPOINTS = [
     {
+      id: 'mattuthavani-bus-stand',
+      name: 'Mattuthavani Madurai Bus',
+      category: 'Central Bus Terminal (MIBT)',
+      roadPos: { x: -36.0, y: 0.25, z: -5.5 },
+      modelPos: { x: -36.0, y: 0, z: -6.0 },
+      facing: 0,
+      camPos: { x: -26.0, y: 8.5, z: 9.0 },
+      target: { x: -36.0, y: 2.5, z: -5.5 },
+      distance: 'Central Hub',
+      time: '24/7 Arrivals',
+      vehicle: 'TNSTC Bus / BIXI Ride',
+      desc: 'Mattuthavani Integrated Bus Terminus (MIBT) – Madurai’s bustling central transportation terminal with 24/7 interstate arrivals from Chennai, Bangalore, and Kerala. Directly walkable to BIXI Ride dispatch hub.',
+      badge: 'Central Bus Terminal',
+      icon: 'bus',
+      isTourStop: false
+    },
+    {
       id: 'meenakshi',
       name: 'Shri Meenakshi Amman Kovil',
       category: 'Temple Wonder',
@@ -2460,20 +2477,23 @@
     // 5b. LEFT BLACK ROAD, MATTUTHAVANI BUS STAND, TNSTC BUS & BIXI RENTAL HUB
     // =========================================================================
 
-    // 1. Left Black Road (Entering from the West leading into Mattuthavani Bus Stand and merging into BIXI Hub)
+    // 1. Left Black Road (Entering from West, Mattuthavani Bus Stand, through to East Highway Horizon)
     const busRoadPoints = [
-      new THREE.Vector3(-56.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-46.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-40.0, ROAD_Y, -5.5),
-      new THREE.Vector3(-36.0, ROAD_Y, -5.5), // Bus Platform at Mattuthavani Bus Stand
-      new THREE.Vector3(-30.0, ROAD_Y, -4.0),
-      new THREE.Vector3(-26.0, ROAD_Y, -2.5), // BIXI Hub front road
-      new THREE.Vector3(-22.0, ROAD_Y, 0.0)   // Merges into Grand Highway Loop start
+      new THREE.Vector3(-58.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-48.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-42.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-36.0, ROAD_Y, -5.5), // Bus Platform 1 at Mattuthavani Madurai Bus Stand
+      new THREE.Vector3(-28.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-16.0, ROAD_Y, -5.5),
+      new THREE.Vector3(-4.0, ROAD_Y, -5.5),
+      new THREE.Vector3(8.0, ROAD_Y, -5.5),
+      new THREE.Vector3(22.0, ROAD_Y, -5.5),
+      new THREE.Vector3(36.0, ROAD_Y, -5.5)   // Outbound Highway to Horizon
     ];
     const busRoadCurve = new THREE.CatmullRomCurve3(busRoadPoints);
 
     // Deep Black Asphalt Road Ribbon
-    const busRoadGeo = new THREE.TubeGeometry(busRoadCurve, 60, 0.52, 8, false);
+    const busRoadGeo = new THREE.TubeGeometry(busRoadCurve, 100, 0.54, 8, false);
     busRoadGeo.scale(1, 0.04, 1);
     const busRoadMat = new THREE.MeshStandardMaterial({
       color: 0x12141a,
@@ -2484,15 +2504,15 @@
     scene.add(busRoadMesh);
 
     // Glowing Yellow Centerline on the Black Road
-    const busRoadLineGeo = new THREE.TubeGeometry(busRoadCurve, 60, 0.045, 4, false);
+    const busRoadLineGeo = new THREE.TubeGeometry(busRoadCurve, 100, 0.045, 4, false);
     busRoadLineGeo.scale(1, 0.05, 1);
     const busRoadLineMat = new THREE.MeshBasicMaterial({ color: 0xffcc00 });
     const busRoadLineMesh = new THREE.Mesh(busRoadLineGeo, busRoadLineMat);
     busRoadLineMesh.position.y = 0.022;
     scene.add(busRoadLineMesh);
 
-    // Left Road Streetlights
-    [-50.0, -42.0, -34.0, -26.0].forEach((lx, idx) => {
+    // Left Road Streetlights across the entire transit highway
+    [-52.0, -44.0, -36.0, -28.0, -16.0, -4.0, 8.0, 20.0, 32.0].forEach((lx) => {
       const lamp = new THREE.Group();
       const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 2.2, 8), new THREE.MeshStandardMaterial({ color: 0x334155 }));
       pole.position.y = 1.1;
@@ -2519,79 +2539,186 @@
       scene.add(lamp);
     });
 
-    // 2. Mattuthavani Integrated Bus Stand Building (MIBT)
+    // 2. Mattuthavani Madurai Central Bus Stand Building (MIBT) - 360-degree Architectural Masterpiece
     function createMattuthavaniBusStand() {
       const stand = new THREE.Group();
-      const concourseMat = new THREE.MeshStandardMaterial({ color: 0x1a1e29, roughness: 0.85 });
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0x2e3547, roughness: 0.65 });
-      const canopyGlass = new THREE.MeshStandardMaterial({ color: 0x0ea5e9, roughness: 0.15, metalness: 0.7, transparent: true, opacity: 0.45 });
+      const concourseMat = new THREE.MeshStandardMaterial({ color: 0x181c26, roughness: 0.82 });
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x222a3a, roughness: 0.55 });
+      const trimMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.4 });
+      const canopyGlass = new THREE.MeshStandardMaterial({ color: 0x0284c7, roughness: 0.18, metalness: 0.75, transparent: true, opacity: 0.55 });
       const steelPillar = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.85, roughness: 0.25 });
       const platformYellow = new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.6 });
 
       // Raised Platform Base
-      const base = new THREE.Mesh(new THREE.BoxGeometry(7.6, 0.28, 3.8), concourseMat);
-      base.position.set(0, 0.14, 0);
+      const base = new THREE.Mesh(new THREE.BoxGeometry(9.2, 0.35, 4.6), concourseMat);
+      base.position.set(0, 0.175, 0);
       base.receiveShadow = true;
       stand.add(base);
 
-      // Yellow Safety Platform Edges
-      const edge = new THREE.Mesh(new THREE.BoxGeometry(7.6, 0.04, 0.15), platformYellow);
-      edge.position.set(0, 0.29, 1.8);
+      // Yellow Tactile Platform Edge
+      const edge = new THREE.Mesh(new THREE.BoxGeometry(9.2, 0.05, 0.2), platformYellow);
+      edge.position.set(0, 0.36, 2.2);
       stand.add(edge);
 
-      // Passenger Terminal Building
-      const terminalHall = new THREE.Mesh(new THREE.BoxGeometry(7.2, 1.6, 1.5), wallMat);
-      terminalHall.position.set(0, 0.95, -1.0);
+      // Main Passenger Terminal Concourse Hall
+      const terminalHall = new THREE.Mesh(new THREE.BoxGeometry(8.6, 1.8, 2.0), wallMat);
+      terminalHall.position.set(0, 1.075, -1.1);
       terminalHall.castShadow = true;
       stand.add(terminalHall);
 
-      // Glass Waiting Concourse Windows
-      const glassFront = new THREE.Mesh(new THREE.PlaneGeometry(6.6, 0.95), canopyGlass);
-      glassFront.position.set(0, 1.05, -0.24);
+      // Golden Architectural Fascia Trim
+      const fascia = new THREE.Mesh(new THREE.BoxGeometry(8.8, 0.12, 2.1), trimMat);
+      fascia.position.set(0, 1.98, -1.1);
+      stand.add(fascia);
+
+      // Front Glass Waiting Concourse Windows
+      const glassFront = new THREE.Mesh(new THREE.PlaneGeometry(8.0, 1.1), canopyGlass);
+      glassFront.position.set(0, 1.1, -0.09);
       stand.add(glassFront);
 
-      // Arched Terminal Canopy Over Platforms (Steel Trusses & Glass)
-      const roof = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.4, 7.6, 16, 1, false, 0, Math.PI), canopyGlass);
+      // Rear Glass Windows (Ensures back is never an untextured grey box)
+      const glassRear = new THREE.Mesh(new THREE.PlaneGeometry(8.0, 1.1), canopyGlass);
+      glassRear.rotation.y = Math.PI;
+      glassRear.position.set(0, 1.1, -2.11);
+      stand.add(glassRear);
+
+      // Arched Terminal Canopy Over Platforms
+      const roof = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 9.0, 16, 1, false, 0, Math.PI), canopyGlass);
       roof.rotation.z = Math.PI / 2;
-      roof.position.set(0, 2.15, 0.6);
+      roof.position.set(0, 2.35, 0.8);
       stand.add(roof);
 
       // Steel Support Pillars
-      [-3.4, -1.2, 1.2, 3.4].forEach(px => {
-        const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.0, 10), steelPillar);
-        pillar.position.set(px, 1.15, 1.7);
+      [-3.8, -1.9, 0, 1.9, 3.8].forEach(px => {
+        const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.15, 10), steelPillar);
+        pillar.position.set(px, 1.25, 2.1);
         stand.add(pillar);
       });
 
-      // Terminal Signboard: MATTUTHAVANI BUS STAND (MIBT)
-      const signTex = createSignboardTexture(
-        'MATTUTHAVANI BUS STAND (MIBT)',
-        'MADURAI INTEGRATED BUS TERMINUS • TNSTC PLATFORM 1',
-        '#081226',
+      // Iconic Madurai Terminal Clock Tower
+      const clockTower = new THREE.Group();
+      const towerBase = new THREE.Mesh(new THREE.BoxGeometry(1.6, 2.6, 1.6), wallMat);
+      towerBase.position.set(0, 2.9, -1.1);
+      clockTower.add(towerBase);
+
+      const towerTrim = new THREE.Mesh(new THREE.BoxGeometry(1.75, 0.12, 1.75), trimMat);
+      towerTrim.position.set(0, 4.22, -1.1);
+      clockTower.add(towerTrim);
+
+      const towerCap = new THREE.Mesh(new THREE.ConeGeometry(1.25, 0.9, 4), trimMat);
+      towerCap.rotation.y = Math.PI / 4;
+      towerCap.position.set(0, 4.75, -1.1);
+      clockTower.add(towerCap);
+
+      const towerSpire = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.08, 0.7, 8), steelPillar);
+      towerSpire.position.set(0, 5.4, -1.1);
+      clockTower.add(towerSpire);
+
+      // Clock Dial (Front Face)
+      const clockDialMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      const clockDialFront = new THREE.Mesh(new THREE.CircleGeometry(0.42, 24), clockDialMat);
+      clockDialFront.position.set(0, 3.4, -0.29);
+      clockTower.add(clockDialFront);
+
+      const clockHandFront = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.28, 0.02), new THREE.MeshBasicMaterial({ color: 0x111827 }));
+      clockHandFront.position.set(0.06, 3.45, -0.28);
+      clockHandFront.rotation.z = -0.5;
+      clockTower.add(clockHandFront);
+
+      // Clock Dial (Rear Face)
+      const clockDialRear = new THREE.Mesh(new THREE.CircleGeometry(0.42, 24), clockDialMat);
+      clockDialRear.rotation.y = Math.PI;
+      clockDialRear.position.set(0, 3.4, -1.91);
+      clockTower.add(clockDialRear);
+
+      const clockBeacon = new THREE.PointLight(0xf59e0b, 1.5, 6);
+      clockBeacon.position.set(0, 5.6, -1.1);
+      clockTower.add(clockBeacon);
+
+      stand.add(clockTower);
+
+      // Front Main Sign: MATTUTHAVANI MADURAI BUS STAND
+      const frontSignTex = createSignboardTexture(
+        'MATTUTHAVANI MADURAI BUS STAND',
+        'MADURAI INTEGRATED BUS TERMINUS (MIBT) • TNSTC PLATFORM 1',
+        '#07162c',
         '#ffffff',
         '#38bdf8'
       );
-      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 0.65), signMat);
-      sign.position.set(0, 2.4, -0.22);
-      stand.add(sign);
+      const frontSign = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 0.72), new THREE.MeshBasicMaterial({ map: frontSignTex }));
+      frontSign.position.set(0, 2.45, -0.08);
+      stand.add(frontSign);
 
-      // Platform Overhead Bay Indicator
+      // Rear Facade Sign: MATTUTHAVANI MADURAI BUS STAND (360-degree visibility)
+      const rearSignTex = createSignboardTexture(
+        'MATTUTHAVANI MADURAI BUS STAND',
+        'CENTRAL DEPARTURES & INTERSTATE CONCOURSE • 24/7 TERMINAL',
+        '#07162c',
+        '#ffffff',
+        '#f59e0b'
+      );
+      const rearSign = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 0.72), new THREE.MeshBasicMaterial({ map: rearSignTex }));
+      rearSign.rotation.y = Math.PI;
+      rearSign.position.set(0, 2.45, -2.12);
+      stand.add(rearSign);
+
+      // West End Sign (Facing arriving bus and camera from the west)
+      const westSignTex = createSignboardTexture(
+        'MATTUTHAVANI MADURAI BUS',
+        'WELCOME TO MADURAI MIBT',
+        '#032516',
+        '#4ade80',
+        '#ffffff'
+      );
+      const westSign = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 0.62), new THREE.MeshBasicMaterial({ map: westSignTex }));
+      westSign.rotation.y = -Math.PI / 2;
+      westSign.position.set(-4.32, 1.4, -1.1);
+      stand.add(westSign);
+
+      // East End Sign (Facing BIXI Rental Hub)
+      const eastSignTex = createSignboardTexture(
+        'TNSTC EXPRESS BAYS 1-12',
+        'WALKWAY TO BIXI RENTAL HUB →',
+        '#032516',
+        '#38bdf8',
+        '#ffffff'
+      );
+      const eastSign = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 0.62), new THREE.MeshBasicMaterial({ map: eastSignTex }));
+      eastSign.rotation.y = Math.PI / 2;
+      eastSign.position.set(4.32, 1.4, -1.1);
+      stand.add(eastSign);
+
+      // Platform 1 Bay Indicator Overhead Sign
       const bayTex = createSignboardTexture(
-        'BAY 1: INTERSTATE & CHENNAI EXPRESS',
-        'ARRIVALS: EVERY 5 MINS • 24/7 TERMINAL',
+        'BAY 1: CHENNAI • BENGALURU • COIMBATORE • KERALA',
+        'TNSTC ULTRA DELUXE & AC SLEEPER DEPARTURES • 24/7',
         '#022c22',
         '#4ade80',
         '#ffffff'
       );
-      const baySign = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 0.45), new THREE.MeshBasicMaterial({ map: bayTex }));
-      baySign.position.set(0, 1.85, 1.68);
+      const baySign = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 0.52), new THREE.MeshBasicMaterial({ map: bayTex }));
+      baySign.position.set(0, 1.95, 2.05);
       stand.add(baySign);
 
+      // Passenger Benches along Platform
+      const benchMat = new THREE.MeshStandardMaterial({ color: 0x475569 });
+      [-2.6, 0, 2.6].forEach(bx => {
+        const bench = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.32, 0.42), benchMat);
+        bench.position.set(bx, 0.52, 1.2);
+        stand.add(bench);
+      });
+
       // Interior Concourse Warm Ambient Light
-      const concourseLight = new THREE.PointLight(0xfff1b8, 1.4, 8);
-      concourseLight.position.set(0, 1.5, 0.2);
+      const concourseLight = new THREE.PointLight(0xfff1b8, 1.6, 9.5);
+      concourseLight.position.set(0, 1.6, 0.2);
       stand.add(concourseLight);
+
+      // 3D Floating Popup Badge for Mattuthavani Madurai Bus Stand
+      const badge = createBixiPopupBadge('Mattuthavani Madurai Bus Stand', 'Central Bus Terminal (MIBT)');
+      badge.position.set(0, 6.2, 0);
+      badge.userData.baseY = 6.2;
+      stand.add(badge);
+      popupBadges['mattuthavani-bus-stand'] = badge;
 
       return stand;
     }
@@ -2601,9 +2728,10 @@
     busStandModel.scale.set(1.32, 1.32, 1.32);
     scene.add(busStandModel);
 
-    // 3. Realistic TNSTC Ultra Deluxe / AC Sleeper Bus Model
+    // 3. Realistic TNSTC Ultra Deluxe / AC Sleeper Bus Model (Pointing Straight Forward Along Road)
     function createRealisticTnstcBus() {
       const bus = new THREE.Group();
+      const innerBusGroup = new THREE.Group();
       
       const tnstcGreen = new THREE.MeshStandardMaterial({ color: 0x00703c, roughness: 0.45, metalness: 0.2 }); // TNSTC Emerald Green
       const pearlWhite = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.35, metalness: 0.1 });
@@ -2617,32 +2745,32 @@
       // Lower Chassis Frame
       const chassis = new THREE.Mesh(new THREE.BoxGeometry(4.3, 0.25, 1.35), new THREE.MeshStandardMaterial({ color: 0x111827 }));
       chassis.position.y = 0.35;
-      bus.add(chassis);
+      innerBusGroup.add(chassis);
 
       // Lower Green Body (Classic TNSTC Emerald Stripe)
       const lowerBody = new THREE.Mesh(new THREE.BoxGeometry(4.25, 0.55, 1.32), tnstcGreen);
       lowerBody.position.y = 0.65;
       lowerBody.castShadow = true;
-      bus.add(lowerBody);
+      innerBusGroup.add(lowerBody);
 
       // Upper White Body & Roof
       const upperBody = new THREE.Mesh(new THREE.BoxGeometry(4.25, 0.55, 1.32), pearlWhite);
       upperBody.position.y = 1.15;
       upperBody.castShadow = true;
-      bus.add(upperBody);
+      innerBusGroup.add(upperBody);
 
       // Aerodynamic Front Nose (Curved Bumper)
       const noseGeo = new THREE.CylinderGeometry(0.66, 0.66, 1.32, 16, 1, false, -Math.PI / 2, Math.PI);
       const nose = new THREE.Mesh(noseGeo, tnstcGreen);
       nose.rotation.z = Math.PI / 2;
       nose.position.set(2.12, 0.65, 0);
-      bus.add(nose);
+      innerBusGroup.add(nose);
 
       // Large Tinted Front Panoramic Windshield with Curved Glass
       const windshield = new THREE.Mesh(new THREE.PlaneGeometry(1.22, 0.65), windowGlass);
       windshield.rotation.y = Math.PI / 2;
       windshield.position.set(2.14, 1.18, 0);
-      bus.add(windshield);
+      innerBusGroup.add(windshield);
 
       // Electronic LED Destination Matrix: MADURAI - MATTUTHAVANI
       const destTex = createSignboardTexture(
@@ -2655,19 +2783,19 @@
       const destSign = new THREE.Mesh(new THREE.PlaneGeometry(1.05, 0.22), new THREE.MeshBasicMaterial({ map: destTex }));
       destSign.rotation.y = Math.PI / 2;
       destSign.position.set(2.14, 1.42, 0);
-      bus.add(destSign);
+      innerBusGroup.add(destSign);
 
       // Passenger Tinted Window Ribbon (Both Sides)
       [-0.67, 0.67].forEach(zSide => {
         const sideWindows = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.42, 0.04), windowGlass);
         sideWindows.position.set(-0.15, 1.15, zSide);
-        bus.add(sideWindows);
+        innerBusGroup.add(sideWindows);
 
         // Window Pillar Dividers
         for (let w = -1.6; w <= 1.4; w += 0.5) {
           const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.42, 0.05), pearlWhite);
           pillar.position.set(w, 1.15, zSide);
-          bus.add(pillar);
+          innerBusGroup.add(pillar);
         }
       });
 
@@ -2676,7 +2804,7 @@
         const headlamp = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.06, 12), headlampMat);
         headlamp.rotation.z = Math.PI / 2;
         headlamp.position.set(2.14, 0.55, zHead);
-        bus.add(headlamp);
+        innerBusGroup.add(headlamp);
 
         // Bright Forward Headlight Beam Cone illuminating the asphalt
         const beamGeo = new THREE.ConeGeometry(0.65, 3.2, 16, 1, true);
@@ -2684,25 +2812,25 @@
         const beam = new THREE.Mesh(beamGeo, beamMat);
         beam.rotation.z = -Math.PI / 2;
         beam.position.set(3.7, 0.52, zHead);
-        bus.add(beam);
+        innerBusGroup.add(beam);
       });
 
       // Chrome Front Grille & TNSTC Badge
       const grille = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.16, 0.55), chromeMat);
       grille.position.set(2.14, 0.55, 0);
-      bus.add(grille);
+      innerBusGroup.add(grille);
 
       // Rear Red Stop Lamps
       [-0.5, 0.5].forEach(zTail => {
         const tail = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.22, 0.1), redStopMat);
         tail.position.set(-2.14, 0.65, zTail);
-        bus.add(tail);
+        innerBusGroup.add(tail);
       });
 
       // Roof Carrier AC Pod Unit
       const acUnit = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.18, 0.85), new THREE.MeshStandardMaterial({ color: 0xd1d5db, roughness: 0.3 }));
       acUnit.position.set(-0.2, 1.48, 0);
-      bus.add(acUnit);
+      innerBusGroup.add(acUnit);
 
       // 6 Heavy-Duty Wheels (Front Axle + Dual Rear Axles)
       const busWheelMeshes = [];
@@ -2723,16 +2851,20 @@
         wg.add(rim);
 
         wg.position.set(wp.x, 0.26, wp.z);
-        bus.add(wg);
+        innerBusGroup.add(wg);
         busWheelMeshes.push(wg);
       });
+
+      // Crucial rotation: align nose with +Z of bus object so Three.js lookAt points straight forward along the road
+      innerBusGroup.rotation.y = -Math.PI / 2;
+      bus.add(innerBusGroup);
 
       bus.userData = { wheels: busWheelMeshes };
       return bus;
     }
 
     const tnstcBusModel = createRealisticTnstcBus();
-    tnstcBusModel.position.set(-56.0, ROAD_Y, -5.5);
+    tnstcBusModel.position.set(-58.0, ROAD_Y, -5.5);
     tnstcBusModel.scale.set(1.22, 1.22, 1.22);
     scene.add(tnstcBusModel);
 
@@ -2969,9 +3101,10 @@
     touristIn.scale.set(1.25, 1.25, 1.25);
     scene.add(touristIn);
 
-    // Calculate parameter t along road curve for each stop point
+    // Calculate parameter t along road curve for each car tour stop (6 scenic Madurai destinations)
+    const tourStops = CHECKPOINTS.filter(cp => cp.isTourStop !== false);
     const stopTValues = [];
-    CHECKPOINTS.forEach(cp => {
+    tourStops.forEach(cp => {
       let bestT = 0;
       let minDist = 999;
       for (let s = 0; s <= 500; s++) {
@@ -2983,7 +3116,7 @@
           bestT = testT;
         }
       }
-      stopTValues.push(bestT);
+      stopTValues.push({ cp: cp, t: bestT });
     });
 
     // Checkpoint Diamond Beacons
@@ -3154,7 +3287,12 @@
         }
       });
 
-      if (typeof window.openDestinationDrawer === 'function') {
+      // Update drawer content seamlessly without forcing it open onto user's view
+      if (typeof window.updateDestinationDrawerContent === 'function') {
+        window.updateDestinationDrawerContent(cp.id);
+      }
+      const existingDrawer = document.getElementById('destinationDrawer');
+      if (existingDrawer && existingDrawer.classList.contains('open') && typeof window.openDestinationDrawer === 'function') {
         window.openDestinationDrawer(cp.id);
       }
     }
@@ -3211,22 +3349,24 @@
     // =========================================================================
     // 9. UNIFIED CUSTOMER JOURNEY & TOUR ENGINE (ONE SEAMLESS CINEMATIC STORY)
     // Flow: 
-    // 1. TNSTC Bus arrives along black road at Mattuthavani Bus Stand (MIBT).
+    // 1. TNSTC Bus arrives along highway at Mattuthavani Madurai Bus Stand (MIBT).
     // 2. Traveler with backpack gets off and walks across to BIXI Ride Hub.
-    // 3. Traveler is verified at BIXI counter and receives car keys.
+    // 3. Traveler is verified at BIXI counter and receives Swift keys.
     // 4. Traveler walks to BIXI Maruti Swift in dispatch bay and enters car.
-    // 5. Maruti Swift turns on headlights and drives to ALL 6 Madurai destinations!
+    // 5. Maruti Swift turns on headlights and drives calmly to ALL 6 Madurai destinations!
     //    (Meenakshi Kovil -> Vadivasal & Bull -> Lucky Mess -> Power Kadai -> Gandhi Museum -> Alagar Kovil)
-    // 6. Swift returns to BIXI Hub, completing the customer journey cycle!
+    // 6. Swift returns and parks at BIXI Hub.
+    // 7. Customer leaves car, walks back across to Mattuthavani Bus Stand, and boards TNSTC bus.
+    // 8. Bus closes doors, turns on headlights, and departs down the interstate highway to horizon!
     // =========================================================================
-    let masterJourneyState = 'BUS_ARRIVING'; // 'BUS_ARRIVING' | 'WALK_TO_BIXI' | 'COLLECT_KEYS' | 'ENTER_SWIFT' | 'TOUR_CRUISING' | 'TOUR_STOPPED' | 'RETURN_TO_BIXI'
+    let masterJourneyState = 'BUS_ARRIVING'; // 'BUS_ARRIVING' | 'WALK_TO_BIXI' | 'COLLECT_KEYS' | 'ENTER_SWIFT' | 'TOUR_CRUISING' | 'TOUR_STOPPED' | 'RETURN_TO_BIXI' | 'CUSTOMER_WALK_TO_BUS' | 'BUS_DEPARTING'
     let journeyTimer = 0;
     let carT = 0;
-    const cruiseSpeed = 0.0016;
+    const cruiseSpeed = 0.00075; // Calm, realistic cinematic cruising speed
     let currentSpeed = 0;
     let currentStopIdx = -1;
     let stopTimer = 0;
-    const STOP_DURATION_FRAMES = 130; // ~2.1 seconds pause per landmark
+    const STOP_DURATION_FRAMES = 200; // ~3.3 seconds leisurely pause per landmark
 
     let animationFrameId = null;
     let isVisible = true;
@@ -3242,17 +3382,17 @@
       // A. MASTER CUSTOMER JOURNEY & TOUR STATE MACHINE
       // -----------------------------------------------------------------------
 
-      // Phase 1: TNSTC Bus Arrives at Mattuthavani Bus Stand (0 to 120 frames)
+      // Phase 1: TNSTC Bus Arrives along highway to Mattuthavani Bus Stand (0 to 240 frames)
       if (masterJourneyState === 'BUS_ARRIVING') {
         journeyTimer++;
-        const prog = Math.min(journeyTimer / 120, 1.0);
-        const busT = prog * 0.50; // Travels along black road to Platform 1
+        const prog = Math.min(journeyTimer / 240, 1.0);
+        const busT = prog * 0.234; // Travels along black road from west to Platform 1
         const bPt = busRoadCurve.getPointAt(busT);
-        const bNext = busRoadCurve.getPointAt(Math.min(busT + 0.01, 0.51));
+        const bNext = busRoadCurve.getPointAt(Math.min(busT + 0.008, 1.0));
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
         tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
         if (tnstcBusModel.userData.wheels) {
-          tnstcBusModel.userData.wheels.forEach(w => { w.rotation.x += 0.22; });
+          tnstcBusModel.userData.wheels.forEach(w => { w.rotation.z -= 0.12; });
         }
 
         // Maruti Swift waiting parked in BIXI dispatch bay
@@ -3266,34 +3406,34 @@
 
         if (!isFocusingCheckpoint) {
           const liveHud = document.getElementById('mapLiveCheckpointText');
-          if (liveHud) liveHud.textContent = 'TNSTC Bus Arriving at Mattuthavani Bus Stand (MIBT)...';
+          if (liveHud) liveHud.textContent = 'TNSTC Interstate Bus Arriving at Mattuthavani Bus Stand (MIBT)...';
         }
 
-        if (journeyTimer >= 120) {
+        if (journeyTimer >= 240) {
           masterJourneyState = 'WALK_TO_BIXI';
           journeyTimer = 0;
         }
       }
-      // Phase 2: Traveler steps out and walks to BIXI Ride Hub (0 to 120 frames)
+      // Phase 2: Traveler steps out and walks calmly to BIXI Ride Hub (0 to 200 frames)
       else if (masterJourneyState === 'WALK_TO_BIXI') {
         journeyTimer++;
         bixiTraveler.visible = true;
-        const prog = Math.min(journeyTimer / 120, 1.0);
+        const prog = Math.min(journeyTimer / 200, 1.0);
         const startPos = new THREE.Vector3(-34.5, ROAD_Y, -4.5);
         const bixiDeskPos = new THREE.Vector3(-26.5, ROAD_Y, -1.8);
         bixiTraveler.position.lerpVectors(startPos, bixiDeskPos, prog);
         bixiTraveler.lookAt(bixiDeskPos);
 
-        const stride = journeyTimer * 0.25;
-        bixiTraveler.userData.lLeg.rotation.x = Math.sin(stride) * 0.6;
-        bixiTraveler.userData.rLeg.rotation.x = -Math.sin(stride) * 0.6;
-        bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.5;
-        bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.5;
-        bixiTraveler.position.y = ROAD_Y + Math.abs(Math.sin(stride)) * 0.04;
+        const stride = journeyTimer * 0.14; // Smooth natural walking pace
+        bixiTraveler.userData.lLeg.rotation.x = Math.sin(stride) * 0.55;
+        bixiTraveler.userData.rLeg.rotation.x = -Math.sin(stride) * 0.55;
+        bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.45;
+        bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.45;
+        bixiTraveler.position.y = ROAD_Y + Math.abs(Math.sin(stride)) * 0.035;
 
-        // Keep bus parked at platform
-        const bPt = busRoadCurve.getPointAt(0.50);
-        const bNext = busRoadCurve.getPointAt(0.51);
+        // Keep bus parked at Platform 1
+        const bPt = busRoadCurve.getPointAt(0.234);
+        const bNext = busRoadCurve.getPointAt(0.242);
         tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
         tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
 
@@ -3307,12 +3447,12 @@
           if (liveHud) liveHud.textContent = 'Traveler Walking to BIXI Ride Hub for Car Pickup...';
         }
 
-        if (journeyTimer >= 120) {
+        if (journeyTimer >= 200) {
           masterJourneyState = 'COLLECT_KEYS';
           journeyTimer = 0;
         }
       }
-      // Phase 3: Traveler collects car keys at BIXI Counter (0 to 60 frames)
+      // Phase 3: Traveler collects car keys at BIXI Counter (0 to 120 frames)
       else if (masterJourneyState === 'COLLECT_KEYS') {
         journeyTimer++;
         bixiTraveler.visible = true;
@@ -3320,8 +3460,14 @@
         bixiTraveler.lookAt(new THREE.Vector3(-26.5, ROAD_Y, -1.0));
         bixiTraveler.userData.lLeg.rotation.x = 0;
         bixiTraveler.userData.rLeg.rotation.x = 0;
-        bixiTraveler.userData.lArm.rotation.x = -0.3;
-        bixiTraveler.userData.rArm.rotation.x = 0.4; // Outstretched receiving keys
+        bixiTraveler.userData.lArm.rotation.x = -0.25;
+        bixiTraveler.userData.rArm.rotation.x = 0.35; // Outstretched receiving keys
+
+        // Bus stays at Platform 1
+        const bPt = busRoadCurve.getPointAt(0.234);
+        const bNext = busRoadCurve.getPointAt(0.242);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
 
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
@@ -3331,31 +3477,37 @@
           if (liveHud) liveHud.textContent = 'Zero-Deposit Verification Complete • Received Maruti Swift Keys!';
         }
 
-        if (journeyTimer >= 60) {
+        if (journeyTimer >= 120) {
           masterJourneyState = 'ENTER_SWIFT';
           journeyTimer = 0;
         }
       }
-      // Phase 4: Traveler walks to Maruti Swift & enters car (0 to 60 frames)
+      // Phase 4: Traveler walks to Maruti Swift & enters car (0 to 120 frames)
       else if (masterJourneyState === 'ENTER_SWIFT') {
         journeyTimer++;
-        const prog = Math.min(journeyTimer / 60, 1.0);
+        const prog = Math.min(journeyTimer / 120, 1.0);
         const deskPos = new THREE.Vector3(-26.5, ROAD_Y, -1.8);
         const carDoorPos = new THREE.Vector3(-22.0, ROAD_Y, -0.4);
         bixiTraveler.position.lerpVectors(deskPos, carDoorPos, prog);
         bixiTraveler.lookAt(carDoorPos);
 
-        const stride = journeyTimer * 0.25;
-        bixiTraveler.userData.lLeg.rotation.x = Math.sin(stride) * 0.6;
-        bixiTraveler.userData.rLeg.rotation.x = -Math.sin(stride) * 0.6;
-        bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.5;
-        bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.5;
+        const stride = journeyTimer * 0.14;
+        bixiTraveler.userData.lLeg.rotation.x = Math.sin(stride) * 0.55;
+        bixiTraveler.userData.rLeg.rotation.x = -Math.sin(stride) * 0.55;
+        bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.45;
+        bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.45;
+
+        // Bus stays at Platform 1
+        const bPt = busRoadCurve.getPointAt(0.234);
+        const bNext = busRoadCurve.getPointAt(0.242);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
 
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
 
         if (prog > 0.85) {
-          bixiTraveler.visible = false; // Person has entered the car!
+          bixiTraveler.visible = false; // Traveler enters Swift!
           if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 3.8; // Headlights ON!
         }
 
@@ -3364,32 +3516,39 @@
           if (liveHud) liveHud.textContent = 'Customer Boarded Maruti Swift • Starting Madurai Tour!';
         }
 
-        if (journeyTimer >= 60) {
+        if (journeyTimer >= 120) {
           masterJourneyState = 'TOUR_CRUISING';
           journeyTimer = 0;
           carT = 0;
-          currentSpeed = 0.0004;
+          currentSpeed = 0.0002;
           currentStopIdx = -1;
         }
       }
-      // Phase 5: Maruti Swift Cruises the Black Road to ALL 6 Madurai Destinations!
+      // Phase 5: Maruti Swift Cruises Calmly to ALL 6 Madurai Destinations!
       else if (masterJourneyState === 'TOUR_CRUISING') {
         carT = (carT + currentSpeed) % 1;
-        if (currentSpeed < cruiseSpeed) currentSpeed += 0.00004;
+        if (currentSpeed < cruiseSpeed) currentSpeed += 0.00002;
 
         const pt = roadCurve.getPointAt(carT);
         const tangent = roadCurve.getTangentAt(carT);
         carGroup.position.set(pt.x, ROAD_Y + 0.12, pt.z);
         carGroup.lookAt(new THREE.Vector3(pt.x + tangent.x, ROAD_Y + 0.12, pt.z + tangent.z));
-        carWheels.forEach(w => { w.rotation.x += 0.28; });
+        carWheels.forEach(w => { w.rotation.x += 0.14; });
         hazards.forEach(h => { h.visible = false; });
         bixiTraveler.visible = false;
         touristOut.visible = false;
         touristIn.visible = false;
 
-        // Check for arrival at checkpoints (stops 0 to 5)
+        // Bus stays parked at Platform 1 during the tour
+        const bPt = busRoadCurve.getPointAt(0.234);
+        const bNext = busRoadCurve.getPointAt(0.242);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+
+        // Check for arrival at tourist destinations (stops 0 to 5)
         for (let i = 0; i < stopTValues.length; i++) {
-          const targetT = stopTValues[i];
+          const stopItem = stopTValues[i];
+          const targetT = stopItem.t;
           let diff = Math.abs(carT - targetT);
           if (diff > 0.5) diff = 1.0 - diff;
 
@@ -3399,12 +3558,12 @@
             stopTimer = 0;
             currentSpeed = 0;
 
-            const cp = CHECKPOINTS[i];
+            const cp = stopItem.cp;
             if (popupBadges[cp.id]) popupBadges[cp.id].userData.targetScale = 1.0;
 
             if (!isFocusingCheckpoint) {
               const liveHud = document.getElementById('mapLiveCheckpointText');
-              if (liveHud) liveHud.textContent = `${cp.name} (Stop #${i + 1} of 6) • TOUR CRUISE`;
+              if (liveHud) liveHud.textContent = `${cp.name} (Stop #${i + 1} of ${stopTValues.length}) • TOUR CRUISE`;
             }
 
             if (!isFocusingCheckpoint) {
@@ -3436,54 +3595,61 @@
         }
 
         // Completed all 6 destinations and returning near BIXI Hub
-        if (carT > 0.96 && currentStopIdx === 5) {
+        if (carT > 0.96 && currentStopIdx === stopTValues.length - 1) {
           masterJourneyState = 'RETURN_TO_BIXI';
           journeyTimer = 0;
         }
       }
-      // Phase 6: Car Stopped at Destination (Hazards Blink, Jallikattu Bull Charges, Passenger Explores)
+      // Phase 6: Car Stopped at Destination (Hazards Blink, Jallikattu Bull Lunges, Passenger Explores)
       else if (masterJourneyState === 'TOUR_STOPPED') {
         stopTimer++;
-        const hazardBlink = Math.floor(now / 350) % 2 === 0;
+        const hazardBlink = Math.floor(now / 400) % 2 === 0;
         hazards.forEach(h => { h.visible = hazardBlink; });
 
-        const cp = CHECKPOINTS[currentStopIdx];
+        // Bus stays at Platform 1
+        const bPt = busRoadCurve.getPointAt(0.234);
+        const bNext = busRoadCurve.getPointAt(0.242);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+
+        const stopItem = stopTValues[currentStopIdx];
+        const cp = stopItem ? stopItem.cp : CHECKPOINTS[1];
         const carWorldPos = new THREE.Vector3(cp.roadPos.x, ROAD_Y, cp.roadPos.z);
         const entranceWorldPos = new THREE.Vector3(cp.modelPos.x * 0.72 + cp.roadPos.x * 0.28, ROAD_Y, cp.modelPos.z * 0.72 + cp.roadPos.z * 0.28);
 
-        // Dynamic Jallikattu Bull Animation at Stop 1 (Alanganallur Vadivasal)
+        // Dynamic Jallikattu Bull Animation at Alanganallur Vadivasal
         if (cp.id === 'alanganallur-vadivasal' && bullHead && bullTail && bullMesh) {
-          bullHead.rotation.y = Math.sin(timeSec * 3.0) * 0.25;
-          bullHead.rotation.x = -0.1 + Math.sin(timeSec * 4.0) * 0.15;
-          if (bullLegs && bullLegs[1]) bullLegs[1].rotation.x = Math.max(0, Math.sin(timeSec * 5.0) * 0.45);
-          bullTail.rotation.z = Math.sin(timeSec * 6.0) * 0.55;
-          bullMesh.position.z = 0.2 + Math.sin(timeSec * 2.5) * 0.18; // Lunging charge towards road!
+          bullHead.rotation.y = Math.sin(timeSec * 2.2) * 0.22;
+          bullHead.rotation.x = -0.1 + Math.sin(timeSec * 3.0) * 0.12;
+          if (bullLegs && bullLegs[1]) bullLegs[1].rotation.x = Math.max(0, Math.sin(timeSec * 4.0) * 0.40);
+          bullTail.rotation.z = Math.sin(timeSec * 5.0) * 0.45;
+          bullMesh.position.z = 0.2 + Math.sin(timeSec * 2.0) * 0.15;
         }
 
-        // Passenger walks out to view landmark & returns
-        if (stopTimer <= 65) {
+        // Passenger walks out to view landmark & returns at natural cadence
+        if (stopTimer <= 100) {
           touristOut.visible = true;
-          const prog = stopTimer / 65;
+          const prog = stopTimer / 100;
           touristOut.position.lerpVectors(carWorldPos, entranceWorldPos, prog);
           touristOut.lookAt(entranceWorldPos);
-          const w = stopTimer * 0.25;
-          touristOut.userData.leftLeg.rotation.x = Math.sin(w) * 0.6;
-          touristOut.userData.rightLeg.rotation.x = -Math.sin(w) * 0.6;
-          touristOut.userData.leftArm.rotation.x = -Math.sin(w) * 0.5;
-          touristOut.userData.rightArm.rotation.x = Math.sin(w) * 0.5;
-          touristOut.position.y = ROAD_Y + Math.abs(Math.sin(w)) * 0.04;
-        } else if (stopTimer > 65 && stopTimer <= 130) {
+          const w = stopTimer * 0.14;
+          touristOut.userData.leftLeg.rotation.x = Math.sin(w) * 0.55;
+          touristOut.userData.rightLeg.rotation.x = -Math.sin(w) * 0.55;
+          touristOut.userData.leftArm.rotation.x = -Math.sin(w) * 0.45;
+          touristOut.userData.rightArm.rotation.x = Math.sin(w) * 0.45;
+          touristOut.position.y = ROAD_Y + Math.abs(Math.sin(w)) * 0.035;
+        } else if (stopTimer > 100 && stopTimer <= 200) {
           touristOut.visible = false;
           touristIn.visible = true;
-          const prog = (stopTimer - 65) / 65;
+          const prog = (stopTimer - 100) / 100;
           touristIn.position.lerpVectors(entranceWorldPos, carWorldPos, prog);
           touristIn.lookAt(carWorldPos);
-          const w = (stopTimer - 65) * 0.25;
-          touristIn.userData.leftLeg.rotation.x = Math.sin(w) * 0.6;
-          touristIn.userData.rightLeg.rotation.x = -Math.sin(w) * 0.6;
-          touristIn.userData.leftArm.rotation.x = -Math.sin(w) * 0.5;
-          touristIn.userData.rightArm.rotation.x = Math.sin(w) * 0.5;
-          touristIn.position.y = ROAD_Y + Math.abs(Math.sin(w)) * 0.04;
+          const w = (stopTimer - 100) * 0.14;
+          touristIn.userData.leftLeg.rotation.x = Math.sin(w) * 0.55;
+          touristIn.userData.rightLeg.rotation.x = -Math.sin(w) * 0.55;
+          touristIn.userData.leftArm.rotation.x = -Math.sin(w) * 0.45;
+          touristIn.userData.rightArm.rotation.x = Math.sin(w) * 0.45;
+          touristIn.position.y = ROAD_Y + Math.abs(Math.sin(w)) * 0.035;
         } else {
           touristOut.visible = false;
           touristIn.visible = false;
@@ -3492,10 +3658,10 @@
         if (stopTimer >= STOP_DURATION_FRAMES) {
           if (popupBadges[cp.id]) popupBadges[cp.id].userData.targetScale = 0.0;
           masterJourneyState = 'TOUR_CRUISING';
-          currentSpeed = 0.0003;
+          currentSpeed = 0.00015;
         }
       }
-      // Phase 7: Swift Returns to BIXI Hub & Resets Cycle
+      // Phase 7: Swift Returns to BIXI Hub, Parks & Headlights Turn Off (0 to 120 frames)
       else if (masterJourneyState === 'RETURN_TO_BIXI') {
         journeyTimer++;
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
@@ -3503,12 +3669,93 @@
         hazards.forEach(h => { h.visible = false; });
         if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
 
+        // Bus waiting at Platform 1
+        const bPt = busRoadCurve.getPointAt(0.234);
+        const bNext = busRoadCurve.getPointAt(0.242);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+
         if (!isFocusingCheckpoint) {
           const liveHud = document.getElementById('mapLiveCheckpointText');
-          if (liveHud) liveHud.textContent = 'Tour Complete • Returned to BIXI Mattuthavani Hub!';
+          if (liveHud) liveHud.textContent = 'Tour Complete • Returned Maruti Swift to BIXI Mattuthavani Hub!';
         }
 
-        if (journeyTimer >= 80) {
+        if (journeyTimer >= 120) {
+          masterJourneyState = 'CUSTOMER_WALK_TO_BUS';
+          journeyTimer = 0;
+        }
+      }
+      // Phase 8: Customer leaves Swift and walks back to Mattuthavani Bus Stand (0 to 200 frames)
+      else if (masterJourneyState === 'CUSTOMER_WALK_TO_BUS') {
+        journeyTimer++;
+        bixiTraveler.visible = true;
+        const prog = Math.min(journeyTimer / 200, 1.0);
+        const carDoorPos = new THREE.Vector3(-22.0, ROAD_Y, -0.4);
+        const busPlatformPos = new THREE.Vector3(-34.5, ROAD_Y, -4.5);
+        bixiTraveler.position.lerpVectors(carDoorPos, busPlatformPos, prog);
+        bixiTraveler.lookAt(busPlatformPos);
+
+        const stride = journeyTimer * 0.14;
+        bixiTraveler.userData.lLeg.rotation.x = Math.sin(stride) * 0.55;
+        bixiTraveler.userData.rLeg.rotation.x = -Math.sin(stride) * 0.55;
+        bixiTraveler.userData.lArm.rotation.x = -Math.sin(stride) * 0.45;
+        bixiTraveler.userData.rArm.rotation.x = Math.sin(stride) * 0.45;
+        bixiTraveler.position.y = ROAD_Y + Math.abs(Math.sin(stride)) * 0.035;
+
+        // Bus waiting at Platform 1
+        const bPt = busRoadCurve.getPointAt(0.234);
+        const bNext = busRoadCurve.getPointAt(0.242);
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+
+        carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
+        carGroup.rotation.y = Math.PI * 0.4;
+        hazards.forEach(h => { h.visible = false; });
+        if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
+
+        // Customer boards the bus
+        if (prog > 0.85) {
+          bixiTraveler.visible = false;
+        }
+
+        if (!isFocusingCheckpoint) {
+          const liveHud = document.getElementById('mapLiveCheckpointText');
+          if (liveHud) liveHud.textContent = 'Customer Boarding TNSTC Bus at Platform 1 for Onward Travel...';
+        }
+
+        if (journeyTimer >= 200) {
+          masterJourneyState = 'BUS_DEPARTING';
+          journeyTimer = 0;
+        }
+      }
+      // Phase 9: TNSTC Bus Departs Mattuthavani along highway to Horizon (0 to 240 frames)
+      else if (masterJourneyState === 'BUS_DEPARTING') {
+        journeyTimer++;
+        const prog = Math.min(journeyTimer / 240, 1.0);
+        const busT = 0.234 + prog * (1.0 - 0.234); // Departs Platform 1 and drives to highway horizon!
+        const bPt = busRoadCurve.getPointAt(Math.min(busT, 1.0));
+        const bNext = busRoadCurve.getPointAt(Math.min(busT + 0.008, 1.0));
+        tnstcBusModel.position.set(bPt.x, ROAD_Y, bPt.z);
+        tnstcBusModel.lookAt(new THREE.Vector3(bNext.x, ROAD_Y, bNext.z));
+        if (tnstcBusModel.userData.wheels) {
+          tnstcBusModel.userData.wheels.forEach(w => { w.rotation.z -= 0.12; });
+        }
+
+        bixiTraveler.visible = false;
+        touristOut.visible = false;
+        touristIn.visible = false;
+
+        carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
+        carGroup.rotation.y = Math.PI * 0.4;
+        hazards.forEach(h => { h.visible = false; });
+        if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
+
+        if (!isFocusingCheckpoint) {
+          const liveHud = document.getElementById('mapLiveCheckpointText');
+          if (liveHud) liveHud.textContent = 'TNSTC Interstate Bus Departing Mattuthavani for Interstate Highway...';
+        }
+
+        if (journeyTimer >= 240) {
           masterJourneyState = 'BUS_ARRIVING';
           journeyTimer = 0;
           carT = 0;

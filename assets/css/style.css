@@ -7206,7 +7206,7 @@ button.bixi-cal-day.empty,
   width: 390px !important;
   max-width: calc(100vw - 3rem) !important;
   height: auto !important;
-  z-index: 55 !important;
+  z-index: 60 !important;
   visibility: hidden !important;
   pointer-events: none !important;
   transition: visibility 0.3s ease !important;
@@ -7215,6 +7215,51 @@ button.bixi-cal-day.empty,
 .destination-slide-drawer.open {
   visibility: visible !important;
   pointer-events: auto !important;
+}
+
+/* Floating Pull Tab on Right Edge for Destination Route Guide */
+.drawer-pull-tab {
+  position: absolute !important;
+  top: 50% !important;
+  right: 0 !important;
+  transform: translateY(-50%) !important;
+  z-index: 65 !important;
+  background: linear-gradient(135deg, #FF7A18 0%, #D85D00 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 12px 0 0 12px !important;
+  padding: 0.75rem 0.55rem !important;
+  display: inline-flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  cursor: pointer !important;
+  box-shadow: -4px 6px 18px rgba(255, 122, 24, 0.45) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  writing-mode: vertical-rl !important;
+  text-orientation: mixed !important;
+  transition: all 0.25s ease !important;
+}
+
+.drawer-pull-tab:hover {
+  background: linear-gradient(135deg, #FF8E38 0%, #E66600 100%) !important;
+  box-shadow: -6px 8px 24px rgba(255, 122, 24, 0.6) !important;
+  padding-right: 0.75rem !important;
+}
+
+.drawer-pull-tab .pull-tab-arrow {
+  writing-mode: horizontal-tb !important;
+  font-size: 0.85rem !important;
+  display: inline-block !important;
+  transition: transform 0.25s ease !important;
+}
+
+.drawer-pull-tab.drawer-is-open .pull-tab-arrow {
+  transform: rotate(180deg) !important;
 }
 
 /* ZERO FULL-SCREEN OVERLAY OR BLUR: MAP REMAINS 100% VISIBLE & ROTATABLE */
@@ -8610,11 +8655,10 @@ html {
     flex-shrink: 0 !important;
   }
   
-  /* When destination drawer opens on tablet, hide bottom bar */
-  body.destination-drawer-active .app-landmarks-sidebar {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transform: translateY(20px) !important;
+  /* Persistent Waypoints Dock on Tablet */
+  .sidebar-checkpoint-btn {
+    min-width: 200px !important;
+    flex-shrink: 0 !important;
   }
 }
 
@@ -8724,32 +8768,58 @@ html {
     justify-content: center !important;
   }
   
-  /* Quick Waypoints Horizontal Dock on Mobile */
+  /* Quick Waypoints Horizontal Dock on Mobile - Always Visible & Interactive */
   .app-landmarks-sidebar {
-    bottom: 0.75rem !important;
+    bottom: 0.65rem !important;
     left: 0.5rem !important;
     right: 0.5rem !important;
-    max-height: 84px !important;
-    padding: 0.45rem 0.5rem !important;
-    background: rgba(11, 14, 23, 0.92) !important;
+    width: auto !important;
+    max-height: 74px !important;
+    padding: 0.35rem 0.45rem !important;
+    background: rgba(11, 14, 23, 0.94) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
     border: 1px solid rgba(255, 122, 24, 0.35) !important;
     border-radius: 16px !important;
     z-index: 60 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
     transition: opacity 0.28s ease, transform 0.28s ease !important;
   }
+  .app-landmarks-sidebar.collapsed {
+    width: auto !important;
+    padding: 0.35rem 0.45rem !important;
+  }
+  .app-landmarks-sidebar.collapsed .cp-info,
+  .app-landmarks-sidebar.collapsed .cp-arrow {
+    display: block !important;
+  }
+  .sidebar-header, .sidebar-footer-hint {
+    display: none !important;
+  }
   .sidebar-landmarks-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     gap: 0.4rem !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
   }
   .sidebar-landmarks-list::-webkit-scrollbar {
     display: none !important;
   }
   .sidebar-checkpoint-btn {
-    min-width: 170px !important;
-    padding: 0.4rem 0.55rem !important;
+    flex: 0 0 auto !important;
+    min-width: 165px !important;
+    padding: 0.35rem 0.55rem !important;
     border-radius: 12px !important;
+    display: inline-flex !important;
   }
   .cp-name {
     font-size: 0.70rem !important;
@@ -8758,29 +8828,29 @@ html {
     font-size: 0.60rem !important;
   }
 
-  /* Non-intrusive Mobile Bottom Card for Destination Details (ZERO Backdrop Blur, Upper 65% Screen Completely Free for 3D Orbit) */
+  /* Right-Side Slide-In Drawer on Mobile (Never blocks bottom dock, ZERO screen-covering blur) */
   .destination-slide-drawer {
     position: fixed !important;
-    top: auto !important;
-    bottom: 0 !important;
-    left: 0.5rem !important;
+    top: 58px !important;
+    bottom: 84px !important;
     right: 0.5rem !important;
-    width: auto !important;
-    max-width: 100% !important;
+    left: auto !important;
+    width: 330px !important;
+    max-width: calc(100vw - 1rem) !important;
     height: auto !important;
-    max-height: 38vh !important;
-    border-radius: 20px 20px 0 0 !important;
-    z-index: 100 !important;
-    transform: translateY(115%) !important;
-    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease !important;
-    box-shadow: 0 -15px 45px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 122, 24, 0.25) !important;
+    max-height: none !important;
+    border-radius: 18px !important;
+    z-index: 80 !important;
+    transform: translateX(115%) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease !important;
+    box-shadow: -10px 15px 45px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 122, 24, 0.25) !important;
     border: 1px solid rgba(255, 122, 24, 0.35) !important;
-    border-bottom: none !important;
     pointer-events: none !important;
   }
   .destination-slide-drawer.open {
-    transform: translateY(0) !important;
+    transform: translateX(0) !important;
     visibility: visible !important;
+    pointer-events: auto !important;
   }
   /* ZERO full-screen overlay or backdrop blur: map and 3D models remain 100% visible and interactive */
   .destination-slide-drawer.open .drawer-overlay {
@@ -8791,29 +8861,25 @@ html {
   }
   .destination-slide-drawer .drawer-panel {
     transform: none !important;
-    border-radius: 20px 20px 0 0 !important;
+    border-radius: 18px !important;
     width: 100% !important;
     height: 100% !important;
-    max-height: 38vh !important;
-    border-bottom: none !important;
-    padding: 0.85rem 0.95rem 1.4rem !important;
+    max-height: none !important;
+    padding: 1.1rem 1.0rem 1.4rem !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     pointer-events: auto !important;
-    background: rgba(13, 16, 24, 0.95) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    background: rgba(13, 16, 24, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: none !important;
   }
-  /* Modern Touch Pull-Down Handle */
-  .destination-slide-drawer .drawer-panel::before {
-    content: "" !important;
-    display: block !important;
-    width: 42px !important;
-    height: 4px !important;
-    border-radius: 2px !important;
-    background: rgba(255, 255, 255, 0.28) !important;
-    margin: 0 auto 0.6rem !important;
-    flex-shrink: 0 !important;
+  .drawer-pull-tab {
+    top: 48% !important;
+    right: 0 !important;
+    padding: 0.65rem 0.45rem !important;
+    font-size: 0.65rem !important;
+    z-index: 75 !important;
   }
   .drawer-close-btn {
     top: 0.75rem !important;
@@ -8830,13 +8896,6 @@ html {
   .drawer-vehicle-card {
     padding: 0.75rem !important;
     margin-bottom: 0.5rem !important;
-  }
-
-  /* Hide Waypoints dock when Destination Drawer is active on mobile */
-  body.destination-drawer-active .app-landmarks-sidebar {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transform: translateY(20px) !important;
   }
 
   /* Preloader on Mobile */

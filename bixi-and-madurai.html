@@ -290,6 +290,15 @@
       </div>
 
       <nav class="sidebar-landmarks-list">
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('mattuthavani-bus-stand')" data-checkpoint="mattuthavani-bus-stand">
+          <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="15" rx="3"/><path d="M3 10h18M7 19v2M17 19v2M8 15h.01M16 15h.01"/></svg></span>
+          <div class="cp-info">
+            <span class="cp-name">Mattuthavani Madurai Bus</span>
+            <span class="cp-sub">MIBT Central Terminal • 24/7 Arrivals</span>
+          </div>
+          <span class="cp-arrow">→</span>
+        </button>
+
         <button type="button" class="sidebar-checkpoint-btn active dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('meenakshi')" data-checkpoint="meenakshi">
           <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v3m-7 4h14l-2 12H7L5 9zm3-4h8v4H8V5z"/></svg></span>
           <div class="cp-info">
@@ -354,6 +363,12 @@
     <div class="app-bottom-hint-pill">
       <span>Touch or click any 3D pin to open landmark history &amp; vehicle strategy • 360° Orbit active</span>
     </div>
+
+    <!-- Floating Pull Tab for Slide-In Route Guide Drawer -->
+    <button type="button" id="btnToggleDrawer" class="drawer-pull-tab" onclick="toggleDestinationDrawer()" aria-label="Toggle Route Guide">
+      <span class="pull-tab-arrow">◀</span>
+      <span class="pull-tab-text">Route Guide</span>
+    </button>
 
     <!-- ═══════════════ SLIDE-IN DESTINATION HISTORY & MARKETING DRAWER ═══════════════ -->
     <div id="destinationDrawer" class="destination-slide-drawer" aria-hidden="true" role="dialog" aria-labelledby="drawerTitle">
@@ -453,9 +468,9 @@
   </main>
 
   <!-- Scripts -->
-  <script src="assets/js/madurai-3d-map.js?v=32.0"></script>
-  <script src="assets/js/react-bits-animations.js?v=25.0"></script>
-  <script src="assets/js/main.js?v=25.0"></script>
+  <script src="assets/js/madurai-3d-map.js?v=33.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=33.0"></script>
+  <script src="assets/js/main.js?v=33.0"></script>
 
   <!-- Preloader & Interaction Logic -->
   <script>
@@ -560,6 +575,20 @@
 
     // ═══════════════ DESTINATION DRAWER LOGIC ═══════════════
     var DESTINATION_DETAILS = {
+      'mattuthavani-bus-stand': {
+        icon: 'bus',
+        category: 'CENTRAL BUS TERMINAL (MIBT)',
+        title: 'Mattuthavani Madurai Bus Stand',
+        distance: 'Central Hub • 24/7 Arrivals',
+        routeMeta: 'Route: Melur Rd / Ring Rd | Best Time: 24/7 Interstate Express Arrivals & Departures',
+        history: 'Mattuthavani Integrated Bus Terminus (MIBT), officially M.G.R. Bus Stand, is Madurai’s premier transit gateway connecting travelers across Chennai, Bengaluru, Coimbatore, Tirunelveli, and Kerala. Situated directly next to the BIXI Ride rental dispatch hub, arriving bus passengers can verify their zero-deposit reservation, collect Maruti Swift or scooter keys, and embark on their Madurai adventure in under 60 seconds.',
+        carTitle: 'Maruti Suzuki Swift (Self-Drive AC)',
+        carPrice: 'from ₹1,800/24 hrs',
+        carDesc: 'Step directly from your long-distance bus into a spotless AC hatchback with zero security deposit. Store your family luggage safely and begin exploring temples or heading to Kodaikanal immediately.',
+        bikeTitle: 'Honda Activa 6G / Royal Enfield Hunter 350',
+        bikePrice: 'from ₹399/day',
+        bikeDesc: 'Instant key handoff right at Mattuthavani. Ideal for solo explorers, students, and weekend backpackers looking for rapid Madurai city mobility.'
+      },
       'alagar-kovil': {
         icon: 'badge',
         category: 'SACRED HILL TEMPLE & NATURE',
@@ -646,12 +675,18 @@
       }
     };
 
-    window.openDestinationDrawer = function(id) {
-      var data = DESTINATION_DETAILS[id] || DESTINATION_DETAILS['alagar-kovil'];
+    var currentActiveDestinationId = 'mattuthavani-bus-stand';
+
+    window.updateDestinationDrawerContent = function(id) {
+      if (!id) id = currentActiveDestinationId;
+      var data = DESTINATION_DETAILS[id] || DESTINATION_DETAILS['mattuthavani-bus-stand'];
+      currentActiveDestinationId = id;
+
       var drawer = document.getElementById('destinationDrawer');
       if (!drawer) return;
 
       var iconMap = {
+        'mattuthavani-bus-stand': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="15" rx="3"/><path d="M3 10h18M7 19v2M17 19v2M8 15h.01M16 15h.01"/></svg>',
         'alagar-kovil': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>',
         'meenakshi': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v3m-7 4h14l-2 12H7L5 9zm3-4h8v4H8V5z"/></svg>',
         'alanganallur-vadivasal': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="14" r="6"/><path d="M7 9C6 6 3 5 2 6m15 3c1-3 4-4 5-3m-13 8v3m6-3v3"/></svg>',
@@ -660,41 +695,58 @@
         'gandhi-museum': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M2 22h20M12 2l10 4H2l10-4z"/></svg>'
       };
       var dIcon = document.getElementById('drawerIcon');
-      if (dIcon) dIcon.innerHTML = iconMap[id] || iconMap['alagar-kovil'];
-      document.getElementById('drawerCategory').textContent = data.category;
-      document.getElementById('drawerDistance').textContent = data.distance;
-      document.getElementById('drawerTitle').textContent = data.title;
-      document.getElementById('drawerRouteMeta').innerHTML = '<span>' + data.routeMeta + '</span>';
-      document.getElementById('drawerHistoryText').textContent = data.history;
+      if (dIcon) dIcon.innerHTML = iconMap[id] || iconMap['mattuthavani-bus-stand'];
+      var dCat = document.getElementById('drawerCategory');
+      if (dCat) dCat.textContent = data.category;
+      var dDist = document.getElementById('drawerDistance');
+      if (dDist) dDist.textContent = data.distance;
+      var dTitle = document.getElementById('drawerTitle');
+      if (dTitle) dTitle.textContent = data.title;
+      var dMeta = document.getElementById('drawerRouteMeta');
+      if (dMeta) dMeta.innerHTML = '<span>' + data.routeMeta + '</span>';
+      var dHist = document.getElementById('drawerHistoryText');
+      if (dHist) dHist.textContent = data.history;
 
       var optCar = drawer.querySelector('.option-car');
       if (optCar) {
-        optCar.querySelector('.veh-name').textContent = data.carTitle;
-        optCar.querySelector('.veh-price').textContent = data.carPrice;
-        optCar.querySelector('.veh-desc').textContent = data.carDesc;
+        var cn = optCar.querySelector('.veh-name');
+        if (cn) cn.textContent = data.carTitle;
+        var cp = optCar.querySelector('.veh-price');
+        if (cp) cp.textContent = data.carPrice;
+        var cd = optCar.querySelector('.veh-desc');
+        if (cd) cd.textContent = data.carDesc;
       }
 
       var optBike = drawer.querySelector('.option-bike');
       if (optBike) {
-        optBike.querySelector('.veh-name').textContent = data.bikeTitle;
-        optBike.querySelector('.veh-price').textContent = data.bikePrice;
-        optBike.querySelector('.veh-desc').textContent = data.bikeDesc;
+        var bn = optBike.querySelector('.veh-name');
+        if (bn) bn.textContent = data.bikeTitle;
+        var bp = optBike.querySelector('.veh-price');
+        if (bp) bp.textContent = data.bikePrice;
+        var bd = optBike.querySelector('.veh-desc');
+        if (bd) bd.textContent = data.bikeDesc;
       }
+    };
 
-      // Auto-collapse landmarks sidebar on smaller screens / tablets so 3D scene and drawer never crowd
-      var sidebar = document.getElementById('appLandmarksSidebar');
-      if (sidebar && window.innerWidth <= 1180) {
-        sidebar.classList.add('collapsed');
-        var toggleBtn = document.getElementById('btnToggleSidebar');
-        if (toggleBtn) {
-          var tIcon = toggleBtn.querySelector('.toggle-icon');
-          if (tIcon) tIcon.textContent = '▶';
-        }
+    window.openDestinationDrawer = function(id) {
+      if (id) {
+        window.updateDestinationDrawerContent(id);
+      } else {
+        window.updateDestinationDrawerContent(currentActiveDestinationId);
       }
+      var drawer = document.getElementById('destinationDrawer');
+      if (!drawer) return;
 
-      document.body.classList.add('destination-drawer-active');
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
+
+      var pullTab = document.getElementById('btnToggleDrawer');
+      if (pullTab) {
+        pullTab.classList.add('drawer-is-open');
+        var pArrow = pullTab.querySelector('.pull-tab-arrow');
+        if (pArrow) pArrow.textContent = '▶';
+      }
+
       var panel = drawer.querySelector('.drawer-panel');
       if (panel) panel.scrollTop = 0;
     };
@@ -704,7 +756,23 @@
       if (!drawer) return;
       drawer.classList.remove('open');
       drawer.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('destination-drawer-active');
+
+      var pullTab = document.getElementById('btnToggleDrawer');
+      if (pullTab) {
+        pullTab.classList.remove('drawer-is-open');
+        var pArrow = pullTab.querySelector('.pull-tab-arrow');
+        if (pArrow) pArrow.textContent = '◀';
+      }
+    };
+
+    window.toggleDestinationDrawer = function() {
+      var drawer = document.getElementById('destinationDrawer');
+      if (!drawer) return;
+      if (drawer.classList.contains('open')) {
+        closeDestinationDrawer();
+      } else {
+        openDestinationDrawer(currentActiveDestinationId);
+      }
     };
 
     window.toggleLandmarksSidebar = function() {
