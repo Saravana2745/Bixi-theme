@@ -1147,27 +1147,47 @@
         baseRadius = topRadius;
       }
 
-      // Vaulted Barrel Roof (Sala-Shikhara)
+      // Solid Classical Griva (Neck Pedestal connecting tier to Shikhara - Zero Floating Gap!)
+      const grivaH = 0.26;
+      const grivaW = baseRadius * 1.30;
+      const grivaD = baseRadius * 0.90;
+      const griva = new THREE.Mesh(new THREE.BoxGeometry(grivaW, grivaH, grivaD), detailStoneMat);
+      griva.position.set(0, currentY + grivaH / 2, 0);
+      griva.castShadow = true;
+      temple.add(griva);
+
+      const grivaCornice = new THREE.Mesh(new THREE.BoxGeometry(grivaW + 0.16, 0.06, grivaD + 0.16), terracottaAccent);
+      grivaCornice.position.set(0, currentY + grivaH + 0.03, 0);
+      temple.add(grivaCornice);
+
+      currentY += grivaH + 0.06;
+
+      // Vaulted Barrel Roof (Sala-Shikhara) - Seated flush directly on Griva
       const salaLength = baseRadius * 1.8;
       const salaGeo = new THREE.CylinderGeometry(0.35, 0.50, salaLength, 16, 1, false, 0, Math.PI);
       const sala = new THREE.Mesh(salaGeo, mainStoneMat);
       sala.rotation.z = Math.PI / 2;
       sala.rotation.y = Math.PI / 2;
-      sala.position.y = currentY + 0.32;
+      sala.position.y = currentY;
       sala.castShadow = true;
       temple.add(sala);
 
+      // Solid core stone block inside Sala arch (prevents any hollow see-through gap)
+      const salaCore = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.24, salaLength * 0.96), mainStoneMat);
+      salaCore.position.set(0, currentY + 0.12, 0);
+      temple.add(salaCore);
+
       // Gavaksha Arched End Gables
       const gableL = new THREE.Mesh(new THREE.TorusGeometry(0.35, 0.07, 8, 16, Math.PI), detailStoneMat);
-      gableL.position.set(-salaLength / 2, currentY + 0.32, 0);
+      gableL.position.set(-salaLength / 2, currentY, 0);
       gableL.rotation.y = Math.PI / 2;
       temple.add(gableL);
       const gableR = new THREE.Mesh(new THREE.TorusGeometry(0.35, 0.07, 8, 16, Math.PI), detailStoneMat);
-      gableR.position.set(salaLength / 2, currentY + 0.32, 0);
+      gableR.position.set(salaLength / 2, currentY, 0);
       gableR.rotation.y = -Math.PI / 2;
       temple.add(gableR);
 
-      // 5 Lathed Golden Kalasams (Flared Lotus Base + Spherical Pot + Conical Spire)
+      // 5 Lathed Golden Kalasams seated firmly on roof ridge
       for (let k = -2; k <= 2; k++) {
         const kalasamGroup = new THREE.Group();
         const padma = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.10, 16), goldMat);
@@ -1181,7 +1201,7 @@
         spire.position.y = 0.38;
         kalasamGroup.add(spire);
 
-        kalasamGroup.position.set(k * 0.22, currentY + 0.62, 0);
+        kalasamGroup.position.set(k * 0.22, currentY + 0.48, 0);
         temple.add(kalasamGroup);
       }
 
@@ -2009,16 +2029,47 @@
         baseR = topR;
       }
 
-      // Barrel-Vaulted Wagon Roof (Sala Shikhara)
+      // Solid Classical Griva (Neck Pedestal connecting tier to Shikhara - Zero Floating Gap!)
+      const grivaH = 0.24;
+      const grivaW = baseR * 1.30;
+      const grivaD = baseR * 0.90;
+      const griva = new THREE.Mesh(new THREE.BoxGeometry(grivaW, grivaH, grivaD), detailStoneMat);
+      griva.position.set(0, currentY + grivaH / 2, 0);
+      griva.castShadow = true;
+      temple.add(griva);
+
+      // Griva Upper Molding / Cornice
+      const grivaCornice = new THREE.Mesh(new THREE.BoxGeometry(grivaW + 0.14, 0.06, grivaD + 0.14), terracottaAccent);
+      grivaCornice.position.set(0, currentY + grivaH + 0.03, 0);
+      temple.add(grivaCornice);
+
+      currentY += grivaH + 0.06;
+
+      // Barrel-Vaulted Wagon Roof (Sala Shikhara) - Seated flush directly on Griva
       const salaLength = baseR * 1.8;
-      const sala = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.45, salaLength, 14, 1, false, 0, Math.PI), stoneMat);
+      const sala = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.45, salaLength, 16, 1, false, 0, Math.PI), stoneMat);
       sala.rotation.z = Math.PI / 2;
       sala.rotation.y = Math.PI / 2;
-      sala.position.y = currentY + 0.28;
+      sala.position.y = currentY;
       sala.castShadow = true;
       temple.add(sala);
 
-      // 5 Gleaming Golden Kalasams
+      // Solid core stone block inside Sala arch (prevents any hollow see-through gap)
+      const salaCore = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.22, salaLength * 0.96), stoneMat);
+      salaCore.position.set(0, currentY + 0.11, 0);
+      temple.add(salaCore);
+
+      // Gavaksha Arched End Gables
+      const gableL = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 16, Math.PI), detailStoneMat);
+      gableL.position.set(-salaLength / 2, currentY, 0);
+      gableL.rotation.y = Math.PI / 2;
+      temple.add(gableL);
+      const gableR = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 16, Math.PI), detailStoneMat);
+      gableR.position.set(salaLength / 2, currentY, 0);
+      gableR.rotation.y = -Math.PI / 2;
+      temple.add(gableR);
+
+      // 5 Gleaming Golden Kalasams seated firmly on roof ridge
       for (let k = -2; k <= 2; k++) {
         const kalasamGroup = new THREE.Group();
         const pot = new THREE.Mesh(new THREE.SphereGeometry(0.08, 12, 12), goldMat);
@@ -2029,7 +2080,7 @@
         spire.position.y = 0.30;
         kalasamGroup.add(spire);
 
-        kalasamGroup.position.set(k * 0.18, currentY + 0.52, 0);
+        kalasamGroup.position.set(k * 0.18, currentY + 0.42, 0);
         temple.add(kalasamGroup);
       }
 
@@ -2948,11 +2999,16 @@
       const resetBtn = document.getElementById('btnMapResetView');
       if (resetBtn) resetBtn.style.display = 'inline-flex';
 
+      // Disturbance-free inspection: Hide high-altitude 3D billboards so the gopuram & sky remain 100% unobstructed!
       Object.keys(popupBadges).forEach(k => {
         if (popupBadges[k]) {
-          popupBadges[k].userData.targetScale = (k === cp.id) ? 1.0 : 0.0;
+          popupBadges[k].userData.targetScale = 0.0;
         }
       });
+
+      // Update top HUD header for currently focused landmark
+      const liveHud = document.getElementById('mapLiveCheckpointText');
+      if (liveHud) liveHud.textContent = `LANDMARK INSPECTION: ${cp.name} (3D 360° Orbit View)`;
 
       const cardTitle = document.getElementById('mapActiveTitle');
       const cardCategory = document.getElementById('mapActiveCategory');
@@ -3096,8 +3152,10 @@
         touristIn.visible = false;
         if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
 
-        const liveHud = document.getElementById('mapLiveCheckpointText');
-        if (liveHud) liveHud.textContent = 'TNSTC Bus Arriving at Mattuthavani Bus Stand (MIBT)...';
+        if (!isFocusingCheckpoint) {
+          const liveHud = document.getElementById('mapLiveCheckpointText');
+          if (liveHud) liveHud.textContent = 'TNSTC Bus Arriving at Mattuthavani Bus Stand (MIBT)...';
+        }
 
         if (journeyTimer >= 120) {
           masterJourneyState = 'WALK_TO_BIXI';
@@ -3132,8 +3190,10 @@
         hazards.forEach(h => { h.visible = false; });
         if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
 
-        const liveHud = document.getElementById('mapLiveCheckpointText');
-        if (liveHud) liveHud.textContent = 'Traveler Walking to BIXI Ride Hub for Car Pickup...';
+        if (!isFocusingCheckpoint) {
+          const liveHud = document.getElementById('mapLiveCheckpointText');
+          if (liveHud) liveHud.textContent = 'Traveler Walking to BIXI Ride Hub for Car Pickup...';
+        }
 
         if (journeyTimer >= 120) {
           masterJourneyState = 'COLLECT_KEYS';
@@ -3154,8 +3214,10 @@
         carGroup.position.set(-22.0, ROAD_Y + 0.12, 0.0);
         carGroup.rotation.y = Math.PI * 0.4;
 
-        const liveHud = document.getElementById('mapLiveCheckpointText');
-        if (liveHud) liveHud.textContent = 'Zero-Deposit Verification Complete • Received Maruti Swift Keys!';
+        if (!isFocusingCheckpoint) {
+          const liveHud = document.getElementById('mapLiveCheckpointText');
+          if (liveHud) liveHud.textContent = 'Zero-Deposit Verification Complete • Received Maruti Swift Keys!';
+        }
 
         if (journeyTimer >= 60) {
           masterJourneyState = 'ENTER_SWIFT';
@@ -3185,8 +3247,10 @@
           if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 3.8; // Headlights ON!
         }
 
-        const liveHud = document.getElementById('mapLiveCheckpointText');
-        if (liveHud) liveHud.textContent = 'Customer Boarded Maruti Swift • Starting Madurai Tour!';
+        if (!isFocusingCheckpoint) {
+          const liveHud = document.getElementById('mapLiveCheckpointText');
+          if (liveHud) liveHud.textContent = 'Customer Boarded Maruti Swift • Starting Madurai Tour!';
+        }
 
         if (journeyTimer >= 60) {
           masterJourneyState = 'TOUR_CRUISING';
@@ -3226,8 +3290,10 @@
             const cp = CHECKPOINTS[i];
             if (popupBadges[cp.id]) popupBadges[cp.id].userData.targetScale = 1.0;
 
-            const liveHud = document.getElementById('mapLiveCheckpointText');
-            if (liveHud) liveHud.textContent = `${cp.name} (Stop #${i + 1} of 6)`;
+            if (!isFocusingCheckpoint) {
+              const liveHud = document.getElementById('mapLiveCheckpointText');
+              if (liveHud) liveHud.textContent = `${cp.name} (Stop #${i + 1} of 6) • TOUR CRUISE`;
+            }
 
             if (!isFocusingCheckpoint) {
               document.querySelectorAll('.map-pill-btn').forEach(btn => {
@@ -3325,8 +3391,10 @@
         hazards.forEach(h => { h.visible = false; });
         if (carGroup.userData.headlight) carGroup.userData.headlight.intensity = 0;
 
-        const liveHud = document.getElementById('mapLiveCheckpointText');
-        if (liveHud) liveHud.textContent = 'Tour Complete • Returned to BIXI Mattuthavani Hub!';
+        if (!isFocusingCheckpoint) {
+          const liveHud = document.getElementById('mapLiveCheckpointText');
+          if (liveHud) liveHud.textContent = 'Tour Complete • Returned to BIXI Mattuthavani Hub!';
+        }
 
         if (journeyTimer >= 80) {
           masterJourneyState = 'BUS_ARRIVING';
