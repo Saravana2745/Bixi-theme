@@ -33,7 +33,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=32.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=34.0">
 
   <!-- Three.js + Official OrbitControls for 360 Free Rotation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -290,6 +290,20 @@
       </div>
 
       <nav class="sidebar-landmarks-list">
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn active" onclick="focusMaduraiCheckpoint('overview')" data-checkpoint="overview" title="Full Starting - 360° Madurai Overview">
+          <span class="cp-icon bixi-badge-icon orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/>
+            </svg>
+          </span>
+          <div class="cp-info">
+            <span class="cp-name">Full Starting</span>
+            <span class="cp-sub">Madurai 3D Overview • Start Loop</span>
+          </div>
+          <span class="cp-arrow">↺</span>
+        </button>
+
         <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('mattuthavani-bus-stand')" data-checkpoint="mattuthavani-bus-stand">
           <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="15" rx="3"/><path d="M3 10h18M7 19v2M17 19v2M8 15h.01M16 15h.01"/></svg></span>
           <div class="cp-info">
@@ -299,7 +313,7 @@
           <span class="cp-arrow">→</span>
         </button>
 
-        <button type="button" class="sidebar-checkpoint-btn active dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('meenakshi')" data-checkpoint="meenakshi">
+        <button type="button" class="sidebar-checkpoint-btn dock-checkpoint-btn" onclick="focusMaduraiCheckpoint('meenakshi')" data-checkpoint="meenakshi">
           <span class="cp-icon bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v3m-7 4h14l-2 12H7L5 9zm3-4h8v4H8V5z"/></svg></span>
           <div class="cp-info">
             <span class="cp-name">Shri Meenakshi Amman Kovil</span>
@@ -468,7 +482,7 @@
   </main>
 
   <!-- Scripts -->
-  <script src="assets/js/madurai-3d-map.js?v=33.0"></script>
+  <script src="assets/js/madurai-3d-map.js?v=34.0"></script>
   <script src="assets/js/react-bits-animations.js?v=33.0"></script>
   <script src="assets/js/main.js?v=33.0"></script>
 

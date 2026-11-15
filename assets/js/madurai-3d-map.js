@@ -3450,6 +3450,16 @@
       }
     };
 
+        // Safe horizontal dock button scroll helper (never scrolls the document window!)
+    function scrollDockButtonIntoView(btn) {
+      if (!btn) return;
+      const list = btn.closest('.sidebar-landmarks-list');
+      if (list) {
+        const targetLeft = btn.offsetLeft - list.offsetLeft - (list.clientWidth - btn.clientWidth) / 2;
+        list.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+      }
+    }
+
     function selectCheckpoint(cp) {
       if (!cp) return;
       isFocusingCheckpoint = true;
@@ -3508,7 +3518,7 @@
       document.querySelectorAll('.dock-checkpoint-btn').forEach(btn => {
         if (btn.dataset.checkpoint === cp.id) {
           btn.classList.add('active');
-          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          scrollDockButtonIntoView(btn);
         } else {
           btn.classList.remove('active');
         }
@@ -3531,10 +3541,18 @@
       const resetBtn = document.getElementById('btnMapResetView');
       if (resetBtn) resetBtn.style.display = 'none';
 
+      document.querySelectorAll('.dock-checkpoint-btn').forEach(btn => {
+        if (btn.dataset.checkpoint === 'overview' || btn.dataset.checkpoint === 'full-starting') {
+          btn.classList.add('active');
+          scrollDockButtonIntoView(btn);
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
       document.querySelectorAll('.map-pill-btn').forEach(btn => {
         if (btn.dataset.id === 'overview') {
           btn.classList.add('active');
-          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         } else {
           btn.classList.remove('active');
         }
@@ -3563,6 +3581,10 @@
     }
 
     window.focusMaduraiCheckpoint = function (id) {
+      if (id === 'overview' || id === 'full-starting') {
+        resetMaduraiOverview();
+        return;
+      }
       const found = CHECKPOINTS.find(c => c.id === id);
       if (found) {
         selectCheckpoint(found);
@@ -3794,10 +3816,18 @@
             }
 
             if (!isFocusingCheckpoint) {
+              document.querySelectorAll('.dock-checkpoint-btn').forEach(btn => {
+                if (btn.dataset.checkpoint === cp.id) {
+                  btn.classList.add('active');
+                  scrollDockButtonIntoView(btn);
+                } else {
+                  btn.classList.remove('active');
+                }
+              });
+
               document.querySelectorAll('.map-pill-btn').forEach(btn => {
                 if (btn.dataset.id === cp.id) {
                   btn.classList.add('active');
-                  btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 } else {
                   btn.classList.remove('active');
                 }
