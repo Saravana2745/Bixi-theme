@@ -1255,30 +1255,33 @@
 
       currentY += grivaH + 0.06;
 
-      // Vaulted Barrel Roof (Sala-Shikhara) - Seated flush directly on Griva
+      // Vaulted Barrel Roof (Sala-Shikhara) - Full, 100% solid vaulted cylinder seated flush directly on Griva
       const salaLength = baseRadius * 1.8;
-      const salaGeo = new THREE.CylinderGeometry(0.35, 0.50, salaLength, 16, 1, false, 0, Math.PI);
+      const salaRadius = 0.40;
+      const salaGeo = new THREE.CylinderGeometry(salaRadius, salaRadius, salaLength, 24);
       const sala = new THREE.Mesh(salaGeo, mainStoneMat);
       sala.rotation.z = Math.PI / 2;
-      sala.rotation.y = Math.PI / 2;
-      sala.position.y = currentY;
+      sala.position.set(0, currentY + 0.14, 0);
       sala.castShadow = true;
       temple.add(sala);
 
       // Solid core stone block inside Sala arch (prevents any hollow see-through gap)
-      const salaCore = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.24, salaLength * 0.96), mainStoneMat);
-      salaCore.position.set(0, currentY + 0.12, 0);
+      const salaCore = new THREE.Mesh(new THREE.BoxGeometry(salaLength * 0.98, 0.26, salaRadius * 1.9), mainStoneMat);
+      salaCore.position.set(0, currentY + 0.14, 0);
       temple.add(salaCore);
 
       // Gavaksha Arched End Gables
-      const gableL = new THREE.Mesh(new THREE.TorusGeometry(0.35, 0.07, 8, 16, Math.PI), detailStoneMat);
-      gableL.position.set(-salaLength / 2, currentY, 0);
-      gableL.rotation.y = Math.PI / 2;
-      temple.add(gableL);
-      const gableR = new THREE.Mesh(new THREE.TorusGeometry(0.35, 0.07, 8, 16, Math.PI), detailStoneMat);
-      gableR.position.set(salaLength / 2, currentY, 0);
-      gableR.rotation.y = -Math.PI / 2;
-      temple.add(gableR);
+      [-salaLength / 2, salaLength / 2].forEach(gx => {
+        const gable = new THREE.Mesh(new THREE.TorusGeometry(salaRadius - 0.02, 0.06, 8, 20), detailStoneMat);
+        gable.position.set(gx, currentY + 0.14, 0);
+        gable.rotation.y = Math.PI / 2;
+        temple.add(gable);
+
+        const cap = new THREE.Mesh(new THREE.CircleGeometry(salaRadius - 0.02, 20), terracottaAccent);
+        cap.position.set(gx + (gx > 0 ? 0.005 : -0.005), currentY + 0.14, 0);
+        cap.rotation.y = gx > 0 ? Math.PI / 2 : -Math.PI / 2;
+        temple.add(cap);
+      });
 
       // 5 Lathed Golden Kalasams seated firmly on roof ridge
       for (let k = -2; k <= 2; k++) {
@@ -2451,26 +2454,87 @@
         baseR = topR;
       }
 
-      // Barrel-Vault Shikhara (Gala + Shikhara roof crest)
-      const shikharaGeo = new THREE.CylinderGeometry(0.55, 0.65, 0.38, 12, 1, false, 0, Math.PI);
-      const shikhara = new THREE.Mesh(shikharaGeo, stoneMat);
-      shikhara.rotation.x = Math.PI / 2;
-      shikhara.position.set(0, currentY + 0.20, 0);
-      shikhara.castShadow = true;
-      temple.add(shikhara);
+      // =======================================================================
+      // COMPLETE, FULLY CLOSED DRAVIDIAN SALA-SHIKHARA VAULT ROOF & 5 GOLD KALASAMS
+      // Zero missing geometry, zero floating kalasams, 100% complete and solid from every angle!
+      // =======================================================================
+      // 1. Griva Neck Pedestal (Solid Granite Foundation)
+      const grivaH = 0.20;
+      const grivaW = 1.34;
+      const grivaD = 0.82;
+      const griva = new THREE.Mesh(new THREE.BoxGeometry(grivaW, grivaH, grivaD), stoneMat);
+      griva.position.set(0, currentY + grivaH / 2, 0);
+      griva.castShadow = true;
+      temple.add(griva);
 
-      // 5 Golden Kalasams along the Shikhara ridge
+      const grivaCornice = new THREE.Mesh(new THREE.BoxGeometry(grivaW + 0.12, 0.06, grivaD + 0.12), terracottaAccent);
+      grivaCornice.position.set(0, currentY + grivaH + 0.03, 0);
+      temple.add(grivaCornice);
+
+      const roofBaseY = currentY + grivaH + 0.06;
+
+      // 2. Full Vaulted Cylindrical Barrel Arch (Sala-Shikhara)
+      // Horizontal cylinder spanning from left to right along X (length = 1.32, radius = 0.38)
+      // Embedded firmly into the Griva pedestal so the top half forms a majestic, solid curved vault!
+      const salaLength = 1.32;
+      const salaRadius = 0.38;
+      const salaGeo = new THREE.CylinderGeometry(salaRadius, salaRadius, salaLength, 24);
+      const sala = new THREE.Mesh(salaGeo, stoneMat);
+      sala.rotation.z = Math.PI / 2; // Aligns cylinder axis with X axis
+      sala.position.set(0, roofBaseY + 0.12, 0);
+      sala.castShadow = true;
+      temple.add(sala);
+
+      // Solid core block filling beneath the vault arch (prevents any internal void)
+      const salaCore = new THREE.Mesh(new THREE.BoxGeometry(salaLength * 0.98, 0.24, salaRadius * 1.9), stoneMat);
+      salaCore.position.set(0, roofBaseY + 0.12, 0);
+      temple.add(salaCore);
+
+      // 3. Decorative Gavaksha Horseshoe Arches & Gables on Both Left & Right Ends
+      [-salaLength / 2, salaLength / 2].forEach(gx => {
+        const gableArch = new THREE.Mesh(new THREE.TorusGeometry(salaRadius - 0.02, 0.06, 8, 20), detailStoneMat);
+        gableArch.position.set(gx, roofBaseY + 0.12, 0);
+        gableArch.rotation.y = Math.PI / 2;
+        temple.add(gableArch);
+
+        const gableCap = new THREE.Mesh(new THREE.CircleGeometry(salaRadius - 0.02, 20), terracottaAccent);
+        gableCap.position.set(gx + (gx > 0 ? 0.005 : -0.005), roofBaseY + 0.12, 0);
+        gableCap.rotation.y = gx > 0 ? Math.PI / 2 : -Math.PI / 2;
+        temple.add(gableCap);
+      });
+
+      // 4. Terracotta Ridge Trim along the Apex of the Vault
+      const ridgeTrim = new THREE.Mesh(new THREE.BoxGeometry(salaLength * 1.02, 0.05, 0.08), terracottaAccent);
+      ridgeTrim.position.set(0, roofBaseY + 0.12 + salaRadius + 0.025, 0);
+      temple.add(ridgeTrim);
+
+      // 5. Five Lathed Golden Kalasams Firmly Seated Along the Vault Crest
+      const crestY = roofBaseY + 0.12 + salaRadius + 0.05;
       for (let k = -2; k <= 2; k++) {
         const kalasamGroup = new THREE.Group();
-        const kPot = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 12), goldMat);
-        kPot.position.y = 0.085;
-        kalasamGroup.add(kPot);
 
-        const kFinial = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.24, 10), goldMat);
-        kFinial.position.y = 0.26;
-        kalasamGroup.add(kFinial);
+        // Inverted Padma (Lotus Base)
+        const padma = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.08, 12), goldMat);
+        padma.rotation.x = Math.PI;
+        padma.position.y = 0.04;
+        kalasamGroup.add(padma);
 
-        kalasamGroup.position.set(k * 0.22, currentY + 0.38, 0);
+        // Kumbha (Golden Pot)
+        const pot = new THREE.Mesh(new THREE.SphereGeometry(0.085, 14, 14), goldMat);
+        pot.position.y = 0.13;
+        kalasamGroup.add(pot);
+
+        // Stepped Neck
+        const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.055, 0.06, 10), goldMat);
+        neck.position.y = 0.22;
+        kalasamGroup.add(neck);
+
+        // Stupi (Golden Spire Needle)
+        const spire = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.28, 12), goldMat);
+        spire.position.y = 0.38;
+        kalasamGroup.add(spire);
+
+        kalasamGroup.position.set(k * 0.24, crestY, 0);
         kalasamGroup.castShadow = true;
         temple.add(kalasamGroup);
       }
