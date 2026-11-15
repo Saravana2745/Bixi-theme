@@ -5974,145 +5974,761 @@ button.bixi-cal-day.empty,
    HERO BANNER EXPANSION, DROPDOWN Z-INDEX FIX & COMPACT VIDEO SCROLLER HUD
    ========================================================================== */
 
-/* 1. Hero Banner Balanced Dimensions & Top Headroom (No Logo Clipping) */
+/* ==========================================================================
+   NEW LUXURY SPLIT HERO SECTION WITH CURVED 3D ORBITAL PLATE ROTATOR
+   Left: Rich Semantic Keywords & Value Propositions
+   Right: 3D Curved Orbital "Food-Plate" Showroom Vehicle Showcase
+   ========================================================================== */
+
 .hero-banner-section {
   position: relative !important;
   z-index: 100 !important;
   overflow: visible !important;
   width: 100% !important;
-  padding: 1.25rem 0 1.25rem !important;
+  padding: 1.5rem 0 2rem !important;
   background: #090A0E !important;
 }
 
 .hero-banner-wrapper {
   position: relative !important;
   overflow: visible !important;
-  max-width: 1320px !important; /* Balanced desktop width */
+  max-width: 1360px !important;
   width: 100% !important;
   margin: 0 auto !important;
   padding: 0 1.25rem !important;
 }
 
-.hero-banner-frame {
+/* Split Stage Grid */
+.hero-split-stage {
+  display: grid !important;
+  grid-template-columns: 1.15fr 1fr !important;
+  gap: 2.5rem !important;
+  align-items: center !important;
+  margin-bottom: 2rem !important;
   position: relative !important;
-  overflow: hidden !important;
-  border-radius: 20px !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 255, 255, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  background: #090A0E !important;
   width: 100% !important;
 }
 
-.hero-banner-picture {
-  display: block !important;
-  width: 100% !important;
+/* ═══════════════ LEFT HALF: KEYWORD RICH CONTENT & CTAS ═══════════════ */
+.hero-split-left {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  position: relative !important;
+  z-index: 5 !important;
 }
 
-.hero-banner-img {
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 1024 / 512 !important;
-  object-fit: cover !important;
-  object-position: center top !important; /* Preserves top headroom so logo is never cut off */
-  display: block !important;
-  border-radius: 19px !important;
-  min-height: unset !important;
-  max-height: none !important;
+.hero-eyebrow-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  background: rgba(255, 122, 24, 0.1) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  border-radius: 9999px !important;
+  padding: 0.3rem 0.85rem !important;
+  margin-bottom: 0.85rem !important;
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #FF7A18 !important;
+  text-transform: uppercase !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
-/* 2. Hero Banner Interactive Action Buttons */
-.hero-banner-cta-bar {
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+.eyebrow-pulse-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #FF7A18 !important;
+  box-shadow: 0 0 10px #FF7A18, 0 0 16px rgba(255, 122, 24, 0.8) !important;
+  animation: pulseDotGlow 1.8s infinite ease-in-out !important;
+  flex-shrink: 0 !important;
+}
+
+@keyframes pulseDotGlow {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #FF7A18; }
+}
+
+.eyebrow-rating {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  color: #CBD5E1 !important;
+  padding-left: 0.4rem !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.eyebrow-star {
+  width: 13px !important;
+  height: 13px !important;
+  fill: #F59E0B !important;
+}
+
+.hero-main-title {
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 2.65rem !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+  color: #FFFFFF !important;
+  margin: 0 0 1rem !important;
+}
+
+.hero-main-title .gradient-text {
+  background: linear-gradient(135deg, #FF9A44 0%, #FF7A18 50%, #FFB573 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 35px rgba(255, 122, 24, 0.35) !important;
+}
+
+.hero-subheadline {
+  font-size: 0.94rem !important;
+  line-height: 1.62 !important;
+  color: #94A3B8 !important;
+  margin: 0 0 1.35rem !important;
+}
+
+.hero-subheadline strong {
+  color: #F8FAFC !important;
+  font-weight: 700 !important;
+}
+
+/* SEO Keyword & USP Grid */
+.hero-usp-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 0.6rem 0.85rem !important;
+  width: 100% !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.hero-usp-pill {
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  gap: 0.75rem !important;
-  flex-wrap: wrap !important;
-  padding: 1.8rem 1.25rem 1rem !important;
-  background: linear-gradient(180deg, rgba(9, 10, 14, 0) 0%, rgba(9, 10, 14, 0.65) 45%, rgba(9, 10, 14, 0.94) 100%) !important;
-  z-index: 15 !important;
-  pointer-events: auto !important;
+  gap: 0.5rem !important;
+  padding: 0.45rem 0.75rem !important;
+  background: rgba(16, 20, 30, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 10px !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  color: #E2E8F0 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  transition: all 0.25s ease !important;
 }
 
-.hero-banner-btn {
+.hero-usp-pill:hover {
+  background: rgba(255, 122, 24, 0.12) !important;
+  border-color: rgba(255, 122, 24, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+.hero-usp-pill .usp-icon {
+  width: 15px !important;
+  height: 15px !important;
+  stroke: #FF7A18 !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Split CTA Bar */
+.hero-split-cta-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+}
+
+.hero-btn-primary {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 0.45rem !important;
-  height: 40px !important;
-  padding: 0 1.25rem !important;
+  gap: 0.5rem !important;
+  height: 44px !important;
+  padding: 0 1.45rem !important;
   border-radius: 9999px !important;
+  background: linear-gradient(135deg, #FF7A18 0%, #E6690B 100%) !important;
+  color: #FFFFFF !important;
   font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
-  font-size: 0.84rem !important;
+  font-size: 0.86rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.02em !important;
   text-decoration: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 18px rgba(255, 122, 24, 0.45) !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   cursor: pointer !important;
-  white-space: nowrap !important;
 }
 
-.hero-btn-rent {
-  background: linear-gradient(135deg, #FF7A18 0%, #E6690B 100%) !important;
-  color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 4px 16px rgba(255, 122, 24, 0.45), 0 0 10px rgba(255, 122, 24, 0.25) !important;
-}
-
-.hero-btn-rent:hover {
+.hero-btn-primary:hover {
   background: linear-gradient(135deg, #FF8D36 0%, #FF6F00 100%) !important;
   transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 0 6px 20px rgba(255, 122, 24, 0.65) !important;
+  box-shadow: 0 6px 24px rgba(255, 122, 24, 0.65) !important;
   color: #FFFFFF !important;
 }
 
-.hero-btn-fleet {
+.btn-icon-circle {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.btn-icon-circle svg {
+  width: 12px !important;
+  height: 12px !important;
+  fill: #FFFFFF !important;
+}
+
+.hero-btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  height: 44px !important;
+  padding: 0 1.25rem !important;
+  border-radius: 9999px !important;
   background: rgba(13, 16, 24, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.25s ease !important;
 }
 
-.hero-btn-fleet:hover {
+.hero-btn-secondary:hover {
   background: rgba(255, 122, 24, 0.18) !important;
   border-color: #FF7A18 !important;
   transform: translateY(-2px) !important;
   color: #FFFFFF !important;
 }
 
-.hero-btn-contact {
-  background: rgba(13, 16, 24, 0.85) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  color: #E2E8F0 !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-}
-
-.hero-btn-contact:hover {
-  background: rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
-  color: #FFFFFF !important;
-  transform: translateY(-2px) !important;
+.hero-btn-secondary svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: #FF7A18 !important;
+  fill: none !important;
+  stroke-width: 2 !important;
 }
 
 .hero-btn-call {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.45rem !important;
+  height: 44px !important;
+  padding: 0 1.15rem !important;
+  border-radius: 9999px !important;
   background: rgba(13, 16, 24, 0.85) !important;
+  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  color: #FF7A18 !important;
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  color: #FF7A18 !important;
-  border: 1px solid rgba(255, 122, 24, 0.35) !important;
+  transition: all 0.25s ease !important;
 }
 
 .hero-btn-call:hover {
-  background: rgba(255, 122, 24, 0.25) !important;
+  background: rgba(255, 122, 24, 0.22) !important;
   border-color: #FF7A18 !important;
   color: #FFFFFF !important;
   transform: translateY(-2px) !important;
+}
+
+.hero-btn-call svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: currentColor !important;
+}
+
+
+/* ═══════════════ RIGHT HALF: CURVED 3D ORBITAL PLATE ROTATOR ═══════════════ */
+.hero-split-right {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  width: 100% !important;
+  z-index: 5 !important;
+}
+
+.curved-plate-carousel-container {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 430px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  user-select: none !important;
+  overflow: visible !important;
+}
+
+/* Atmospheric Glow & Orbital Guides */
+.orbital-glow-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  overflow: visible !important;
+}
+
+.orbital-ring {
+  position: absolute !important;
+  border-radius: 50% !important;
+  border: 1px dashed rgba(255, 122, 24, 0.18) !important;
+  transform: perspective(700px) rotateX(65deg) !important;
+}
+
+.orbital-ring-outer {
+  width: 520px !important;
+  height: 240px !important;
+  border-color: rgba(255, 122, 24, 0.12) !important;
+}
+
+.orbital-ring-inner {
+  width: 380px !important;
+  height: 180px !important;
+  border-color: rgba(255, 122, 24, 0.25) !important;
+}
+
+.orbital-radial-glow {
+  position: absolute !important;
+  width: 440px !important;
+  height: 280px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse at center, rgba(255, 122, 24, 0.18) 0%, rgba(9, 10, 14, 0) 70%) !important;
+  filter: blur(40px) !important;
+}
+
+/* Carousel HUD Header */
+.carousel-hud-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin-bottom: 0.5rem !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.carousel-hud-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  background: rgba(18, 22, 34, 0.85) !important;
+  border: 1px solid rgba(255, 122, 24, 0.3) !important;
+  border-radius: 9999px !important;
+  padding: 0.25rem 0.75rem !important;
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  color: #FF7A18 !important;
+  text-transform: uppercase !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.hud-live-indicator {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #22C55E !important;
+  box-shadow: 0 0 8px #22C55E !important;
+}
+
+.carousel-counter {
+  font-family: 'Space Grotesk', monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  color: #64748B !important;
+  letter-spacing: 0.05em !important;
+}
+
+#activeSlideIndex {
+  color: #FF7A18 !important;
+  font-size: 0.95rem !important;
+}
+
+/* 3D Orbit Stage */
+.curved-orbit-stage {
+  position: relative !important;
+  width: 100% !important;
+  height: 330px !important;
+  perspective: 1100px !important;
+  transform-style: preserve-3d !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  z-index: 5 !important;
+}
+
+/* Single Vehicle Plate Item */
+.vehicle-plate-item {
+  position: absolute !important;
+  width: 310px !important;
+  height: 260px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), 
+              opacity 0.65s ease, 
+              filter 0.65s ease, 
+              z-index 0.65s step-end !important;
+  will-change: transform, opacity !important;
+}
+
+/* ═══════════════ 6 POSITIONS ALONG THE CURVED ORBIT ═══════════════ */
+/* Slot 0: Active Spotlight Front-Center */
+.vehicle-plate-item.active {
+  transform: translate3d(0, 16px, 100px) scale(1.06) !important;
+  opacity: 1 !important;
+  z-index: 30 !important;
+  pointer-events: auto !important;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.85)) !important;
+}
+
+/* Slot 1: Next Up on Right Curve Arc */
+.vehicle-plate-item.slot-next {
+  transform: translate3d(145px, -24px, 0px) scale(0.78) rotateZ(6deg) !important;
+  opacity: 0.82 !important;
+  z-index: 20 !important;
+  pointer-events: auto !important;
+  filter: brightness(0.85) blur(0.5px) !important;
+}
+
+/* Slot 2: Far Right Curve Arc */
+.vehicle-plate-item.slot-far-right {
+  transform: translate3d(240px, -65px, -70px) scale(0.56) rotateZ(12deg) !important;
+  opacity: 0.45 !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  filter: brightness(0.65) blur(1.5px) !important;
+}
+
+/* Slot 3: Back / Top Distant Apex */
+.vehicle-plate-item.slot-back {
+  transform: translate3d(0, -90px, -140px) scale(0.42) !important;
+  opacity: 0.15 !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+  filter: brightness(0.4) blur(3px) !important;
+}
+
+/* Slot 4: Far Left Curve Arc */
+.vehicle-plate-item.slot-far-left {
+  transform: translate3d(-240px, -65px, -70px) scale(0.56) rotateZ(-12deg) !important;
+  opacity: 0.45 !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  filter: brightness(0.65) blur(1.5px) !important;
+}
+
+/* Slot 5: Previous Up on Left Curve Arc */
+.vehicle-plate-item.slot-prev {
+  transform: translate3d(-145px, -24px, 0px) scale(0.78) rotateZ(-6deg) !important;
+  opacity: 0.82 !important;
+  z-index: 20 !important;
+  pointer-events: auto !important;
+  filter: brightness(0.85) blur(0.5px) !important;
+}
+
+/* ═══════════════ THE PEDESTAL DISC ("FOODS PLATE") ═══════════════ */
+.plate-pedestal-disc {
+  position: absolute !important;
+  bottom: 42px !important;
+  width: 270px !important;
+  height: 85px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse at 50% 35%, rgba(255, 122, 24, 0.28) 0%, rgba(22, 27, 39, 0.95) 55%, rgba(10, 12, 18, 0.98) 100%) !important;
+  border: 1.5px solid rgba(255, 122, 24, 0.4) !important;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 122, 24, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.35) !important;
+  transform: perspective(500px) rotateX(55deg) !important;
+  transition: all 0.5s ease !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.vehicle-plate-item.active .plate-pedestal-disc {
+  border-color: #FF7A18 !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95), 0 0 45px rgba(255, 122, 24, 0.65), 0 0 80px rgba(255, 122, 24, 0.25), inset 0 2px 6px rgba(255, 255, 255, 0.55) !important;
+}
+
+.plate-disc-reflection {
+  position: absolute !important;
+  inset: 12% 15% !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%) !important;
+  pointer-events: none !important;
+}
+
+.plate-rim-glow {
+  position: absolute !important;
+  inset: -2px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255, 122, 24, 0.6) !important;
+  opacity: 0.7 !important;
+  pointer-events: none !important;
+}
+
+/* Vehicle Cutout Image */
+.plate-vehicle-wrap {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  height: 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+}
+
+.plate-vehicle-img {
+  max-width: 92% !important;
+  max-height: 145px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.75)) !important;
+  transition: transform 0.4s ease !important;
+}
+
+.vehicle-plate-item.active:hover .plate-vehicle-img {
+  transform: scale(1.05) translateY(-4px) !important;
+}
+
+/* Floating Info Card on Active Plate */
+.plate-info-card {
+  position: absolute !important;
+  bottom: -6px !important;
+  left: 50% !important;
+  width: 275px !important;
+  background: rgba(13, 16, 24, 0.94) !important;
+  border: 1px solid rgba(255, 122, 24, 0.45) !important;
+  border-radius: 12px !important;
+  padding: 0.55rem 0.85rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.75), 0 0 15px rgba(255, 122, 24, 0.2) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(8px) !important;
+  transition: opacity 0.4s ease, transform 0.4s ease !important;
+  z-index: 3 !important;
+  pointer-events: auto !important;
+}
+
+.vehicle-plate-item.active .plate-info-card {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.plate-card-left {
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: left !important;
+}
+
+.plate-vehicle-tag {
+  font-size: 0.65rem !important;
+  color: #FF7A18 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+}
+
+.plate-vehicle-name {
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 0.94rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  margin: 0.1rem 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.plate-vehicle-meta {
+  font-size: 0.68rem !important;
+  color: #94A3B8 !important;
+}
+
+.plate-card-right {
+  text-align: right !important;
+}
+
+.plate-price-val {
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 1.1rem !important;
+  font-weight: 900 !important;
+  color: #FF7A18 !important;
+  display: block !important;
+  line-height: 1 !important;
+}
+
+.plate-price-period {
+  font-size: 0.65rem !important;
+  color: #64748B !important;
+  font-weight: 600 !important;
+  display: block !important;
+  margin-top: 0.15rem !important;
+}
+
+/* ═══════════════ CAROUSEL BOTTOM HUD & NAVIGATION ═══════════════ */
+.carousel-bottom-hud {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin-top: 1.15rem !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.carousel-nav-arrows {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  position: absolute !important;
+  top: -180px !important;
+  left: 0 !important;
+  pointer-events: none !important;
+  z-index: 25 !important;
+}
+
+.orbit-arrow-btn {
+  pointer-events: auto !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background: rgba(18, 22, 34, 0.85) !important;
+  border: 1px solid rgba(255, 122, 24, 0.4) !important;
+  color: #FF7A18 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.orbit-arrow-btn:hover {
+  background: #FF7A18 !important;
+  color: #FFFFFF !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 0 20px rgba(255, 122, 24, 0.6) !important;
+}
+
+.orbit-arrow-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: currentColor !important;
+}
+
+/* Quick Booking Shortcut Button */
+.orbit-book-shortcut {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  background: linear-gradient(135deg, rgba(255, 122, 24, 0.18) 0%, rgba(230, 105, 11, 0.25) 100%) !important;
+  border: 1px solid #FF7A18 !important;
+  color: #FFFFFF !important;
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  padding: 0.45rem 1.15rem !important;
+  border-radius: 9999px !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 15px rgba(255, 122, 24, 0.25) !important;
+}
+
+.orbit-book-shortcut:hover {
+  background: linear-gradient(135deg, #FF7A18 0%, #E6690B 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 122, 24, 0.55) !important;
+}
+
+.btn-check-icon {
+  width: 15px !important;
+  height: 15px !important;
+  stroke: #FF7A18 !important;
+  fill: none !important;
+  stroke-width: 2.5 !important;
+}
+
+.orbit-book-shortcut:hover .btn-check-icon {
+  stroke: #FFFFFF !important;
+}
+
+/* Orbit Dots Bar */
+.orbit-dots-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  justify-content: center !important;
+}
+
+.orbit-dot {
+  width: 20px !important;
+  height: 5px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+}
+
+.orbit-dot.active {
+  width: 36px !important;
+  background: #FF7A18 !important;
+  box-shadow: 0 0 10px rgba(255, 122, 24, 0.7) !important;
+}
+
+/* Pulse animation on booking card when triggered */
+@keyframes bookingCardPulse {
+  0% { box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 0 0 rgba(255, 122, 24, 0.8); }
+  50% { box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px 8px rgba(255, 122, 24, 0.95); }
+  100% { box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 122, 24, 0.2); }
+}
+
+.banner-docked-widget.booking-card-highlight {
+  animation: bookingCardPulse 1.4s ease-out !important;
+  border-color: #FF7A18 !important;
 }
 
 /* 3. Docked Booking Widget & Dropdown Z-Index Guarantee */
@@ -6244,36 +6860,111 @@ button.bixi-cal-day.empty,
 /* 5. Mobile Responsiveness (Screen <= 768px) */
 @media (max-width: 768px) {
   .hero-banner-section {
-    padding: 0.5rem 0 1rem !important;
+    padding: 0.5rem 0 1.25rem !important;
   }
 
   .hero-banner-wrapper {
     padding: 0 0.75rem !important;
   }
 
-  .hero-banner-frame {
-    border-radius: 16px !important;
+  .hero-split-stage {
+    grid-template-columns: 1fr !important;
+    gap: 1.85rem !important;
+    margin-bottom: 1.25rem !important;
   }
 
-  .hero-banner-img {
+  .hero-split-left {
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  .hero-main-title {
+    font-size: 1.85rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero-subheadline {
+    font-size: 0.86rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .hero-usp-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 380px !important;
+    margin: 0 auto 1.25rem !important;
+  }
+
+  .hero-split-cta-bar {
+    flex-direction: column !important;
     width: 100% !important;
-    height: auto !important;
-    max-height: 80vh !important;
-    aspect-ratio: 576 / 1024 !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-  }
-
-  .hero-banner-cta-bar {
-    padding: 1.5rem 0.75rem 1rem !important;
     gap: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
   }
 
-  .hero-banner-btn {
-    height: 38px !important;
-    padding: 0 0.95rem !important;
-    font-size: 0.78rem !important;
-    flex: 1 1 calc(50% - 0.5rem) !important;
+  .hero-btn-primary, 
+  .hero-btn-secondary, 
+  .hero-btn-call {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Compact Plate Sizes on Mobile */
+  .vehicle-plate-item {
+    width: 260px !important;
+    height: 230px !important;
+  }
+
+  .plate-pedestal-disc {
+    width: 220px !important;
+    height: 70px !important;
+    bottom: 35px !important;
+  }
+
+  .plate-vehicle-img {
+    max-height: 115px !important;
+  }
+
+  .plate-info-card {
+    width: 235px !important;
+    padding: 0.45rem 0.65rem !important;
+  }
+
+  .plate-vehicle-name {
+    font-size: 0.84rem !important;
+  }
+
+  .plate-price-val {
+    font-size: 0.95rem !important;
+  }
+
+  /* Mobile Curved Trajectory Coordinates */
+  .vehicle-plate-item.active {
+    transform: translate3d(0, 10px, 60px) scale(1.04) !important;
+  }
+
+  .vehicle-plate-item.slot-next {
+    transform: translate3d(95px, -20px, 0px) scale(0.72) rotateZ(5deg) !important;
+    opacity: 0.75 !important;
+  }
+
+  .vehicle-plate-item.slot-far-right {
+    transform: translate3d(160px, -50px, -60px) scale(0.50) rotateZ(10deg) !important;
+    opacity: 0.35 !important;
+  }
+
+  .vehicle-plate-item.slot-back {
+    transform: translate3d(0, -75px, -110px) scale(0.38) !important;
+    opacity: 0.1 !important;
+  }
+
+  .vehicle-plate-item.slot-far-left {
+    transform: translate3d(-160px, -50px, -60px) scale(0.50) rotateZ(-10deg) !important;
+    opacity: 0.35 !important;
+  }
+
+  .vehicle-plate-item.slot-prev {
+    transform: translate3d(-95px, -20px, 0px) scale(0.72) rotateZ(-5deg) !important;
+    opacity: 0.75 !important;
   }
 
   .banner-docked-widget {
@@ -6325,14 +7016,16 @@ button.bixi-cal-day.empty,
 }
 
 @media (max-width: 480px) {
-  .hero-banner-img {
-    min-height: 440px !important;
+  .hero-main-title {
+    font-size: 1.65rem !important;
   }
 
-  .hero-banner-btn {
-    height: 36px !important;
-    padding: 0 0.75rem !important;
-    font-size: 0.75rem !important;
+  .curved-orbit-stage {
+    height: 290px !important;
+  }
+
+  .curved-plate-carousel-container {
+    min-height: 380px !important;
   }
 
   .scrolly-story-card {
