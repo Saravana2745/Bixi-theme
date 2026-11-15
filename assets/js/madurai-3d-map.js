@@ -75,8 +75,8 @@
       roadPos: { x: -12.0, y: 0.25, z: 26.0 },
       modelPos: { x: -12.0, y: 0, z: 34.0 },
       facing: 0, // Facing South toward road
-      camPos: { x: -12.0, y: 8.5, z: 15.0 },
-      target: { x: -12.0, y: 2.8, z: 34.0 },
+      camPos: { x: -8.5, y: 6.2, z: 20.0 }, // Dynamic 3/4 cinematic angle showing majestic Kangayam bull profile
+      target: { x: -12.0, y: 2.4, z: 34.0 },
       distance: '16 km',
       time: '26 mins',
       vehicle: 'Hunter 350 / Maruti Swift',
@@ -139,8 +139,8 @@
       roadPos: { x: 4.0, y: 0.25, z: -20.0 },
       modelPos: { x: 4.0, y: 0, z: -28.0 },
       facing: 0, // Facing South toward road
-      camPos: { x: 4.0, y: 9.8, z: -7.5 },
-      target: { x: 4.0, y: 4.4, z: -27.0 },
+      camPos: { x: 4.0, y: 7.2, z: -10.5 }, // Elevated eye-level framing grand entrance torana and 5-tier vimanam
+      target: { x: 4.0, y: 2.8, z: -26.8 },
       distance: '21 km',
       time: '35 mins',
       vehicle: 'Maruti Swift / RE Himalayan',
@@ -1349,7 +1349,6 @@
     meenakshiModel.rotation.y = Math.PI / 2; // Faces East towards Road plaza
     meenakshiModel.scale.set(1.45, 1.45, 1.45);
     scene.add(meenakshiModel);
-
     // B. ALANGANALLUR VADIVASAL & REALISTIC KANGAYAM JALLIKATTU BULL (SOLO MAJESTIC BULL)
     let bullMesh = null;
     let bullLegs = [];
@@ -1361,11 +1360,15 @@
       const brickMat = new THREE.MeshStandardMaterial({ color: 0x8a3818, roughness: 0.72 });
       const woodMat = new THREE.MeshStandardMaterial({ color: 0x422a18, roughness: 0.88 });
       const sandMat = new THREE.MeshStandardMaterial({ color: 0x967450, roughness: 0.95 });
-      const bullMat = new THREE.MeshStandardMaterial({ color: 0x181a1f, roughness: 0.55, metalness: 0.18 });
-      const muzzleMat = new THREE.MeshStandardMaterial({ color: 0x23252b, roughness: 0.65 });
-      const hornMat = new THREE.MeshStandardMaterial({ color: 0xdcd8d0, roughness: 0.30, metalness: 0.1 });
+      const bullCoatMat = new THREE.MeshStandardMaterial({ color: 0x1b1d22, roughness: 0.44, metalness: 0.15 });
+      const muscleDarkMat = new THREE.MeshStandardMaterial({ color: 0x121418, roughness: 0.48 });
+      const muzzleMat = new THREE.MeshStandardMaterial({ color: 0x242220, roughness: 0.65 });
+      const hornMat = new THREE.MeshStandardMaterial({ color: 0xdcd8d0, roughness: 0.28, metalness: 0.1 });
+      const hornBrassMat = new THREE.MeshStandardMaterial({ color: 0xd4a359, metalness: 0.88, roughness: 0.20 });
       const brassMat = new THREE.MeshStandardMaterial({ color: 0xc8963e, metalness: 0.9, roughness: 0.2 });
-      const hoofMat = new THREE.MeshStandardMaterial({ color: 0x0c0d10, roughness: 0.9 });
+      const hoofMat = new THREE.MeshStandardMaterial({ color: 0x0a0b0e, roughness: 0.9 });
+      const festiveRed = new THREE.MeshStandardMaterial({ color: 0xd92626, roughness: 0.5 });
+      const festiveGold = new THREE.MeshStandardMaterial({ color: 0xeab308, roughness: 0.4 });
 
       // Circular Sandy Arena Floor
       const sandFloor = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 3.0, 0.12, 32), sandMat);
@@ -1418,6 +1421,7 @@
         arena.add(rail2);
       }
 
+      // Vadivasal Entrance Signboard
       const signTex = createSignboardTexture(
         'ALANGANALLUR VADIVASAL',
         'JALLIKATTU ARENA • 2,000 YR TRADITION',
@@ -1426,167 +1430,291 @@
         '#ff9933'
       );
       const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 0.52), signMat);
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 0.56), signMat);
       sign.position.set(0, 2.45, 2.05);
       sign.rotation.y = Math.PI;
       arena.add(sign);
 
       // =======================================================================
-      // REALISTIC KANGAYAM JALLIKATTU BULL (ANATOMICALLY ACCURATE)
+      // MAJESTIC KANGAYAM JALLIKATTU CHAMPION BULL (காங்கேயம் காளை)
+      // Sculpted Anatomical Details: Deep Barrel Chest, Defined Scapula,
+      // Iconic Muscular Hump (திமில்), Arched Neck, Dewlap (தாடை தோல்),
+      // Legendary Lyre Horns (கொம்புகள்) with Brass Tips, Bell Collar & Hooves
       // =======================================================================
       const bullGroup = new THREE.Group();
 
-      // Muscular Torso & Deep Chest
-      const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.44, 0.40, 1.35, 16), bullMat);
-      torso.rotation.x = Math.PI / 2;
-      torso.position.set(0, 0.92, 0);
-      torso.castShadow = true;
-      bullGroup.add(torso);
+      // 1. Deep Athletic Ribcage & Barrel Chest
+      const chest = new THREE.Mesh(new THREE.CylinderGeometry(0.48, 0.44, 0.88, 16), bullCoatMat);
+      chest.rotation.x = Math.PI / 2;
+      chest.position.set(0, 1.05, 0.28);
+      chest.castShadow = true;
+      bullGroup.add(chest);
 
-      // Iconic Kangayam Muscular Shoulder Hump (திமில்)
-      const hump = new THREE.Mesh(new THREE.SphereGeometry(0.44, 20, 16), bullMat);
-      hump.scale.set(0.78, 1.32, 1.15);
-      hump.position.set(0, 1.38, 0.38);
+      // Flank and tucked belly (Athletic bovine taper)
+      const flank = new THREE.Mesh(new THREE.CylinderGeometry(0.44, 0.38, 0.75, 16), bullCoatMat);
+      flank.rotation.x = Math.PI / 2;
+      flank.position.set(0, 1.06, -0.42);
+      flank.castShadow = true;
+      bullGroup.add(flank);
+
+      // Powerful Hindquarter Rump
+      const rump = new THREE.Mesh(new THREE.SphereGeometry(0.42, 14, 14), bullCoatMat);
+      rump.scale.set(0.92, 1.05, 1.15);
+      rump.position.set(0, 1.08, -0.74);
+      bullGroup.add(rump);
+
+      // Muscular Shoulder Blades (Deltoid / Scapular mass)
+      [-0.34, 0.34].forEach(sx => {
+        const shoulder = new THREE.Mesh(new THREE.SphereGeometry(0.24, 12, 12), muscleDarkMat);
+        shoulder.scale.set(0.55, 1.25, 0.95);
+        shoulder.position.set(sx, 1.15, 0.38);
+        bullGroup.add(shoulder);
+      });
+
+      // 2. The Iconic Kangayam Muscular Hump (திமில் - Thimil)
+      // Sculpted Zebu hump: arched, muscular, seamlessly seated over the withers
+      const hump = new THREE.Mesh(new THREE.SphereGeometry(0.40, 20, 16), muscleDarkMat);
+      hump.scale.set(0.72, 1.42, 1.22);
+      hump.rotation.x = 0.12;
+      hump.position.set(0, 1.44, 0.38);
       hump.castShadow = true;
       bullGroup.add(hump);
 
-      // Thick Arched Neck
-      const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.30, 0.38, 0.60, 14), bullMat);
-      neck.rotation.x = -Math.PI / 3.8;
-      neck.position.set(0, 1.14, 0.72);
+      // Smooth withers blending muscle
+      const withers = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.42, 0.45, 14), muscleDarkMat);
+      withers.rotation.x = 0.35;
+      withers.position.set(0, 1.30, 0.10);
+      bullGroup.add(withers);
+
+      // 3. Thick Arched Muscular Neck
+      const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.45, 0.68, 16), muscleDarkMat);
+      neck.rotation.x = -Math.PI / 3.4;
+      neck.position.set(0, 1.20, 0.78);
+      neck.castShadow = true;
       bullGroup.add(neck);
 
-      // Curved Dewlap Skin Folds
-      const dewlap = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.16, 0.55, 8), muzzleMat);
-      dewlap.rotation.x = -Math.PI / 3.4;
-      dewlap.position.set(0, 0.84, 0.68);
+      // 4. Flowing Dewlap Skin Folds (தாடை தோல்)
+      const dewlap = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.16, 0.72, 10), muzzleMat);
+      dewlap.scale.set(0.35, 1.0, 1.0);
+      dewlap.rotation.x = -Math.PI / 3.2;
+      dewlap.position.set(0, 0.86, 0.74);
       bullGroup.add(dewlap);
 
-      // Ceremonial Brass Bell Collar (Mani Malai)
-      const collar = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.035, 8, 20), brassMat);
-      collar.rotation.x = Math.PI / 2.8;
-      collar.position.set(0, 0.98, 0.64);
+      // 5. Ceremonial Madurai Brass Bell Collar (Mani Malai)
+      const collar = new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.04, 8, 24), brassMat);
+      collar.rotation.x = Math.PI / 2.7;
+      collar.position.set(0, 1.02, 0.70);
       bullGroup.add(collar);
 
-      const bell = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.10, 10), brassMat);
-      bell.position.set(0, 0.76, 0.68);
+      const bell = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.14, 12), brassMat);
+      bell.position.set(0, 0.78, 0.75);
       bullGroup.add(bell);
 
-      // Anatomical Bovine Head (Broad Skull + Flat Muzzle with Bovine Nostrils)
+      const clapper = new THREE.Mesh(new THREE.SphereGeometry(0.03, 8, 8), brassMat);
+      clapper.position.set(0, 0.70, 0.75);
+      bullGroup.add(clapper);
+
+      // 6. Anatomical Bovine Head & Sculpted Muzzle
       const headGroup = new THREE.Group();
 
-      const skull = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.24, 0.28), bullMat);
-      skull.position.set(0, 0.08, 0);
+      // Broad Bovine Skull / Forehead (Poll)
+      const skull = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.28, 0.34), bullCoatMat);
+      skull.position.set(0, 0.10, 0);
       headGroup.add(skull);
 
-      // Flat Bovine Muzzle (NOT a pointed beak cone!)
-      const muzzle = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.16, 0.28), muzzleMat);
-      muzzle.position.set(0, 0, 0.24);
+      // Tapered Nasal Bridge down to snout
+      const bridge = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.18, 0.32, 12), bullCoatMat);
+      bridge.rotation.x = Math.PI / 2.6;
+      bridge.position.set(0, 0.02, 0.22);
+      headGroup.add(bridge);
+
+      // Broad Leathery Bovine Muzzle
+      const muzzle = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.17, 0.26), muzzleMat);
+      muzzle.position.set(0, -0.06, 0.34);
       headGroup.add(muzzle);
 
-      // Wide Flat Nostrils
-      const nostrilMat = new THREE.MeshBasicMaterial({ color: 0x07080a });
-      const nostrilL = new THREE.Mesh(new THREE.CircleGeometry(0.028, 8), nostrilMat);
-      nostrilL.position.set(-0.065, -0.02, 0.382);
-      headGroup.add(nostrilL);
-      const nostrilR = new THREE.Mesh(new THREE.CircleGeometry(0.028, 8), nostrilMat);
-      nostrilR.position.set(0.065, -0.02, 0.382);
-      headGroup.add(nostrilR);
+      // Deep Flared Nostrils
+      const nostrilMat = new THREE.MeshBasicMaterial({ color: 0x060709 });
+      [-0.075, 0.075].forEach(nx => {
+        const nostril = new THREE.Mesh(new THREE.CircleGeometry(0.032, 10), nostrilMat);
+        nostril.position.set(nx, -0.07, 0.472);
+        headGroup.add(nostril);
+      });
 
-      // Dark Bovine Eyes
-      const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.038, 8, 8), nostrilMat);
-      eyeL.position.set(-0.17, 0.12, 0.10);
-      headGroup.add(eyeL);
-      const eyeR = new THREE.Mesh(new THREE.SphereGeometry(0.038, 8, 8), nostrilMat);
-      eyeR.position.set(0.17, 0.12, 0.10);
-      headGroup.add(eyeR);
+      // Lower Jaw / Mandible
+      const jaw = new THREE.Mesh(new THREE.BoxGeometry(0.20, 0.08, 0.22), muzzleMat);
+      jaw.position.set(0, -0.15, 0.32);
+      headGroup.add(jaw);
 
-      // Drooping Bovine Ears
+      // Fierce Bovine Eyes with Brow Ridges
+      [-0.19, 0.19].forEach(ex => {
+        const brow = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.05, 0.12), muscleDarkMat);
+        brow.position.set(ex, 0.18, 0.06);
+        headGroup.add(brow);
+
+        const eye = new THREE.Mesh(new THREE.SphereGeometry(0.042, 10, 10), nostrilMat);
+        eye.position.set(ex, 0.13, 0.08);
+        headGroup.add(eye);
+      });
+
+      // Alert Outward-Facing Bovine Ears
       for (let side = -1; side <= 1; side += 2) {
-        const ear = new THREE.Mesh(new THREE.ConeGeometry(0.055, 0.20, 8), bullMat);
-        ear.rotation.z = side * 1.25;
-        ear.rotation.y = 0.2;
-        ear.position.set(side * 0.22, 0.08, -0.04);
+        const ear = new THREE.Mesh(new THREE.ConeGeometry(0.065, 0.24, 8), bullCoatMat);
+        ear.rotation.z = side * 1.35;
+        ear.rotation.y = -0.15;
+        ear.position.set(side * 0.24, 0.12, -0.06);
         headGroup.add(ear);
       }
 
-      // =======================================================================
-      // AUTHENTIC LYRE-SHAPED CRESCENT HORNS (SMOOTH 3D TUBE SPLINES)
-      // =======================================================================
+      // Sacred Jallikattu Vermilion & Saffron Tilak (மஞ்சள் குங்குமம் பொட்டு)
+      const tilakGold = new THREE.Mesh(new THREE.CircleGeometry(0.065, 12), festiveGold);
+      tilakGold.position.set(0, 0.16, 0.172);
+      headGroup.add(tilakGold);
+      const tilakRed = new THREE.Mesh(new THREE.CircleGeometry(0.038, 12), festiveRed);
+      tilakRed.position.set(0, 0.16, 0.174);
+      headGroup.add(tilakRed);
+
+      // 7. Legendary Lyre-Shaped Kangayam Horns (காங்கேயம் கொம்புகள்)
+      // Bases sweep outward, curve upward, and point forward/inward with needle-sharp brass tips!
       const hornCurveL = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.12, 0.18, 0.05),
-        new THREE.Vector3(-0.35, 0.32, -0.05),
-        new THREE.Vector3(-0.42, 0.62, 0.08),
-        new THREE.Vector3(-0.25, 0.85, 0.18)
+        new THREE.Vector3(-0.14, 0.20, 0.04),
+        new THREE.Vector3(-0.38, 0.35, -0.04),
+        new THREE.Vector3(-0.48, 0.62, 0.06),
+        new THREE.Vector3(-0.35, 0.90, 0.18),
+        new THREE.Vector3(-0.18, 1.08, 0.28)
       ]);
-      const hornGeoL = new THREE.TubeGeometry(hornCurveL, 24, 0.055, 10, false);
+      const hornGeoL = new THREE.TubeGeometry(hornCurveL, 28, 0.065, 12, false);
       const hornMeshL = new THREE.Mesh(hornGeoL, hornMat);
       headGroup.add(hornMeshL);
 
       const hornCurveR = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.12, 0.18, 0.05),
-        new THREE.Vector3(0.35, 0.32, -0.05),
-        new THREE.Vector3(0.42, 0.62, 0.08),
-        new THREE.Vector3(0.25, 0.85, 0.18)
+        new THREE.Vector3(0.14, 0.20, 0.04),
+        new THREE.Vector3(0.38, 0.35, -0.04),
+        new THREE.Vector3(0.48, 0.62, 0.06),
+        new THREE.Vector3(0.35, 0.90, 0.18),
+        new THREE.Vector3(0.18, 1.08, 0.28)
       ]);
-      const hornGeoR = new THREE.TubeGeometry(hornCurveR, 24, 0.055, 10, false);
+      const hornGeoR = new THREE.TubeGeometry(hornCurveR, 28, 0.065, 12, false);
       const hornMeshR = new THREE.Mesh(hornGeoR, hornMat);
       headGroup.add(hornMeshR);
 
-      headGroup.position.set(0, 1.25, 1.05);
+      // Sharp Polished Golden Brass Horn Caps (பூண்டு)
+      const brassTipL = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.18, 10), hornBrassMat);
+      brassTipL.position.set(-0.18, 1.08, 0.28);
+      brassTipL.rotation.x = -0.45;
+      brassTipL.rotation.z = 0.35;
+      headGroup.add(brassTipL);
+
+      const brassTipR = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.18, 10), hornBrassMat);
+      brassTipR.position.set(0.18, 1.08, 0.28);
+      brassTipR.rotation.x = -0.45;
+      brassTipR.rotation.z = -0.35;
+      headGroup.add(brassTipR);
+
+      // Festive ribbon ties at horn bases
+      [-0.18, 0.18].forEach(hx => {
+        const ribbon = new THREE.Mesh(new THREE.TorusGeometry(0.08, 0.02, 6, 12), festiveRed);
+        ribbon.position.set(hx, 0.22, 0.02);
+        headGroup.add(ribbon);
+      });
+
+      headGroup.position.set(0, 1.28, 1.15);
       bullGroup.add(headGroup);
 
-      // 4 Athletic Legs with Hock Joints and Hooves
+      // 8. Four Muscular Legs with Knee/Hock Joints and Cloven Hooves
       bullLegs = [];
-      const legOffsets = [
-        { x: -0.24, z: 0.44 }, { x: 0.24, z: 0.44 },
-        { x: -0.22, z: -0.44 }, { x: 0.22, z: -0.44 }
+      const legConfigs = [
+        { x: -0.26, z:  0.42, isFront: true,  name: 'FL' },
+        { x:  0.26, z:  0.42, isFront: true,  name: 'FR' },
+        { x: -0.24, z: -0.52, isFront: false, name: 'HL' },
+        { x:  0.24, z: -0.52, isFront: false, name: 'HR' }
       ];
-      legOffsets.forEach(lo => {
+
+      legConfigs.forEach((cfg, idx) => {
         const legGroup = new THREE.Group();
-        const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.08, 0.45, 12), bullMat);
-        thigh.position.y = -0.22;
-        legGroup.add(thigh);
 
-        const hock = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), bullMat);
-        hock.position.y = -0.42;
-        legGroup.add(hock);
+        if (cfg.isFront) {
+          // Muscular Upper Forearm
+          const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.09, 0.48, 12), muscleDarkMat);
+          forearm.position.y = -0.24;
+          legGroup.add(forearm);
 
-        const shin = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.06, 0.38, 10), bullMat);
-        shin.position.y = -0.60;
-        legGroup.add(shin);
+          // Carpal Knee Joint
+          const knee = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), muscleDarkMat);
+          knee.position.y = -0.46;
+          legGroup.add(knee);
 
-        const hoof = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.085, 0.12, 12), hoofMat);
-        hoof.position.y = -0.80;
-        legGroup.add(hoof);
+          // Slender Cannon Bone
+          const cannon = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.38, 10), bullCoatMat);
+          cannon.position.y = -0.64;
+          legGroup.add(cannon);
 
-        legGroup.position.set(lo.x, 0.88, lo.z);
+          // Fetlock Joint
+          const fetlock = new THREE.Mesh(new THREE.SphereGeometry(0.07, 8, 8), hoofMat);
+          fetlock.position.y = -0.82;
+          legGroup.add(fetlock);
+
+          // Cloven Black Hoof with center cleft
+          const hoof = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.11, 0.16), hoofMat);
+          hoof.position.set(0, -0.90, 0.02);
+          legGroup.add(hoof);
+        } else {
+          // Broad Muscular Gaskin / Upper Thigh
+          const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.11, 0.52, 12), muscleDarkMat);
+          thigh.position.y = -0.24;
+          legGroup.add(thigh);
+
+          // Backward-Angled Hock Joint (Calcaneus)
+          const hock = new THREE.Mesh(new THREE.SphereGeometry(0.10, 8, 8), muscleDarkMat);
+          hock.position.set(0, -0.48, -0.04);
+          legGroup.add(hock);
+
+          // Hind Shank
+          const shank = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.065, 0.38, 10), bullCoatMat);
+          shank.position.set(0, -0.66, -0.02);
+          legGroup.add(shank);
+
+          // Cloven Black Hoof
+          const hoof = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.11, 0.16), hoofMat);
+          hoof.position.set(0, -0.90, 0.01);
+          legGroup.add(hoof);
+        }
+
+        legGroup.position.set(cfg.x, 0.94, cfg.z);
         bullGroup.add(legGroup);
         bullLegs.push(legGroup);
       });
 
-      // Tail with Brush Tuft
+      // 9. Dynamic Whipping Tail with Thick Brush Tuft
       const tailGroup = new THREE.Group();
-      const tailStem = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.02, 0.75, 8), bullMat);
-      tailStem.position.y = -0.36;
-      tailGroup.add(tailStem);
+      const tailCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, -0.28, -0.10),
+        new THREE.Vector3(0.04, -0.55, -0.12),
+        new THREE.Vector3(-0.04, -0.82, -0.08)
+      ]);
+      const tailGeo = new THREE.TubeGeometry(tailCurve, 16, 0.028, 8, false);
+      const tailMesh = new THREE.Mesh(tailGeo, bullCoatMat);
+      tailGroup.add(tailMesh);
 
-      const tailTuft = new THREE.Mesh(new THREE.ConeGeometry(0.065, 0.26, 8), hoofMat);
-      tailTuft.position.y = -0.76;
+      // Bushy Black Tail Tuft
+      const tailTuft = new THREE.Mesh(new THREE.ConeGeometry(0.075, 0.28, 10), hoofMat);
+      tailTuft.position.set(-0.04, -0.94, -0.08);
       tailGroup.add(tailTuft);
 
-      tailGroup.position.set(0, 0.92, -0.68);
-      tailGroup.rotation.x = -0.25;
+      tailGroup.position.set(0, 1.08, -0.84);
       bullGroup.add(tailGroup);
 
       bullMesh = bullGroup;
       bullHead = headGroup;
       bullTail = tailGroup;
-      bullGroup.rotation.y = Math.PI; // Face directly forward toward the black road and approaching car!
-      bullGroup.position.set(0, 0, 0.2);
+
+      // Position & Dynamic 3/4 Stance facing the approach road & camera
+      bullGroup.rotation.y = Math.PI - 0.38; // 3/4 heroic perspective angle!
+      bullGroup.position.set(0, 0, 0.25);
       arena.add(bullGroup);
 
-      // Elevated Popup Badge (Floats at y = 6.0 in clear sky, depthTest: false)
+      // Elevated Popup Badge
       const badge = createBixiPopupBadge('Alanganallur Vadivasal', 'Jallikattu Arena');
       badge.position.set(0, 6.0, 1.8);
       badge.userData.baseY = 6.0;
@@ -2208,7 +2336,6 @@
     museumModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza & camera
     museumModel.scale.set(1.35, 1.35, 1.35);
     scene.add(museumModel);
-
     // F. ALAGAR KOVIL (KALLAZHAGAR SACRED TEMPLE - STEPPED OCTAGONAL VIMANA & ROCKY OUTCROP)
     function createAlagarTemple() {
       const temple = new THREE.Group();
@@ -2216,9 +2343,9 @@
       const detailStoneMat = new THREE.MeshStandardMaterial({ color: 0x826f5d, roughness: 0.80 });
       const terracottaAccent = new THREE.MeshStandardMaterial({ color: 0x944222, roughness: 0.75 });
       const goldMat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.96, roughness: 0.12 });
-      const brassMat = new THREE.MeshStandardMaterial({ color: 0xc8963e, metalness: 0.85, roughness: 0.25 });
-      const waterMat = new THREE.MeshStandardMaterial({ color: 0x147892, roughness: 0.1, metalness: 0.8, transparent: true, opacity: 0.92 });
-      const boulderMat = new THREE.MeshStandardMaterial({ color: 0x363832, roughness: 0.95, flatShading: true });
+      const brassMat = new THREE.MeshStandardMaterial({ color: 0xc8963e, metalness: 0.90, roughness: 0.20 });
+      const rockMat = new THREE.MeshStandardMaterial({ color: 0x485244, roughness: 0.92 });
+      const waterMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: 0.15, metalness: 0.70 });
 
       // Rocky Mountain Outcrops (Alagar Malai foothills)
       const rockCoords = [
@@ -2228,9 +2355,11 @@
         { x: 2.4,  y: 0.4, z: -0.4, s: 0.95 }
       ];
       rockCoords.forEach(rc => {
-        const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(rc.s, 1), boulderMat);
+        const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(rc.s, 1), rockMat);
         rock.position.set(rc.x, rc.y, rc.z);
+        rock.rotation.set(rc.x * 0.4, rc.z * 0.5, 0.3);
         rock.castShadow = true;
+        rock.receiveShadow = true;
         temple.add(rock);
       });
 
@@ -2240,7 +2369,7 @@
       plinth.receiveShadow = true;
       temple.add(plinth);
 
-      // Solid Monolithic Stone Sanctuary Base Under Gopuram (Zero air gap, solid structural anchoring)
+      // Solid Monolithic Stone Sanctuary Base Under Gopuram
       const gopuramBase = new THREE.Mesh(new THREE.BoxGeometry(3.40, 0.96, 2.55), stoneMat);
       gopuramBase.position.set(0, 0.76, 0);
       gopuramBase.castShadow = true;
@@ -2289,104 +2418,89 @@
         const tierH = 0.42;
         const topR = baseR - 0.20;
 
-        // Sloping 4-sided trapezoidal pyramidal tier
         const tierGeo = new THREE.CylinderGeometry(topR, baseR, tierH, 4, 1, false, Math.PI / 4);
         const tierMat = (t % 2 === 0) ? stoneMat : detailStoneMat;
         const tier = new THREE.Mesh(tierGeo, tierMat);
         tier.position.y = currentY + tierH / 2;
         tier.castShadow = true;
+        tier.receiveShadow = true;
         temple.add(tier);
 
-        // Projecting Kapota Cornice
-        const cornice = new THREE.Mesh(new THREE.CylinderGeometry(baseR + 0.14, baseR + 0.16, 0.08, 4, 1, false, Math.PI / 4), terracottaAccent);
-        cornice.position.y = currentY + tierH;
-        temple.add(cornice);
+        // Tier Cornice Ledge with terracotta moulding
+        const ledgeW = (baseR + topR) * 1.06;
+        const ledge = new THREE.Mesh(new THREE.BoxGeometry(ledgeW, 0.07, ledgeW), terracottaAccent);
+        ledge.position.y = currentY + tierH;
+        temple.add(ledge);
 
-        // Arched Gavaksha niches on front face
-        const kudu = new THREE.Mesh(new THREE.TorusGeometry(0.10, 0.03, 6, 12, Math.PI), detailStoneMat);
-        kudu.position.set(0, currentY + tierH * 0.55, topR * 0.75);
-        temple.add(kudu);
+        // Dravidian Kudu Shrine Niches (4 facade faces)
+        const kuduAngles = [0, Math.PI / 2, Math.PI, Math.PI * 1.5];
+        kuduAngles.forEach(ang => {
+          const kuduDist = (baseR + topR) / 2 * 0.88;
+          const kudu = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.20, 0.08), terracottaAccent);
+          kudu.position.set(Math.sin(ang) * kuduDist, currentY + tierH * 0.45, Math.cos(ang) * kuduDist);
+          kudu.rotation.y = ang;
+          temple.add(kudu);
 
-        currentY += tierH;
+          const kuduArch = new THREE.Mesh(new THREE.TorusGeometry(0.12, 0.03, 6, 10, Math.PI), terracottaAccent);
+          kuduArch.position.set(Math.sin(ang) * kuduDist, currentY + tierH * 0.55, Math.cos(ang) * kuduDist);
+          kuduArch.rotation.y = ang;
+          temple.add(kuduArch);
+        });
+
+        currentY += tierH + 0.07;
         baseR = topR;
       }
 
-      // Solid Classical Griva (Neck Pedestal connecting tier to Shikhara - Zero Floating Gap!)
-      const grivaH = 0.24;
-      const grivaW = baseR * 1.30;
-      const grivaD = baseR * 0.90;
-      const griva = new THREE.Mesh(new THREE.BoxGeometry(grivaW, grivaH, grivaD), detailStoneMat);
-      griva.position.set(0, currentY + grivaH / 2, 0);
-      griva.castShadow = true;
-      temple.add(griva);
+      // Barrel-Vault Shikhara (Gala + Shikhara roof crest)
+      const shikharaGeo = new THREE.CylinderGeometry(0.55, 0.65, 0.38, 12, 1, false, 0, Math.PI);
+      const shikhara = new THREE.Mesh(shikharaGeo, stoneMat);
+      shikhara.rotation.x = Math.PI / 2;
+      shikhara.position.set(0, currentY + 0.20, 0);
+      shikhara.castShadow = true;
+      temple.add(shikhara);
 
-      // Griva Upper Molding / Cornice
-      const grivaCornice = new THREE.Mesh(new THREE.BoxGeometry(grivaW + 0.14, 0.06, grivaD + 0.14), terracottaAccent);
-      grivaCornice.position.set(0, currentY + grivaH + 0.03, 0);
-      temple.add(grivaCornice);
-
-      currentY += grivaH + 0.06;
-
-      // Barrel-Vaulted Wagon Roof (Sala Shikhara) - Seated flush directly on Griva
-      const salaLength = baseR * 1.8;
-      const sala = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.45, salaLength, 16, 1, false, 0, Math.PI), stoneMat);
-      sala.rotation.z = Math.PI / 2;
-      sala.rotation.y = Math.PI / 2;
-      sala.position.y = currentY;
-      sala.castShadow = true;
-      temple.add(sala);
-
-      // Solid core stone block inside Sala arch (prevents any hollow see-through gap)
-      const salaCore = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.22, salaLength * 0.96), stoneMat);
-      salaCore.position.set(0, currentY + 0.11, 0);
-      temple.add(salaCore);
-
-      // Gavaksha Arched End Gables
-      const gableL = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 16, Math.PI), detailStoneMat);
-      gableL.position.set(-salaLength / 2, currentY, 0);
-      gableL.rotation.y = Math.PI / 2;
-      temple.add(gableL);
-      const gableR = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 16, Math.PI), detailStoneMat);
-      gableR.position.set(salaLength / 2, currentY, 0);
-      gableR.rotation.y = -Math.PI / 2;
-      temple.add(gableR);
-
-      // 5 Gleaming Golden Kalasams seated firmly on roof ridge
+      // 5 Golden Kalasams along the Shikhara ridge
       for (let k = -2; k <= 2; k++) {
         const kalasamGroup = new THREE.Group();
-        const pot = new THREE.Mesh(new THREE.SphereGeometry(0.08, 12, 12), goldMat);
-        pot.position.y = 0.12;
-        kalasamGroup.add(pot);
+        const kPot = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 12), goldMat);
+        kPot.position.y = 0.085;
+        kalasamGroup.add(kPot);
 
-        const spire = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.32, 10), goldMat);
-        spire.position.y = 0.30;
-        kalasamGroup.add(spire);
+        const kFinial = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.24, 10), goldMat);
+        kFinial.position.y = 0.26;
+        kalasamGroup.add(kFinial);
 
-        kalasamGroup.position.set(k * 0.18, currentY + 0.42, 0);
+        kalasamGroup.position.set(k * 0.22, currentY + 0.38, 0);
+        kalasamGroup.castShadow = true;
         temple.add(kalasamGroup);
       }
 
-      // Golden Dhwaja Stambham (Sacred Temple Flagstaff)
-      const flagGroup = new THREE.Group();
-      const mastBase = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 0.35, 12), brassMat);
-      mastBase.position.y = 0.18;
-      flagGroup.add(mastBase);
+      // Tall Gold-Plated Dhwaja Stambham (Temple Flag Mast)
+      const dhwaja = new THREE.Group();
+      const dBase = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.32, 0.32), stoneMat);
+      dBase.position.y = 0.16;
+      dhwaja.add(dBase);
 
-      const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.08, 3.4, 12), goldMat);
-      mast.position.y = 1.85;
-      flagGroup.add(mast);
+      const dPole = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 3.6, 12), brassMat);
+      dPole.position.y = 1.96;
+      dhwaja.add(dPole);
 
-      for (let fr = 0; fr < 3; fr++) {
+      for (let r = 0; r < 5; r++) {
         const ring = new THREE.Mesh(new THREE.TorusGeometry(0.065, 0.015, 6, 12), goldMat);
         ring.rotation.x = Math.PI / 2;
-        ring.position.y = 1.2 + fr * 0.75;
-        flagGroup.add(ring);
+        ring.position.y = 0.6 + r * 0.65;
+        dhwaja.add(ring);
       }
 
-      flagGroup.position.set(1.5, 0.28, -1.5);
-      temple.add(flagGroup);
+      const dFlag = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.28, 8), goldMat);
+      dFlag.position.y = 3.82;
+      dhwaja.add(dFlag);
 
-      // Sacred Noopura Gangai Spring Chute & Lotus Pushkarani
+      dhwaja.position.set(1.4, 0.28, 1.8);
+      dhwaja.castShadow = true;
+      temple.add(dhwaja);
+
+      // Sacred Natural Spring (Silambar River / Noopura Gangai)
       const streamGeo = new THREE.CylinderGeometry(0.22, 0.22, 2.4, 12, 1, false, 0, Math.PI);
       const stream = new THREE.Mesh(streamGeo, waterMat);
       stream.rotation.x = Math.PI / 2;
@@ -2402,17 +2516,71 @@
       cisternWater.position.set(-2.0, 0.28, 0.4);
       temple.add(cisternWater);
 
+      // =======================================================================
+      // 6. GRAND DRAVIDIAN TEMPLE ENTRANCE TORANA & ILLUMINATED SIGNBOARD
+      // Erected in the front courtyard at z = 2.65, 100% unblocked and prominent!
+      // =======================================================================
+      [-1.75, 1.75].forEach(gx => {
+        const toranaPillar = new THREE.Group();
+        const pBase = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.24, 0.36), stoneMat);
+        pBase.position.y = 0.12;
+        toranaPillar.add(pBase);
+
+        const pShaft = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.10, 1.90, 16), detailStoneMat);
+        pShaft.position.y = 1.07;
+        toranaPillar.add(pShaft);
+
+        // Dravidian Lotus / Yali Capital Bracket
+        const pCap = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.14, 0.34), stoneMat);
+        pCap.position.y = 2.08;
+        toranaPillar.add(pCap);
+
+        // Golden Kalasam Finial atop Torana Pillars
+        const pKalasam = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.26, 12), goldMat);
+        pKalasam.position.y = 2.29;
+        toranaPillar.add(pKalasam);
+
+        toranaPillar.position.set(gx, 0.28, 2.65);
+        toranaPillar.castShadow = true;
+        temple.add(toranaPillar);
+      });
+
+      // Architrave crossbeam spanning between the two front torana pillars
+      const toranaBeam = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.16, 0.20), stoneMat);
+      toranaBeam.position.set(0, 2.22, 2.65);
+      temple.add(toranaBeam);
+
+      // Backing transom mounting panel
+      const transom = new THREE.Mesh(new THREE.BoxGeometry(3.5, 0.66, 0.08), stoneMat);
+      transom.position.set(0, 1.72, 2.68);
+      temple.add(transom);
+
+      // The Crystal Clear Illuminated Grand Temple Signboard
       const signTex = createSignboardTexture(
         'ALAGAR KOVIL (KALLAZHAGAR)',
         'SACRED HILL TEMPLE • CHITHIRAI FESTIVAL',
-        '#160a04',
+        '#0f141c',
         '#ffffff',
         '#ff9933'
       );
       const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.55), signMat);
-      sign.position.set(0, 1.45, -1.25);
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.3, 0.62), signMat);
+      sign.position.set(0, 1.72, 2.74);
       temple.add(sign);
+
+      // Golden Vaishnava Tiruman Namam Crest Emblem (திருமண் / நாம சின்னம்) atop center beam
+      const namamBase = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.22, 0.04), goldMat);
+      namamBase.position.set(0, 2.42, 2.68);
+      temple.add(namamBase);
+
+      const namamCenter = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.20, 0.06), new THREE.MeshStandardMaterial({ color: 0xd92626 }));
+      namamCenter.position.set(0, 2.43, 2.69);
+      temple.add(namamCenter);
+
+      // Divine warm golden temple illumination
+      const templeLight = new THREE.PointLight(0xffb84d, 2.8, 8.5);
+      templeLight.position.set(0, 1.8, 2.2);
+      temple.add(templeLight);
 
       // Elevated Popup Badge (Floats at y = 6.5 in clear sky, depthTest: false)
       const badge = createBixiPopupBadge('Alagar Kovil', 'Sacred Hill Temple');
