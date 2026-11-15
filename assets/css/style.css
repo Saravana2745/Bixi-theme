@@ -5975,9 +5975,14 @@ button.bixi-cal-day.empty,
    ========================================================================== */
 
 /* ==========================================================================
-   NEW LUXURY SPLIT HERO SECTION WITH CURVED 3D ORBITAL PLATE ROTATOR
-   Left: Rich Semantic Keywords & Value Propositions
-   Right: 3D Curved Orbital "Food-Plate" Showroom Vehicle Showcase
+   REEL-INSPIRED LUXURY ROTATING HEADER SHOWCASE (INSTAGRAM REEL STYLE)
+   Features:
+   - Spinning circular platter turntable with concentric grooves & neon halo
+   - Rotational vehicle spin-in / spin-out transitions
+   - Dynamic headline flip reveal
+   - Circular thumbnail selector bar with active pulse rings
+   - Live 4.0s progress bar and slide counter
+   - Responsive desktop 50/50 split & touch-optimized mobile stage
    ========================================================================== */
 
 .hero-banner-section {
@@ -5998,8 +6003,8 @@ button.bixi-cal-day.empty,
   padding: 0 1.25rem !important;
 }
 
-/* Split Stage Grid */
-.hero-split-stage {
+/* Main Split Stage Grid */
+.hero-split-stage.hero-reel-showcase {
   display: grid !important;
   grid-template-columns: 1.15fr 1fr !important;
   gap: 2.5rem !important;
@@ -6007,10 +6012,26 @@ button.bixi-cal-day.empty,
   margin-bottom: 2rem !important;
   position: relative !important;
   width: 100% !important;
+  overflow: visible !important;
 }
 
-/* ═══════════════ LEFT HALF: KEYWORD RICH CONTENT & CTAS ═══════════════ */
-.hero-split-left {
+/* Organic Fluid Backdrop Curve (Inspired by Instagram Reel) */
+.hero-reel-fluid-blob {
+  position: absolute !important;
+  top: -15% !important;
+  left: -8% !important;
+  width: 580px !important;
+  height: 520px !important;
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55% !important;
+  background: radial-gradient(circle at 40% 50%, rgba(255, 122, 24, 0.22) 0%, rgba(255, 122, 24, 0.06) 50%, rgba(9, 10, 14, 0) 75%) !important;
+  filter: blur(55px) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  transition: background 0.8s ease, transform 1.2s ease !important;
+}
+
+/* ═══════════════ LEFT HALF: TYPOGRAPHY, REVEAL, THUMBNAILS & CTAS ═══════════════ */
+.hero-split-left.hero-reel-left {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -6067,14 +6088,40 @@ button.bixi-cal-day.empty,
   fill: #F59E0B !important;
 }
 
-.hero-main-title {
+/* Reel-Style Two-Line Massive Display Headline */
+.hero-main-title.hero-reel-title {
+  margin: 0 0 0.85rem !important;
   font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
-  font-size: 2.65rem !important;
-  font-weight: 900 !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.02em !important;
+}
+
+.reel-title-static {
+  display: block !important;
+  font-size: 2.15rem !important;
+  font-weight: 800 !important;
   color: #FFFFFF !important;
-  margin: 0 0 1rem !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.reel-title-dynamic {
+  display: block !important;
+  font-size: 2.95rem !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: uppercase !important;
+  margin-top: 0.15rem !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
+}
+
+.reel-title-dynamic.title-flip-out {
+  transform: translateY(-16px) !important;
+  opacity: 0 !important;
+}
+
+.reel-title-dynamic.title-flip-in {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
 }
 
 .hero-main-title .gradient-text {
@@ -6084,11 +6131,42 @@ button.bixi-cal-day.empty,
   text-shadow: 0 0 35px rgba(255, 122, 24, 0.35) !important;
 }
 
-.hero-subheadline {
-  font-size: 0.94rem !important;
-  line-height: 1.62 !important;
+/* Category & Badge Pill Row */
+.reel-model-pill-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  margin-bottom: 0.95rem !important;
+  flex-wrap: wrap !important;
+}
+
+.reel-category-pill {
+  background: rgba(255, 122, 24, 0.15) !important;
+  border: 1px solid rgba(255, 122, 24, 0.4) !important;
+  border-radius: 9999px !important;
+  padding: 0.22rem 0.85rem !important;
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 0.76rem !important;
+  font-weight: 800 !important;
+  color: #FF7A18 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.reel-badge-tag {
+  font-family: 'Space Grotesk', monospace !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
   color: #94A3B8 !important;
-  margin: 0 0 1.35rem !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+.hero-subheadline.hero-reel-subheadline {
+  font-size: 0.92rem !important;
+  line-height: 1.6 !important;
+  color: #94A3B8 !important;
+  margin: 0 0 1.25rem !important;
 }
 
 .hero-subheadline strong {
@@ -6096,47 +6174,203 @@ button.bixi-cal-day.empty,
   font-weight: 700 !important;
 }
 
-/* SEO Keyword & USP Grid */
-.hero-usp-grid {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 0.6rem 0.85rem !important;
-  width: 100% !important;
-  margin-bottom: 1.5rem !important;
-}
-
-.hero-usp-pill {
+/* Dynamic Price & Specs Callout Bar */
+.reel-price-bar {
   display: flex !important;
   align-items: center !important;
-  gap: 0.5rem !important;
-  padding: 0.45rem 0.75rem !important;
-  background: rgba(16, 20, 30, 0.7) !important;
-  border: 1px solid rgba(255, 255, 255, 0.09) !important;
-  border-radius: 10px !important;
-  font-size: 0.78rem !important;
+  gap: 1.5rem !important;
+  padding: 0.75rem 1.15rem !important;
+  background: rgba(16, 20, 30, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 14px !important;
+  margin-bottom: 1.25rem !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  width: 100% !important;
+  max-width: 520px !important;
+}
+
+.reel-price-box {
+  display: flex !important;
+  flex-direction: column !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-right: 1.25rem !important;
+}
+
+.reel-price-label,
+.reel-specs-label {
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  color: #64748B !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 0.15rem !important;
+}
+
+.reel-price-amount-wrap {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.15rem !important;
+}
+
+.reel-price-currency {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: #FF7A18 !important;
+}
+
+.reel-price-val {
+  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
+  font-size: 1.85rem !important;
+  font-weight: 900 !important;
+  color: #FF7A18 !important;
+  line-height: 1 !important;
+}
+
+.reel-price-unit {
+  font-size: 0.75rem !important;
+  color: #94A3B8 !important;
   font-weight: 600 !important;
-  color: #E2E8F0 !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  transition: all 0.25s ease !important;
+  margin-left: 0.2rem !important;
 }
 
-.hero-usp-pill:hover {
-  background: rgba(255, 122, 24, 0.12) !important;
-  border-color: rgba(255, 122, 24, 0.35) !important;
-  transform: translateY(-1px) !important;
+.reel-specs-box {
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-.hero-usp-pill .usp-icon {
-  width: 15px !important;
-  height: 15px !important;
-  stroke: #FF7A18 !important;
-  fill: none !important;
-  stroke-width: 2 !important;
-  flex-shrink: 0 !important;
+.reel-specs-text {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #F1F5F9 !important;
+  line-height: 1.35 !important;
 }
 
-/* Split CTA Bar */
+/* ═══════════════ THE SIGNATURE CIRCULAR THUMBNAIL SELECTOR BAR ═══════════════ */
+.reel-thumbnail-selector-wrapper {
+  margin-bottom: 1.15rem !important;
+  width: 100% !important;
+}
+
+.reel-thumb-label {
+  display: block !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  color: #64748B !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.reel-thumbnail-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  flex-wrap: wrap !important;
+}
+
+.reel-thumb-disc {
+  position: relative !important;
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.15) 0%, rgba(18, 22, 34, 0.95) 75%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  padding: 5px !important;
+  overflow: visible !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.reel-thumb-disc:hover {
+  border-color: rgba(255, 122, 24, 0.6) !important;
+  transform: translateY(-2px) scale(1.08) !important;
+}
+
+.reel-thumb-disc.active {
+  border-color: #FF7A18 !important;
+  transform: scale(1.15) !important;
+  box-shadow: 0 0 20px rgba(255, 122, 24, 0.65), 0 8px 25px rgba(0, 0, 0, 0.8) !important;
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.3) 0%, rgba(22, 27, 40, 0.98) 75%) !important;
+}
+
+.thumb-glow-ring {
+  position: absolute !important;
+  inset: -5px !important;
+  border-radius: 50% !important;
+  border: 1.5px dashed rgba(255, 122, 24, 0.7) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  animation: rotateRing 8s linear infinite !important;
+  pointer-events: none !important;
+}
+
+.reel-thumb-disc.active .thumb-glow-ring {
+  opacity: 1 !important;
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.reel-thumb-disc img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6)) !important;
+}
+
+/* Slide Counter & Animated Progress Line */
+.reel-counter-progress-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+  max-width: 320px !important;
+  margin-bottom: 1.35rem !important;
+}
+
+.reel-counter-wrap {
+  font-family: 'Space Grotesk', monospace !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  color: #64748B !important;
+  white-space: nowrap !important;
+}
+
+#reelCurrentIndex {
+  color: #FF7A18 !important;
+  font-size: 1.05rem !important;
+}
+
+.reel-counter-slash {
+  color: rgba(255, 255, 255, 0.25) !important;
+  margin: 0 0.2rem !important;
+}
+
+.reel-progress-track {
+  flex: 1 !important;
+  height: 4px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.reel-progress-fill {
+  height: 100% !important;
+  width: 0% !important;
+  background: linear-gradient(90deg, #FF7A18 0%, #FF9A44 100%) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 0 10px rgba(255, 122, 24, 0.8) !important;
+}
+
+/* Left CTA Action Bar */
 .hero-split-cta-bar {
   display: flex !important;
   align-items: center !important;
@@ -6259,8 +6493,8 @@ button.bixi-cal-day.empty,
 }
 
 
-/* ═══════════════ RIGHT HALF: CURVED 3D ORBITAL PLATE ROTATOR ═══════════════ */
-.hero-split-right {
+/* ═══════════════ RIGHT HALF: THE ROTATING TURNTABLE PLATTER ═══════════════ */
+.hero-split-right.hero-reel-right {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -6270,465 +6504,432 @@ button.bixi-cal-day.empty,
   z-index: 5 !important;
 }
 
-.curved-plate-carousel-container {
+.reel-turntable-container {
   position: relative !important;
   width: 100% !important;
-  min-height: 430px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  user-select: none !important;
-  overflow: visible !important;
-}
-
-/* Atmospheric Glow & Orbital Guides */
-.orbital-glow-backdrop {
-  position: absolute !important;
-  inset: 0 !important;
+  min-height: 440px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  perspective: 1100px !important;
+  overflow: visible !important;
+  user-select: none !important;
+}
+
+/* Ambient Halo Glow */
+.turntable-ambient-glow {
+  position: absolute !important;
+  width: 480px !important;
+  height: 380px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse at center, rgba(255, 122, 24, 0.35) 0%, rgba(9, 10, 14, 0) 70%) !important;
+  filter: blur(50px) !important;
   pointer-events: none !important;
   z-index: 0 !important;
-  overflow: visible !important;
+  transition: background 0.8s ease !important;
 }
 
-.orbital-ring {
-  position: absolute !important;
-  border-radius: 50% !important;
-  border: 1px dashed rgba(255, 122, 24, 0.18) !important;
-  transform: perspective(700px) rotateX(65deg) !important;
-}
-
-.orbital-ring-outer {
-  width: 520px !important;
-  height: 240px !important;
-  border-color: rgba(255, 122, 24, 0.12) !important;
-}
-
-.orbital-ring-inner {
-  width: 380px !important;
-  height: 180px !important;
-  border-color: rgba(255, 122, 24, 0.25) !important;
-}
-
-.orbital-radial-glow {
-  position: absolute !important;
-  width: 440px !important;
-  height: 280px !important;
-  border-radius: 50% !important;
-  background: radial-gradient(ellipse at center, rgba(255, 122, 24, 0.18) 0%, rgba(9, 10, 14, 0) 70%) !important;
-  filter: blur(40px) !important;
-}
-
-/* Carousel HUD Header */
-.carousel-hud-header {
+/* Turntable Stage Container */
+.turntable-plate-stage {
+  position: relative !important;
+  width: 460px !important;
+  height: 400px !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  max-width: 440px !important;
-  margin-bottom: 0.5rem !important;
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-.carousel-hud-badge {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.45rem !important;
-  background: rgba(18, 22, 34, 0.85) !important;
-  border: 1px solid rgba(255, 122, 24, 0.3) !important;
-  border-radius: 9999px !important;
-  padding: 0.25rem 0.75rem !important;
-  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
-  font-size: 0.74rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.04em !important;
-  color: #FF7A18 !important;
-  text-transform: uppercase !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-}
-
-.hud-live-indicator {
-  width: 6px !important;
-  height: 6px !important;
-  border-radius: 50% !important;
-  background: #22C55E !important;
-  box-shadow: 0 0 8px #22C55E !important;
-}
-
-.carousel-counter {
-  font-family: 'Space Grotesk', monospace !important;
-  font-size: 0.8rem !important;
-  font-weight: 800 !important;
-  color: #64748B !important;
-  letter-spacing: 0.05em !important;
-}
-
-#activeSlideIndex {
-  color: #FF7A18 !important;
-  font-size: 0.95rem !important;
-}
-
-/* 3D Orbit Stage */
-.curved-orbit-stage {
-  position: relative !important;
-  width: 100% !important;
-  height: 330px !important;
-  perspective: 1100px !important;
+  justify-content: center !important;
   transform-style: preserve-3d !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  overflow: visible !important;
-  z-index: 5 !important;
+  z-index: 2 !important;
 }
 
-/* Single Vehicle Plate Item */
-.vehicle-plate-item {
+/* THE ROTATING TURNTABLE PLATTER DISC (From Instagram Reel) */
+.turntable-platter-disc {
   position: absolute !important;
-  width: 310px !important;
-  height: 260px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), 
-              opacity 0.65s ease, 
-              filter 0.65s ease, 
-              z-index 0.65s step-end !important;
-  will-change: transform, opacity !important;
-}
-
-/* ═══════════════ 6 POSITIONS ALONG THE CURVED ORBIT ═══════════════ */
-/* Slot 0: Active Spotlight Front-Center */
-.vehicle-plate-item.active {
-  transform: translate3d(0, 16px, 100px) scale(1.06) !important;
-  opacity: 1 !important;
-  z-index: 30 !important;
-  pointer-events: auto !important;
-  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.85)) !important;
-}
-
-/* Slot 1: Next Up on Right Curve Arc */
-.vehicle-plate-item.slot-next {
-  transform: translate3d(145px, -24px, 0px) scale(0.78) rotateZ(6deg) !important;
-  opacity: 0.82 !important;
-  z-index: 20 !important;
-  pointer-events: auto !important;
-  filter: brightness(0.85) blur(0.5px) !important;
-}
-
-/* Slot 2: Far Right Curve Arc */
-.vehicle-plate-item.slot-far-right {
-  transform: translate3d(240px, -65px, -70px) scale(0.56) rotateZ(12deg) !important;
-  opacity: 0.45 !important;
-  z-index: 10 !important;
-  pointer-events: auto !important;
-  filter: brightness(0.65) blur(1.5px) !important;
-}
-
-/* Slot 3: Back / Top Distant Apex */
-.vehicle-plate-item.slot-back {
-  transform: translate3d(0, -90px, -140px) scale(0.42) !important;
-  opacity: 0.15 !important;
-  z-index: 5 !important;
-  pointer-events: none !important;
-  filter: brightness(0.4) blur(3px) !important;
-}
-
-/* Slot 4: Far Left Curve Arc */
-.vehicle-plate-item.slot-far-left {
-  transform: translate3d(-240px, -65px, -70px) scale(0.56) rotateZ(-12deg) !important;
-  opacity: 0.45 !important;
-  z-index: 10 !important;
-  pointer-events: auto !important;
-  filter: brightness(0.65) blur(1.5px) !important;
-}
-
-/* Slot 5: Previous Up on Left Curve Arc */
-.vehicle-plate-item.slot-prev {
-  transform: translate3d(-145px, -24px, 0px) scale(0.78) rotateZ(-6deg) !important;
-  opacity: 0.82 !important;
-  z-index: 20 !important;
-  pointer-events: auto !important;
-  filter: brightness(0.85) blur(0.5px) !important;
-}
-
-/* ═══════════════ THE PEDESTAL DISC ("FOODS PLATE") ═══════════════ */
-.plate-pedestal-disc {
-  position: absolute !important;
-  bottom: 42px !important;
-  width: 270px !important;
-  height: 85px !important;
+  bottom: 30px !important;
+  width: 440px !important;
+  height: 180px !important;
   border-radius: 50% !important;
-  background: radial-gradient(ellipse at 50% 35%, rgba(255, 122, 24, 0.28) 0%, rgba(22, 27, 39, 0.95) 55%, rgba(10, 12, 18, 0.98) 100%) !important;
-  border: 1.5px solid rgba(255, 122, 24, 0.4) !important;
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 122, 24, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.35) !important;
-  transform: perspective(500px) rotateX(55deg) !important;
-  transition: all 0.5s ease !important;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255, 122, 24, 0.3) 0%, rgba(24, 29, 42, 0.98) 45%, rgba(10, 12, 18, 0.99) 70%, rgba(5, 6, 8, 1) 100%) !important;
+  border: 2.5px solid rgba(255, 122, 24, 0.5) !important;
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.95),
+    0 0 50px rgba(255, 122, 24, 0.45),
+    inset 0 3px 10px rgba(255, 255, 255, 0.4),
+    inset 0 -6px 20px rgba(0, 0, 0, 0.9) !important;
+  transform: perspective(900px) rotateX(46deg) rotate(0deg) !important;
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
   z-index: 1 !important;
   pointer-events: none !important;
 }
 
-.vehicle-plate-item.active .plate-pedestal-disc {
-  border-color: #FF7A18 !important;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95), 0 0 45px rgba(255, 122, 24, 0.65), 0 0 80px rgba(255, 122, 24, 0.25), inset 0 2px 6px rgba(255, 255, 255, 0.55) !important;
-}
-
-.plate-disc-reflection {
+/* Concentric Grooves */
+.platter-groove {
   position: absolute !important;
-  inset: 12% 15% !important;
   border-radius: 50% !important;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%) !important;
+  border: 1px dashed rgba(255, 122, 24, 0.25) !important;
   pointer-events: none !important;
 }
 
-.plate-rim-glow {
+.platter-groove.groove-1 { inset: 15% !important; border-color: rgba(255, 122, 24, 0.2) !important; }
+.platter-groove.groove-2 { inset: 30% !important; border-color: rgba(255, 122, 24, 0.28) !important; }
+.platter-groove.groove-3 { inset: 45% !important; border-color: rgba(255, 122, 24, 0.35) !important; }
+
+.platter-neon-rim {
   position: absolute !important;
-  inset: -2px !important;
+  inset: -4px !important;
   border-radius: 50% !important;
-  border: 1px solid rgba(255, 122, 24, 0.6) !important;
-  opacity: 0.7 !important;
+  border: 1.5px solid rgba(255, 122, 24, 0.75) !important;
+  box-shadow: 0 0 25px rgba(255, 122, 24, 0.5) !important;
   pointer-events: none !important;
 }
 
-/* Vehicle Cutout Image */
-.plate-vehicle-wrap {
+.platter-radial-highlight {
+  position: absolute !important;
+  inset: 10% 20% !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%) !important;
+  pointer-events: none !important;
+}
+
+/* Vehicle Slides Container */
+.turntable-vehicles-wrap {
   position: relative !important;
-  z-index: 2 !important;
   width: 100% !important;
-  height: 160px !important;
+  height: 320px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  z-index: 2 !important;
   pointer-events: none !important;
 }
 
-.plate-vehicle-img {
-  max-width: 92% !important;
-  max-height: 145px !important;
+.turntable-vehicle-slide {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  transform: scale(0.82) rotate(45deg) !important;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease !important;
+  pointer-events: none !important;
+  will-change: transform, opacity !important;
+}
+
+.turntable-vehicle-slide.active {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) !important;
+  pointer-events: auto !important;
+  z-index: 5 !important;
+}
+
+.turntable-vehicle-slide.spin-out-left {
+  opacity: 0 !important;
+  transform: scale(0.8) rotate(-45deg) !important;
+  z-index: 1 !important;
+}
+
+.turntable-vehicle-slide.spin-out-right {
+  opacity: 0 !important;
+  transform: scale(0.8) rotate(45deg) !important;
+  z-index: 1 !important;
+}
+
+.turntable-vehicle-slide.spin-in-right {
+  animation: spinInRight 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.turntable-vehicle-slide.spin-in-left {
+  animation: spinInLeft 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes spinInRight {
+  0% { opacity: 0; transform: scale(0.8) rotate(45deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes spinInLeft {
+  0% { opacity: 0; transform: scale(0.8) rotate(-45deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.turntable-vehicle-img {
+  max-width: 90% !important;
+  max-height: 250px !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.75)) !important;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.85)) !important;
   transition: transform 0.4s ease !important;
 }
 
-.vehicle-plate-item.active:hover .plate-vehicle-img {
-  transform: scale(1.05) translateY(-4px) !important;
+.turntable-vehicle-slide.active:hover .turntable-vehicle-img {
+  transform: scale(1.05) translateY(-5px) !important;
 }
 
-/* Floating Info Card on Active Plate */
-.plate-info-card {
+.vehicle-floor-shadow {
   position: absolute !important;
-  bottom: -6px !important;
-  left: 50% !important;
-  width: 275px !important;
-  background: rgba(13, 16, 24, 0.94) !important;
-  border: 1px solid rgba(255, 122, 24, 0.45) !important;
-  border-radius: 12px !important;
-  padding: 0.55rem 0.85rem !important;
+  bottom: 22px !important;
+  width: 340px !important;
+  height: 35px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 70%) !important;
+  filter: blur(6px) !important;
+  pointer-events: none !important;
+}
+
+/* Turntable Nav Arrows */
+.turntable-nav-arrows {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: translateY(-50%) !important;
   display: flex !important;
-  align-items: center !important;
   justify-content: space-between !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.75), 0 0 15px rgba(255, 122, 24, 0.2) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  opacity: 0 !important;
-  transform: translateX(-50%) translateY(8px) !important;
-  transition: opacity 0.4s ease, transform 0.4s ease !important;
-  z-index: 3 !important;
-  pointer-events: auto !important;
-}
-
-.vehicle-plate-item.active .plate-info-card {
-  opacity: 1 !important;
-  transform: translateX(-50%) translateY(0) !important;
-}
-
-.plate-card-left {
-  display: flex !important;
-  flex-direction: column !important;
-  text-align: left !important;
-}
-
-.plate-vehicle-tag {
-  font-size: 0.65rem !important;
-  color: #FF7A18 !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
-}
-
-.plate-vehicle-name {
-  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
-  font-size: 0.94rem !important;
-  font-weight: 800 !important;
-  color: #FFFFFF !important;
-  margin: 0.1rem 0 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-
-.plate-vehicle-meta {
-  font-size: 0.68rem !important;
-  color: #94A3B8 !important;
-}
-
-.plate-card-right {
-  text-align: right !important;
-}
-
-.plate-price-val {
-  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
-  font-size: 1.1rem !important;
-  font-weight: 900 !important;
-  color: #FF7A18 !important;
-  display: block !important;
-  line-height: 1 !important;
-}
-
-.plate-price-period {
-  font-size: 0.65rem !important;
-  color: #64748B !important;
-  font-weight: 600 !important;
-  display: block !important;
-  margin-top: 0.15rem !important;
-}
-
-/* ═══════════════ CAROUSEL BOTTOM HUD & NAVIGATION ═══════════════ */
-.carousel-bottom-hud {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 0.75rem !important;
   width: 100% !important;
-  max-width: 440px !important;
-  margin-top: 1.15rem !important;
-  position: relative !important;
+  pointer-events: none !important;
   z-index: 10 !important;
 }
 
-.carousel-nav-arrows {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  position: absolute !important;
-  top: -180px !important;
-  left: 0 !important;
-  pointer-events: none !important;
-  z-index: 25 !important;
-}
-
-.orbit-arrow-btn {
+.turntable-arrow-btn {
   pointer-events: auto !important;
-  width: 38px !important;
-  height: 38px !important;
+  width: 44px !important;
+  height: 44px !important;
   border-radius: 50% !important;
   background: rgba(18, 22, 34, 0.85) !important;
-  border: 1px solid rgba(255, 122, 24, 0.4) !important;
+  border: 1px solid rgba(255, 122, 24, 0.45) !important;
   color: #FF7A18 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
   transition: all 0.25s ease !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
-.orbit-arrow-btn:hover {
+.turntable-arrow-btn:hover {
   background: #FF7A18 !important;
   color: #FFFFFF !important;
-  transform: scale(1.1) !important;
-  box-shadow: 0 0 20px rgba(255, 122, 24, 0.6) !important;
+  transform: scale(1.12) !important;
+  box-shadow: 0 0 25px rgba(255, 122, 24, 0.7) !important;
 }
 
-.orbit-arrow-btn svg {
-  width: 20px !important;
-  height: 20px !important;
+.turntable-arrow-btn svg {
+  width: 22px !important;
+  height: 22px !important;
   fill: currentColor !important;
 }
 
-/* Quick Booking Shortcut Button */
-.orbit-book-shortcut {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.45rem !important;
-  background: linear-gradient(135deg, rgba(255, 122, 24, 0.18) 0%, rgba(230, 105, 11, 0.25) 100%) !important;
-  border: 1px solid #FF7A18 !important;
-  color: #FFFFFF !important;
-  font-family: 'Space Grotesk', var(--font-primary, sans-serif) !important;
-  font-weight: 700 !important;
-  font-size: 0.82rem !important;
-  padding: 0.45rem 1.15rem !important;
-  border-radius: 9999px !important;
-  cursor: pointer !important;
-  transition: all 0.25s ease !important;
-  box-shadow: 0 4px 15px rgba(255, 122, 24, 0.25) !important;
+/* ═══════════════ RESPONSIVE BREAKPOINTS ═══════════════ */
+@media (max-width: 991px) {
+  .hero-split-stage.hero-reel-showcase {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .hero-split-left.hero-reel-left {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  .hero-eyebrow-badge {
+    order: 1 !important;
+    margin: 0 auto 0.65rem !important;
+  }
+
+  .hero-main-title.hero-reel-title {
+    order: 2 !important;
+    text-align: center !important;
+    margin: 0 auto 0.5rem !important;
+  }
+
+  .reel-title-static {
+    font-size: 1.75rem !important;
+  }
+
+  .reel-title-dynamic {
+    font-size: 2.25rem !important;
+  }
+
+  .reel-model-pill-row {
+    order: 3 !important;
+    justify-content: center !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Show Turntable Platter right below title on mobile */
+  .hero-split-right.hero-reel-right {
+    order: 4 !important;
+    margin: 0.25rem 0 0.85rem !important;
+  }
+
+  /* Thumbnail discs right under the platter */
+  .reel-thumbnail-selector-wrapper {
+    order: 5 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .reel-thumbnail-row {
+    justify-content: center !important;
+  }
+
+  .reel-counter-progress-bar {
+    order: 6 !important;
+    margin: 0 auto 1rem !important;
+  }
+
+  .reel-price-bar {
+    order: 7 !important;
+    margin: 0 auto 1.25rem !important;
+  }
+
+  .hero-split-cta-bar {
+    order: 8 !important;
+    justify-content: center !important;
+    margin: 0 auto 1.25rem !important;
+  }
+
+  .hero-subheadline.hero-reel-subheadline {
+    order: 9 !important;
+    text-align: center !important;
+    margin: 0 auto 1.5rem !important;
+  }
+
+  .turntable-plate-stage {
+    width: 380px !important;
+    height: 330px !important;
+  }
+
+  .turntable-platter-disc {
+    width: 360px !important;
+    height: 150px !important;
+  }
+
+  .turntable-vehicle-img {
+    max-height: 200px !important;
+  }
 }
 
-.orbit-book-shortcut:hover {
-  background: linear-gradient(135deg, #FF7A18 0%, #E6690B 100%) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(255, 122, 24, 0.55) !important;
+@media (max-width: 768px) {
+  .hero-banner-section {
+    padding: 0.75rem 0 1.25rem !important;
+  }
+
+  .hero-banner-wrapper {
+    padding: 0 0.85rem !important;
+  }
+
+  .reel-title-static {
+    font-size: 1.6rem !important;
+  }
+
+  .reel-title-dynamic {
+    font-size: 2.1rem !important;
+  }
+
+  .hero-subheadline.hero-reel-subheadline {
+    font-size: 0.86rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .reel-price-bar {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+    padding: 0.75rem !important;
+  }
+
+  .reel-price-box {
+    border-right: none !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 0.5rem !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .reel-specs-box {
+    align-items: center !important;
+  }
+
+  .reel-thumb-disc {
+    width: 46px !important;
+    height: 46px !important;
+    padding: 4px !important;
+  }
+
+  .hero-split-cta-bar {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .hero-btn-primary, 
+  .hero-btn-secondary, 
+  .hero-btn-call {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .turntable-plate-stage {
+    width: 330px !important;
+    height: 300px !important;
+  }
+
+  .turntable-platter-disc {
+    width: 310px !important;
+    height: 130px !important;
+    bottom: 20px !important;
+  }
+
+  .turntable-vehicle-img {
+    max-height: 170px !important;
+  }
+
+  .vehicle-floor-shadow {
+    width: 260px !important;
+  }
 }
 
-.btn-check-icon {
-  width: 15px !important;
-  height: 15px !important;
-  stroke: #FF7A18 !important;
-  fill: none !important;
-  stroke-width: 2.5 !important;
-}
+@media (max-width: 480px) {
+  .reel-title-static {
+    font-size: 1.45rem !important;
+  }
 
-.orbit-book-shortcut:hover .btn-check-icon {
-  stroke: #FFFFFF !important;
-}
+  .reel-title-dynamic {
+    font-size: 1.85rem !important;
+  }
 
-/* Orbit Dots Bar */
-.orbit-dots-bar {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.45rem !important;
-  justify-content: center !important;
-}
+  .reel-thumb-disc {
+    width: 42px !important;
+    height: 42px !important;
+  }
 
-.orbit-dot {
-  width: 20px !important;
-  height: 5px !important;
-  border-radius: 9999px !important;
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: none !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  padding: 0 !important;
-}
+  .turntable-plate-stage {
+    width: 290px !important;
+    height: 270px !important;
+  }
 
-.orbit-dot.active {
-  width: 36px !important;
-  background: #FF7A18 !important;
-  box-shadow: 0 0 10px rgba(255, 122, 24, 0.7) !important;
-}
+  .turntable-platter-disc {
+    width: 275px !important;
+    height: 115px !important;
+  }
 
-/* Pulse animation on booking card when triggered */
-@keyframes bookingCardPulse {
-  0% { box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 0 0 rgba(255, 122, 24, 0.8); }
-  50% { box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px 8px rgba(255, 122, 24, 0.95); }
-  100% { box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 122, 24, 0.2); }
-}
-
-.banner-docked-widget.booking-card-highlight {
-  animation: bookingCardPulse 1.4s ease-out !important;
-  border-color: #FF7A18 !important;
+  .turntable-vehicle-img {
+    max-height: 150px !important;
+  }
 }
 
 /* 3. Docked Booking Widget & Dropdown Z-Index Guarantee */

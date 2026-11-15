@@ -1106,11 +1106,16 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     <section class="hero-banner-section" id="booking-engine" aria-label="BIXI Ride - Best Bike Rental in Madurai">
       <div class="container hero-banner-wrapper">
         
-        <!-- ═══════════════ NEW LUXURY SPLIT HERO SECTION ═══════════════ -->
-        <div class="hero-split-stage" id="heroSplitStage">
+        <!-- ═══════════════ REEL-INSPIRED LUXURY ROTATING HEADER SHOWCASE ═══════════════ -->
+        <div class="hero-split-stage hero-reel-showcase" id="heroSplitStage">
           
-          <!-- LEFT HALF: Rich Semantic & Cluster Keywords, Value Propositions, CTAs -->
-          <div class="hero-split-left">
+          <!-- Organic Fluid Backdrop Curve (Inspired by Instagram Reel) -->
+          <div class="hero-reel-fluid-blob" id="heroReelBlob" aria-hidden="true"></div>
+
+          <!-- LEFT HALF: Typography, Model Reveal, Keywords, Price, Thumbnails & CTAs -->
+          <div class="hero-split-left hero-reel-left">
+            
+            <!-- Eyebrow Tag -->
             <div class="hero-eyebrow-badge">
               <span class="eyebrow-pulse-dot" aria-hidden="true"></span>
               <span class="eyebrow-text">OFFICIAL COMMERCIAL RENTAL FLEET &bull; MADURAI</span>
@@ -1120,47 +1125,86 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               </span>
             </div>
 
-            <h1 class="hero-main-title">
-              Best Car and Bike Rentals Near Me in <span class="gradient-text">Madurai</span>
+            <!-- Reel-Style Two-Line Massive Display Headline -->
+            <h1 class="hero-main-title hero-reel-title">
+              <span class="reel-title-static">Best Car and Bike Rentals Near Me in</span>
+              <span class="reel-title-dynamic gradient-text" id="reelDynamicTitle">Madurai</span>
             </h1>
 
-            <p class="hero-subheadline">
+            <!-- Active Vehicle Model Badge (e.g. Cruiser Bike · 350cc Dual ABS) -->
+            <div class="reel-model-pill-row">
+              <span class="reel-category-pill" id="reelCategoryPill">Self-Drive Hatchback</span>
+              <span class="reel-badge-tag" id="reelBadgeTag">FAST COMMUTE &bull; AIR CONDITIONED</span>
+            </div>
+
+            <!-- SEO Semantic Keywords Narrative Paragraph -->
+            <p class="hero-subheadline hero-reel-subheadline">
               BIXI Ride is your #1 verified portal for <strong>bike rental in madurai</strong> and top-rated <strong>madurai bike rental</strong>. Rent spotless <strong>rental bikes in madurai</strong> and high-performance <strong>bike rental madurai</strong> with zero security deposit and 2 complimentary ISI helmets. Searching for certified <strong>madurai rental bikes</strong> or the <strong>best bike rental near me</strong>? We also deliver government-approved <strong>car rental in madurai</strong>, legal yellow-plate <strong>self drive car rental in madurai</strong>, and 24/7 on-demand <strong>car rental service in madurai</strong> with instant handover at Madurai Railway Junction and walking distance from Mattuthavani Bus Stand.
             </p>
 
-            <!-- SEO Semantic Clusters & USPs Grid -->
-            <div class="hero-usp-grid">
-              <div class="hero-usp-pill">
-                <svg viewBox="0 0 24 24" class="usp-icon" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span>Zero Security Deposit</span>
+            <!-- Dynamic Price & Specs Callout Bar -->
+            <div class="reel-price-bar">
+              <div class="reel-price-box">
+                <span class="reel-price-label">Official Tariff</span>
+                <div class="reel-price-amount-wrap">
+                  <span class="reel-price-currency">₹</span>
+                  <span class="reel-price-val" id="reelPriceVal">2,200</span>
+                  <span class="reel-price-unit">/ day</span>
+                </div>
               </div>
-              <div class="hero-usp-pill">
-                <svg viewBox="0 0 24 24" class="usp-icon" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                <span>100% Commercial Yellow Plates</span>
+              <div class="reel-specs-box">
+                <span class="reel-specs-label">Included Features</span>
+                <span class="reel-specs-text" id="reelSpecsText">5 Seater &bull; AC &bull; 300 km/day</span>
               </div>
-              <div class="hero-usp-pill">
-                <svg viewBox="0 0 24 24" class="usp-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                <span>2 Free ISI Helmets Included</span>
+            </div>
+
+            <!-- ══════ THE SIGNATURE CIRCULAR THUMBNAIL SELECTOR BAR (FROM INSTAGRAM REEL) ══════ -->
+            <div class="reel-thumbnail-selector-wrapper">
+              <span class="reel-thumb-label">Select Featured Fleet:</span>
+              <div class="reel-thumbnail-row" id="reelThumbnailRow" role="tablist" aria-label="Quick Fleet Selector">
+                <!-- 6 Circular Discs with Vehicle Images -->
+                <button type="button" class="reel-thumb-disc active" data-index="0" title="Maruti Suzuki Swift" aria-label="Select Maruti Swift" role="tab" aria-selected="true">
+                  <img src="assets/images/bikes/car-swift.webp" alt="Swift thumbnail" width="48" height="48">
+                  <span class="thumb-glow-ring"></span>
+                </button>
+                <button type="button" class="reel-thumb-disc" data-index="1" title="Royal Enfield Classic 350" aria-label="Select Classic 350" role="tab" aria-selected="false">
+                  <img src="assets/images/bikes/classic-350.webp" alt="Classic 350 thumbnail" width="48" height="48">
+                  <span class="thumb-glow-ring"></span>
+                </button>
+                <button type="button" class="reel-thumb-disc" data-index="2" title="Honda Activa 6G" aria-label="Select Activa 6G" role="tab" aria-selected="false">
+                  <img src="assets/images/bikes/activa-6g.webp" alt="Activa 6G thumbnail" width="48" height="48">
+                  <span class="thumb-glow-ring"></span>
+                </button>
+                <button type="button" class="reel-thumb-disc" data-index="3" title="Maruti Suzuki Ertiga" aria-label="Select Ertiga" role="tab" aria-selected="false">
+                  <img src="assets/images/bikes/car-ertiga.webp" alt="Ertiga thumbnail" width="48" height="48">
+                  <span class="thumb-glow-ring"></span>
+                </button>
+                <button type="button" class="reel-thumb-disc" data-index="4" title="Royal Enfield Himalayan 450" aria-label="Select Himalayan 450" role="tab" aria-selected="false">
+                  <img src="assets/images/bikes/himalayan-450.webp" alt="Himalayan 450 thumbnail" width="48" height="48">
+                  <span class="thumb-glow-ring"></span>
+                </button>
+                <button type="button" class="reel-thumb-disc" data-index="5" title="Yamaha Ray ZR 125" aria-label="Select Ray ZR 125" role="tab" aria-selected="false">
+                  <img src="assets/images/bikes/ray-zr-125.webp" alt="Ray ZR thumbnail" width="48" height="48">
+                  <span class="thumb-glow-ring"></span>
+                </button>
               </div>
-              <div class="hero-usp-pill">
-                <svg viewBox="0 0 24 24" class="usp-icon" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-                <span>Railway Junction &amp; Mattuthavani Hubs</span>
+            </div>
+
+            <!-- Slide Counter & Animated Progress Line (From Reel) -->
+            <div class="reel-counter-progress-bar">
+              <div class="reel-counter-wrap">
+                <span id="reelCurrentIndex">01</span> <span class="reel-counter-slash">/</span> <span class="reel-counter-total">06</span>
               </div>
-              <div class="hero-usp-pill">
-                <svg viewBox="0 0 24 24" class="usp-icon" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span>Unlimited Km / 300 Km Options</span>
-              </div>
-              <div class="hero-usp-pill">
-                <svg viewBox="0 0 24 24" class="usp-icon" aria-hidden="true"><path d="M17 2H7C5.9 2 5 2.9 5 4v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H7V4h10v16z"/></svg>
-                <span>2-Minute WhatsApp Handover</span>
+              <div class="reel-progress-track">
+                <div class="reel-progress-fill" id="reelProgressFill"></div>
               </div>
             </div>
 
             <!-- Left Call-to-Actions -->
             <div class="hero-split-cta-bar">
-              <a href="#homeQuickBookForm" class="hero-btn-primary" id="heroBtnRentNow">
+              <a href="#homeQuickBookForm" class="hero-btn-primary" id="reelBtnBookNow">
                 <span class="btn-icon-circle"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-                <span>Rent Your Ride Today</span>
+                <span id="reelBtnText">Book Swift Today</span>
               </a>
               <a href="bikes.html" class="hero-btn-secondary">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h2m-5 0h2l3 5.5-5.5 6H8l4-8-3-3.5H5"/></svg>
@@ -1171,194 +1215,72 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                 <span>+91 90370 00266</span>
               </a>
             </div>
+
           </div>
 
-          <!-- RIGHT HALF: Curved Orbital Plate Carousel ("Foods Plate Animation" with 3D Pedestal Plates) -->
-          <div class="hero-split-right">
-            <div class="curved-plate-carousel-container" id="heroPlateCarousel" aria-label="BIXI Featured Fleet 3D Rotating Showcase">
+          <!-- RIGHT HALF: THE BIG ROTATING TURNTABLE PLATTER (FROM INSTAGRAM REEL) -->
+          <div class="hero-split-right hero-reel-right">
+            <div class="reel-turntable-container" id="heroReelTurntable">
               
-              <!-- Subtle Orbital Arc Guide Lines & Glow Atmosphere -->
-              <div class="orbital-glow-backdrop" aria-hidden="true">
-                <div class="orbital-ring orbital-ring-outer"></div>
-                <div class="orbital-ring orbital-ring-inner"></div>
-                <div class="orbital-radial-glow"></div>
-              </div>
+              <!-- Ambient Halo Glow behind Platter -->
+              <div class="turntable-ambient-glow" id="turntableAmbientGlow" aria-hidden="true"></div>
 
-              <!-- Top Carousel Header / Live Category Indicator -->
-              <div class="carousel-hud-header">
-                <div class="carousel-hud-badge">
-                  <span class="hud-live-indicator" aria-hidden="true"></span>
-                  <span id="activeVehicleCategory">Self-Drive Car</span>
-                </div>
-                <div class="carousel-counter">
-                  <span id="activeSlideIndex">01</span> / <span id="totalSlideCount">06</span>
-                </div>
-              </div>
-
-              <!-- 3D Curved Plate Orbit Stage -->
-              <div class="curved-orbit-stage" id="curvedOrbitStage">
+              <!-- THE ROTATING TURNTABLE PLATTER (Circular Disc) -->
+              <div class="turntable-plate-stage" id="turntablePlateStage">
                 
-                <!-- Plate 1: Maruti Swift (Car) -->
-                <div class="vehicle-plate-item active" data-index="0" data-mode="car" data-model="Maruti Suzuki Swift" data-name="Maruti Suzuki Swift" data-category="Self-Drive Car" data-price="2200" data-specs="5 Seater &bull; AC &bull; 300 km/day">
-                  <div class="plate-pedestal-disc" aria-hidden="true">
-                    <div class="plate-disc-reflection"></div>
-                    <div class="plate-rim-glow"></div>
-                  </div>
-                  <div class="plate-vehicle-wrap">
-                    <img src="assets/images/bikes/car-swift.webp" alt="Maruti Suzuki Swift Car Rental in Madurai" class="plate-vehicle-img" width="520" height="320" loading="eager" fetchpriority="high">
-                  </div>
-                  <div class="plate-info-card">
-                    <div class="plate-card-left">
-                      <span class="plate-vehicle-tag">Self-Drive Hatchback</span>
-                      <h3 class="plate-vehicle-name">Maruti Suzuki Swift</h3>
-                      <span class="plate-vehicle-meta">5 Seater &bull; AC &bull; 300 km/day</span>
-                    </div>
-                    <div class="plate-card-right">
-                      <span class="plate-price-val">₹2,200</span>
-                      <span class="plate-price-period">/ day</span>
-                    </div>
-                  </div>
+                <!-- Rotating Pedestal Platter Disc with Concentric Grooves -->
+                <div class="turntable-platter-disc" id="turntablePlatterDisc" aria-hidden="true">
+                  <div class="platter-groove groove-1"></div>
+                  <div class="platter-groove groove-2"></div>
+                  <div class="platter-groove groove-3"></div>
+                  <div class="platter-neon-rim"></div>
+                  <div class="platter-radial-highlight"></div>
                 </div>
 
-                <!-- Plate 2: Royal Enfield Classic 350 (Bike) -->
-                <div class="vehicle-plate-item slot-next" data-index="1" data-mode="bike" data-model="Royal Enfield Classic 350" data-name="Royal Enfield Classic 350" data-category="Cruiser Bike" data-price="1000" data-specs="350cc Dual ABS &bull; 240 km/day">
-                  <div class="plate-pedestal-disc" aria-hidden="true">
-                    <div class="plate-disc-reflection"></div>
-                    <div class="plate-rim-glow"></div>
+                <!-- Vehicles Container with Rotational Spin Transition -->
+                <div class="turntable-vehicles-wrap" id="turntableVehiclesWrap">
+                  <!-- Vehicle 0: Swift -->
+                  <div class="turntable-vehicle-slide active" data-index="0">
+                    <img src="assets/images/bikes/car-swift.webp" alt="Maruti Suzuki Swift Car Rental in Madurai" class="turntable-vehicle-img" width="560" height="340" fetchpriority="high" loading="eager">
+                    <div class="vehicle-floor-shadow"></div>
                   </div>
-                  <div class="plate-vehicle-wrap">
-                    <img src="assets/images/bikes/classic-350.webp" alt="Royal Enfield Classic 350 Bike Rental in Madurai" class="plate-vehicle-img" width="520" height="320" loading="lazy">
+                  <!-- Vehicle 1: Classic 350 -->
+                  <div class="turntable-vehicle-slide" data-index="1">
+                    <img src="assets/images/bikes/classic-350.webp" alt="Royal Enfield Classic 350 Bike Rental in Madurai" class="turntable-vehicle-img" width="560" height="340" loading="lazy">
+                    <div class="vehicle-floor-shadow"></div>
                   </div>
-                  <div class="plate-info-card">
-                    <div class="plate-card-left">
-                      <span class="plate-vehicle-tag">Cruiser Bike</span>
-                      <h3 class="plate-vehicle-name">Royal Enfield Classic 350</h3>
-                      <span class="plate-vehicle-meta">350cc &bull; Dual ABS &bull; 2 Helmets</span>
-                    </div>
-                    <div class="plate-card-right">
-                      <span class="plate-price-val">₹1,000</span>
-                      <span class="plate-price-period">/ day</span>
-                    </div>
+                  <!-- Vehicle 2: Activa 6G -->
+                  <div class="turntable-vehicle-slide" data-index="2">
+                    <img src="assets/images/bikes/activa-6g.webp" alt="Honda Activa 6G Scooter Rental in Madurai" class="turntable-vehicle-img" width="560" height="340" loading="lazy">
+                    <div class="vehicle-floor-shadow"></div>
                   </div>
-                </div>
-
-                <!-- Plate 3: Honda Activa 6G (Scooter) -->
-                <div class="vehicle-plate-item slot-far-right" data-index="2" data-mode="bike" data-model="Honda Activa 6G" data-name="Honda Activa 6G" data-category="City Scooter" data-price="600" data-specs="110cc Automatic &bull; Fuel Efficient">
-                  <div class="plate-pedestal-disc" aria-hidden="true">
-                    <div class="plate-disc-reflection"></div>
-                    <div class="plate-rim-glow"></div>
+                  <!-- Vehicle 3: Ertiga -->
+                  <div class="turntable-vehicle-slide" data-index="3">
+                    <img src="assets/images/bikes/car-ertiga.webp" alt="Maruti Suzuki Ertiga 7 Seater Car Rental in Madurai" class="turntable-vehicle-img" width="560" height="340" loading="lazy">
+                    <div class="vehicle-floor-shadow"></div>
                   </div>
-                  <div class="plate-vehicle-wrap">
-                    <img src="assets/images/bikes/activa-6g.webp" alt="Honda Activa 6G Scooter Rental in Madurai" class="plate-vehicle-img" width="520" height="320" loading="lazy">
+                  <!-- Vehicle 4: Himalayan 450 -->
+                  <div class="turntable-vehicle-slide" data-index="4">
+                    <img src="assets/images/bikes/himalayan-450.webp" alt="Royal Enfield Himalayan 450 Rental in Madurai" class="turntable-vehicle-img" width="560" height="340" loading="lazy">
+                    <div class="vehicle-floor-shadow"></div>
                   </div>
-                  <div class="plate-info-card">
-                    <div class="plate-card-left">
-                      <span class="plate-vehicle-tag">Easy Automatic Scooter</span>
-                      <h3 class="plate-vehicle-name">Honda Activa 6G</h3>
-                      <span class="plate-vehicle-meta">110cc &bull; Automatic &bull; 2 Helmets</span>
-                    </div>
-                    <div class="plate-card-right">
-                      <span class="plate-price-val">₹600</span>
-                      <span class="plate-price-period">/ day</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Plate 4: Maruti Suzuki Ertiga (7-Seater Car) -->
-                <div class="vehicle-plate-item slot-back" data-index="3" data-mode="car" data-model="Maruti Suzuki Ertiga" data-name="Maruti Suzuki Ertiga" data-category="7-Seater MPV" data-price="3500" data-specs="7 Seater &bull; Dual AC &bull; 300 km/day">
-                  <div class="plate-pedestal-disc" aria-hidden="true">
-                    <div class="plate-disc-reflection"></div>
-                    <div class="plate-rim-glow"></div>
-                  </div>
-                  <div class="plate-vehicle-wrap">
-                    <img src="assets/images/bikes/car-ertiga.webp" alt="Maruti Ertiga 7 Seater Car Rental in Madurai" class="plate-vehicle-img" width="520" height="320" loading="lazy">
-                  </div>
-                  <div class="plate-info-card">
-                    <div class="plate-card-left">
-                      <span class="plate-vehicle-tag">7-Seater Premium MPV</span>
-                      <h3 class="plate-vehicle-name">Maruti Suzuki Ertiga</h3>
-                      <span class="plate-vehicle-meta">7 Seater &bull; Dual AC &bull; 300 km/day</span>
-                    </div>
-                    <div class="plate-card-right">
-                      <span class="plate-price-val">₹3,500</span>
-                      <span class="plate-price-period">/ day</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Plate 5: Royal Enfield Himalayan 450 (Adventure) -->
-                <div class="vehicle-plate-item slot-far-left" data-index="4" data-mode="bike" data-model="Royal Enfield Himalayan 450" data-name="Royal Enfield Himalayan 450" data-category="Adventure Tourer" data-price="1200" data-specs="450cc &bull; Liquid Cooled &bull; Long Ride">
-                  <div class="plate-pedestal-disc" aria-hidden="true">
-                    <div class="plate-disc-reflection"></div>
-                    <div class="plate-rim-glow"></div>
-                  </div>
-                  <div class="plate-vehicle-wrap">
-                    <img src="assets/images/bikes/himalayan-450.webp" alt="Royal Enfield Himalayan 450 Rental in Madurai" class="plate-vehicle-img" width="520" height="320" loading="lazy">
-                  </div>
-                  <div class="plate-info-card">
-                    <div class="plate-card-left">
-                      <span class="plate-vehicle-tag">All-Terrain Adventure</span>
-                      <h3 class="plate-vehicle-name">RE Himalayan 450</h3>
-                      <span class="plate-vehicle-meta">450cc &bull; Liquid Cooled &bull; 240 km/day</span>
-                    </div>
-                    <div class="plate-card-right">
-                      <span class="plate-price-val">₹1,200</span>
-                      <span class="plate-price-period">/ day</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Plate 6: Yamaha Ray ZR 125 (Sport Scooter) -->
-                <div class="vehicle-plate-item slot-prev" data-index="5" data-mode="bike" data-model="Yamaha Ray ZR 125" data-name="Yamaha Ray ZR 125" data-category="Sporty Scooter" data-price="600" data-specs="125cc Fi &bull; Ultra Lightweight">
-                  <div class="plate-pedestal-disc" aria-hidden="true">
-                    <div class="plate-disc-reflection"></div>
-                    <div class="plate-rim-glow"></div>
-                  </div>
-                  <div class="plate-vehicle-wrap">
-                    <img src="assets/images/bikes/ray-zr-125.webp" alt="Yamaha Ray ZR 125 Scooter Rental in Madurai" class="plate-vehicle-img" width="520" height="320" loading="lazy">
-                  </div>
-                  <div class="plate-info-card">
-                    <div class="plate-card-left">
-                      <span class="plate-vehicle-tag">Sporty Hybrid Scooter</span>
-                      <h3 class="plate-vehicle-name">Yamaha Ray ZR 125</h3>
-                      <span class="plate-vehicle-meta">125cc &bull; 58 km/l &bull; 2 Helmets</span>
-                    </div>
-                    <div class="plate-card-right">
-                      <span class="plate-price-val">₹600</span>
-                      <span class="plate-price-period">/ day</span>
-                    </div>
+                  <!-- Vehicle 5: Ray ZR 125 -->
+                  <div class="turntable-vehicle-slide" data-index="5">
+                    <img src="assets/images/bikes/ray-zr-125.webp" alt="Yamaha Ray ZR 125 Scooter Rental in Madurai" class="turntable-vehicle-img" width="560" height="340" loading="lazy">
+                    <div class="vehicle-floor-shadow"></div>
                   </div>
                 </div>
 
               </div>
 
-              <!-- Curve Navigation Controls & Floating Book Ride Action -->
-              <div class="carousel-bottom-hud">
-                <!-- Navigation Curved Arrow Controls -->
-                <div class="carousel-nav-arrows">
-                  <button type="button" class="orbit-arrow-btn orbit-btn-prev" id="orbitPrevBtn" aria-label="Previous Vehicle Plate">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-                  </button>
-                  <button type="button" class="orbit-arrow-btn orbit-btn-next" id="orbitNextBtn" aria-label="Next Vehicle Plate">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                  </button>
-                </div>
-
-                <!-- Quick Booking Shortcut for Featured Vehicle -->
-                <button type="button" class="orbit-book-shortcut" id="orbitBookActiveRide">
-                  <svg viewBox="0 0 24 24" class="btn-check-icon" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Book This Ride in 2 Mins</span>
+              <!-- Turntable Nav Arrows (Left / Right) -->
+              <div class="turntable-nav-arrows">
+                <button type="button" class="turntable-arrow-btn arrow-prev" id="turntablePrevBtn" aria-label="Spin to Previous Vehicle">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
                 </button>
-
-                <!-- Orbital Dot Pagination -->
-                <div class="orbit-dots-bar" id="orbitDotsBar" role="tablist" aria-label="Vehicle Plate Selection">
-                  <button type="button" class="orbit-dot active" data-index="0" aria-label="Select Maruti Swift" role="tab" aria-selected="true"></button>
-                  <button type="button" class="orbit-dot" data-index="1" aria-label="Select Classic 350" role="tab" aria-selected="false"></button>
-                  <button type="button" class="orbit-dot" data-index="2" aria-label="Select Activa 6G" role="tab" aria-selected="false"></button>
-                  <button type="button" class="orbit-dot" data-index="3" aria-label="Select Ertiga" role="tab" aria-selected="false"></button>
-                  <button type="button" class="orbit-dot" data-index="4" aria-label="Select Himalayan 450" role="tab" aria-selected="false"></button>
-                  <button type="button" class="orbit-dot" data-index="5" aria-label="Select Ray ZR 125" role="tab" aria-selected="false"></button>
-                </div>
+                <button type="button" class="turntable-arrow-btn arrow-next" id="turntableNextBtn" aria-label="Spin to Next Vehicle">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
               </div>
 
             </div>

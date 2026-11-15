@@ -1,294 +1,366 @@
 /**
- * BIXI RIDE - CURVED ORBITAL VEHICLE PLATE ROTATOR
- * Smooth 3D curved "food plate" rotation animation for featured vehicles:
- * - 6 Vehicles (Cars, Cruiser Bikes, Scooters, Adventure)
- * - Elliptical curved trajectory with realistic 3D perspective transforms
- * - Glowing pedestal disc under each vehicle
- * - Auto-rotation (3.5s) with pause on hover / touch
- * - Curved arrow controls, dot pagination, and direct-plate click selection
- * - Touch swipe support for mobile
- * - Seamless pre-fill & focus for the docked booking engine (#homeQuickBookForm)
+ * BIXI RIDE - INSTAGRAM REEL-INSPIRED ROTATING HEADER SHOWCASE
+ * Recreates the exact signature spinning platter, text slide reveal,
+ * circular thumbnail selector, and progress bar animation from the reference video.
+ *
+ * Features:
+ * - 6 Featured Vehicles (Cars, Cruiser Bikes, Scooters, Adventure)
+ * - Inertia-driven spinning circular platter with metallic grooves & neon rim
+ * - Smooth rotational vehicle spin-in / spin-out transitions
+ * - Dynamic headline flip animation
+ * - Interactive circular thumbnail discs with glowing active ring
+ * - Auto-advancing progress line (4.0s) with pause on hover/touch
+ * - Arrow navigation & touch swipe support
+ * - Seamless integration with docked booking engine (#homeQuickBookForm)
  */
-(function() {
+
+(function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var stage = document.getElementById('curvedOrbitStage');
-    if (!stage) return;
+  document.addEventListener('DOMContentLoaded', function () {
+    var showcase = document.getElementById('heroSplitStage');
+    if (!showcase) return;
 
-    var plateItems = Array.prototype.slice.call(stage.querySelectorAll('.vehicle-plate-item'));
-    if (!plateItems.length) return;
+    var FLEET = [
+      {
+        index: 0,
+        name: 'Maruti Suzuki Swift',
+        shortName: 'Swift',
+        category: 'Self-Drive Hatchback',
+        badge: 'FAST COMMUTE • AIR CONDITIONED',
+        price: '2,200',
+        specs: '5 Seater • AC • 300 km/day',
+        mode: 'car',
+        themeColor: '#FF7A18',
+        themeGlow: 'rgba(255, 122, 24, 0.45)'
+      },
+      {
+        index: 1,
+        name: 'Royal Enfield Classic 350',
+        shortName: 'Classic 350',
+        category: 'Cruiser Bike',
+        badge: 'ROYAL CRUISER • DUAL CHANNEL ABS',
+        price: '1,000',
+        specs: '350cc • Dual ABS • 2 Helmets',
+        mode: 'bike',
+        themeColor: '#F59E0B',
+        themeGlow: 'rgba(245, 158, 11, 0.45)'
+      },
+      {
+        index: 2,
+        name: 'Honda Activa 6G',
+        shortName: 'Activa 6G',
+        category: 'City Scooter',
+        badge: 'EASY AUTOMATIC • 60 KM/L MILEAGE',
+        price: '600',
+        specs: '110cc • Automatic • 2 Helmets',
+        mode: 'bike',
+        themeColor: '#FF8D36',
+        themeGlow: 'rgba(255, 141, 54, 0.45)'
+      },
+      {
+        index: 3,
+        name: 'Maruti Suzuki Ertiga',
+        shortName: 'Ertiga 7-Seater',
+        category: '7-Seater Premium MPV',
+        badge: 'FAMILY EXPEDITION • DUAL AC VENTS',
+        price: '3,500',
+        specs: '7 Seater • Dual AC • 300 km/day',
+        mode: 'car',
+        themeColor: '#E6690B',
+        themeGlow: 'rgba(230, 105, 11, 0.45)'
+      },
+      {
+        index: 4,
+        name: 'Royal Enfield Himalayan 450',
+        shortName: 'Himalayan 450',
+        category: 'Adventure Tourer',
+        badge: 'ALL-TERRAIN TOURING • HILL SPECIAL',
+        price: '1,200',
+        specs: '450cc • Liquid Cooled • Long Ride',
+        mode: 'bike',
+        themeColor: '#FF6F00',
+        themeGlow: 'rgba(255, 111, 0, 0.45)'
+      },
+      {
+        index: 5,
+        name: 'Yamaha Ray ZR 125',
+        shortName: 'Ray ZR 125',
+        category: 'Sporty Hybrid Scooter',
+        badge: 'SPORTY HYBRID • LIGHTWEIGHT CORNERING',
+        price: '600',
+        specs: '125cc Fi • Ultra Lightweight',
+        mode: 'bike',
+        themeColor: '#FF9A44',
+        themeGlow: 'rgba(255, 154, 68, 0.45)'
+      }
+    ];
 
-    var prevBtn = document.getElementById('orbitPrevBtn');
-    var nextBtn = document.getElementById('orbitNextBtn');
-    var bookShortcutBtn = document.getElementById('orbitBookActiveRide');
-    var dotsBar = document.getElementById('orbitDotsBar');
-    var dots = dotsBar ? Array.prototype.slice.call(dotsBar.querySelectorAll('.orbit-dot')) : [];
-    var categoryBadge = document.getElementById('activeVehicleCategory');
-    var counterIndex = document.getElementById('activeSlideIndex');
-    var container = document.getElementById('heroPlateCarousel');
+    // DOM Elements
+    var platterDisc = document.getElementById('turntablePlatterDisc');
+    var vehiclesWrap = document.getElementById('turntableVehiclesWrap');
+    var vehicleSlides = vehiclesWrap ? Array.prototype.slice.call(vehiclesWrap.querySelectorAll('.turntable-vehicle-slide')) : [];
+    var thumbRow = document.getElementById('reelThumbnailRow');
+    var thumbDiscs = thumbRow ? Array.prototype.slice.call(thumbRow.querySelectorAll('.reel-thumb-disc')) : [];
+    var prevBtn = document.getElementById('turntablePrevBtn');
+    var nextBtn = document.getElementById('turntableNextBtn');
+    var btnBookNow = document.getElementById('reelBtnBookNow');
+    var btnText = document.getElementById('reelBtnText');
+
+    var dynamicTitle = document.getElementById('reelDynamicTitle');
+    var categoryPill = document.getElementById('reelCategoryPill');
+    var badgeTag = document.getElementById('reelBadgeTag');
+    var priceVal = document.getElementById('reelPriceVal');
+    var specsText = document.getElementById('reelSpecsText');
+    var currentIndexSpan = document.getElementById('reelCurrentIndex');
+    var progressFill = document.getElementById('reelProgressFill');
+    var ambientGlow = document.getElementById('turntableAmbientGlow');
+    var fluidBlob = document.getElementById('heroReelBlob');
 
     var currentIndex = 0;
-    var total = plateItems.length;
-    var autoPlayTimer = null;
-    var isPaused = false;
+    var total = FLEET.length;
+    var currentRotationDeg = 0;
     var isAnimating = false;
+    var isPaused = false;
+    var autoPlayTimer = null;
+    var progressTimer = null;
+    var progressStartTime = 0;
+    var DURATION = 4000; // 4 seconds per slide
 
-    // Slot classes representing positions along the curved arc
-    // slot 0: active front spotlight
-    // slot 1: right curve (incoming)
-    // slot 2: far right along curve
-    // slot 3: top / back apex
-    // slot 4: far left along curve
-    // slot 5: left curve (outgoing)
-    var SLOT_CLASSES = ['active', 'slot-next', 'slot-far-right', 'slot-back', 'slot-far-left', 'slot-prev'];
+    function switchVehicle(newIndex, direction) {
+      if (newIndex === currentIndex && !direction) return;
 
-    function updateCarousel(newIndex) {
-      if (isAnimating) return;
-      isAnimating = true;
-
-      // Wrap index
+      var dir = direction || (newIndex > currentIndex ? 1 : -1);
+      var prevIndex = currentIndex;
       currentIndex = ((newIndex % total) + total) % total;
+      var item = FLEET[currentIndex];
 
-      // Update positions along curved orbit
-      plateItems.forEach(function(plate, i) {
-        // Calculate offset k from currentIndex (0..total-1)
-        var offset = ((i - currentIndex) % total + total) % total;
-
-        // Remove all slot classes
-        SLOT_CLASSES.forEach(function(cls) {
-          plate.classList.remove(cls);
-        });
-
-        // Add corresponding slot class
-        var assignedClass = SLOT_CLASSES[offset] || 'slot-back';
-        plate.classList.add(assignedClass);
-
-        // Update accessibility attributes
-        if (offset === 0) {
-          plate.setAttribute('aria-hidden', 'false');
-          plate.setAttribute('tabindex', '0');
-        } else {
-          plate.setAttribute('aria-hidden', 'true');
-          plate.setAttribute('tabindex', '-1');
-        }
-      });
-
-      // Update active plate info in HUD
-      var activePlate = plateItems[currentIndex];
-      if (activePlate) {
-        var cat = activePlate.getAttribute('data-category') || 'Vehicle';
-        if (categoryBadge) categoryBadge.textContent = cat;
-        if (counterIndex) {
-          counterIndex.textContent = (currentIndex + 1 < 10 ? '0' : '') + (currentIndex + 1);
-        }
+      // 1. Platter Disc Rotational Spin (The Signature Reel Effect!)
+      currentRotationDeg += dir * 60;
+      if (platterDisc) {
+        platterDisc.style.transform = 'perspective(900px) rotateX(46deg) rotate(' + currentRotationDeg + 'deg)';
       }
 
-      // Update dot pagination
-      dots.forEach(function(dot, idx) {
+      // 2. Vehicle Slides Smooth Rotational Spin-In / Spin-Out
+      vehicleSlides.forEach(function (slide, idx) {
         if (idx === currentIndex) {
-          dot.classList.add('active');
-          dot.setAttribute('aria-selected', 'true');
+          slide.classList.remove('spin-out-left', 'spin-out-right');
+          slide.classList.add('active', dir > 0 ? 'spin-in-right' : 'spin-in-left');
+          slide.setAttribute('aria-hidden', 'false');
+        } else if (idx === prevIndex) {
+          slide.classList.remove('active', 'spin-in-right', 'spin-in-left');
+          slide.classList.add(dir > 0 ? 'spin-out-left' : 'spin-out-right');
+          slide.setAttribute('aria-hidden', 'true');
         } else {
-          dot.classList.remove('active');
-          dot.setAttribute('aria-selected', 'false');
+          slide.classList.remove('active', 'spin-in-right', 'spin-in-left', 'spin-out-left', 'spin-out-right');
+          slide.setAttribute('aria-hidden', 'true');
         }
       });
 
-      setTimeout(function() {
-        isAnimating = false;
-      }, 650);
-    }
+      // 3. Dynamic Title & Typography Reveal Flip
+      if (dynamicTitle) {
+        dynamicTitle.classList.add('title-flip-out');
+        setTimeout(function () {
+          dynamicTitle.textContent = item.shortName;
+          dynamicTitle.classList.remove('title-flip-out');
+          dynamicTitle.classList.add('title-flip-in');
+          setTimeout(function () {
+            dynamicTitle.classList.remove('title-flip-in');
+          }, 350);
+        }, 180);
+      }
 
-    function nextPlate() {
-      updateCarousel(currentIndex + 1);
-    }
+      // 4. Update Badges, Price, and Specs
+      if (categoryPill) categoryPill.textContent = item.category;
+      if (badgeTag) badgeTag.textContent = item.badge;
+      if (priceVal) priceVal.textContent = item.price;
+      if (specsText) specsText.textContent = item.specs;
+      if (btnText) btnText.textContent = 'Book ' + item.shortName + ' Today';
+      if (currentIndexSpan) {
+        currentIndexSpan.textContent = (currentIndex + 1 < 10 ? '0' : '') + (currentIndex + 1);
+      }
 
-    function prevPlate() {
-      updateCarousel(currentIndex - 1);
-    }
+      // 5. Ambient Glow & Fluid Blob Color Shifting
+      if (ambientGlow) {
+        ambientGlow.style.background = 'radial-gradient(ellipse at center, ' + item.themeGlow + ' 0%, rgba(9, 10, 14, 0) 70%)';
+      }
+      if (fluidBlob) {
+        fluidBlob.style.background = 'radial-gradient(circle at 40% 50%, ' + item.themeGlow + ' 0%, rgba(255, 122, 24, 0.08) 50%, rgba(9, 10, 14, 0) 75%)';
+      }
 
-    // Auto-advance every 3.5 seconds
-    function startAutoPlay() {
-      stopAutoPlay();
-      autoPlayTimer = setInterval(function() {
-        if (!isPaused) {
-          nextPlate();
+      // 6. Thumbnail Discs Activation
+      thumbDiscs.forEach(function (disc, idx) {
+        if (idx === currentIndex) {
+          disc.classList.add('active');
+          disc.setAttribute('aria-selected', 'true');
+        } else {
+          disc.classList.remove('active');
+          disc.setAttribute('aria-selected', 'false');
         }
-      }, 3500);
+      });
+
+      // 7. Restart Progress Bar
+      startProgress();
     }
 
-    function stopAutoPlay() {
-      if (autoPlayTimer) {
-        clearInterval(autoPlayTimer);
-        autoPlayTimer = null;
+    function nextSlide() {
+      switchVehicle(currentIndex + 1, 1);
+    }
+
+    function prevSlide() {
+      switchVehicle(currentIndex - 1, -1);
+    }
+
+    // Progress Bar Animation
+    function startProgress() {
+      if (progressFill) {
+        progressFill.style.transition = 'none';
+        progressFill.style.width = '0%';
+        // Force reflow
+        void progressFill.offsetWidth;
+        if (!isPaused) {
+          progressFill.style.transition = 'width ' + DURATION + 'ms linear';
+          progressFill.style.width = '100%';
+        }
+      }
+
+      clearTimeout(autoPlayTimer);
+      if (!isPaused) {
+        autoPlayTimer = setTimeout(function () {
+          nextSlide();
+        }, DURATION);
       }
     }
 
-    // Event Listeners for Nav Arrows
+    function pauseProgress() {
+      isPaused = true;
+      clearTimeout(autoPlayTimer);
+      if (progressFill) {
+        var computedWidth = window.getComputedStyle(progressFill).width;
+        progressFill.style.transition = 'none';
+        progressFill.style.width = computedWidth;
+      }
+    }
+
+    function resumeProgress() {
+      isPaused = false;
+      startProgress();
+    }
+
+    // Event Listeners: Next / Prev Arrows
     if (nextBtn) {
-      nextBtn.addEventListener('click', function(e) {
+      nextBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        nextPlate();
-        startAutoPlay();
+        nextSlide();
       });
     }
 
     if (prevBtn) {
-      prevBtn.addEventListener('click', function(e) {
+      prevBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        prevPlate();
-        startAutoPlay();
+        prevSlide();
       });
     }
 
-    // Clicking directly on any plate rotates it into focus
-    plateItems.forEach(function(plate, idx) {
-      plate.addEventListener('click', function(e) {
-        // If clicking a non-active plate, rotate to it
-        if (idx !== currentIndex) {
-          e.preventDefault();
-          updateCarousel(idx);
-          startAutoPlay();
-        } else {
-          // If clicking active plate, trigger booking shortcut
-          bookActiveVehicle();
-        }
-      });
-    });
-
-    // Clicking pagination dots
-    dots.forEach(function(dot, idx) {
-      dot.addEventListener('click', function(e) {
+    // Event Listeners: Thumbnail Discs
+    thumbDiscs.forEach(function (disc, idx) {
+      disc.addEventListener('click', function (e) {
         e.preventDefault();
-        updateCarousel(idx);
-        startAutoPlay();
+        var dir = idx > currentIndex ? 1 : -1;
+        switchVehicle(idx, dir);
       });
     });
 
-    // Pause auto-rotation on mouse enter, resume on leave
-    if (container) {
-      container.addEventListener('mouseenter', function() {
-        isPaused = true;
-      });
-      container.addEventListener('mouseleave', function() {
-        isPaused = false;
-      });
+    // Pause on Hover / Touch
+    if (showcase) {
+      showcase.addEventListener('mouseenter', pauseProgress);
+      showcase.addEventListener('mouseleave', resumeProgress);
     }
 
-    // Touch Swipe Support for Mobile
+    // Touch Swipe Gestures for Mobile
     var touchStartX = 0;
     var touchStartY = 0;
     var touchEndX = 0;
     var touchEndY = 0;
 
-    if (stage) {
-      stage.addEventListener('touchstart', function(e) {
-        isPaused = true;
+    var turntableStage = document.getElementById('turntablePlateStage');
+    if (turntableStage) {
+      turntableStage.addEventListener('touchstart', function (e) {
+        pauseProgress();
         touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
       }, { passive: true });
 
-      stage.addEventListener('touchend', function(e) {
-        isPaused = false;
+      turntableStage.addEventListener('touchend', function (e) {
+        resumeProgress();
         touchEndX = e.changedTouches[0].screenX;
         touchEndY = e.changedTouches[0].screenY;
-        handleSwipe();
+        var diffX = touchEndX - touchStartX;
+        var diffY = touchEndY - touchStartY;
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) nextSlide();
+          else prevSlide();
+        }
       }, { passive: true });
     }
 
-    function handleSwipe() {
-      var diffX = touchEndX - touchStartX;
-      var diffY = touchEndY - touchStartY;
-      // Ensure horizontal swipe is dominant and significant
-      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX < 0) {
-          // Swiped left -> next
-          nextPlate();
-        } else {
-          // Swiped right -> prev
-          prevPlate();
-        }
-        startAutoPlay();
-      }
-    }
+    // ═══════════════ BOOKING ENGINE INTEGRATION ═══════════════
+    function bookSelectedVehicle() {
+      var item = FLEET[currentIndex];
+      if (!item) return;
 
-    // ═══════════════ INTEGRATION WITH QUICK BOOKING ENGINE ═══════════════
-    function bookActiveVehicle() {
-      var activePlate = plateItems[currentIndex];
-      if (!activePlate) return;
-
-      var mode = activePlate.getAttribute('data-mode') || 'bike';
-      var modelName = activePlate.getAttribute('data-model') || '';
-
-      // 1. Switch Tab if needed (tabSelectBikes or tabSelectCars)
       var tabBikes = document.getElementById('tabSelectBikes');
       var tabCars = document.getElementById('tabSelectCars');
 
-      if (mode === 'car' && tabCars && !tabCars.classList.contains('active')) {
+      // 1. Switch Tab
+      if (item.mode === 'car' && tabCars && !tabCars.classList.contains('active')) {
         tabCars.click();
-      } else if (mode === 'bike' && tabBikes && !tabBikes.classList.contains('active')) {
+      } else if (item.mode === 'bike' && tabBikes && !tabBikes.classList.contains('active')) {
         tabBikes.click();
       }
 
-      // 2. Select this vehicle in the model options panel
-      setTimeout(function() {
+      // 2. Select Model in dropdown
+      setTimeout(function () {
         var modelOptionsPanel = document.getElementById('modelOptionsPanel');
         if (modelOptionsPanel) {
           var options = modelOptionsPanel.querySelectorAll('.custom-option-item');
           var matched = false;
-          options.forEach(function(opt) {
-            if (opt.getAttribute('data-value') === modelName) {
+          options.forEach(function (opt) {
+            if (opt.getAttribute('data-value') === item.name) {
               opt.click();
               matched = true;
             }
           });
-          // If exact name didn't match, match by substring
           if (!matched) {
-            options.forEach(function(opt) {
+            options.forEach(function (opt) {
               var val = (opt.getAttribute('data-value') || '').toLowerCase();
-              if (val.indexOf(modelName.toLowerCase()) !== -1 || modelName.toLowerCase().indexOf(val) !== -1) {
+              if (val.indexOf(item.shortName.toLowerCase()) !== -1 || item.name.toLowerCase().indexOf(val) !== -1) {
                 opt.click();
               }
             });
           }
         }
 
-        // 3. Smoothly scroll to the booking widget
-        var bookingWidget = document.getElementById('homeQuickBookForm') || document.getElementById('booking-engine');
-        if (bookingWidget) {
-          bookingWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          
-          // Add pulse highlight animation to booking card
-          var card = document.querySelector('.banner-docked-widget');
-          if (card) {
-            card.classList.add('booking-card-highlight');
-            setTimeout(function() {
-              card.classList.remove('booking-card-highlight');
-            }, 1800);
-          }
+        // 3. Scroll to Booking Form & Highlight
+        var bookingCard = document.querySelector('.banner-docked-widget');
+        if (bookingCard) {
+          bookingCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          bookingCard.classList.add('booking-card-highlight');
+          setTimeout(function () {
+            bookingCard.classList.remove('booking-card-highlight');
+          }, 1800);
         }
-      }, 50);
+      }, 60);
     }
 
-    if (bookShortcutBtn) {
-      bookShortcutBtn.addEventListener('click', function(e) {
+    if (btnBookNow) {
+      btnBookNow.addEventListener('click', function (e) {
         e.preventDefault();
-        bookActiveVehicle();
+        bookSelectedVehicle();
       });
     }
 
-    // Also link heroBtnRentNow on left half
-    var heroBtnRentNow = document.getElementById('heroBtnRentNow');
-    if (heroBtnRentNow) {
-      heroBtnRentNow.addEventListener('click', function(e) {
-        e.preventDefault();
-        bookActiveVehicle();
-      });
-    }
-
-    // Initialize carousel on load
-    updateCarousel(0);
-    startAutoPlay();
+    // Initialize first slide and start progress timer
+    switchVehicle(0, 1);
   });
 })();
