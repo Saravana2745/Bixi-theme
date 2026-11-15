@@ -6599,7 +6599,7 @@ button.bixi-cal-day.empty,
   justify-content: center !important;
   z-index: 10 !important;
   pointer-events: none !important;
-  margin-bottom: 24px !important;
+  margin-bottom: 58px !important;
 }
 
 .turntable-vehicle-slide {
@@ -6831,7 +6831,7 @@ button.bixi-cal-day.empty,
 
   .turntable-vehicles-wrap {
     height: 250px !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 42px !important;
   }
 
   .turntable-vehicle-img {
