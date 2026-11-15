@@ -937,7 +937,7 @@ var BIXI_SHOWROOM_DATA = {
     haloColor: 'rgba(232, 129, 36, 0.4)',
     engine: '1.2L DualJet Petrol • 90 PS',
     mileage: 'Comfortable in different terrains • Smooth highway & city drive',
-    safety: 'Dual Airbags • RTO Yellow Plate • 300 km limit',
+    safety: 'Dual Airbags • RTO Yellow Plate • 300km included',
     bookRate: '2200'
   },
   himalayan: {
@@ -948,8 +948,8 @@ var BIXI_SHOWROOM_DATA = {
     img: 'assets/images/bikes/himalayan-450.webp',
     haloColor: 'rgba(39, 174, 96, 0.4)',
     engine: '452cc Liquid Sherpa • 40 PS',
-    mileage: 'Comfortable in different terrains • Long-travel suspension for ghats, highways & rough roads',
-    safety: 'Dual ABS • All-Terrain Spoke Wheels • 120km: ₹1,200 / 300km: ₹2,000',
+    mileage: 'Comfortable in different terrains • Long-travel suspension for ghats',
+    safety: 'Dual ABS • All-Terrain Spokes • 120km / 300km',
     bookRate: '1200'
   },
   hunter: {
@@ -960,8 +960,8 @@ var BIXI_SHOWROOM_DATA = {
     img: 'assets/images/bikes/hunter-350.webp',
     haloColor: 'rgba(232, 129, 36, 0.4)',
     engine: '349cc J-Series • 20.2 BHP',
-    mileage: 'Comfortable in different terrains • Easy maneuvering across urban traffic & countryside roads',
-    safety: 'Dual Disc ABS • RTO Permitted • 120km: ₹1,000 / 240km: ₹1,500',
+    mileage: 'Comfortable in different terrains • Nimble urban & highway handling',
+    safety: 'Dual Disc ABS • RTO Permitted • 120km / 240km',
     bookRate: '1000'
   },
   classic: {
@@ -972,8 +972,8 @@ var BIXI_SHOWROOM_DATA = {
     img: 'assets/images/bikes/classic-350.webp',
     haloColor: 'rgba(218, 165, 32, 0.4)',
     engine: '349cc J-Series • Relaxed Cruiser',
-    mileage: 'Comfortable in different terrains • Heavy-set stability & upright posture on any road',
-    safety: 'Dual Channel ABS • RTO Yellow Plate • 120km: ₹1,000 / 240km: ₹1,500',
+    mileage: 'Comfortable in different terrains • Heavy-set stability on any road',
+    safety: 'Dual Channel ABS • RTO Permitted • 120km / 240km',
     bookRate: '1000'
   },
   mt15: {
@@ -984,8 +984,8 @@ var BIXI_SHOWROOM_DATA = {
     img: 'assets/images/bikes/mt-15.webp',
     haloColor: 'rgba(21, 101, 192, 0.4)',
     engine: '155cc VVA Liquid Cooled • 18.4 PS',
-    mileage: 'Comfortable in different terrains • USD forks & Deltabox chassis for sharp control & bumpy roads',
-    safety: 'Dual Disc ABS • Assist & Slipper Clutch • 120km: ₹900 / 240km: ₹1,400',
+    mileage: 'Comfortable in different terrains • USD forks & sharp street control',
+    safety: 'Dual Disc ABS • Slipper Clutch • 120km / 240km',
     bookRate: '900'
   },
   activa: {
@@ -996,8 +996,8 @@ var BIXI_SHOWROOM_DATA = {
     img: 'assets/images/bikes/activa-6g.webp',
     haloColor: 'rgba(232, 129, 36, 0.35)',
     engine: '109.5cc PGM-FI eSP • Silent Start',
-    mileage: 'Comfortable in different terrains • Telescopic suspension & high clearance for temple streets',
-    safety: 'Combi-Brake System (CBS) • Tubeless • 120km: ₹600 / 240km: ₹800',
+    mileage: 'Comfortable in different terrains • Telescopic suspension for city streets',
+    safety: 'Combi-Brake (CBS) • Tubeless • 120km / 240km',
     bookRate: '600'
   },
   ertiga: {
@@ -1008,8 +1008,8 @@ var BIXI_SHOWROOM_DATA = {
     img: 'assets/images/bikes/car-ertiga.webp',
     haloColor: 'rgba(52, 152, 219, 0.4)',
     engine: '1.5L K15C Smart Hybrid • 103 PS',
-    mileage: 'Comfortable in different terrains • Ergonomic 7-seater comfort for long family tours & varied roads',
-    safety: 'Dual Airbags • Rear AC Vents • 300 km limit included',
+    mileage: 'Comfortable in different terrains • 7-seater comfort for family tours',
+    safety: 'Dual Airbags • Rear AC Vents • 300km included',
     bookRate: '3500'
   }
 };
