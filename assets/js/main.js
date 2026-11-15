@@ -797,8 +797,28 @@
       }, 4000);
     }
 
-    // 8. Universal Buttery-Smooth Scroll Reveal Engine Across Every Page
+    // 8. Universal Luxury Scroll Reveal & Scrolly Experience Across Every Page
     function initScrollReveal() {
+      // 8a. Global Luminous Reading Scroll Progress Bar
+      var progressBar = document.getElementById('bixiScrollProgress');
+      if (!progressBar) {
+        progressBar = document.createElement('div');
+        progressBar.id = 'bixiScrollProgress';
+        progressBar.className = 'bixi-scroll-progress-line';
+        document.body.prepend(progressBar);
+      }
+
+      function updateScrollProgressLine() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight > 0) {
+          var pct = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+          progressBar.style.width = pct + '%';
+        }
+      }
+      window.addEventListener('scroll', updateScrollProgressLine, { passive: true });
+      updateScrollProgressLine();
+
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.querySelectorAll('.bixi-reveal').forEach((el) => el.classList.add('bixi-revealed'));
         return;
@@ -809,8 +829,13 @@
         '.section-badge',
         '.section-title',
         '.section-desc',
+        '.section-head',
+        '.section-header',
+        '.lux-section-header',
         '.hero-content',
         '.hero-preview-col',
+        '.hero-split-left',
+        '.hero-split-right',
         '.booking-widget-card',
         '.madurai-map-card-wrapper',
         '.feature-card',
@@ -830,6 +855,7 @@
         '.contact-card',
         '.contact-grid > *',
         '.contact-form-wrapper',
+        '.contact-form-card',
         '.stat-item',
         '.stats-grid > *',
         '.cta-box',
@@ -838,7 +864,37 @@
         '.team-card',
         '.timeline-item',
         '.page-header',
-        '.filter-bar'
+        '.filter-bar',
+        /* Contemporary BIXI Studio, About Us & Contact Selectors */
+        '.lux-manifesto-block',
+        '.lux-about-showcase-card',
+        '.lux-storefront-spotlight-card',
+        '.lux-metrics-strip',
+        '.lux-metric-item',
+        '.lux-split-editorial > *',
+        '.lux-car-manifesto-card',
+        '.lux-tenets-section .lux-section-header',
+        '.lux-tenet-card',
+        '.lux-tenet-item',
+        '.lux-hubs-section .lux-section-header',
+        '.lux-hub-card',
+        '.lux-customer-card',
+        '.lux-grand-cta',
+        '.lux-stage-container',
+        '.lux-hud-card',
+        '.fleet-runway-card',
+        '.circuit-card',
+        '.interactive-3d-portal-card',
+        '.hub-item',
+        '.transit-card',
+        '.transit-grid > *',
+        '.scrolly-story-card',
+        '.lux-stat-col',
+        '.lux-expedition-console',
+        '.lux-flow-step',
+        '.lux-faq-row',
+        '.bixi-contact-map-card',
+        '.footer-map-card'
       ];
 
       const elements = document.querySelectorAll(revealSelectors.join(', '));
@@ -860,14 +916,55 @@
       parents.forEach((children) => {
         if (children.length > 1) {
           children.forEach((child, idx) => {
-            const delay = (idx % 4) + 1;
+            const delay = (idx % 5) + 1;
             child.classList.add(`delay-${delay}`);
           });
         }
       });
 
+      // Metric Counter Animation on Scroll
+      function animateMetricCounter(el) {
+        var targetStr = el.getAttribute('data-target');
+        if (!targetStr) return;
+        var target = parseFloat(targetStr);
+        var isDecimal = el.getAttribute('data-decimal') === '1' || targetStr.indexOf('.') !== -1;
+        var prefix = el.getAttribute('data-prefix') || '';
+        var suffix = el.getAttribute('data-suffix') || '';
+        var counterEl = el.querySelector('.lux-counter') || el.querySelector('.lux-m-num') || el;
+        if (!counterEl) return;
+
+        var start = 0;
+        var duration = 1400;
+        var startTime = null;
+
+        function countStep(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var ease = 1 - Math.pow(1 - progress, 3);
+          var current = start + (target - start) * ease;
+          if (isDecimal) {
+            counterEl.textContent = prefix + current.toFixed(1) + suffix;
+          } else {
+            counterEl.textContent = prefix + Math.floor(current).toLocaleString('en-IN') + suffix;
+          }
+          if (progress < 1) {
+            requestAnimationFrame(countStep);
+          } else {
+            if (isDecimal) {
+              counterEl.textContent = prefix + target.toFixed(1) + suffix;
+            } else {
+              counterEl.textContent = prefix + target.toLocaleString('en-IN') + suffix;
+            }
+          }
+        }
+        requestAnimationFrame(countStep);
+      }
+
       const revealElement = (el) => {
         el.classList.add('bixi-revealed');
+        if (el.hasAttribute('data-target')) {
+          animateMetricCounter(el);
+        }
       };
 
       if (typeof window !== 'undefined' && typeof window.IntersectionObserver !== 'undefined') {
@@ -880,13 +977,13 @@
           });
         }, {
           root: null,
-          rootMargin: '0px 0px -40px 0px',
-          threshold: 0.08
+          rootMargin: '0px 0px -30px 0px',
+          threshold: 0.05
         });
 
         elements.forEach((el) => {
           const rect = el.getBoundingClientRect();
-          // Instantly reveal elements already visible or above fold
+          // Instantly reveal elements already visible in viewport
           if (rect.top < window.innerHeight && rect.bottom > 0) {
             revealElement(el);
           } else {
