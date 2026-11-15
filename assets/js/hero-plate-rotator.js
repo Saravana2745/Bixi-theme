@@ -125,7 +125,7 @@
     var autoPlayTimer = null;
     var progressTimer = null;
     var progressStartTime = 0;
-    var DURATION = 4000; // 4 seconds per slide
+    var DURATION = 2000; // 2.0 seconds per slide (fast, snappy reel rotation)
 
     function switchVehicle(newIndex, direction) {
       if (newIndex === currentIndex && !direction) return;
@@ -141,7 +141,7 @@
         platterDisc.style.transform = 'perspective(900px) rotateX(46deg) rotate(' + currentRotationDeg + 'deg)';
       }
 
-      // 2. Vehicle Slides Smooth Rotational Spin-In / Spin-Out
+      // 2. Vehicle Slides Smooth Rotational Spin-In / Spin-Out (Snappy 0.35s)
       vehicleSlides.forEach(function (slide, idx) {
         if (idx === currentIndex) {
           slide.classList.remove('spin-out-left', 'spin-out-right');
@@ -157,7 +157,7 @@
         }
       });
 
-      // 3. Dynamic Title & Typography Reveal Flip
+      // 3. Dynamic Title & Typography Reveal Flip (Instant Snappy Switch)
       if (dynamicTitle) {
         dynamicTitle.classList.add('title-flip-out');
         setTimeout(function () {
@@ -166,8 +166,8 @@
           dynamicTitle.classList.add('title-flip-in');
           setTimeout(function () {
             dynamicTitle.classList.remove('title-flip-in');
-          }, 350);
-        }, 180);
+          }, 150);
+        }, 90);
       }
 
       // 4. Update Badges, Price, and Specs
