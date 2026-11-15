@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=24.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=25.0">
 
   <!-- Blog & Breadcrumbs Schema -->
     <!-- Mobile Floating Quick Call / Rent Bar -->
@@ -157,7 +157,7 @@
     <!-- FEATURED HERO PILLAR POST -->
     <section class="section" style="padding-top: 0; padding-bottom: 3.5rem;">
       <div class="container">
-        <article style="background: radial-gradient(circle at 70% 30%, rgba(232, 129, 36, 0.12) 0%, #16161A 100%); border: 1px solid var(--color-orange); border-radius: var(--radius-lg); padding: 3rem; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: center; box-shadow: var(--shadow-orange);">
+        <article class="blog-hero-pillar-card bixi-reveal">
           <div>
             <span class="badge" style="background: rgba(232, 129, 36, 0.2); color: var(--color-orange);">Pillar Guide • 8 Min Read</span>
             <h2 style="font-size: clamp(1.8rem, 2.8vw, 2.4rem); margin: 0.8rem 0 1rem; color: var(--color-white);">
@@ -189,14 +189,25 @@
           <p>Get ready for your journey with route maps, packing hacks, and fuel stop directories.</p>
         </div>
 
-        <div style="background: rgba(232, 129, 36, 0.08); border: 1px solid rgba(232, 129, 36, 0.25); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2.5rem;">
+        <div style="background: rgba(232, 129, 36, 0.08); border: 1px solid rgba(232, 129, 36, 0.25); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2rem;">
           <p style="margin: 0; color: var(--color-silver); font-size: 0.95rem;">
             <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span> <strong>Road Trip Tip:</strong> Planning a longer family pilgrimage to Rameswaram, Kodaikanal, or Kilakarai? Check out our <strong>self drive car rental in madurai</strong> featuring the Maruti Swift (₹2,200/day) and Thar 4x4. Experience Madurai's #1 <strong>car rental service in madurai</strong> with BIXI, your one-stop shop for two-wheeler and <strong>car rental in madurai</strong>.
           </p>
         </div>
-        <div class="blog-grid">
+
+        <!-- Interactive Category Filters -->
+        <div class="blog-filter-bar">
+          <button type="button" class="blog-filter-btn active" data-filter="all">All Guides (6)</button>
+          <button type="button" class="blog-filter-btn" data-filter="road-trip">Road Trips &amp; Routes</button>
+          <button type="button" class="blog-filter-btn" data-filter="pricing">Pricing &amp; Rates</button>
+          <button type="button" class="blog-filter-btn" data-filter="heritage">Heritage Trails</button>
+          <button type="button" class="blog-filter-btn" data-filter="kyc">KYC &amp; Rules</button>
+          <button type="button" class="blog-filter-btn" data-filter="ev">EV Mobility</button>
+        </div>
+
+        <div class="blog-grid" id="blogGridCards">
           <!-- Article 1 -->
-          <article class="blog-card">
+          <article class="blog-card bixi-reveal" data-category="road-trip">
             <div class="blog-card-media">
               <span class="blog-card-tag">Road Trip</span>
               <img src="assets/images/bikes/hunter-350.webp" alt="Madurai to Kodaikanal rental bikes in madurai" width="280" height="160" loading="lazy">
@@ -217,7 +228,7 @@
           </article>
 
           <!-- Article 2 -->
-          <article class="blog-card">
+          <article class="blog-card bixi-reveal" data-category="pricing">
             <div class="blog-card-media">
               <span class="blog-card-tag">Rental Guide</span>
               <img src="assets/images/bikes/mt-15.webp" alt="madurai bike rental price comparison" width="280" height="160" loading="lazy">
@@ -238,7 +249,7 @@
           </article>
 
           <!-- Article 3 -->
-          <article class="blog-card">
+          <article class="blog-card bixi-reveal" data-category="heritage">
             <div class="blog-card-media">
               <span class="blog-card-tag">Heritage Trail</span>
               <img src="assets/images/bikes/activa-6g.webp" alt="explore Madurai on rental bikes in madurai" width="280" height="160" loading="lazy">
@@ -259,7 +270,7 @@
           </article>
 
           <!-- Article 4 -->
-          <article class="blog-card">
+          <article class="blog-card bixi-reveal" data-category="kyc">
             <div class="blog-card-media">
               <span class="blog-card-tag">Rules &amp; Docs</span>
               <img src="assets/images/bikes/fzs-v4.webp" alt="documents needed for bike rental madurai" width="280" height="160" loading="lazy">
@@ -280,7 +291,7 @@
           </article>
 
           <!-- Article 5 -->
-          <article class="blog-card">
+          <article class="blog-card bixi-reveal" data-category="road-trip">
             <div class="blog-card-media">
               <span class="blog-card-tag">Coastal Highway</span>
               <img src="assets/images/bikes/hunter-350.webp" alt="Madurai to Rameswaram bike rental in madurai" width="280" height="160" loading="lazy">
@@ -301,7 +312,7 @@
           </article>
 
           <!-- Article 6 -->
-          <article class="blog-card">
+          <article class="blog-card bixi-reveal" data-category="ev">
             <div class="blog-card-media">
               <span class="blog-card-tag">EV Future</span>
               <img src="assets/images/bikes/access-125.webp" alt="Electric bike rental near me in Madurai" width="280" height="160" loading="lazy">
@@ -405,7 +416,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/react-bits-animations.js?v=24.0"></script>
-  <script src="assets/js/main.js?v=24.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=25.0"></script>
+  <script src="assets/js/main.js?v=25.0"></script>
 </body>
 </html>

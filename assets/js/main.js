@@ -894,7 +894,9 @@
         '.lux-flow-step',
         '.lux-faq-row',
         '.bixi-contact-map-card',
-        '.footer-map-card'
+        '.footer-map-card',
+        '.blog-hero-pillar-card',
+        '.blog-toc-card'
       ];
 
       const elements = document.querySelectorAll(revealSelectors.join(', '));
@@ -997,6 +999,116 @@
 
     // Initialize Scroll Reveal Engine
     initScrollReveal();
+
+    // 10. Blog Category Filter System
+    function initBlogFilter() {
+      const filterBtns = document.querySelectorAll('.blog-filter-btn');
+      const blogCards = document.querySelectorAll('#blogGridCards .blog-card');
+      if (!filterBtns.length || !blogCards.length) return;
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach((b) => b.classList.remove('active'));
+          this.classList.add('active');
+
+          const filterVal = this.getAttribute('data-filter');
+          blogCards.forEach((card) => {
+            const cardCat = card.getAttribute('data-category');
+            if (filterVal === 'all' || cardCat === filterVal) {
+              card.style.display = 'flex';
+              setTimeout(() => {
+                card.classList.add('bixi-revealed');
+              }, 50);
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+    initBlogFilter();
+
+    // 11. Blog Post Sticky Table of Contents & Reading Progress Engine
+    function initBlogToc() {
+      const article = document.getElementById('blogMainArticle');
+      const tocCard = document.querySelector('.blog-toc-card');
+      if (!article || !tocCard) return;
+
+      const progressFill = document.getElementById('tocProgressFill');
+      const percentLabel = document.getElementById('tocReadingPercent');
+      const tocLinks = document.querySelectorAll('.blog-toc-link, .blog-toc-sublink');
+      const headings = article.querySelectorAll('h2[id], h3[id]');
+
+      if (!headings.length || !tocLinks.length) return;
+
+      // Smooth scroll on TOC link click with sticky header offset
+      tocLinks.forEach((link) => {
+        link.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (!targetId || targetId === '#') return;
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const headerOffset = 90;
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+
+            // Update active state immediately
+            tocLinks.forEach((l) => l.classList.remove('active-toc-link'));
+            this.classList.add('active-toc-link');
+          }
+        });
+      });
+
+      // Update Reading Progress and Active Section on Scroll
+      function updateTocState() {
+        // A. Calculate article reading percentage
+        const rect = article.getBoundingClientRect();
+        const articleTop = rect.top;
+        const articleHeight = rect.height;
+        const windowHeight = window.innerHeight;
+        
+        let pct = 0;
+        if (articleTop <= 150) {
+          const scrolledPast = 150 - articleTop;
+          const totalScrollable = Math.max(articleHeight - windowHeight * 0.5, 1);
+          pct = Math.min(100, Math.max(0, Math.round((scrolledPast / totalScrollable) * 100)));
+        }
+
+        if (progressFill) progressFill.style.width = pct + '%';
+        if (percentLabel) percentLabel.textContent = pct + '% READ';
+
+        // B. Determine active heading using getBoundingClientRect
+        let currentActiveId = '';
+        headings.forEach((h) => {
+          const hRect = h.getBoundingClientRect();
+          if (hRect.top <= 180) {
+            currentActiveId = h.id;
+          }
+        });
+
+        if (currentActiveId) {
+          tocLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === '#' + currentActiveId) {
+              link.classList.add('active-toc-link');
+            } else {
+              link.classList.remove('active-toc-link');
+            }
+          });
+        }
+      }
+
+      window.addEventListener('scroll', updateTocState, { passive: true });
+      document.addEventListener('scroll', updateTocState, { passive: true });
+      updateTocState();
+    }
+    initBlogToc();
 
     // 9. Quick Booking Modal Date Defaults
     const modalDateInput = document.getElementById('userDateInput');
