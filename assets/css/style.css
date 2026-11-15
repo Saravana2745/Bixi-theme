@@ -2100,37 +2100,27 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   cursor: pointer !important;
 }
 
-/* 3. Smooth Scroll Reveal & Scrolly Experience Across Every Page */
-.bixi-scroll-progress-line {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  height: 3.5px !important;
-  width: 0%;
-  background: linear-gradient(90deg, #FF7A18 0%, #FFB573 50%, #FF5500 100%) !important;
-  box-shadow: 0 0 12px rgba(255, 122, 24, 0.85), 0 0 4px rgba(255, 212, 59, 0.9) !important;
-  z-index: 999999 !important;
+/* 3. Universal Visibility Across Every Page */
+.bixi-scroll-progress-line,
+#bixiScrollProgress {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
   pointer-events: none !important;
-  transition: width 0.05s linear !important;
 }
 
 .bixi-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  transition: none !important;
 }
 
-.bixi-reveal.reveal-left {
-  transform: translateX(-35px);
-}
-
-.bixi-reveal.reveal-right {
-  transform: translateX(35px);
-}
-
+.bixi-reveal.reveal-left,
+.bixi-reveal.reveal-right,
 .bixi-reveal.reveal-zoom {
-  transform: scale(0.93) translateY(20px);
+  transform: none !important;
 }
 
 .bixi-reveal.bixi-revealed {
@@ -5189,25 +5179,19 @@ select.form-control option {
   color: #FFFFFF !important;
 }
 
-/* 4. Scroll Reveal Animations */
+/* 4. Universal Visibility */
 .bixi-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
 }
-.bixi-reveal.reveal-left { transform: translateX(-35px); }
-.bixi-reveal.reveal-right { transform: translateX(35px); }
-.bixi-reveal.reveal-zoom { transform: scale(0.93) translateY(18px); }
+.bixi-reveal.reveal-left,
+.bixi-reveal.reveal-right,
+.bixi-reveal.reveal-zoom { transform: none !important; }
 .bixi-reveal.bixi-revealed {
   opacity: 1 !important;
   transform: none;
 }
-.bixi-reveal.delay-1 { transition-delay: 0.08s; }
-.bixi-reveal.delay-2 { transition-delay: 0.16s; }
-.bixi-reveal.delay-3 { transition-delay: 0.24s; }
-.bixi-reveal.delay-4 { transition-delay: 0.32s; }
-.bixi-reveal.delay-5 { transition-delay: 0.40s; }
 
 /* 5. Hero & Solar Styling */
 .hero-content {
@@ -11445,30 +11429,10 @@ html {
    fading out as soon as the user starts scrubbing.
    ═════════════════════════════════════════════════════════════════════ */
 .scrolly-scroll-indicator {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  bottom: auto !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 15 !important;
-  display: inline-flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 1rem 1.85rem !important;
-  background: rgba(10, 14, 22, 0.88) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border: 1.5px solid rgba(232, 129, 36, 0.5) !important;
-  border-radius: 999px !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(232, 129, 36, 0.28) !important;
-  color: #FFFFFF !important;
-  pointer-events: auto !important;
-  cursor: pointer !important;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  animation: pulseCenterIndicator 2.8s infinite ease-in-out !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 @keyframes pulseCenterIndicator {

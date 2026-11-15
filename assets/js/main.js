@@ -797,31 +797,12 @@
       }, 4000);
     }
 
-    // 8. Universal Luxury Scroll Reveal & Scrolly Experience Across Every Page
+    // 8. Universal Immediate Visibility Across Every Page
     function initScrollReveal() {
-      // 8a. Global Luminous Reading Scroll Progress Bar
-      var progressBar = document.getElementById('bixiScrollProgress');
-      if (!progressBar) {
-        progressBar = document.createElement('div');
-        progressBar.id = 'bixiScrollProgress';
-        progressBar.className = 'bixi-scroll-progress-line';
-        document.body.prepend(progressBar);
-      }
-
-      function updateScrollProgressLine() {
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (docHeight > 0) {
-          var pct = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
-          progressBar.style.width = pct + '%';
-        }
-      }
-      window.addEventListener('scroll', updateScrollProgressLine, { passive: true });
-      updateScrollProgressLine();
-
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.querySelectorAll('.bixi-reveal').forEach((el) => el.classList.add('bixi-revealed'));
-        return;
+      // Clean up any residual progress bars
+      var oldBar = document.getElementById('bixiScrollProgress');
+      if (oldBar) {
+        oldBar.remove();
       }
 
       const revealSelectors = [
@@ -902,29 +883,11 @@
       const elements = document.querySelectorAll(revealSelectors.join(', '));
       if (!elements.length) return;
 
-      // Group sibling items in containers to apply staggered cascading delays
-      const parents = new Map();
       elements.forEach((el) => {
-        if (el.classList.contains('bixi-reveal')) return;
-        el.classList.add('bixi-reveal');
-
-        const p = el.parentElement;
-        if (p) {
-          if (!parents.has(p)) parents.set(p, []);
-          parents.get(p).push(el);
-        }
+        el.classList.add('bixi-reveal', 'bixi-revealed');
       });
 
-      parents.forEach((children) => {
-        if (children.length > 1) {
-          children.forEach((child, idx) => {
-            const delay = (idx % 5) + 1;
-            child.classList.add(`delay-${delay}`);
-          });
-        }
-      });
-
-      // Metric Counter Animation on Scroll
+      // Metric Counter Animation immediately on load
       function animateMetricCounter(el) {
         var targetStr = el.getAttribute('data-target');
         if (!targetStr) return;
@@ -962,39 +925,9 @@
         requestAnimationFrame(countStep);
       }
 
-      const revealElement = (el) => {
-        el.classList.add('bixi-revealed');
-        if (el.hasAttribute('data-target')) {
-          animateMetricCounter(el);
-        }
-      };
-
-      if (typeof window !== 'undefined' && typeof window.IntersectionObserver !== 'undefined') {
-        const observer = new window.IntersectionObserver((entries, obs) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              revealElement(entry.target);
-              obs.unobserve(entry.target);
-            }
-          });
-        }, {
-          root: null,
-          rootMargin: '0px 0px -30px 0px',
-          threshold: 0.05
-        });
-
-        elements.forEach((el) => {
-          const rect = el.getBoundingClientRect();
-          // Instantly reveal elements already visible in viewport
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
-            revealElement(el);
-          } else {
-            observer.observe(el);
-          }
-        });
-      } else {
-        elements.forEach(revealElement);
-      }
+      document.querySelectorAll('[data-target]').forEach((el) => {
+        animateMetricCounter(el);
+      });
     }
 
     // Initialize Scroll Reveal Engine
