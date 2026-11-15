@@ -2508,12 +2508,6 @@ select.form-control:focus {
   font-weight: 400;
 }
 
-@media (max-width: 900px) {
-  .lux-hud-overlay { display: none; }
-  .lux-stage-img { max-width: 340px; }
-  .lux-stage-center { min-height: 240px; }
-}
-
 /* Stage CTA Bar */
 .lux-stage-cta-bar {
   display: flex;
@@ -2588,19 +2582,228 @@ select.form-control:focus {
   color: #FFFFFF;
 }
 .lux-selector-tab.active {
-  background: var(--color-orange, #E88124);
-  border-color: var(--color-orange, #E88124);
-  color: #000000;
-  font-weight: 700;
-  box-shadow: 0 4px 20px rgba(232, 129, 36, 0.4);
+  background: var(--color-orange, #E88124) !important;
+  border-color: var(--color-orange, #E88124) !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 20px rgba(232, 129, 36, 0.45) !important;
 }
-.lux-tab-icon { font-size: 1.05rem; }
+
+/* Active tab symbol / icon turns solid black */
+.lux-selector-tab.active,
+.lux-selector-tab.active .lux-tab-text,
+.lux-selector-tab.active .lux-tab-price,
+.lux-selector-tab.active .lux-tab-icon,
+.lux-selector-tab.active .lux-tab-icon .bixi-badge-icon,
+.lux-selector-tab.active .lux-tab-icon .bixi-badge-icon.orange,
+.lux-selector-tab.active .lux-tab-icon svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+.lux-selector-tab.active .lux-tab-icon svg * {
+  stroke: #000000 !important;
+}
+
+.lux-selector-tab.active .lux-tab-icon svg[fill]:not([fill="none"]) {
+  fill: #000000 !important;
+}
+
+.lux-selector-tab.active .lux-tab-price {
+  background: rgba(0, 0, 0, 0.25) !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+}
+
+.lux-tab-icon {
+  font-size: 1.05rem;
+  display: inline-flex;
+  align-items: center;
+}
 .lux-tab-price {
   font-size: 0.75rem;
   opacity: 0.85;
   background: rgba(0, 0, 0, 0.15);
   padding: 0.15rem 0.45rem;
   border-radius: 20px;
+}
+
+/* ── Mobile Responsiveness for BIXI Studio Showroom ── */
+@media (max-width: 991px) {
+  .lux-studio-section {
+    padding: 3.5rem 0 !important;
+  }
+  .lux-stage-container {
+    padding: 2.2rem 1.5rem 1.75rem !important;
+    border-radius: 24px !important;
+  }
+  .lux-stage-center {
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .lux-vehicle-display {
+    width: 100% !important;
+    min-height: 200px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 1rem !important;
+  }
+  .lux-stage-img {
+    max-width: 380px !important;
+    max-height: 220px !important;
+    width: 88% !important;
+  }
+  .lux-stage-floor-halo {
+    width: 360px !important;
+    height: 80px !important;
+    top: 40% !important;
+  }
+  .lux-hud-overlay {
+    display: grid !important;
+    position: static !important;
+    inset: auto !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    pointer-events: auto !important;
+  }
+  .lux-hud-card {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    max-width: 100% !important;
+    text-align: left !important;
+    padding: 0.7rem 0.9rem !important;
+  }
+  .lux-hud-right-top,
+  .lux-hud-right-bottom {
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .lux-studio-section {
+    padding: 2.5rem 0 !important;
+  }
+  .lux-section-header {
+    margin-bottom: 1.8rem !important;
+  }
+  .lux-heading-giant {
+    font-size: 1.85rem !important;
+  }
+  .lux-stage-container {
+    padding: 1.5rem 0.85rem 1.25rem !important;
+    border-radius: 20px !important;
+  }
+  .lux-stage-img {
+    max-width: 290px !important;
+    max-height: 175px !important;
+    width: 90% !important;
+  }
+  .lux-stage-floor-halo {
+    width: 260px !important;
+    height: 55px !important;
+  }
+  .lux-hud-overlay {
+    gap: 0.5rem !important;
+  }
+  .lux-hud-card {
+    padding: 0.55rem 0.7rem !important;
+    border-radius: 10px !important;
+  }
+  .lux-hud-label {
+    font-size: 0.58rem !important;
+    margin-bottom: 0.12rem !important;
+  }
+  .lux-hud-val {
+    font-size: 0.78rem !important;
+    line-height: 1.3 !important;
+  }
+  .lux-hud-val small {
+    font-size: 0.68rem !important;
+  }
+
+  /* Stage CTA Bar Responsive Stacking */
+  .lux-stage-cta-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    text-align: center !important;
+    gap: 1.1rem !important;
+    padding: 1.25rem 0 !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .lux-stage-cta-info {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .lux-stage-name {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+  .lux-stage-subtitle {
+    font-size: 0.82rem !important;
+  }
+  .lux-stage-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+  .lux-stage-btn-book {
+    width: 100% !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.95rem !important;
+    justify-content: center !important;
+  }
+  .lux-stage-buttons .btn-whatsapp {
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.88rem !important;
+    justify-content: center !important;
+  }
+
+  /* Selector Track on Mobile */
+  .lux-selector-track {
+    gap: 0.5rem !important;
+    padding: 0.35rem 0.15rem 0.75rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+  }
+  .lux-selector-tab {
+    padding: 0.5rem 0.9rem !important;
+    font-size: 0.84rem !important;
+    scroll-snap-align: start !important;
+    flex-shrink: 0 !important;
+  }
+  .lux-tab-icon {
+    font-size: 0.95rem !important;
+  }
+  .lux-tab-price {
+    font-size: 0.7rem !important;
+    padding: 0.12rem 0.4rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .lux-hud-overlay {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.45rem !important;
+  }
+  .lux-hud-card {
+    padding: 0.5rem 0.6rem !important;
+  }
+  .lux-hud-label {
+    font-size: 0.54rem !important;
+  }
+  .lux-hud-val {
+    font-size: 0.72rem !important;
+  }
 }
 
 .lux-studio-footer-cta {
