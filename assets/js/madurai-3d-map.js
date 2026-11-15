@@ -90,9 +90,9 @@
       category: 'Authentic Village Feast',
       roadPos: { x: 8.0, y: 0.25, z: 24.0 },
       modelPos: { x: 8.0, y: 0, z: 32.0 },
-      facing: 0, // Facing South toward road
-      camPos: { x: 8.0, y: 7.2, z: 14.5 },
-      target: { x: 8.0, y: 2.6, z: 31.0 },
+      facing: Math.PI, // Facing South toward road
+      camPos: { x: 8.0, y: 6.8, z: 16.0 },
+      target: { x: 8.0, y: 2.2, z: 31.8 },
       distance: '16.5 km',
       time: '28 mins',
       vehicle: 'Maruti Swift / Hunter 350',
@@ -107,8 +107,8 @@
       roadPos: { x: 20.0, y: 0.25, z: 14.0 },
       modelPos: { x: 28.0, y: 0, z: 14.0 },
       facing: -Math.PI / 2, // Facing West toward road
-      camPos: { x: 10.0, y: 7.8, z: 14.0 },
-      target: { x: 27.0, y: 3.2, z: 14.0 },
+      camPos: { x: 12.0, y: 6.8, z: 14.0 },
+      target: { x: 27.6, y: 2.5, z: 14.0 },
       distance: '3.5 km',
       time: '12 mins',
       vehicle: 'Activa 6G / Swift',
@@ -123,8 +123,8 @@
       roadPos: { x: 22.0, y: 0.25, z: -8.0 },
       modelPos: { x: 30.0, y: 0, z: -8.0 },
       facing: -Math.PI / 2, // Facing West toward road
-      camPos: { x: 10.0, y: 9.8, z: -8.0 },
-      target: { x: 29.0, y: 4.4, z: -8.0 },
+      camPos: { x: 12.0, y: 7.5, z: -8.0 },
+      target: { x: 28.8, y: 2.6, z: -8.0 },
       distance: '4.5 km',
       time: '14 mins',
       vehicle: 'Maruti Swift / Thar 4x4',
@@ -1601,99 +1601,201 @@
     vadivasalModel.rotation.y = 0; // Front opens directly to the black road plaza
     vadivasalModel.scale.set(1.40, 1.40, 1.40);
     scene.add(vadivasalModel);
-
-    // C. LUCKY MESS (TRADITIONAL VILLAGE MESS WITH MANGALORE BARREL RIDGE TILES & TURNED TEAK PILLARS)
+    // C. LUCKY MESS (TRADITIONAL TAMIL NADU VILLAGE MESS / HOTEL - OPEN VERANDA, DINING HALL & BANANA LEAVES)
     function createLuckyMess() {
       const mess = new THREE.Group();
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0x36281e, roughness: 0.85 });
-      const woodMat = new THREE.MeshStandardMaterial({ color: 0x4f311c, roughness: 0.82 });
-      const tileRoofMat = new THREE.MeshStandardMaterial({ color: 0xaa4218, roughness: 0.62 });
+      
       const plinthMat = new THREE.MeshStandardMaterial({ color: 0x1f1915, roughness: 0.92 });
-      const leafMat = new THREE.MeshStandardMaterial({ color: 0x2d8a3a, roughness: 0.65 });
-      const brassMat = new THREE.MeshStandardMaterial({ color: 0xc8963e, metalness: 0.85, roughness: 0.25 });
-      const clayMat = new THREE.MeshStandardMaterial({ color: 0x8a3818, roughness: 0.85 });
+      const woodMat = new THREE.MeshStandardMaterial({ color: 0x4a2c17, roughness: 0.78 }); // Rich Chettinad Teak
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x36281e, roughness: 0.85 }); // Village Mud-Plaster Wall
+      const tileRoofMat = new THREE.MeshStandardMaterial({ color: 0xba451c, roughness: 0.60 }); // Mangalore Terracotta Clay Tile
+      const leafMat = new THREE.MeshStandardMaterial({ color: 0x228b22, roughness: 0.55 }); // Fresh Green Banana Leaf
+      const biryaniMat = new THREE.MeshStandardMaterial({ color: 0xeab308, roughness: 0.75 }); // Golden Seeraga Samba Biryani
+      const brassMat = new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 }); // Polished Brass
+      const clayMat = new THREE.MeshStandardMaterial({ color: 0x9a3412, roughness: 0.88 }); // Terracotta Water Kudam
+      const steelMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.92, roughness: 0.15 }); // Stainless Steel Tumbler
 
-      // Raised Veranda Plinth with Bullnose Rounded Edges
-      const plinth = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.35, 0.24, 16), plinthMat);
-      plinth.position.set(0, 0.12, 0);
+      // 1. Raised Veranda Plinth & Boarding Steps
+      const plinth = new THREE.Mesh(new THREE.BoxGeometry(4.8, 0.28, 4.2), plinthMat);
+      plinth.position.set(0, 0.14, 0);
       plinth.receiveShadow = true;
       mess.add(plinth);
 
-      const plinthEdge = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.06, 8, 20), plinthMat);
-      plinthEdge.rotation.x = Math.PI / 2;
-      plinthEdge.position.set(0, 0.24, 0);
-      mess.add(plinthEdge);
+      // Smooth front entrance boarding steps
+      const steps = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.14, 0.65), plinthMat);
+      steps.position.set(0, 0.07, 2.3);
+      steps.receiveShadow = true;
+      mess.add(steps);
 
-      // Veranda Colonnade: Turned Chettinad Teakwood Pillars with Carved Torus Rings
-      for (let p = -1.4; p <= 1.4; p += 0.7) {
-        const pillarGroup = new THREE.Group();
-        const pBase = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 0.18, 12), plinthMat);
+      // 2. Open Veranda & Walk-in Dining Hall ("Hotel / Mess" - No solid wall blocking entrance!)
+      // Back kitchen wall with serving window
+      const backWall = new THREE.Mesh(new THREE.BoxGeometry(4.4, 1.9, 0.18), wallMat);
+      backWall.position.set(0, 1.09, -1.9);
+      backWall.castShadow = true;
+      mess.add(backWall);
+
+      // Left & Right side half-walls
+      [-2.15, 2.15].forEach(wx => {
+        const sideWall = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.9, 2.2), wallMat);
+        sideWall.position.set(wx, 1.09, -0.8);
+        sideWall.castShadow = true;
+        mess.add(sideWall);
+      });
+
+      // 3. Chettinad Carved Teakwood Pillars (Front Veranda & Hall)
+      const pillarPositions = [
+        { x: -1.9, z: 1.85 }, { x: 0, z: 1.85 }, { x: 1.9, z: 1.85 }, // Front Veranda Colonnade
+        { x: -1.9, z: 0.0 }, { x: 1.9, z: 0.0 }                       // Mid Veranda Support
+      ];
+
+      pillarPositions.forEach(pp => {
+        const pg = new THREE.Group();
+        // Carved stone base
+        const pBase = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.14, 0.18, 12), plinthMat);
         pBase.position.y = 0.09;
-        pillarGroup.add(pBase);
+        pg.add(pBase);
 
-        const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.07, 1.25, 12), woodMat);
-        shaft.position.y = 0.72;
-        pillarGroup.add(shaft);
+        // Turned teak shaft with decorative rings
+        const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 1.55, 12), woodMat);
+        shaft.position.y = 0.865;
+        pg.add(shaft);
 
-        // 3 Carved Torus Molding Rings on Shaft
-        for (let r = 0; r < 3; r++) {
-          const ring = new THREE.Mesh(new THREE.TorusGeometry(0.08, 0.02, 6, 12), woodMat);
+        for (let r = 0; r < 2; r++) {
+          const ring = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.02, 6, 12), brassMat);
           ring.rotation.x = Math.PI / 2;
-          ring.position.y = 0.4 + r * 0.35;
-          pillarGroup.add(ring);
+          ring.position.y = 0.55 + r * 0.45;
+          pg.add(ring);
         }
 
-        const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.07, 0.12, 12), woodMat);
-        cap.position.y = 1.38;
-        pillarGroup.add(cap);
+        // Traditional Chettinad Bodikai bracket capital
+        const cap = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.12, 0.24), woodMat);
+        cap.position.y = 1.70;
+        pg.add(cap);
 
-        pillarGroup.position.set(p, 0.24, 0.85);
-        pillarGroup.castShadow = true;
-        mess.add(pillarGroup);
-      }
+        pg.position.set(pp.x, 0.28, pp.z);
+        pg.castShadow = true;
+        mess.add(pg);
+      });
 
-      // Inner Village Mess Building (Rear Enclosure)
-      const mainBuilding = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.6, 1.45, 12), wallMat);
-      mainBuilding.position.set(0, 0.86, -0.3);
-      mainBuilding.castShadow = true;
-      mess.add(mainBuilding);
+      // 4. Sturdy Structural Timber Beam Frame
+      const frontBeam = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.18, 0.18), woodMat);
+      frontBeam.position.set(0, 2.05, 1.85);
+      frontBeam.castShadow = true;
+      mess.add(frontBeam);
 
-      // Pitched Mangalore Terracotta Hip Roof
-      const hipRoof = new THREE.Mesh(new THREE.ConeGeometry(2.35, 1.15, 4), tileRoofMat);
+      const midBeam = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.18, 0.18), woodMat);
+      midBeam.position.set(0, 2.05, 0.0);
+      mess.add(midBeam);
+
+      [-2.0, 2.0].forEach(bx => {
+        const tieBeam = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.18, 3.8), woodMat);
+        tieBeam.position.set(bx, 2.05, 0.0);
+        mess.add(tieBeam);
+      });
+
+      // 5. Elevated Traditional Mangalore Terracotta Hip Roof (Elevated base at y = 2.50 ensures ZERO clipping!)
+      const hipRoof = new THREE.Mesh(new THREE.ConeGeometry(2.95, 1.20, 4), tileRoofMat);
       hipRoof.rotation.y = Math.PI / 4;
-      hipRoof.position.set(0, 2.15, 0.1);
+      hipRoof.position.set(0, 3.10, 0.0);
       hipRoof.castShadow = true;
       mess.add(hipRoof);
 
-      // Half-Pipe Clay Ridge Tiles along the 4 Hip Ridges
+      // Terracotta Half-Pipe Ridge Tiles along the 4 hip ridges
       for (let h = 0; h < 4; h++) {
         const ridgeAngle = (h * Math.PI) / 2 + Math.PI / 4;
-        const ridgeTiles = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.8, 8, 1, false, 0, Math.PI), tileRoofMat);
-        ridgeTiles.position.set(Math.cos(ridgeAngle) * 0.9, 2.1, 0.1 + Math.sin(ridgeAngle) * 0.9);
-        ridgeTiles.rotation.y = -ridgeAngle;
-        ridgeTiles.rotation.z = 0.45;
-        mess.add(ridgeTiles);
+        const ridge = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.4, 8, 1, false, 0, Math.PI), tileRoofMat);
+        ridge.position.set(Math.cos(ridgeAngle) * 1.15, 3.05, Math.sin(ridgeAngle) * 1.15);
+        ridge.rotation.y = -ridgeAngle;
+        ridge.rotation.z = 0.44;
+        mess.add(ridge);
       }
 
-      // Round Earthenware Clay Water Pots (Kudam)
-      for (let cp = -1; cp <= 1; cp += 2) {
+      // 6. PROMINENT, 100% UNOBSTRUCTED SIGNBOARD
+      // Solid Chettinad timber transom mounting backing board
+      const transomBoard = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.64, 0.08), woodMat);
+      transomBoard.position.set(0, 1.88, 1.91);
+      mess.add(transomBoard);
+
+      // Mounted below roof eaves (roof base y = 2.50, sign top y = 2.17 -> 0.33 clearance!)
+      const signTex = createSignboardTexture(
+        'LUCKY MESS (ALANGANALLUR)',
+        'ORIGINAL VILLAGE FEAST • SEERAGA SAMBA BIRYANI',
+        '#160a04',
+        '#ffffff',
+        '#ff9933'
+      );
+      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 0.58), signMat);
+      sign.position.set(0, 1.88, 1.96);
+      mess.add(sign);
+
+      // 7. Authentic Village Mess Dining Interior (Visible Inside Open Hall)
+      // Two Long Wooden Mess Dining Tables
+      [-0.9, 0.9].forEach(tx => {
+        const table = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.45, 0.75), woodMat);
+        table.position.set(tx, 0.50, -0.3);
+        table.castShadow = true;
+        mess.add(table);
+
+        const bench = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.28, 0.25), woodMat);
+        bench.position.set(tx, 0.42, 0.25);
+        mess.add(bench);
+
+        // Fresh Banana Leaves & Steamed Biryani Heaps
+        [-0.4, 0.4].forEach(lx => {
+          const leaf = new THREE.Mesh(new THREE.PlaneGeometry(0.38, 0.24), leafMat);
+          leaf.rotation.x = -Math.PI / 2;
+          leaf.position.set(tx + lx * 0.7, 0.73, -0.3);
+          mess.add(leaf);
+
+          const biryani = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 0.05, 8), biryaniMat);
+          biryani.position.set(tx + lx * 0.7, 0.76, -0.3);
+          mess.add(biryani);
+
+          const tumbler = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.025, 0.08, 8), steelMat);
+          tumbler.position.set(tx + lx * 0.7 + 0.14, 0.77, -0.22);
+          mess.add(tumbler);
+        });
+      });
+
+      // 8. Hanging Fresh Banana Bunches (Vazhaithar) Framing Front Entrance
+      [-1.6, 1.6].forEach(bx => {
+        const bunchGroup = new THREE.Group();
+        const stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.65, 8), woodMat);
+        stalk.position.y = 0.32;
+        bunchGroup.add(stalk);
+
+        for (let b = 0; b < 10; b++) {
+          const angle = (b / 10) * Math.PI * 2;
+          const banana = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.20, 6), leafMat);
+          banana.rotation.z = Math.PI / 3;
+          banana.rotation.y = angle;
+          banana.position.set(Math.cos(angle) * 0.08, 0.15 + (b % 4) * 0.08, Math.sin(angle) * 0.08);
+          bunchGroup.add(banana);
+        }
+        bunchGroup.position.set(bx, 1.45, 1.85);
+        mess.add(bunchGroup);
+      });
+
+      // 9. Traditional Terracotta Water Pots (Kudam) & Brass Lamp
+      [-1.85, 1.85].forEach(px => {
         const potGroup = new THREE.Group();
-        const potBelly = new THREE.Mesh(new THREE.SphereGeometry(0.20, 12, 12), clayMat);
-        potBelly.position.y = 0.20;
-        potGroup.add(potBelly);
+        const belly = new THREE.Mesh(new THREE.SphereGeometry(0.22, 12, 12), clayMat);
+        belly.position.y = 0.22;
+        potGroup.add(belly);
 
-        const potNeck = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 0.12, 10), clayMat);
-        potNeck.position.y = 0.36;
-        potGroup.add(potNeck);
+        const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.13, 0.14, 10), clayMat);
+        neck.position.y = 0.40;
+        potGroup.add(neck);
 
-        const potRim = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.02, 6, 12), clayMat);
-        potRim.rotation.x = Math.PI / 2;
-        potRim.position.y = 0.42;
-        potGroup.add(potRim);
+        const rim = new THREE.Mesh(new THREE.TorusGeometry(0.10, 0.02, 6, 12), clayMat);
+        rim.rotation.x = Math.PI / 2;
+        rim.position.y = 0.47;
+        potGroup.add(rim);
 
-        potGroup.position.set(cp * 1.6, 0.24, 0.7);
+        potGroup.position.set(px, 0.28, 0.9);
         mess.add(potGroup);
-      }
+      });
 
       // Traditional Tall Brass Kuthuvilakku Lamp
       const lampGroup = new THREE.Group();
@@ -1709,40 +1811,17 @@
       const flame = new THREE.Mesh(new THREE.SphereGeometry(0.03, 6, 6), new THREE.MeshBasicMaterial({ color: 0xffaa22 }));
       flame.position.y = 0.86;
       lampGroup.add(flame);
-      lampGroup.position.set(0, 0.24, 0.95);
+      lampGroup.position.set(0, 0.28, 1.15);
       mess.add(lampGroup);
 
-      // Banana Leaf Dining Table
-      const diningTable = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 0.95, 0.45, 12), woodMat);
-      diningTable.position.set(0, 0.48, -0.2);
-      mess.add(diningTable);
-
-      for (let bl = -0.4; bl <= 0.4; bl += 0.4) {
-        const leaf = new THREE.Mesh(new THREE.CircleGeometry(0.18, 12), leafMat);
-        leaf.rotation.x = -Math.PI / 2;
-        leaf.position.set(bl, 0.72, -0.2);
-        mess.add(leaf);
-      }
-
-      const signTex = createSignboardTexture(
-        'LUCKY MESS (ALANGANALLUR)',
-        'ORIGINAL VILLAGE FEAST • SEERAGA SAMBA BIRYANI',
-        '#160a04',
-        '#ffffff',
-        '#ff9933'
-      );
-      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.55), signMat);
-      sign.position.set(0, 1.48, 1.15);
-      mess.add(sign);
-
-      const interiorLight = new THREE.PointLight(0xffa500, 2.5, 6);
-      interiorLight.position.set(0, 1.1, 0.3);
+      // Warm Amber Dining Hall Ambient Lighting
+      const interiorLight = new THREE.PointLight(0xffa500, 2.8, 7.5);
+      interiorLight.position.set(0, 1.6, 0.0);
       mess.add(interiorLight);
 
       const badge = createBixiPopupBadge('Lucky Mess', 'Village Feast');
-      badge.position.set(0, 5.8, 0.1);
-      badge.userData.baseY = 5.8;
+      badge.position.set(0, 6.2, 0.0);
+      badge.userData.baseY = 6.2;
       mess.add(badge);
       popupBadges['lucky-mess'] = badge;
 
@@ -1751,99 +1830,155 @@
 
     const luckyMessModel = createLuckyMess();
     luckyMessModel.position.set(8.0, 0, 32.0);
-    luckyMessModel.rotation.y = 0; // Facing South toward Road plaza
-    luckyMessModel.scale.set(1.38, 1.38, 1.38);
+    luckyMessModel.rotation.y = Math.PI; // Front (+Z) faces South toward road plaza & camera
+    luckyMessModel.scale.set(1.35, 1.35, 1.35);
     scene.add(luckyMessModel);
 
-    // D. POWER KADAI & MADURAI BUN PAROTTA (CIRCULAR IRON TAVA + SPIRAL BUN PAROTTAS + CHIMNEY SMOKE)
+    // D. POWER KADAI & MADURAI BUN PAROTTA (MIDNIGHT STREET-FOOD HOTEL - OPEN KITCHEN, SIZZLING TAVA & CHIMNEY)
     const chimneySmokeParticles = [];
 
     function createPowerKadai() {
       const hotel = new THREE.Group();
-      const brickMat = new THREE.MeshStandardMaterial({ color: 0x332219, roughness: 0.82 });
-      const darkMat = new THREE.MeshStandardMaterial({ color: 0x14161c, roughness: 0.9 });
-      const chromeMat = new THREE.MeshStandardMaterial({ color: 0xd8dde4, metalness: 0.9, roughness: 0.2 });
-      const tavaMat = new THREE.MeshStandardMaterial({ color: 0x121418, metalness: 0.85, roughness: 0.35 });
+      const brickMat = new THREE.MeshStandardMaterial({ color: 0x3d271d, roughness: 0.82 });
+      const darkMat = new THREE.MeshStandardMaterial({ color: 0x141822, roughness: 0.85 });
+      const chromeMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.12 });
+      const tavaMat = new THREE.MeshStandardMaterial({ color: 0x0f1115, metalness: 0.88, roughness: 0.32 });
       const parottaMat = new THREE.MeshStandardMaterial({ color: 0xdfab54, roughness: 0.65 });
       const chefSkin = new THREE.MeshStandardMaterial({ color: 0x8a532d, roughness: 0.75 });
-      const apronMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 });
+      const apronMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.45 });
+      const brassMat = new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.85, roughness: 0.25 });
 
-      // Round Plinth
-      const plinth = new THREE.Mesh(new THREE.CylinderGeometry(2.1, 2.3, 0.2, 16), darkMat);
-      plinth.position.y = 0.1;
+      // 1. Raised Street Corner Plinth
+      const plinth = new THREE.Mesh(new THREE.BoxGeometry(4.8, 0.28, 4.2), darkMat);
+      plinth.position.set(0, 0.14, 0);
+      plinth.receiveShadow = true;
       hotel.add(plinth);
 
-      // Curved Shop Enclosure
-      const mainShop = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.7, 1.6, 16), brickMat);
-      mainShop.position.set(0, 0.9, -0.3);
-      hotel.add(mainShop);
+      // 2. Open Street-Food Restaurant Kitchen ("Hotel / Kadai" - Open Front, No Solid Block!)
+      // Back brick wall with white tile kitchen section
+      const backWall = new THREE.Mesh(new THREE.BoxGeometry(4.4, 2.0, 0.18), brickMat);
+      backWall.position.set(0, 1.14, -1.9);
+      backWall.castShadow = true;
+      hotel.add(backWall);
 
-      // Fluted Cylindrical Street Canopy
-      const awning = new THREE.Mesh(new THREE.CylinderGeometry(1.9, 2.1, 0.12, 16, 1, false, 0, Math.PI), new THREE.MeshStandardMaterial({ color: 0x3d4f5c, metalness: 0.7, roughness: 0.4 }));
-      awning.position.set(0, 1.75, 0.4);
-      awning.rotation.x = 0.2;
-      hotel.add(awning);
+      // Left & right side walls with ventilation louvers
+      [-2.15, 2.15].forEach(wx => {
+        const sideWall = new THREE.Mesh(new THREE.BoxGeometry(0.18, 2.0, 2.4), brickMat);
+        sideWall.position.set(wx, 1.14, -0.7);
+        sideWall.castShadow = true;
+        hotel.add(sideWall);
+      });
 
-      // Curved Dining Counter
-      const counter = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.25, 0.75, 16, 1, false, 0, Math.PI), darkMat);
-      counter.position.set(0, 0.5, 0.5);
+      // Front structural corner pillars
+      [-2.15, 2.15].forEach(px => {
+        const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.20, 2.0, 0.20), darkMat);
+        pillar.position.set(px, 1.14, 1.85);
+        hotel.add(pillar);
+      });
+
+      // 3. Street Awning Canopy
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(4.7, 0.16, 2.8), new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.45, metalness: 0.6 }));
+      canopy.position.set(0, 2.22, 0.6);
+      canopy.castShadow = true;
+      hotel.add(canopy);
+
+      // 4. PROMINENT ILLUMINATED NEON SIGNBOARD
+      // Mounted right on the front canopy fascia at z = 1.95, y = 2.25 (100% unobstructed!)
+      const signTex = createSignboardTexture(
+        'POWER KADAI & BUN PAROTTA',
+        'MADURAI STREET FOOD • CITY THAT NEVER SLEEPS',
+        '#160a04',
+        '#ffffff',
+        '#ff7a18'
+      );
+      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 0.68), signMat);
+      sign.position.set(0, 2.25, 2.02);
+      hotel.add(sign);
+
+      // 5. Open Front Live Bun Parotta Cooking Counter
+      const counter = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.75, 0.85), chromeMat);
+      counter.position.set(-0.35, 0.52, 1.15);
+      counter.castShadow = true;
       hotel.add(counter);
 
-      // Circular Heavy Cast-Iron Parotta Tava with Raised Outer Lip
-      const tavaDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.58, 0.08, 24), tavaMat);
-      tavaDisc.position.set(-0.35, 0.92, 0.7);
+      // Heavy Circular Cast-Iron Parotta Tawa (Kallu) with Raised Lip
+      const tavaDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.68, 0.72, 0.09, 24), tavaMat);
+      tavaDisc.position.set(-0.45, 0.94, 1.15);
       hotel.add(tavaDisc);
 
-      const tavaLip = new THREE.Mesh(new THREE.TorusGeometry(0.56, 0.04, 8, 24), tavaMat);
+      const tavaLip = new THREE.Mesh(new THREE.TorusGeometry(0.70, 0.04, 8, 24), tavaMat);
       tavaLip.rotation.x = Math.PI / 2;
-      tavaLip.position.set(-0.35, 0.96, 0.7);
+      tavaLip.position.set(-0.45, 0.98, 1.15);
       hotel.add(tavaLip);
 
-      // Sizzling Golden Bun Parottas (Multi-Layer Spiral Torus Rings)
-      const p1 = new THREE.Mesh(new THREE.TorusGeometry(0.12, 0.05, 10, 16), parottaMat);
-      p1.rotation.x = Math.PI / 2;
-      p1.position.set(-0.45, 0.98, 0.65);
-      hotel.add(p1);
+      // 4 Golden Sizzling Multi-Layer Bun Parottas
+      [
+        { x: -0.65, z: 1.05 }, { x: -0.25, z: 1.05 },
+        { x: -0.65, z: 1.25 }, { x: -0.25, z: 1.25 }
+      ].forEach(pos => {
+        const parotta = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.05, 10, 16), parottaMat);
+        parotta.rotation.x = Math.PI / 2;
+        parotta.position.set(pos.x, 1.01, pos.z);
+        hotel.add(parotta);
+      });
 
-      const p2 = new THREE.Mesh(new THREE.TorusGeometry(0.12, 0.05, 10, 16), parottaMat);
-      p2.rotation.x = Math.PI / 2;
-      p2.position.set(-0.25, 0.98, 0.75);
-      hotel.add(p2);
+      // Steaming Hot Madurai Salna Handi (Curry Pot) with Ladle
+      const salnaPot = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.28, 0.35, 16), brassMat);
+      salnaPot.position.set(-1.45, 0.98, 1.15);
+      hotel.add(salnaPot);
 
-      // Master Parotta Chef with Tall Toque Hat
+      const salnaLadle = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.45, 8), chromeMat);
+      salnaLadle.rotation.z = -0.35;
+      salnaLadle.position.set(-1.38, 1.18, 1.15);
+      hotel.add(salnaLadle);
+
+      // Glass Display Showcase with Stacks of Fresh Bun Parottas
+      const displayCase = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.55, 0.65), new THREE.MeshStandardMaterial({ color: 0x93c5fd, transparent: true, opacity: 0.45, metalness: 0.9 }));
+      displayCase.position.set(1.4, 0.82, 1.15);
+      hotel.add(displayCase);
+
+      // 6. Master Parotta Chef in Dynamic Cooking Stance
       const chefGroup = new THREE.Group();
-      const chefBody = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.16, 0.65, 10), apronMat);
-      chefBody.position.set(0.45, 0.9, 0.25);
+      const chefBody = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.18, 0.72, 12), apronMat);
+      chefBody.position.set(0.45, 0.95, 0.65);
       chefGroup.add(chefBody);
 
-      const chefHead = new THREE.Mesh(new THREE.SphereGeometry(0.1, 10, 10), chefSkin);
-      chefHead.position.set(0.45, 1.32, 0.25);
+      const chefHead = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 12), chefSkin);
+      chefHead.position.set(0.45, 1.42, 0.65);
       chefGroup.add(chefHead);
 
-      const chefCap = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.11, 0.22, 12), apronMat);
-      chefCap.position.set(0.45, 1.50, 0.25);
+      const chefCap = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.12, 0.26, 14), apronMat);
+      chefCap.position.set(0.45, 1.62, 0.65);
       chefGroup.add(chefCap);
 
-      const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.035, 0.45, 8), chefSkin);
-      arm.position.set(0.25, 1.05, 0.5);
+      // Chef right arm holding parotta flipper
+      const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.04, 0.48, 8), chefSkin);
+      arm.position.set(0.22, 1.10, 0.92);
       arm.rotation.z = Math.PI / 3;
       chefGroup.add(arm);
+
+      const spatula = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.28, 0.02), chromeMat);
+      spatula.position.set(0.05, 1.05, 1.05);
+      spatula.rotation.z = 0.4;
+      chefGroup.add(spatula);
+
       hotel.add(chefGroup);
 
-      // Conical Exhaust Hood Canopy & Tall Cylindrical Smoke Chimney
-      const hood = new THREE.Mesh(new THREE.ConeGeometry(0.65, 0.45, 16, 1, true), chromeMat);
-      hood.position.set(1.2, 1.85, -0.6);
+      // 7. Kitchen Exhaust Hood Canopy & Tall Chimney
+      const hood = new THREE.Mesh(new THREE.ConeGeometry(0.70, 0.50, 16, 1, true), chromeMat);
+      hood.position.set(1.4, 2.15, -0.7);
       hotel.add(hood);
 
-      const chimney = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 1.8, 14), chromeMat);
-      chimney.position.set(1.2, 2.5, -0.6);
+      const chimney = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 2.0, 14), chromeMat);
+      chimney.position.set(1.4, 2.85, -0.7);
       hotel.add(chimney);
 
-      const chimneyCowl = new THREE.Mesh(new THREE.ConeGeometry(0.22, 0.12, 12), chromeMat);
-      chimneyCowl.position.set(1.2, 3.46, -0.6);
+      const chimneyCowl = new THREE.Mesh(new THREE.ConeGeometry(0.24, 0.14, 12), chromeMat);
+      chimneyCowl.position.set(1.4, 3.86, -0.7);
       hotel.add(chimneyCowl);
 
-      // Realistic Volumetric Flowing Smoke & Sizzling Bun Parotta Tawa Steam
+      // 8. Volumetric Flowing Smoke & Sizzling Bun Parotta Tawa Steam
       const smokeGroup = new THREE.Group();
       const smokeMat = new THREE.MeshStandardMaterial({
         color: 0xe2e8f0,
@@ -1860,20 +1995,20 @@
         depthWrite: false
       });
 
-      // 1. Chimney Exhaust Billowing Smoke (22 particles)
+      // Chimney Exhaust Billowing Smoke (22 particles)
       for (let sm = 0; sm < 22; sm++) {
         const puff = new THREE.Mesh(new THREE.SphereGeometry(0.14, 8, 8), smokeMat.clone());
         const initialProg = sm / 22;
         puff.position.set(
-          1.2 + (Math.random() - 0.5) * 0.1,
-          3.5 + initialProg * 3.4,
-          -0.6 + (Math.random() - 0.5) * 0.1
+          1.4 + (Math.random() - 0.5) * 0.1,
+          3.9 + initialProg * 3.4,
+          -0.7 + (Math.random() - 0.5) * 0.1
         );
         puff.userData = {
           type: 'chimney',
-          baseX: 1.2,
-          baseY: 3.5,
-          baseZ: -0.6,
+          baseX: 1.4,
+          baseY: 3.9,
+          baseZ: -0.7,
           maxRise: 3.5,
           speed: 0.016 + Math.random() * 0.012,
           seed: sm * 0.55,
@@ -1883,20 +2018,20 @@
         chimneySmokeParticles.push(puff);
       }
 
-      // 2. Sizzling Iron Bun Parotta Tawa Culinary Steam (14 particles)
+      // Sizzling Iron Bun Parotta Tawa Culinary Steam (14 particles)
       for (let st = 0; st < 14; st++) {
         const steam = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), steamMat.clone());
         const initialProg = st / 14;
         steam.position.set(
-          -0.35 + (Math.random() - 0.5) * 0.35,
-          1.0 + initialProg * 1.6,
-          0.7 + (Math.random() - 0.5) * 0.35
+          -0.45 + (Math.random() - 0.5) * 0.35,
+          1.05 + initialProg * 1.6,
+          1.15 + (Math.random() - 0.5) * 0.35
         );
         steam.userData = {
           type: 'tawa',
-          baseX: -0.35,
-          baseY: 1.0,
-          baseZ: 0.7,
+          baseX: -0.45,
+          baseY: 1.05,
+          baseZ: 1.15,
           maxRise: 1.7,
           speed: 0.014 + Math.random() * 0.01,
           seed: st * 0.75,
@@ -1907,25 +2042,14 @@
       }
       hotel.add(smokeGroup);
 
-      const signTex = createSignboardTexture(
-        'POWER KADAI & BUN PAROTTA',
-        'MADURAI STREET FOOD • CITY THAT NEVER SLEEPS',
-        '#160a04',
-        '#ffffff',
-        '#ff9933'
-      );
-      const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.55), signMat);
-      sign.position.set(0, 1.78, 1.05);
-      hotel.add(sign);
-
-      const nightLight = new THREE.PointLight(0xffaa22, 2.8, 7);
-      nightLight.position.set(-0.35, 1.2, 0.8);
+      // Warm Golden Tungsten Street-Food Lighting
+      const nightLight = new THREE.PointLight(0xffaa22, 3.2, 8.5);
+      nightLight.position.set(-0.45, 1.6, 1.4);
       hotel.add(nightLight);
 
       const badge = createBixiPopupBadge('Power Kadai', 'Iconic Street Food');
-      badge.position.set(0, 5.8, 0);
-      badge.userData.baseY = 5.8;
+      badge.position.set(0, 6.2, 0);
+      badge.userData.baseY = 6.2;
       hotel.add(badge);
       popupBadges['power-kadai'] = badge;
 
@@ -1934,52 +2058,55 @@
 
     const powerKadaiModel = createPowerKadai();
     powerKadaiModel.position.set(28.0, 0, 14.0);
-    powerKadaiModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza
-    powerKadaiModel.scale.set(1.38, 1.38, 1.38);
+    powerKadaiModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza & camera
+    powerKadaiModel.scale.set(1.35, 1.35, 1.35);
     scene.add(powerKadaiModel);
 
-    // E. GANDHI MEMORIAL PALACE MUSEUM (TAMUKKAM NAYAK PALACE - FLUTED COLONNADE & PALACE DOME)
+    // E. GANDHI MEMORIAL PALACE MUSEUM (TAMUKKAM NAYAK PALACE - FLUTED COLONNADE, PALACE DOME & UNBLOCKED ENTRANCE PORTAL)
     function createGandhiMuseum() {
       const museum = new THREE.Group();
       const plinthMat = new THREE.MeshStandardMaterial({ color: 0x222632, roughness: 0.85 });
-      const stoneMat = new THREE.MeshStandardMaterial({ color: 0xd2c6b4, roughness: 0.72 });
+      const stoneMat = new THREE.MeshStandardMaterial({ color: 0xd8cebf, roughness: 0.70 });
       const domeMat = new THREE.MeshStandardMaterial({ color: 0xb56338, metalness: 0.82, roughness: 0.28 });
       const goldMat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.95, roughness: 0.15 });
 
-      // Stepped Circular Granite Plinth
-      const plinth = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.8, 0.28, 20), plinthMat);
+      // 1. Stepped Circular Granite Plinth
+      const plinth = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 3.1, 0.28, 24), plinthMat);
       plinth.position.y = 0.14;
       plinth.receiveShadow = true;
       museum.add(plinth);
 
-      // Central Nayak Palace Hall
-      const mainHall = new THREE.Mesh(new THREE.CylinderGeometry(1.8, 1.9, 1.45, 16), stoneMat);
-      mainHall.position.set(0, 0.95, -0.2);
+      // 2. Central Nayak Palace Pavilion Hall
+      const mainHall = new THREE.Mesh(new THREE.BoxGeometry(3.6, 1.8, 2.8), stoneMat);
+      mainHall.position.set(0, 1.05, -0.4);
       mainHall.castShadow = true;
       museum.add(mainHall);
 
-      // Fluted Cylindrical Colonnade with Carved Torus Capitals & Arches
-      const numCols = 8;
-      const colRadius = 1.9;
+      // Scalloped Palace Arches with decorative keystones along the facade
+      for (let a = -1.2; a <= 1.2; a += 0.8) {
+        const arch = new THREE.Mesh(new THREE.TorusGeometry(0.38, 0.05, 8, 16, Math.PI), stoneMat);
+        arch.position.set(a, 1.65, 1.02);
+        museum.add(arch);
+      }
+
+      // 3. Fluted Cylindrical Colonnade with Carved Torus Capitals
+      const numCols = 6;
       for (let c = 0; c < numCols; c++) {
-        const colAngle = (c / (numCols - 1)) * Math.PI * 0.8 - Math.PI * 0.4;
-        const colX = Math.sin(colAngle) * colRadius;
-        const colZ = Math.cos(colAngle) * colRadius;
+        const colX = (c / (numCols - 1)) * 3.2 - 1.6;
+        const colZ = 1.05;
 
         const pillarGroup = new THREE.Group();
-        const pBase = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 0.12, 12), stoneMat);
-        pBase.position.y = 0.06;
+        const pBase = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.13, 0.14, 12), stoneMat);
+        pBase.position.y = 0.07;
         pillarGroup.add(pBase);
 
-        // Fluted column shaft
-        const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 1.35, 16), stoneMat);
-        shaft.position.y = 0.75;
+        const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 1.45, 16), stoneMat);
+        shaft.position.y = 0.80;
         pillarGroup.add(shaft);
 
-        // Carved Torus Capital
-        const cap = new THREE.Mesh(new THREE.TorusGeometry(0.10, 0.03, 6, 12), stoneMat);
+        const cap = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.03, 6, 12), stoneMat);
         cap.rotation.x = Math.PI / 2;
-        cap.position.y = 1.45;
+        cap.position.y = 1.54;
         pillarGroup.add(cap);
 
         pillarGroup.position.set(colX, 0.28, colZ);
@@ -1987,54 +2114,89 @@
         museum.add(pillarGroup);
       }
 
-      // Connecting Scalloped Palace Arches
-      for (let a = -1.2; a <= 1.2; a += 0.6) {
-        const arch = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.05, 8, 16, Math.PI), stoneMat);
-        arch.position.set(a, 1.70, 1.15);
-        museum.add(arch);
-      }
-
-      // Cylindrical Drum Base for Dome
-      const domeDrum = new THREE.Mesh(new THREE.CylinderGeometry(0.95, 1.0, 0.4, 20), stoneMat);
-      domeDrum.position.set(0, 1.85, -0.2);
+      // 4. Cylindrical Drum Base for Dome
+      const domeDrum = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 1.10, 0.45, 24), stoneMat);
+      domeDrum.position.set(0, 2.15, -0.4);
       museum.add(domeDrum);
 
       // Ribbed Grand Hemispherical Palace Dome
-      const domeHemisphere = new THREE.Mesh(new THREE.SphereGeometry(0.90, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2), domeMat);
-      domeHemisphere.position.set(0, 2.05, -0.2);
+      const domeHemisphere = new THREE.Mesh(new THREE.SphereGeometry(1.0, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2), domeMat);
+      domeHemisphere.position.set(0, 2.38, -0.4);
       domeHemisphere.castShadow = true;
       museum.add(domeHemisphere);
 
       // Octagonal Lantern Cupola & Golden Needle Spire
-      const cupola = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.38, 0.35, 8), stoneMat);
-      cupola.position.set(0, 2.98, -0.2);
+      const cupola = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.42, 0.38, 8), stoneMat);
+      cupola.position.set(0, 3.40, -0.4);
       museum.add(cupola);
 
-      const finial = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.65, 12), goldMat);
-      finial.position.set(0, 3.45, -0.2);
+      const finial = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.72, 12), goldMat);
+      finial.position.set(0, 3.90, -0.4);
       museum.add(finial);
 
-      // Nayak Courtyard Fountain Pool
-      const fountainRim = new THREE.Mesh(new THREE.TorusGeometry(0.75, 0.06, 8, 20), stoneMat);
+      // 5. Nayak Courtyard Fountain Pool
+      const fountainRim = new THREE.Mesh(new THREE.TorusGeometry(0.70, 0.06, 8, 20), stoneMat);
       fountainRim.rotation.x = Math.PI / 2;
-      fountainRim.position.set(0, 0.32, 1.7);
+      fountainRim.position.set(0, 0.32, 1.85);
       museum.add(fountainRim);
 
+      // 6. GRAND ENTRANCE MONUMENT GATEWAY & SIGNBOARD (100% UNBLOCKED & HIGHLY VISIBLE!)
+      // Erected in the front plaza at z = 2.65, completely in front of all building columns!
+      [-1.65, 1.65].forEach(gx => {
+        const gatePillar = new THREE.Group();
+        const gBase = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.22, 0.32), stoneMat);
+        gBase.position.y = 0.11;
+        gatePillar.add(gBase);
+
+        const gShaft = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 1.85, 14), stoneMat);
+        gShaft.position.y = 1.05;
+        gatePillar.add(gShaft);
+
+        const gCap = new THREE.Mesh(new THREE.BoxGeometry(0.30, 0.12, 0.30), stoneMat);
+        gCap.position.y = 2.02;
+        gatePillar.add(gCap);
+
+        const gKalasam = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.24, 10), goldMat);
+        gKalasam.position.y = 2.22;
+        gatePillar.add(gKalasam);
+
+        gatePillar.position.set(gx, 0.28, 2.65);
+        gatePillar.castShadow = true;
+        museum.add(gatePillar);
+      });
+
+      // Architrave crossbeam spanning between the two front gate pillars
+      const gateBeam = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.14, 0.18), stoneMat);
+      gateBeam.position.set(0, 2.18, 2.65);
+      museum.add(gateBeam);
+
+      // The Crystal Clear Illuminated Grand Signboard
       const signTex = createSignboardTexture(
         'GANDHI MEMORIAL PALACE MUSEUM',
         'TAMUKKAM PALACE (1670 CE) • RANI MANGAMMAL',
-        '#121620',
+        '#0e131d',
         '#ffffff',
         '#ff9933'
       );
       const signMat = new THREE.MeshBasicMaterial({ map: signTex });
-      const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.55), signMat);
-      sign.position.set(0, 1.48, 1.25);
+      const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 0.68), signMat);
+      sign.position.set(0, 1.70, 2.68);
       museum.add(sign);
 
+      // Golden Ashoka Emblem atop the gate sign
+      const emblem = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.04, 16), goldMat);
+      emblem.rotation.x = Math.PI / 2;
+      emblem.position.set(0, 2.36, 2.68);
+      museum.add(emblem);
+
+      // Interior palace warm chandelier light
+      const palaceLight = new THREE.PointLight(0xfff1b8, 2.2, 8.0);
+      palaceLight.position.set(0, 1.6, 0.2);
+      museum.add(palaceLight);
+
       const badge = createBixiPopupBadge('Gandhi Palace Museum', 'Palace Museum');
-      badge.position.set(0, 6.5, -0.2);
-      badge.userData.baseY = 6.5;
+      badge.position.set(0, 6.8, -0.4);
+      badge.userData.baseY = 6.8;
       museum.add(badge);
       popupBadges['gandhi-museum'] = badge;
 
@@ -2043,8 +2205,8 @@
 
     const museumModel = createGandhiMuseum();
     museumModel.position.set(30.0, 0, -8.0);
-    museumModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza
-    museumModel.scale.set(1.42, 1.42, 1.42);
+    museumModel.rotation.y = -Math.PI / 2; // Facing West toward Road plaza & camera
+    museumModel.scale.set(1.35, 1.35, 1.35);
     scene.add(museumModel);
 
     // F. ALAGAR KOVIL (KALLAZHAGAR SACRED TEMPLE - STEPPED OCTAGONAL VIMANA & ROCKY OUTCROP)
