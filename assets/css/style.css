@@ -9490,6 +9490,8 @@ button.bixi-cal-day.empty,
   padding: 0.8rem 0.5rem !important;
 }
 
+.app-landmarks-sidebar.collapsed .sidebar-header h1,
+.app-landmarks-sidebar.collapsed .sidebar-header h2,
 .app-landmarks-sidebar.collapsed .sidebar-header h3,
 .app-landmarks-sidebar.collapsed .sidebar-header p,
 .app-landmarks-sidebar.collapsed .sidebar-badge,
@@ -9551,12 +9553,23 @@ button.bixi-cal-day.empty,
   display: block !important;
 }
 
+.sidebar-header h1,
+.sidebar-header h2,
 .sidebar-header h3 {
   font-family: var(--font-heading) !important;
   font-size: 1.05rem !important;
   font-weight: 800 !important;
   color: #FFFFFF !important;
   margin: 0 0 0.2rem !important;
+}
+
+.sidebar-header .sidebar-sub-title {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: #FF7A18 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  margin: 0 0 0.35rem !important;
 }
 
 .sidebar-header p {
