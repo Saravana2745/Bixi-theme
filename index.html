@@ -1300,18 +1300,21 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
         <!-- DOCKED BOOKING FORM ON THE BANNER -->
         <div class="booking-widget-card banner-docked-widget">
-          <!-- Mode Switcher: Rental Bikes vs Self-Drive Cars -->
+          <!-- Mode Switcher: All Vehicles vs Bikes vs Cars -->
           <div class="booking-tabs-wrapper">
             <div class="booking-vehicle-tabs" role="tablist" aria-label="Select Fleet Mode">
-              <button type="button" class="booking-tab-btn active" id="tabSelectBikes" role="tab" aria-selected="true">
-                Rental Bikes (from ₹600)
+              <button type="button" class="booking-tab-btn active" id="tabSelectAll" role="tab" aria-selected="true">
+                All Vehicles (23)
+              </button>
+              <button type="button" class="booking-tab-btn" id="tabSelectBikes" role="tab" aria-selected="false">
+                Bikes &amp; Scooters (14)
               </button>
               <button type="button" class="booking-tab-btn" id="tabSelectCars" role="tab" aria-selected="false">
-                Self-Drive Cars (from ₹2,200)
+                Self-Drive Cars (9)
               </button>
             </div>
             <div class="booking-fare-pill">
-              Estimated Total: <strong id="liveBookingEstimate">₹1,000 (1 Day)</strong>
+              Estimated Total: <strong id="liveBookingEstimate">₹600 (1 Day)</strong>
             </div>
           </div>
 
@@ -2426,6 +2429,53 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       <form id="rentalBookingForm">
         <input type="hidden" id="modalBikeInput" value="Royal Enfield Hunter 350">
         
+        <!-- Interactive Vehicle Switcher (All 23 Models Available) -->
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label class="form-label" for="modalVehicleSelect">
+            <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+            Selected Vehicle Model (Switch to Any Vehicle)
+          </label>
+          <select class="form-control" id="modalVehicleSelect">
+            <optgroup label="Automatic Scooters (₹600/day • 120km/day)">
+              <option value="Honda Activa 6G">Honda Activa 6G — ₹600/day</option>
+              <option value="Suzuki Access 125">Suzuki Access 125 — ₹600/day</option>
+              <option value="Yamaha Fascino 125">Yamaha Fascino 125 — ₹600/day</option>
+              <option value="Yamaha Ray ZR 125">Yamaha Ray ZR 125 — ₹600/day</option>
+            </optgroup>
+            <optgroup label="150cc Commuter Bikes (₹800/day • 120km/day)">
+              <option value="Yamaha FZS V3">Yamaha FZS V3 — ₹800/day</option>
+              <option value="Yamaha FZS V4">Yamaha FZS V4 — ₹800/day</option>
+              <option value="Yamaha FZX">Yamaha FZX — ₹800/day</option>
+            </optgroup>
+            <optgroup label="200cc Performance Bikes (₹900/day • 120km/day)">
+              <option value="Bajaj Pulsar NS200">Bajaj Pulsar NS200 — ₹900/day</option>
+              <option value="Yamaha MT-15 V2">Yamaha MT-15 V2 — ₹900/day</option>
+              <option value="Hero Xpulse 200">Hero Xpulse 200 — ₹900/day</option>
+            </optgroup>
+            <optgroup label="Royal Enfield &amp; Tourers (₹1,000 - ₹1,200/day)">
+              <option value="Royal Enfield Hunter 350" selected>Royal Enfield Hunter 350 — ₹1,000/day</option>
+              <option value="Royal Enfield Classic 350">Royal Enfield Classic 350 — ₹1,000/day</option>
+              <option value="Royal Enfield Meteor 350">Royal Enfield Meteor 350 — ₹1,000/day</option>
+              <option value="Royal Enfield Himalayan 450">Royal Enfield Himalayan 450 — ₹1,200/day</option>
+            </optgroup>
+            <optgroup label="Self-Drive Hatchbacks &amp; Sedans (300km/day Included)">
+              <option value="Maruti Suzuki Wagon R">Maruti Suzuki Wagon R — ₹1,800/day</option>
+              <option value="Maruti Suzuki Swift">Maruti Suzuki Swift — ₹2,200/day</option>
+              <option value="Maruti Suzuki Dzire">Maruti Suzuki Dzire — ₹2,400/day</option>
+              <option value="Maruti Suzuki Baleno">Maruti Suzuki Baleno — ₹2,400/day</option>
+              <option value="Hyundai i20">Hyundai i20 — ₹2,400/day</option>
+            </optgroup>
+            <optgroup label="Self-Drive Compact SUVs (300km/day Included)">
+              <option value="Hyundai Exter">Hyundai Exter — ₹2,500/day</option>
+              <option value="Tata Punch">Tata Punch — ₹2,500/day</option>
+            </optgroup>
+            <optgroup label="Self-Drive 7-Seater Family MPVs (300km/day Included)">
+              <option value="Maruti Suzuki Ertiga">Maruti Suzuki Ertiga — ₹3,500/day</option>
+              <option value="Toyota Rumion">Toyota Rumion — ₹3,500/day</option>
+            </optgroup>
+          </select>
+        </div>
+
         <div class="form-group" style="margin-bottom: 1rem;">
           <label class="form-label" for="userNameInput">Full Name</label>
           <input type="text" class="form-control" id="userNameInput" placeholder="Enter your full name" required>
@@ -2439,9 +2489,9 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         <div class="form-group" style="margin-bottom: 1rem;">
           <label class="form-label" for="userLocationSelect">Madurai Pickup Hub</label>
           <select class="form-control" id="userLocationSelect">
-            <option value="Railway station opposite" data-charge="0" selected>Railway station opposite (Free Direct Pickup)</option>
-            <option value="Mgr bus Stand near By" data-charge="0">Mgr bus Stand near By (Free Direct Pickup)</option>
-            <option value="Google location" data-charge="100">Google location (5 km surrounding delivery: +₹100)</option>
+            <option value="Railway station opposite" data-charge="0" selected>Shop 2: Opposite Madurai Junction (Free Direct Pickup)</option>
+            <option value="Mgr bus Stand near By" data-charge="0">Shop 1: Near Mattuthavani MGR Bus Stand (Free Direct Pickup)</option>
+            <option value="Google location" data-charge="100">Google Location (Doorstep Delivery within 5 km: +₹100)</option>
           </select>
         </div>
 
@@ -2453,7 +2503,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
           </select>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+        <div class="form-row-2col" style="margin-bottom: 1rem;">
           <div class="form-group">
             <label class="form-label" for="userDateInput">Pickup Date</label>
             <input type="date" class="form-control" id="userDateInput" required>
