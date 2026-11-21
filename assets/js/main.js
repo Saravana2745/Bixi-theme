@@ -1610,6 +1610,10 @@ function filterVehicles(cat, btn) {
     var parallaxCards = document.querySelectorAll('[data-parallax]');
     if (!parallaxCards.length) return;
 
+    // Disable parallax on mobile/touch to eliminate scroll jitter and page shaking
+    var isMobileTouch = window.innerWidth <= 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isMobileTouch) return;
+
     var ticking = false;
     function onParallaxScroll() {
       var scrollY = window.pageYOffset || document.documentElement.scrollTop;
@@ -1836,10 +1840,16 @@ function filterVehicles(cat, btn) {
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  let lastScrollyWinWidth = window.innerWidth;
   window.addEventListener('resize', () => {
-    resizeCanvas();
+    // Only re-dimension canvas if viewport width actually changed (e.g. orientation flip),
+    // preventing violent mobile canvas reflows when address bar toggles on scroll
+    if (window.innerWidth !== lastScrollyWinWidth) {
+      lastScrollyWinWidth = window.innerWidth;
+      resizeCanvas();
+    }
     updateScroll();
-  });
+  }, { passive: true });
 
   resizeCanvas();
   updateScroll();
