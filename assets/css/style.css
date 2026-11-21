@@ -12239,3 +12239,54 @@ img, svg, picture, video, canvas {
     margin-bottom: 2rem !important;
   }
 }
+
+/* Section Horizontal Clipping & Containment (Prevents Sub-Pixel Bleed) */
+section,
+.section,
+.lux-fleet-hero,
+.lux-roster-section,
+.lux-tariff-showcase-section,
+.lux-manifesto-section,
+.lux-studio-section,
+.hero-split-stage,
+.hero-section {
+  overflow-x: clip !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+@supports not (overflow-x: clip) {
+  section,
+  .section,
+  .lux-fleet-hero,
+  .lux-roster-section,
+  .lux-tariff-showcase-section,
+  .lux-manifesto-section,
+  .lux-studio-section,
+  .hero-split-stage,
+  .hero-section {
+    overflow-x: hidden !important;
+  }
+}
+
+.lux-filter-bar,
+.lux-filter-pills {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  flex-wrap: nowrap !important;
+  scrollbar-width: none !important;
+}
+.lux-filter-pills::-webkit-scrollbar {
+  display: none !important;
+}
+
+.lux-tariff-table-wrap,
+.lux-tariff-3d-card,
+.lux-tariff-stage {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
