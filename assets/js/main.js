@@ -1496,6 +1496,27 @@ function filterVehicles(cat, btn) {
   });
 }
 
+function scrollToFleetGrid(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  var target = document.getElementById('fleet-filter-bar') || document.getElementById('all-vehicles-grid');
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function quickJumpFleet(cat) {
+  var pills = document.querySelectorAll('.lux-pill-btn');
+  pills.forEach(function (p) {
+    if (p.getAttribute('data-filter') === cat) {
+      filterVehicles(cat, p);
+    }
+  });
+  var target = document.getElementById('fleet-filter-bar') || document.getElementById('all-vehicles-grid');
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 // ── 6. Auto-Initialize Counter Animation on Telemetry Strip ───────────
 (function () {
   function animateLuxCounters() {
