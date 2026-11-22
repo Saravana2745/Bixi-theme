@@ -26,7 +26,7 @@
         index: 0,
         name: 'Maruti Suzuki Swift',
         shortName: 'Swift',
-        category: 'Self-Drive Hatchback',
+        category: 'Hatchback',
         badge: 'FAST COMMUTE • AIR CONDITIONED',
         price: '2,200',
         specs: '5 Seater • AC • 300 km/day',
@@ -161,7 +161,7 @@
       if (dynamicTitle) {
         dynamicTitle.classList.add('title-flip-out');
         setTimeout(function () {
-          dynamicTitle.textContent = item.shortName;
+          dynamicTitle.textContent = item.name;
           dynamicTitle.classList.remove('title-flip-out');
           dynamicTitle.classList.add('title-flip-in');
           setTimeout(function () {

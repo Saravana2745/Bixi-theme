@@ -2409,7 +2409,7 @@ select.form-control:focus {
 
 /* ── 2. The BIXI Studio Showroom (Interactive Stage) ─────────────────── */
 .lux-studio-section {
-  padding: 6rem 0;
+  padding: 3.5rem 0 1.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -2421,7 +2421,7 @@ select.form-control:focus {
   border-radius: 28px;
   padding: 3.5rem 2.5rem 2.5rem;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .lux-stage-spotlight {
@@ -2826,7 +2826,7 @@ select.form-control:focus {
 
 .lux-studio-footer-cta {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1.25rem;
   color: #64748B;
   font-size: 0.95rem;
 }
@@ -2843,7 +2843,7 @@ select.form-control:focus {
 
 /* ── 3. Panoramic Expedition Trails Console ──────────────────────────── */
 .lux-expeditions-section {
-  padding: 6rem 0;
+  padding: 3.5rem 0;
   background: rgba(13, 13, 15, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -6343,7 +6343,8 @@ button.bixi-cal-day.empty,
   letter-spacing: -0.015em !important;
 }
 
-.reel-title-dynamic {
+.reel-title-dynamic,
+.reel-title-city {
   display: block !important;
   font-size: 2.95rem !important;
   font-weight: 900 !important;
@@ -6354,11 +6355,27 @@ button.bixi-cal-day.empty,
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease !important;
 }
 
+.reel-active-model-name {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.88rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  background: rgba(255, 122, 24, 0.22) !important;
+  border: 1px solid rgba(255, 122, 24, 0.5) !important;
+  border-radius: 9999px !important;
+  padding: 0.22rem 0.85rem !important;
+  letter-spacing: 0.01em !important;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease !important;
+}
+
+.reel-active-model-name.title-flip-out,
 .reel-title-dynamic.title-flip-out {
-  transform: translateY(-10px) !important;
+  transform: translateY(-8px) !important;
   opacity: 0 !important;
 }
 
+.reel-active-model-name.title-flip-in,
 .reel-title-dynamic.title-flip-in {
   transform: translateY(0) !important;
   opacity: 1 !important;
@@ -6995,7 +7012,8 @@ button.bixi-cal-day.empty,
     font-size: 1.75rem !important;
   }
 
-  .reel-title-dynamic {
+  .reel-title-dynamic,
+  .reel-title-city {
     font-size: 2.25rem !important;
   }
 
@@ -7093,7 +7111,8 @@ button.bixi-cal-day.empty,
     font-size: 1.6rem !important;
   }
 
-  .reel-title-dynamic {
+  .reel-title-dynamic,
+  .reel-title-city {
     font-size: 2.1rem !important;
   }
 
@@ -7167,7 +7186,8 @@ button.bixi-cal-day.empty,
     font-size: 1.45rem !important;
   }
 
-  .reel-title-dynamic {
+  .reel-title-dynamic,
+  .reel-title-city {
     font-size: 1.85rem !important;
   }
 

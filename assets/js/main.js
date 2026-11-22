@@ -218,7 +218,7 @@
         if (tabCars) tabCars.classList.remove('active');
         currentVehicleMode = 'all';
         if (hiddenType) hiddenType.value = 'all';
-        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Machine (All 23)';
+        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Vehicle (All 23)';
         renderModelOptions('all');
       });
     }
@@ -230,7 +230,7 @@
         if (tabCars) tabCars.classList.remove('active');
         currentVehicleMode = 'bike';
         if (hiddenType) hiddenType.value = 'bike';
-        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Rental Bike';
+        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Bike Model';
         renderModelOptions('bike');
       });
     }
@@ -242,7 +242,7 @@
         if (tabBikes) tabBikes.classList.remove('active');
         currentVehicleMode = 'car';
         if (hiddenType) hiddenType.value = 'car';
-        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Self-Drive Car';
+        if (vehicleLabelText) vehicleLabelText.textContent = 'Select Car Model';
         renderModelOptions('car');
       });
     }
@@ -1158,7 +1158,7 @@
 var BIXI_SHOWROOM_DATA = {
   swift: {
     name: 'Maruti Suzuki Swift (2026)',
-    tagline: 'Madurai\'s favorite 5-seater self-drive hatchback for city & hills.',
+    tagline: 'Madurai\'s favorite 5-seater hatchback for city & hills.',
     rate: 2200,
     rateStr: '₹2,200',
     img: 'assets/images/bikes/car-swift.webp',
@@ -1230,7 +1230,7 @@ var BIXI_SHOWROOM_DATA = {
   },
   ertiga: {
     name: 'Maruti Suzuki Ertiga (2026)',
-    tagline: 'Spacious 7-seater self-drive MPV with chilled AC for family pilgrimages.',
+    tagline: 'Spacious 7-seater MPV with chilled AC for family pilgrimages.',
     rate: 3500,
     rateStr: '₹3,500',
     img: 'assets/images/bikes/car-ertiga.webp',
