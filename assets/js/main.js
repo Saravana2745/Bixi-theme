@@ -476,10 +476,8 @@
     const modalPricingBreakdown = document.getElementById('modalPricingBreakdown');
     const modalKmLimitSelect = document.getElementById('modalKmLimitSelect');
     const modalKmLimitGroup = document.getElementById('modalKmLimitGroup');
-    const modalHelmetWrapper = document.getElementById('modalHelmetWrapper');
     const daysCountInput = document.getElementById('rentalDaysInput');
     const userLocationSelect = document.getElementById('userLocationSelect');
-    const extraHelmetCheckbox = document.getElementById('extraHelmetCheckbox');
     const modalForm = document.getElementById('rentalBookingForm');
 
     let currentVehicleData = null;
@@ -527,33 +525,35 @@
           modalKmLimitSelect.innerHTML = `
             <option value="300" selected>300 kms limit / day (Included in ₹${currentVehicleData.rate120.toLocaleString('en-IN')})</option>
           `;
-          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'none';
         } else if (currentVehicleData && currentVehicleData.extKm === 300) {
           // Himalayan 450 (120 km vs 300 km)
           modalKmLimitSelect.innerHTML = `
             <option value="120" selected>120 kms limit / day — ₹${currentVehicleData.rate120.toLocaleString('en-IN')}/day</option>
             <option value="300">300 kms limit / day — ₹${currentVehicleData.rateExt.toLocaleString('en-IN')}/day</option>
           `;
-          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'flex';
         } else if (currentVehicleData) {
           // Standard bike or scooter
           modalKmLimitSelect.innerHTML = `
             <option value="120" selected>120 kms limit / day — ₹${currentVehicleData.rate120.toLocaleString('en-IN')}/day</option>
             <option value="240">240 kms limit / day — ₹${currentVehicleData.rateExt.toLocaleString('en-IN')}/day</option>
           `;
-          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'flex';
         } else {
           modalKmLimitSelect.innerHTML = `
             <option value="120" selected>120 kms limit / day</option>
             <option value="240">240 kms limit / day</option>
           `;
-          if (modalHelmetWrapper) modalHelmetWrapper.style.display = 'flex';
         }
       }
 
       updateModalTotal();
       bookingModal.classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      // Set advance payment amount based on vehicle type
+      const advanceEl = document.getElementById('modalAdvanceAmount');
+      if (advanceEl) {
+        advanceEl.textContent = (currentVehicleData && currentVehicleData.car) ? '₹500' : '₹300';
+      }
     }
 
     function closeBookingModal() {
@@ -585,13 +585,7 @@
         deliveryCharge = 100;
       }
 
-      // Pillion helmet addon
-      let helmetCharge = 0;
-      if (extraHelmetCheckbox && extraHelmetCheckbox.checked && (!currentVehicleData || !currentVehicleData.car)) {
-        helmetCharge = 50 * days;
-      }
-
-      const total = (baseRate * days) + deliveryCharge + helmetCharge;
+      const total = (baseRate * days) + deliveryCharge;
 
       if (modalBikePrice) {
         modalBikePrice.textContent = `₹${baseRate.toLocaleString('en-IN')} / day`;
@@ -607,9 +601,6 @@
 
     if (daysCountInput) {
       daysCountInput.addEventListener('input', updateModalTotal);
-    }
-    if (extraHelmetCheckbox) {
-      extraHelmetCheckbox.addEventListener('change', updateModalTotal);
     }
     if (userLocationSelect) {
       userLocationSelect.addEventListener('change', updateModalTotal);
@@ -661,13 +652,13 @@
         const location = userLocationSelect ? userLocationSelect.value : 'Railway station opposite';
         const kmTier = modalKmLimitSelect ? modalKmLimitSelect.value : '120';
         const isGoogle = location.toLowerCase().includes('google location');
-        const helmetAdded = extraHelmetCheckbox && extraHelmetCheckbox.checked;
 
         let baseRate = currentDailyRate;
         if (currentVehicleData) {
           baseRate = (kmTier === '240' || kmTier === '300') ? currentVehicleData.rateExt : currentVehicleData.rate120;
         }
-        const total = (baseRate * parseInt(days, 10)) + (isGoogle ? 100 : 0) + (helmetAdded ? 50 * parseInt(days, 10) : 0);
+        const advanceAmt = (currentVehicleData && currentVehicleData.car) ? 500 : 300;
+        const total = (baseRate * parseInt(days, 10)) + (isGoogle ? 100 : 0);
 
         const pTime = modalForm?.getAttribute('data-pickup-time') || '';
         const dDate = modalForm?.getAttribute('data-drop-date') || '';
@@ -688,8 +679,8 @@
           `Tariff: ₹${baseRate.toLocaleString('en-IN')} / day (${kmTier} kms limit • 24h format)`,
           scheduleDetails,
           `Pickup Hub: ${location} ${isGoogle ? '(₹100 Doorstep Delivery)' : '(Free Direct Pickup)'}`,
-          helmetAdded ? `Pillion Helmet: Included (+₹${50 * parseInt(days, 10)})` : `Pillion Helmet: Not needed`,
           `Estimated Total: ₹${total.toLocaleString('en-IN')} (Zero Security Deposit)`,
+          `Advance Required: ₹${advanceAmt} to confirm booking (pay via UPI/cash at pickup)`,
           `Customer Name: ${name}`,
           `WhatsApp: ${phone}`,
           `Please confirm vehicle availability & reservation!`
