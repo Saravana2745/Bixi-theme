@@ -12657,3 +12657,8 @@ a[href^="tel:"] * {
   pointer-events: none !important;
 }
 
+@keyframes bixiSpin {
+  to { transform: rotate(360deg); }
+}
+
+

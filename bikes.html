@@ -1934,117 +1934,205 @@
   <div class="modal-overlay" id="bookingModal" aria-modal="true" role="dialog">
     <div class="modal-card">
       <button class="modal-close-btn" aria-label="Close Booking Dialog">&times;</button>
-      <div style="margin-bottom: 1.5rem;">
-        <span class="badge" style="margin-bottom: 0.5rem;">Instant Reservation</span>
-        <h3 id="modalBikeName" style="font-size: 1.6rem; color: var(--color-white);">Royal Enfield Hunter 350</h3>
-        <span id="modalBikePrice" style="color: var(--color-yellow); font-family: var(--font-tech); font-size: 1.3rem; font-weight: 800;">₹1,000 / day</span>
+      <!-- 1. BOOKING FORM VIEW (Advance Payment via Razorpay / WooCommerce) -->
+      <div id="bixiBookingFormView">
+        <div style="margin-bottom: 1.5rem;">
+          <span class="badge" style="margin-bottom: 0.5rem;">Instant Reservation</span>
+          <h3 id="modalBikeName" style="font-size: 1.6rem; color: var(--color-white);">Royal Enfield Hunter 350</h3>
+          <span id="modalBikePrice" style="color: var(--color-yellow); font-family: var(--font-tech); font-size: 1.3rem; font-weight: 800;">₹1,000 / day</span>
+        </div>
+
+        <form id="rentalBookingForm">
+          <input type="hidden" id="modalBikeInput" value="Royal Enfield Hunter 350">
+          
+          <!-- Interactive Vehicle Switcher (All 23 Models Available) -->
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" for="modalVehicleSelect">
+              <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+              Selected Vehicle Model (Switch to Any Vehicle)
+            </label>
+            <select class="form-control" id="modalVehicleSelect">
+              <optgroup label="Automatic Scooters (₹600/day • 120km/day)">
+                <option value="Honda Activa 6G">Honda Activa 6G — ₹600/day</option>
+                <option value="Suzuki Access 125">Suzuki Access 125 — ₹600/day</option>
+                <option value="Yamaha Fascino 125">Yamaha Fascino 125 — ₹600/day</option>
+                <option value="Yamaha Ray ZR 125">Yamaha Ray ZR 125 — ₹600/day</option>
+              </optgroup>
+              <optgroup label="150cc Commuter Bikes (₹800/day • 120km/day)">
+                <option value="Yamaha FZS V3">Yamaha FZS V3 — ₹800/day</option>
+                <option value="Yamaha FZS V4">Yamaha FZS V4 — ₹800/day</option>
+                <option value="Yamaha FZX">Yamaha FZX — ₹800/day</option>
+              </optgroup>
+              <optgroup label="200cc Performance Bikes (₹900/day • 120km/day)">
+                <option value="Bajaj Pulsar NS200">Bajaj Pulsar NS200 — ₹900/day</option>
+                <option value="Yamaha MT-15 V2">Yamaha MT-15 V2 — ₹900/day</option>
+                <option value="Hero Xpulse 200">Hero Xpulse 200 — ₹900/day</option>
+              </optgroup>
+              <optgroup label="Royal Enfield &amp; Tourers (₹1,000 - ₹1,200/day)">
+                <option value="Royal Enfield Hunter 350" selected>Royal Enfield Hunter 350 — ₹1,000/day</option>
+                <option value="Royal Enfield Classic 350">Royal Enfield Classic 350 — ₹1,000/day</option>
+                <option value="Royal Enfield Meteor 350">Royal Enfield Meteor 350 — ₹1,000/day</option>
+                <option value="Royal Enfield Himalayan 450">Royal Enfield Himalayan 450 — ₹1,200/day</option>
+              </optgroup>
+              <optgroup label="Cars — Hatchbacks &amp; Sedans (300km/day Included)">
+                <option value="Maruti Suzuki Wagon R">Maruti Suzuki Wagon R — ₹1,800/day</option>
+                <option value="Maruti Suzuki Swift">Maruti Suzuki Swift — ₹2,200/day</option>
+                <option value="Maruti Suzuki Dzire">Maruti Suzuki Dzire — ₹2,400/day</option>
+                <option value="Maruti Suzuki Baleno">Maruti Suzuki Baleno — ₹2,400/day</option>
+                <option value="Hyundai i20">Hyundai i20 — ₹2,400/day</option>
+              </optgroup>
+              <optgroup label="Cars — Compact SUVs (300km/day Included)">
+                <option value="Hyundai Exter">Hyundai Exter — ₹2,500/day</option>
+                <option value="Tata Punch">Tata Punch — ₹2,500/day</option>
+              </optgroup>
+              <optgroup label="Cars — 7-Seater Family MPVs (300km/day Included)">
+                <option value="Maruti Suzuki Ertiga">Maruti Suzuki Ertiga — ₹3,500/day</option>
+                <option value="Toyota Rumion">Toyota Rumion — ₹3,500/day</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" for="userNameInput">Full Name</label>
+            <input type="text" class="form-control" id="userNameInput" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" for="userPhoneInput">WhatsApp Phone Number</label>
+            <input type="tel" class="form-control" id="userPhoneInput" placeholder="+91 90370 00266" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" for="userLocationSelect">Madurai Pickup Hub</label>
+            <select class="form-control" id="userLocationSelect">
+              <option value="Railway station opposite" data-charge="0" selected>Shop 2: Opposite Madurai Junction (Free Direct Pickup)</option>
+              <option value="Mgr bus Stand near By" data-charge="0">Shop 1: Near Mattuthavani MGR Bus Stand (Free Direct Pickup)</option>
+              <option value="Google location" data-charge="100">Google Location (Doorstep Delivery within 5 km: +₹100)</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1rem;" id="modalKmLimitGroup">
+            <label class="form-label" for="modalKmLimitSelect">Kilometer Limit Tier (24h format)</label>
+            <select class="form-control" id="modalKmLimitSelect">
+              <option value="120" selected>120 kms limit / day (Standard Rate)</option>
+              <option value="240">240 kms limit / day (Extended Rate)</option>
+            </select>
+          </div>
+          <div class="form-row-2col" style="margin-bottom: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="userDateInput">Pickup Date</label>
+              <input type="date" class="form-control" id="userDateInput" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="rentalDaysInput">Rental Days</label>
+              <input type="number" class="form-control" id="rentalDaysInput" value="1" min="1" max="60" required>
+            </div>
+          </div>
+          <div id="bixi-advance-box" style="background: rgba(22, 22, 26, 0.7); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--color-orange); font-weight: 600; margin-bottom: 0.6rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Advance Payment Required to Confirm Booking
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; background: rgba(255,122,24,0.08); border-radius: 6px; margin-bottom: 0.75rem;">
+              <span style="font-size: 0.85rem; color: var(--color-gray-light);">Advance Amount</span>
+              <span id="modalAdvanceAmount" style="font-size: 1.1rem; font-weight: 700; color: var(--color-orange);">₹300</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+              <div>
+                <span style="font-size: 0.85rem; color: var(--color-muted); display: block;">Estimated Total:</span>
+                <span id="modalPricingBreakdown" style="font-size: 0.75rem; color: #a0aec0; display: block;">1 Day • 120 km/day • Free Direct Pickup</span>
+              </div>
+              <span id="modalTotalEstimate" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-orange);">₹1,000</span>
+            </div>
+          </div>
+          <button type="submit" id="bixiPayAdvanceBtn" class="btn-primary" style="width: 100%; height: 52px; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            <span>Pay Advance (<span id="modalBtnAdvanceAmt">₹300</span>) via Razorpay</span>
+          </button>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.76rem; color: #94a3b8; margin-top: 0.6rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" style="width: 14px; height: 14px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>100% Secure Razorpay &amp; WooCommerce Checkout • UPI / Cards / Netbanking</span>
+          </div>
+        </form>
       </div>
 
-      <form id="rentalBookingForm">
-        <input type="hidden" id="modalBikeInput" value="Royal Enfield Hunter 350">
-        
-        <!-- Interactive Vehicle Switcher (All 23 Models Available) -->
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="modalVehicleSelect">
-            <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
-            Selected Vehicle Model (Switch to Any Vehicle)
-          </label>
-          <select class="form-control" id="modalVehicleSelect">
-            <optgroup label="Automatic Scooters (₹600/day • 120km/day)">
-              <option value="Honda Activa 6G">Honda Activa 6G — ₹600/day</option>
-              <option value="Suzuki Access 125">Suzuki Access 125 — ₹600/day</option>
-              <option value="Yamaha Fascino 125">Yamaha Fascino 125 — ₹600/day</option>
-              <option value="Yamaha Ray ZR 125">Yamaha Ray ZR 125 — ₹600/day</option>
-            </optgroup>
-            <optgroup label="150cc Commuter Bikes (₹800/day • 120km/day)">
-              <option value="Yamaha FZS V3">Yamaha FZS V3 — ₹800/day</option>
-              <option value="Yamaha FZS V4">Yamaha FZS V4 — ₹800/day</option>
-              <option value="Yamaha FZX">Yamaha FZX — ₹800/day</option>
-            </optgroup>
-            <optgroup label="200cc Performance Bikes (₹900/day • 120km/day)">
-              <option value="Bajaj Pulsar NS200">Bajaj Pulsar NS200 — ₹900/day</option>
-              <option value="Yamaha MT-15 V2">Yamaha MT-15 V2 — ₹900/day</option>
-              <option value="Hero Xpulse 200">Hero Xpulse 200 — ₹900/day</option>
-            </optgroup>
-            <optgroup label="Royal Enfield &amp; Tourers (₹1,000 - ₹1,200/day)">
-              <option value="Royal Enfield Hunter 350" selected>Royal Enfield Hunter 350 — ₹1,000/day</option>
-              <option value="Royal Enfield Classic 350">Royal Enfield Classic 350 — ₹1,000/day</option>
-              <option value="Royal Enfield Meteor 350">Royal Enfield Meteor 350 — ₹1,000/day</option>
-              <option value="Royal Enfield Himalayan 450">Royal Enfield Himalayan 450 — ₹1,200/day</option>
-            </optgroup>
-            <optgroup label="Cars — Hatchbacks &amp; Sedans (300km/day Included)">
-              <option value="Maruti Suzuki Wagon R">Maruti Suzuki Wagon R — ₹1,800/day</option>
-              <option value="Maruti Suzuki Swift">Maruti Suzuki Swift — ₹2,200/day</option>
-              <option value="Maruti Suzuki Dzire">Maruti Suzuki Dzire — ₹2,400/day</option>
-              <option value="Maruti Suzuki Baleno">Maruti Suzuki Baleno — ₹2,400/day</option>
-              <option value="Hyundai i20">Hyundai i20 — ₹2,400/day</option>
-            </optgroup>
-            <optgroup label="Cars — Compact SUVs (300km/day Included)">
-              <option value="Hyundai Exter">Hyundai Exter — ₹2,500/day</option>
-              <option value="Tata Punch">Tata Punch — ₹2,500/day</option>
-            </optgroup>
-            <optgroup label="Cars — 7-Seater Family MPVs (300km/day Included)">
-              <option value="Maruti Suzuki Ertiga">Maruti Suzuki Ertiga — ₹3,500/day</option>
-              <option value="Toyota Rumion">Toyota Rumion — ₹3,500/day</option>
-            </optgroup>
-          </select>
+      <!-- 2. PAYMENT SUCCESS VIEW (Tick mark + Enjoy your tour + Verification details + Exit) -->
+      <div id="bixiPaymentSuccessView" style="display: none; text-align: center; padding: 0.5rem 0 1rem;">
+        <div style="width: 76px; height: 76px; margin: 0 auto 1.25rem; background: rgba(34, 197, 94, 0.12); border: 2.5px solid #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(34, 197, 94, 0.25);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width: 42px; height: 42px;">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div style="display: inline-block; background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.35); padding: 4px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">
+          Payment Verified &#10003;
+        </div>
+        <h3 style="font-size: 1.65rem; color: #fff; margin: 0 0 0.4rem; font-family: var(--font-heading);">Payment Completed!</h3>
+        <p style="color: #4ade80; font-size: 1.15rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 0.02em;">
+          Enjoy your tour with BIXI Ride!
+        </p>
+
+        <!-- Booking & Payment Verification Card -->
+        <div style="background: rgba(22, 22, 26, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 1.2rem; text-align: left; margin-bottom: 1.5rem; font-size: 0.9rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; padding-bottom: 0.65rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <span style="color: #94a3b8;">Booking Reference:</span>
+            <strong id="successBookingRef" style="color: #fff; font-family: var(--font-tech); font-size: 1.05rem;">BIXI-WAITING</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
+            <span style="color: #94a3b8;">Razorpay Payment ID:</span>
+            <span id="successPaymentId" style="color: #4ade80; font-family: monospace; font-size: 0.85rem; font-weight: 600;">pay_verified</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
+            <span style="color: #94a3b8;">Vehicle Reserved:</span>
+            <strong id="successVehicle" style="color: #FF7A18;">Royal Enfield Hunter 350</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
+            <span style="color: #94a3b8;">Schedule &amp; Duration:</span>
+            <span id="successSchedule" style="color: #cbd5e1; text-align: right;">1 Day • Pickup Today</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
+            <span style="color: #94a3b8;">Pickup Hub:</span>
+            <span id="successHub" style="color: #cbd5e1; text-align: right;">Opposite Madurai Junction</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; padding-top: 0.65rem; border-top: 1px solid rgba(255,255,255,0.08);">
+            <span style="color: #94a3b8;">Advance Paid Online:</span>
+            <strong id="successAdvance" style="color: #22c55e; font-size: 1.05rem;">&#8377;300 (Razorpay Secured)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #94a3b8;">Remaining Due at Handover:</span>
+            <strong id="successBalance" style="color: #FF7A18; font-size: 1.05rem;">&#8377;700</strong>
+          </div>
         </div>
 
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="userNameInput">Full Name</label>
-          <input type="text" class="form-control" id="userNameInput" placeholder="Enter your full name" required>
-        </div>
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="userPhoneInput">WhatsApp Phone Number</label>
-          <input type="tel" class="form-control" id="userPhoneInput" placeholder="+91 90370 00266" required>
-        </div>
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="userLocationSelect">Madurai Pickup Hub</label>
-          <select class="form-control" id="userLocationSelect">
-            <option value="Railway station opposite" data-charge="0" selected>Shop 2: Opposite Madurai Junction (Free Direct Pickup)</option>
-            <option value="Mgr bus Stand near By" data-charge="0">Shop 1: Near Mattuthavani MGR Bus Stand (Free Direct Pickup)</option>
-            <option value="Google location" data-charge="100">Google Location (Doorstep Delivery within 5 km: +₹100)</option>
-          </select>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 1rem;" id="modalKmLimitGroup">
-          <label class="form-label" for="modalKmLimitSelect">Kilometer Limit Tier (24h format)</label>
-          <select class="form-control" id="modalKmLimitSelect">
-            <option value="120" selected>120 kms limit / day (Standard Rate)</option>
-            <option value="240">240 kms limit / day (Extended Rate)</option>
-          </select>
-        </div>
-        <div class="form-row-2col" style="margin-bottom: 1rem;">
-          <div class="form-group">
-            <label class="form-label" for="userDateInput">Pickup Date</label>
-            <input type="date" class="form-control" id="userDateInput" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="rentalDaysInput">Rental Days</label>
-            <input type="number" class="form-control" id="rentalDaysInput" value="1" min="1" max="60" required>
-          </div>
-        </div>
-        <div id="bixi-advance-box" style="background: rgba(22, 22, 26, 0.7); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--color-orange); font-weight: 600; margin-bottom: 0.6rem;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            Advance Payment Required to Confirm Booking
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; background: rgba(255,122,24,0.08); border-radius: 6px; margin-bottom: 0.75rem;">
-            <span style="font-size: 0.85rem; color: var(--color-gray-light);">Advance Amount</span>
-            <span id="modalAdvanceAmount" style="font-size: 1.1rem; font-weight: 700; color: var(--color-orange);">₹300</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-            <div>
-              <span style="font-size: 0.85rem; color: var(--color-muted); display: block;">Estimated Total:</span>
-              <span id="modalPricingBreakdown" style="font-size: 0.75rem; color: #a0aec0; display: block;">1 Day • 120 km/day • Free Direct Pickup</span>
-            </div>
-            <span id="modalTotalEstimate" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-orange);">₹1,000</span>
-          </div>
-        </div>
-        <button type="submit" class="btn-primary" style="width: 100%; height: 50px; font-size: 1.05rem;">
-          Confirm Booking via WhatsApp <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        <button type="button" id="bixiSuccessExitBtn" class="btn-primary" style="width: 100%; height: 50px; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span>Exit &amp; Return to Fleet</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
-      </form>
+      </div>
+
+      <!-- 3. PAYMENT FAILURE VIEW (Try Again button + Exit button) -->
+      <div id="bixiPaymentFailureView" style="display: none; text-align: center; padding: 0.5rem 0 1rem;">
+        <div style="width: 76px; height: 76px; margin: 0 auto 1.25rem; background: rgba(239, 68, 68, 0.12); border: 2.5px solid #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 40px; height: 40px;">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </div>
+        <div style="display: inline-block; background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 4px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">
+          Payment Not Completed
+        </div>
+        <h3 style="font-size: 1.6rem; color: #fff; margin: 0 0 0.5rem; font-family: var(--font-heading);">Transaction Failed or Cancelled</h3>
+        <p id="bixiFailReason" style="color: #94a3b8; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.5rem; max-width: 420px; margin-left: auto; margin-right: auto;">
+          Your advance reservation payment was not completed. Don&#39;t worry &mdash; your vehicle dates are still preserved. You can retry with UPI, Debit/Credit Card, or Netbanking.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+          <button type="button" id="bixiTryAgainBtn" class="btn-primary" style="height: 50px; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 17px; height: 17px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>Try Again</span>
+          </button>
+          <button type="button" id="bixiFailExitBtn" class="btn-secondary" style="height: 50px; font-size: 1rem;">
+            Exit
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2128,6 +2216,8 @@
     </div>
   </footer>
 
+  <!-- Razorpay Secure Payment Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="assets/js/react-bits-animations.js?v=44.0"></script>
   <script src="assets/js/main.js?v=44.0"></script>
 </body>
