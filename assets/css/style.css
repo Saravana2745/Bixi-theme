@@ -12661,4 +12661,307 @@ a[href^="tel:"] * {
   to { transform: rotate(360deg); }
 }
 
+/* ==========================================================================
+   BIXI RIDE - COMPREHENSIVE SEO MOBILITY DIRECTORY & TARIFF GUIDE
+   ========================================================================== */
+.bixi-seo-guide-section {
+  padding: 5rem 0 3.5rem;
+  background: #0f0f13;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.bixi-seo-guide-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.bixi-seo-guide-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.bixi-seo-guide-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 0.75rem 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.bixi-seo-guide-lead {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  max-width: 840px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.bixi-seo-card {
+  background: #15151b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 2.25rem;
+  margin-bottom: 2.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.25s ease;
+}
+
+.bixi-seo-card:hover {
+  border-color: rgba(255, 122, 24, 0.3);
+}
+
+.bixi-seo-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bixi-seo-card-title svg {
+  width: 22px;
+  height: 22px;
+  stroke: #FF7A18;
+  flex-shrink: 0;
+}
+
+.bixi-seo-prose {
+  font-size: 0.98rem;
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.bixi-seo-prose:last-child {
+  margin-bottom: 0;
+}
+
+.bixi-seo-prose strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Localities Tag Cloud */
+.bixi-localities-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1.25rem;
+}
+
+.bixi-locality-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.bixi-locality-tag:hover {
+  background: rgba(255, 122, 24, 0.12);
+  border-color: #FF7A18;
+  color: #FF7A18;
+}
+
+/* Use Cases Grid */
+.bixi-usecases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.bixi-usecase-box {
+  background: rgba(22, 22, 28, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.bixi-usecase-header {
+  font-weight: 700;
+  color: #FF7A18;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bixi-usecase-desc {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* SEO Tariff Table */
+.bixi-seo-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bixi-seo-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+  min-width: 680px;
+  background: #121217;
+}
+
+.bixi-seo-table th {
+  background: rgba(255, 122, 24, 0.12);
+  color: #FF7A18;
+  padding: 14px 16px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bixi-seo-table td {
+  padding: 13px 16px;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: middle;
+}
+
+.bixi-seo-table tr:last-child td {
+  border-bottom: none;
+}
+
+.bixi-seo-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.bixi-seo-price-cell {
+  font-weight: 700;
+  color: #22c55e;
+  font-family: var(--font-tech, monospace);
+  font-size: 0.98rem;
+  white-space: nowrap;
+}
+
+.bixi-seo-price-car {
+  color: #FF7A18;
+}
+
+/* Policy & Trust 2-Col Grid */
+.bixi-trust-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.bixi-trust-item {
+  display: flex;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bixi-trust-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 122, 24, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bixi-trust-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #FF7A18;
+}
+
+.bixi-trust-text h4 {
+  margin: 0 0 0.35rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.bixi-trust-text p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* Steps 4-Col Grid */
+.bixi-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.bixi-step-card {
+  background: rgba(22, 22, 28, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 1.5rem 1.25rem;
+  position: relative;
+}
+
+.bixi-step-num {
+  font-family: var(--font-tech, monospace);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #FF7A18;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.bixi-step-card h4 {
+  color: #ffffff;
+  font-size: 1.02rem;
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.bixi-step-card p {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .bixi-seo-guide-section {
+    padding: 3.5rem 0 2.5rem;
+  }
+  .bixi-seo-card {
+    padding: 1.5rem 1.25rem;
+  }
+  .bixi-seo-table th, .bixi-seo-table td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+}
+
 
