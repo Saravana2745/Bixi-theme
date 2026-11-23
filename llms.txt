@@ -1,6 +1,6 @@
 # BIXI RIDE — Premier Bike & Car Rental Service in Madurai
 
-> BIXI RIDE provides verified two-wheeler and self-drive car rentals in Madurai, Tamil Nadu, India. All rentals follow a transparent 24-hour cycle with zero security deposit, sanitized helmets, and verified commercial permits for local city travel, Western Ghats tours (Kodaikanal), and pilgrimage circuits (Rameswaram).
+> BIXI RIDE provides verified two-wheeler and rental car services in Madurai, Tamil Nadu, India. All rentals follow a transparent 24-hour cycle with zero security deposit, sanitized helmets, and verified commercial permits for local city travel, Western Ghats tours (Kodaikanal), and pilgrimage circuits (Rameswaram).
 
 - **Website**: https://bixiride.com
 - **Hotline / WhatsApp**: +91 90370 00266
@@ -35,7 +35,7 @@ Available models: Suzuki Access 125, Honda Activa 6G, Yamaha Fascino 125, Yamaha
 - **Royal Enfield Meteor 350**: 120 km limit: ₹1,000 | 240 km limit: ₹1,500
 - **Royal Enfield Himalayan 450**: 120 km limit: ₹1,200 | 300 km limit: ₹2,000
 
-### 4. Self-Drive Cars (300 km Daily Limit, 24-Hour Format)
+### 4. Cars (300 km Daily Limit, 24-Hour Format)
 - **Maruti Suzuki Wagon R**: ₹1,800 / day (300 km limit)
 - **Maruti Suzuki Swift**: ₹2,200 / day (300 km limit)
 - **Maruti Suzuki Dzire**: ₹2,400 / day (300 km limit)
@@ -56,8 +56,8 @@ The Honda Activa, Suzuki Access, Yamaha Fascino, and Yamaha Ray ZR rent starting
 ### How much does it cost to rent a Royal Enfield in Madurai?
 Royal Enfield Hunter 350, Classic 350, and Meteor 350 cost ₹1,000 per day for 120 km, or ₹1,500 per day for 240 km. The Royal Enfield Himalayan 450 costs ₹1,200 per day for 120 km, or ₹2,000 per day for 300 km.
 
-### How much does self-drive car rental cost in Madurai?
-Self-drive car rentals start at ₹1,800 per day for the Maruti Wagon R, ₹2,200 per day for the Maruti Swift, ₹2,400 for Dzire/Baleno/i20, ₹2,500 for Exter/Punch, and ₹3,500 for 7-seater MPVs (Ertiga and Rumion). All cars include a generous 300 km per day limit and a 24-hour rental format.
+### How much does car rental cost in Madurai?
+Car rentals start at ₹1,800 per day for the Maruti Wagon R, ₹2,200 per day for the Maruti Swift, ₹2,400 for Dzire/Baleno/i20, ₹2,500 for Exter/Punch, and ₹3,500 for 7-seater MPVs (Ertiga and Rumion). All cars include a generous 300 km per day limit and a 24-hour rental format.
 
 ### Where can I pick up my rental vehicle in Madurai?
 Direct pickup is available opposite Madurai Railway Junction and near Mattuthavani MGR Bus Stand. Doorstep hotel delivery is provided within 5 km for a ₹100 delivery charge.

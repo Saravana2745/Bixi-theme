@@ -6609,11 +6609,16 @@ button.bixi-cal-day.empty,
   opacity: 1 !important;
 }
 
-.hero-main-title .gradient-text {
-  background: linear-gradient(135deg, #FF9A44 0%, #FF7A18 50%, #FFB573 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  text-shadow: 0 0 35px rgba(255, 122, 24, 0.35) !important;
+.hero-main-title .gradient-text,
+.hero-main-title .reel-title-city,
+.reel-title-city.gradient-text,
+.gradient-text {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: #FF7A18 !important;
+  color: #FF7A18 !important;
+  text-shadow: none !important;
 }
 
 /* Category & Badge Pill Row */
@@ -8144,14 +8149,14 @@ button.bixi-cal-day.empty,
   transition: opacity 0.3s ease !important;
 }
 
-/* 2. Shiny Text Metallic Shimmer */
+/* 2. Crisp Solid Badge Text (No AI metallic gradient) */
 .shiny-text {
-  background: linear-gradient(110deg, #FFFFFF 0%, #FFFFFF 40%, #FFD43B 50%, #FF7A18 60%, #FFFFFF 70%, #FFFFFF 100%) !important;
-  background-size: 200% auto !important;
-  color: transparent !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  animation: shinySweep 4s linear infinite !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  animation: none !important;
   display: inline-block !important;
 }
 
@@ -8334,10 +8339,12 @@ button.bixi-cal-day.empty,
   font-weight: 800 !important;
   font-variant-numeric: tabular-nums !important;
   line-height: 1 !important;
-  background: linear-gradient(135deg, #FFFFFF 20%, #FFA858 70%, #FF7A18 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  filter: drop-shadow(0 0 12px rgba(255, 122, 24, 0.4)) !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  filter: none !important;
 }
 
 .gauge-unit {
@@ -12553,3 +12560,17 @@ section:not(.scrolly-expedition-section),
   overflow-x: auto !important;
   -webkit-overflow-scrolling: touch !important;
 }
+
+/* Guarantee Immediate Native Dial Pad Launch on Mobile Touch / Tap */
+a[href^="tel:"] {
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: rgba(255, 122, 24, 0.35) !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+a[href^="tel:"] * {
+  pointer-events: none !important;
+}
+

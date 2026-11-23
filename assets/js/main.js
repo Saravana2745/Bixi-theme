@@ -2144,4 +2144,26 @@ function quickJumpFleet(cat) {
   } else {
     init3DTariffShowcase();
   }
+
+  // ══════════════════════════════════════════════════════════════
+  // GUARANTEED NATIVE PHONE DIAL PAD TRIGGER ON TOUCH / CLICK
+  // ══════════════════════════════════════════════════════════════
+  function initNativeDialerTrigger() {
+    function launchDialer(e) {
+      var callLink = e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+      if (!callLink) return;
+      var telUrl = callLink.getAttribute('href');
+      if (telUrl) {
+        // Direct assignment triggers the OS dialer immediately with pre-filled number
+        window.location.href = telUrl;
+      }
+    }
+    document.addEventListener('click', launchDialer, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNativeDialerTrigger);
+  } else {
+    initNativeDialerTrigger();
+  }
 })();
