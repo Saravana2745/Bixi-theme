@@ -180,12 +180,12 @@
         currentIndexSpan.textContent = (currentIndex + 1 < 10 ? '0' : '') + (currentIndex + 1);
       }
 
-      // 5. Ambient Glow & Fluid Blob Color Shifting
+      // 5. Turntable Ambient Glow Shifting
       if (ambientGlow) {
         ambientGlow.style.background = 'radial-gradient(ellipse at center, ' + item.themeGlow + ' 0%, rgba(9, 10, 14, 0) 70%)';
       }
       if (fluidBlob) {
-        fluidBlob.style.background = 'radial-gradient(circle at 40% 50%, ' + item.themeGlow + ' 0%, rgba(255, 122, 24, 0.08) 50%, rgba(9, 10, 14, 0) 75%)';
+        fluidBlob.style.display = 'none';
       }
 
       // 6. Thumbnail Discs Activation

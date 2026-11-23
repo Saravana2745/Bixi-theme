@@ -6483,19 +6483,12 @@ button.bixi-cal-day.empty,
   overflow: visible !important;
 }
 
-/* Organic Fluid Backdrop Curve (Inspired by Instagram Reel) */
+/* Fluid Backdrop Blob Removed for Clean Solid Dark Luxury Background */
 .hero-reel-fluid-blob {
-  position: absolute !important;
-  top: -15% !important;
-  left: -8% !important;
-  width: 580px !important;
-  height: 520px !important;
-  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55% !important;
-  background: radial-gradient(circle at 40% 50%, rgba(255, 122, 24, 0.22) 0%, rgba(255, 122, 24, 0.06) 50%, rgba(9, 10, 14, 0) 75%) !important;
-  filter: blur(55px) !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
-  transition: background 0.8s ease, transform 1.2s ease !important;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  background: none !important;
 }
 
 /* ═══════════════ LEFT HALF: TYPOGRAPHY, REVEAL, THUMBNAILS & CTAS ═══════════════ */
@@ -12408,11 +12401,7 @@ img, svg, picture, video, canvas {
   }
 
   .hero-reel-fluid-blob {
-    width: 300px !important;
-    max-width: 82vw !important;
-    height: 300px !important;
-    max-height: 82vw !important;
-    filter: blur(40px) !important;
+    display: none !important;
   }
 
   .turntable-ambient-glow {
