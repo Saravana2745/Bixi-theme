@@ -80,21 +80,12 @@
     const selectedModelText = document.getElementById('selectedModelText');
     const vehicleLabelText = document.getElementById('vehicleLabelText');
     const hubBox = document.getElementById('hubSelectBox');
-    const durationBox = document.getElementById('durationSelectBox');
-    const datePickerBox = document.getElementById('bixiDatePickerBox');
-    const dateTrigger = document.getElementById('bixiDateTrigger');
-    const selectedDateText = document.getElementById('selectedDateText');
-    const startDateInput = document.getElementById('startDate');
-    const prevMonthBtn = document.getElementById('bixiPrevMonth');
-    const nextMonthBtn = document.getElementById('bixiNextMonth');
-    const monthTitle = document.getElementById('bixiMonthTitle');
-    const daysGrid = document.getElementById('bixiDaysGrid');
-    const hourSelect = document.getElementById('bixiTimeHour');
-    const minuteSelect = document.getElementById('bixiTimeMinute');
-    const btnAM = document.getElementById('bixiBtnAM');
-    const btnPM = document.getElementById('bixiBtnPM');
-    const btnToday = document.getElementById('bixiBtnToday');
-    const btnConfirm = document.getElementById('bixiBtnConfirm');
+    const homeQuickBookForm = document.getElementById('homeQuickBookForm');
+    const pickupDateInput = document.getElementById('pickupDate');
+    const pickupTimeSelect = document.getElementById('pickupTime');
+    const dropDateInput = document.getElementById('dropDate');
+    const dropTimeSelect = document.getElementById('dropTime');
+    const btnSubmitBooking = document.getElementById('btnSubmitBooking');
 
     // Bulletproof close function - queries directly to avoid TDZ
     function closeAllDropdowns() {
@@ -303,213 +294,102 @@
       });
     }
 
-    // Duration select options click
-    if (durationBox) {
-      durationBox.querySelectorAll('.custom-option-item').forEach((item) => {
-        item.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const days = parseInt(item.dataset.value, 10) || 1;
-          const header = item.querySelector('.custom-option-header')?.textContent?.trim() || `${days} Day (24 Hours)`;
-          if (selectedDurationText) selectedDurationText.textContent = header;
-          if (hiddenDuration) hiddenDuration.value = days;
-          currentDays = days;
-          updateFareEstimate();
-          durationBox.querySelectorAll('.custom-option-item').forEach((i) => i.classList.remove('selected'));
-          item.classList.add('selected');
-          durationBox.classList.remove('open');
-        });
-      });
+    // 2d. Pick Up Date, Pick Time, Drop Off Date, Drop Time & Real-time Duration Calculation
+    function parseHourlySlot(timeStr) {
+      if (!timeStr) return { hours: 10, minutes: 0 };
+      const match = timeStr.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+      if (!match) return { hours: 10, minutes: 0 };
+      let h = parseInt(match[1], 10);
+      const m = parseInt(match[2], 10);
+      const ampm = match[3].toUpperCase();
+      if (ampm === 'PM' && h < 12) h += 12;
+      if (ampm === 'AM' && h === 12) h = 0;
+      return { hours: h, minutes: m };
     }
 
-    // 2d. Interactive BIXI Custom Calendar & DateTime Picker
-    if (datePickerBox && dateTrigger && daysGrid) {
-      const MONTH_NAMES = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-      ];
-      const MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    function calculateDurationInDays() {
+      if (!pickupDateInput || !dropDateInput) return 1;
+      const pVal = pickupDateInput.value;
+      const dVal = dropDateInput.value;
+      if (!pVal || !dVal) return 1;
 
+      const pTime = parseHourlySlot(pickupTimeSelect ? pickupTimeSelect.value : '10:00 AM');
+      const dTime = parseHourlySlot(dropTimeSelect ? dropTimeSelect.value : '10:00 AM');
+
+      const [pY, pM, pD] = pVal.split('-').map(Number);
+      const [dY, dM, dD] = dVal.split('-').map(Number);
+
+      const start = new Date(pY, pM - 1, pD, pTime.hours, pTime.minutes);
+      const end = new Date(dY, dM - 1, dD, dTime.hours, dTime.minutes);
+
+      const diffMs = end.getTime() - start.getTime();
+      if (diffMs <= 0) return 1;
+
+      // In vehicle rentals (24-hour cycle billing):
+      const hours = diffMs / (1000 * 60 * 60);
+      const days = Math.ceil(hours / 24);
+      return Math.max(1, days);
+    }
+
+    function syncDateInputsAndEstimate() {
+      if (!pickupDateInput || !dropDateInput) return;
+      if (pickupDateInput.value && (!dropDateInput.value || dropDateInput.value < pickupDateInput.value)) {
+        dropDateInput.value = pickupDateInput.value;
+      }
+      dropDateInput.min = pickupDateInput.value;
+
+      currentDays = calculateDurationInDays();
+      if (hiddenDuration) hiddenDuration.value = currentDays;
+      updateFareEstimate();
+    }
+
+    if (pickupDateInput && dropDateInput) {
       const now = new Date();
-      let viewYear = now.getFullYear();
-      let viewMonth = now.getMonth();
-      let selYear = now.getFullYear();
-      let selMonth = now.getMonth();
-      let selDay = now.getDate();
-      let selHour = hourSelect ? hourSelect.value : '10';
-      let selMinute = minuteSelect ? minuteSelect.value : '00';
-      let selAmPm = 'AM';
+      const pad = (n) => String(n).padStart(2, '0');
+      const todayStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
 
-      function renderCalendar(year, month) {
-        if (monthTitle) {
-          monthTitle.textContent = `${MONTH_NAMES[month]} ${year}`;
+      const tomorrow = new Date(now);
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowStr = `${tomorrow.getFullYear()}-${pad(tomorrow.getMonth() + 1)}-${pad(tomorrow.getDate())}`;
+
+      if (!pickupDateInput.value) pickupDateInput.value = todayStr;
+      pickupDateInput.min = todayStr;
+
+      if (!dropDateInput.value) dropDateInput.value = tomorrowStr;
+      dropDateInput.min = pickupDateInput.value;
+
+      currentDays = calculateDurationInDays();
+      if (hiddenDuration) hiddenDuration.value = currentDays;
+
+      pickupDateInput.addEventListener('change', () => {
+        if (dropDateInput.value < pickupDateInput.value) {
+          dropDateInput.value = pickupDateInput.value;
         }
-        daysGrid.innerHTML = '';
-
-        const firstWeekday = new Date(year, month, 1).getDay();
-        const totalDays = new Date(year, month + 1, 0).getDate();
-        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-
-        // Empty padding cells before first weekday
-        for (let i = 0; i < firstWeekday; i++) {
-          const emptyCell = document.createElement('div');
-          emptyCell.className = 'bixi-cal-day empty';
-          daysGrid.appendChild(emptyCell);
-        }
-
-        // Days of month
-        for (let d = 1; d <= totalDays; d++) {
-          const dayDate = new Date(year, month, d).getTime();
-          const isPast = dayDate < todayStart;
-          const isToday = (year === now.getFullYear() && month === now.getMonth() && d === now.getDate());
-          const isSelected = (year === selYear && month === selMonth && d === selDay);
-
-          const dayBtn = document.createElement('button');
-          dayBtn.type = 'button';
-          dayBtn.className = `bixi-cal-day${isSelected ? ' selected' : ''}${isToday ? ' today' : ''}${isPast ? ' disabled' : ''}`;
-          dayBtn.textContent = d;
-          dayBtn.setAttribute('aria-label', `${d} ${MONTH_NAMES[month]} ${year}`);
-
-          if (isPast) {
-            dayBtn.disabled = true;
-          } else {
-            dayBtn.addEventListener('click', (e) => {
-              e.stopPropagation();
-              selYear = year;
-              selMonth = month;
-              selDay = d;
-              daysGrid.querySelectorAll('.bixi-cal-day').forEach((el) => el.classList.remove('selected'));
-              dayBtn.classList.add('selected');
-              syncDateTimeValue(false);
-            });
-          }
-
-          daysGrid.appendChild(dayBtn);
-        }
-      }
-
-      function syncDateTimeValue(closeOnSync = false) {
-        const monthShort = MONTH_SHORT[selMonth] || 'Nov';
-        const dayFormatted = String(selDay).padStart(2, '0');
-        const displayText = `${monthShort} ${dayFormatted}, ${selYear} • ${selHour}:${selMinute} ${selAmPm}`;
-
-        if (selectedDateText) {
-          selectedDateText.textContent = displayText;
-        }
-
-        let h24 = parseInt(selHour, 10) || 10;
-        if (selAmPm === 'PM' && h24 < 12) h24 += 12;
-        if (selAmPm === 'AM' && h24 === 12) h24 = 0;
-
-        const isoValue = `${selYear}-${String(selMonth + 1).padStart(2, '0')}-${dayFormatted}T${String(h24).padStart(2, '0')}:${selMinute}`;
-        if (startDateInput) {
-          startDateInput.value = isoValue;
-        }
-
-        if (closeOnSync && datePickerBox) {
-          datePickerBox.classList.remove('open');
-        }
-      }
-
-      // Prev & Next Month buttons
-      if (prevMonthBtn) {
-        prevMonthBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          viewMonth--;
-          if (viewMonth < 0) {
-            viewMonth = 11;
-            viewYear--;
-          }
-          renderCalendar(viewYear, viewMonth);
-        });
-      }
-
-      if (nextMonthBtn) {
-        nextMonthBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          viewMonth++;
-          if (viewMonth > 11) {
-            viewMonth = 0;
-            viewYear++;
-          }
-          renderCalendar(viewYear, viewMonth);
-        });
-      }
-
-      // Time inputs
-      if (hourSelect) {
-        hourSelect.addEventListener('change', () => {
-          selHour = hourSelect.value;
-          syncDateTimeValue(false);
-        });
-      }
-
-      if (minuteSelect) {
-        minuteSelect.addEventListener('change', () => {
-          selMinute = minuteSelect.value;
-          syncDateTimeValue(false);
-        });
-      }
-
-      if (btnAM && btnPM) {
-        btnAM.addEventListener('click', (e) => {
-          e.stopPropagation();
-          selAmPm = 'AM';
-          btnAM.classList.add('active');
-          btnPM.classList.remove('active');
-          syncDateTimeValue(false);
-        });
-
-        btnPM.addEventListener('click', (e) => {
-          e.stopPropagation();
-          selAmPm = 'PM';
-          btnPM.classList.add('active');
-          btnAM.classList.remove('active');
-          syncDateTimeValue(false);
-        });
-      }
-
-      // Today button
-      if (btnToday) {
-        btnToday.addEventListener('click', (e) => {
-          e.stopPropagation();
-          viewYear = now.getFullYear();
-          viewMonth = now.getMonth();
-          selYear = viewYear;
-          selMonth = viewMonth;
-          selDay = now.getDate();
-          renderCalendar(viewYear, viewMonth);
-          syncDateTimeValue(false);
-        });
-      }
-
-      // Confirm button
-      if (btnConfirm) {
-        btnConfirm.addEventListener('click', (e) => {
-          e.stopPropagation();
-          syncDateTimeValue(true);
-          showToast(`Pickup scheduled for ${selectedDateText.textContent}`);
-        });
-      }
-
-      // Toggle Datepicker popup
-      dateTrigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isOpen = datePickerBox.classList.contains('open');
-        closeAllDropdowns();
-        if (!isOpen) {
-          datePickerBox.classList.add('open');
-        }
+        dropDateInput.min = pickupDateInput.value;
+        syncDateInputsAndEstimate();
       });
 
-      // Prevent clicks inside panel from closing it
-      const datePanel = document.getElementById('bixiDatePickerPanel');
-      if (datePanel) {
-        datePanel.addEventListener('click', (e) => e.stopPropagation());
-      }
+      dropDateInput.addEventListener('change', syncDateInputsAndEstimate);
+      if (pickupTimeSelect) pickupTimeSelect.addEventListener('change', syncDateInputsAndEstimate);
+      if (dropTimeSelect) dropTimeSelect.addEventListener('change', syncDateInputsAndEstimate);
+    }
 
-      // Initial Calendar Render
-      renderCalendar(viewYear, viewMonth);
-      syncDateTimeValue(false);
+    // Home Quick Book Form Direct Navigation (No modal on home page, direct to rental page bikes.html)
+    if (homeQuickBookForm) {
+      homeQuickBookForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const params = new URLSearchParams();
+        if (hiddenType && hiddenType.value) params.set('type', hiddenType.value);
+        if (hiddenModel && hiddenModel.value) params.set('model', hiddenModel.value);
+        if (hiddenHub && hiddenHub.value) params.set('hub', hiddenHub.value);
+        if (pickupDateInput && pickupDateInput.value) params.set('pickup_date', pickupDateInput.value);
+        if (pickupTimeSelect && pickupTimeSelect.value) params.set('pickup_time', pickupTimeSelect.value);
+        if (dropDateInput && dropDateInput.value) params.set('drop_date', dropDateInput.value);
+        if (dropTimeSelect && dropTimeSelect.value) params.set('drop_time', dropTimeSelect.value);
+        if (hiddenDuration && hiddenDuration.value) params.set('days', hiddenDuration.value);
+
+        window.location.href = `bikes.html?${params.toString()}`;
+      });
     }
 
     // Finally initialize default bike model fleet options
@@ -743,14 +623,18 @@
       });
     }
 
-    // Attach to all "Book Now" buttons
+    // Attach to all "Book Now" buttons (Single booking form architecture: opens modal on bikes.html, redirects from any other page)
     const bookNowBtns = document.querySelectorAll('.btn-book-now');
     bookNowBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const bike = btn.dataset.bike || 'Royal Enfield Hunter 350';
         const rate = btn.dataset.rate || '1000';
-        openBookingModal(bike, rate);
+        if (bookingModal) {
+          openBookingModal(bike, rate);
+        } else {
+          window.location.href = `bikes.html?model=${encodeURIComponent(bike)}`;
+        }
       });
     });
 
@@ -785,11 +669,24 @@
         }
         const total = (baseRate * parseInt(days, 10)) + (isGoogle ? 100 : 0) + (helmetAdded ? 50 * parseInt(days, 10) : 0);
 
+        const pTime = modalForm?.getAttribute('data-pickup-time') || '';
+        const dDate = modalForm?.getAttribute('data-drop-date') || '';
+        const dTime = modalForm?.getAttribute('data-drop-time') || '';
+
+        let scheduleDetails = `Rental Duration: ${days} day(s) starting ${pickupDate}`;
+        if (pTime && dDate && dTime) {
+          scheduleDetails = `Rental Schedule: ${days} day(s)
+• Pick Up: ${pickupDate} at ${pTime}
+• Drop Off: ${dDate} at ${dTime}`;
+        } else if (pTime) {
+          scheduleDetails = `Rental Duration: ${days} day(s) starting ${pickupDate} at ${pTime}`;
+        }
+
         const lines = [
           `Hello BIXI Ride Madurai! I would like to reserve:`,
           `Vehicle: ${bike}`,
           `Tariff: ₹${baseRate.toLocaleString('en-IN')} / day (${kmTier} kms limit • 24h format)`,
-          `Rental Duration: ${days} day(s) starting ${pickupDate}`,
+          scheduleDetails,
           `Pickup Hub: ${location} ${isGoogle ? '(₹100 Doorstep Delivery)' : '(Free Direct Pickup)'}`,
           helmetAdded ? `Pillion Helmet: Included (+₹${50 * parseInt(days, 10)})` : `Pillion Helmet: Not needed`,
           `Estimated Total: ₹${total.toLocaleString('en-IN')} (Zero Security Deposit)`,
@@ -806,6 +703,81 @@
           window.open(whatsappUrl, '_blank');
         }, 600);
       });
+    }
+
+    // 4b. Parse URL Search Parameters from Home Page Booking Engine (Sole Booking Form on bikes.html)
+    function initUrlBookingParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const hasModel = urlParams.has('model');
+      const hasType = urlParams.has('type');
+      const hasHub = urlParams.has('hub');
+      const hasPickupDate = urlParams.has('pickup_date');
+      const hasDays = urlParams.has('days');
+
+      if (!hasModel && !hasType && !hasHub && !hasPickupDate && !hasDays) return;
+
+      // 1. If type filter is set, activate corresponding filter
+      if (hasType) {
+        const type = urlParams.get('type').toLowerCase();
+        if (type === 'car') {
+          const carFilter = document.querySelector('.lux-tariff-filter-btn[data-category="car"]');
+          if (carFilter) carFilter.click();
+        } else if (type === 'bike') {
+          const bikeFilter = document.querySelector('.lux-tariff-filter-btn[data-category="bike"]') ||
+                            document.querySelector('.lux-tariff-filter-btn[data-category="scooter"]');
+          if (bikeFilter) bikeFilter.click();
+        }
+      }
+
+      // 2. If model is provided and bookingModal is present on this page (bikes.html)
+      if (hasModel && bookingModal) {
+        const modelName = urlParams.get('model');
+        openBookingModal(modelName);
+
+        if (hasHub && userLocationSelect) {
+          const hubVal = urlParams.get('hub');
+          for (let i = 0; i < userLocationSelect.options.length; i++) {
+            if (userLocationSelect.options[i].value === hubVal || userLocationSelect.options[i].text.includes(hubVal)) {
+              userLocationSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+
+        if (hasPickupDate && document.getElementById('userDateInput')) {
+          document.getElementById('userDateInput').value = urlParams.get('pickup_date');
+        }
+
+        if (hasDays && daysCountInput) {
+          daysCountInput.value = parseInt(urlParams.get('days'), 10) || 1;
+        }
+
+        if (urlParams.get('pickup_time')) {
+          modalForm?.setAttribute('data-pickup-time', urlParams.get('pickup_time'));
+        }
+        if (urlParams.get('drop_date')) {
+          modalForm?.setAttribute('data-drop-date', urlParams.get('drop_date'));
+        }
+        if (urlParams.get('drop_time')) {
+          modalForm?.setAttribute('data-drop-time', urlParams.get('drop_time'));
+        }
+
+        updateModalTotal();
+      } else if (!hasModel) {
+        // If user searched without specific model or generic, scroll to fleet catalog
+        const fleetSection = document.getElementById('fleet-filter-bar') ||
+                             document.querySelector('.lux-fleet-header') ||
+                             document.querySelector('.lux-3d-tariff-table');
+        if (fleetSection) {
+          setTimeout(() => {
+            fleetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
+        }
+      }
+    }
+
+    if (bookingModal) {
+      initUrlBookingParams();
     }
 
     // 5. FAQ Accordion Interaction
@@ -1300,22 +1272,22 @@ function bookStageVehicle() {
   var data = BIXI_SHOWROOM_DATA[currentShowroomVehicle];
   if (!data) return;
   var modal = document.getElementById('bookingModal');
-  if (!modal) {
-    window.location.href = 'bikes.html';
-    return;
+  if (modal) {
+    var nameEl = document.getElementById('modalBikeName');
+    var priceEl = document.getElementById('modalBikePrice');
+    var inputEl = document.getElementById('modalBikeInput');
+    var totalEl = document.getElementById('modalTotalEstimate');
+
+    if (nameEl) nameEl.textContent = data.name;
+    if (priceEl) priceEl.textContent = data.rateStr + ' / day';
+    if (inputEl) inputEl.value = data.name;
+    if (totalEl) totalEl.textContent = data.rateStr;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  } else {
+    window.location.href = 'bikes.html?model=' + encodeURIComponent(data.name);
   }
-  var nameEl = document.getElementById('modalBikeName');
-  var priceEl = document.getElementById('modalBikePrice');
-  var inputEl = document.getElementById('modalBikeInput');
-  var totalEl = document.getElementById('modalTotalEstimate');
-
-  if (nameEl) nameEl.textContent = data.name;
-  if (priceEl) priceEl.textContent = data.rateStr + ' / day';
-  if (inputEl) inputEl.value = data.name;
-  if (totalEl) totalEl.textContent = data.rateStr;
-
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
 
 // ── 2. The Panoramic Expedition Route Console ─────────────────────────
@@ -2132,8 +2104,14 @@ function quickJumpFleet(cat) {
           if (reserveBtn) {
             reserveBtn.click();
           } else {
-            modal.classList.add('active');
+            if (typeof openBookingModal === 'function') {
+              openBookingModal(model, rate);
+            } else {
+              modal.classList.add('active');
+            }
           }
+        } else {
+          window.location.href = 'bikes.html?model=' + encodeURIComponent(model);
         }
       });
     });

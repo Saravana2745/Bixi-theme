@@ -52,7 +52,7 @@
   <link rel="preload" as="image" href="assets/images/bikes/ray-zr-125.webp" type="image/webp">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=42.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=43.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -459,7 +459,7 @@
     }
     #btnSubmitBooking {
       height: 44px !important;
-      background: linear-gradient(135deg, #E88124 0%, #D0421B 100%) !important;
+      background: #E88124 !important;
       color: #FFFFFF !important;
       border: none !important;
       border-radius: 8px !important;
@@ -477,6 +477,7 @@
       transition: all 0.2s ease !important;
     }
     #btnSubmitBooking:hover {
+      background: #FF7A18 !important;
       transform: translateY(-2px) !important;
       box-shadow: 0 6px 20px rgba(232, 129, 36, 0.6) !important;
     }
@@ -1461,7 +1462,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             <input type="hidden" name="days" id="hiddenDuration" value="1">
 
             <!-- 1. Madurai Pickup Hub Dropdown -->
-            <div class="form-group">
+            <div class="form-group form-group-hub">
               <label class="form-label" id="labelPickupHub">
                 <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
                 Madurai Pickup Hub
@@ -1489,7 +1490,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             </div>
 
             <!-- 2. Vehicle Model Custom Dropdown -->
-            <div class="form-group">
+            <div class="form-group form-group-model">
               <label class="form-label" id="labelVehicleModel">
                 <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
                 <span id="vehicleLabelText">Select Vehicle Model</span>
@@ -1500,137 +1501,89 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
                   <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div class="custom-options-panel" id="modelOptionsPanel" role="listbox">
-                  <!-- Dynamically populated by main.js?v=42.0 based on Bike or Car tab -->
+                  <!-- Dynamically populated by main.js?v=43.0 based on Bike or Car tab -->
                 </div>
               </div>
             </div>
 
-            <!-- 3. Custom Pickup Date & Time Selector -->
-            <div class="form-group custom-datepicker-group">
-              <label class="form-label" id="labelPickupDateTime">
+            <!-- 3. Pick Up Date -->
+            <div class="form-group form-group-pickdate">
+              <label class="form-label" for="pickupDate">
                 <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                Pickup Date &amp; Time
+                Pick Up Date
               </label>
-              <div class="custom-datepicker-box" id="bixiDatePickerBox">
-                <div class="custom-datepicker-trigger" id="bixiDateTrigger" role="button" aria-haspopup="dialog" aria-expanded="false" tabindex="0">
-                  <span id="selectedDateText">Nov 05, 2026 • 10:00 AM</span>
-                  <svg class="calendar-icon" width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-                </div>
-                <input type="hidden" id="startDate" name="start" value="2026-11-05T10:00">
-
-                <!-- Custom Popup Calendar & Time Picker Panel -->
-                <div class="custom-datepicker-panel" id="bixiDatePickerPanel" role="dialog" aria-modal="true" aria-label="Choose Pickup Date and Time">
-                  <div class="bixi-cal-inner">
-                    <!-- Left: Month & Days Grid -->
-                    <div class="bixi-cal-left">
-                      <div class="bixi-cal-month-nav">
-                        <button type="button" class="bixi-cal-nav-btn" id="bixiPrevMonth" aria-label="Previous Month">&#9664;</button>
-                        <span class="bixi-cal-month-title" id="bixiMonthTitle">November 2026</span>
-                        <button type="button" class="bixi-cal-nav-btn" id="bixiNextMonth" aria-label="Next Month">&#9654;</button>
-                      </div>
-                      <div class="bixi-cal-weekdays">
-                        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-                      </div>
-                      <div class="bixi-cal-days-grid" id="bixiDaysGrid"></div>
-                    </div>
-
-                    <!-- Right: Time Selector & Confirm -->
-                    <div class="bixi-cal-right">
-                      <div class="bixi-time-heading">Pickup Time</div>
-                      <div class="bixi-time-controls">
-                        <div class="bixi-time-unit">
-                          <label class="bixi-time-lbl" for="bixiTimeHour">Hour</label>
-                          <select id="bixiTimeHour" class="bixi-time-select">
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10" selected>10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                          </select>
-                        </div>
-                        <span class="bixi-time-colon">:</span>
-                        <div class="bixi-time-unit">
-                          <label class="bixi-time-lbl" for="bixiTimeMinute">Min</label>
-                          <select id="bixiTimeMinute" class="bixi-time-select">
-                            <option value="00" selected>00</option>
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                          </select>
-                        </div>
-                        <div class="bixi-ampm-switch">
-                          <button type="button" class="bixi-ampm-btn active" id="bixiBtnAM">AM</button>
-                          <button type="button" class="bixi-ampm-btn" id="bixiBtnPM">PM</button>
-                        </div>
-                      </div>
-
-                      <div class="bixi-cal-footer">
-                        <button type="button" class="bixi-btn-today" id="bixiBtnToday">Today</button>
-                        <button type="button" class="bixi-btn-confirm" id="bixiBtnConfirm">Confirm <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <input type="date" class="form-control" id="pickupDate" name="pickup_date" required>
             </div>
 
-            <!-- 4. Rental Duration Custom Dropdown -->
-            <div class="form-group">
-              <label class="form-label" id="labelDuration">
+            <!-- 4. Pick Time -->
+            <div class="form-group form-group-picktime">
+              <label class="form-label" for="pickupTime">
                 <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                Rental Duration
+                Pick Time
               </label>
-              <div class="custom-select-box" id="durationSelectBox">
-                <div class="custom-select-trigger" id="durationSelectTrigger" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
-                  <span id="selectedDurationText">1 Day (24 Hours)</span>
-                  <svg class="arrow-icon" width="12" height="12" viewBox="0 0 24 24" style="width: 12px; height: 12px; min-width: 12px; fill: #E88124; flex-shrink: 0;"><path d="M7 10l5 5 5-5z"/></svg>
-                </div>
-                <div class="custom-options-panel" id="durationOptionsPanel" role="listbox">
-                  <div class="custom-option-item selected" data-value="1">
-                    <div class="custom-option-header"><span>1 Day (24 Hours)</span></div>
-                    <div class="custom-option-sub">Standard daily rental rate</div>
-                  </div>
-                  <div class="custom-option-item" data-value="2">
-                    <div class="custom-option-header"><span>2 Days (Weekend Trip)</span></div>
-                    <div class="custom-option-sub">Ideal for weekend getaways</div>
-                  </div>
-                  <div class="custom-option-item" data-value="3">
-                    <div class="custom-option-header"><span>3 Days (Kodaikanal Special)</span></div>
-                    <div class="custom-option-sub">Madurai &amp; Hill station circuit</div>
-                  </div>
-                  <div class="custom-option-item" data-value="5">
-                    <div class="custom-option-header"><span>5 Days (South Tour)</span></div>
-                    <div class="custom-option-sub">Rameswaram + Dhanushkodi tour</div>
-                  </div>
-                  <div class="custom-option-item" data-value="7">
-                    <div class="custom-option-header"><span>7 Days (Weekly Discount)</span></div>
-                    <div class="custom-option-sub">10% Flat weekly discount applied</div>
-                  </div>
-                  <div class="custom-option-item" data-value="30">
-                    <div class="custom-option-header"><span>30 Days (Monthly Subscription)</span></div>
-                    <div class="custom-option-sub">Best value for long-term work / internships</div>
-                  </div>
-                </div>
-              </div>
+              <select class="form-control" id="pickupTime" name="pickup_time">
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="10:00 AM" selected>10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:00 PM">12:00 PM (Noon)</option>
+                <option value="01:00 PM">01:00 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="07:00 PM">07:00 PM</option>
+                <option value="08:00 PM">08:00 PM</option>
+                <option value="09:00 PM">09:00 PM</option>
+                <option value="10:00 PM">10:00 PM</option>
+              </select>
             </div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="btn-primary" id="btnSubmitBooking">
-              <span id="submitBtnText">Search Vehicles</span> <span>→</span>
-            </button>
+            <!-- 5. Drop Off Date -->
+            <div class="form-group form-group-dropdate">
+              <label class="form-label" for="dropDate">
+                <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                Drop Off Date
+              </label>
+              <input type="date" class="form-control" id="dropDate" name="drop_date" required>
+            </div>
+
+            <!-- 6. Drop Time -->
+            <div class="form-group form-group-droptime">
+              <label class="form-label" for="dropTime">
+                <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                Drop Time
+              </label>
+              <select class="form-control" id="dropTime" name="drop_time">
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="10:00 AM" selected>10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:00 PM">12:00 PM (Noon)</option>
+                <option value="01:00 PM">01:00 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="07:00 PM">07:00 PM</option>
+                <option value="08:00 PM">08:00 PM</option>
+                <option value="09:00 PM">09:00 PM</option>
+                <option value="10:00 PM">10:00 PM</option>
+              </select>
+            </div>
+
+            <!-- 7. Submit Button -->
+            <div class="form-group form-group-submit">
+              <button type="submit" class="btn-primary" id="btnSubmitBooking">
+                <span id="submitBtnText">Search Vehicles</span> <span>→</span>
+              </button>
+            </div>
           </form>
         </div>
 
@@ -2659,126 +2612,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       </div>
     </section>
 
-    <!-- BOOKING MODAL DIALOG -->
-  <div class="modal-overlay" id="bookingModal" aria-modal="true" role="dialog">
-    <div class="modal-card">
-      <button class="modal-close-btn" aria-label="Close Booking Dialog">&times;</button>
-      
-      <div style="margin-bottom: 1.5rem;">
-        <span class="badge" style="margin-bottom: 0.5rem;">Instant Reservation</span>
-        <h3 id="modalBikeName" style="font-size: 1.6rem; color: var(--color-white);">Royal Enfield Hunter 350</h3>
-        <span id="modalBikePrice" style="color: var(--color-yellow); font-family: var(--font-tech); font-size: 1.3rem; font-weight: 800;">₹1,000 / day</span>
-      </div>
-
-      <form id="rentalBookingForm">
-        <input type="hidden" id="modalBikeInput" value="Royal Enfield Hunter 350">
-        
-        <!-- Interactive Vehicle Switcher (All 23 Models Available) -->
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="modalVehicleSelect">
-            <svg width="14" height="14" viewBox="0 0 24 24" style="width: 14px; height: 14px; min-width: 14px; fill: #E88124; flex-shrink: 0;"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
-            Selected Vehicle Model (Switch to Any Vehicle)
-          </label>
-          <select class="form-control" id="modalVehicleSelect">
-            <optgroup label="Automatic Scooters (₹600/day • 120km/day)">
-              <option value="Honda Activa 6G">Honda Activa 6G — ₹600/day</option>
-              <option value="Suzuki Access 125">Suzuki Access 125 — ₹600/day</option>
-              <option value="Yamaha Fascino 125">Yamaha Fascino 125 — ₹600/day</option>
-              <option value="Yamaha Ray ZR 125">Yamaha Ray ZR 125 — ₹600/day</option>
-            </optgroup>
-            <optgroup label="150cc Commuter Bikes (₹800/day • 120km/day)">
-              <option value="Yamaha FZS V3">Yamaha FZS V3 — ₹800/day</option>
-              <option value="Yamaha FZS V4">Yamaha FZS V4 — ₹800/day</option>
-              <option value="Yamaha FZX">Yamaha FZX — ₹800/day</option>
-            </optgroup>
-            <optgroup label="200cc Performance Bikes (₹900/day • 120km/day)">
-              <option value="Bajaj Pulsar NS200">Bajaj Pulsar NS200 — ₹900/day</option>
-              <option value="Yamaha MT-15 V2">Yamaha MT-15 V2 — ₹900/day</option>
-              <option value="Hero Xpulse 200">Hero Xpulse 200 — ₹900/day</option>
-            </optgroup>
-            <optgroup label="Royal Enfield &amp; Tourers (₹1,000 - ₹1,200/day)">
-              <option value="Royal Enfield Hunter 350" selected>Royal Enfield Hunter 350 — ₹1,000/day</option>
-              <option value="Royal Enfield Classic 350">Royal Enfield Classic 350 — ₹1,000/day</option>
-              <option value="Royal Enfield Meteor 350">Royal Enfield Meteor 350 — ₹1,000/day</option>
-              <option value="Royal Enfield Himalayan 450">Royal Enfield Himalayan 450 — ₹1,200/day</option>
-            </optgroup>
-            <optgroup label="Cars — Hatchbacks &amp; Sedans (300km/day Included)">
-              <option value="Maruti Suzuki Wagon R">Maruti Suzuki Wagon R — ₹1,800/day</option>
-              <option value="Maruti Suzuki Swift">Maruti Suzuki Swift — ₹2,200/day</option>
-              <option value="Maruti Suzuki Dzire">Maruti Suzuki Dzire — ₹2,400/day</option>
-              <option value="Maruti Suzuki Baleno">Maruti Suzuki Baleno — ₹2,400/day</option>
-              <option value="Hyundai i20">Hyundai i20 — ₹2,400/day</option>
-            </optgroup>
-            <optgroup label="Cars — Compact SUVs (300km/day Included)">
-              <option value="Hyundai Exter">Hyundai Exter — ₹2,500/day</option>
-              <option value="Tata Punch">Tata Punch — ₹2,500/day</option>
-            </optgroup>
-            <optgroup label="Cars — 7-Seater Family MPVs (300km/day Included)">
-              <option value="Maruti Suzuki Ertiga">Maruti Suzuki Ertiga — ₹3,500/day</option>
-              <option value="Toyota Rumion">Toyota Rumion — ₹3,500/day</option>
-            </optgroup>
-          </select>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="userNameInput">Full Name</label>
-          <input type="text" class="form-control" id="userNameInput" placeholder="Enter your full name" required>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="userPhoneInput">WhatsApp Phone Number</label>
-          <input type="tel" class="form-control" id="userPhoneInput" placeholder="+91 90370 00266" required>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label class="form-label" for="userLocationSelect">Madurai Pickup Hub</label>
-          <select class="form-control" id="userLocationSelect">
-            <option value="Railway station opposite" data-charge="0" selected>Shop 2: Opposite Madurai Junction (Free Direct Pickup)</option>
-            <option value="Mgr bus Stand near By" data-charge="0">Shop 1: Near Mattuthavani MGR Bus Stand (Free Direct Pickup)</option>
-            <option value="Google location" data-charge="100">Google Location (Doorstep Delivery within 5 km: +₹100)</option>
-          </select>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 1rem;" id="modalKmLimitGroup">
-          <label class="form-label" for="modalKmLimitSelect">Kilometer Limit Tier (24h format)</label>
-          <select class="form-control" id="modalKmLimitSelect">
-            <option value="120" selected>120 kms limit / day (Standard Rate)</option>
-            <option value="240">240 kms limit / day (Extended Rate)</option>
-          </select>
-        </div>
-
-        <div class="form-row-2col" style="margin-bottom: 1rem;">
-          <div class="form-group">
-            <label class="form-label" for="userDateInput">Pickup Date</label>
-            <input type="date" class="form-control" id="userDateInput" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="rentalDaysInput">Rental Days</label>
-            <input type="number" class="form-control" id="rentalDaysInput" value="1" min="1" max="60" required>
-          </div>
-        </div>
-
-        <div style="background: rgba(22, 22, 26, 0.7); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
-          <label id="modalHelmetWrapper" style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.9rem; color: var(--color-gray-light);">
-            <input type="checkbox" id="extraHelmetCheckbox" style="accent-color: var(--color-orange); width: 16px; height: 16px;">
-            Add Pillion Rider Helmet (+₹50/day)
-          </label>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-            <div>
-              <span style="font-size: 0.85rem; color: var(--color-muted); display: block;">Estimated Total:</span>
-              <span id="modalPricingBreakdown" style="font-size: 0.75rem; color: #a0aec0; display: block;">1 Day • 120 km/day • Free Direct Pickup</span>
-            </div>
-            <span id="modalTotalEstimate" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-orange);">₹600</span>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-primary" style="width: 100%; height: 50px; font-size: 1.05rem;">
-          Confirm Booking via WhatsApp <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-        </button>
-      </form>
-    </div>
-  </div>
-
   <!-- SITE FOOTER WITH ALL SEO TARGET KEYWORDS -->
     <footer class="site-footer">
     <div class="container">
@@ -2876,8 +2709,8 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       }
     };
   </script>
-  <script src="assets/js/react-bits-animations.js?v=42.0"></script>
-  <script src="assets/js/main.js?v=42.0"></script>
-<script src="assets/js/hero-plate-rotator.js?v=42.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=43.0"></script>
+  <script src="assets/js/main.js?v=43.0"></script>
+<script src="assets/js/hero-plate-rotator.js?v=43.0"></script>
 </body>
 </html>
