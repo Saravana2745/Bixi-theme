@@ -13,6 +13,40 @@
 (function () {
   'use strict';
 
+  // Suppress third-party unhandled 500 network rejections (Hostinger Reach / AI Assistant widgets)
+  window.addEventListener('unhandledrejection', function(event) {
+    if (event.reason) {
+      var msg = typeof event.reason === 'string' ? event.reason : (event.reason.message || '');
+      if (msg.indexOf('500') !== -1 || (event.reason.response && event.reason.response.status === 500)) {
+        event.preventDefault();
+      }
+    }
+  });
+
+  // Remove any third-party 500 error popup/toast immediately from the screen
+  try {
+    var toastObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            var txt = node.textContent || '';
+            if (txt.indexOf('Request failed with status code 500') !== -1) {
+              node.style.display = 'none';
+              if (node.parentNode) node.parentNode.removeChild(node);
+            }
+          }
+        });
+      });
+    });
+    if (document.body) {
+      toastObserver.observe(document.body, { childList: true, subtree: true });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        if (document.body) toastObserver.observe(document.body, { childList: true, subtree: true });
+      });
+    }
+  } catch(e) {}
+
   // 0. Dynamic Self-Referencing Canonical Synchronizer (Guarantees Green 'Self-Canonicalised' in SEO Extensions)
   try {
     var canonicalTag = document.querySelector('link[rel="canonical"]');
@@ -1943,6 +1977,7 @@ function quickJumpFleet(cat) {
 (function initScrollytelling() {
   const section = document.getElementById('scrolly-tour');
   const canvas = document.getElementById('scrollyCanvas');
+  const fallbackImg = document.getElementById('scrollyFallbackImg');
   if (!section || !canvas) return;
 
   const ctx = canvas.getContext('2d');
@@ -1952,6 +1987,7 @@ function quickJumpFleet(cat) {
   let loadedCount = 0;
   let currentRenderedFrame = -1;
   let animFrameId = null;
+  let currentTargetFrame = 1;
 
   const hudCount = document.getElementById('scrollyFrameCount');
   const hudBar = document.getElementById('scrollyProgressBar');
@@ -1970,8 +2006,10 @@ function quickJumpFleet(cat) {
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(rect.width * dpr);
-    canvas.height = Math.round(rect.height * dpr);
+    const w = (rect.width > 0 ? rect.width : window.innerWidth) || 1200;
+    const h = (rect.height > 0 ? rect.height : window.innerHeight) || 800;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
     if (currentRenderedFrame > 0) {
       drawFrame(currentRenderedFrame);
     }
@@ -1979,6 +2017,9 @@ function quickJumpFleet(cat) {
 
   function drawCover(img) {
     if (!img || !img.complete || img.naturalWidth === 0) return;
+    if (canvas.width === 0 || canvas.height === 0) {
+      resizeCanvas();
+    }
     const cw = canvas.width;
     const ch = canvas.height;
     const iw = img.naturalWidth;
@@ -1995,10 +2036,30 @@ function quickJumpFleet(cat) {
   }
 
   function drawFrame(idx) {
-    const img = frameImages[idx];
-    if (img && img.complete) {
+    let img = frameImages[idx];
+    // If target frame is still downloading, fall back immediately to closest loaded frame
+    if (!img || !img.complete || img.naturalWidth === 0) {
+      for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+        const prev = idx - offset;
+        const next = idx + offset;
+        if (prev >= 1 && frameImages[prev] && frameImages[prev].complete && frameImages[prev].naturalWidth > 0) {
+          img = frameImages[prev];
+          break;
+        }
+        if (next <= TOTAL_FRAMES && frameImages[next] && frameImages[next].complete && frameImages[next].naturalWidth > 0) {
+          img = frameImages[next];
+          break;
+        }
+      }
+    }
+
+    if (img && img.complete && img.naturalWidth > 0) {
       drawCover(img);
       currentRenderedFrame = idx;
+      // Sync fallback image element as well so DOM always has a rendered visual
+      if (fallbackImg && fallbackImg.src !== img.src) {
+        fallbackImg.src = img.src;
+      }
     }
   }
 
@@ -2006,11 +2067,13 @@ function quickJumpFleet(cat) {
   for (let i = 1; i <= TOTAL_FRAMES; i++) {
     const img = new Image();
     const pad = String(i).padStart(3, '0');
-    img.src = window.getBixiAssetUrl(`assets/images/scrolly-frames/frame_${pad}.webp`);
+    const frameSrc = window.getBixiAssetUrl(`assets/images/scrolly-frames/frame_${pad}.webp`);
+    img.src = frameSrc;
     img.onload = () => {
       loadedCount++;
-      if (i === 1 && currentRenderedFrame === -1) {
-        drawFrame(1);
+      // If this loaded frame is the current target frame, or the initial frame, draw it immediately!
+      if (i === currentTargetFrame || currentRenderedFrame === -1 || Math.abs(currentTargetFrame - i) <= 2) {
+        drawFrame(currentTargetFrame);
       }
       if (loadedCount === TOTAL_FRAMES) {
         isLoaded = true;
@@ -2032,6 +2095,7 @@ function quickJumpFleet(cat) {
     progress = Math.max(0, Math.min(1, progress));
 
     const targetFrame = Math.min(TOTAL_FRAMES, Math.max(1, Math.floor(progress * (TOTAL_FRAMES - 1)) + 1));
+    currentTargetFrame = targetFrame;
 
     if (targetFrame !== currentRenderedFrame) {
       drawFrame(targetFrame);
@@ -2078,8 +2142,6 @@ function quickJumpFleet(cat) {
   window.addEventListener('scroll', onScroll, { passive: true });
   let lastScrollyWinWidth = window.innerWidth;
   window.addEventListener('resize', () => {
-    // Only re-dimension canvas if viewport width actually changed (e.g. orientation flip),
-    // preventing violent mobile canvas reflows when address bar toggles on scroll
     if (window.innerWidth !== lastScrollyWinWidth) {
       lastScrollyWinWidth = window.innerWidth;
       resizeCanvas();
@@ -2087,8 +2149,16 @@ function quickJumpFleet(cat) {
     updateScroll();
   }, { passive: true });
 
+  // Initial trigger: ensure canvas dimensions and first frame are painted
   resizeCanvas();
   updateScroll();
+  if (frameImages[1]) {
+    if (frameImages[1].complete) {
+      drawFrame(1);
+    } else {
+      frameImages[1].addEventListener('load', () => drawFrame(1), { once: true });
+    }
+  }
 })();
 
 

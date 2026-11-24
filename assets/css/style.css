@@ -2322,6 +2322,50 @@ select.form-control:focus {
   pointer-events: auto !important;
 }
 
+/* Home Quick Booking Form Guaranteed Visibility & Responsive Integrity */
+.booking-widget-card {
+  min-height: 120px !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.booking-form-grid {
+  min-height: 80px !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.booking-form-grid .form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 70px !important;
+}
+
+.booking-form-grid .form-control,
+.booking-form-grid .custom-select-box {
+  width: 100% !important;
+  min-height: 44px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fallback image behind scrolly canvas */
+.scrolly-fallback-img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
 
 /* ═══════════════════════════════════════════════════════════════════════
    BIXI RIDE — ULTRA-LUXURY STUDIO & EDITORIAL DESIGN SYSTEM v8.0
@@ -5845,7 +5889,7 @@ button.bixi-cal-day.empty,
   justify-content: center;
 }
 
-.scrolly-canvas {
+.scrolly-fallback-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -5853,6 +5897,18 @@ button.bixi-cal-day.empty,
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  display: block;
+  pointer-events: none;
+}
+
+.scrolly-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
   display: block;
   pointer-events: none;
 }
@@ -5867,7 +5923,7 @@ button.bixi-cal-day.empty,
     radial-gradient(circle at 50% 50%, rgba(9, 10, 14, 0.2) 0%, rgba(9, 10, 14, 0.75) 85%, #090A0E 100%),
     linear-gradient(to bottom, rgba(9, 10, 14, 0.6) 0%, transparent 20%, transparent 80%, rgba(9, 10, 14, 0.85) 100%);
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .scrolly-hud-left {
@@ -13955,4 +14011,48 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
+}
+
+/* Home Quick Booking Form Guaranteed Visibility & Responsive Integrity */
+.booking-widget-card {
+  min-height: 120px !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.booking-form-grid {
+  min-height: 80px !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.booking-form-grid .form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 70px !important;
+}
+
+.booking-form-grid .form-control,
+.booking-form-grid .custom-select-box {
+  width: 100% !important;
+  min-height: 44px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fallback image behind scrolly canvas */
+.scrolly-fallback-img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
 }
