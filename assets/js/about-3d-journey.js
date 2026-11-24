@@ -75,10 +75,10 @@
           imagesLoadedCount++;
           render();
         };
-        fallbackImg.src = cfg.jpg;
+        fallbackImg.src = (window.getBixiAssetUrl ? window.getBixiAssetUrl(cfg.jpg) : cfg.jpg);
       };
       // Try WebP first
-      img.src = cfg.webp;
+      img.src = (window.getBixiAssetUrl ? window.getBixiAssetUrl(cfg.webp) : cfg.webp);
     });
 
     var targetProgress = 0;

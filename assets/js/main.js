@@ -23,6 +23,18 @@
   } catch (e) {}
 
   // Global Rent Vehicles URL Resolver (Works seamlessly across Static HTML and WordPress Theme)
+  window.getBixiAssetUrl = function (relPath) {
+    if (!relPath) return '';
+    if (relPath.indexOf('http://') === 0 || relPath.indexOf('https://') === 0 || relPath.indexOf('data:') === 0) {
+      return relPath;
+    }
+    var base = (typeof window.bixiWP !== 'undefined' && window.bixiWP.themeUrl)
+      ? window.bixiWP.themeUrl.replace(/\/+$/, '') + '/'
+      : '';
+    var clean = relPath.replace(/^\/+/, '');
+    return base + clean;
+  };
+
   window.getBixiRentUrl = function (query) {
     var base = (typeof bixiWP !== 'undefined' && bixiWP.rentUrl) ? bixiWP.rentUrl : 'bikes.html';
     if (!query) return base;
@@ -843,7 +855,7 @@
             currency: 'INR',
             name: 'BIXI Ride Madurai',
             description: `Advance Reservation - ${payload.vehicle_name}`,
-            image: (typeof bixiWP !== 'undefined' && bixiWP.siteUrl) ? (bixiWP.siteUrl + '/assets/images/logo.svg') : 'assets/images/logo.svg',
+            image: (typeof bixiWP !== 'undefined' && bixiWP.siteUrl) ? ((bixiWP.themeUrl ? bixiWP.themeUrl : bixiWP.siteUrl) + '/assets/images/logo.svg') : 'assets/images/logo.svg',
             order_id: orderId || undefined,
             prefill: {
               name: payload.customer_name,
@@ -1468,7 +1480,7 @@ function switchShowroomVehicle(id) {
     img.style.opacity = '0';
     img.style.transform = 'scale(0.92) translateY(10px)';
     setTimeout(function () {
-      img.src = data.img;
+      img.src = window.getBixiAssetUrl(data.img);
       img.alt = data.name + ' in Madurai';
       img.style.opacity = '1';
       img.style.transform = 'scale(1) translateY(0)';
@@ -1994,7 +2006,7 @@ function quickJumpFleet(cat) {
   for (let i = 1; i <= TOTAL_FRAMES; i++) {
     const img = new Image();
     const pad = String(i).padStart(3, '0');
-    img.src = `assets/images/scrolly-frames/frame_${pad}.webp`;
+    img.src = window.getBixiAssetUrl(`assets/images/scrolly-frames/frame_${pad}.webp`);
     img.onload = () => {
       loadedCount++;
       if (i === 1 && currentRenderedFrame === -1) {

@@ -152,7 +152,7 @@
 
   // Preload BIXI logo favicon emblem (pure shield emblem without text)
   const bixiEmblemImg = new Image();
-  bixiEmblemImg.src = 'assets/images/logo-icon.svg';
+  bixiEmblemImg.src = (window.getBixiAssetUrl ? window.getBixiAssetUrl('assets/images/logo-icon.svg') : 'assets/images/logo-icon.svg');
 
   // Array to refresh all 3D Canvas badges once Google Fonts finish loading
   const allBadgeRefreshers = [];

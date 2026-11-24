@@ -378,7 +378,7 @@
         loader.setDRACOLoader(dracoLoader);
       }
       loader.load(
-        'assets/models/bike.glb',
+        (window.getBixiAssetUrl ? window.getBixiAssetUrl('assets/models/bike.glb') : 'assets/models/bike.glb'),
         (gltf) => {
           scene.remove(bikeGroup);
           const customModel = gltf.scene;

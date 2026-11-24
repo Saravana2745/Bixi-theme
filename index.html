@@ -407,18 +407,76 @@
     }
     .booking-form-grid {
       display: grid !important;
-      grid-template-columns: 1.25fr 1.35fr 1fr 1fr auto !important;
+      grid-template-columns: 1.25fr 1.35fr 1.1fr 0.95fr 1.1fr 0.95fr auto !important;
       gap: 0.85rem !important;
       align-items: flex-end !important;
+      width: 100% !important;
     }
-    @media (max-width: 1024px) {
+    @media (max-width: 1360px) and (min-width: 860px) {
       .booking-form-grid {
-        grid-template-columns: 1fr 1fr !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 0.85rem !important;
+      }
+      .form-group-hub {
+        grid-column: span 2 !important;
+      }
+      .form-group-model {
+        grid-column: span 2 !important;
+      }
+      .form-group-pickdate,
+      .form-group-picktime,
+      .form-group-dropdate,
+      .form-group-droptime {
+        grid-column: span 1 !important;
+      }
+      .form-group-submit {
+        grid-column: span 4 !important;
+      }
+      .form-group-submit #btnSubmitBooking {
+        width: 100% !important;
+        height: 46px !important;
       }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 859px) and (min-width: 560px) {
+      .booking-form-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.75rem !important;
+      }
+      .form-group-hub,
+      .form-group-model {
+        grid-column: span 2 !important;
+      }
+      .form-group-pickdate,
+      .form-group-picktime,
+      .form-group-dropdate,
+      .form-group-droptime {
+        grid-column: span 1 !important;
+      }
+      .form-group-submit {
+        grid-column: span 2 !important;
+      }
+      .form-group-submit #btnSubmitBooking {
+        width: 100% !important;
+        height: 48px !important;
+      }
+    }
+    @media (max-width: 559px) {
       .booking-form-grid {
         grid-template-columns: 1fr !important;
+        gap: 0.7rem !important;
+      }
+      .form-group-hub,
+      .form-group-model,
+      .form-group-pickdate,
+      .form-group-picktime,
+      .form-group-dropdate,
+      .form-group-droptime,
+      .form-group-submit {
+        grid-column: span 1 !important;
+      }
+      .form-group-submit #btnSubmitBooking {
+        width: 100% !important;
+        height: 48px !important;
       }
     }
     .form-group {
