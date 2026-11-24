@@ -4,52 +4,60 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   
-  <!-- Home Page -->
+  <!-- 1. Home Page: Best Car & Bike Rentals in Madurai -->
   <url>
     <loc>https://bixiride.com/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Bike Rental Fleet Catalogue -->
+  <!-- 2. Rent Vehicles Fleet Catalogue & Instant Booking -->
   <url>
     <loc>https://bixiride.com/bikes.html</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
 
-  <!-- About Us Page -->
+  <!-- 3. BIXI & Madurai: 3D Heritage Map & Tourist Expedition Routes -->
   <url>
-    <loc>https://bixiride.com/about.html</loc>
-    <lastmod>2026-11-05</lastmod>
+    <loc>https://bixiride.com/bixi-and-madurai.html</loc>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Blog Hub Page -->
-  <url>
-    <loc>https://bixiride.com/blog.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Blog Post: The Ultimate Guide to Bike Rental in Madurai -->
-  <url>
-    <loc>https://bixiride.com/blog-post.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- Contact Us Page -->
+  <!-- 4. Contact Us & Central Madurai Pickup Hubs -->
   <url>
     <loc>https://bixiride.com/contact.html</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 5. About Us: Company Story, Mission & Trust Signals -->
+  <url>
+    <loc>https://bixiride.com/about.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 6. Blog & Travel Guides Hub -->
+  <url>
+    <loc>https://bixiride.com/blog.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 7. Comprehensive Rental Guide: The Ultimate Guide to Bike & Car Rental in Madurai -->
+  <url>
+    <loc>https://bixiride.com/blog-post.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 
 </urlset>

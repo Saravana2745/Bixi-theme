@@ -26,3 +26,4 @@ Allow: /
 
 # Direct Googlebot, Bingbot, and AI Search Engines to Sitemap
 Sitemap: https://bixiride.com/sitemap.xml
+Sitemap: https://bixiride.com/wp-sitemap.xml
