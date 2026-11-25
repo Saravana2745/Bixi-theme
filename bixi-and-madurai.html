@@ -39,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=54.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=55.0">
 
   <!-- Three.js + Official OrbitControls for 360 Free Rotation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -500,7 +500,7 @@
   <!-- Scripts -->
   <script src="assets/js/madurai-3d-map.js?v=37.0"></script>
   <script src="assets/js/react-bits-animations.js?v=44.0"></script>
-  <script src="assets/js/main.js?v=54.0"></script>
+  <script src="assets/js/main.js?v=55.0"></script>
 
   <!-- Preloader & Interaction Logic -->
   <script>
@@ -540,9 +540,9 @@
         vehicleDeck.setAttribute('data-active-veh', currentV === 'bike' ? 'car' : 'bike');
       }, 1200);
 
-      // Smooth, visible 0% to 100% count-up (~2.4 seconds total)
+      // Fast, crisp 0% to 100% count-up (~1.1 seconds total)
       var timer = setInterval(function() {
-        current += 1;
+        current += 2;
         if (current >= 100) {
           current = 100;
           clearInterval(timer);
@@ -557,9 +557,9 @@
           setTimeout(function() {
             preloader.classList.add('fade-out');
             setTimeout(function() {
-              preloader.style.display = 'none';
-            }, 600);
-          }, 400);
+              preloader.style.setProperty('display', 'none', 'important');
+            }, 450);
+          }, 250);
         } else {
           if (pctNum) pctNum.textContent = current;
           if (progressBar) progressBar.style.width = current + '%';
@@ -576,7 +576,11 @@
             }
           }
         }
-      }, 24);
+      }, 22);
+      setTimeout(function() {
+        preloader.classList.add('fade-out');
+        preloader.style.setProperty('display', 'none', 'important');
+      }, 2600);
     })();
 
     // ═══════════════ APP STAGE SWITCHER ═══════════════

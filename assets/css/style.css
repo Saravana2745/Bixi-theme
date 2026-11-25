@@ -10132,6 +10132,10 @@ button.bixi-cal-day.empty,
   background: #06070A !important;
 }
 
+body.bixi-fullscreen-app-body .site-footer {
+  display: none !important;
+}
+
 /* App Header */
 .bixi-app-header {
   height: 64px !important;
@@ -10298,9 +10302,10 @@ button.bixi-cal-day.empty,
 /* Full-Screen Stage */
 .bixi-app-stage {
   position: relative !important;
-  flex: 1 !important;
+  flex: 1 0 auto !important;
   width: 100% !important;
   height: calc(100vh - var(--header-height, 72px)) !important;
+  min-height: calc(100vh - var(--header-height, 72px)) !important;
   overflow: hidden !important;
   background: #06070A !important;
 }
