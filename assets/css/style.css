@@ -144,6 +144,7 @@ html {
   overflow-x: clip !important;
   width: 100% !important;
   max-width: 100% !important;
+  overflow-x: clip !important;
   position: relative;
 }
 
@@ -152,7 +153,7 @@ body {
   line-height: 1.6;
   background-color: #090A0E !important;
   color: #F1F5F9;
-  overflow-x: visible !important;
+  overflow-x: clip !important;
   width: 100% !important;
   max-width: 100% !important;
   position: relative;
