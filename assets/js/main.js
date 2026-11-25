@@ -1295,28 +1295,48 @@
       }, 4000);
     }
 
-    // 8. Universal Immediate Visibility Across Every Page
+    // 8. Smooth Bidirectional Fade-In / Fade-Out & Page Transition Engine Across Every Page
     function initScrollReveal() {
-      // Clean up any residual progress bars
       var oldBar = document.getElementById('bixiScrollProgress');
       if (oldBar) {
         oldBar.remove();
       }
 
+      // Restore visibility when returning via browser back/forward cache
+      window.addEventListener('pageshow', function () {
+        document.body.classList.remove('bixi-page-fadeout');
+      });
+
+      // Smooth fade-out transition on internal page navigation
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest ? e.target.closest('a[href]') : null;
+        if (!link) return;
+        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var href = link.getAttribute('href') || '';
+        if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('javascript:')) return;
+        if (link.getAttribute('target') === '_blank' || link.hasAttribute('download')) return;
+        if (href.indexOf('wp-admin') !== -1 || href.indexOf('wa.me') !== -1) return;
+        try {
+          var targetUrl = new URL(link.href, window.location.href);
+          if (targetUrl.origin !== window.location.origin) return;
+          if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) return;
+          e.preventDefault();
+          document.body.classList.add('bixi-page-fadeout');
+          setTimeout(function () {
+            window.location.href = targetUrl.href;
+          }, 210);
+        } catch (err) {}
+      });
+
       const revealSelectors = [
-        '.section-head',
-        '.section-badge',
-        '.section-title',
-        '.section-desc',
         '.section-head',
         '.section-header',
         '.lux-section-header',
-        '.hero-content',
-        '.hero-preview-col',
-        '.hero-split-left',
-        '.hero-split-right',
-        '.booking-widget-card',
-        '.madurai-map-card-wrapper',
+        '.lux-fleet-hero .lux-fleet-header',
+        '.lux-fc-card',
+        '.lux-item-card',
+        '.lux-policy-card',
+        '.lux-tariff-3d-card',
         '.feature-card',
         '.features-grid > *',
         '.step-card',
@@ -1344,30 +1364,25 @@
         '.timeline-item',
         '.page-header',
         '.filter-bar',
-        /* Contemporary BIXI Studio, About Us & Contact Selectors */
+        /* Contemporary BIXI Studio, About Us, Legal & Contact Selectors */
         '.lux-manifesto-block',
         '.lux-about-showcase-card',
         '.lux-storefront-spotlight-card',
         '.lux-metrics-strip',
-        '.lux-metric-item',
         '.lux-split-editorial > *',
         '.lux-car-manifesto-card',
-        '.lux-tenets-section .lux-section-header',
         '.lux-tenet-card',
         '.lux-tenet-item',
-        '.lux-hubs-section .lux-section-header',
         '.lux-hub-card',
         '.lux-customer-card',
         '.lux-grand-cta',
         '.lux-stage-container',
-        '.lux-hud-card',
         '.fleet-runway-card',
         '.circuit-card',
         '.interactive-3d-portal-card',
         '.hub-item',
         '.transit-card',
         '.transit-grid > *',
-        '.scrolly-story-card',
         '.lux-stat-col',
         '.lux-expedition-console',
         '.lux-flow-step',
@@ -1375,15 +1390,60 @@
         '.bixi-contact-map-card',
         '.footer-map-card',
         '.blog-hero-pillar-card',
-        '.blog-toc-card'
+        '.blog-toc-card',
+        '.blog-toc-cta-card',
+        '.article-header',
+        '.blog-post-featured-img-card',
+        '.bixi-legal-card',
+        '.bixi-legal-support-card',
+        '.bixi-seo-card',
+        '.bixi-section-divider'
       ];
 
       const elements = document.querySelectorAll(revealSelectors.join(', '));
       if (!elements.length) return;
 
+      // Apply stagger classes cleanly within parent grids
+      var parentCounters = new WeakMap();
       elements.forEach((el) => {
-        el.classList.add('bixi-reveal', 'bixi-revealed');
+        el.classList.add('bixi-reveal');
+        var parent = el.parentElement;
+        if (parent) {
+          var count = parentCounters.get(parent) || 0;
+          if (count > 0 && count <= 5) {
+            el.classList.add('delay-' + count);
+          }
+          parentCounters.set(parent, (count + 1) % 6);
+        }
       });
+
+      document.documentElement.classList.add('bixi-anim-ready');
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('bixi-revealed');
+            } else {
+              // Bidirectional fade-out when element exits viewport
+              entry.target.classList.remove('bixi-revealed');
+            }
+          });
+        }, {
+          threshold: 0.04,
+          rootMargin: '40px 0px -30px 0px'
+        });
+
+        elements.forEach((el) => {
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+            el.classList.add('bixi-revealed');
+          }
+          revealObserver.observe(el);
+        });
+      } else {
+        elements.forEach((el) => el.classList.add('bixi-revealed'));
+      }
 
       // Metric Counter Animation immediately on load
       function animateMetricCounter(el) {
@@ -1447,11 +1507,12 @@
             const cardCat = card.getAttribute('data-category');
             if (filterVal === 'all' || cardCat === filterVal) {
               card.style.display = 'flex';
-              setTimeout(() => {
-                card.classList.add('bixi-revealed');
-              }, 50);
+              card.classList.remove('bixi-card-pop');
+              void card.offsetWidth;
+              card.classList.add('bixi-revealed', 'bixi-card-pop');
             } else {
               card.style.display = 'none';
+              card.classList.remove('bixi-revealed', 'bixi-card-pop');
             }
           });
         });
@@ -1889,9 +1950,14 @@ function filterVehicles(cat, btn) {
   var items = document.querySelectorAll('.lux-roster-item');
   items.forEach(function (item) {
     if (cat === 'all' || item.dataset.category === cat) {
-      item.classList.remove('filter-hidden');
+      item.classList.remove('filter-hidden', 'bixi-card-pop');
+      void item.offsetWidth;
+      item.classList.add('bixi-revealed', 'bixi-card-pop');
+      var card = item.querySelector('.lux-item-card');
+      if (card) card.classList.add('bixi-revealed');
     } else {
       item.classList.add('filter-hidden');
+      item.classList.remove('bixi-card-pop');
     }
   });
 }

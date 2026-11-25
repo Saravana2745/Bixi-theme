@@ -2216,35 +2216,19 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   pointer-events: none !important;
 }
 
-.bixi-reveal {
-  opacity: 1 !important;
-  transform: none !important;
-  visibility: visible !important;
-  transition: none !important;
-}
-
-.bixi-reveal.reveal-left,
-.bixi-reveal.reveal-right,
-.bixi-reveal.reveal-zoom {
-  transform: none !important;
-}
-
-.bixi-reveal.bixi-revealed {
-  opacity: 1 !important;
-  transform: none;
-}
-
-.bixi-reveal.delay-1 { transition-delay: 0.08s; }
-.bixi-reveal.delay-2 { transition-delay: 0.16s; }
-.bixi-reveal.delay-3 { transition-delay: 0.24s; }
-.bixi-reveal.delay-4 { transition-delay: 0.32s; }
-.bixi-reveal.delay-5 { transition-delay: 0.40s; }
-.bixi-reveal.delay-6 { transition-delay: 0.48s; }
+/* Scroll Reveal Delay Utilities (controlled via .bixi-anim-ready at bottom of stylesheet) */
+.bixi-reveal.delay-1 { transition-delay: 0.06s; }
+.bixi-reveal.delay-2 { transition-delay: 0.12s; }
+.bixi-reveal.delay-3 { transition-delay: 0.18s; }
+.bixi-reveal.delay-4 { transition-delay: 0.24s; }
+.bixi-reveal.delay-5 { transition-delay: 0.30s; }
+.bixi-reveal.delay-6 { transition-delay: 0.36s; }
 
 @media (prefers-reduced-motion: reduce) {
   .bixi-reveal {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     transition: none !important;
   }
 }
@@ -6043,18 +6027,9 @@ select.form-control option {
   color: #FFFFFF !important;
 }
 
-/* 4. Universal Visibility */
+/* 4. Universal Visibility Fallback (overridden smoothly when .bixi-anim-ready is active) */
 .bixi-reveal {
-  opacity: 1 !important;
-  transform: none !important;
-  visibility: visible !important;
-}
-.bixi-reveal.reveal-left,
-.bixi-reveal.reveal-right,
-.bixi-reveal.reveal-zoom { transform: none !important; }
-.bixi-reveal.bixi-revealed {
-  opacity: 1 !important;
-  transform: none;
+  visibility: visible;
 }
 
 /* 5. Hero & Solar Styling */
@@ -14424,41 +14399,102 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   cursor: pointer !important;
 }
 
-/* 3. Smooth Scroll Reveal Animations Across Every Page */
-.bixi-reveal {
+/* 3. Smooth Bidirectional Fade-In / Fade-Out & Page Transition System */
+@keyframes bixiPageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bixiCardPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+body {
+  transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.bixi-page-fadeout {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+main {
+  animation: bixiPageFadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.bixi-card-pop {
+  animation: bixiCardPopIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Progressive Scroll Reveal: Fade In when visible, smooth Fade Out when scrolled past */
+.bixi-anim-ready .bixi-reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(26px) scale(0.982);
+  filter: blur(2.5px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.bixi-reveal.reveal-left {
-  transform: translateX(-35px);
+.bixi-anim-ready .bixi-reveal.reveal-left {
+  transform: translateX(-32px);
+  filter: blur(2px);
 }
 
-.bixi-reveal.reveal-right {
-  transform: translateX(35px);
+.bixi-anim-ready .bixi-reveal.reveal-right {
+  transform: translateX(32px);
+  filter: blur(2px);
 }
 
-.bixi-reveal.reveal-zoom {
-  transform: scale(0.93) translateY(18px);
+.bixi-anim-ready .bixi-reveal.reveal-zoom {
+  transform: scale(0.94) translateY(16px);
+  filter: blur(2px);
 }
 
-.bixi-reveal.bixi-revealed {
+.bixi-anim-ready .bixi-reveal.bixi-revealed {
   opacity: 1 !important;
   transform: translate(0) scale(1) !important;
+  filter: blur(0) !important;
 }
 
-.bixi-reveal.delay-1 { transition-delay: 0.08s; }
-.bixi-reveal.delay-2 { transition-delay: 0.16s; }
-.bixi-reveal.delay-3 { transition-delay: 0.24s; }
-.bixi-reveal.delay-4 { transition-delay: 0.32s; }
-.bixi-reveal.delay-5 { transition-delay: 0.40s; }
+/* Modal Smooth Fade + Scale */
+.modal-overlay {
+  transition: opacity 0.28s ease, visibility 0.28s ease !important;
+}
+.modal-overlay .modal-content {
+  transform: translateY(18px) scale(0.96);
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease !important;
+}
+.modal-overlay.active .modal-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .bixi-reveal {
+  main,
+  .bixi-card-pop {
+    animation: none !important;
+  }
+  .bixi-anim-ready .bixi-reveal {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     transition: none !important;
   }
 }
