@@ -4481,23 +4481,34 @@ select.form-control:focus {
 }
 
 .lux-item-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.4rem;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 0.45rem 0.75rem !important;
+  margin-bottom: 0.3rem !important;
 }
 .lux-item-name {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #FFFFFF;
+  flex: 1 0 100% !important;
+  font-size: 1.2rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  line-height: 1.28 !important;
+  margin: 0 !important;
 }
 .lux-item-price {
+  order: 2 !important;
   font-family: var(--font-heading, sans-serif);
-  font-size: 1.25rem;
+  font-size: 1.22rem;
   font-weight: 900;
   color: var(--color-orange, #E88124);
-  white-space: nowrap;
+  white-space: nowrap !important;
+}
+.lux-item-top .bixi-availability-pill {
+  order: 3 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 .lux-item-price small {
   font-size: 0.75rem;
@@ -4505,31 +4516,74 @@ select.form-control:focus {
   font-weight: 400;
 }
 
+.lux-roster-item {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.lux-item-details {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.65rem !important;
+}
+
+.tariff-tier-badge {
+  display: inline-flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.28rem 0.45rem !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  line-height: 1.35 !important;
+}
+
 .lux-item-specs {
-  font-size: 0.8rem;
-  color: #64748B;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 1.2rem;
+  font-size: 0.78rem;
+  color: #CBD5E1;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.38rem !important;
+  margin-bottom: 0.85rem !important;
+}
+.lux-item-specs > span:nth-child(even) {
+  display: none !important;
+}
+.lux-item-specs > span:nth-child(odd) {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0.22rem 0.58rem !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  color: #CBD5E1 !important;
+  font-size: 0.76rem !important;
+  font-weight: 500 !important;
+  line-height: 1.25 !important;
 }
 
 .lux-item-actions {
-  display: flex;
-  gap: 0.65rem;
+  display: flex !important;
+  gap: 0.65rem !important;
+  margin-top: auto !important;
+  padding-top: 0.25rem !important;
 }
 .lux-item-btn {
-  flex: 1;
-  padding: 0.75rem;
-  font-size: 0.88rem;
-  text-align: center;
+  flex: 1 !important;
+  padding: 0.78rem 0.9rem !important;
+  font-size: 0.88rem !important;
+  text-align: center !important;
+  white-space: nowrap !important;
 }
 .lux-item-wa {
-  padding: 0.75rem 1rem;
-  font-size: 0.88rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0.78rem 1rem !important;
+  font-size: 0.88rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
 }
 
 /* Transparent Policies */
@@ -15278,4 +15332,71 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       linear-gradient(90deg, rgba(255, 122, 24, 0.75), rgba(255, 122, 24, 0.75)) calc(100% - 10px) calc(100% - 10px) / 22px 2px no-repeat,
       linear-gradient(180deg, rgba(255, 122, 24, 0.75), rgba(255, 122, 24, 0.75)) calc(100% - 10px) calc(100% - 10px) / 2px 22px no-repeat;
   }
+
+  /* Prevent grid children from expanding mobile horizontal width */
+  .lux-fleet-header,
+  .lux-fleet-header-grid,
+  .lux-fleet-header-left,
+  .lux-fleet-header-right,
+  .fleet-hub-card,
+  .lux-flagship-duo,
+  .lux-flagship-card,
+  .lux-roster-grid,
+  .lux-roster-item,
+  .lux-filter-bar,
+  .lux-hub-locations-strip {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .lux-flagship-card {
+    padding: 1.35rem 1rem !important;
+  }
+  .lux-item-details {
+    padding: 1rem !important;
+  }
+
+  /* Clean Mobile Justify Typography Across All Pages (Prevents Ragged Right Edges) */
+  main p,
+  .hero-subheadline,
+  .manifesto-lead-stylish,
+  .scrolly-story-desc,
+  .runway-desc,
+  .portal-desc,
+  .lux-sub-lead,
+  .lux-manifesto-lead,
+  .lux-se-p,
+  .lux-fc-desc,
+  .lux-policy-desc,
+  .lux-faq-content p,
+  .lux-customer-quote,
+  .bixi-seo-guide-text,
+  .bixi-legal-body p,
+  .bixi-legal-body li,
+  .blog-card-excerpt,
+  .article-content p,
+  .article-content li,
+  .fleet-hub-desc,
+  .lux-story-desc,
+  .lux-tenet-desc,
+  .lux-hub-desc,
+  .site-footer .footer-brand p {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  /* Preserve centered alignment on short one-line captions & footer CTAs */
+  .lux-studio-footer-cta p,
+  .lux-stat-desc,
+  .lux-m-sub {
+    text-align: center !important;
+    hyphens: none;
+  }
+}
+
+.lux-roster-grid,
+.lux-flagship-duo {
+  overflow-x: clip !important;
 }

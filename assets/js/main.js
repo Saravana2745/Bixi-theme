@@ -1361,9 +1361,11 @@
         { selector: '.fleet-qf-item', anim: 'reveal-words-rl' },
         { selector: '.lux-flagship-duo .lux-flagship-card:first-child', anim: 'reveal-car-lr' },
         { selector: '.lux-flagship-duo .lux-flagship-card:last-child', anim: 'reveal-car-rl' },
+        { selector: '.lux-filter-bar, .lux-cat-header, .lux-roster-filters', anim: 'reveal-words-lr' },
+        { selector: '.lux-roster-item .lux-item-img, .lux-item-card .lux-card-img', anim: 'reveal-car-rl' },
+        { selector: '.lux-roster-item, .lux-item-card', anim: 'alternate-lr' },
+        { selector: '.lux-tariff-table tbody tr', anim: 'reveal-words-lr' },
         { selector: '.lux-storefront-spotlight-card', anim: 'reveal-car-rl' },
-        { selector: '.lux-item-card .lux-card-img', anim: 'reveal-car-rl' },
-        { selector: '.lux-item-card', anim: 'cycle-seo' },
         { selector: '.lux-tenet-item, .lux-tenet-card, .lux-policy-card', anim: 'reveal-flip-card' },
         { selector: '.lux-hub-card', anim: 'cycle-hubs' },
         { selector: '.blog-hero-pillar-card > div:first-child', anim: 'reveal-words-lr' },
@@ -1985,6 +1987,8 @@ function filterVehicles(cat, btn) {
       item.classList.remove('filter-hidden', 'bixi-card-pop');
       void item.offsetWidth;
       item.classList.add('bixi-revealed', 'bixi-card-pop');
+      var img = item.querySelector('.lux-item-img');
+      if (img) img.classList.add('bixi-revealed');
       var card = item.querySelector('.lux-item-card');
       if (card) card.classList.add('bixi-revealed');
     } else {
