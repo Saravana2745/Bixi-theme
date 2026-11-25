@@ -3829,7 +3829,7 @@ select.form-control:focus {
 /* ── 8. BIKES.HTML FLEET LUXURY STYLES ───────────────────────────────── */
 .lux-fleet-hero {
   position: relative;
-  padding: 7rem 0 3rem;
+  padding: 1.5rem 0 2.5rem;
   overflow: hidden;
 }
 
@@ -3844,16 +3844,16 @@ select.form-control:focus {
 }
 
 .lux-fleet-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.25rem;
 }
 
 /* Two-Column Fleet Hero Grid (Balances Left Typography with Right Quick Hub) */
 .lux-fleet-header-grid {
   display: grid !important;
   grid-template-columns: 1.15fr 0.85fr !important;
-  gap: 3rem !important;
+  gap: 2.5rem !important;
   align-items: center !important;
-  margin-bottom: 3.5rem !important;
+  margin-bottom: 2.25rem !important;
 }
 
 .lux-fleet-header-left {
@@ -5442,7 +5442,7 @@ main, .site-header, .site-footer {
   gap: 0.5rem;
   font-size: 0.85rem;
   color: #94A3B8;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 .article-header {
   margin-bottom: 2.5rem;
@@ -9130,7 +9130,7 @@ button.bixi-cal-day.empty,
 
 /* Standalone Hero Layout */
 .bixi-madurai-hero-section {
-  padding-top: 6.5rem !important;
+  padding-top: 2rem !important;
   padding-bottom: 2rem !important;
 }
 
@@ -9966,8 +9966,11 @@ button.bixi-cal-day.empty,
 }
 
 @media (max-width: 768px) {
+  .lux-fleet-hero {
+    padding: 1rem 0 2rem !important;
+  }
   .bixi-madurai-hero-section {
-    padding-top: 5rem !important;
+    padding-top: 1.5rem !important;
   }
   .bixi-madurai-hero-title {
     font-size: 2rem !important;

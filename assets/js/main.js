@@ -1356,9 +1356,14 @@
         { selector: '.bixi-seo-card', anim: 'cycle-seo' },
 
         /* Subpages: Bikes Fleet, About Us, Blog, Contact */
+        { selector: '.lux-fleet-header-left', anim: 'reveal-words-lr' },
+        { selector: '.lux-fleet-header-right', anim: 'reveal-car-rl' },
+        { selector: '.fleet-qf-item', anim: 'reveal-words-rl' },
+        { selector: '.lux-flagship-duo .lux-flagship-card:first-child', anim: 'reveal-car-lr' },
+        { selector: '.lux-flagship-duo .lux-flagship-card:last-child', anim: 'reveal-car-rl' },
         { selector: '.lux-storefront-spotlight-card', anim: 'reveal-car-rl' },
         { selector: '.lux-item-card .lux-card-img', anim: 'reveal-car-rl' },
-        { selector: '.lux-item-card', anim: 'reveal-rise-up' },
+        { selector: '.lux-item-card', anim: 'cycle-seo' },
         { selector: '.lux-tenet-item, .lux-tenet-card, .lux-policy-card', anim: 'reveal-flip-card' },
         { selector: '.lux-hub-card', anim: 'cycle-hubs' },
         { selector: '.blog-hero-pillar-card > div:first-child', anim: 'reveal-words-lr' },
@@ -1367,7 +1372,7 @@
         { selector: '.contact-grid > .contact-card:first-child', anim: 'reveal-words-lr' },
         { selector: '.contact-grid > *:last-child', anim: 'reveal-words-rl' },
         { selector: '.bixi-contact-map-card, .footer-map-card, .lux-tariff-3d-card, .blog-post-featured-img-card', anim: 'reveal-pop-zoom' },
-        { selector: '.section-head, .lux-fleet-hero .lux-fleet-header, .article-header, .lux-section-header', anim: 'reveal-drop-header' },
+        { selector: '.section-head, .article-header, .lux-section-header', anim: 'reveal-drop-header' },
         { selector: '.feature-card, .step-card, .bike-card, .place-card, .contact-card, .value-card, .team-card, .timeline-item, .hub-item, .transit-card, .blog-toc-card, .blog-toc-cta-card, .bixi-legal-support-card', anim: 'reveal-rise-up' }
       ];
 
