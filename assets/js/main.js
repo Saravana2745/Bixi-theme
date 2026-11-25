@@ -1328,85 +1328,85 @@
         } catch (err) {}
       });
 
-      const revealSelectors = [
-        '.section-head',
-        '.section-header',
-        '.lux-section-header',
-        '.lux-fleet-hero .lux-fleet-header',
-        '.lux-fc-card',
-        '.lux-item-card',
-        '.lux-policy-card',
-        '.lux-tariff-3d-card',
-        '.feature-card',
-        '.features-grid > *',
-        '.step-card',
-        '.steps-grid > *',
-        '.bike-card',
-        '.fleet-grid > *',
-        '.place-card',
-        '.places-grid > *',
-        '.blog-card',
-        '.blog-grid > *',
-        '.faq-item',
-        '.faq-list > *',
-        '.testimonial-card',
-        '.testimonial-grid > *',
-        '.contact-card',
-        '.contact-grid > *',
-        '.contact-form-wrapper',
-        '.contact-form-card',
-        '.stat-item',
-        '.stats-grid > *',
-        '.cta-box',
-        '.about-grid > *',
-        '.value-card',
-        '.team-card',
-        '.timeline-item',
-        '.page-header',
-        '.filter-bar',
-        /* Contemporary BIXI Studio, About Us, Legal & Contact Selectors */
-        '.lux-manifesto-block',
-        '.lux-about-showcase-card',
-        '.lux-storefront-spotlight-card',
-        '.lux-metrics-strip',
-        '.lux-split-editorial > *',
-        '.lux-car-manifesto-card',
-        '.lux-tenet-card',
-        '.lux-tenet-item',
-        '.lux-hub-card',
-        '.lux-customer-card',
-        '.lux-grand-cta',
-        '.lux-stage-container',
-        '.fleet-runway-card',
-        '.circuit-card',
-        '.interactive-3d-portal-card',
-        '.hub-item',
-        '.transit-card',
-        '.transit-grid > *',
-        '.lux-stat-col',
-        '.lux-expedition-console',
-        '.lux-flow-step',
-        '.lux-faq-row',
-        '.bixi-contact-map-card',
-        '.footer-map-card',
-        '.blog-hero-pillar-card',
-        '.blog-toc-card',
-        '.blog-toc-cta-card',
-        '.article-header',
-        '.blog-post-featured-img-card',
-        '.bixi-legal-card',
-        '.bixi-legal-support-card',
-        '.bixi-seo-card',
-        '.bixi-section-divider'
+      const revealSpecs = [
+        /* Split Editorial & Showcase Layouts: Words Left->Right, Car/Visual Drives Right->Left */
+        { selector: '.lux-se-left, .manifesto-left-box, .portal-info, .lux-manifesto-block', anim: 'reveal-left' },
+        { selector: '.lux-se-right, .manifesto-3d-deck, .portal-visual, .lux-about-showcase-card', anim: 'reveal-drive-right' },
+        { selector: '.blog-hero-pillar-card > div:first-child', anim: 'reveal-left' },
+        { selector: '.blog-hero-pillar-card > div:last-child', anim: 'reveal-drive-right' },
+        { selector: '.contact-grid > .contact-card:first-child', anim: 'reveal-left' },
+        { selector: '.contact-grid > *:last-child', anim: 'reveal-right' },
+
+        /* Section Headers: Crisp Top Drop & Curtain */
+        { selector: '.section-head, .lux-fleet-hero .lux-fleet-header, .article-header', anim: 'reveal-drop' },
+        { selector: '.lux-section-header', anim: 'reveal-curtain' },
+
+        /* 3D Showcases, Stages, Maps & Consoles */
+        { selector: '.lux-stage-container, .lux-tariff-3d-card, .bixi-contact-map-card, .footer-map-card, .blog-post-featured-img-card', anim: 'reveal-flip' },
+        { selector: '.lux-expedition-console, .bixi-section-divider', anim: 'reveal-curtain' },
+
+        /* Telemetry, Metrics & Grand CTAs: Elastic Zoom Pop */
+        { selector: '.lux-stat-col, .lux-metric-item, .lux-metrics-strip, .lux-grand-cta, .bixi-legal-support-card', anim: 'reveal-zoom' },
+
+        /* Fleet Runway & Featured Vehicle Cards: Alternating Left/Right Drive */
+        { selector: '.fleet-runway-card, .lux-fc-card', anim: 'alternate-drive' },
+
+        /* Catalog Roster & Blog Cards: Rich Varied Cycle (Flip / Zoom / Drive) */
+        { selector: '.lux-item-card, .blog-card', anim: 'cycle-variety' },
+
+        /* Sequential Timeline Steps & Tenets: Forward Flow Left->Right */
+        { selector: '.lux-flow-step, .lux-tenet-item, .lux-tenet-card', anim: 'reveal-left' },
+
+        /* Policies, Hubs, Customer Stories, Circuits & SEO Directory */
+        { selector: '.lux-policy-card, .lux-hub-card, .circuit-card', anim: 'reveal-flip' },
+        { selector: '.lux-customer-card, .testimonial-card', anim: 'alternate-flip-zoom' },
+        { selector: '.bixi-seo-card', anim: 'cycle-seo' },
+
+        /* Zig-Zag Left/Right Rows for FAQs & Legal Cards */
+        { selector: '.lux-faq-row, .bixi-legal-card, .faq-item', anim: 'alternate-lr' },
+
+        /* General Fallbacks */
+        { selector: '.feature-card, .step-card, .bike-card, .place-card, .contact-card, .value-card, .team-card, .timeline-item, .hub-item, .transit-card, .blog-toc-card, .blog-toc-cta-card', anim: 'reveal-up' }
       ];
 
-      const elements = document.querySelectorAll(revealSelectors.join(', '));
+      const collected = [];
+      const seen = new Set();
+
+      revealSpecs.forEach((spec) => {
+        const nodes = document.querySelectorAll(spec.selector);
+        nodes.forEach((el, idx) => {
+          if (seen.has(el)) return;
+          seen.add(el);
+
+          let chosenAnim = spec.anim;
+          if (chosenAnim === 'alternate-drive') {
+            chosenAnim = idx % 2 === 0 ? 'reveal-drive-left' : 'reveal-drive-right';
+          } else if (chosenAnim === 'alternate-lr') {
+            chosenAnim = idx % 2 === 0 ? 'reveal-left' : 'reveal-right';
+          } else if (chosenAnim === 'alternate-flip-zoom') {
+            chosenAnim = idx % 2 === 0 ? 'reveal-flip' : 'reveal-zoom';
+          } else if (chosenAnim === 'cycle-variety') {
+            var vSet = ['reveal-flip', 'reveal-drive-right', 'reveal-zoom', 'reveal-drive-left'];
+            chosenAnim = vSet[idx % vSet.length];
+          } else if (chosenAnim === 'cycle-seo') {
+            var sSet = ['reveal-left', 'reveal-right', 'reveal-flip', 'reveal-zoom'];
+            chosenAnim = sSet[idx % sSet.length];
+          }
+
+          el.classList.add('bixi-reveal');
+          if (chosenAnim !== 'reveal-up') {
+            el.classList.add(chosenAnim);
+          }
+          collected.push(el);
+        });
+      });
+
+      const elements = collected;
       if (!elements.length) return;
 
-      // Apply stagger classes cleanly within parent grids
+      // Apply stagger delays cleanly within parent containers
       var parentCounters = new WeakMap();
       elements.forEach((el) => {
-        el.classList.add('bixi-reveal');
         var parent = el.parentElement;
         if (parent) {
           var count = parentCounters.get(parent) || 0;
