@@ -15193,17 +15193,30 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     linear-gradient(90deg, transparent, rgba(232, 129, 36, 0.55), transparent) 50% 100% / 55% 2px no-repeat;
 }
 
-/* Keep tight balanced proportions inside Rent Vehicles & About Us framed headers */
+/* Keep tight balanced proportions inside Home, About Us & Rent Vehicles framed headers */
+.hero-banner-section {
+  padding: 0.35rem 0 1.75rem !important;
+}
+
+.lux-fleet-hero {
+  padding: 0.35rem 0 2rem !important;
+}
+
+.lux-about-hero {
+  padding: 0.35rem 0 1.5rem !important;
+}
+
+.lux-about-hero .article-breadcrumbs,
+.lux-fleet-hero .article-breadcrumbs {
+  margin-bottom: 0.45rem !important;
+}
+
 .lux-fleet-header {
-  margin-bottom: 2.25rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .lux-fleet-header .lux-fleet-header-grid {
   margin-bottom: 0 !important;
-}
-
-.lux-about-hero {
-  padding: 1.5rem 0 1.5rem !important;
 }
 
 /* Framed hero columns stay cleanly inside frame padding during slide-in */
@@ -15235,6 +15248,11 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 }
 
 @media (max-width: 768px) {
+  .hero-banner-section,
+  .lux-about-hero,
+  .lux-fleet-hero {
+    padding-top: 0.25rem !important;
+  }
   .hero-split-stage.hero-reel-showcase,
   .lux-about-hero-grid,
   .lux-fleet-header {
