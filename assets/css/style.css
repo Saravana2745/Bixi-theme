@@ -276,7 +276,7 @@ ul, ol {
   left: 0 !important;
   right: 0 !important;
   height: var(--header-height, 72px) !important;
-  z-index: 1000 !important;
+  z-index: 1006 !important;
   background: rgba(9, 10, 14, 0.96) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
@@ -505,11 +505,12 @@ ul, ol {
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border-left: 1px solid var(--color-border);
-  z-index: 999;
-  padding: 6rem 2rem 2.5rem;
+  z-index: 1005 !important;
+  padding: 5.5rem 1.75rem 2.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
   transform: translateX(105%);
   visibility: hidden;
   pointer-events: none;
@@ -526,19 +527,64 @@ ul, ol {
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .mobile-nav-link {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.28rem;
   font-weight: 700;
   color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 0.75rem;
+  gap: 0.75rem;
+  padding-bottom: 0.72rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-nav-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 122, 24, 0.12);
+  border: 1px solid rgba(255, 122, 24, 0.28);
+  color: #FF7A18;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mobile-nav-link.active .mobile-nav-icon,
+.mobile-nav-link:hover .mobile-nav-icon {
+  background: #FF7A18;
+  border-color: #FF7A18;
+  color: #090A0E;
+  box-shadow: 0 4px 12px rgba(255, 122, 24, 0.45);
+}
+
+.mobile-nav-drawer .btn-hotline.mobile-drawer-call {
+  width: 100% !important;
+  height: auto !important;
+  min-width: 0 !important;
+  padding: 0.72rem 1rem !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  margin-bottom: 0.8rem !important;
+  background: rgba(232, 129, 36, 0.14) !important;
+  border: 1px solid rgba(232, 129, 36, 0.42) !important;
+  color: #FFFFFF !important;
+  box-sizing: border-box !important;
 }
 
 .mobile-nav-link.active,
@@ -554,7 +600,7 @@ ul, ol {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.75);
-  z-index: 998;
+  z-index: 1004 !important;
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition-smooth);
@@ -9277,6 +9323,12 @@ button.bixi-cal-day.empty,
   pointer-events: auto !important;
 }
 
+/* Left-Edge Pull Tab & Mobile Close hidden on Desktop */
+.locations-pull-tab,
+.sidebar-mobile-close {
+  display: none !important;
+}
+
 /* Floating Pull Tab on Right Edge for Destination Route Guide */
 .drawer-pull-tab {
   position: absolute !important;
@@ -10880,190 +10932,168 @@ html {
     justify-content: center !important;
   }
   
-  /* Quick Waypoints Horizontal Dock on Mobile - Rock-Solid Fixed Anchor & Always Interactive */
-  .app-landmarks-sidebar {
+  /* Left-Edge Pull Tab for Locations Menu (Symmetric with Route Guide on Right) */
+  .locations-pull-tab {
+    position: absolute !important;
+    top: 48% !important;
+    left: 0 !important;
+    transform: translateY(-50%) !important;
+    z-index: 75 !important;
+    background: linear-gradient(135deg, #FF7A18 0%, #D85D00 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 0 12px 12px 0 !important;
+    padding: 0.65rem 0.45rem !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    cursor: pointer !important;
+    box-shadow: 4px 6px 18px rgba(255, 122, 24, 0.45) !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    writing-mode: vertical-rl !important;
+    text-orientation: mixed !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  }
+  .locations-pull-tab .pull-tab-arrow {
+    writing-mode: horizontal-tb !important;
+    font-size: 0.8rem !important;
+    display: inline-block !important;
+    transition: transform 0.25s ease !important;
+  }
+  .locations-pull-tab.panel-is-open .pull-tab-arrow {
+    transform: rotate(180deg) !important;
+  }
+
+  /* Slide-In Left Locations Drawer on Mobile (Never covered by bottom floating bar) */
+  .app-landmarks-sidebar,
+  .app-landmarks-sidebar.collapsed {
     position: fixed !important;
-    top: auto !important;
-    bottom: max(0.65rem, env(safe-area-inset-bottom, 0.65rem)) !important;
+    top: 64px !important;
+    bottom: 82px !important;
     left: 0.5rem !important;
-    right: 0.5rem !important;
-    width: auto !important;
-    max-width: calc(100vw - 1rem) !important;
+    right: auto !important;
+    width: 286px !important;
+    max-width: calc(100vw - 2.4rem) !important;
     height: auto !important;
-    max-height: 76px !important;
-    padding: 0.40rem 0.50rem !important;
-    background: rgba(10, 14, 23, 0.94) !important;
+    max-height: none !important;
+    padding: 0.9rem !important;
+    background: rgba(10, 14, 23, 0.96) !important;
     backdrop-filter: blur(24px) saturate(160%) !important;
     -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
-    border: 1px solid rgba(255, 122, 24, 0.40) !important;
+    border: 1px solid rgba(255, 122, 24, 0.42) !important;
     border-radius: 18px !important;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 24px rgba(255, 122, 24, 0.16) !important;
-    z-index: 95 !important;
+    box-shadow: 12px 15px 40px rgba(0, 0, 0, 0.9), 0 0 24px rgba(255, 122, 24, 0.22) !important;
+    z-index: 996 !important;
     display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transform: none !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+    transform: translateX(-115%) !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
-
-  /* Fade mask gradient indicator on the right side so user knows more cards follow */
-  .app-landmarks-sidebar::after {
-    content: "" !important;
-    position: absolute !important;
-    top: 6px !important;
-    bottom: 6px !important;
-    right: 6px !important;
-    width: 24px !important;
-    background: linear-gradient(to right, transparent, rgba(10, 14, 23, 0.95)) !important;
-    pointer-events: none !important;
-    border-radius: 0 14px 14px 0 !important;
-    z-index: 5 !important;
+  .app-landmarks-sidebar.mobile-open,
+  .app-landmarks-sidebar.collapsed.mobile-open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
-
-  .app-landmarks-sidebar.collapsed {
-    width: auto !important;
-    max-height: 76px !important;
-    padding: 0.40rem 0.50rem !important;
+  .app-landmarks-sidebar::after {
+    display: none !important;
+  }
+  .sidebar-header {
+    display: block !important;
+    padding-bottom: 0.55rem !important;
+  }
+  .sidebar-header-top {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  .sidebar-toggle-btn {
+    display: none !important;
+  }
+  .sidebar-mobile-close {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #FFFFFF !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+  }
+  .sidebar-header h1.sidebar-main-title {
+    font-size: 0.95rem !important;
+    margin: 0.2rem 0 0.1rem !important;
+  }
+  .sidebar-header h2.sidebar-sub-title,
+  .sidebar-header p,
+  .sidebar-footer-hint {
+    display: none !important;
+  }
+  .app-landmarks-sidebar .sidebar-landmarks-list {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 0.48rem !important;
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 0.15rem 0 !important;
+  }
+  .app-landmarks-sidebar .sidebar-checkpoint-btn,
+  .app-landmarks-sidebar.collapsed .sidebar-checkpoint-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 48px !important;
+    padding: 0.45rem 0.65rem !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+    background: rgba(22, 28, 40, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+  }
+  .app-landmarks-sidebar .sidebar-checkpoint-btn.active {
+    background: linear-gradient(135deg, rgba(255, 122, 24, 0.28), rgba(245, 158, 11, 0.15)) !important;
+    border: 1px solid #ff7a18 !important;
+  }
+  .app-landmarks-sidebar .cp-info,
+  .app-landmarks-sidebar.collapsed .cp-info {
     display: flex !important;
     visibility: visible !important;
-    opacity: 1 !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
   }
-  .app-landmarks-sidebar.collapsed .sidebar-checkpoint-btn {
-    display: inline-flex !important;
-    justify-content: flex-start !important;
-    padding: 0.38rem 0.68rem !important;
-  }
-  .app-landmarks-sidebar.collapsed .cp-info,
-  .app-landmarks-sidebar.collapsed .cp-arrow,
+  .app-landmarks-sidebar .cp-name,
+  .app-landmarks-sidebar .cp-sub,
   .app-landmarks-sidebar.collapsed .cp-name,
   .app-landmarks-sidebar.collapsed .cp-sub {
     display: block !important;
     visibility: visible !important;
   }
-
-  .sidebar-header, .sidebar-footer-hint {
-    display: none !important;
-  }
-
-  /* Smooth momentum horizontal scroll */
-  .sidebar-landmarks-list {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 0.50rem !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
-    scroll-snap-type: x proximity !important;
-    scroll-padding: 0.4rem !important;
-    padding: 0.15rem 0.2rem !important;
-    align-items: center !important;
-  }
-  .sidebar-landmarks-list::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  /* Premium Mobile Capsule / Card Styling */
-  .sidebar-checkpoint-btn {
-    flex: 0 0 auto !important;
-    min-width: 170px !important;
-    max-width: 215px !important;
-    height: 50px !important;
-    padding: 0.36rem 0.65rem !important;
-    border-radius: 13px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.50rem !important;
-    background: rgba(22, 28, 40, 0.88) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    scroll-snap-align: start !important;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease !important;
-    cursor: pointer !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    box-sizing: border-box !important;
-  }
-  .sidebar-checkpoint-btn:active {
-    transform: scale(0.97) !important;
-  }
-  .sidebar-checkpoint-btn.active {
-    background: linear-gradient(135deg, rgba(255, 122, 24, 0.28), rgba(245, 158, 11, 0.15)) !important;
-    border: 1px solid #ff7a18 !important;
-    box-shadow: 0 0 16px rgba(255, 122, 24, 0.35), inset 0 0 10px rgba(255, 122, 24, 0.12) !important;
-  }
-
-  .sidebar-checkpoint-btn .cp-icon {
-    width: 32px !important;
-    height: 32px !important;
-    min-width: 32px !important;
-    border-radius: 9px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: rgba(255, 122, 24, 0.14) !important;
-    color: #ff7a18 !important;
-    flex-shrink: 0 !important;
-  }
-  .sidebar-checkpoint-btn .cp-icon svg {
-    width: 17px !important;
-    height: 17px !important;
-  }
-  .sidebar-checkpoint-btn.active .cp-icon {
-    background: #ff7a18 !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 8px rgba(255, 122, 24, 0.5) !important;
-  }
-
-  .sidebar-checkpoint-btn .cp-info {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    text-align: left !important;
-    overflow: hidden !important;
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-  }
-  .sidebar-checkpoint-btn .cp-name {
-    font-size: 0.76rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    line-height: 1.25 !important;
-  }
-  .sidebar-checkpoint-btn.active .cp-name {
-    color: #ff9d42 !important;
-  }
-  .sidebar-checkpoint-btn .cp-sub {
-    font-size: 0.60rem !important;
-    font-weight: 500 !important;
-    color: #94a3b8 !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    line-height: 1.2 !important;
-    margin-top: 0.08rem !important;
-  }
-  .sidebar-checkpoint-btn.active .cp-sub {
-    color: #cbd5e1 !important;
-  }
-  .sidebar-checkpoint-btn .cp-arrow {
-    font-size: 0.82rem !important;
-    color: #64748b !important;
-    margin-left: auto !important;
-    padding-left: 0.20rem !important;
-    flex-shrink: 0 !important;
-  }
-  .sidebar-checkpoint-btn.active .cp-arrow {
-    color: #ff7a18 !important;
-    font-weight: bold !important;
+  .app-landmarks-sidebar .cp-arrow,
+  .app-landmarks-sidebar.collapsed .cp-arrow {
+    display: inline-block !important;
+    visibility: visible !important;
   }
 
   /* Right-Side Slide-In Drawer on Mobile (Never blocks bottom dock, ZERO screen-covering blur) */

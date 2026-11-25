@@ -78,6 +78,34 @@
   };
 
   document.addEventListener('DOMContentLoaded', () => {
+    if (window.__bixiMainInitialized) return;
+    window.__bixiMainInitialized = true;
+
+    // 0b. Synchronize active highlight across desktop nav & mobile drawer links
+    try {
+      var curPath = (window.location.pathname || '/').replace(/\/+$/, '').toLowerCase() || '/';
+      var pathPage = curPath === '/' ? 'home' : curPath.split('/').pop().replace(/\.html?$/i, '');
+      var pageKeyMap = {
+        'index': 'home', 'home': 'home', '': 'home',
+        'about': 'about', 'about-us': 'about',
+        'bixi-and-madurai': 'madurai',
+        'bikes': 'rent', 'rent-vehicles': 'rent',
+        'blog': 'blog', 'blog-post': 'blog',
+        'contact': 'contact'
+      };
+      var activeKey = pageKeyMap[pathPage] || null;
+      if (activeKey) {
+        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(function (a) {
+          var href = (a.getAttribute('href') || '').toLowerCase().replace(/\/+$/, '');
+          var slug = href.split('/').pop().replace(/\.html?$/i, '') || 'home';
+          var linkKey = pageKeyMap[slug] || (href === '' || href.endsWith('.in') || href.endsWith('github.io/bixi-theme') ? 'home' : null);
+          if (linkKey) {
+            a.classList.toggle('active', linkKey === activeKey);
+          }
+        });
+      }
+    } catch (e) {}
+
     // 1. Sticky Navigation on Scroll
     const header = document.querySelector('.site-header');
     if (header) {
