@@ -2332,27 +2332,88 @@ select.form-control:focus {
 }
 
 .booking-form-grid {
-  min-height: 80px !important;
+  min-height: 76px !important;
   height: auto !important;
   visibility: visible !important;
   opacity: 1 !important;
+  align-items: flex-end !important;
 }
 
 .booking-form-grid .form-group {
   display: flex !important;
   flex-direction: column !important;
+  justify-content: flex-end !important;
   visibility: visible !important;
   opacity: 1 !important;
-  min-height: 70px !important;
+}
+
+.booking-form-grid .form-group:not(.form-group-submit) {
+  min-height: 68px !important;
+}
+
+.booking-form-grid .form-group-submit {
+  min-height: 44px !important;
+  align-self: flex-end !important;
+  justify-content: flex-end !important;
 }
 
 .booking-form-grid .form-control,
-.booking-form-grid .custom-select-box {
+.booking-form-grid .custom-select-trigger {
   width: 100% !important;
+  height: 44px !important;
   min-height: 44px !important;
-  display: block !important;
+  border-radius: 10px !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+.booking-form-grid .custom-select-box {
+  width: 100% !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.booking-form-grid select.form-control {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  padding-right: 2.1rem !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23E88124'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 13px 13px !important;
+  cursor: pointer !important;
+}
+
+.booking-form-grid input[type="date"].form-control::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(66%) sepia(72%) saturate(1850%) hue-rotate(349deg) brightness(98%) contrast(94%);
+  opacity: 0.9;
+}
+
+@media (max-width: 559px) {
+  .booking-form-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.7rem !important;
+  }
+  .booking-form-grid .form-group-hub,
+  .booking-form-grid .form-group-model,
+  .booking-form-grid .form-group-submit {
+    grid-column: span 2 !important;
+  }
+  .booking-form-grid .form-group-pickdate,
+  .booking-form-grid .form-group-picktime,
+  .booking-form-grid .form-group-dropdate,
+  .booking-form-grid .form-group-droptime {
+    grid-column: span 1 !important;
+  }
+  .booking-form-grid .form-group-submit {
+    margin-top: 0.25rem !important;
+    min-height: 48px !important;
+  }
+  .booking-form-grid #btnSubmitBooking {
+    width: 100% !important;
+    height: 48px !important;
+  }
 }
 
 /* Fallback image behind scrolly canvas */
@@ -14442,27 +14503,88 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 }
 
 .booking-form-grid {
-  min-height: 80px !important;
+  min-height: 76px !important;
   height: auto !important;
   visibility: visible !important;
   opacity: 1 !important;
+  align-items: flex-end !important;
 }
 
 .booking-form-grid .form-group {
   display: flex !important;
   flex-direction: column !important;
+  justify-content: flex-end !important;
   visibility: visible !important;
   opacity: 1 !important;
-  min-height: 70px !important;
+}
+
+.booking-form-grid .form-group:not(.form-group-submit) {
+  min-height: 68px !important;
+}
+
+.booking-form-grid .form-group-submit {
+  min-height: 44px !important;
+  align-self: flex-end !important;
+  justify-content: flex-end !important;
 }
 
 .booking-form-grid .form-control,
-.booking-form-grid .custom-select-box {
+.booking-form-grid .custom-select-trigger {
   width: 100% !important;
+  height: 44px !important;
   min-height: 44px !important;
-  display: block !important;
+  border-radius: 10px !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+.booking-form-grid .custom-select-box {
+  width: 100% !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.booking-form-grid select.form-control {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  padding-right: 2.1rem !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23E88124'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 13px 13px !important;
+  cursor: pointer !important;
+}
+
+.booking-form-grid input[type="date"].form-control::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(66%) sepia(72%) saturate(1850%) hue-rotate(349deg) brightness(98%) contrast(94%);
+  opacity: 0.9;
+}
+
+@media (max-width: 559px) {
+  .booking-form-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.7rem !important;
+  }
+  .booking-form-grid .form-group-hub,
+  .booking-form-grid .form-group-model,
+  .booking-form-grid .form-group-submit {
+    grid-column: span 2 !important;
+  }
+  .booking-form-grid .form-group-pickdate,
+  .booking-form-grid .form-group-picktime,
+  .booking-form-grid .form-group-dropdate,
+  .booking-form-grid .form-group-droptime {
+    grid-column: span 1 !important;
+  }
+  .booking-form-grid .form-group-submit {
+    margin-top: 0.25rem !important;
+    min-height: 48px !important;
+  }
+  .booking-form-grid #btnSubmitBooking {
+    width: 100% !important;
+    height: 48px !important;
+  }
 }
 
 /* Fallback image behind scrolly canvas */

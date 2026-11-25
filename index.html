@@ -461,18 +461,45 @@
       }
     }
     @media (max-width: 559px) {
+      .booking-widget-card {
+        padding: 1.1rem 1rem !important;
+        border-radius: 14px !important;
+      }
+      .booking-vehicle-tabs {
+        width: 100% !important;
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+        justify-content: space-between !important;
+      }
+      .booking-vehicle-tabs::-webkit-scrollbar {
+        display: none !important;
+      }
+      .booking-tab-btn {
+        font-size: 0.76rem !important;
+        padding: 0.42rem 0.75rem !important;
+        white-space: nowrap !important;
+      }
+      .booking-fare-pill {
+        width: 100% !important;
+        justify-content: space-between !important;
+      }
       .booking-form-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: 1fr 1fr !important;
         gap: 0.7rem !important;
       }
       .form-group-hub,
       .form-group-model,
+      .form-group-submit {
+        grid-column: span 2 !important;
+      }
       .form-group-pickdate,
       .form-group-picktime,
       .form-group-dropdate,
-      .form-group-droptime,
-      .form-group-submit {
+      .form-group-droptime {
         grid-column: span 1 !important;
+      }
+      .form-group-submit {
+        margin-top: 0.25rem !important;
       }
       .form-group-submit #btnSubmitBooking {
         width: 100% !important;
@@ -614,13 +641,14 @@
     }
     #btnSubmitBooking {
       height: 44px !important;
-      background: #E88124 !important;
+      min-height: 44px !important;
+      background: linear-gradient(135deg, #FF7A18 0%, #E85D04 100%) !important;
       color: #FFFFFF !important;
-      border: none !important;
-      border-radius: 8px !important;
-      padding: 0 1.5rem !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      border-radius: 10px !important;
+      padding: 0 1.65rem !important;
       font-family: 'Space Grotesk', sans-serif !important;
-      font-size: 0.92rem !important;
+      font-size: 0.94rem !important;
       font-weight: 700 !important;
       cursor: pointer !important;
       display: inline-flex !important;
@@ -628,13 +656,14 @@
       justify-content: center !important;
       gap: 0.5rem !important;
       white-space: nowrap !important;
-      box-shadow: 0 4px 14px rgba(232, 129, 36, 0.4) !important;
-      transition: all 0.2s ease !important;
+      box-shadow: 0 6px 18px rgba(232, 129, 36, 0.42) !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease !important;
+      margin: 0 !important;
     }
     #btnSubmitBooking:hover {
-      background: #FF7A18 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 20px rgba(232, 129, 36, 0.6) !important;
+      filter: brightness(1.08) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 8px 24px rgba(255, 122, 24, 0.58) !important;
     }
 
     /* 3D MAP & REAL-WORLD NATURE SIMULATOR */
@@ -1735,8 +1764,8 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 
             <!-- 7. Submit Button -->
             <div class="form-group form-group-submit">
-              <button type="submit" class="btn-primary" id="btnSubmitBooking">
-                <span id="submitBtnText">Search Vehicles</span> <span>→</span>
+              <button type="submit" class="btn-primary no-magnet" id="btnSubmitBooking">
+                <span id="submitBtnText">Search Vehicles</span> <span>&rarr;</span>
               </button>
             </div>
           </form>
