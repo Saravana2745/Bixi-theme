@@ -1278,6 +1278,16 @@
     // 6. Generic Contact Form Handler (Direct WhatsApp Reservation & Fleet Desk)
     const contactForm = document.getElementById('generalContactForm');
     if (contactForm) {
+      const contactMsgBox = document.getElementById('contactMessage');
+      if (contactMsgBox) {
+        const autoResizeMsg = () => {
+          contactMsgBox.style.height = 'auto';
+          const nextH = Math.min(Math.max(contactMsgBox.scrollHeight, 185), 380);
+          contactMsgBox.style.height = nextH + 'px';
+        };
+        contactMsgBox.addEventListener('input', autoResizeMsg);
+      }
+
       contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const name = document.getElementById('contactName')?.value || 'Guest';
@@ -1305,6 +1315,7 @@
         }, 600);
 
         contactForm.reset();
+        if (contactMsgBox) contactMsgBox.style.height = '';
       });
     }
 

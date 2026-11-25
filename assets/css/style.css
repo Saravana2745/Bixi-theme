@@ -1023,74 +1023,102 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
 }
 
-/* Contact message textarea — big, resizable vertically, never overflows */
+/* Contact message textarea — big, extendable vertically, never overflows form */
+textarea.form-control.contact-message-box,
 .contact-message-box {
-  min-height: 160px;
-  resize: vertical;
-  max-width: 100% !important;
+  height: auto;
+  min-height: 185px !important;
+  max-height: 380px !important;
+  padding: 0.9rem 1rem !important;
+  resize: vertical !important;
   width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
   box-sizing: border-box !important;
-  line-height: 1.6;
-  overflow: auto;
+  line-height: 1.6 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  display: block !important;
 }
 
-/* ── Submit Inquiry Button — compact with pulse + ripple animation ── */
-@keyframes bixi-pulse-ring {
-  0%   { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(232,129,36,0.55); }
-  60%  { transform: scale(1);   box-shadow: 0 0 0 10px rgba(232,129,36,0); }
-  100% { transform: scale(1);   box-shadow: 0 0 0 0   rgba(232,129,36,0); }
+/* ── Submit Inquiry Button — compact small pill with shimmer sweep + glide animation ── */
+@keyframes bixi-btn-sheen {
+  0%   { transform: translateX(-140%) skewX(-22deg); }
+  55%  { transform: translateX(240%) skewX(-22deg); }
+  100% { transform: translateX(240%) skewX(-22deg); }
 }
 @keyframes bixi-ripple-out {
-  0%   { transform: scale(0); opacity: 0.6; }
-  100% { transform: scale(3.5); opacity: 0; }
+  0%   { transform: scale(0); opacity: 0.55; }
+  100% { transform: scale(3.2); opacity: 0; }
 }
-@keyframes bixi-icon-bolt {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  25%       { transform: rotate(-12deg) scale(1.15); }
-  75%       { transform: rotate(10deg) scale(1.1); }
+@keyframes bixi-plane-glide {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(2.5px, -2px); }
+}
+
+.contact-submit-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 0.35rem;
 }
 
 .btn-submit-inquiry {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.65rem 1.5rem;
-  border-radius: var(--radius-full);
-  background: var(--color-orange);
-  color: #FFFFFF;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.92rem;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  transition: background 0.18s ease, transform 0.18s ease;
-  animation: bixi-pulse-ring 2.4s ease-in-out infinite;
-  box-shadow: 0 4px 18px rgba(232,129,36,0.4);
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.45rem !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0.54rem 1.2rem !important;
+  border-radius: var(--radius-full) !important;
+  background: linear-gradient(135deg, #FF7A18 0%, #E86A08 100%) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  font-size: 0.84rem !important;
+  letter-spacing: 0.02em !important;
+  border: 1px solid rgba(255, 190, 120, 0.35) !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease !important;
+  box-shadow: 0 4px 14px rgba(232, 129, 36, 0.35) !important;
+}
+.btn-submit-inquiry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  animation: bixi-btn-sheen 2.8s ease-in-out infinite;
+  pointer-events: none;
 }
 .btn-submit-inquiry:hover {
-  background: #E07010;
-  transform: scale(1.04);
-  animation: none;
-  box-shadow: 0 6px 24px rgba(232,129,36,0.6);
+  transform: translateY(-2px) scale(1.04) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 8px 22px rgba(255, 122, 24, 0.55) !important;
 }
 .btn-submit-inquiry:active {
-  transform: scale(0.97);
+  transform: scale(0.95) !important;
 }
 .btn-submit-inquiry .btn-submit-text {
   position: relative;
   z-index: 1;
-  letter-spacing: 0.01em;
 }
 .btn-submit-inquiry .btn-submit-icon {
   position: relative;
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  animation: bixi-icon-bolt 2.4s ease-in-out infinite;
+  animation: bixi-plane-glide 1.8s ease-in-out infinite;
 }
 .btn-submit-inquiry .btn-submit-icon svg {
+  width: 14px;
+  height: 14px;
   fill: none;
   stroke: #FFFFFF;
 }
@@ -1098,13 +1126,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.28);
   transform: scale(0);
   opacity: 0;
   pointer-events: none;
 }
 .btn-submit-inquiry:active .btn-submit-ripple {
-  animation: bixi-ripple-out 0.5s ease-out forwards;
+  animation: bixi-ripple-out 0.48s ease-out forwards;
 }
 
 .form-control:focus {
@@ -13934,15 +13962,18 @@ a[href^="tel:"] * {
     }
     .form-control {
       width: 100% !important;
-      height: 44px !important;
       background: rgba(13, 14, 18, 0.95) !important;
       border: 1px solid rgba(255, 255, 255, 0.12) !important;
       border-radius: 8px !important;
-      padding: 0 0.85rem !important;
       color: #FFFFFF !important;
       font-size: 0.86rem !important;
       box-sizing: border-box !important;
       color-scheme: dark !important;
+    }
+    input.form-control,
+    select.form-control {
+      height: 44px !important;
+      padding: 0 0.85rem !important;
     }
     .form-control:focus {
       border-color: #E88124 !important;
