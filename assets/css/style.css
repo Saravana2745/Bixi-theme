@@ -1023,6 +1023,90 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
 }
 
+/* Contact message textarea — big, resizable vertically, never overflows */
+.contact-message-box {
+  min-height: 160px;
+  resize: vertical;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  line-height: 1.6;
+  overflow: auto;
+}
+
+/* ── Submit Inquiry Button — compact with pulse + ripple animation ── */
+@keyframes bixi-pulse-ring {
+  0%   { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(232,129,36,0.55); }
+  60%  { transform: scale(1);   box-shadow: 0 0 0 10px rgba(232,129,36,0); }
+  100% { transform: scale(1);   box-shadow: 0 0 0 0   rgba(232,129,36,0); }
+}
+@keyframes bixi-ripple-out {
+  0%   { transform: scale(0); opacity: 0.6; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+@keyframes bixi-icon-bolt {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25%       { transform: rotate(-12deg) scale(1.15); }
+  75%       { transform: rotate(10deg) scale(1.1); }
+}
+
+.btn-submit-inquiry {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-orange);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.18s ease, transform 0.18s ease;
+  animation: bixi-pulse-ring 2.4s ease-in-out infinite;
+  box-shadow: 0 4px 18px rgba(232,129,36,0.4);
+}
+.btn-submit-inquiry:hover {
+  background: #E07010;
+  transform: scale(1.04);
+  animation: none;
+  box-shadow: 0 6px 24px rgba(232,129,36,0.6);
+}
+.btn-submit-inquiry:active {
+  transform: scale(0.97);
+}
+.btn-submit-inquiry .btn-submit-text {
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.01em;
+}
+.btn-submit-inquiry .btn-submit-icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  animation: bixi-icon-bolt 2.4s ease-in-out infinite;
+}
+.btn-submit-inquiry .btn-submit-icon svg {
+  fill: none;
+  stroke: #FFFFFF;
+}
+.btn-submit-inquiry .btn-submit-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255,255,255,0.22);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+.btn-submit-inquiry:active .btn-submit-ripple {
+  animation: bixi-ripple-out 0.5s ease-out forwards;
+}
+
 .form-control:focus {
   border-color: var(--color-teal);
   box-shadow: 0 0 12px rgba(232, 129, 36, 0.38);
