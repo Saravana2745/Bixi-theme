@@ -2023,9 +2023,59 @@
               <input type="date" class="form-control" id="userDateInput" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="rentalDaysInput">Rental Days</label>
-              <input type="number" class="form-control" id="rentalDaysInput" value="1" min="1" max="60" required>
+              <label class="form-label" for="userPickupTimeInput">Pickup Time</label>
+              <select class="form-control" id="userPickupTimeInput">
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="10:00 AM" selected>10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:00 PM">12:00 PM (Noon)</option>
+                <option value="01:00 PM">01:00 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="07:00 PM">07:00 PM</option>
+                <option value="08:00 PM">08:00 PM</option>
+                <option value="09:00 PM">09:00 PM</option>
+                <option value="10:00 PM">10:00 PM</option>
+              </select>
             </div>
+          </div>
+          <div class="form-row-2col" style="margin-bottom: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="userDropDateInput">Drop Off Date</label>
+              <input type="date" class="form-control" id="userDropDateInput" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="userDropTimeInput">Drop Off Time</label>
+              <select class="form-control" id="userDropTimeInput">
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="10:00 AM" selected>10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:00 PM">12:00 PM (Noon)</option>
+                <option value="01:00 PM">01:00 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="07:00 PM">07:00 PM</option>
+                <option value="08:00 PM">08:00 PM</option>
+                <option value="09:00 PM">09:00 PM</option>
+                <option value="10:00 PM">10:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label" for="rentalDaysInput">Rental Days (24h Cycles)</label>
+            <input type="number" class="form-control" id="rentalDaysInput" value="1" min="1" max="60" required>
           </div>
           <div id="bixi-advance-box" style="background: rgba(22, 22, 26, 0.7); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 1.25rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--color-orange); font-weight: 600; margin-bottom: 0.6rem;">
@@ -2194,7 +2244,6 @@
             <li><a href="terms-and-conditions.html" class="footer-link">Terms &amp; Conditions</a></li>
             <li><a href="safety.html" class="footer-link">Safety &amp; Damage Policy</a></li>
             <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
-            <li><a href="sitemap.xml" class="footer-link">XML Sitemap</a></li>
           </ul>
         </div>
 
@@ -2249,8 +2298,6 @@
           <a href="terms-and-conditions.html" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Terms &amp; Conditions</a>
           <a href="safety.html" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Safety</a>
           <a href="privacy-policy.html" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Privacy Policy</a>
-          <a href="sitemap.xml" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">XML Sitemap</a>
-          <a href="robots.txt" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Robots.txt</a>
         </div>
       </div>
     </div>

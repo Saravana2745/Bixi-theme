@@ -532,8 +532,65 @@
     const modalKmLimitSelect = document.getElementById('modalKmLimitSelect');
     const modalKmLimitGroup = document.getElementById('modalKmLimitGroup');
     const daysCountInput = document.getElementById('rentalDaysInput');
+    const modalPickupDateInput = document.getElementById('userDateInput');
+    const modalPickupTimeInput = document.getElementById('userPickupTimeInput');
+    const modalDropDateInput = document.getElementById('userDropDateInput');
+    const modalDropTimeInput = document.getElementById('userDropTimeInput');
     const userLocationSelect = document.getElementById('userLocationSelect');
     const modalForm = document.getElementById('rentalBookingForm');
+
+    function formatDateYMD(d) {
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    }
+
+    function ensureModalDateDefaults() {
+      if (!modalPickupDateInput || !modalDropDateInput) return;
+      const now = new Date();
+      const todayStr = formatDateYMD(now);
+      modalPickupDateInput.min = todayStr;
+      if (!modalPickupDateInput.value) {
+        modalPickupDateInput.value = todayStr;
+      }
+      modalDropDateInput.min = modalPickupDateInput.value;
+      if (!modalDropDateInput.value || modalDropDateInput.value < modalPickupDateInput.value) {
+        const [py, pm, pd] = modalPickupDateInput.value.split('-').map(Number);
+        const days = parseInt(daysCountInput ? daysCountInput.value : 1, 10) || 1;
+        const dropD = new Date(py, pm - 1, pd + days);
+        modalDropDateInput.value = formatDateYMD(dropD);
+      }
+    }
+
+    function syncModalDaysFromDates() {
+      if (!modalPickupDateInput || !modalDropDateInput || !daysCountInput) return;
+      if (modalDropDateInput.value < modalPickupDateInput.value) {
+        modalDropDateInput.value = modalPickupDateInput.value;
+      }
+      modalDropDateInput.min = modalPickupDateInput.value;
+      const [py, pm, pd] = modalPickupDateInput.value.split('-').map(Number);
+      const [dy, dm, dd] = modalDropDateInput.value.split('-').map(Number);
+      const pt = parseHourlySlot(modalPickupTimeInput ? modalPickupTimeInput.value : '10:00 AM');
+      const dt = parseHourlySlot(modalDropTimeInput ? modalDropTimeInput.value : '10:00 AM');
+      const start = new Date(py, pm - 1, pd, pt.hours, pt.minutes);
+      const end = new Date(dy, dm - 1, dd, dt.hours, dt.minutes);
+      const diffMs = end.getTime() - start.getTime();
+      const days = diffMs > 0 ? Math.max(1, Math.ceil(diffMs / (1000 * 60 * 60 * 24))) : 1;
+      daysCountInput.value = days;
+      updateModalTotal();
+    }
+
+    function syncModalDropDateFromDays() {
+      if (!modalPickupDateInput || !modalDropDateInput || !daysCountInput) return;
+      const days = Math.max(1, parseInt(daysCountInput.value, 10) || 1);
+      if (!modalPickupDateInput.value) {
+        modalPickupDateInput.value = formatDateYMD(new Date());
+      }
+      const [py, pm, pd] = modalPickupDateInput.value.split('-').map(Number);
+      const dropD = new Date(py, pm - 1, pd + days);
+      modalDropDateInput.value = formatDateYMD(dropD);
+      modalDropDateInput.min = modalPickupDateInput.value;
+      updateModalTotal();
+    }
 
     let currentVehicleData = null;
     let currentDailyRate = 600;
@@ -600,6 +657,7 @@
         }
       }
 
+      ensureModalDateDefaults();
       updateModalTotal();
       bookingModal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -662,7 +720,19 @@
     }
 
     if (daysCountInput) {
-      daysCountInput.addEventListener('input', updateModalTotal);
+      daysCountInput.addEventListener('input', syncModalDropDateFromDays);
+    }
+    if (modalPickupDateInput) {
+      modalPickupDateInput.addEventListener('change', syncModalDaysFromDates);
+    }
+    if (modalDropDateInput) {
+      modalDropDateInput.addEventListener('change', syncModalDaysFromDates);
+    }
+    if (modalPickupTimeInput) {
+      modalPickupTimeInput.addEventListener('change', syncModalDaysFromDates);
+    }
+    if (modalDropTimeInput) {
+      modalDropTimeInput.addEventListener('change', syncModalDaysFromDates);
     }
     if (userLocationSelect) {
       userLocationSelect.addEventListener('change', updateModalTotal);
@@ -876,7 +946,7 @@
         const bike = modalBikeInput ? modalBikeInput.value : 'Rental Vehicle';
         const name = document.getElementById('userNameInput')?.value || 'Guest';
         const phone = document.getElementById('userPhoneInput')?.value || '';
-        const pickupDate = document.getElementById('userDateInput')?.value || 'Today';
+        const pickupDate = modalPickupDateInput?.value || formatDateYMD(new Date());
         const days = daysCountInput ? daysCountInput.value : '1';
         const location = userLocationSelect ? userLocationSelect.value : 'Railway station opposite';
         const kmTier = modalKmLimitSelect ? modalKmLimitSelect.value : '120';
@@ -890,9 +960,9 @@
         const total = (baseRate * parseInt(days, 10)) + (isGoogle ? 100 : 0);
         const balanceDue = Math.max(0, total - advanceAmt);
 
-        const pTime = modalForm?.getAttribute('data-pickup-time') || '10:00 AM';
-        const dDate = modalForm?.getAttribute('data-drop-date') || '';
-        const dTime = modalForm?.getAttribute('data-drop-time') || '10:00 AM';
+        const pTime = (modalPickupTimeInput && modalPickupTimeInput.value) || modalForm?.getAttribute('data-pickup-time') || '10:00 AM';
+        const dDate = (modalDropDateInput && modalDropDateInput.value) || modalForm?.getAttribute('data-drop-date') || pickupDate;
+        const dTime = (modalDropTimeInput && modalDropTimeInput.value) || modalForm?.getAttribute('data-drop-time') || '10:00 AM';
 
         let scheduleDetails = `${days} day(s) starting ${pickupDate} at ${pTime}`;
         if (dDate) {
@@ -1106,8 +1176,8 @@
           }
         }
 
-        if (hasPickupDate && document.getElementById('userDateInput')) {
-          document.getElementById('userDateInput').value = urlParams.get('pickup_date');
+        if (hasPickupDate && modalPickupDateInput) {
+          modalPickupDateInput.value = urlParams.get('pickup_date');
         }
 
         if (hasDays && daysCountInput) {
@@ -1115,15 +1185,21 @@
         }
 
         if (urlParams.get('pickup_time')) {
+          if (modalPickupTimeInput) modalPickupTimeInput.value = urlParams.get('pickup_time');
           modalForm?.setAttribute('data-pickup-time', urlParams.get('pickup_time'));
         }
         if (urlParams.get('drop_date')) {
+          if (modalDropDateInput) modalDropDateInput.value = urlParams.get('drop_date');
           modalForm?.setAttribute('data-drop-date', urlParams.get('drop_date'));
+        } else {
+          syncModalDropDateFromDays();
         }
         if (urlParams.get('drop_time')) {
+          if (modalDropTimeInput) modalDropTimeInput.value = urlParams.get('drop_time');
           modalForm?.setAttribute('data-drop-time', urlParams.get('drop_time'));
         }
 
+        syncModalDaysFromDates();
         updateModalTotal();
       } else if (!hasModel) {
         // If user searched without specific model or generic, scroll to fleet catalog
