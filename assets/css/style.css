@@ -1068,23 +1068,29 @@ textarea.form-control.contact-message-box,
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 0.45rem !important;
+  gap: 0.6rem !important;
   width: auto !important;
-  min-width: 0 !important;
+  min-width: 196px !important;
+  min-height: 48px !important;
   height: auto !important;
-  padding: 0.54rem 1.2rem !important;
+  padding: 0.85rem 2.2rem !important;
   border-radius: var(--radius-full) !important;
   background: linear-gradient(135deg, #FF7A18 0%, #E86A08 100%) !important;
   color: #FFFFFF !important;
   font-family: var(--font-heading) !important;
   font-weight: 700 !important;
-  font-size: 0.84rem !important;
+  font-size: 1rem !important;
   letter-spacing: 0.02em !important;
-  border: 1px solid rgba(255, 190, 120, 0.35) !important;
+  border: 1px solid rgba(255, 190, 120, 0.4) !important;
   cursor: pointer !important;
   overflow: hidden !important;
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease !important;
-  box-shadow: 0 4px 14px rgba(232, 129, 36, 0.35) !important;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease, opacity 0.2s ease !important;
+  box-shadow: 0 6px 20px rgba(232, 129, 36, 0.4) !important;
+}
+.btn-submit-inquiry.is-sending {
+  opacity: 0.72 !important;
+  cursor: wait !important;
+  pointer-events: none !important;
 }
 .btn-submit-inquiry::before {
   content: '';
@@ -1100,7 +1106,7 @@ textarea.form-control.contact-message-box,
 .btn-submit-inquiry:hover {
   transform: translateY(-2px) scale(1.04) !important;
   border-color: rgba(255, 255, 255, 0.6) !important;
-  box-shadow: 0 8px 22px rgba(255, 122, 24, 0.55) !important;
+  box-shadow: 0 8px 24px rgba(255, 122, 24, 0.58) !important;
 }
 .btn-submit-inquiry:active {
   transform: scale(0.95) !important;
@@ -1117,8 +1123,8 @@ textarea.form-control.contact-message-box,
   animation: bixi-plane-glide 1.8s ease-in-out infinite;
 }
 .btn-submit-inquiry .btn-submit-icon svg {
-  width: 14px;
-  height: 14px;
+  width: 17px;
+  height: 17px;
   fill: none;
   stroke: #FFFFFF;
 }
@@ -1133,6 +1139,32 @@ textarea.form-control.contact-message-box,
 }
 .btn-submit-inquiry:active .btn-submit-ripple {
   animation: bixi-ripple-out 0.48s ease-out forwards;
+}
+
+.contact-form-status {
+  display: none;
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.contact-form-status.success {
+  display: block;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #DCFCE7;
+}
+.contact-form-status.error {
+  display: block;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #FEE2E2;
+}
+.contact-form-status a {
+  color: #FF9F43;
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .form-control:focus {

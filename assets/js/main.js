@@ -1275,10 +1275,14 @@
       });
     });
 
-    // 6. Generic Contact Form Handler (Direct WhatsApp Reservation & Fleet Desk)
+    // 6. Generic Contact Form Handler (WordPress Backend + Gmail Dispatch + WhatsApp Quick Link)
     const contactForm = document.getElementById('generalContactForm');
     if (contactForm) {
       const contactMsgBox = document.getElementById('contactMessage');
+      const statusEl = document.getElementById('contactFormStatus');
+      const submitBtn = contactForm.querySelector('.btn-submit-inquiry');
+      const submitTextEl = submitBtn ? submitBtn.querySelector('.btn-submit-text') : null;
+
       if (contactMsgBox) {
         const autoResizeMsg = () => {
           contactMsgBox.style.height = 'auto';
@@ -1288,34 +1292,113 @@
         contactMsgBox.addEventListener('input', autoResizeMsg);
       }
 
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('contactName')?.value || 'Guest';
-        const phone = document.getElementById('contactPhone')?.value || '';
-        const email = document.getElementById('contactEmail')?.value || '';
-        const vehicle = document.getElementById('contactBike')?.value || 'Any Vehicle';
-        const location = document.getElementById('contactLocation')?.value || 'Madurai Hub';
-        const msg = document.getElementById('contactMessage')?.value || '';
+      const sendViaFormSubmit = async (payload) => {
+        const targetMail = (window.bixiWP && window.bixiWP.inquiryEmail) || 'bixiride@gmail.com';
+        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(targetMail)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `BIXI Ride Inquiry: ${payload.vehicle} — ${payload.name}`,
+            _replyto: payload.email,
+            _template: 'table',
+            _captcha: 'false',
+            _honey: payload.honey || '',
+            Name: payload.name,
+            Phone_WhatsApp: payload.phone,
+            Email: payload.email,
+            Vehicle_Model: payload.vehicle,
+            Pickup_Hub: payload.location,
+            Message: payload.message
+          })
+        });
+        if (!res.ok) throw new Error('Email relay returned ' + res.status);
+        return res.json();
+      };
 
-        showToast('Thank you! Redirecting inquiry to BIXI Ride Madurai WhatsApp desk...');
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const honey = document.getElementById('contactHoney')?.value || '';
+        if (honey) return;
+
+        const payload = {
+          name: document.getElementById('contactName')?.value?.trim() || 'Guest',
+          phone: document.getElementById('contactPhone')?.value?.trim() || '',
+          email: document.getElementById('contactEmail')?.value?.trim() || '',
+          vehicle: document.getElementById('contactBike')?.value || 'Any Vehicle',
+          location: document.getElementById('contactLocation')?.value || 'Madurai Hub',
+          message: document.getElementById('contactMessage')?.value?.trim() || '',
+          honey
+        };
 
         const waText = encodeURIComponent(
           `*BIXI RIDE MADURAI - BOOKING / ENQUIRY*\n` +
-          `• *Customer Name:* ${name}\n` +
-          `• *Phone / WhatsApp:* ${phone}\n` +
-          (email ? `• *Email:* ${email}\n` : '') +
-          `• *Interested Vehicle:* ${vehicle}\n` +
-          `• *Madurai Pickup Hub:* ${location}\n` +
-          (msg ? `• *Trip Details:* ${msg}\n` : '') +
+          `• *Customer Name:* ${payload.name}\n` +
+          `• *Phone / WhatsApp:* ${payload.phone}\n` +
+          (payload.email ? `• *Email:* ${payload.email}\n` : '') +
+          `• *Interested Vehicle:* ${payload.vehicle}\n` +
+          `• *Madurai Pickup Hub:* ${payload.location}\n` +
+          (payload.message ? `• *Trip Details:* ${payload.message}\n` : '') +
           `• *Status:* Requesting vehicle availability & zero deposit reservation`
         );
+        const waUrl = `https://wa.me/919037000266?text=${waText}`;
 
-        setTimeout(() => {
-          window.open(`https://wa.me/919037000266?text=${waText}`, '_blank');
-        }, 600);
+        if (statusEl) {
+          statusEl.className = 'contact-form-status';
+          statusEl.innerHTML = '';
+        }
+        if (submitBtn) submitBtn.classList.add('is-sending');
+        if (submitTextEl) submitTextEl.textContent = 'Sending Inquiry...';
 
-        contactForm.reset();
-        if (contactMsgBox) contactMsgBox.style.height = '';
+        let savedRef = '';
+        let delivered = false;
+
+        try {
+          if (window.bixiWP && window.bixiWP.restUrl) {
+            const wpRes = await fetch(window.bixiWP.restUrl + 'contact', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-WP-Nonce': window.bixiWP.nonce || ''
+              },
+              body: JSON.stringify(payload)
+            });
+            if (wpRes.ok) {
+              const data = await wpRes.json();
+              savedRef = data.reference || '';
+              delivered = Boolean(data.mail_sent);
+            }
+          }
+
+          if (!delivered) {
+            await sendViaFormSubmit(payload);
+            delivered = true;
+          }
+
+          showToast('Inquiry sent to bixiride@gmail.com! Our team will respond within 15 mins.');
+          if (statusEl) {
+            statusEl.className = 'contact-form-status success';
+            statusEl.innerHTML =
+              `<strong>Inquiry Sent!</strong>${savedRef ? ` (Ref: <code>${savedRef}</code>)` : ''} Your message has been delivered to <strong>bixiride@gmail.com</strong>. ` +
+              `<a href="${waUrl}" target="_blank" rel="noopener noreferrer">Also chat on WhatsApp Desk ↗</a>`;
+          }
+          contactForm.reset();
+          if (contactMsgBox) contactMsgBox.style.height = '';
+        } catch (err) {
+          showToast('Could not auto-send email. Opening WhatsApp / Email backup...');
+          if (statusEl) {
+            statusEl.className = 'contact-form-status error';
+            statusEl.innerHTML =
+              `Direct email relay was blocked by your network. Please send via ` +
+              `<a href="mailto:bixiride@gmail.com?subject=${encodeURIComponent('BIXI Ride Inquiry - ' + payload.name)}&body=${encodeURIComponent(payload.message)}">bixiride@gmail.com</a> ` +
+              `or <a href="${waUrl}" target="_blank" rel="noopener noreferrer">WhatsApp Desk ↗</a>.`;
+          }
+        } finally {
+          if (submitBtn) submitBtn.classList.remove('is-sending');
+          if (submitTextEl) submitTextEl.textContent = 'Submit Inquiry';
+        }
       });
     }
 

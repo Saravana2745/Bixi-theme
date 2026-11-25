@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=58.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=59.0">
 
   <!-- ContactPage & LocalBusiness Schema -->
     <!-- Mobile Floating Quick Call / Rent Bar -->
@@ -58,7 +58,7 @@
       "@type": "MotorcycleRental",
       "name": "BIXI Ride Madurai",
       "telephone": "+919037000266",
-      "email": "info@bixiride.com",
+      "email": "bixiride@gmail.com",
       "image": "https://bixiride.com/assets/images/logo.svg",
       "address": {
         "@type": "PostalAddress",
@@ -412,18 +412,21 @@
                 <textarea class="form-control contact-message-box" id="contactMessage" rows="7" placeholder="Tell us your travel dates, rental duration, or special requests..." required></textarea>
               </div>
 
+              <input type="text" name="_honey" id="contactHoney" style="display: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+
               <div class="contact-submit-row">
                 <button type="submit" class="btn-submit-inquiry">
                   <span class="btn-submit-text">Submit Inquiry</span>
-                  <span class="btn-submit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+                  <span class="btn-submit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
                   <span class="btn-submit-ripple"></span>
                 </button>
               </div>
+              <div id="contactFormStatus" class="contact-form-status" aria-live="polite"></div>
 
               <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: #94A3B8;">
                   <span class="bixi-badge-icon orange" style="width: 18px; height: 18px; min-width: 18px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
-                  <span><strong>15-Minute Response:</strong> Mattuthavani dispatch confirms availability instantly.</span>
+                  <span><strong>15-Minute Response:</strong> Delivered directly to <a href="mailto:bixiride@gmail.com" style="color: #FF9F43; text-decoration: underline;">bixiride@gmail.com</a> &amp; dispatch.</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: #94A3B8;">
                   <span class="bixi-badge-icon orange" style="width: 18px; height: 18px; min-width: 18px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
@@ -490,10 +493,19 @@
                   </div>
                 </div>
 
+                <!-- Direct Gmail Support -->
+                <a href="mailto:bixiride@gmail.com" style="display: flex; align-items: center; gap: 0.75rem; color: var(--color-gray-light); padding: 0.85rem; background: rgba(232, 129, 36, 0.08); border-radius: var(--radius-sm); border: 1px solid rgba(232, 129, 36, 0.35);">
+                  <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+                  <div style="min-width: 0; word-break: break-word;">
+                    <div style="font-size: 0.75rem; color: var(--color-orange); text-transform: uppercase; font-weight: 700;">Direct Gmail Inquiry Desk</div>
+                    <strong style="color: var(--color-white); font-size: 1.05rem;">bixiride@gmail.com</strong>
+                  </div>
+                </a>
+
                 <!-- Central Email -->
                 <a href="mailto:info@bixiride.com" style="display: flex; align-items: center; gap: 0.75rem; color: var(--color-gray-light); padding: 0.85rem; background: rgba(22, 22, 26, 0.6); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
                   <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-                  <div>
+                  <div style="min-width: 0; word-break: break-word;">
                     <div style="font-size: 0.75rem; color: var(--color-muted); text-transform: uppercase;">Official Central Email</div>
                     <strong style="color: var(--color-white); font-size: 1.05rem;">info@bixiride.com</strong>
                   </div>
@@ -875,6 +887,7 @@
           <p style="font-size: 0.88rem; color: var(--color-muted); line-height: 1.6;">
             <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg></span> <strong>Shop 1 (Mattuthavani):</strong> No. 16, Sankar Nagar 4th St (beside Karpaga Nagar), K. Pudur, Madurai – 625007 | <a href="tel:+919037000266" class="footer-tel-link">+91 90370 00266</a><br>
             <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg></span> <strong>Shop 2 (Madurai Main):</strong> 11A, Thalaiviruchan Lane, opp. Supreme Hotel, Madurai Main – 625001 | <a href="tel:+919025700266" class="footer-tel-link">+91 90257 00266</a><br>
+            <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> <strong>Gmail Desk:</strong> <a href="mailto:bixiride@gmail.com" class="footer-mail-link">bixiride@gmail.com</a><br>
             <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> <strong>Central Email:</strong> <a href="mailto:info@bixiride.com" class="footer-mail-link">info@bixiride.com</a>
           </p>
         </div>
@@ -915,7 +928,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/react-bits-animations.js?v=58.0"></script>
-  <script src="assets/js/main.js?v=58.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=59.0"></script>
+  <script src="assets/js/main.js?v=59.0"></script>
 </body>
 </html>
