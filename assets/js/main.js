@@ -676,6 +676,8 @@
       if (btnAdvanceEl) btnAdvanceEl.textContent = amtStr;
     }
 
+    window.bixiOpenBookingModal = openBookingModal;
+
     function closeBookingModal() {
       if (!bookingModal) return;
       bookingModal.classList.remove('active');
@@ -1709,20 +1711,8 @@ function switchShowroomVehicle(id) {
 function bookStageVehicle() {
   var data = BIXI_SHOWROOM_DATA[currentShowroomVehicle];
   if (!data) return;
-  var modal = document.getElementById('bookingModal');
-  if (modal) {
-    var nameEl = document.getElementById('modalBikeName');
-    var priceEl = document.getElementById('modalBikePrice');
-    var inputEl = document.getElementById('modalBikeInput');
-    var totalEl = document.getElementById('modalTotalEstimate');
-
-    if (nameEl) nameEl.textContent = data.name;
-    if (priceEl) priceEl.textContent = data.rateStr + ' / day';
-    if (inputEl) inputEl.value = data.name;
-    if (totalEl) totalEl.textContent = data.rateStr;
-
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  if (typeof window.bixiOpenBookingModal === 'function' && document.getElementById('bookingModal')) {
+    window.bixiOpenBookingModal(data.name, data.rateStr);
   } else {
     window.location.href = window.getBixiRentUrl('model=' + encodeURIComponent(data.name));
   }
@@ -2570,20 +2560,12 @@ function quickJumpFleet(cat) {
         const modalBikeName = document.getElementById('modalBikeName');
         const modalBikeInput = document.getElementById('modalBikeInput');
 
-        if (modal) {
+        if (modal && typeof window.bixiOpenBookingModal === 'function') {
+          window.bixiOpenBookingModal(model, rate);
+        } else if (modal) {
           if (modalBikeName) modalBikeName.textContent = model;
           if (modalBikeInput) modalBikeInput.value = model;
-
-          const reserveBtn = document.querySelector(`.lux-reserve-btn[data-bike="${model}"]`);
-          if (reserveBtn) {
-            reserveBtn.click();
-          } else {
-            if (typeof openBookingModal === 'function') {
-              openBookingModal(model, rate);
-            } else {
-              modal.classList.add('active');
-            }
-          }
+          modal.classList.add('active');
         } else {
           window.location.href = window.getBixiRentUrl('model=' + encodeURIComponent(model));
         }
