@@ -1362,7 +1362,6 @@
         { selector: '.lux-flagship-duo .lux-flagship-card:first-child', anim: 'reveal-car-lr' },
         { selector: '.lux-flagship-duo .lux-flagship-card:last-child', anim: 'reveal-car-rl' },
         { selector: '.lux-filter-bar, .lux-cat-header, .lux-roster-filters', anim: 'reveal-words-lr' },
-        { selector: '.lux-roster-item .lux-item-img, .lux-item-card .lux-card-img', anim: 'reveal-car-rl' },
         { selector: '.lux-roster-item, .lux-item-card', anim: 'alternate-lr' },
         { selector: '.lux-tariff-table tbody tr', anim: 'reveal-words-lr' },
         { selector: '.lux-storefront-spotlight-card', anim: 'reveal-car-rl' },
@@ -1416,10 +1415,21 @@
       const elements = collected;
       if (!elements.length) return;
 
-      // Apply clean subtle stagger within sibling groups (skipping card child wrappers)
+      // Apply clean subtle stagger within non-card sibling groups (vehicle/blog/SEO cards trigger immediately with zero lag)
       var parentCounters = new WeakMap();
       elements.forEach((el) => {
-        if (el.classList.contains('runway-veh-img') || el.classList.contains('runway-info')) return;
+        if (
+          el.classList.contains('runway-veh-img') ||
+          el.classList.contains('runway-info') ||
+          el.classList.contains('lux-roster-item') ||
+          el.classList.contains('lux-item-card') ||
+          el.classList.contains('fleet-runway-card') ||
+          el.classList.contains('blog-card') ||
+          el.classList.contains('bixi-seo-card') ||
+          el.classList.contains('lux-customer-card') ||
+          el.classList.contains('lux-faq-row') ||
+          el.classList.contains('lux-hub-card')
+        ) return;
         var parent = el.parentElement;
         if (parent) {
           var count = parentCounters.get(parent) || 0;
@@ -1432,7 +1442,7 @@
 
       document.documentElement.classList.add('bixi-anim-ready');
 
-      var revealPad = window.innerWidth <= 768 ? 260 : 140;
+      var revealPad = 520;
 
       function revealVisibleNow() {
         var vh = window.innerHeight || document.documentElement.clientHeight;

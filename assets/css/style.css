@@ -14499,14 +14499,24 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   animation: bixiCardPopIn 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Base progression: smooth fade-in everywhere + section-specific directional motion */
+/* Base progression: fast subtle fade + section-specific directional motion (never black gaps) */
 .bixi-anim-ready .bixi-reveal {
-  opacity: 0;
-  transform: translateY(28px);
+  opacity: 0.25;
+  transform: translateY(24px);
   transition:
-    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
+}
+
+/* Roster & showcase cards never go dark/black while scrolling */
+.bixi-anim-ready .lux-roster-item.bixi-reveal,
+.bixi-anim-ready .lux-item-card.bixi-reveal {
+  opacity: 0.72;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0s !important;
 }
 
 /* Words slide Left -> Right */
@@ -15338,6 +15348,8 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .container,
   main,
   section,
+  .navbar,
+  .nav-inner,
   .hero-banner-wrapper,
   .hero-split-stage,
   .hero-split-left,
@@ -15345,6 +15357,27 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .manifesto-split-grid,
   .manifesto-left-box,
   .manifesto-3d-deck,
+  .interactive-3d-portal-card,
+  .portal-grid,
+  .portal-info,
+  .portal-visual,
+  .portal-preview-frame,
+  .portal-cta,
+  .bixi-usecases-grid,
+  .bixi-usecase-box,
+  .bixi-trust-2col,
+  .bixi-steps-grid,
+  .blog-layout-grid,
+  .blog-grid,
+  .fleet-grid,
+  .routes-grid,
+  .reviews-grid,
+  .features-grid,
+  .steps-grid,
+  .lux-route-meta-grid,
+  .lux-metrics-strip,
+  .footer-top-grid,
+  .footer-map-card,
   .lux-about-hero-grid,
   .lux-manifesto-block,
   .lux-storefront-spotlight-card,
@@ -15369,11 +15402,108 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .bixi-legal-card,
   .bixi-seo-grid,
   .bixi-seo-card,
+  .bixi-seo-table-wrap,
+  .lux-tariff-table-wrap,
   .mobile-floating-bar,
   .mobile-floating-inner {
     min-width: 0 !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+
+  /* Collapse all multi-column & fixed-minmax grids safely inside 320px-768px viewports */
+  .portal-grid,
+  .portal-features,
+  .bixi-usecases-grid,
+  .bixi-trust-2col,
+  .bixi-steps-grid,
+  .blog-layout-grid,
+  .blog-grid,
+  .fleet-grid,
+  .routes-grid,
+  .reviews-grid,
+  .features-grid,
+  .steps-grid,
+  .lux-roster-grid,
+  .lux-route-meta-grid,
+  .lux-flagship-duo,
+  .contact-grid,
+  .bixi-legal-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .lux-metrics-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* Fix 3D Virtual Tour Portal Card overflow & padding on mobile */
+  .interactive-3d-portal-card {
+    padding: 1.4rem 1.05rem !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+  .portal-pill {
+    max-width: 100% !important;
+    white-space: normal !important;
+    flex-wrap: wrap !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.04em !important;
+    padding: 0.35rem 0.7rem !important;
+  }
+  .portal-title {
+    font-size: 1.48rem !important;
+    overflow-wrap: break-word !important;
+  }
+  .portal-desc {
+    overflow-wrap: break-word !important;
+  }
+  .portal-features > span {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.45rem !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+  }
+  .portal-cta {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+  .portal-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.92rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  .bixi-seo-card .btn-primary,
+  .bixi-seo-card .btn-secondary,
+  .lux-grand-cta-buttons .btn-primary,
+  .lux-grand-cta-buttons .btn-secondary {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.94rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  .btn-primary,
+  .btn-secondary,
+  .btn-whatsapp,
+  .btn-outline-orange,
+  .btn-lux-primary,
+  .btn-lux-whatsapp {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .portal-preview-img {
+    height: 205px !important;
   }
 
   .hero-split-stage.hero-reel-showcase,
@@ -15384,7 +15514,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     width: 100% !important;
   }
 
-  /* Disable horizontal X slides on mobile so zero text/frames ever clip off edges */
+  /* Disable horizontal X slides on mobile so zero text/cards ever clip or show black lag */
   .bixi-anim-ready .bixi-reveal,
   .bixi-anim-ready .bixi-reveal.reveal-words-lr,
   .bixi-anim-ready .bixi-reveal.reveal-words-rl,
@@ -15398,9 +15528,16 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .bixi-anim-ready .bixi-reveal.reveal-pop-zoom,
   .bixi-anim-ready .bixi-reveal.reveal-drop-header,
   .bixi-anim-ready .bixi-reveal.reveal-rise-up {
-    transform: translateY(14px) !important;
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out !important;
+    opacity: 0.5 !important;
+    transform: translateY(10px) !important;
+    transition: opacity 0.22s ease-out, transform 0.32s ease-out !important;
     transition-delay: 0s !important;
+  }
+  .bixi-anim-ready .lux-roster-item.bixi-reveal,
+  .bixi-anim-ready .lux-item-card.bixi-reveal {
+    opacity: 0.78 !important;
+    transform: translateY(8px) !important;
+    transition: opacity 0.18s ease-out, transform 0.26s ease-out !important;
   }
   .bixi-anim-ready .bixi-reveal.bixi-revealed {
     opacity: 1 !important;
