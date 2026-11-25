@@ -1356,6 +1356,7 @@
         { selector: '.bixi-seo-card', anim: 'cycle-seo' },
 
         /* Subpages: Bikes Fleet, About Us, Blog, Contact */
+        { selector: '.lux-storefront-spotlight-card', anim: 'reveal-car-rl' },
         { selector: '.lux-item-card .lux-card-img', anim: 'reveal-car-rl' },
         { selector: '.lux-item-card', anim: 'reveal-rise-up' },
         { selector: '.lux-tenet-item, .lux-tenet-card, .lux-policy-card', anim: 'reveal-flip-card' },
@@ -1395,6 +1396,14 @@
           el.classList.add('bixi-reveal', chosenAnim);
           collected.push(el);
         });
+      });
+
+      // Also capture any pre-marked .bixi-reveal elements in HTML so none ever stay stuck at opacity: 0
+      document.querySelectorAll('.bixi-reveal').forEach((el) => {
+        if (!seen.has(el)) {
+          seen.add(el);
+          collected.push(el);
+        }
       });
 
       const elements = collected;
