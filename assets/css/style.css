@@ -2830,7 +2830,6 @@ select.form-control:focus {
   }
 }
 
-
 /* ═══════════════════════════════════════════════════════════════════════
    BIXI RIDE — ULTRA-LUXURY STUDIO & EDITORIAL DESIGN SYSTEM v8.0
    Color Architecture: Pitch Carbon (#0D0D0F) | Slate Noir (#16161A)
@@ -15115,5 +15114,150 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .bixi-div-emblem svg {
     width: 17px;
     height: 17px;
+  }
+}
+
+/* ==========================================================================
+   MOTORSPORT BIKE & CAR HERO HEADER FRAME (HOME, ABOUT US & RENT VEHICLES)
+   ========================================================================== */
+.hero-split-stage.hero-reel-showcase,
+.lux-about-hero-grid,
+.lux-fleet-header {
+  position: relative !important;
+  padding: 2rem 2.25rem !important;
+  border-radius: 26px !important;
+  border: 1.5px solid rgba(255, 122, 24, 0.36) !important;
+  background:
+    radial-gradient(circle at 82% 38%, rgba(232, 129, 36, 0.13) 0%, rgba(232, 129, 36, 0.03) 40%, transparent 70%),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 11px),
+    linear-gradient(145deg, rgba(16, 19, 28, 0.94) 0%, rgba(9, 10, 14, 0.97) 100%) !important;
+  box-shadow:
+    0 26px 65px rgba(0, 0, 0, 0.72),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 44px rgba(232, 129, 36, 0.06),
+    0 0 36px rgba(232, 129, 36, 0.09) !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure grid/flex children render cleanly above pseudo-element chassis accents */
+.hero-split-stage.hero-reel-showcase > *,
+.hero-split-stage.hero-reel-showcase .hero-split-left > *,
+.lux-about-hero-grid > *,
+.lux-fleet-header > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Top CNC Billet Brackets & Racing Tachometer Stripe */
+.hero-split-stage.hero-reel-showcase::before,
+.lux-about-hero-grid::before,
+.lux-fleet-header::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  background:
+    /* Top-left corner bracket */
+    linear-gradient(90deg, #FF7A18, #FF7A18) 14px 14px / 32px 2.5px no-repeat,
+    linear-gradient(180deg, #FF7A18, #FF7A18) 14px 14px / 2.5px 32px no-repeat,
+    /* Top-right corner bracket */
+    linear-gradient(90deg, #FF7A18, #FF7A18) calc(100% - 14px) 14px / 32px 2.5px no-repeat,
+    linear-gradient(180deg, #FF7A18, #FF7A18) calc(100% - 14px) 14px / 2.5px 32px no-repeat,
+    /* Top center racing accent bar */
+    linear-gradient(90deg, transparent, rgba(255, 122, 24, 0.85), transparent) 50% 0 / 48% 2px no-repeat,
+    /* Subtle tachometer tick marks along top rail */
+    repeating-linear-gradient(90deg, rgba(255, 122, 24, 0.35) 0 2px, transparent 2px 14px) 50% 7px / 220px 5px no-repeat;
+}
+
+/* Bottom CNC Billet Brackets & Asphalt Speed Rail */
+.hero-split-stage.hero-reel-showcase::after,
+.lux-about-hero-grid::after,
+.lux-fleet-header::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  background:
+    /* Bottom-left corner bracket */
+    linear-gradient(90deg, rgba(255, 122, 24, 0.8), rgba(255, 122, 24, 0.8)) 14px calc(100% - 14px) / 32px 2.5px no-repeat,
+    linear-gradient(180deg, rgba(255, 122, 24, 0.8), rgba(255, 122, 24, 0.8)) 14px calc(100% - 14px) / 2.5px 32px no-repeat,
+    /* Bottom-right corner bracket */
+    linear-gradient(90deg, rgba(255, 122, 24, 0.8), rgba(255, 122, 24, 0.8)) calc(100% - 14px) calc(100% - 14px) / 32px 2.5px no-repeat,
+    linear-gradient(180deg, rgba(255, 122, 24, 0.8), rgba(255, 122, 24, 0.8)) calc(100% - 14px) calc(100% - 14px) / 2.5px 32px no-repeat,
+    /* Bottom center neon accent line */
+    linear-gradient(90deg, transparent, rgba(232, 129, 36, 0.55), transparent) 50% 100% / 55% 2px no-repeat;
+}
+
+/* Keep tight balanced proportions inside Rent Vehicles & About Us framed headers */
+.lux-fleet-header {
+  margin-bottom: 2.25rem !important;
+}
+
+.lux-fleet-header .lux-fleet-header-grid {
+  margin-bottom: 0 !important;
+}
+
+.lux-about-hero {
+  padding: 1.5rem 0 1.5rem !important;
+}
+
+/* Framed hero columns stay cleanly inside frame padding during slide-in */
+.hero-split-stage.hero-reel-showcase,
+.lux-about-hero-grid,
+.lux-fleet-header {
+  padding: 2.15rem 2.5rem !important;
+}
+
+.bixi-anim-ready .hero-reel-left.bixi-reveal.reveal-words-lr,
+.bixi-anim-ready .lux-manifesto-block.bixi-reveal.reveal-words-lr,
+.bixi-anim-ready .lux-fleet-header-left.bixi-reveal.reveal-words-lr {
+  transform: translateX(-32px);
+}
+
+.bixi-anim-ready .hero-reel-right.bixi-reveal.reveal-car-rl,
+.bixi-anim-ready .lux-storefront-spotlight-card.bixi-reveal.reveal-car-rl,
+.bixi-anim-ready .lux-fleet-header-right.bixi-reveal.reveal-car-rl {
+  transform: translateX(32px) scale(0.97);
+}
+
+@media (max-width: 991px) {
+  .hero-split-stage.hero-reel-showcase,
+  .lux-about-hero-grid,
+  .lux-fleet-header {
+    padding: 1.6rem 1.4rem !important;
+    border-radius: 22px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-split-stage.hero-reel-showcase,
+  .lux-about-hero-grid,
+  .lux-fleet-header {
+    padding: 1.25rem 1rem !important;
+    border-radius: 18px !important;
+  }
+  .hero-split-stage.hero-reel-showcase::before,
+  .lux-about-hero-grid::before,
+  .lux-fleet-header::before {
+    background:
+      linear-gradient(90deg, #FF7A18, #FF7A18) 10px 10px / 22px 2px no-repeat,
+      linear-gradient(180deg, #FF7A18, #FF7A18) 10px 10px / 2px 22px no-repeat,
+      linear-gradient(90deg, #FF7A18, #FF7A18) calc(100% - 10px) 10px / 22px 2px no-repeat,
+      linear-gradient(180deg, #FF7A18, #FF7A18) calc(100% - 10px) 10px / 2px 22px no-repeat,
+      linear-gradient(90deg, transparent, rgba(255, 122, 24, 0.8), transparent) 50% 0 / 56% 2px no-repeat;
+  }
+  .hero-split-stage.hero-reel-showcase::after,
+  .lux-about-hero-grid::after,
+  .lux-fleet-header::after {
+    background:
+      linear-gradient(90deg, rgba(255, 122, 24, 0.75), rgba(255, 122, 24, 0.75)) 10px calc(100% - 10px) / 22px 2px no-repeat,
+      linear-gradient(180deg, rgba(255, 122, 24, 0.75), rgba(255, 122, 24, 0.75)) 10px calc(100% - 10px) / 2px 22px no-repeat,
+      linear-gradient(90deg, rgba(255, 122, 24, 0.75), rgba(255, 122, 24, 0.75)) calc(100% - 10px) calc(100% - 10px) / 22px 2px no-repeat,
+      linear-gradient(180deg, rgba(255, 122, 24, 0.75), rgba(255, 122, 24, 0.75)) calc(100% - 10px) calc(100% - 10px) / 2px 22px no-repeat;
   }
 }
