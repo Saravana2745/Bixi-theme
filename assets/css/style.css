@@ -109,6 +109,10 @@
 .bixi-badge-icon.orange {
   color: var(--color-orange);
 }
+.btn-primary .bixi-badge-icon,
+.btn-primary .bixi-badge-icon.orange {
+  color: #FFFFFF;
+}
 .bixi-badge-icon.white {
   color: #FFFFFF;
 }
@@ -3799,6 +3803,9 @@ select.form-control:focus {
   font-weight: 700;
   color: #FFFFFF;
   transition: color 0.2s;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 .lux-faq-trigger:hover .lux-faq-q {
   color: var(--color-orange, #E88124);
@@ -3809,6 +3816,13 @@ select.form-control:focus {
   font-weight: 300;
   color: var(--color-orange, #E88124);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 .lux-faq-row.active .lux-faq-indicator {
   transform: rotate(45deg);
@@ -15691,6 +15705,69 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .lux-m-sub {
     text-align: center !important;
     hyphens: none;
+  }
+
+  /* ── Contact page: mobile padding, map button stack, form stack, transit grid ── */
+  .contact-card,
+  .bixi-contact-map-card {
+    padding: 1.35rem 1.05rem !important;
+    border-radius: 16px !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .contact-card .form-row-2col {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1rem !important;
+  }
+  .contact-card .form-group {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .contact-card .form-control {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .bixi-contact-map-frame-wrap {
+    height: 300px !important;
+  }
+  .bixi-contact-transit-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  #contactMapBtnRow {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.6rem !important;
+    width: 100% !important;
+  }
+  #contactMapBtnRow .btn-primary,
+  #contactMapBtnRow .btn-secondary {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: normal !important;
+    font-size: 0.84rem !important;
+    padding: 0.7rem 1rem !important;
+    line-height: 1.35 !important;
+  }
+  .lux-faq-row {
+    overflow: hidden !important;
+  }
+  .lux-faq-trigger {
+    padding: 1.25rem 0 !important;
+  }
+  .lux-faq-q {
+    font-size: 1rem !important;
+  }
+  .lux-faq-indicator {
+    margin-right: 4px !important;
+  }
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 }
 

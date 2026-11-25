@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=55.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=56.0">
 
   <!-- ContactPage & LocalBusiness Schema -->
     <!-- Mobile Floating Quick Call / Rent Bar -->
@@ -580,7 +580,7 @@
               <h2 style="font-size: 1.8rem; color: #FFFFFF; margin: 0.25rem 0;">Locate BIXI Ride on Google Maps</h2>
               <p style="color: #94A3B8; font-size: 0.95rem; margin: 0;">Shop 1: Sankar Nagar, K. Pudur (Mattuthavani) &bull; Shop 2: Thalaiviruchan Lane (Madurai Main / Railway Junction)</p>
             </div>
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+            <div id="contactMapBtnRow" style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
               <button id="mapTabShop1" onclick="switchBixiMap('shop1')" class="btn-primary" style="padding: 0.75rem 1.4rem; font-size: 0.88rem; cursor: pointer; border: none; font-weight: 600;">
                 <span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg></span> Shop 1: Mattuthavani Hub (882+ Reviews)
               </button>
@@ -592,7 +592,7 @@
               </a>
             </div>
           </div>
-          <div style="width: 100%; height: 440px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); position: relative;">
+          <div class="bixi-contact-map-frame-wrap" style="width: 100%; height: 440px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); position: relative;">
             <iframe id="bixiContactMapFrame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.8674621368555!2d78.1490831!3d9.944983899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c5112a0e51b3%3A0xc6dce400f2b6221d!2sBixi%20Ride%20-%20Bike%20%26%20Car%20Rental%20Madurai!5e0!3m2!1sen!2sin!4v1794765259662!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BIXI Ride Madurai Official Google Maps Location Pin"></iframe>
           </div>
           <script>
@@ -614,7 +614,7 @@
               }
             }
           </script>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+          <div class="bixi-contact-transit-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
             <div class="transit-card" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1rem;">
               <strong style="color: #E88124; display: block; margin-bottom: 0.25rem;"><span class="bixi-badge-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"/><path d="m9 20 3-6-3-3 4-2 3 3v8"/></svg></span> Shop 1: From Mattuthavani Bus Stand</strong>
               <span style="font-size: 0.85rem; color: #94A3B8;">No. 16, Sankar Nagar 4th St (beside Karpaga Nagar), K. Pudur. 3 mins walk from MIBT Stand. Call: +91 90370 00266.</span>
@@ -911,7 +911,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/react-bits-animations.js?v=44.0"></script>
-  <script src="assets/js/main.js?v=55.0"></script>
+  <script src="assets/js/react-bits-animations.js?v=56.0"></script>
+  <script src="assets/js/main.js?v=56.0"></script>
 </body>
 </html>
