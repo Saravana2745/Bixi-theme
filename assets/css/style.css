@@ -2639,6 +2639,109 @@ select.form-control:focus {
   opacity: 0.72;
 }
 
+/* ==========================================================================
+   AUTOMOTIVE TORN-ASPHALT, TIRE-TREAD & ROAD-CRACK SECTION DIVIDERS
+   ========================================================================== */
+.bixi-3d-manifesto-stage,
+.lux-expeditions-section,
+.lux-testimonials-section,
+.bixi-seo-guide-section,
+.site-footer {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.bixi-section-divider {
+  position: relative;
+  width: 100%;
+  height: 74px;
+  overflow: hidden;
+  background: var(--div-bottom, #080A0F);
+  z-index: 6;
+  pointer-events: none;
+  user-select: none;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+
+.bixi-section-divider svg.bixi-div-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bixi-div-top-fill {
+  fill: var(--div-top, #0B0D12);
+}
+
+.bixi-div-tear-shadow {
+  fill: rgba(0, 0, 0, 0.55);
+}
+
+.bixi-div-crack-glow {
+  fill: none;
+  stroke: #FF7A18;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(255, 122, 24, 0.75));
+}
+
+.bixi-div-crack-sub {
+  fill: none;
+  stroke: rgba(255, 122, 24, 0.42);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+}
+
+.bixi-div-tread-mark {
+  fill: rgba(255, 122, 24, 0.24);
+}
+
+.bixi-div-dash-line {
+  fill: none;
+  stroke: rgba(232, 129, 36, 0.55);
+  stroke-width: 2;
+  stroke-dasharray: 14 14;
+}
+
+.bixi-div-emblem {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0D1017;
+  border: 1.5px solid rgba(255, 122, 24, 0.65);
+  box-shadow: 0 0 22px rgba(255, 122, 24, 0.35), inset 0 0 10px rgba(255, 122, 24, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bixi-div-emblem svg {
+  width: 22px;
+  height: 22px;
+  stroke: #FF7A18;
+  fill: none;
+}
+
+@media (max-width: 640px) {
+  .bixi-section-divider {
+    height: 48px;
+  }
+  .bixi-div-emblem {
+    width: 34px;
+    height: 34px;
+  }
+  .bixi-div-emblem svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
 
 /* ═══════════════════════════════════════════════════════════════════════
    BIXI RIDE — ULTRA-LUXURY STUDIO & EDITORIAL DESIGN SYSTEM v8.0
@@ -14601,4 +14704,107 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   box-shadow: none;
   cursor: not-allowed;
   opacity: 0.72;
+}
+
+/* ==========================================================================
+   AUTOMOTIVE TORN-ASPHALT, TIRE-TREAD & ROAD-CRACK SECTION DIVIDERS
+   ========================================================================== */
+.bixi-3d-manifesto-stage,
+.lux-expeditions-section,
+.lux-testimonials-section,
+.bixi-seo-guide-section,
+.site-footer {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.bixi-section-divider {
+  position: relative;
+  width: 100%;
+  height: 74px;
+  overflow: hidden;
+  background: var(--div-bottom, #080A0F);
+  z-index: 6;
+  pointer-events: none;
+  user-select: none;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+
+.bixi-section-divider svg.bixi-div-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bixi-div-top-fill {
+  fill: var(--div-top, #0B0D12);
+}
+
+.bixi-div-tear-shadow {
+  fill: rgba(0, 0, 0, 0.55);
+}
+
+.bixi-div-crack-glow {
+  fill: none;
+  stroke: #FF7A18;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(255, 122, 24, 0.75));
+}
+
+.bixi-div-crack-sub {
+  fill: none;
+  stroke: rgba(255, 122, 24, 0.42);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+}
+
+.bixi-div-tread-mark {
+  fill: rgba(255, 122, 24, 0.24);
+}
+
+.bixi-div-dash-line {
+  fill: none;
+  stroke: rgba(232, 129, 36, 0.55);
+  stroke-width: 2;
+  stroke-dasharray: 14 14;
+}
+
+.bixi-div-emblem {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0D1017;
+  border: 1.5px solid rgba(255, 122, 24, 0.65);
+  box-shadow: 0 0 22px rgba(255, 122, 24, 0.35), inset 0 0 10px rgba(255, 122, 24, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bixi-div-emblem svg {
+  width: 22px;
+  height: 22px;
+  stroke: #FF7A18;
+  fill: none;
+}
+
+@media (max-width: 640px) {
+  .bixi-section-divider {
+    height: 48px;
+  }
+  .bixi-div-emblem {
+    width: 34px;
+    height: 34px;
+  }
+  .bixi-div-emblem svg {
+    width: 17px;
+    height: 17px;
+  }
 }
