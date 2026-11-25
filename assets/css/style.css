@@ -15334,7 +15334,24 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
       linear-gradient(180deg, rgba(255, 122, 24, 0.75), rgba(255, 122, 24, 0.75)) calc(100% - 10px) calc(100% - 10px) / 2px 22px no-repeat;
   }
 
-  /* Prevent grid children from expanding mobile horizontal width */
+  /* Prevent any grid/flex/animation element from overflowing or clipping on mobile */
+  .container,
+  main,
+  section,
+  .hero-banner-wrapper,
+  .hero-split-stage,
+  .hero-split-left,
+  .hero-split-right,
+  .manifesto-split-grid,
+  .manifesto-left-box,
+  .manifesto-3d-deck,
+  .lux-about-hero-grid,
+  .lux-manifesto-block,
+  .lux-storefront-spotlight-card,
+  .lux-split-editorial,
+  .lux-se-left,
+  .lux-se-right,
+  .lux-about-showcase-card,
   .lux-fleet-header,
   .lux-fleet-header-grid,
   .lux-fleet-header-left,
@@ -15345,11 +15362,119 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   .lux-roster-grid,
   .lux-roster-item,
   .lux-filter-bar,
-  .lux-hub-locations-strip {
+  .lux-hub-locations-strip,
+  .blog-hero-pillar-card,
+  .contact-grid,
+  .bixi-legal-grid,
+  .bixi-legal-card,
+  .bixi-seo-grid,
+  .bixi-seo-card,
+  .mobile-floating-bar,
+  .mobile-floating-inner {
     min-width: 0 !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
+
+  .hero-split-stage.hero-reel-showcase,
+  .lux-about-hero-grid,
+  .lux-fleet-header {
+    padding: 1.55rem 1.05rem !important;
+    border-radius: 18px !important;
+    width: 100% !important;
+  }
+
+  /* Disable horizontal X slides on mobile so zero text/frames ever clip off edges */
+  .bixi-anim-ready .bixi-reveal,
+  .bixi-anim-ready .bixi-reveal.reveal-words-lr,
+  .bixi-anim-ready .bixi-reveal.reveal-words-rl,
+  .bixi-anim-ready .bixi-reveal.reveal-car-rl,
+  .bixi-anim-ready .bixi-reveal.reveal-car-lr,
+  .bixi-anim-ready .bixi-reveal.reveal-left,
+  .bixi-anim-ready .bixi-reveal.reveal-right,
+  .bixi-anim-ready .bixi-reveal.reveal-swing-left,
+  .bixi-anim-ready .bixi-reveal.reveal-swing-right,
+  .bixi-anim-ready .bixi-reveal.reveal-flip-card,
+  .bixi-anim-ready .bixi-reveal.reveal-pop-zoom,
+  .bixi-anim-ready .bixi-reveal.reveal-drop-header,
+  .bixi-anim-ready .bixi-reveal.reveal-rise-up {
+    transform: translateY(14px) !important;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out !important;
+    transition-delay: 0s !important;
+  }
+  .bixi-anim-ready .bixi-reveal.bixi-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Keep Hero Turntable, Arrows & Thumbnails cleanly centered inside mobile frame */
+  .hero-reel-right,
+  .reel-turntable-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 245px !important;
+  }
+  .turntable-plate-stage {
+    width: 100% !important;
+    max-width: 265px !important;
+    height: 210px !important;
+    margin: 0 auto !important;
+  }
+  .turntable-platter-disc {
+    width: 100% !important;
+    max-width: 255px !important;
+    height: 98px !important;
+    bottom: 0 !important;
+  }
+  .turntable-vehicle-img {
+    max-width: 88% !important;
+    max-height: 148px !important;
+  }
+  .turntable-nav-arrows {
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 2px !important;
+  }
+  .turntable-arrow-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .reel-thumbnail-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.45rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Fix Scrollytelling Card full-width overlay on mobile */
+  .scrolly-narrative-container {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+  .scrolly-story-card,
+  .scrolly-story-card.story-stage-1,
+  .scrolly-story-card.story-stage-2,
+  .scrolly-story-card.story-stage-3 {
+    position: absolute !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    width: calc(100% - 1.5rem) !important;
+    max-width: calc(100% - 1.5rem) !important;
+    bottom: 4.85rem !important;
+    top: auto !important;
+    box-sizing: border-box !important;
+  }
+  .scrolly-story-badge {
+    white-space: normal !important;
+    max-width: 100% !important;
+  }
+
   .lux-flagship-card {
     padding: 1.35rem 1rem !important;
   }

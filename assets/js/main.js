@@ -1432,12 +1432,14 @@
 
       document.documentElement.classList.add('bixi-anim-ready');
 
+      var revealPad = window.innerWidth <= 768 ? 260 : 140;
+
       function revealVisibleNow() {
         var vh = window.innerHeight || document.documentElement.clientHeight;
         elements.forEach((el) => {
           if (el.classList.contains('bixi-revealed')) return;
           var rect = el.getBoundingClientRect();
-          if (rect.top <= vh + 140) {
+          if (rect.top <= vh + revealPad) {
             el.classList.add('bixi-revealed');
           }
         });
@@ -1453,7 +1455,7 @@
           });
         }, {
           threshold: 0.01,
-          rootMargin: '140px 0px 140px 0px'
+          rootMargin: revealPad + 'px 0px ' + revealPad + 'px 0px'
         });
 
         elements.forEach((el) => {
