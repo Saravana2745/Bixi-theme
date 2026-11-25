@@ -57,7 +57,7 @@
   <link rel="preload" as="image" href="assets/images/bikes/ray-zr-125.webp" type="image/webp">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css?v=44.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=47.0">
 
   <!-- Structured Data: LocalBusiness & MotorcycleRental Schema -->
   <script type="application/ld+json">
@@ -1285,36 +1285,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   cursor: pointer !important;
 }
 
-/* 3. Smooth Scroll Reveal Animations Across Every Page */
+/* 3. Safe Scroll Animation Visibility Defaults (Choreography handled in style.css) */
 .bixi-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  visibility: visible;
 }
-
-.bixi-reveal.reveal-left {
-  transform: translateX(-35px);
-}
-
-.bixi-reveal.reveal-right {
-  transform: translateX(35px);
-}
-
-.bixi-reveal.reveal-zoom {
-  transform: scale(0.93) translateY(18px);
-}
-
-.bixi-reveal.bixi-revealed {
-  opacity: 1 !important;
-  transform: translate(0) scale(1) !important;
-}
-
-.bixi-reveal.delay-1 { transition-delay: 0.08s; }
-.bixi-reveal.delay-2 { transition-delay: 0.16s; }
-.bixi-reveal.delay-3 { transition-delay: 0.24s; }
-.bixi-reveal.delay-4 { transition-delay: 0.32s; }
-.bixi-reveal.delay-5 { transition-delay: 0.40s; }
 
 @media (prefers-reduced-motion: reduce) {
   .bixi-reveal {
@@ -3345,7 +3319,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     };
   </script>
   <script src="assets/js/react-bits-animations.js?v=44.0"></script>
-  <script src="assets/js/main.js?v=44.0"></script>
+  <script src="assets/js/main.js?v=47.0"></script>
 <script src="assets/js/hero-plate-rotator.js?v=44.0"></script>
 </body>
 </html>

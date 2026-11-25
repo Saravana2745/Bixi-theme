@@ -1295,78 +1295,79 @@
       }, 4000);
     }
 
-    // 8. Smooth Bidirectional Fade-In / Fade-Out & Page Transition Engine Across Every Page
+    // 8. Section-Specific Directional Motion Engine (Words L->R, Vehicles R->L, Zero Empty Space)
     function initScrollReveal() {
       var oldBar = document.getElementById('bixiScrollProgress');
       if (oldBar) {
         oldBar.remove();
       }
-
-      // Restore visibility when returning via browser back/forward cache
-      window.addEventListener('pageshow', function () {
-        document.body.classList.remove('bixi-page-fadeout');
-      });
-
-      // Smooth fade-out transition on internal page navigation
-      document.addEventListener('click', function (e) {
-        var link = e.target.closest ? e.target.closest('a[href]') : null;
-        if (!link) return;
-        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        var href = link.getAttribute('href') || '';
-        if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('javascript:')) return;
-        if (link.getAttribute('target') === '_blank' || link.hasAttribute('download')) return;
-        if (href.indexOf('wp-admin') !== -1 || href.indexOf('wa.me') !== -1) return;
-        try {
-          var targetUrl = new URL(link.href, window.location.href);
-          if (targetUrl.origin !== window.location.origin) return;
-          if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search) return;
-          e.preventDefault();
-          document.body.classList.add('bixi-page-fadeout');
-          setTimeout(function () {
-            window.location.href = targetUrl.href;
-          }, 210);
-        } catch (err) {}
-      });
+      document.body.classList.remove('bixi-page-fadeout');
 
       const revealSpecs = [
-        /* Split Editorial & Showcase Layouts: Words Left->Right, Car/Visual Drives Right->Left */
-        { selector: '.lux-se-left, .manifesto-left-box, .portal-info, .lux-manifesto-block', anim: 'reveal-left' },
-        { selector: '.lux-se-right, .manifesto-3d-deck, .portal-visual, .lux-about-showcase-card', anim: 'reveal-drive-right' },
-        { selector: '.blog-hero-pillar-card > div:first-child', anim: 'reveal-left' },
-        { selector: '.blog-hero-pillar-card > div:last-child', anim: 'reveal-drive-right' },
-        { selector: '.contact-grid > .contact-card:first-child', anim: 'reveal-left' },
-        { selector: '.contact-grid > *:last-child', anim: 'reveal-right' },
+        /* Section 1 (Hero): Words Left->Right, Vehicle Turntable Right->Left, Form Rise Up */
+        { selector: '.hero-reel-left', anim: 'reveal-words-lr' },
+        { selector: '.hero-reel-right', anim: 'reveal-car-rl' },
+        { selector: '.banner-docked-widget', anim: 'reveal-rise-up' },
 
-        /* Section Headers: Crisp Top Drop & Curtain */
-        { selector: '.section-head, .lux-fleet-hero .lux-fleet-header, .article-header', anim: 'reveal-drop' },
-        { selector: '.lux-section-header', anim: 'reveal-curtain' },
+        /* Section 3 (BIXI Manifesto): Words Left->Right, 3D Cards Drive Right->Left */
+        { selector: '.manifesto-left-box', anim: 'reveal-words-lr' },
+        { selector: '.manifesto-3d-deck .card-3d-tilt', anim: 'reveal-car-rl' },
 
-        /* 3D Showcases, Stages, Maps & Consoles */
-        { selector: '.lux-stage-container, .lux-tariff-3d-card, .bixi-contact-map-card, .footer-map-card, .blog-post-featured-img-card', anim: 'reveal-flip' },
-        { selector: '.lux-expedition-console, .bixi-section-divider', anim: 'reveal-curtain' },
+        /* Section 4 (Curated Fleet & 3D Portal): Vehicle Photos Right->Left, Card Copy Left->Right */
+        { selector: '#madurai-fleet-expedition-section .section-head', anim: 'reveal-drop-header' },
+        { selector: '.fleet-runway-card .runway-veh-img', anim: 'reveal-car-rl' },
+        { selector: '.fleet-runway-card .runway-info', anim: 'reveal-words-lr' },
+        { selector: '.portal-info, .lux-se-left, .lux-manifesto-block', anim: 'reveal-words-lr' },
+        { selector: '.portal-visual, .lux-se-right, .lux-about-showcase-card', anim: 'reveal-car-rl' },
 
-        /* Telemetry, Metrics & Grand CTAs: Elastic Zoom Pop */
-        { selector: '.lux-stat-col, .lux-metric-item, .lux-metrics-strip, .lux-grand-cta, .bixi-legal-support-card', anim: 'reveal-zoom' },
+        /* Section 5 (Telemetry Strip): Header Drop + Pop-Zoom Stat Columns */
+        { selector: '.lux-live-status-bar', anim: 'reveal-drop-header' },
+        { selector: '.lux-stat-col, .lux-metric-item', anim: 'reveal-pop-zoom' },
 
-        /* Fleet Runway & Featured Vehicle Cards: Alternating Left/Right Drive */
-        { selector: '.fleet-runway-card, .lux-fc-card', anim: 'alternate-drive' },
+        /* Section 6 (BIXI Studio Showroom): Center Car Drives R->L, HUDs & Text Split Left/Right */
+        { selector: '#bixi-studio-showroom .lux-section-header', anim: 'reveal-words-lr' },
+        { selector: '.lux-vehicle-display', anim: 'reveal-car-rl' },
+        { selector: '.lux-hud-left-top, .lux-hud-left-bottom, .lux-stage-cta-info', anim: 'reveal-words-lr' },
+        { selector: '.lux-hud-right-top, .lux-hud-right-bottom, .lux-stage-buttons', anim: 'reveal-words-rl' },
+        { selector: '.lux-selector-tab', anim: 'reveal-rise-up' },
 
-        /* Catalog Roster & Blog Cards: Rich Varied Cycle (Flip / Zoom / Drive) */
-        { selector: '.lux-item-card, .blog-card', anim: 'cycle-variety' },
+        /* Section 7 (Beyond the Temple Gates): Header Slide L->R, 3D Route Tabs Flip, Meta Rise Up */
+        { selector: '#bixi-expeditions .lux-section-header', anim: 'reveal-words-lr' },
+        { selector: '.lux-route-tab', anim: 'reveal-flip-card' },
+        { selector: '.lux-route-meta-item', anim: 'reveal-rise-up' },
 
-        /* Sequential Timeline Steps & Tenets: Forward Flow Left->Right */
-        { selector: '.lux-flow-step, .lux-tenet-item, .lux-tenet-card', anim: 'reveal-left' },
+        /* Section 8 (3-Step Booking Flow): Sequential Conveyor Left->Right */
+        { selector: '#bixi-flow .lux-section-header', anim: 'reveal-drop-header' },
+        { selector: '.lux-flow-step', anim: 'reveal-words-lr' },
 
-        /* Policies, Hubs, Customer Stories, Circuits & SEO Directory */
-        { selector: '.lux-policy-card, .lux-hub-card, .circuit-card', anim: 'reveal-flip' },
-        { selector: '.lux-customer-card, .testimonial-card', anim: 'alternate-flip-zoom' },
-        { selector: '.bixi-seo-card', anim: 'cycle-seo' },
+        /* Section 9 (Customer Voices): Alternating Swing Left / Right */
+        { selector: '#bixi-voices .lux-section-header', anim: 'reveal-words-lr' },
+        { selector: '.lux-customer-card, .testimonial-card', anim: 'alternate-swing' },
 
-        /* Zig-Zag Left/Right Rows for FAQs & Legal Cards */
+        /* Section 10 (FAQ Accordion): Zig-Zag Left / Right Rows */
         { selector: '.lux-faq-row, .bixi-legal-card, .faq-item', anim: 'alternate-lr' },
 
-        /* General Fallbacks */
-        { selector: '.feature-card, .step-card, .bike-card, .place-card, .contact-card, .value-card, .team-card, .timeline-item, .hub-item, .transit-card, .blog-toc-card, .blog-toc-cta-card', anim: 'reveal-up' }
+        /* Section 11 (Grand CTA): Elastic Headline Zoom + Lead Slide + Buttons Rise */
+        { selector: '.lux-grand-cta-title', anim: 'reveal-pop-zoom' },
+        { selector: '.lux-grand-cta-lead', anim: 'reveal-words-lr' },
+        { selector: '.lux-grand-cta-buttons', anim: 'reveal-rise-up' },
+
+        /* Section 12 (SEO Directory): Varied Flip / Swing / Pop Cards */
+        { selector: '.bixi-seo-card', anim: 'cycle-seo' },
+
+        /* Subpages: Bikes Fleet, About Us, Blog, Contact */
+        { selector: '.lux-item-card .lux-card-img', anim: 'reveal-car-rl' },
+        { selector: '.lux-item-card', anim: 'reveal-rise-up' },
+        { selector: '.lux-tenet-item, .lux-tenet-card, .lux-policy-card', anim: 'reveal-flip-card' },
+        { selector: '.lux-hub-card', anim: 'cycle-hubs' },
+        { selector: '.blog-hero-pillar-card > div:first-child', anim: 'reveal-words-lr' },
+        { selector: '.blog-hero-pillar-card > div:last-child', anim: 'reveal-car-rl' },
+        { selector: '.blog-card', anim: 'alternate-swing' },
+        { selector: '.contact-grid > .contact-card:first-child', anim: 'reveal-words-lr' },
+        { selector: '.contact-grid > *:last-child', anim: 'reveal-words-rl' },
+        { selector: '.bixi-contact-map-card, .footer-map-card, .lux-tariff-3d-card, .blog-post-featured-img-card', anim: 'reveal-pop-zoom' },
+        { selector: '.section-head, .lux-fleet-hero .lux-fleet-header, .article-header, .lux-section-header', anim: 'reveal-drop-header' },
+        { selector: '.feature-card, .step-card, .bike-card, .place-card, .contact-card, .value-card, .team-card, .timeline-item, .hub-item, .transit-card, .blog-toc-card, .blog-toc-cta-card, .bixi-legal-support-card', anim: 'reveal-rise-up' }
       ];
 
       const collected = [];
@@ -1379,24 +1380,19 @@
           seen.add(el);
 
           let chosenAnim = spec.anim;
-          if (chosenAnim === 'alternate-drive') {
-            chosenAnim = idx % 2 === 0 ? 'reveal-drive-left' : 'reveal-drive-right';
-          } else if (chosenAnim === 'alternate-lr') {
-            chosenAnim = idx % 2 === 0 ? 'reveal-left' : 'reveal-right';
-          } else if (chosenAnim === 'alternate-flip-zoom') {
-            chosenAnim = idx % 2 === 0 ? 'reveal-flip' : 'reveal-zoom';
-          } else if (chosenAnim === 'cycle-variety') {
-            var vSet = ['reveal-flip', 'reveal-drive-right', 'reveal-zoom', 'reveal-drive-left'];
-            chosenAnim = vSet[idx % vSet.length];
+          if (chosenAnim === 'alternate-lr') {
+            chosenAnim = idx % 2 === 0 ? 'reveal-words-lr' : 'reveal-words-rl';
+          } else if (chosenAnim === 'alternate-swing') {
+            chosenAnim = idx % 2 === 0 ? 'reveal-swing-left' : 'reveal-swing-right';
+          } else if (chosenAnim === 'cycle-hubs') {
+            var hSet = ['reveal-words-lr', 'reveal-pop-zoom', 'reveal-words-rl'];
+            chosenAnim = hSet[idx % hSet.length];
           } else if (chosenAnim === 'cycle-seo') {
-            var sSet = ['reveal-left', 'reveal-right', 'reveal-flip', 'reveal-zoom'];
+            var sSet = ['reveal-flip-card', 'reveal-swing-left', 'reveal-pop-zoom', 'reveal-swing-right'];
             chosenAnim = sSet[idx % sSet.length];
           }
 
-          el.classList.add('bixi-reveal');
-          if (chosenAnim !== 'reveal-up') {
-            el.classList.add(chosenAnim);
-          }
+          el.classList.add('bixi-reveal', chosenAnim);
           collected.push(el);
         });
       });
@@ -1404,46 +1400,68 @@
       const elements = collected;
       if (!elements.length) return;
 
-      // Apply stagger delays cleanly within parent containers
+      // Apply clean subtle stagger within sibling groups (skipping card child wrappers)
       var parentCounters = new WeakMap();
       elements.forEach((el) => {
+        if (el.classList.contains('runway-veh-img') || el.classList.contains('runway-info')) return;
         var parent = el.parentElement;
         if (parent) {
           var count = parentCounters.get(parent) || 0;
-          if (count > 0 && count <= 5) {
+          if (count > 0 && count <= 4) {
             el.classList.add('delay-' + count);
           }
-          parentCounters.set(parent, (count + 1) % 6);
+          parentCounters.set(parent, (count + 1) % 5);
         }
       });
 
       document.documentElement.classList.add('bixi-anim-ready');
+
+      function revealVisibleNow() {
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        elements.forEach((el) => {
+          if (el.classList.contains('bixi-revealed')) return;
+          var rect = el.getBoundingClientRect();
+          if (rect.top <= vh + 140) {
+            el.classList.add('bixi-revealed');
+          }
+        });
+      }
 
       if ('IntersectionObserver' in window) {
         const revealObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('bixi-revealed');
-            } else {
-              // Bidirectional fade-out when element exits viewport
-              entry.target.classList.remove('bixi-revealed');
+              revealObserver.unobserve(entry.target);
             }
           });
         }, {
-          threshold: 0.04,
-          rootMargin: '40px 0px -30px 0px'
+          threshold: 0.01,
+          rootMargin: '140px 0px 140px 0px'
         });
 
         elements.forEach((el) => {
-          var rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
-            el.classList.add('bixi-revealed');
-          }
           revealObserver.observe(el);
         });
       } else {
         elements.forEach((el) => el.classList.add('bixi-revealed'));
       }
+
+      // Immediate paint + scroll sweep guarantee: zero empty black holes anywhere
+      requestAnimationFrame(revealVisibleNow);
+      var scrollTicking = false;
+      window.addEventListener('scroll', function () {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          requestAnimationFrame(function () {
+            revealVisibleNow();
+            scrollTicking = false;
+          });
+        }
+      }, { passive: true });
+      setTimeout(function () {
+        elements.forEach((el) => el.classList.add('bixi-revealed'));
+      }, 4500);
 
       // Metric Counter Animation immediately on load
       function animateMetricCounter(el) {
