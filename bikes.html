@@ -2044,7 +2044,29 @@
               <span id="modalTotalEstimate" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-orange);">₹1,000</span>
             </div>
           </div>
-          <button type="submit" id="bixiPayAdvanceBtn" class="btn-primary" style="width: 100%; height: 52px; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+
+          <!-- Mandatory Scroll-to-Read Terms & Liability Agreement before Razorpay -->
+          <div id="bixiTermsGateCard" class="bixi-terms-gate-card">
+            <div class="bixi-terms-gate-head">
+              <span>Mandatory Terms &amp; Rider Liability</span>
+              <span id="bixiTermsScrollStatus" class="bixi-terms-scroll-badge">Scroll down to read &darr;</span>
+            </div>
+            <div id="bixiTermsScrollBox" class="bixi-terms-scrollbox" tabindex="0" aria-label="Scroll to read rental terms and conditions">
+              <p><strong>1. Mandatory Original ID &amp; Licence:</strong> You must bring your <strong>original Driving Licence</strong> and valid <strong>Government ID Proof</strong> (Aadhaar, Passport, Voter ID, or PAN) along with a copy when collecting the vehicle in Madurai.</p>
+              <p><strong>2. Scratches, Dents &amp; Vehicle Damages:</strong> You must inspect the vehicle before pickup. Any scratches, dents, collision, or damage caused during your rental period must be paid for in full by the customer (including repair/replacement costs or uncovered insurance excess).</p>
+              <p><strong>3. Government &amp; Traffic Fines:</strong> Customers take 100% responsibility for all traffic fines and penalties incurred during the rental — including <strong>riding without a helmet</strong>, <strong>over-speeding</strong>, <strong>jumping traffic signals (red light)</strong>, seat belt violations, and parking challans.</p>
+              <p><strong>4. Vehicle Theft &amp; Total Loss:</strong> The customer who rents and collects the vehicle from BIXI RIDE Madurai is completely responsible in the event of vehicle theft, loss, or abandonment.</p>
+              <p><strong>5. Mandatory Safety &amp; Refund Policy:</strong> Helmets are compulsory on bikes and seat belts in cars. Drunk driving is strictly prohibited. Booking advances (₹300 Bikes / ₹500 Cars) are <strong>100% non-refundable</strong> upon cancellation or no-show.
+                <br><a href="terms-and-conditions.html" target="_blank" rel="noopener">Full Terms &amp; Conditions &#8599;</a> &bull; <a href="safety.html" target="_blank" rel="noopener">Safety &amp; Damage Policy &#8599;</a> &bull; <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy &#8599;</a>
+              </p>
+            </div>
+            <label id="bixiTermsCheckLabel" class="bixi-terms-check-row is-locked" for="bixiAgreeTermsCheckbox">
+              <input type="checkbox" id="bixiAgreeTermsCheckbox" disabled required>
+              <span>I have read and agree to bring Original ID Proof &amp; take full responsibility for vehicle damages, scratches, traffic fines (helmet/speed/signal), and vehicle theft.</span>
+            </label>
+          </div>
+
+          <button type="submit" id="bixiPayAdvanceBtn" class="bixi-razorpay-btn no-magnet" disabled>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
             <span>Pay Advance (<span id="modalBtnAdvanceAmt">₹300</span>) via Razorpay</span>
           </button>
@@ -2102,7 +2124,7 @@
           </div>
         </div>
 
-        <button type="button" id="bixiSuccessExitBtn" class="btn-primary" style="width: 100%; height: 50px; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <button type="button" id="bixiSuccessExitBtn" class="btn-primary no-magnet" style="width: 100%; height: 50px; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
           <span>Exit &amp; Return to Fleet</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
@@ -2125,11 +2147,11 @@
         </p>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
-          <button type="button" id="bixiTryAgainBtn" class="btn-primary" style="height: 50px; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <button type="button" id="bixiTryAgainBtn" class="bixi-razorpay-btn no-magnet is-ready" style="height: 50px; font-size: 1rem;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 17px; height: 17px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
             <span>Try Again</span>
           </button>
-          <button type="button" id="bixiFailExitBtn" class="btn-secondary" style="height: 50px; font-size: 1rem;">
+          <button type="button" id="bixiFailExitBtn" class="btn-secondary no-magnet" style="height: 50px; font-size: 1rem;">
             Exit
           </button>
         </div>
@@ -2163,6 +2185,15 @@
             <li><a href="bikes.html" class="footer-link">Rent Vehicles</a></li>
             <li><a href="blog.html" class="footer-link">Travel Guides</a></li>
             <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Safety &amp; Legal</h4>
+          <ul class="footer-links">
+            <li><a href="terms-and-conditions.html" class="footer-link">Terms &amp; Conditions</a></li>
+            <li><a href="safety.html" class="footer-link">Safety &amp; Damage Policy</a></li>
+            <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
             <li><a href="sitemap.xml" class="footer-link">XML Sitemap</a></li>
           </ul>
         </div>
@@ -2215,6 +2246,9 @@
       <div class="footer-bottom">
         <div>&copy; 2026 BIXI Ride. All rights reserved. Madurai's #1 Car &amp; Bike Rental.</div>
         <div style="display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap;">
+          <a href="terms-and-conditions.html" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Terms &amp; Conditions</a>
+          <a href="safety.html" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Safety</a>
+          <a href="privacy-policy.html" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Privacy Policy</a>
           <a href="sitemap.xml" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">XML Sitemap</a>
           <a href="robots.txt" class="footer-link" style="color: #94a3b8; font-size: 0.85rem;">Robots.txt</a>
         </div>

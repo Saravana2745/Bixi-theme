@@ -36,7 +36,7 @@
     var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
     if (!isTouch) {
-      var magnetButtons = document.querySelectorAll('.magnet-btn, .btn-primary, .btn-hotline, .map-zoom-btn');
+      var magnetButtons = document.querySelectorAll('.magnet-btn:not(.no-magnet), .btn-primary:not(.no-magnet), .btn-hotline:not(.no-magnet), .map-zoom-btn:not(.no-magnet)');
       
       magnetButtons.forEach(function (btn) {
         var bounding = null;

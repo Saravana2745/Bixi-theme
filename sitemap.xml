@@ -60,4 +60,28 @@
     <priority>0.75</priority>
   </url>
 
+  <!-- 8. Terms & Conditions -->
+  <url>
+    <loc>https://bixiride.com/terms-and-conditions.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- 9. Safety & Damage Policy -->
+  <url>
+    <loc>https://bixiride.com/safety.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- 10. Privacy Policy -->
+  <url>
+    <loc>https://bixiride.com/privacy-policy.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
 </urlset>

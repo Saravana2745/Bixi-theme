@@ -604,7 +604,10 @@
       bookingModal.classList.add('active');
       document.body.style.overflow = 'hidden';
 
-      // Reset modal view to booking form
+      // Reset modal view to booking form & terms gate
+      if (typeof resetTermsGate === 'function') {
+        resetTermsGate();
+      }
       showFormView();
 
       // Set advance payment amount based on vehicle type
@@ -710,17 +713,95 @@
     const failExitBtn = document.getElementById('bixiFailExitBtn');
     const tryAgainBtn = document.getElementById('bixiTryAgainBtn');
 
+    // Mandatory Scroll-to-Read Terms Gate before Razorpay
+    const termsScrollBox = document.getElementById('bixiTermsScrollBox');
+    const termsScrollStatus = document.getElementById('bixiTermsScrollStatus');
+    const termsCheckLabel = document.getElementById('bixiTermsCheckLabel');
+    const agreeTermsCheckbox = document.getElementById('bixiAgreeTermsCheckbox');
+    let hasReadTerms = false;
+
+    function syncPayBtnState() {
+      if (!payAdvanceBtn) return;
+      const isAgreed = agreeTermsCheckbox ? agreeTermsCheckbox.checked : true;
+      payAdvanceBtn.disabled = !isAgreed;
+      payAdvanceBtn.classList.toggle('is-ready', isAgreed);
+    }
+
+    function unlockTermsCheckbox() {
+      hasReadTerms = true;
+      if (termsScrollStatus) {
+        termsScrollStatus.textContent = 'Read ✓';
+        termsScrollStatus.classList.add('is-read');
+      }
+      if (agreeTermsCheckbox) {
+        agreeTermsCheckbox.disabled = false;
+      }
+      if (termsCheckLabel) {
+        termsCheckLabel.classList.remove('is-locked');
+      }
+    }
+
+    function resetTermsGate() {
+      hasReadTerms = false;
+      if (termsScrollBox) {
+        termsScrollBox.scrollTop = 0;
+      }
+      if (termsScrollStatus) {
+        termsScrollStatus.innerHTML = 'Scroll down to read &darr;';
+        termsScrollStatus.classList.remove('is-read');
+      }
+      if (agreeTermsCheckbox) {
+        agreeTermsCheckbox.checked = false;
+        agreeTermsCheckbox.disabled = true;
+      }
+      if (termsCheckLabel) {
+        termsCheckLabel.classList.add('is-locked');
+      }
+      syncPayBtnState();
+      // If content doesn't overflow on large viewport, unlock checkbox smoothly after layout
+      setTimeout(() => {
+        if (termsScrollBox && termsScrollBox.scrollHeight <= termsScrollBox.clientHeight + 8) {
+          unlockTermsCheckbox();
+        }
+      }, 150);
+    }
+
+    if (termsScrollBox) {
+      termsScrollBox.addEventListener('scroll', () => {
+        if (hasReadTerms) return;
+        if (termsScrollBox.scrollTop + termsScrollBox.clientHeight >= termsScrollBox.scrollHeight - 14) {
+          unlockTermsCheckbox();
+        }
+      }, { passive: true });
+    }
+
+    if (agreeTermsCheckbox) {
+      agreeTermsCheckbox.addEventListener('change', syncPayBtnState);
+    }
+
+    if (termsCheckLabel) {
+      termsCheckLabel.addEventListener('click', () => {
+        if (agreeTermsCheckbox && agreeTermsCheckbox.disabled) {
+          showToast('Please scroll down inside the Terms box first to read all rules.');
+          if (termsScrollBox) {
+            termsScrollBox.classList.add('bixi-pulse-remind');
+            setTimeout(() => termsScrollBox.classList.remove('bixi-pulse-remind'), 800);
+          }
+        }
+      });
+    }
+
     function showFormView() {
       if (formView) formView.style.display = 'block';
       if (successView) successView.style.display = 'none';
       if (failView) failView.style.display = 'none';
       if (payAdvanceBtn) {
-        payAdvanceBtn.disabled = false;
         const amt = (currentVehicleData && currentVehicleData.car) ? 500 : 300;
         payAdvanceBtn.innerHTML = `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           <span>Pay Advance (₹${amt}) via Razorpay</span>
         `;
+        syncPayBtnState();
       }
     }
 
@@ -788,6 +869,10 @@
     if (modalForm) {
       modalForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        if (agreeTermsCheckbox && !agreeTermsCheckbox.checked) {
+          showToast('Please scroll through and tick the Terms & Liability agreement before paying.');
+          return;
+        }
         const bike = modalBikeInput ? modalBikeInput.value : 'Rental Vehicle';
         const name = document.getElementById('userNameInput')?.value || 'Guest';
         const phone = document.getElementById('userPhoneInput')?.value || '';
